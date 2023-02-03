@@ -18,6 +18,7 @@ import pandas as pd
 # Lastly, add another `if` check that for that verb type (like than on approx. line 74).
 
 VII_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Negation"], row["Mode"].replace(" ","")])
+VAI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Negation"], row["Mode"].replace(" ","")])
 
 def make_yaml(file_name:str, analysis:callable) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
