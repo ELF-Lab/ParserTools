@@ -88,6 +88,6 @@ if __name__ == '__main__':
         analysis = VAI_analysis
     # Example to add VTA:
     # elif args.vta:
-    #     action = VTA_analysis
+    #     analysis = VTA_analysis
 
     make_yaml(args.xlsx_path, analysis)
