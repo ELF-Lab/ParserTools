@@ -13,7 +13,7 @@ import pandas as pd
 # Run just `python3 create_yaml.py` to view help.
 
 ## READ ME ##
-# To maintain this file, add a new analysis for each type (i.e. VTA).
+# To maintain this file, add a new analysis for each type (e.g. VTA).
 # Then, add another entry to the `group` variable below (like that on approx. line 68).
 # Lastly, add another `if` check that for that verb type (like than on approx. line 74).
 
