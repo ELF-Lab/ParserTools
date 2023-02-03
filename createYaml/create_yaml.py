@@ -76,6 +76,7 @@ if __name__ == '__main__':
     parser.add_argument("xlsx_path", type=str, help="Path to the spreadsheet.")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('--vii', action='store_true', help="Do analysis for VII verbs.")
+    group.add_argument('--vai', action='store_true', help="Do analysis for VAI verbs.")
     # Example to add VTA:
     #group.add_argument('--vta', action='store_true', help='Do analysis for VTA verbs.')
 
@@ -83,6 +84,8 @@ if __name__ == '__main__':
 
     if args.vii:
         analysis = VII_analysis
+    elif args.vai:
+        analysis = VAI_analysis
     # Example to add VTA:
     # elif args.vta:
     #     action = VTA_analysis
