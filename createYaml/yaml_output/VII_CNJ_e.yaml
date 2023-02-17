@@ -1,14 +1,14 @@
-ate+VII+Cnj+0SgProx/0PlProx+Positive+Neutral: ateg
-ate+VII+Cnj+0SgObv/0PlObv+Positive+Neutral: atenig
-ate+VII+Cnj+0SgProx/0PlProx+Negative+Neutral: atesinog
-ate+VII+Cnj+0SgObv/0PlObv+Negative+Neutral: atesininig
-ate+VII+Cnj+0SgProx/0PlProx+Positive+Preterit: ategiban
-ate+VII+Cnj+0SgObv/0PlObv+Positive+Preterit: atenigiban
-ate+VII+Cnj+0SgProx/0PlProx+Negative+Preterit: atesinoogiban
-ate+VII+Cnj+0SgObv/0PlObv+Negative+Preterit: atesininigiban
-ate+VII+Cnj+0SgProx/0PlProx+Positive+Dubitative: ategwen
-ate+VII+Cnj+0SgObv/0PlObv+Positive+Dubitative: atenigwen
-ate+VII+Cnj+0SgProx/0PlProx+Positive+PreteritDubitative: ategobanen
-ate+VII+Cnj+0SgObv/0PlObv+Positive+PreteritDubitative: atenigobanen
-ate+VII+Cnj+0SgProx/0PlProx+Negative+PreteritDubitative: atesinoogobanen
-ate+VII+Cnj+0SgObv/0PlObv+Negative+PreteritDubitative: atesininigobanen
+     ate+VII+Cnj+Pos+Neu+0SgProx/0PlProx: ateg
+     ate+VII+Cnj+Pos+Neu+0SgObv/0PlObv: atenig
+     ate+VII+Cnj+Neg+Neu+0SgProx/0PlProx: atesinog
+     ate+VII+Cnj+Neg+Neu+0SgObv/0PlObv: atesininig
+     ate+VII+Cnj+Pos+Prt+0SgProx/0PlProx: ategiban
+     ate+VII+Cnj+Pos+Prt+0SgObv/0PlObv: atenigiban
+     ate+VII+Cnj+Neg+Prt+0SgProx/0PlProx: atesinoogiban
+     ate+VII+Cnj+Neg+Prt+0SgObv/0PlObv: atesininigiban
+     ate+VII+Cnj+Pos+Dub+0SgProx/0PlProx: ategwen
+     ate+VII+Cnj+Pos+Dub+0SgObv/0PlObv: atenigwen
+     ate+VII+Cnj+Pos+Prt+Dub+0SgProx/0PlProx: ategobanen
+     ate+VII+Cnj+Pos+Prt+Dub+0SgObv/0PlObv: atenigobanen
+     ate+VII+Cnj+Neg+Prt+Dub+0SgProx/0PlProx: atesinoogobanen
+     ate+VII+Cnj+Neg+Prt+Dub+0SgObv/0PlObv: atesininigobanen

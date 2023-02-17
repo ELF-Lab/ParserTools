@@ -1,66 +1,66 @@
-webinige+VAI+Ind+1Sg+Pos+Neut: niwebinige
-webinige+VAI+Ind+2Sg+Pos+Neut: giwebinige
-webinige+VAI+Ind+Excl+Pos+Neut: niwebinigemin
-webinige+VAI+Ind+Incl+Pos+Neut: giwebinigemin
-webinige+VAI+Ind+2Pl+Pos+Neut: giwebinigem
-webinige+VAI+Ind+3SgProx+Pos+Neut: webinige
-webinige+VAI+Ind+3PlProx+Pos+Neut: webinigewag
-webinige+VAI+Ind+3SgObv+Pos+Neut: webinigewan
-webinige+VAI+Ind+3PlObv+Pos+Neut: [webinigewan,webinigewa']
-webinige+VAI+Ind+X+Pos+Neut: webinigem
-webinige+VAI+Ind+1Sg+Neg+Neut: [niwebinigesiin,niwebinigesii]
-webinige+VAI+Ind+2Sg+Neg+Neut: [giwebinigesiin,giwebinigesii]
-webinige+VAI+Ind+Excl+Neg+Neut: niwebinigesiimin
-webinige+VAI+Ind+Incl+Neg+Neut: giwebinigesiimin
-webinige+VAI+Ind+2Pl+Neg+Neut: giwebinigesiim
-webinige+VAI+Ind+3SgProx+Neg+Neut: [webinigesiin,giwebinigesii]
-webinige+VAI+Ind+3PlProx+Neg+Neut: webinigesiiwag
-webinige+VAI+Ind+3SgObv+Neg+Neut: webinigesiiwan
-webinige+VAI+Ind+3PlObv+Neg+Neut: [webinigesiiwan,webinigesiiwa']
-webinige+VAI+Ind+X+Neg+Neut: webinigesiim
-webinige+VAI+Ind+1Sg+Pos+Pret: niwebinigenaaban
-webinige+VAI+Ind+2Sg+Pos+Pret: giwebinigenaaban
-webinige+VAI+Ind+Excl+Pos+Pret: niwebinigeminaaban
-webinige+VAI+Ind+Incl+Pos+Pret: giwebinigeminaaban
-webinige+VAI+Ind+2Pl+Pos+Pret: giwebinigemwaaban
-webinige+VAI+Ind+3SgProx+Pos+Pret: webinigeban
-webinige+VAI+Ind+3PlProx+Pos+Pret: [webinigebaniig,webinigebaneg]
-webinige+VAI+Ind+3SgObv+Pos+Pret: [webinigebaniin,webinigebanen]
-webinige+VAI+Ind+3PlObv+Pos+Pret: [webinigebaniin,webinigebanen]
-webinige+VAI+Ind+X+Pos+Pret: webinigemwaaban
-webinige+VAI+Ind+1Sg+Neg+Pret: niwebinigesiinaaban
-webinige+VAI+Ind+2Sg+Neg+Pret: giwebinigesiinaaban
-webinige+VAI+Ind+Excl+Neg+Pret: niwebinigesiiminaaban
-webinige+VAI+Ind+Incl+Neg+Pret: giwebinigesiiminaaban
-webinige+VAI+Ind+2Pl+Neg+Pret: giwebinigesiimwaaban
-webinige+VAI+Ind+3SgProx+Neg+Pret: webinigesiiban
-webinige+VAI+Ind+3PlProx+Neg+Pret: [webinigesiibaniig,webinigesiibaneg]
-webinige+VAI+Ind+3SgObv+Neg+Pret: [webinigesiibaniin,webinigesiibanen]
-webinige+VAI+Ind+3PlObv+Neg+Pret: [webinigesiibaniin,webinigesiibanen]
-webinige+VAI+Ind+X+Neg+Pret: webinigesiimwaaban
-webinige+VAI+Ind+1Sg+Pos+Dub: niwebinigenaadog
-webinige+VAI+Ind+2Sg+Pos+Dub: giwebinigenaadog
-webinige+VAI+Ind+Excl+Pos+Dub: niwebinigeminaadog
-webinige+VAI+Ind+Incl+Pos+Dub: giwebinigeminaadog
-webinige+VAI+Ind+2Pl+Pos+Dub: giwebinigemwaadog
-webinige+VAI+Ind+3SgProx+Pos+Dub: webinigedog
-webinige+VAI+Ind+3PlProx+Pos+Dub: webinigedogenag
-webinige+VAI+Ind+3SgObv+Pos+Dub: webinigedogenan
-webinige+VAI+Ind+3PlObv+Pos+Dub: [webinigedogenan,webinigedogena']
-webinige+VAI+Ind+X+Pos+Dub: webinigemwaadog
-webinige+VAI+Ind+1Sg+Neg+Dub: niwebinigesiinaadog
-webinige+VAI+Ind+2Sg+Neg+Dub: giwebinigesiinaadog
-webinige+VAI+Ind+Excl+Neg+Dub: niwebinigesiiminaadog
-webinige+VAI+Ind+Incl+Neg+Dub: giwebinigesiiminaadog
-webinige+VAI+Ind+2Pl+Neg+Dub: giwebinigesiimwaadog
-webinige+VAI+Ind+3SgProx+Neg+Dub: webinigesiidog
-webinige+VAI+Ind+3PlProx+Neg+Dub: webinigesiidogenag
-webinige+VAI+Ind+3SgObv+Neg+Dub: webinigesiidogenan
-webinige+VAI+Ind+3PlObv+Neg+Dub: [webinigesiidogenan,webinigesiidogena']
-webinige+VAI+Ind+X+Neg+Dub: webinigesiimwaadog
-webinige+VAI+Ind+3SgProx+Pos+PretDub: webinigegoban
-webinige+VAI+Ind+3PlProx+Pos+PretDub: webinigegwaaban
-webinige+VAI+Ind+3SgObv+Pos+PretDub: webinigenigoban
-webinige+VAI+Ind+3SgProx+Neg+PretDub: webinigesiigoban
-webinige+VAI+Ind+3PlProx+Neg+PretDub: webinigesiigwaaban
-webinige+VAI+Ind+3SgObv+Neg+PretDub: webinigesiinigoban
+     webinige+VAI+Ind+1Sg+Pos+Neu: niwebinige
+     webinige+VAI+Ind+2Sg+Pos+Neu: giwebinige
+     webinige+VAI+Ind+Excl+Pos+Neu: niwebinigemin
+     webinige+VAI+Ind+Incl+Pos+Neu: giwebinigemin
+     webinige+VAI+Ind+2Pl+Pos+Neu: giwebinigem
+     webinige+VAI+Ind+3SgProx+Pos+Neu: webinige
+     webinige+VAI+Ind+3PlProx+Pos+Neu: webinigewag
+     webinige+VAI+Ind+3SgObv+Pos+Neu: webinigewan
+     webinige+VAI+Ind+3PlObv+Pos+Neu: [webinigewan,webinigewa']
+     webinige+VAI+Ind+X+Pos+Neu: webinigem
+     webinige+VAI+Ind+1Sg+Neg+Neu: [niwebinigesiin,niwebinigesii]
+     webinige+VAI+Ind+2Sg+Neg+Neu: [giwebinigesiin,giwebinigesii]
+     webinige+VAI+Ind+Excl+Neg+Neu: niwebinigesiimin
+     webinige+VAI+Ind+Incl+Neg+Neu: giwebinigesiimin
+     webinige+VAI+Ind+2Pl+Neg+Neu: giwebinigesiim
+     webinige+VAI+Ind+3SgProx+Neg+Neu: [webinigesiin,giwebinigesii]
+     webinige+VAI+Ind+3PlProx+Neg+Neu: webinigesiiwag
+     webinige+VAI+Ind+3SgObv+Neg+Neu: webinigesiiwan
+     webinige+VAI+Ind+3PlObv+Neg+Neu: [webinigesiiwan,webinigesiiwa']
+     webinige+VAI+Ind+X+Neg+Neu: webinigesiim
+     webinige+VAI+Ind+1Sg+Pos+Prt: niwebinigenaaban
+     webinige+VAI+Ind+2Sg+Pos+Prt: giwebinigenaaban
+     webinige+VAI+Ind+Excl+Pos+Prt: niwebinigeminaaban
+     webinige+VAI+Ind+Incl+Pos+Prt: giwebinigeminaaban
+     webinige+VAI+Ind+2Pl+Pos+Prt: giwebinigemwaaban
+     webinige+VAI+Ind+3SgProx+Pos+Prt: webinigeban
+     webinige+VAI+Ind+3PlProx+Pos+Prt: [webinigebaniig,webinigebaneg]
+     webinige+VAI+Ind+3SgObv+Pos+Prt: [webinigebaniin,webinigebanen]
+     webinige+VAI+Ind+3PlObv+Pos+Prt: [webinigebaniin,webinigebanen]
+     webinige+VAI+Ind+X+Pos+Prt: webinigemwaaban
+     webinige+VAI+Ind+1Sg+Neg+Prt: niwebinigesiinaaban
+     webinige+VAI+Ind+2Sg+Neg+Prt: giwebinigesiinaaban
+     webinige+VAI+Ind+Excl+Neg+Prt: niwebinigesiiminaaban
+     webinige+VAI+Ind+Incl+Neg+Prt: giwebinigesiiminaaban
+     webinige+VAI+Ind+2Pl+Neg+Prt: giwebinigesiimwaaban
+     webinige+VAI+Ind+3SgProx+Neg+Prt: webinigesiiban
+     webinige+VAI+Ind+3PlProx+Neg+Prt: [webinigesiibaniig,webinigesiibaneg]
+     webinige+VAI+Ind+3SgObv+Neg+Prt: [webinigesiibaniin,webinigesiibanen]
+     webinige+VAI+Ind+3PlObv+Neg+Prt: [webinigesiibaniin,webinigesiibanen]
+     webinige+VAI+Ind+X+Neg+Prt: webinigesiimwaaban
+     webinige+VAI+Ind+1Sg+Pos+Dub: niwebinigenaadog
+     webinige+VAI+Ind+2Sg+Pos+Dub: giwebinigenaadog
+     webinige+VAI+Ind+Excl+Pos+Dub: niwebinigeminaadog
+     webinige+VAI+Ind+Incl+Pos+Dub: giwebinigeminaadog
+     webinige+VAI+Ind+2Pl+Pos+Dub: giwebinigemwaadog
+     webinige+VAI+Ind+3SgProx+Pos+Dub: webinigedog
+     webinige+VAI+Ind+3PlProx+Pos+Dub: webinigedogenag
+     webinige+VAI+Ind+3SgObv+Pos+Dub: webinigedogenan
+     webinige+VAI+Ind+3PlObv+Pos+Dub: [webinigedogenan,webinigedogena']
+     webinige+VAI+Ind+X+Pos+Dub: webinigemwaadog
+     webinige+VAI+Ind+1Sg+Neg+Dub: niwebinigesiinaadog
+     webinige+VAI+Ind+2Sg+Neg+Dub: giwebinigesiinaadog
+     webinige+VAI+Ind+Excl+Neg+Dub: niwebinigesiiminaadog
+     webinige+VAI+Ind+Incl+Neg+Dub: giwebinigesiiminaadog
+     webinige+VAI+Ind+2Pl+Neg+Dub: giwebinigesiimwaadog
+     webinige+VAI+Ind+3SgProx+Neg+Dub: webinigesiidog
+     webinige+VAI+Ind+3PlProx+Neg+Dub: webinigesiidogenag
+     webinige+VAI+Ind+3SgObv+Neg+Dub: webinigesiidogenan
+     webinige+VAI+Ind+3PlObv+Neg+Dub: [webinigesiidogenan,webinigesiidogena']
+     webinige+VAI+Ind+X+Neg+Dub: webinigesiimwaadog
+     webinige+VAI+Ind+3SgProx+Pos+Prt+Dub: webinigegoban
+     webinige+VAI+Ind+3PlProx+Pos+Prt+Dub: webinigegwaaban
+     webinige+VAI+Ind+3SgObv+Pos+Prt+Dub: webinigenigoban
+     webinige+VAI+Ind+3SgProx+Neg+Prt+Dub: webinigesiigoban
+     webinige+VAI+Ind+3PlProx+Neg+Prt+Dub: webinigesiigwaaban
+     webinige+VAI+Ind+3SgObv+Neg+Prt+Dub: webinigesiinigoban

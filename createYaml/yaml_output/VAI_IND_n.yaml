@@ -1,66 +1,66 @@
-wanishin+VAI+Ind+1Sg+Pos+Neut: niwanishin
-wanishin+VAI+Ind+2Sg+Pos+Neut: giwanishin
-wanishin+VAI+Ind+Excl+Pos+Neut: niwanishinimin
-wanishin+VAI+Ind+Incl+Pos+Neut: giwanishinimin
-wanishin+VAI+Ind+2Pl+Pos+Neut: giwanishinim
-wanishin+VAI+Ind+3SgProx+Pos+Neut: wanishin
-wanishin+VAI+Ind+3PlProx+Pos+Neut: wanishinoog
-wanishin+VAI+Ind+3SgObv+Pos+Neut: wanishinoon
-wanishin+VAI+Ind+3PlObv+Pos+Neut: [wanishinoon,wanishinoo']
-wanishin+VAI+Ind+X+Pos+Neut: wanishinim
-wanishin+VAI+Ind+1Sg+Neg+Neut: [niwanishinziin,niwanishinzii]
-wanishin+VAI+Ind+2Sg+Neg+Neut: [giwanishinziin,giwanishinzii]
-wanishin+VAI+Ind+Excl+Neg+Neut: niwanishinziimin
-wanishin+VAI+Ind+Incl+Neg+Neut: giwanishinziimin
-wanishin+VAI+Ind+2Pl+Neg+Neut: giwanishinziim
-wanishin+VAI+Ind+3SgProx+Neg+Neut: [wanishinziin,wanishinzii]
-wanishin+VAI+Ind+3PlProx+Neg+Neut: wanishinziiwag
-wanishin+VAI+Ind+3SgObv+Neg+Neut: wanishinziiwan
-wanishin+VAI+Ind+3PlObv+Neg+Neut: [wanishinziiwan,wanishinziiwa']
-wanishin+VAI+Ind+X+Neg+Neut: wanishinziim
-wanishin+VAI+Ind+1Sg+Pos+Pret: niwanishininaaban
-wanishin+VAI+Ind+2Sg+Pos+Pret: giwanishininaaban
-wanishin+VAI+Ind+Excl+Pos+Pret: niwanishiniminaaban
-wanishin+VAI+Ind+Incl+Pos+Pret: giwanishiniminaaban
-wanishin+VAI+Ind+2Pl+Pos+Pret: giwanishinimwaaban
-wanishin+VAI+Ind+3SgProx+Pos+Pret: wanishinooban
-wanishin+VAI+Ind+3PlProx+Pos+Pret: [wanishinoobaniig,wanishinoobaneg ]
-wanishin+VAI+Ind+3SgObv+Pos+Pret: [wanishinoobaniin,wanishinoobanen]
-wanishin+VAI+Ind+3PlObv+Pos+Pret: [wanishinoobaniin,wanishinoobanen]
-wanishin+VAI+Ind+X+Pos+Pret: wanishinimwaaban
-wanishin+VAI+Ind+1Sg+Neg+Pret: niwanishinziinaaban
-wanishin+VAI+Ind+2Sg+Neg+Pret: giwanishinziinaaban
-wanishin+VAI+Ind+Excl+Neg+Pret: niwanishinziiminaaban
-wanishin+VAI+Ind+Incl+Neg+Pret: giwanishinziiminaaban
-wanishin+VAI+Ind+2Pl+Neg+Pret: giwanishinziimwaaban
-wanishin+VAI+Ind+3SgProx+Neg+Pret: wanishinziiban
-wanishin+VAI+Ind+3PlProx+Neg+Pret: [wanishinziibaniig,wanishinziibaneg]
-wanishin+VAI+Ind+3SgObv+Neg+Pret: [wanishinziibaniin,wanishinziibanen]
-wanishin+VAI+Ind+3PlObv+Neg+Pret: [wanishinziibaniin,wanishinziibanen]
-wanishin+VAI+Ind+X+Neg+Pret: wanishinziimwaaban
-wanishin+VAI+Ind+1Sg+Pos+Dub: niwanishininaadog
-wanishin+VAI+Ind+2Sg+Pos+Dub: giwanishininaadog
-wanishin+VAI+Ind+Excl+Pos+Dub: niwanishiniminaadog
-wanishin+VAI+Ind+Incl+Pos+Dub: giwanishiniminaadog
-wanishin+VAI+Ind+2Pl+Pos+Dub: giwanishinimwaadog
-wanishin+VAI+Ind+3SgProx+Pos+Dub: [wanishinowidog,wanishinodog]
-wanishin+VAI+Ind+3PlProx+Pos+Dub: [wanishinowidogenag,wanishinodogenag]
-wanishin+VAI+Ind+3SgObv+Pos+Dub: [wanishinowidogenan,wanishinodogenan]
-wanishin+VAI+Ind+3PlObv+Pos+Dub: [wanishinowidogenan,wanishinodogenan]
-wanishin+VAI+Ind+X+Pos+Dub: wanishinimwaadog
-wanishin+VAI+Ind+1Sg+Neg+Dub: niwanishinziinaadog
-wanishin+VAI+Ind+2Sg+Neg+Dub: giwanishinziinaadog
-wanishin+VAI+Ind+Excl+Neg+Dub: niwanishinziiminaadog
-wanishin+VAI+Ind+Incl+Neg+Dub: giwanishinziiminaadog
-wanishin+VAI+Ind+2Pl+Neg+Dub: giwanishinziimwaadog
-wanishin+VAI+Ind+3SgProx+Neg+Dub: wanishinziidog
-wanishin+VAI+Ind+3PlProx+Neg+Dub: wanishinziidogenag
-wanishin+VAI+Ind+3SgObv+Neg+Dub: wanishinziidogenan
-wanishin+VAI+Ind+3PlObv+Neg+Dub: [wanishinziidogenan,wanishinziidogena']
-wanishin+VAI+Ind+X+Neg+Dub: wanishinziimwaadog
-wanishin+VAI+Ind+3SgProx+Pos+PretDub: wanishinogoban
-wanishin+VAI+Ind+3PlProx+Pos+PretDub: wanishinogwaaban
-wanishin+VAI+Ind+3SgObv+Pos+PretDub: wanishininigoban
-wanishin+VAI+Ind+3SgProx+Neg+PretDub: wanishinziigoban
-wanishin+VAI+Ind+3PlProx+Neg+PretDub: wanishinziigwaaban
-wanishin+VAI+Ind+3SgObv+Neg+PretDub: wanishinziinigoban
+     wanishin+VAI+Ind+1Sg+Pos+Neu: niwanishin
+     wanishin+VAI+Ind+2Sg+Pos+Neu: giwanishin
+     wanishin+VAI+Ind+Excl+Pos+Neu: niwanishinimin
+     wanishin+VAI+Ind+Incl+Pos+Neu: giwanishinimin
+     wanishin+VAI+Ind+2Pl+Pos+Neu: giwanishinim
+     wanishin+VAI+Ind+3SgProx+Pos+Neu: wanishin
+     wanishin+VAI+Ind+3PlProx+Pos+Neu: wanishinoog
+     wanishin+VAI+Ind+3SgObv+Pos+Neu: wanishinoon
+     wanishin+VAI+Ind+3PlObv+Pos+Neu: [wanishinoon,wanishinoo']
+     wanishin+VAI+Ind+X+Pos+Neu: wanishinim
+     wanishin+VAI+Ind+1Sg+Neg+Neu: [niwanishinziin,niwanishinzii]
+     wanishin+VAI+Ind+2Sg+Neg+Neu: [giwanishinziin,giwanishinzii]
+     wanishin+VAI+Ind+Excl+Neg+Neu: niwanishinziimin
+     wanishin+VAI+Ind+Incl+Neg+Neu: giwanishinziimin
+     wanishin+VAI+Ind+2Pl+Neg+Neu: giwanishinziim
+     wanishin+VAI+Ind+3SgProx+Neg+Neu: [wanishinziin,wanishinzii]
+     wanishin+VAI+Ind+3PlProx+Neg+Neu: wanishinziiwag
+     wanishin+VAI+Ind+3SgObv+Neg+Neu: wanishinziiwan
+     wanishin+VAI+Ind+3PlObv+Neg+Neu: [wanishinziiwan,wanishinziiwa']
+     wanishin+VAI+Ind+X+Neg+Neu: wanishinziim
+     wanishin+VAI+Ind+1Sg+Pos+Prt: niwanishininaaban
+     wanishin+VAI+Ind+2Sg+Pos+Prt: giwanishininaaban
+     wanishin+VAI+Ind+Excl+Pos+Prt: niwanishiniminaaban
+     wanishin+VAI+Ind+Incl+Pos+Prt: giwanishiniminaaban
+     wanishin+VAI+Ind+2Pl+Pos+Prt: giwanishinimwaaban
+     wanishin+VAI+Ind+3SgProx+Pos+Prt: wanishinooban
+     wanishin+VAI+Ind+3PlProx+Pos+Prt: [wanishinoobaniig,wanishinoobaneg ]
+     wanishin+VAI+Ind+3SgObv+Pos+Prt: [wanishinoobaniin,wanishinoobanen]
+     wanishin+VAI+Ind+3PlObv+Pos+Prt: [wanishinoobaniin,wanishinoobanen]
+     wanishin+VAI+Ind+X+Pos+Prt: wanishinimwaaban
+     wanishin+VAI+Ind+1Sg+Neg+Prt: niwanishinziinaaban
+     wanishin+VAI+Ind+2Sg+Neg+Prt: giwanishinziinaaban
+     wanishin+VAI+Ind+Excl+Neg+Prt: niwanishinziiminaaban
+     wanishin+VAI+Ind+Incl+Neg+Prt: giwanishinziiminaaban
+     wanishin+VAI+Ind+2Pl+Neg+Prt: giwanishinziimwaaban
+     wanishin+VAI+Ind+3SgProx+Neg+Prt: wanishinziiban
+     wanishin+VAI+Ind+3PlProx+Neg+Prt: [wanishinziibaniig,wanishinziibaneg]
+     wanishin+VAI+Ind+3SgObv+Neg+Prt: [wanishinziibaniin,wanishinziibanen]
+     wanishin+VAI+Ind+3PlObv+Neg+Prt: [wanishinziibaniin,wanishinziibanen]
+     wanishin+VAI+Ind+X+Neg+Prt: wanishinziimwaaban
+     wanishin+VAI+Ind+1Sg+Pos+Dub: niwanishininaadog
+     wanishin+VAI+Ind+2Sg+Pos+Dub: giwanishininaadog
+     wanishin+VAI+Ind+Excl+Pos+Dub: niwanishiniminaadog
+     wanishin+VAI+Ind+Incl+Pos+Dub: giwanishiniminaadog
+     wanishin+VAI+Ind+2Pl+Pos+Dub: giwanishinimwaadog
+     wanishin+VAI+Ind+3SgProx+Pos+Dub: [wanishinowidog,wanishinodog]
+     wanishin+VAI+Ind+3PlProx+Pos+Dub: [wanishinowidogenag,wanishinodogenag]
+     wanishin+VAI+Ind+3SgObv+Pos+Dub: [wanishinowidogenan,wanishinodogenan]
+     wanishin+VAI+Ind+3PlObv+Pos+Dub: [wanishinowidogenan,wanishinodogenan]
+     wanishin+VAI+Ind+X+Pos+Dub: wanishinimwaadog
+     wanishin+VAI+Ind+1Sg+Neg+Dub: niwanishinziinaadog
+     wanishin+VAI+Ind+2Sg+Neg+Dub: giwanishinziinaadog
+     wanishin+VAI+Ind+Excl+Neg+Dub: niwanishinziiminaadog
+     wanishin+VAI+Ind+Incl+Neg+Dub: giwanishinziiminaadog
+     wanishin+VAI+Ind+2Pl+Neg+Dub: giwanishinziimwaadog
+     wanishin+VAI+Ind+3SgProx+Neg+Dub: wanishinziidog
+     wanishin+VAI+Ind+3PlProx+Neg+Dub: wanishinziidogenag
+     wanishin+VAI+Ind+3SgObv+Neg+Dub: wanishinziidogenan
+     wanishin+VAI+Ind+3PlObv+Neg+Dub: [wanishinziidogenan,wanishinziidogena']
+     wanishin+VAI+Ind+X+Neg+Dub: wanishinziimwaadog
+     wanishin+VAI+Ind+3SgProx+Pos+Prt+Dub: wanishinogoban
+     wanishin+VAI+Ind+3PlProx+Pos+Prt+Dub: wanishinogwaaban
+     wanishin+VAI+Ind+3SgObv+Pos+Prt+Dub: wanishininigoban
+     wanishin+VAI+Ind+3SgProx+Neg+Prt+Dub: wanishinziigoban
+     wanishin+VAI+Ind+3PlProx+Neg+Prt+Dub: wanishinziigwaaban
+     wanishin+VAI+Ind+3SgObv+Neg+Prt+Dub: wanishinziinigoban

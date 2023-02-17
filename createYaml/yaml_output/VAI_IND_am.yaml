@@ -1,66 +1,66 @@
-zaaga'am+VAI+Ind+1Sg+Pos+Neut: nizaaga'am
-zaaga'am+VAI+Ind+2Sg+Pos+Neut: gizaaga'am
-zaaga'am+VAI+Ind+Excl+Pos+Neut: nizaaga'aamin
-zaaga'am+VAI+Ind+Incl+Pos+Neut: gizaaga'aamin
-zaaga'am+VAI+Ind+2Pl+Pos+Neut: gizaaga'aam
-zaaga'am+VAI+Ind+3SgProx+Pos+Neut: zaaga'am
-zaaga'am+VAI+Ind+3PlProx+Pos+Neut: zaaga'amoog
-zaaga'am+VAI+Ind+3SgObv+Pos+Neut: zaaga'amoon
-zaaga'am+VAI+Ind+3PlObv+Pos+Neut: [zaaga'amoon,zaaga'amoo']
-zaaga'am+VAI+Ind+X+Pos+Neut: zaaga'aam
-zaaga'am+VAI+Ind+1Sg+Neg+Neut: [nizaaga'anziin,nizaaga'anzii]
-zaaga'am+VAI+Ind+2Sg+Neg+Neut: [gizaaga'anziin,gizaaga'anzii]
-zaaga'am+VAI+Ind+Excl+Neg+Neut: nizaaga'anziimin
-zaaga'am+VAI+Ind+Incl+Neg+Neut: gizaaga'anziimin
-zaaga'am+VAI+Ind+2Pl+Neg+Neut: gizaaga'anziim
-zaaga'am+VAI+Ind+3SgProx+Neg+Neut: [zaaga'anziin,zaaga'anzii]
-zaaga'am+VAI+Ind+3PlProx+Neg+Neut: zaaga'anziiwag
-zaaga'am+VAI+Ind+3SgObv+Neg+Neut: zaaga'anziiwan
-zaaga'am+VAI+Ind+3PlObv+Neg+Neut: [zaaga'anziiwan,zaaga'anziiwa']
-zaaga'am+VAI+Ind+X+Neg+Neut: zaaga'anziim
-zaaga'am+VAI+Ind+1Sg+Pos+Pret: nizaaga'aanaaban
-zaaga'am+VAI+Ind+2Sg+Pos+Pret: gizaaga'aanaaban
-zaaga'am+VAI+Ind+Excl+Pos+Pret: nizaaga'aaminaaban
-zaaga'am+VAI+Ind+Incl+Pos+Pret: gizaaga'aaminaaban
-zaaga'am+VAI+Ind+2Pl+Pos+Pret: gizaaga'aamwaaban
-zaaga'am+VAI+Ind+3SgProx+Pos+Pret: zaaga'amooban
-zaaga'am+VAI+Ind+3PlProx+Pos+Pret: [zaaga'amoobaniig,zaaga'amoobaneg]
-zaaga'am+VAI+Ind+3SgObv+Pos+Pret: [zaaga'amoobaniin,zaaga'amoobanen]
-zaaga'am+VAI+Ind+3PlObv+Pos+Pret: [zaaga'amoobaniin,zaaga'amoobanen]
-zaaga'am+VAI+Ind+X+Pos+Pret: zaaga'aamwaaban
-zaaga'am+VAI+Ind+1Sg+Neg+Pret: nizaaga'anziinaaban
-zaaga'am+VAI+Ind+2Sg+Neg+Pret: gizaaga'anziinaaban
-zaaga'am+VAI+Ind+Excl+Neg+Pret: nizaaga'anziiminaaban
-zaaga'am+VAI+Ind+Incl+Neg+Pret: gizaaga'anziiminaaban
-zaaga'am+VAI+Ind+2Pl+Neg+Pret: gizaaga'anziimwaaban
-zaaga'am+VAI+Ind+3SgProx+Neg+Pret: zaaga'anziiban
-zaaga'am+VAI+Ind+3PlProx+Neg+Pret: [zaaga'anziibaniig,zaaga'anziibaneg]
-zaaga'am+VAI+Ind+3SgObv+Neg+Pret: [zaaga'anziibaniin,zaaga'anziibanen]
-zaaga'am+VAI+Ind+3PlObv+Neg+Pret: [zaaga'anziibaniin,zaaga'anziibanen]
-zaaga'am+VAI+Ind+X+Neg+Pret: zaaga'anziimwaaban
-zaaga'am+VAI+Ind+1Sg+Pos+Dub: nizaaga'aanaadog
-zaaga'am+VAI+Ind+2Sg+Pos+Dub: gizaaga'aanaadog
-zaaga'am+VAI+Ind+Excl+Pos+Dub: nizaaga'aaminaadog
-zaaga'am+VAI+Ind+Incl+Pos+Dub: gizaaga'aaminaadog
-zaaga'am+VAI+Ind+2Pl+Pos+Dub: gizaaga'aamwaadog
-zaaga'am+VAI+Ind+3SgProx+Pos+Dub: [zaaga'amowidog,zaaga'amodog]
-zaaga'am+VAI+Ind+3PlProx+Pos+Dub: [zaaga'amowidogenag,zaaga'amodogenan]
-zaaga'am+VAI+Ind+3SgObv+Pos+Dub: [zaaga'amowidogenan,zaaga'amodogenan]
-zaaga'am+VAI+Ind+3PlObv+Pos+Dub: [zaaga'amowidogenan,zaaga'amodogenan]
-zaaga'am+VAI+Ind+X+Pos+Dub: zaaga'aamwaadog
-zaaga'am+VAI+Ind+1Sg+Neg+Dub: nizaaga'anziinaadog
-zaaga'am+VAI+Ind+2Sg+Neg+Dub: gizaaga'anziinaadog
-zaaga'am+VAI+Ind+Excl+Neg+Dub: nizaaga'anziiminaadog
-zaaga'am+VAI+Ind+Incl+Neg+Dub: gizaaga'anziiminaadog
-zaaga'am+VAI+Ind+2Pl+Neg+Dub: gizaaga'anziimwaadog
-zaaga'am+VAI+Ind+3SgProx+Neg+Dub: zaaga'anziidog
-zaaga'am+VAI+Ind+3PlProx+Neg+Dub: zaaga'anziidogenag
-zaaga'am+VAI+Ind+3SgObv+Neg+Dub: zaaga'anziidogenan
-zaaga'am+VAI+Ind+3PlObv+Neg+Dub: [zaaga'anziidogenan,zaaga'anziidogena']
-zaaga'am+VAI+Ind+X+Neg+Dub: zaaga'anziimwaadog
-zaaga'am+VAI+Ind+3SgProx+Pos+PretDub: zaaga'amogoban
-zaaga'am+VAI+Ind+3PlProx+Pos+PretDub: zaaga'amogwaaban
-zaaga'am+VAI+Ind+3SgObv+Pos+PretDub: zaaga'aminigoban
-zaaga'am+VAI+Ind+3SgProx+Neg+PretDub: zaaga'anziigoban
-zaaga'am+VAI+Ind+3PlProx+Neg+PretDub: zaaga'anziigwaaban
-zaaga'am+VAI+Ind+3SgObv+Neg+PretDub: zaaga'anziinigoban
+     zaaga'am+VAI+Ind+1Sg+Pos+Neu: nizaaga'am
+     zaaga'am+VAI+Ind+2Sg+Pos+Neu: gizaaga'am
+     zaaga'am+VAI+Ind+Excl+Pos+Neu: nizaaga'aamin
+     zaaga'am+VAI+Ind+Incl+Pos+Neu: gizaaga'aamin
+     zaaga'am+VAI+Ind+2Pl+Pos+Neu: gizaaga'aam
+     zaaga'am+VAI+Ind+3SgProx+Pos+Neu: zaaga'am
+     zaaga'am+VAI+Ind+3PlProx+Pos+Neu: zaaga'amoog
+     zaaga'am+VAI+Ind+3SgObv+Pos+Neu: zaaga'amoon
+     zaaga'am+VAI+Ind+3PlObv+Pos+Neu: [zaaga'amoon,zaaga'amoo']
+     zaaga'am+VAI+Ind+X+Pos+Neu: zaaga'aam
+     zaaga'am+VAI+Ind+1Sg+Neg+Neu: [nizaaga'anziin,nizaaga'anzii]
+     zaaga'am+VAI+Ind+2Sg+Neg+Neu: [gizaaga'anziin,gizaaga'anzii]
+     zaaga'am+VAI+Ind+Excl+Neg+Neu: nizaaga'anziimin
+     zaaga'am+VAI+Ind+Incl+Neg+Neu: gizaaga'anziimin
+     zaaga'am+VAI+Ind+2Pl+Neg+Neu: gizaaga'anziim
+     zaaga'am+VAI+Ind+3SgProx+Neg+Neu: [zaaga'anziin,zaaga'anzii]
+     zaaga'am+VAI+Ind+3PlProx+Neg+Neu: zaaga'anziiwag
+     zaaga'am+VAI+Ind+3SgObv+Neg+Neu: zaaga'anziiwan
+     zaaga'am+VAI+Ind+3PlObv+Neg+Neu: [zaaga'anziiwan,zaaga'anziiwa']
+     zaaga'am+VAI+Ind+X+Neg+Neu: zaaga'anziim
+     zaaga'am+VAI+Ind+1Sg+Pos+Prt: nizaaga'aanaaban
+     zaaga'am+VAI+Ind+2Sg+Pos+Prt: gizaaga'aanaaban
+     zaaga'am+VAI+Ind+Excl+Pos+Prt: nizaaga'aaminaaban
+     zaaga'am+VAI+Ind+Incl+Pos+Prt: gizaaga'aaminaaban
+     zaaga'am+VAI+Ind+2Pl+Pos+Prt: gizaaga'aamwaaban
+     zaaga'am+VAI+Ind+3SgProx+Pos+Prt: zaaga'amooban
+     zaaga'am+VAI+Ind+3PlProx+Pos+Prt: [zaaga'amoobaniig,zaaga'amoobaneg]
+     zaaga'am+VAI+Ind+3SgObv+Pos+Prt: [zaaga'amoobaniin,zaaga'amoobanen]
+     zaaga'am+VAI+Ind+3PlObv+Pos+Prt: [zaaga'amoobaniin,zaaga'amoobanen]
+     zaaga'am+VAI+Ind+X+Pos+Prt: zaaga'aamwaaban
+     zaaga'am+VAI+Ind+1Sg+Neg+Prt: nizaaga'anziinaaban
+     zaaga'am+VAI+Ind+2Sg+Neg+Prt: gizaaga'anziinaaban
+     zaaga'am+VAI+Ind+Excl+Neg+Prt: nizaaga'anziiminaaban
+     zaaga'am+VAI+Ind+Incl+Neg+Prt: gizaaga'anziiminaaban
+     zaaga'am+VAI+Ind+2Pl+Neg+Prt: gizaaga'anziimwaaban
+     zaaga'am+VAI+Ind+3SgProx+Neg+Prt: zaaga'anziiban
+     zaaga'am+VAI+Ind+3PlProx+Neg+Prt: [zaaga'anziibaniig,zaaga'anziibaneg]
+     zaaga'am+VAI+Ind+3SgObv+Neg+Prt: [zaaga'anziibaniin,zaaga'anziibanen]
+     zaaga'am+VAI+Ind+3PlObv+Neg+Prt: [zaaga'anziibaniin,zaaga'anziibanen]
+     zaaga'am+VAI+Ind+X+Neg+Prt: zaaga'anziimwaaban
+     zaaga'am+VAI+Ind+1Sg+Pos+Dub: nizaaga'aanaadog
+     zaaga'am+VAI+Ind+2Sg+Pos+Dub: gizaaga'aanaadog
+     zaaga'am+VAI+Ind+Excl+Pos+Dub: nizaaga'aaminaadog
+     zaaga'am+VAI+Ind+Incl+Pos+Dub: gizaaga'aaminaadog
+     zaaga'am+VAI+Ind+2Pl+Pos+Dub: gizaaga'aamwaadog
+     zaaga'am+VAI+Ind+3SgProx+Pos+Dub: [zaaga'amowidog,zaaga'amodog]
+     zaaga'am+VAI+Ind+3PlProx+Pos+Dub: [zaaga'amowidogenag,zaaga'amodogenan]
+     zaaga'am+VAI+Ind+3SgObv+Pos+Dub: [zaaga'amowidogenan,zaaga'amodogenan]
+     zaaga'am+VAI+Ind+3PlObv+Pos+Dub: [zaaga'amowidogenan,zaaga'amodogenan]
+     zaaga'am+VAI+Ind+X+Pos+Dub: zaaga'aamwaadog
+     zaaga'am+VAI+Ind+1Sg+Neg+Dub: nizaaga'anziinaadog
+     zaaga'am+VAI+Ind+2Sg+Neg+Dub: gizaaga'anziinaadog
+     zaaga'am+VAI+Ind+Excl+Neg+Dub: nizaaga'anziiminaadog
+     zaaga'am+VAI+Ind+Incl+Neg+Dub: gizaaga'anziiminaadog
+     zaaga'am+VAI+Ind+2Pl+Neg+Dub: gizaaga'anziimwaadog
+     zaaga'am+VAI+Ind+3SgProx+Neg+Dub: zaaga'anziidog
+     zaaga'am+VAI+Ind+3PlProx+Neg+Dub: zaaga'anziidogenag
+     zaaga'am+VAI+Ind+3SgObv+Neg+Dub: zaaga'anziidogenan
+     zaaga'am+VAI+Ind+3PlObv+Neg+Dub: [zaaga'anziidogenan,zaaga'anziidogena']
+     zaaga'am+VAI+Ind+X+Neg+Dub: zaaga'anziimwaadog
+     zaaga'am+VAI+Ind+3SgProx+Pos+Prt+Dub: zaaga'amogoban
+     zaaga'am+VAI+Ind+3PlProx+Pos+Prt+Dub: zaaga'amogwaaban
+     zaaga'am+VAI+Ind+3SgObv+Pos+Prt+Dub: zaaga'aminigoban
+     zaaga'am+VAI+Ind+3SgProx+Neg+Prt+Dub: zaaga'anziigoban
+     zaaga'am+VAI+Ind+3PlProx+Neg+Prt+Dub: zaaga'anziigwaaban
+     zaaga'am+VAI+Ind+3SgObv+Neg+Prt+Dub: zaaga'anziinigoban

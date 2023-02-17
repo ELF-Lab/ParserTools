@@ -1,32 +1,32 @@
-michaa+VII+Ind+0SgProx+Positive+Neutral: michaa
-michaa+VII+Ind+0PlProx+Positive+Neutral: michaawan
-michaa+VII+Ind+0SgObv+Positive+Neutral: michaani
-michaa+VII+Ind+0PlObv+Positive+Neutral: michaaniwan
-michaa+VII+Ind+0SgProx+Negative+Neutral: michaasinoon
-michaa+VII+Ind+0PlProx+Negative+Neutral: michaasinoon
-michaa+VII+Ind+0SgObv+Negative+Neutral: michaasinini
-michaa+VII+Ind+0PlObv+Negative+Neutral: michaasininiwan
-michaa+VII+Ind+0SgProx+Positive+Preterit: michaaban
-michaa+VII+Ind+0PlProx+Positive+Preterit: [michaabaniin,michaabanen]
-michaa+VII+Ind+0SgObv+Positive+Preterit: michaaniiban
-michaa+VII+Ind+0PlObv+Positive+Preterit: [michaaniibaniin,michaaniibanen]
-michaa+VII+Ind+0SgProx+Negative+Preterit: michaasinooban
-michaa+VII+Ind+0PlProx+Negative+Preterit: [michaasinoobaniin,michaasinoobanen]
-michaa+VII+Ind+0SgObv+Negative+Preterit: michaasininiiban
-michaa+VII+Ind+0PlObv+Negative+Preterit: [michaasininiibaniin,michaasininiibanen]
-michaa+VII+Ind+0SgProx+Positive+Dubitative: michaadog
-michaa+VII+Ind+0PlProx+Positive+Dubitative: michaadogenan
-michaa+VII+Ind+0SgObv+Positive+Dubitative: michaaniwidog
-michaa+VII+Ind+0PlObv+Positive+Dubitative: michaaniwidogenan
-michaa+VII+Ind+0SgProx+Negative+Dubitative: michaasinodog
-michaa+VII+Ind+0PlProx+Negative+Dubitative: michaasinodogenan
-michaa+VII+Ind+0SgObv+Negative+Dubitative: michaasininiwidog
-michaa+VII+Ind+0PlObv+Negative+Dubitative: michaasininiwidogenan
-michaa+VII+Ind+0SgProx+Positive+PreteritDubitative: michaagoban
-michaa+VII+Ind+0PlProx+Positive+PreteritDubitative: [michaagobaniin,michaagobanen]
-michaa+VII+Ind+0SgObv+Positive+PreteritDubitative: michaanigoban
-michaa+VII+Ind+0PlObv+Positive+PreteritDubitative: [michaanigobaniin,michaagobanen]
-michaa+VII+Ind+0SgProx+Negative+PreteritDubitative: michaasinoogoban
-michaa+VII+Ind+0PlProx+Negative+PreteritDubitative: [michaasinoogobaniin,michaasinoogobanen]
-michaa+VII+Ind+0SgObv+Negative+PreteritDubitative: michaasininigoban
-michaa+VII+Ind+0PlObv+Negative+PreteritDubitative: [michaasininigobaniin,michaasininigobanen]
+     michaa+VII+Ind+Pos+Neu+0SgProx: michaa
+     michaa+VII+Ind+Pos+Neu+0PlProx: michaawan
+     michaa+VII+Ind+Pos+Neu+0SgObv: michaani
+     michaa+VII+Ind+Pos+Neu+0PlObv: michaaniwan
+     michaa+VII+Ind+Neg+Neu+0SgProx: michaasinoon
+     michaa+VII+Ind+Neg+Neu+0PlProx: michaasinoon
+     michaa+VII+Ind+Neg+Neu+0SgObv: michaasinini
+     michaa+VII+Ind+Neg+Neu+0PlObv: michaasininiwan
+     michaa+VII+Ind+Pos+Prt+0SgProx: michaaban
+     michaa+VII+Ind+Pos+Prt+0PlProx: [michaabaniin,michaabanen]
+     michaa+VII+Ind+Pos+Prt+0SgObv: michaaniiban
+     michaa+VII+Ind+Pos+Prt+0PlObv: [michaaniibaniin,michaaniibanen]
+     michaa+VII+Ind+Neg+Prt+0SgProx: michaasinooban
+     michaa+VII+Ind+Neg+Prt+0PlProx: [michaasinoobaniin,michaasinoobanen]
+     michaa+VII+Ind+Neg+Prt+0SgObv: michaasininiiban
+     michaa+VII+Ind+Neg+Prt+0PlObv: [michaasininiibaniin,michaasininiibanen]
+     michaa+VII+Ind+Pos+Dub+0SgProx: michaadog
+     michaa+VII+Ind+Pos+Dub+0PlProx: michaadogenan
+     michaa+VII+Ind+Pos+Dub+0SgObv: michaaniwidog
+     michaa+VII+Ind+Pos+Dub+0PlObv: michaaniwidogenan
+     michaa+VII+Ind+Neg+Dub+0SgProx: michaasinodog
+     michaa+VII+Ind+Neg+Dub+0PlProx: michaasinodogenan
+     michaa+VII+Ind+Neg+Dub+0SgObv: michaasininiwidog
+     michaa+VII+Ind+Neg+Dub+0PlObv: michaasininiwidogenan
+     michaa+VII+Ind+Pos+Prt+Dub+0SgProx: michaagoban
+     michaa+VII+Ind+Pos+Prt+Dub+0PlProx: [michaagobaniin,michaagobanen]
+     michaa+VII+Ind+Pos+Prt+Dub+0SgObv: michaanigoban
+     michaa+VII+Ind+Pos+Prt+Dub+0PlObv: [michaanigobaniin,michaagobanen]
+     michaa+VII+Ind+Neg+Prt+Dub+0SgProx: michaasinoogoban
+     michaa+VII+Ind+Neg+Prt+Dub+0PlProx: [michaasinoogobaniin,michaasinoogobanen]
+     michaa+VII+Ind+Neg+Prt+Dub+0SgObv: michaasininigoban
+     michaa+VII+Ind+Neg+Prt+Dub+0PlObv: [michaasininigobaniin,michaasininigobanen]

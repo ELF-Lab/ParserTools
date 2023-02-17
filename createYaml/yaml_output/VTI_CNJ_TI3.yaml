@@ -1,72 +1,72 @@
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Neg+Dub: miijisiiwaanen
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Neg+Dub: miijisiiwanen
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Neg+Dub: miijisiiwaangen
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Neg+Dub: miijisiiwangen
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Neg+Dub: miijisiiwegwen
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Neg+Dub: miijisiigwen
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Neg+Dub: miijisiiwaagwen
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Neg+Dub: miijisiinigwen
-miijin+VTI+Cnj+X+0Sg/0PlO+Neg+Dub: miijisiiwiingen
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Pos+Dub: miijiwaanen
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Pos+Dub: miijiwanen
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Pos+Dub: miijiwaangen
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Pos+Dub: miijiwangen
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Pos+Dub: miijiwegwen
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Pos+Dub: miijigwen
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Pos+Dub: miijiwaagwen
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Pos+Dub: miijinigwen
-miijin+VTI+Cnj+X+0Sg/0PlO+Pos+Dub: miijiwiingen
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Neg+Neut: miijisiwaan
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Neg+Neut: miijisiwan
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Neg+Neut: miijisiwaang
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Neg+Neut: miijisiwang
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Neg+Neut: miijisiweg
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Neg+Neut: miijisig
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Neg+Neut: miijisigwaa
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Neg+Neut: miijisinig
-miijin+VTI+Cnj+X+0Sg/0PlO+Neg+Neut: miijising
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Pos+Neut: miijiyan
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Pos+Neut: miijiyaang
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Pos+Neut: miijiyang
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Pos+Neut: miijiyeg
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Pos+Neut: miijid
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Pos+Neut: miijiwaad
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Pos+Neut: miijinid
-miijin+VTI+Cnj+3PlObv+0Sg/0PlO+Pos+Neut: miijing
-miijin+VTI+Cnj+X+0Sg/0PlO+Pos+Neut: adaaweyaan
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Neg+Pret: miijisiwaambaan
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Neg+Pret: miijisiwamban
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Neg+Pret: miijisiwaangiban
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Neg+Pret: miijisiwangiban
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Neg+Pret: [miijisiwegiban,miijisiwegoban]
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Neg+Pret: miijisigoban
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Neg+Pret: miijisigwaaban
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Neg+Pret: miijisinigoban
-miijin+VTI+Cnj+X+0Sg/0PlO+Neg+Pret: miijisingiban
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Pos+Pret: miijiyaambaan
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Pos+Pret: miijiyamban
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Pos+Pret: miijiyaangiban
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Pos+Pret: miijiyangiban
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Pos+Pret: [miijiyegiban,miijiyegoban]
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Pos+Pret: miijipan
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Pos+Pret: miijiwaapan
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Pos+Pret: miijinipan
-miijin+VTI+Cnj+X+0Sg/0PlO+Pos+Pret: miijingiban
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Neg+PretDub: miijisiiwaambaanen
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Neg+PretDub: miijisiiwambanen
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Neg+PretDub: miijisiiwaangibanen
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Neg+PretDub: miijisiiwangibanen
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Neg+PretDub: [miijisiiwegibanen1,miijisiiwegobanen]
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Neg+PretDub: miijisiigobanen
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Neg+PretDub: miijisiiwaagobanen
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Neg+PretDub: miijisiinigobanen
-miijin+VTI+Cnj+X+0Sg/0PlO+Neg+PretDub: miijisiiwiingibanen
-miijin+VTI+Cnj+1Sg+0Sg/0PlO+Pos+PretDub: miijiwaambaanen
-miijin+VTI+Cnj+2Sg+0Sg/0PlO+Pos+PretDub: miijiwambanen
-miijin+VTI+Cnj+Excl+0Sg/0PlO+Pos+PretDub: miijiwaangibanen
-miijin+VTI+Cnj+Incl+0Sg/0PlO+Pos+PretDub: miijiwangibanen
-miijin+VTI+Cnj+2Pl+0Sg/0PlO+Pos+PretDub: [miijiwegibanen,miijiwegobanen]
-miijin+VTI+Cnj+3SgProx+0Sg/0PlO+Pos+PretDub: miijigobanen
-miijin+VTI+Cnj+3PlProx+0Sg/0PlO+Pos+PretDub: miijiwaagobanen
-miijin+VTI+Cnj+3SgObv+0Sg/0PlO+Pos+PretDub: miijinigobanen
-miijin+VTI+Cnj+X+0Sg/0PlO+Pos+PretDub: miijiwiingibanen
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Neg+Dub: miijisiiwaanen
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Neg+Dub: miijisiiwanen
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Neg+Dub: miijisiiwaangen
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Neg+Dub: miijisiiwangen
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Neg+Dub: miijisiiwegwen
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Neg+Dub: miijisiigwen
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Neg+Dub: miijisiiwaagwen
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Neg+Dub: miijisiinigwen
+     miijin+VTI+Cnj+X+0SgO/0PlO+Neg+Dub: miijisiiwiingen
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Pos+Dub: miijiwaanen
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Pos+Dub: miijiwanen
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Pos+Dub: miijiwaangen
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Pos+Dub: miijiwangen
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Pos+Dub: miijiwegwen
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Pos+Dub: miijigwen
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Pos+Dub: miijiwaagwen
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Pos+Dub: miijinigwen
+     miijin+VTI+Cnj+X+0SgO/0PlO+Pos+Dub: miijiwiingen
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Neg+Neu: miijisiwaan
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Neg+Neu: miijisiwan
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Neg+Neu: miijisiwaang
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Neg+Neu: miijisiwang
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Neg+Neu: miijisiweg
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Neg+Neu: miijisig
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Neg+Neu: miijisigwaa
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Neg+Neu: miijisinig
+     miijin+VTI+Cnj+X+0SgO/0PlO+Neg+Neu: miijising
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Pos+Neu: miijiyan
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Pos+Neu: miijiyaang
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Pos+Neu: miijiyang
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Pos+Neu: miijiyeg
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Pos+Neu: miijid
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Pos+Neu: miijiwaad
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Pos+Neu: miijinid
+     miijin+VTI+Cnj+3PlObv+0SgO/0PlO+Pos+Neu: miijing
+     miijin+VTI+Cnj+X+0SgO/0PlO+Pos+Neu: adaaweyaan
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Neg+Prt: miijisiwaambaan
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Neg+Prt: miijisiwamban
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Neg+Prt: miijisiwaangiban
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Neg+Prt: miijisiwangiban
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Neg+Prt: [miijisiwegiban,miijisiwegoban]
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Neg+Prt: miijisigoban
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Neg+Prt: miijisigwaaban
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Neg+Prt: miijisinigoban
+     miijin+VTI+Cnj+X+0SgO/0PlO+Neg+Prt: miijisingiban
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Pos+Prt: miijiyaambaan
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Pos+Prt: miijiyamban
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Pos+Prt: miijiyaangiban
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Pos+Prt: miijiyangiban
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Pos+Prt: [miijiyegiban,miijiyegoban]
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Pos+Prt: miijipan
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Pos+Prt: miijiwaapan
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Pos+Prt: miijinipan
+     miijin+VTI+Cnj+X+0SgO/0PlO+Pos+Prt: miijingiban
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Neg+Prt+Dub: miijisiiwaambaanen
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Neg+Prt+Dub: miijisiiwambanen
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Neg+Prt+Dub: miijisiiwaangibanen
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Neg+Prt+Dub: miijisiiwangibanen
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Neg+Prt+Dub: [miijisiiwegibanen1,miijisiiwegobanen]
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Neg+Prt+Dub: miijisiigobanen
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Neg+Prt+Dub: miijisiiwaagobanen
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Neg+Prt+Dub: miijisiinigobanen
+     miijin+VTI+Cnj+X+0SgO/0PlO+Neg+Prt+Dub: miijisiiwiingibanen
+     miijin+VTI+Cnj+1Sg+0SgO/0PlO+Pos+Prt+Dub: miijiwaambaanen
+     miijin+VTI+Cnj+2Sg+0SgO/0PlO+Pos+Prt+Dub: miijiwambanen
+     miijin+VTI+Cnj+Excl+0SgO/0PlO+Pos+Prt+Dub: miijiwaangibanen
+     miijin+VTI+Cnj+Incl+0SgO/0PlO+Pos+Prt+Dub: miijiwangibanen
+     miijin+VTI+Cnj+2Pl+0SgO/0PlO+Pos+Prt+Dub: [miijiwegibanen,miijiwegobanen]
+     miijin+VTI+Cnj+3SgProx+0SgO/0PlO+Pos+Prt+Dub: miijigobanen
+     miijin+VTI+Cnj+3PlProx+0SgO/0PlO+Pos+Prt+Dub: miijiwaagobanen
+     miijin+VTI+Cnj+3SgObv+0SgO/0PlO+Pos+Prt+Dub: miijinigobanen
+     miijin+VTI+Cnj+X+0SgO/0PlO+Pos+Prt+Dub: miijiwiingibanen

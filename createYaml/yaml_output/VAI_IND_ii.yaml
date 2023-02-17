@@ -1,66 +1,66 @@
-madaabii+VAI+Ind+1Sg+Pos+Neut: nimadaabii
-madaabii+VAI+Ind+2Sg+Pos+Neut: gimadaabii
-madaabii+VAI+Ind+Excl+Pos+Neut: nimadaabiimin
-madaabii+VAI+Ind+Incl+Pos+Neut: gimadaabiimin
-madaabii+VAI+Ind+2Pl+Pos+Neut: gimadaabiim
-madaabii+VAI+Ind+3SgProx+Pos+Neut: madaabii
-madaabii+VAI+Ind+3PlProx+Pos+Neut: madaabiiwag
-madaabii+VAI+Ind+3SgObv+Pos+Neut: madaabiiwan
-madaabii+VAI+Ind+3PlObv+Pos+Neut: madaabiiwa'
-madaabii+VAI+Ind+X+Pos+Neut: madaabiim
-madaabii+VAI+Ind+1Sg+Neg+Neut: [nimadaabiisiin,nimadaabiisii]
-madaabii+VAI+Ind+2Sg+Neg+Neut: [gimadaabiisiin,gimadaabiisii]
-madaabii+VAI+Ind+Excl+Neg+Neut: nimadaabiisiimin
-madaabii+VAI+Ind+Incl+Neg+Neut: gimadaabiisiimin
-madaabii+VAI+Ind+2Pl+Neg+Neut: gimadaabiisiim
-madaabii+VAI+Ind+3SgProx+Neg+Neut: [madaabiisiin,madaabiisii]
-madaabii+VAI+Ind+3PlProx+Neg+Neut: madaabiisiiwag
-madaabii+VAI+Ind+3SgObv+Neg+Neut: madaabiisiiwan
-madaabii+VAI+Ind+3PlObv+Neg+Neut: [madaabiisiiwan,madaabiisiiwa']
-madaabii+VAI+Ind+X+Neg+Neut: madaabiisiim
-madaabii+VAI+Ind+1Sg+Pos+Pret: nimadaabiinaaban
-madaabii+VAI+Ind+2Sg+Pos+Pret: gimadaabiinaaban
-madaabii+VAI+Ind+Excl+Pos+Pret: nimadaabiiminaaban
-madaabii+VAI+Ind+Incl+Pos+Pret: gimadaabiiminaaban
-madaabii+VAI+Ind+2Pl+Pos+Pret: gimadaabiimwaaban
-madaabii+VAI+Ind+3SgProx+Pos+Pret: madaabiiban
-madaabii+VAI+Ind+3PlProx+Pos+Pret: [madaabiibaniig,madaabiibaneg]
-madaabii+VAI+Ind+3SgObv+Pos+Pret: [madaabiibaniin,madaabiibanen]
-madaabii+VAI+Ind+3PlObv+Pos+Pret: [madaabiibaniin,madaabiibanen]
-madaabii+VAI+Ind+X+Pos+Pret: madaabiimwaaban
-madaabii+VAI+Ind+1Sg+Neg+Pret: nimadaabiisiinaaban
-madaabii+VAI+Ind+2Sg+Neg+Pret: gimadaabiisiinaaban
-madaabii+VAI+Ind+Excl+Neg+Pret: nimadaabiisiiminaaban
-madaabii+VAI+Ind+Incl+Neg+Pret: gimadaabiisiiminaaban
-madaabii+VAI+Ind+2Pl+Neg+Pret: gimadaabiisiimwaaban
-madaabii+VAI+Ind+3SgProx+Neg+Pret: madaabiisiiban
-madaabii+VAI+Ind+3PlProx+Neg+Pret: [madaabiisiibaniig,madaabiisiibaneg]
-madaabii+VAI+Ind+3SgObv+Neg+Pret: [madaabiisiibaniin,madaabiisiibanen]
-madaabii+VAI+Ind+3PlObv+Neg+Pret: [madaabiisiibaniin,madaabiisiibanen]
-madaabii+VAI+Ind+X+Neg+Pret: madaabiisiimwaaban
-madaabii+VAI+Ind+1Sg+Pos+Dub: nimadaabiinaadog
-madaabii+VAI+Ind+2Sg+Pos+Dub: gimadaabiinaadog
-madaabii+VAI+Ind+Excl+Pos+Dub: nimadaabiiminaadog
-madaabii+VAI+Ind+Incl+Pos+Dub: gimadaabiiminaadog
-madaabii+VAI+Ind+2Pl+Pos+Dub: gimadaabiimwaadog
-madaabii+VAI+Ind+3SgProx+Pos+Dub: madaabiidog
-madaabii+VAI+Ind+3PlProx+Pos+Dub: madaabiidogenag
-madaabii+VAI+Ind+3SgObv+Pos+Dub: madaabiidogenan
-madaabii+VAI+Ind+3PlObv+Pos+Dub: [madaabiidogenan,madaabiidogena']
-madaabii+VAI+Ind+X+Pos+Dub: madaabiimwaadog
-madaabii+VAI+Ind+1Sg+Neg+Dub: nimadaabiisiinaadog
-madaabii+VAI+Ind+2Sg+Neg+Dub: gimadaabiisiinaadog
-madaabii+VAI+Ind+Excl+Neg+Dub: nimadaabiisiiminaadog
-madaabii+VAI+Ind+Incl+Neg+Dub: gimadaabiisiiminaadog
-madaabii+VAI+Ind+2Pl+Neg+Dub: gimadaabiisiimwaadog
-madaabii+VAI+Ind+3SgProx+Neg+Dub: madaabiisiidog
-madaabii+VAI+Ind+3PlProx+Neg+Dub: madaabiisiidogenag
-madaabii+VAI+Ind+3SgObv+Neg+Dub: madaabiisiidogenan
-madaabii+VAI+Ind+3PlObv+Neg+Dub: [madaabiisiidogenan,madaabiisiidogena']
-madaabii+VAI+Ind+X+Neg+Dub: madaabiisiimwaadog
-madaabii+VAI+Ind+3SgProx+Pos+PretDub: madaabiigoban
-madaabii+VAI+Ind+3PlProx+Pos+PretDub: madaabiigwaaban
-madaabii+VAI+Ind+3SgObv+Pos+PretDub: madaabiinigoban
-madaabii+VAI+Ind+3SgProx+Neg+PretDub: madaabiisiigoban
-madaabii+VAI+Ind+3PlProx+Neg+PretDub: madaabiisiigwaaban
-madaabii+VAI+Ind+3SgObv+Neg+PretDub: madaabiisiinigoban
+     madaabii+VAI+Ind+1Sg+Pos+Neu: nimadaabii
+     madaabii+VAI+Ind+2Sg+Pos+Neu: gimadaabii
+     madaabii+VAI+Ind+Excl+Pos+Neu: nimadaabiimin
+     madaabii+VAI+Ind+Incl+Pos+Neu: gimadaabiimin
+     madaabii+VAI+Ind+2Pl+Pos+Neu: gimadaabiim
+     madaabii+VAI+Ind+3SgProx+Pos+Neu: madaabii
+     madaabii+VAI+Ind+3PlProx+Pos+Neu: madaabiiwag
+     madaabii+VAI+Ind+3SgObv+Pos+Neu: madaabiiwan
+     madaabii+VAI+Ind+3PlObv+Pos+Neu: madaabiiwa'
+     madaabii+VAI+Ind+X+Pos+Neu: madaabiim
+     madaabii+VAI+Ind+1Sg+Neg+Neu: [nimadaabiisiin,nimadaabiisii]
+     madaabii+VAI+Ind+2Sg+Neg+Neu: [gimadaabiisiin,gimadaabiisii]
+     madaabii+VAI+Ind+Excl+Neg+Neu: nimadaabiisiimin
+     madaabii+VAI+Ind+Incl+Neg+Neu: gimadaabiisiimin
+     madaabii+VAI+Ind+2Pl+Neg+Neu: gimadaabiisiim
+     madaabii+VAI+Ind+3SgProx+Neg+Neu: [madaabiisiin,madaabiisii]
+     madaabii+VAI+Ind+3PlProx+Neg+Neu: madaabiisiiwag
+     madaabii+VAI+Ind+3SgObv+Neg+Neu: madaabiisiiwan
+     madaabii+VAI+Ind+3PlObv+Neg+Neu: [madaabiisiiwan,madaabiisiiwa']
+     madaabii+VAI+Ind+X+Neg+Neu: madaabiisiim
+     madaabii+VAI+Ind+1Sg+Pos+Prt: nimadaabiinaaban
+     madaabii+VAI+Ind+2Sg+Pos+Prt: gimadaabiinaaban
+     madaabii+VAI+Ind+Excl+Pos+Prt: nimadaabiiminaaban
+     madaabii+VAI+Ind+Incl+Pos+Prt: gimadaabiiminaaban
+     madaabii+VAI+Ind+2Pl+Pos+Prt: gimadaabiimwaaban
+     madaabii+VAI+Ind+3SgProx+Pos+Prt: madaabiiban
+     madaabii+VAI+Ind+3PlProx+Pos+Prt: [madaabiibaniig,madaabiibaneg]
+     madaabii+VAI+Ind+3SgObv+Pos+Prt: [madaabiibaniin,madaabiibanen]
+     madaabii+VAI+Ind+3PlObv+Pos+Prt: [madaabiibaniin,madaabiibanen]
+     madaabii+VAI+Ind+X+Pos+Prt: madaabiimwaaban
+     madaabii+VAI+Ind+1Sg+Neg+Prt: nimadaabiisiinaaban
+     madaabii+VAI+Ind+2Sg+Neg+Prt: gimadaabiisiinaaban
+     madaabii+VAI+Ind+Excl+Neg+Prt: nimadaabiisiiminaaban
+     madaabii+VAI+Ind+Incl+Neg+Prt: gimadaabiisiiminaaban
+     madaabii+VAI+Ind+2Pl+Neg+Prt: gimadaabiisiimwaaban
+     madaabii+VAI+Ind+3SgProx+Neg+Prt: madaabiisiiban
+     madaabii+VAI+Ind+3PlProx+Neg+Prt: [madaabiisiibaniig,madaabiisiibaneg]
+     madaabii+VAI+Ind+3SgObv+Neg+Prt: [madaabiisiibaniin,madaabiisiibanen]
+     madaabii+VAI+Ind+3PlObv+Neg+Prt: [madaabiisiibaniin,madaabiisiibanen]
+     madaabii+VAI+Ind+X+Neg+Prt: madaabiisiimwaaban
+     madaabii+VAI+Ind+1Sg+Pos+Dub: nimadaabiinaadog
+     madaabii+VAI+Ind+2Sg+Pos+Dub: gimadaabiinaadog
+     madaabii+VAI+Ind+Excl+Pos+Dub: nimadaabiiminaadog
+     madaabii+VAI+Ind+Incl+Pos+Dub: gimadaabiiminaadog
+     madaabii+VAI+Ind+2Pl+Pos+Dub: gimadaabiimwaadog
+     madaabii+VAI+Ind+3SgProx+Pos+Dub: madaabiidog
+     madaabii+VAI+Ind+3PlProx+Pos+Dub: madaabiidogenag
+     madaabii+VAI+Ind+3SgObv+Pos+Dub: madaabiidogenan
+     madaabii+VAI+Ind+3PlObv+Pos+Dub: [madaabiidogenan,madaabiidogena']
+     madaabii+VAI+Ind+X+Pos+Dub: madaabiimwaadog
+     madaabii+VAI+Ind+1Sg+Neg+Dub: nimadaabiisiinaadog
+     madaabii+VAI+Ind+2Sg+Neg+Dub: gimadaabiisiinaadog
+     madaabii+VAI+Ind+Excl+Neg+Dub: nimadaabiisiiminaadog
+     madaabii+VAI+Ind+Incl+Neg+Dub: gimadaabiisiiminaadog
+     madaabii+VAI+Ind+2Pl+Neg+Dub: gimadaabiisiimwaadog
+     madaabii+VAI+Ind+3SgProx+Neg+Dub: madaabiisiidog
+     madaabii+VAI+Ind+3PlProx+Neg+Dub: madaabiisiidogenag
+     madaabii+VAI+Ind+3SgObv+Neg+Dub: madaabiisiidogenan
+     madaabii+VAI+Ind+3PlObv+Neg+Dub: [madaabiisiidogenan,madaabiisiidogena']
+     madaabii+VAI+Ind+X+Neg+Dub: madaabiisiimwaadog
+     madaabii+VAI+Ind+3SgProx+Pos+Prt+Dub: madaabiigoban
+     madaabii+VAI+Ind+3PlProx+Pos+Prt+Dub: madaabiigwaaban
+     madaabii+VAI+Ind+3SgObv+Pos+Prt+Dub: madaabiinigoban
+     madaabii+VAI+Ind+3SgProx+Neg+Prt+Dub: madaabiisiigoban
+     madaabii+VAI+Ind+3PlProx+Neg+Prt+Dub: madaabiisiigwaaban
+     madaabii+VAI+Ind+3SgObv+Neg+Prt+Dub: madaabiisiinigoban

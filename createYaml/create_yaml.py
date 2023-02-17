@@ -17,9 +17,10 @@ import pandas as pd
 # Then, add another entry to the `group` variable below (like that on approx. line 68).
 # Lastly, add another `if` check that for that verb type (like than on approx. line 74).
 
-VII_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Negation"], row["Mode"].replace(" ","")])
+VII_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
 VAI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Negation"], row["Mode"].replace(" ","")])
-VTI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Object"]+"O", row["Negation"], row["Mode"].replace(" ","")])
+VTI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Object"], row["Negation"], row["Mode"].replace(" ","")])
+
 
 
 def make_yaml(file_name:str, analysis:callable) -> None:
@@ -62,7 +63,7 @@ def make_yaml(file_name:str, analysis:callable) -> None:
                 forms = f"{row['Form1']}"
 
             # Add this row to the dictionary appropriately.
-            yaml_dict[row["Stem"]].append((analysis(row), forms))
+            yaml_dict[row["Stem"]].append(("     "+analysis(row), forms))
 
         # For each stem in the dictionary, write it to its own yaml file.
         for key, value in yaml_dict.items():

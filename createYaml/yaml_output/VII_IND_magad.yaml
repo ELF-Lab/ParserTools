@@ -1,32 +1,32 @@
-atemagad+VII+Ind+0SgProx+Positive+Neutral: atemagad
-atemagad+VII+Ind+0PlProx+Positive+Neutral: atemagadoon
-atemagad+VII+Ind+0SgObv+Positive+Neutral: atemagadini
-atemagad+VII+Ind+0PlObv+Positive+Neutral: atemagadiniwan
-atemagad+VII+Ind+0SgProx+Negative+Neutral: atemagasinoon
-atemagad+VII+Ind+0PlProx+Negative+Neutral: atemagasinoon
-atemagad+VII+Ind+0SgObv+Negative+Neutral: atemagasinini
-atemagad+VII+Ind+0PlObv+Negative+Neutral: atemagasininiwan
-atemagad+VII+Ind+0SgProx+Positive+Preterit: atemagadooban
-atemagad+VII+Ind+0PlProx+Positive+Preterit: [atemagadoobaniin,atemagadoobanen]
-atemagad+VII+Ind+0SgObv+Positive+Preterit: atemagadiniiban
-atemagad+VII+Ind+0PlObv+Positive+Preterit: [atemagadiniibaniin,atemagadiniibanen]
-atemagad+VII+Ind+0SgProx+Negative+Preterit: atemagasinooban
-atemagad+VII+Ind+0PlProx+Negative+Preterit: [atemagasinoobaniin,atemagasinoobanen]
-atemagad+VII+Ind+0SgObv+Negative+Preterit: atemagasininiiban
-atemagad+VII+Ind+0PlObv+Negative+Preterit: [atemagasininiibaniin,atemagasininiibanen]
-atemagad+VII+Ind+0SgProx+Positive+Dubitative: atemagadodog
-atemagad+VII+Ind+0PlProx+Positive+Dubitative: atemagadodogenan
-atemagad+VII+Ind+0SgObv+Positive+Dubitative: atemagadiniwidog
-atemagad+VII+Ind+0PlObv+Positive+Dubitative: atemagadiniwidogenan
-atemagad+VII+Ind+0SgProx+Negative+Dubitative: atemagasinodog
-atemagad+VII+Ind+0PlProx+Negative+Dubitative: atemagasinodogen
-atemagad+VII+Ind+0SgObv+Negative+Dubitative: atemagasininiwidog
-atemagad+VII+Ind+0PlObv+Negative+Dubitative: atemagaininiwidogenan
-atemagad+VII+Ind+0SgProx+Positive+PreteritDubitative: atemagadogoban
-atemagad+VII+Ind+0PlProx+Positive+PreteritDubitative: [atemagadogobaniin,atemagadogobanen]
-atemagad+VII+Ind+0SgObv+Positive+PreteritDubitative: atemagadinigoban
-atemagad+VII+Ind+0PlObv+Positive+PreteritDubitative: [atemagadinigobaniin,atemagadinigobanen]
-atemagad+VII+Ind+0SgProx+Negative+PreteritDubitative: atemagasinoogoban
-atemagad+VII+Ind+0PlProx+Negative+PreteritDubitative: [atemagasinoogobaniin,atemagasinoogobanen]
-atemagad+VII+Ind+0SgObv+Negative+PreteritDubitative: atemagasininigoban
-atemagad+VII+Ind+0PlObv+Negative+PreteritDubitative: [atemagasininigobaniin,atemagasininigobanen]
+     atemagad+VII+Ind+Pos+Neu+0SgProx: atemagad
+     atemagad+VII+Ind+Pos+Neu+0PlProx: atemagadoon
+     atemagad+VII+Ind+Pos+Neu+0SgObv: atemagadini
+     atemagad+VII+Ind+Pos+Neu+0PlObv: atemagadiniwan
+     atemagad+VII+Ind+Neg+Neu+0SgProx: atemagasinoon
+     atemagad+VII+Ind+Neg+Neu+0PlProx: atemagasinoon
+     atemagad+VII+Ind+Neg+Neu+0SgObv: atemagasinini
+     atemagad+VII+Ind+Neg+Neu+0PlObv: atemagasininiwan
+     atemagad+VII+Ind+Pos+Prt+0SgProx: atemagadooban
+     atemagad+VII+Ind+Pos+Prt+0PlProx: [atemagadoobaniin,atemagadoobanen]
+     atemagad+VII+Ind+Pos+Prt+0SgObv: atemagadiniiban
+     atemagad+VII+Ind+Pos+Prt+0PlObv: [atemagadiniibaniin,atemagadiniibanen]
+     atemagad+VII+Ind+Neg+Prt+0SgProx: atemagasinooban
+     atemagad+VII+Ind+Neg+Prt+0PlProx: [atemagasinoobaniin,atemagasinoobanen]
+     atemagad+VII+Ind+Neg+Prt+0SgObv: atemagasininiiban
+     atemagad+VII+Ind+Neg+Prt+0PlObv: [atemagasininiibaniin,atemagasininiibanen]
+     atemagad+VII+Ind+Pos+Dub+0SgProx: atemagadodog
+     atemagad+VII+Ind+Pos+Dub+0PlProx: atemagadodogenan
+     atemagad+VII+Ind+Pos+Dub+0SgObv: atemagadiniwidog
+     atemagad+VII+Ind+Pos+Dub+0PlObv: atemagadiniwidogenan
+     atemagad+VII+Ind+Neg+Dub+0SgProx: atemagasinodog
+     atemagad+VII+Ind+Neg+Dub+0PlProx: atemagasinodogen
+     atemagad+VII+Ind+Neg+Dub+0SgObv: atemagasininiwidog
+     atemagad+VII+Ind+Neg+Dub+0PlObv: atemagaininiwidogenan
+     atemagad+VII+Ind+Pos+Prt+Dub+0SgProx: atemagadogoban
+     atemagad+VII+Ind+Pos+Prt+Dub+0PlProx: [atemagadogobaniin,atemagadogobanen]
+     atemagad+VII+Ind+Pos+Prt+Dub+0SgObv: atemagadinigoban
+     atemagad+VII+Ind+Pos+Prt+Dub+0PlObv: [atemagadinigobaniin,atemagadinigobanen]
+     atemagad+VII+Ind+Neg+Prt+Dub+0SgProx: atemagasinoogoban
+     atemagad+VII+Ind+Neg+Prt+Dub+0PlProx: [atemagasinoogobaniin,atemagasinoogobanen]
+     atemagad+VII+Ind+Neg+Prt+Dub+0SgObv: atemagasininigoban
+     atemagad+VII+Ind+Neg+Prt+Dub+0PlObv: [atemagasininigobaniin,atemagasininigobanen]

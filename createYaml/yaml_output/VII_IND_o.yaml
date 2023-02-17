@@ -1,8 +1,8 @@
-inamo+VII+Ind+0SgProx+Positive+Neutral: inamon
-inamo+VII+Ind+0PlProx+Positive+Neutral: inamonoon
-inamo+VII+Ind+0SgObv+Positive+Neutral: inamonini
-inamo+VII+Ind+0PlObv+Positive+Neutral: inamoniniwan
-inamo+VII+Ind+0SgProx+Negative+Neutral: inamosinoon
-inamo+VII+Ind+0PlProx+Negative+Neutral: inamosinoon
-inamo+VII+Ind+0SgObv+Negative+Neutral: inamosinini
-inamo+VII+Ind+0PlObv+Negative+Neutral: inamosininiwan
+     inamo+VII+Ind+Pos+Neu+0SgProx: inamon
+     inamo+VII+Ind+Pos+Neu+0PlProx: inamonoon
+     inamo+VII+Ind+Pos+Neu+0SgObv: inamonini
+     inamo+VII+Ind+Pos+Neu+0PlObv: inamoniniwan
+     inamo+VII+Ind+Neg+Neu+0SgProx: inamosinoon
+     inamo+VII+Ind+Neg+Neu+0PlProx: inamosinoon
+     inamo+VII+Ind+Neg+Neu+0SgObv: inamosinini
+     inamo+VII+Ind+Neg+Neu+0PlObv: inamosininiwan

@@ -1,66 +1,66 @@
-niimi+VAI+Ind+1Sg+Pos+Neut: niniim
-niimi+VAI+Ind+2Sg+Pos+Neut: giniim
-niimi+VAI+Ind+Excl+Pos+Neut: niniimimin
-niimi+VAI+Ind+Incl+Pos+Neut: giniimimin
-niimi+VAI+Ind+2Pl+Pos+Neut: giniimim
-niimi+VAI+Ind+3SgProx+Pos+Neut: niimi
-niimi+VAI+Ind+3PlProx+Pos+Neut: niimiwag
-niimi+VAI+Ind+3SgObv+Pos+Neut: niimiwan
-niimi+VAI+Ind+3PlObv+Pos+Neut: [niimiwan,niimiwa']
-niimi+VAI+Ind+X+Pos+Neut: niimim
-niimi+VAI+Ind+1Sg+Neg+Neut: [niniimisiin,niniimisii]
-niimi+VAI+Ind+2Sg+Neg+Neut: [giniimisiin,giniimisii]
-niimi+VAI+Ind+Excl+Neg+Neut: niniimisiimin
-niimi+VAI+Ind+Incl+Neg+Neut: giniimisiimin
-niimi+VAI+Ind+2Pl+Neg+Neut: giniimisiim
-niimi+VAI+Ind+3SgProx+Neg+Neut: [niimisiin,niimisii]
-niimi+VAI+Ind+3PlProx+Neg+Neut: niimisiiwag
-niimi+VAI+Ind+3SgObv+Neg+Neut: niimisiiwan
-niimi+VAI+Ind+3PlObv+Neg+Neut: [niimisiiwan,niimisiiwa']
-niimi+VAI+Ind+X+Neg+Neut: niimisiim
-niimi+VAI+Ind+1Sg+Pos+Pret: niniiminaaban
-niimi+VAI+Ind+2Sg+Pos+Pret: giniiminaaban
-niimi+VAI+Ind+Excl+Pos+Pret: niniimiminaaban
-niimi+VAI+Ind+Incl+Pos+Pret: giniimiminaaban
-niimi+VAI+Ind+2Pl+Pos+Pret: giniimimwaaban
-niimi+VAI+Ind+3SgProx+Pos+Pret: niimiiban
-niimi+VAI+Ind+3PlProx+Pos+Pret: [niimiibaniig,niimiibaneg]
-niimi+VAI+Ind+3SgObv+Pos+Pret: [niimiibaniin,niimiibanen]
-niimi+VAI+Ind+3PlObv+Pos+Pret: [niimiibaniin,niimiibanen]
-niimi+VAI+Ind+X+Pos+Pret: niimimwaaban
-niimi+VAI+Ind+1Sg+Neg+Pret: niniimisiinaaban
-niimi+VAI+Ind+2Sg+Neg+Pret: giniimisiinaaban
-niimi+VAI+Ind+Excl+Neg+Pret: niniimisiiminaaban
-niimi+VAI+Ind+Incl+Neg+Pret: giniimisiiminaaban
-niimi+VAI+Ind+2Pl+Neg+Pret: giniimisiimwaaban
-niimi+VAI+Ind+3SgProx+Neg+Pret: niimisiiban
-niimi+VAI+Ind+3PlProx+Neg+Pret: [niimisiibaniig,niimisiibaneg]
-niimi+VAI+Ind+3SgObv+Neg+Pret: [niimisiibaniin,niimisiibanen]
-niimi+VAI+Ind+3PlObv+Neg+Pret: [niimisiibaniin,niimisiibanen]
-niimi+VAI+Ind+X+Neg+Pret: niimisiimwaaban
-niimi+VAI+Ind+1Sg+Pos+Dub: niniiminaadog
-niimi+VAI+Ind+2Sg+Pos+Dub: giniiminaadog
-niimi+VAI+Ind+Excl+Pos+Dub: niniimiminaadog
-niimi+VAI+Ind+Incl+Pos+Dub: giniimiminaadog
-niimi+VAI+Ind+2Pl+Pos+Dub: giniimimwaadog
-niimi+VAI+Ind+3SgProx+Pos+Dub: [niimiwidog,niimidog]
-niimi+VAI+Ind+3PlProx+Pos+Dub: [niimiwidogenag,niimidogenag]
-niimi+VAI+Ind+3SgObv+Pos+Dub: [niimiwidogenan,niimidogenan]
-niimi+VAI+Ind+3PlObv+Pos+Dub: [niimiwidogenan,niimidogenan]
-niimi+VAI+Ind+X+Pos+Dub: niimimwaadog
-niimi+VAI+Ind+1Sg+Neg+Dub: niniimisiinaadog
-niimi+VAI+Ind+2Sg+Neg+Dub: giniimisiinaadog
-niimi+VAI+Ind+Excl+Neg+Dub: niniimisiiminaadog
-niimi+VAI+Ind+Incl+Neg+Dub: giniimisiiminaadog
-niimi+VAI+Ind+2Pl+Neg+Dub: giniimisiimwaadog
-niimi+VAI+Ind+3SgProx+Neg+Dub: niimisiidog
-niimi+VAI+Ind+3PlProx+Neg+Dub: niimisiidogenag
-niimi+VAI+Ind+3SgObv+Neg+Dub: niimisiidogenan
-niimi+VAI+Ind+3PlObv+Neg+Dub: [niimisiidogenan,niimisiidogena']
-niimi+VAI+Ind+X+Neg+Dub: niimisiimwaadog
-niimi+VAI+Ind+3SgProx+Pos+PretDub: niimigoban
-niimi+VAI+Ind+3PlProx+Pos+PretDub: niimigwaaan
-niimi+VAI+Ind+3SgObv+Pos+PretDub: niiminigoban
-niimi+VAI+Ind+3SgProx+Neg+PretDub: niimisiigoban
-niimi+VAI+Ind+3PlProx+Neg+PretDub: niimisiigwaaban
-niimi+VAI+Ind+3SgObv+Neg+PretDub: niimiisiinigoban
+     niimi+VAI+Ind+1Sg+Pos+Neu: niniim
+     niimi+VAI+Ind+2Sg+Pos+Neu: giniim
+     niimi+VAI+Ind+Excl+Pos+Neu: niniimimin
+     niimi+VAI+Ind+Incl+Pos+Neu: giniimimin
+     niimi+VAI+Ind+2Pl+Pos+Neu: giniimim
+     niimi+VAI+Ind+3SgProx+Pos+Neu: niimi
+     niimi+VAI+Ind+3PlProx+Pos+Neu: niimiwag
+     niimi+VAI+Ind+3SgObv+Pos+Neu: niimiwan
+     niimi+VAI+Ind+3PlObv+Pos+Neu: [niimiwan,niimiwa']
+     niimi+VAI+Ind+X+Pos+Neu: niimim
+     niimi+VAI+Ind+1Sg+Neg+Neu: [niniimisiin,niniimisii]
+     niimi+VAI+Ind+2Sg+Neg+Neu: [giniimisiin,giniimisii]
+     niimi+VAI+Ind+Excl+Neg+Neu: niniimisiimin
+     niimi+VAI+Ind+Incl+Neg+Neu: giniimisiimin
+     niimi+VAI+Ind+2Pl+Neg+Neu: giniimisiim
+     niimi+VAI+Ind+3SgProx+Neg+Neu: [niimisiin,niimisii]
+     niimi+VAI+Ind+3PlProx+Neg+Neu: niimisiiwag
+     niimi+VAI+Ind+3SgObv+Neg+Neu: niimisiiwan
+     niimi+VAI+Ind+3PlObv+Neg+Neu: [niimisiiwan,niimisiiwa']
+     niimi+VAI+Ind+X+Neg+Neu: niimisiim
+     niimi+VAI+Ind+1Sg+Pos+Prt: niniiminaaban
+     niimi+VAI+Ind+2Sg+Pos+Prt: giniiminaaban
+     niimi+VAI+Ind+Excl+Pos+Prt: niniimiminaaban
+     niimi+VAI+Ind+Incl+Pos+Prt: giniimiminaaban
+     niimi+VAI+Ind+2Pl+Pos+Prt: giniimimwaaban
+     niimi+VAI+Ind+3SgProx+Pos+Prt: niimiiban
+     niimi+VAI+Ind+3PlProx+Pos+Prt: [niimiibaniig,niimiibaneg]
+     niimi+VAI+Ind+3SgObv+Pos+Prt: [niimiibaniin,niimiibanen]
+     niimi+VAI+Ind+3PlObv+Pos+Prt: [niimiibaniin,niimiibanen]
+     niimi+VAI+Ind+X+Pos+Prt: niimimwaaban
+     niimi+VAI+Ind+1Sg+Neg+Prt: niniimisiinaaban
+     niimi+VAI+Ind+2Sg+Neg+Prt: giniimisiinaaban
+     niimi+VAI+Ind+Excl+Neg+Prt: niniimisiiminaaban
+     niimi+VAI+Ind+Incl+Neg+Prt: giniimisiiminaaban
+     niimi+VAI+Ind+2Pl+Neg+Prt: giniimisiimwaaban
+     niimi+VAI+Ind+3SgProx+Neg+Prt: niimisiiban
+     niimi+VAI+Ind+3PlProx+Neg+Prt: [niimisiibaniig,niimisiibaneg]
+     niimi+VAI+Ind+3SgObv+Neg+Prt: [niimisiibaniin,niimisiibanen]
+     niimi+VAI+Ind+3PlObv+Neg+Prt: [niimisiibaniin,niimisiibanen]
+     niimi+VAI+Ind+X+Neg+Prt: niimisiimwaaban
+     niimi+VAI+Ind+1Sg+Pos+Dub: niniiminaadog
+     niimi+VAI+Ind+2Sg+Pos+Dub: giniiminaadog
+     niimi+VAI+Ind+Excl+Pos+Dub: niniimiminaadog
+     niimi+VAI+Ind+Incl+Pos+Dub: giniimiminaadog
+     niimi+VAI+Ind+2Pl+Pos+Dub: giniimimwaadog
+     niimi+VAI+Ind+3SgProx+Pos+Dub: [niimiwidog,niimidog]
+     niimi+VAI+Ind+3PlProx+Pos+Dub: [niimiwidogenag,niimidogenag]
+     niimi+VAI+Ind+3SgObv+Pos+Dub: [niimiwidogenan,niimidogenan]
+     niimi+VAI+Ind+3PlObv+Pos+Dub: [niimiwidogenan,niimidogenan]
+     niimi+VAI+Ind+X+Pos+Dub: niimimwaadog
+     niimi+VAI+Ind+1Sg+Neg+Dub: niniimisiinaadog
+     niimi+VAI+Ind+2Sg+Neg+Dub: giniimisiinaadog
+     niimi+VAI+Ind+Excl+Neg+Dub: niniimisiiminaadog
+     niimi+VAI+Ind+Incl+Neg+Dub: giniimisiiminaadog
+     niimi+VAI+Ind+2Pl+Neg+Dub: giniimisiimwaadog
+     niimi+VAI+Ind+3SgProx+Neg+Dub: niimisiidog
+     niimi+VAI+Ind+3PlProx+Neg+Dub: niimisiidogenag
+     niimi+VAI+Ind+3SgObv+Neg+Dub: niimisiidogenan
+     niimi+VAI+Ind+3PlObv+Neg+Dub: [niimisiidogenan,niimisiidogena']
+     niimi+VAI+Ind+X+Neg+Dub: niimisiimwaadog
+     niimi+VAI+Ind+3SgProx+Pos+Prt+Dub: niimigoban
+     niimi+VAI+Ind+3PlProx+Pos+Prt+Dub: niimigwaaan
+     niimi+VAI+Ind+3SgObv+Pos+Prt+Dub: niiminigoban
+     niimi+VAI+Ind+3SgProx+Neg+Prt+Dub: niimisiigoban
+     niimi+VAI+Ind+3PlProx+Neg+Prt+Dub: niimisiigwaaban
+     niimi+VAI+Ind+3SgObv+Neg+Prt+Dub: niimiisiinigoban

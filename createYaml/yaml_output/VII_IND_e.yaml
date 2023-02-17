@@ -1,32 +1,32 @@
-ate+VII+Ind+0SgProx+Positive+Neutral: ate
-ate+VII+Ind+0PlProx+Positive+Neutral: atewan
-ate+VII+Ind+0SgObv+Positive+Neutral: ateni
-ate+VII+Ind+0PlObv+Positive+Neutral: ateniwan
-ate+VII+Ind+0SgProx+Negative+Neutral: atesinoon
-ate+VII+Ind+0PlProx+Negative+Neutral: atesinoon
-ate+VII+Ind+0SgObv+Negative+Neutral: atesinini
-ate+VII+Ind+0PlObv+Negative+Neutral: atesininiwan
-ate+VII+Ind+0SgProx+Positive+Preterit: ateban
-ate+VII+Ind+0PlProx+Positive+Preterit: [atebaniin,atebanen]
-ate+VII+Ind+0SgObv+Positive+Preterit: ateniiban
-ate+VII+Ind+0PlObv+Positive+Preterit: [ateniibaniin,ateniibanen]
-ate+VII+Ind+0SgProx+Negative+Preterit: atesinooban
-ate+VII+Ind+0PlProx+Negative+Preterit: [atesinoobaniin,atesinoobanen]
-ate+VII+Ind+0SgObv+Negative+Preterit: atesininiiban
-ate+VII+Ind+0PlObv+Negative+Preterit: [atesininiibaniin,atesininiibanen]
-ate+VII+Ind+0SgProx+Positive+Dubitative: atedog
-ate+VII+Ind+0PlProx+Positive+Dubitative: atedogenan
-ate+VII+Ind+0SgObv+Positive+Dubitative: ateniwidog
-ate+VII+Ind+0PlObv+Positive+Dubitative: ateniwidogenan
-ate+VII+Ind+0SgProx+Negative+Dubitative: atesinodog
-ate+VII+Ind+0PlProx+Negative+Dubitative: atesinodogenan
-ate+VII+Ind+0SgObv+Negative+Dubitative: atesininiwidog
-ate+VII+Ind+0PlObv+Negative+Dubitative: atesininiwidogenan
-ate+VII+Ind+0SgProx+Positive+PreteritDubitative: ategoban
-ate+VII+Ind+0PlProx+Positive+PreteritDubitative: [ategobaniin,ategobanen]
-ate+VII+Ind+0SgObv+Positive+PreteritDubitative: atenigoban
-ate+VII+Ind+0PlObv+Positive+PreteritDubitative: [atenigobaniin,atenigobanen]
-ate+VII+Ind+0SgProx+Negative+PreteritDubitative: atesinoogoban
-ate+VII+Ind+0PlProx+Negative+PreteritDubitative: [atesinoogobaniin,atesinoogobanen]
-ate+VII+Ind+0SgObv+Negative+PreteritDubitative: atesininigoban
-ate+VII+Ind+0PlObv+Negative+PreteritDubitative: [atesininigobaniin,atesininigobanen]
+     ate+VII+Ind+Pos+Neu+0SgProx: ate
+     ate+VII+Ind+Pos+Neu+0PlProx: atewan
+     ate+VII+Ind+Pos+Neu+0SgObv: ateni
+     ate+VII+Ind+Pos+Neu+0PlObv: ateniwan
+     ate+VII+Ind+Neg+Neu+0SgProx: atesinoon
+     ate+VII+Ind+Neg+Neu+0PlProx: atesinoon
+     ate+VII+Ind+Neg+Neu+0SgObv: atesinini
+     ate+VII+Ind+Neg+Neu+0PlObv: atesininiwan
+     ate+VII+Ind+Pos+Prt+0SgProx: ateban
+     ate+VII+Ind+Pos+Prt+0PlProx: [atebaniin,atebanen]
+     ate+VII+Ind+Pos+Prt+0SgObv: ateniiban
+     ate+VII+Ind+Pos+Prt+0PlObv: [ateniibaniin,ateniibanen]
+     ate+VII+Ind+Neg+Prt+0SgProx: atesinooban
+     ate+VII+Ind+Neg+Prt+0PlProx: [atesinoobaniin,atesinoobanen]
+     ate+VII+Ind+Neg+Prt+0SgObv: atesininiiban
+     ate+VII+Ind+Neg+Prt+0PlObv: [atesininiibaniin,atesininiibanen]
+     ate+VII+Ind+Pos+Dub+0SgProx: atedog
+     ate+VII+Ind+Pos+Dub+0PlProx: atedogenan
+     ate+VII+Ind+Pos+Dub+0SgObv: ateniwidog
+     ate+VII+Ind+Pos+Dub+0PlObv: ateniwidogenan
+     ate+VII+Ind+Neg+Dub+0SgProx: atesinodog
+     ate+VII+Ind+Neg+Dub+0PlProx: atesinodogenan
+     ate+VII+Ind+Neg+Dub+0SgObv: atesininiwidog
+     ate+VII+Ind+Neg+Dub+0PlObv: atesininiwidogenan
+     ate+VII+Ind+Pos+Prt+Dub+0SgProx: ategoban
+     ate+VII+Ind+Pos+Prt+Dub+0PlProx: [ategobaniin,ategobanen]
+     ate+VII+Ind+Pos+Prt+Dub+0SgObv: atenigoban
+     ate+VII+Ind+Pos+Prt+Dub+0PlObv: [atenigobaniin,atenigobanen]
+     ate+VII+Ind+Neg+Prt+Dub+0SgProx: atesinoogoban
+     ate+VII+Ind+Neg+Prt+Dub+0PlProx: [atesinoogobaniin,atesinoogobanen]
+     ate+VII+Ind+Neg+Prt+Dub+0SgObv: atesininigoban
+     ate+VII+Ind+Neg+Prt+Dub+0PlObv: [atesininigobaniin,atesininigobanen]

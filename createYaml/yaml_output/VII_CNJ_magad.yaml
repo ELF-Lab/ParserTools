@@ -1,16 +1,16 @@
-atemagad+VII+Cnj+0SgProx/0PlProx+Positive+Neutral: atemagak
-atemagad+VII+Cnj+0SgObv/0PlObv+Positive+Neutral: atemagadinig
-atemagad+VII+Cnj+0SgProx/0PlProx+Negative+Neutral: atemagasinog
-atemagad+VII+Cnj+0SgObv/0PlObv+Negative+Neutral: atemagasininig
-atemagad+VII+Cnj+0SgProx/0PlProx+Positive+Preterit: atemagakiban
-atemagad+VII+Cnj+0SgObv/0PlObv+Positive+Preterit: atemagadinigiban
-atemagad+VII+Cnj+0SgProx/0PlProx+Negative+Preterit: atemagasinoogiban
-atemagad+VII+Cnj+0SgObv/0PlObv+Negative+Preterit: atemagasininigiban
-atemagad+VII+Cnj+0SgProx/0PlProx+Positive+Dubitative: atemagadogwen
-atemagad+VII+Cnj+0SgObv/0PlObv+Positive+Dubitative: atemagadinigwen
-atemagad+VII+Cnj+0SgProx/0PlProx+Negative+Dubitative: atemagasinoogwen
-atemagad+VII+Cnj+0SgObv/0PlObv+Negative+Dubitative: atemagasinoogwen
-atemagad+VII+Cnj+0SgProx/0PlProx+Positive+PreteritDubitative: atemagadogobanen
-atemagad+VII+Cnj+0SgObv/0PlObv+Positive+PreteritDubitative: atemagadinigobanen
-atemagad+VII+Cnj+0SgProx/0PlProx+Negative+PreteritDubitative: atemagasinoogobanen
-atemagad+VII+Cnj+0SgObv/0PlObv+Negative+PreteritDubitative: atemagasininigobanen
+     atemagad+VII+Cnj+Pos+Neu+0SgProx/0PlProx: atemagak
+     atemagad+VII+Cnj+Pos+Neu+0SgObv/0PlObv: atemagadinig
+     atemagad+VII+Cnj+Neg+Neu+0SgProx/0PlProx: atemagasinog
+     atemagad+VII+Cnj+Neg+Neu+0SgObv/0PlObv: atemagasininig
+     atemagad+VII+Cnj+Pos+Prt+0SgProx/0PlProx: atemagakiban
+     atemagad+VII+Cnj+Pos+Prt+0SgObv/0PlObv: atemagadinigiban
+     atemagad+VII+Cnj+Neg+Prt+0SgProx/0PlProx: atemagasinoogiban
+     atemagad+VII+Cnj+Neg+Prt+0SgObv/0PlObv: atemagasininigiban
+     atemagad+VII+Cnj+Pos+Dub+0SgProx/0PlProx: atemagadogwen
+     atemagad+VII+Cnj+Pos+Dub+0SgObv/0PlObv: atemagadinigwen
+     atemagad+VII+Cnj+Neg+Dub+0SgProx/0PlProx: atemagasinoogwen
+     atemagad+VII+Cnj+Neg+Dub+0SgObv/0PlObv: atemagasinoogwen
+     atemagad+VII+Cnj+Pos+Prt+Dub+0SgProx/0PlProx: atemagadogobanen
+     atemagad+VII+Cnj+Pos+Prt+Dub+0SgObv/0PlObv: atemagadinigobanen
+     atemagad+VII+Cnj+Neg+Prt+Dub+0SgProx/0PlProx: atemagasinoogobanen
+     atemagad+VII+Cnj+Neg+Prt+Dub+0SgObv/0PlObv: atemagasininigobanen

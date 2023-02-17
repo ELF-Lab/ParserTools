@@ -1,32 +1,32 @@
-gonzaabii+VII+Ind+0SgProx+Positive+Neutral: gonzaabii
-gonzaabii+VII+Ind+0PlProx+Positive+Neutral: gonzaabiiwan
-gonzaabii+VII+Ind+0SgObv+Positive+Neutral: gonzaabiini
-gonzaabii+VII+Ind+0PlObv+Positive+Neutral: gonzaabiiniwan
-gonzaabii+VII+Ind+0SgProx+Negative+Neutral: gonzaabiisinoon
-gonzaabii+VII+Ind+0PlProx+Negative+Neutral: gonzaabiisinoon
-gonzaabii+VII+Ind+0SgObv+Negative+Neutral: gonzaabiisinini
-gonzaabii+VII+Ind+0PlObv+Negative+Neutral: gonzaabiisininiwan
-gonzaabii+VII+Ind+0SgProx+Positive+Preterit: gonzaabiiban
-gonzaabii+VII+Ind+0PlProx+Positive+Preterit: [gonzaabiibaniin,gonzaabiibanen]
-gonzaabii+VII+Ind+0SgObv+Positive+Preterit: gonzaabiiniiban
-gonzaabii+VII+Ind+0PlObv+Positive+Preterit: [gonzaabiiniibaniin,gonzaabiiniibanen]
-gonzaabii+VII+Ind+0SgProx+Negative+Preterit: gonzaabiisinooban
-gonzaabii+VII+Ind+0PlProx+Negative+Preterit: [ginzaabiisinoobaniin,ginzaabiisinoobanen]
-gonzaabii+VII+Ind+0SgObv+Negative+Preterit: gonzaabiisininiiban
-gonzaabii+VII+Ind+0PlObv+Negative+Preterit: [gonzaabiisininiibaniin,gonzaabiisininiibanen]
-gonzaabii+VII+Ind+0SgProx+Positive+Dubitative: gonzaabiidog
-gonzaabii+VII+Ind+0PlProx+Positive+Dubitative: gonzaabiidogenan
-gonzaabii+VII+Ind+0SgObv+Positive+Dubitative: gonzaabiiniwidog
-gonzaabii+VII+Ind+0PlObv+Positive+Dubitative: gonzaabiiniwidogenan
-gonzaabii+VII+Ind+0SgProx+Negative+Dubitative: gonzaabiisinodog
-gonzaabii+VII+Ind+0PlProx+Negative+Dubitative: gonzaabiisinodogenan
-gonzaabii+VII+Ind+0SgObv+Negative+Dubitative: gonzaabiisininiwidog
-gonzaabii+VII+Ind+0PlObv+Negative+Dubitative: gonzaabiisininiwidogenan
-gonzaabii+VII+Ind+0SgProx+Positive+PreteritDubitative: gonzaabiigoban
-gonzaabii+VII+Ind+0PlProx+Positive+PreteritDubitative: [gonzaabiigobaniin,gonzaabiigobanen]
-gonzaabii+VII+Ind+0SgObv+Positive+PreteritDubitative: gonzaabiinigoban
-gonzaabii+VII+Ind+0PlObv+Positive+PreteritDubitative: [gonzaabiinigobaniin,gonzaabiinigobanen]
-gonzaabii+VII+Ind+0SgProx+Negative+PreteritDubitative: gonzaabiisinoogoban
-gonzaabii+VII+Ind+0PlProx+Negative+PreteritDubitative: [gonzaabiisinoogobaniin,gonzaabiisinoogobanen]
-gonzaabii+VII+Ind+0SgObv+Negative+PreteritDubitative: gonzaabiisininigoban
-gonzaabii+VII+Ind+0PlObv+Negative+PreteritDubitative: [gonzaabiisininigobaniin,gonzaabiisininigobanen]
+     gonzaabii+VII+Ind+Pos+Neu+0SgProx: gonzaabii
+     gonzaabii+VII+Ind+Pos+Neu+0PlProx: gonzaabiiwan
+     gonzaabii+VII+Ind+Pos+Neu+0SgObv: gonzaabiini
+     gonzaabii+VII+Ind+Pos+Neu+0PlObv: gonzaabiiniwan
+     gonzaabii+VII+Ind+Neg+Neu+0SgProx: gonzaabiisinoon
+     gonzaabii+VII+Ind+Neg+Neu+0PlProx: gonzaabiisinoon
+     gonzaabii+VII+Ind+Neg+Neu+0SgObv: gonzaabiisinini
+     gonzaabii+VII+Ind+Neg+Neu+0PlObv: gonzaabiisininiwan
+     gonzaabii+VII+Ind+Pos+Prt+0SgProx: gonzaabiiban
+     gonzaabii+VII+Ind+Pos+Prt+0PlProx: [gonzaabiibaniin,gonzaabiibanen]
+     gonzaabii+VII+Ind+Pos+Prt+0SgObv: gonzaabiiniiban
+     gonzaabii+VII+Ind+Pos+Prt+0PlObv: [gonzaabiiniibaniin,gonzaabiiniibanen]
+     gonzaabii+VII+Ind+Neg+Prt+0SgProx: gonzaabiisinooban
+     gonzaabii+VII+Ind+Neg+Prt+0PlProx: [ginzaabiisinoobaniin,ginzaabiisinoobanen]
+     gonzaabii+VII+Ind+Neg+Prt+0SgObv: gonzaabiisininiiban
+     gonzaabii+VII+Ind+Neg+Prt+0PlObv: [gonzaabiisininiibaniin,gonzaabiisininiibanen]
+     gonzaabii+VII+Ind+Pos+Dub+0SgProx: gonzaabiidog
+     gonzaabii+VII+Ind+Pos+Dub+0PlProx: gonzaabiidogenan
+     gonzaabii+VII+Ind+Pos+Dub+0SgObv: gonzaabiiniwidog
+     gonzaabii+VII+Ind+Pos+Dub+0PlObv: gonzaabiiniwidogenan
+     gonzaabii+VII+Ind+Neg+Dub+0SgProx: gonzaabiisinodog
+     gonzaabii+VII+Ind+Neg+Dub+0PlProx: gonzaabiisinodogenan
+     gonzaabii+VII+Ind+Neg+Dub+0SgObv: gonzaabiisininiwidog
+     gonzaabii+VII+Ind+Neg+Dub+0PlObv: gonzaabiisininiwidogenan
+     gonzaabii+VII+Ind+Pos+Prt+Dub+0SgProx: gonzaabiigoban
+     gonzaabii+VII+Ind+Pos+Prt+Dub+0PlProx: [gonzaabiigobaniin,gonzaabiigobanen]
+     gonzaabii+VII+Ind+Pos+Prt+Dub+0SgObv: gonzaabiinigoban
+     gonzaabii+VII+Ind+Pos+Prt+Dub+0PlObv: [gonzaabiinigobaniin,gonzaabiinigobanen]
+     gonzaabii+VII+Ind+Neg+Prt+Dub+0SgProx: gonzaabiisinoogoban
+     gonzaabii+VII+Ind+Neg+Prt+Dub+0PlProx: [gonzaabiisinoogobaniin,gonzaabiisinoogobanen]
+     gonzaabii+VII+Ind+Neg+Prt+Dub+0SgObv: gonzaabiisininigoban
+     gonzaabii+VII+Ind+Neg+Prt+Dub+0PlObv: [gonzaabiisininigobaniin,gonzaabiisininigobanen]

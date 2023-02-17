@@ -1,66 +1,66 @@
-nagamo+VAI+Ind+1Sg+Pos+Neut: ninagam
-nagamo+VAI+Ind+2Sg+Pos+Neut: ginagam
-nagamo+VAI+Ind+Excl+Pos+Neut: ninagamomin
-nagamo+VAI+Ind+Incl+Pos+Neut: ginagamomin
-nagamo+VAI+Ind+2Pl+Pos+Neut: ginagamom
-nagamo+VAI+Ind+3SgProx+Pos+Neut: nagamo
-nagamo+VAI+Ind+3PlProx+Pos+Neut: nagamowag
-nagamo+VAI+Ind+3SgObv+Pos+Neut: nagamowan
-nagamo+VAI+Ind+3PlObv+Pos+Neut: [nagamowan,nagamowa']
-nagamo+VAI+Ind+X+Pos+Neut: nagamom
-nagamo+VAI+Ind+1Sg+Neg+Neut: [ninagamosiin,ninagamosii]
-nagamo+VAI+Ind+2Sg+Neg+Neut: [ginagamosiin,ginagamosii]
-nagamo+VAI+Ind+Excl+Neg+Neut: ninagamosiimin
-nagamo+VAI+Ind+Incl+Neg+Neut: ginagamosiimin
-nagamo+VAI+Ind+2Pl+Neg+Neut: ginagamosiim
-nagamo+VAI+Ind+3SgProx+Neg+Neut: [nagamosiin,nagamosii]
-nagamo+VAI+Ind+3PlProx+Neg+Neut: nagamosiiwag
-nagamo+VAI+Ind+3SgObv+Neg+Neut: nagamosiiwan
-nagamo+VAI+Ind+3PlObv+Neg+Neut: [nagamosiiwan,nagamosiiwa']
-nagamo+VAI+Ind+X+Neg+Neut: nagamosiim
-nagamo+VAI+Ind+1Sg+Pos+Pret: ninagamonaaban
-nagamo+VAI+Ind+2Sg+Pos+Pret: ginagamonaaban
-nagamo+VAI+Ind+Excl+Pos+Pret: ninagamominaaban
-nagamo+VAI+Ind+Incl+Pos+Pret: ginagamominaaban
-nagamo+VAI+Ind+2Pl+Pos+Pret: ginagamomwaaban
-nagamo+VAI+Ind+3SgProx+Pos+Pret: nagamooban
-nagamo+VAI+Ind+3PlProx+Pos+Pret: [nagamoobaniig,nagamoobaneg]
-nagamo+VAI+Ind+3SgObv+Pos+Pret: [nagamoobaniin,nagamoobanen]
-nagamo+VAI+Ind+3PlObv+Pos+Pret: [nagamoobaniin,nagamoobanen]
-nagamo+VAI+Ind+X+Pos+Pret: nagamomwaaban
-nagamo+VAI+Ind+1Sg+Neg+Pret: ninagamosiinaaban
-nagamo+VAI+Ind+2Sg+Neg+Pret: ginagamosiinaaban
-nagamo+VAI+Ind+Excl+Neg+Pret: ninagamosiiminaaban
-nagamo+VAI+Ind+Incl+Neg+Pret: ginagamosiiminaaban
-nagamo+VAI+Ind+2Pl+Neg+Pret: ginagamosiimwaaban
-nagamo+VAI+Ind+3SgProx+Neg+Pret: nagamosiiban
-nagamo+VAI+Ind+3PlProx+Neg+Pret: [nagamosiibaniig,nagamosiibaneg]
-nagamo+VAI+Ind+3SgObv+Neg+Pret: [nagamosiibaniin,nagamosiibanen]
-nagamo+VAI+Ind+3PlObv+Neg+Pret: [nagamosiibaniin,nagamosiibanen]
-nagamo+VAI+Ind+X+Neg+Pret: nagamosiimwaaban
-nagamo+VAI+Ind+1Sg+Pos+Dub: ninagamonaadog
-nagamo+VAI+Ind+2Sg+Pos+Dub: ginagamonaadog
-nagamo+VAI+Ind+Excl+Pos+Dub: ninagamominaadog
-nagamo+VAI+Ind+Incl+Pos+Dub: ginagamominaadog
-nagamo+VAI+Ind+2Pl+Pos+Dub: ginagamomwaadog
-nagamo+VAI+Ind+3SgProx+Pos+Dub: [nagamowidog,nagamodog]
-nagamo+VAI+Ind+3PlProx+Pos+Dub: [nagamowidogenag,nagamodogenag]
-nagamo+VAI+Ind+3SgObv+Pos+Dub: [nagamowidogenan,nagamodogenan]
-nagamo+VAI+Ind+3PlObv+Pos+Dub: [nagamowidogenan,nagamodogenan]
-nagamo+VAI+Ind+X+Pos+Dub: nagamomwaadog
-nagamo+VAI+Ind+1Sg+Neg+Dub: ninagamosiinaadog
-nagamo+VAI+Ind+2Sg+Neg+Dub: ginagamosiinaadog
-nagamo+VAI+Ind+Excl+Neg+Dub: ninagamosiiminaadog
-nagamo+VAI+Ind+Incl+Neg+Dub: ginagamosiiminaadog
-nagamo+VAI+Ind+2Pl+Neg+Dub: ginagamosiimwaadog
-nagamo+VAI+Ind+3SgProx+Neg+Dub: nagamosiidog
-nagamo+VAI+Ind+3PlProx+Neg+Dub: nagamosiidogenag
-nagamo+VAI+Ind+3SgObv+Neg+Dub: nagamosiidogenan
-nagamo+VAI+Ind+3PlObv+Neg+Dub: [nagamosiidogenan,nagamosiidogena']
-nagamo+VAI+Ind+X+Neg+Dub: nagamosiimwaadog
-nagamo+VAI+Ind+3SgProx+Pos+PretDub: nagamogoban
-nagamo+VAI+Ind+3PlProx+Pos+PretDub: nagamogwaaban
-nagamo+VAI+Ind+3SgObv+Pos+PretDub: nagamonigoban
-nagamo+VAI+Ind+3SgProx+Neg+PretDub: nagamosiigoban
-nagamo+VAI+Ind+3PlProx+Neg+PretDub: nagamosiigwaaban
-nagamo+VAI+Ind+3SgObv+Neg+PretDub: nagamosiinigoban
+     nagamo+VAI+Ind+1Sg+Pos+Neu: ninagam
+     nagamo+VAI+Ind+2Sg+Pos+Neu: ginagam
+     nagamo+VAI+Ind+Excl+Pos+Neu: ninagamomin
+     nagamo+VAI+Ind+Incl+Pos+Neu: ginagamomin
+     nagamo+VAI+Ind+2Pl+Pos+Neu: ginagamom
+     nagamo+VAI+Ind+3SgProx+Pos+Neu: nagamo
+     nagamo+VAI+Ind+3PlProx+Pos+Neu: nagamowag
+     nagamo+VAI+Ind+3SgObv+Pos+Neu: nagamowan
+     nagamo+VAI+Ind+3PlObv+Pos+Neu: [nagamowan,nagamowa']
+     nagamo+VAI+Ind+X+Pos+Neu: nagamom
+     nagamo+VAI+Ind+1Sg+Neg+Neu: [ninagamosiin,ninagamosii]
+     nagamo+VAI+Ind+2Sg+Neg+Neu: [ginagamosiin,ginagamosii]
+     nagamo+VAI+Ind+Excl+Neg+Neu: ninagamosiimin
+     nagamo+VAI+Ind+Incl+Neg+Neu: ginagamosiimin
+     nagamo+VAI+Ind+2Pl+Neg+Neu: ginagamosiim
+     nagamo+VAI+Ind+3SgProx+Neg+Neu: [nagamosiin,nagamosii]
+     nagamo+VAI+Ind+3PlProx+Neg+Neu: nagamosiiwag
+     nagamo+VAI+Ind+3SgObv+Neg+Neu: nagamosiiwan
+     nagamo+VAI+Ind+3PlObv+Neg+Neu: [nagamosiiwan,nagamosiiwa']
+     nagamo+VAI+Ind+X+Neg+Neu: nagamosiim
+     nagamo+VAI+Ind+1Sg+Pos+Prt: ninagamonaaban
+     nagamo+VAI+Ind+2Sg+Pos+Prt: ginagamonaaban
+     nagamo+VAI+Ind+Excl+Pos+Prt: ninagamominaaban
+     nagamo+VAI+Ind+Incl+Pos+Prt: ginagamominaaban
+     nagamo+VAI+Ind+2Pl+Pos+Prt: ginagamomwaaban
+     nagamo+VAI+Ind+3SgProx+Pos+Prt: nagamooban
+     nagamo+VAI+Ind+3PlProx+Pos+Prt: [nagamoobaniig,nagamoobaneg]
+     nagamo+VAI+Ind+3SgObv+Pos+Prt: [nagamoobaniin,nagamoobanen]
+     nagamo+VAI+Ind+3PlObv+Pos+Prt: [nagamoobaniin,nagamoobanen]
+     nagamo+VAI+Ind+X+Pos+Prt: nagamomwaaban
+     nagamo+VAI+Ind+1Sg+Neg+Prt: ninagamosiinaaban
+     nagamo+VAI+Ind+2Sg+Neg+Prt: ginagamosiinaaban
+     nagamo+VAI+Ind+Excl+Neg+Prt: ninagamosiiminaaban
+     nagamo+VAI+Ind+Incl+Neg+Prt: ginagamosiiminaaban
+     nagamo+VAI+Ind+2Pl+Neg+Prt: ginagamosiimwaaban
+     nagamo+VAI+Ind+3SgProx+Neg+Prt: nagamosiiban
+     nagamo+VAI+Ind+3PlProx+Neg+Prt: [nagamosiibaniig,nagamosiibaneg]
+     nagamo+VAI+Ind+3SgObv+Neg+Prt: [nagamosiibaniin,nagamosiibanen]
+     nagamo+VAI+Ind+3PlObv+Neg+Prt: [nagamosiibaniin,nagamosiibanen]
+     nagamo+VAI+Ind+X+Neg+Prt: nagamosiimwaaban
+     nagamo+VAI+Ind+1Sg+Pos+Dub: ninagamonaadog
+     nagamo+VAI+Ind+2Sg+Pos+Dub: ginagamonaadog
+     nagamo+VAI+Ind+Excl+Pos+Dub: ninagamominaadog
+     nagamo+VAI+Ind+Incl+Pos+Dub: ginagamominaadog
+     nagamo+VAI+Ind+2Pl+Pos+Dub: ginagamomwaadog
+     nagamo+VAI+Ind+3SgProx+Pos+Dub: [nagamowidog,nagamodog]
+     nagamo+VAI+Ind+3PlProx+Pos+Dub: [nagamowidogenag,nagamodogenag]
+     nagamo+VAI+Ind+3SgObv+Pos+Dub: [nagamowidogenan,nagamodogenan]
+     nagamo+VAI+Ind+3PlObv+Pos+Dub: [nagamowidogenan,nagamodogenan]
+     nagamo+VAI+Ind+X+Pos+Dub: nagamomwaadog
+     nagamo+VAI+Ind+1Sg+Neg+Dub: ninagamosiinaadog
+     nagamo+VAI+Ind+2Sg+Neg+Dub: ginagamosiinaadog
+     nagamo+VAI+Ind+Excl+Neg+Dub: ninagamosiiminaadog
+     nagamo+VAI+Ind+Incl+Neg+Dub: ginagamosiiminaadog
+     nagamo+VAI+Ind+2Pl+Neg+Dub: ginagamosiimwaadog
+     nagamo+VAI+Ind+3SgProx+Neg+Dub: nagamosiidog
+     nagamo+VAI+Ind+3PlProx+Neg+Dub: nagamosiidogenag
+     nagamo+VAI+Ind+3SgObv+Neg+Dub: nagamosiidogenan
+     nagamo+VAI+Ind+3PlObv+Neg+Dub: [nagamosiidogenan,nagamosiidogena']
+     nagamo+VAI+Ind+X+Neg+Dub: nagamosiimwaadog
+     nagamo+VAI+Ind+3SgProx+Pos+Prt+Dub: nagamogoban
+     nagamo+VAI+Ind+3PlProx+Pos+Prt+Dub: nagamogwaaban
+     nagamo+VAI+Ind+3SgObv+Pos+Prt+Dub: nagamonigoban
+     nagamo+VAI+Ind+3SgProx+Neg+Prt+Dub: nagamosiigoban
+     nagamo+VAI+Ind+3PlProx+Neg+Prt+Dub: nagamosiigwaaban
+     nagamo+VAI+Ind+3SgObv+Neg+Prt+Dub: nagamosiinigoban
