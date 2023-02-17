@@ -18,8 +18,8 @@ import pandas as pd
 # Lastly, add another `if` check that for that verb type (like than on approx. line 74).
 
 VII_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
-VAI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Negation"], row["Mode"].replace(" ","")])
-VTI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Subject"], row["Object"], row["Negation"], row["Mode"].replace(" ","")])
+VAI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
+VTI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"].replace(" ","")])
 
 
 
