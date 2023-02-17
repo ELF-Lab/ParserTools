@@ -1,3 +1,16 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
      zaaga'am+VAI+Cnj+Pos+Neu+1Sg: zaaga'amaan
      zaaga'am+VAI+Cnj+Pos+Neu+2Sg: zaaga'aman
      zaaga'am+VAI+Cnj+Pos+Neu+Excl: zaaga'amaang

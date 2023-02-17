@@ -17,6 +17,8 @@ import pandas as pd
 # Then, add another entry to the `group` variable below (like that on approx. line 68).
 # Lastly, add another `if` check that for that verb type (like than on approx. line 74).
 
+
+
 VII_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
 VAI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
 VTI_analysis = lambda row: "+".join([row["Lexeme"], row["Class"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"].replace(" ","")])
@@ -68,6 +70,19 @@ def make_yaml(file_name:str, analysis:callable) -> None:
         # For each stem in the dictionary, write it to its own yaml file.
         for key, value in yaml_dict.items():
             with open(f"{output_path}{sheet}_{key}.yaml", "w+") as yaml_file:
+                print("""Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+""", file = yaml_file)
                 for tag, forms in value:
                     yaml_file.write(f"{tag}: {forms}\n")
 

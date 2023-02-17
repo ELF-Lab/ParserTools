@@ -1,3 +1,16 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
      ayaan+VTI+Cnj+Neg+Neu+1Sg+0SgO/0PlO: ayaanziwaan
      ayaan+VTI+Cnj+Neg+Neu+2Sg+0SgO/0PlO: ayaanziwan
      ayaan+VTI+Cnj+Neg+Neu+Excl+0SgO/0PlO: ayaanziwaang

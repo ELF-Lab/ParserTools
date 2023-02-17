@@ -1,3 +1,16 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
      maajiibatoo+VAI+Ind+Pos+Neu+1Sg: nimaajiibatoo
      maajiibatoo+VAI+Ind+Pos+Neu+2Sg: gimaajiibatoo
      maajiibatoo+VAI+Ind+Pos+Neu+Excl: nimaajiibatoomin

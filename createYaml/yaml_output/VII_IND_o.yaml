@@ -1,3 +1,16 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
      inamo+VII+Ind+Pos+Neu+0SgProx: inamon
      inamo+VII+Ind+Pos+Neu+0PlProx: inamonoon
      inamo+VII+Ind+Pos+Neu+0SgObv: inamonini

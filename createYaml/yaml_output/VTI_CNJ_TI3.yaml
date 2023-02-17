@@ -1,3 +1,16 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
      miijin+VTI+Cnj+Neg+Dub+1Sg+0SgO/0PlO: miijisiiwaanen
      miijin+VTI+Cnj+Neg+Dub+2Sg+0SgO/0PlO: miijisiiwanen
      miijin+VTI+Cnj+Neg+Dub+Excl+0SgO/0PlO: miijisiiwaangen
