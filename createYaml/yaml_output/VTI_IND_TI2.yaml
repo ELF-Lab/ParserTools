@@ -42,6 +42,12 @@ Tests:
      wanitoon+VTI+Ind+Pos+Dub+2Pl+0PlO: giwanitoonaawaadogenan
      wanitoon+VTI+Ind+Pos+Dub+3SgProx+0PlO: owanitoonaadogenan
      wanitoon+VTI+Ind+Pos+Dub+3PlProx+0PlO: owanitoonaawaadogenan
+     wanitoon+VTI+Ind+Neg+Dub+Prt+3SgProx+0SgO/0PlO: wanitoosiigoban
+     wanitoon+VTI+Ind+Neg+Dub+Prt+3PlProx+0SgO/0PlO: wanitoosiigwaaban
+     wanitoon+VTI+Ind+Neg+Dub+Prt+3SgObv+0SgO/0PlO: wanitoosiinigoban
+     wanitoon+VTI+Ind+Pos+Dub+Prt+3SgProx+0SgO/0PlO: wanitoogoban
+     wanitoon+VTI+Ind+Pos+Dub+Prt+3PlProx+0SgO/0PlO: wanitoogwaaban
+     wanitoon+VTI+Ind+Pos+Dub+Prt+3SgObv+0SgO/0PlO: wanitoonigoban
      wanitoon+VTI+Ind+Neg+Neu+1Sg+0SgO: niwanitoosiinan
      wanitoon+VTI+Ind+Neg+Neu+2Sg+0SgO: giwanitoosiinan
      wanitoon+VTI+Ind+Neg+Neu+Excl+0SgO: niwanitoosiimin
@@ -106,9 +112,3 @@ Tests:
      wanitoon+VTI+Ind+Pos+Prt+3SgProx+0PlO: [owanitoonaabaniin,owanitoonaabanen]
      wanitoon+VTI+Ind+Pos+Prt+3PlProx+0PlO: [owanitoonaawaabaniin,owanitoonaawaabanen]
      wanitoon+VTI+Ind+Pos+Prt+3SgObv+0PlO: [owanitooninaabaniin,owanitooninaabanen]
-     wanitoon+VTI+Ind+Neg+Prt+Dub+3SgProx+0SgO/0PlO: wanitoosiigoban
-     wanitoon+VTI+Ind+Neg+Prt+Dub+3PlProx+0SgO/0PlO: wanitoosiigwaaban
-     wanitoon+VTI+Ind+Neg+Prt+Dub+3SgObv+0SgO/0PlO: wanitoosiinigoban
-     wanitoon+VTI+Ind+Pos+Prt+Dub+3SgProx+0SgO/0PlO: wanitoogoban
-     wanitoon+VTI+Ind+Pos+Prt+Dub+3PlProx+0SgO/0PlO: wanitoogwaaban
-     wanitoon+VTI+Ind+Pos+Prt+Dub+3SgObv+0SgO/0PlO: wanitoonigoban

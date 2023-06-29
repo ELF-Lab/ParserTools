@@ -29,6 +29,24 @@ Tests:
      miijin+VTI+Cnj+Pos+Dub+3PlProx+0SgO/0PlO: miijiwaagwen
      miijin+VTI+Cnj+Pos+Dub+3SgObv+0SgO/0PlO: miijinigwen
      miijin+VTI+Cnj+Pos+Dub+X+0SgO/0PlO: miijiwiingen
+     miijin+VTI+Cnj+Neg+Dub+Prt+1Sg+0SgO/0PlO: miijisiiwaambaanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+2Sg+0SgO/0PlO: miijisiiwambanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+Excl+0SgO/0PlO: miijisiiwaangibanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+Incl+0SgO/0PlO: miijisiiwangibanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+2Pl+0SgO/0PlO: [miijisiiwegibanen,miijisiiwegobanen]
+     miijin+VTI+Cnj+Neg+Dub+Prt+3SgProx+0SgO/0PlO: miijisiigobanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+3PlProx+0SgO/0PlO: miijisiiwaagobanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+3SgObv+0SgO/0PlO: miijisiinigobanen
+     miijin+VTI+Cnj+Neg+Dub+Prt+X+0SgO/0PlO: miijisiiwiingibanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+1Sg+0SgO/0PlO: miijiwaambaanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+2Sg+0SgO/0PlO: miijiwambanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+Excl+0SgO/0PlO: miijiwaangibanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+Incl+0SgO/0PlO: miijiwangibanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+2Pl+0SgO/0PlO: [miijiwegibanen,miijiwegobanen]
+     miijin+VTI+Cnj+Pos+Dub+Prt+3SgProx+0SgO/0PlO: miijigobanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+3PlProx+0SgO/0PlO: miijiwaagobanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+3SgObv+0SgO/0PlO: miijinigobanen
+     miijin+VTI+Cnj+Pos+Dub+Prt+X+0SgO/0PlO: miijiwiingibanen
      miijin+VTI+Cnj+Neg+Neu+1Sg+0SgO/0PlO: miijisiwaan
      miijin+VTI+Cnj+Neg+Neu+2Sg+0SgO/0PlO: miijisiwan
      miijin+VTI+Cnj+Neg+Neu+Excl+0SgO/0PlO: miijisiwaang
@@ -65,21 +83,3 @@ Tests:
      miijin+VTI+Cnj+Pos+Prt+3PlProx+0SgO/0PlO: miijiwaapan
      miijin+VTI+Cnj+Pos+Prt+3SgObv+0SgO/0PlO: miijinipan
      miijin+VTI+Cnj+Pos+Prt+X+0SgO/0PlO: miijingiban
-     miijin+VTI+Cnj+Neg+Prt+Dub+1Sg+0SgO/0PlO: miijisiiwaambaanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+2Sg+0SgO/0PlO: miijisiiwambanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+Excl+0SgO/0PlO: miijisiiwaangibanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+Incl+0SgO/0PlO: miijisiiwangibanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+2Pl+0SgO/0PlO: [miijisiiwegibanen1,miijisiiwegobanen]
-     miijin+VTI+Cnj+Neg+Prt+Dub+3SgProx+0SgO/0PlO: miijisiigobanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+3PlProx+0SgO/0PlO: miijisiiwaagobanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+3SgObv+0SgO/0PlO: miijisiinigobanen
-     miijin+VTI+Cnj+Neg+Prt+Dub+X+0SgO/0PlO: miijisiiwiingibanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+1Sg+0SgO/0PlO: miijiwaambaanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+2Sg+0SgO/0PlO: miijiwambanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+Excl+0SgO/0PlO: miijiwaangibanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+Incl+0SgO/0PlO: miijiwangibanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+2Pl+0SgO/0PlO: [miijiwegibanen,miijiwegobanen]
-     miijin+VTI+Cnj+Pos+Prt+Dub+3SgProx+0SgO/0PlO: miijigobanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+3PlProx+0SgO/0PlO: miijiwaagobanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+3SgObv+0SgO/0PlO: miijinigobanen
-     miijin+VTI+Cnj+Pos+Prt+Dub+X+0SgO/0PlO: miijiwiingibanen

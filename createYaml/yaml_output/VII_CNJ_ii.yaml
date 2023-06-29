@@ -23,7 +23,7 @@ Tests:
      gonzaabii+VII+Cnj+Pos+Dub+0SgObv/0PlObv: gonzaabiinigwen
      gonzaabii+VII+Cnj+Neg+Dub+0SgProx/0PlProx: gonzaabiisinoogwen
      gonzaabii+VII+Cnj+Neg+Dub+0SgObv/0PlObv: gonzaabiisininiigwen
-     gonzaabii+VII+Cnj+Pos+Prt+Dub+0SgProx/0PlProx: gonzaabiigobanen
-     gonzaabii+VII+Cnj+Pos+Prt+Dub+0SgObv/0PlObv: gonzaabiinigobanen
-     gonzaabii+VII+Cnj+Neg+Prt+Dub+0SgProx/0PlProx: gonzaabiisinoogobanen
-     gonzaabii+VII+Cnj+Neg+Prt+Dub+0SgObv/0PlObv: gonzaabiisininigobanen
+     gonzaabii+VII+Cnj+Pos+Dub+Prt+0SgProx/0PlProx: gonzaabiigobanen
+     gonzaabii+VII+Cnj+Pos+Dub+Prt+0SgObv/0PlObv: gonzaabiinigobanen
+     gonzaabii+VII+Cnj+Neg+Dub+Prt+0SgProx/0PlProx: gonzaabiisinoogobanen
+     gonzaabii+VII+Cnj+Neg+Dub+Prt+0SgObv/0PlObv: gonzaabiisininigobanen

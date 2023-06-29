@@ -35,11 +35,11 @@ Tests:
      bangisin+VII+Ind+Neg+Dub+0PlProx: bangisinzinodogenan
      bangisin+VII+Ind+Neg+Dub+0SgObv: bangisinzininiwidog
      bangisin+VII+Ind+Neg+Dub+0PlObv: bangisinzininiwidogenan
-     bangisin+VII+Ind+Pos+Prt+Dub+0SgProx: bangisinogoban
-     bangisin+VII+Ind+Pos+Prt+Dub+0PlProx: [bangisinogobaniin,bangisinogobanen]
-     bangisin+VII+Ind+Pos+Prt+Dub+0SgObv: bangisininigoban
-     bangisin+VII+Ind+Pos+Prt+Dub+0PlObv: [bangisininigobaniin,bangisininigobanen]
-     bangisin+VII+Ind+Neg+Prt+Dub+0SgProx: bangisinzinoogoban
-     bangisin+VII+Ind+Neg+Prt+Dub+0PlProx: [bangisinzinoogobaniin,bangisinzinoogobanen]
-     bangisin+VII+Ind+Neg+Prt+Dub+0SgObv: bangisinzininigoban
-     bangisin+VII+Ind+Neg+Prt+Dub+0PlObv: [bangisinzininigobaniin,bangisinzininigobanen]
+     bangisin+VII+Ind+Pos+Dub+Prt+0SgProx: bangisinogoban
+     bangisin+VII+Ind+Pos+Dub+Prt+0PlProx: [bangisinogobaniin,bangisinogobanen]
+     bangisin+VII+Ind+Pos+Dub+Prt+0SgObv: bangisininigoban
+     bangisin+VII+Ind+Pos+Dub+Prt+0PlObv: [bangisininigobaniin,bangisininigobanen]
+     bangisin+VII+Ind+Neg+Dub+Prt+0SgProx: bangisinzinoogoban
+     bangisin+VII+Ind+Neg+Dub+Prt+0PlProx: [bangisinzinoogobaniin,bangisinzinoogobanen]
+     bangisin+VII+Ind+Neg+Dub+Prt+0SgObv: bangisinzininigoban
+     bangisin+VII+Ind+Neg+Dub+Prt+0PlObv: [bangisinzininigobaniin,bangisinzininigobanen]

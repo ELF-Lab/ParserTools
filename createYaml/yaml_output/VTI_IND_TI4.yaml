@@ -11,116 +11,116 @@ Tests:
 
   Lemma - ALL :
 
-     ayaan+VTI+Ind+Neg+Dub+1Sg+0SgO: indayaasiinaadog
+     ayaan+VTI+Ind+Neg+Dub+1Sg+0SgO: nidayaasiinaadog
      ayaan+VTI+Ind+Neg+Dub+2Sg+0SgO: gidayaasiinaadog
-     ayaan+VTI+Ind+Neg+Dub+Excl+0SgO: indayaasiiminaadog
+     ayaan+VTI+Ind+Neg+Dub+Excl+0SgO: nidayaasiiminaadog
      ayaan+VTI+Ind+Neg+Dub+Incl+0SgO: gidayaasiiminaadog
      ayaan+VTI+Ind+Neg+Dub+2Pl+0SgO: gidayaasiinaawaadog
      ayaan+VTI+Ind+Neg+Dub+3SgProx+0SgO: odayaasiinaadog
      ayaan+VTI+Ind+Neg+Dub+3PlProx+0SgO: odayaasiinaawaadog
      ayaan+VTI+Ind+Neg+Dub+3SgObv+0SgO: odayaasiininaadog
-     ayaan+VTI+Ind+Neg+Dub+1Sg+0PlO: indayaasiinaadogenan
+     ayaan+VTI+Ind+Neg+Dub+1Sg+0PlO: nidayaasiinaadogenan
      ayaan+VTI+Ind+Neg+Dub+2Sg+0PlO: gidayaasiinaadogenan
-     ayaan+VTI+Ind+Neg+Dub+Excl+0PlO: indayaasiiminaadogenan
+     ayaan+VTI+Ind+Neg+Dub+Excl+0PlO: nidayaasiiminaadogenan
      ayaan+VTI+Ind+Neg+Dub+Incl+0PlO: gidayaasiiminaadogenan
      ayaan+VTI+Ind+Neg+Dub+2Pl+0PlO: gidayaasiinaawaadogenan
      ayaan+VTI+Ind+Neg+Dub+3SgProx+0PlO: odayaasiinaadogenan
      ayaan+VTI+Ind+Neg+Dub+3PlProx+0PlO: odayaasiinaawaadogenan
      ayaan+VTI+Ind+Neg+Dub+3SgObv+0PlO: odayaasiininaadogenan
-     ayaan+VTI+Ind+Pos+Dub+1Sg+0SgO: indayaanaadog
+     ayaan+VTI+Ind+Pos+Dub+1Sg+0SgO: nidayaanaadog
      ayaan+VTI+Ind+Pos+Dub+2Sg+0SgO: gidayaanaadog
-     ayaan+VTI+Ind+Pos+Dub+Excl+0SgO: indayaaminaadog
+     ayaan+VTI+Ind+Pos+Dub+Excl+0SgO: nidayaaminaadog
      ayaan+VTI+Ind+Pos+Dub+Incl+0SgO: gidayaaminaadog
      ayaan+VTI+Ind+Pos+Dub+2Pl+0SgO: gidayaanaawaadog
      ayaan+VTI+Ind+Pos+Dub+3SgProx+0SgO: odayaanaadog
      ayaan+VTI+Ind+Pos+Dub+3PlProx+0SgO: odayaanaawaadog
      ayaan+VTI+Ind+Pos+Dub+3SgObv+0SgO: odayaaninaadog
      ayaan+VTI+Ind+Pos+Dub+3PlObv+0SgO: odayaaninaadog
-     ayaan+VTI+Ind+Pos+Dub+1Sg+0PlO: indayaanaadogenan
+     ayaan+VTI+Ind+Pos+Dub+1Sg+0PlO: nidayaanaadogenan
      ayaan+VTI+Ind+Pos+Dub+2Sg+0PlO: gidayaanaadogenan
-     ayaan+VTI+Ind+Pos+Dub+Excl+0PlO: indayaaminaadogenan
+     ayaan+VTI+Ind+Pos+Dub+Excl+0PlO: nidayaaminaadogenan
      ayaan+VTI+Ind+Pos+Dub+Incl+0PlO: gidayaaminaadogenan
      ayaan+VTI+Ind+Pos+Dub+2Pl+0PlO: gidayaanaawaadogenan
      ayaan+VTI+Ind+Pos+Dub+3SgProx+0PlO: odayaanaadogenan
      ayaan+VTI+Ind+Pos+Dub+3PlProx+0PlO: odayaanaawaadogenan
      ayaan+VTI+Ind+Pos+Dub+3SgObv+0PlO: odayaaninaadogenan
-     ayaan+VTI+Ind+Neg+Neu+1Sg+0SgO: indayaasiin
+     ayaan+VTI+Ind+Neg+Dub+Prt+3SgProx+0SgO/0PlO: ayaanziigoban
+     ayaan+VTI+Ind+Neg+Dub+Prt+3PlProx+0SgO/0PlO: ayaanziigwaaban
+     ayaan+VTI+Ind+Neg+Dub+Prt+3SgObv+0SgO/0PlO: ayaanziinigoban
+     ayaan+VTI+Ind+Pos+Dub+Prt+3SgProx+0SgO/0PlO: ayaamogoban
+     ayaan+VTI+Ind+Pos+Dub+Prt+3PlProx+0SgO/0PlO: ayaamogwaaban
+     ayaan+VTI+Ind+Pos+Dub+Prt+3SgObv+0SgO/0PlO: ayaaminigoban
+     ayaan+VTI+Ind+Neg+Neu+1Sg+0SgO: nidayaasiin
      ayaan+VTI+Ind+Neg+Neu+2Sg+0SgO: gidayaasiin
-     ayaan+VTI+Ind+Neg+Neu+Excl+0SgO: indayaasiimin
+     ayaan+VTI+Ind+Neg+Neu+Excl+0SgO: nidayaasiimin
      ayaan+VTI+Ind+Neg+Neu+Incl+0SgO: gidayaasiimin
      ayaan+VTI+Ind+Neg+Neu+2Pl+0SgO: gidayaasiinaawaa
      ayaan+VTI+Ind+Neg+Neu+3SgProx+0SgO: odayaasiin
      ayaan+VTI+Ind+Neg+Neu+3PlProx+0SgO: odayaasiinaawaa
-     ayaan+VTI+Ind+Neg+Neu+1Sg+0PlO: indayaasiinan
+     ayaan+VTI+Ind+Neg+Neu+1Sg+0PlO: nidayaasiinan
      ayaan+VTI+Ind+Neg+Neu+2Sg+0PlO: gidayaasiinan
-     ayaan+VTI+Ind+Neg+Neu+Excl+0PlO: indayaasiimin
+     ayaan+VTI+Ind+Neg+Neu+Excl+0PlO: nidayaasiimin
      ayaan+VTI+Ind+Neg+Neu+Incl+0PlO: gidayaasiimin
      ayaan+VTI+Ind+Neg+Neu+2Pl+0PlO: gidayaasiinaawaan
      ayaan+VTI+Ind+Neg+Neu+3SgProx+0PlO: odayaasiinan
      ayaan+VTI+Ind+Neg+Neu+3PlProx+0PlO: odayaasiinaawaan
-     ayaan+VTI+Ind+Pos+Neu+1Sg+0SgO: indayaan
+     ayaan+VTI+Ind+Pos+Neu+1Sg+0SgO: nidayaan
      ayaan+VTI+Ind+Pos+Neu+2Sg+0SgO: gidayaan
-     ayaan+VTI+Ind+Pos+Neu+Excl+0SgO: indayaamin
+     ayaan+VTI+Ind+Pos+Neu+Excl+0SgO: nidayaamin
      ayaan+VTI+Ind+Pos+Neu+Incl+0SgO: gidayaamin
      ayaan+VTI+Ind+Pos+Neu+2Pl+0SgO: gidayaanaawaa
      ayaan+VTI+Ind+Pos+Neu+3SgProx+0SgO: odayaan
      ayaan+VTI+Ind+Pos+Neu+3PlProx+0SgO: odayaanaawaa
-     ayaan+VTI+Ind+Pos+Neu+1Sg+0PlO: indayaanan
+     ayaan+VTI+Ind+Pos+Neu+1Sg+0PlO: nidayaanan
      ayaan+VTI+Ind+Pos+Neu+2Sg+0PlO: gidayaanan
-     ayaan+VTI+Ind+Pos+Neu+Excl+0PlO: indayaamin
+     ayaan+VTI+Ind+Pos+Neu+Excl+0PlO: nidayaamin
      ayaan+VTI+Ind+Pos+Neu+Incl+0PlO: gidayaamin
      ayaan+VTI+Ind+Pos+Neu+2Pl+0PlO: gidayaanaawaan
      ayaan+VTI+Ind+Pos+Neu+3SgProx+0PlO: odayaanan
      ayaan+VTI+Ind+Pos+Neu+3PlProx+0PlO: odayaanaawaan
-     ayaan+VTI+Ind+Neg+Prt+1Sg+0SgO: indayaasiinaaban
+     ayaan+VTI+Ind+Neg+Prt+1Sg+0SgO: nidayaasiinaaban
      ayaan+VTI+Ind+Neg+Prt+2Sg+0SgO: gidayaasiinaaban
-     ayaan+VTI+Ind+Neg+Prt+Excl+0SgO: indayaasiiminaaban
+     ayaan+VTI+Ind+Neg+Prt+Excl+0SgO: nidayaasiiminaaban
      ayaan+VTI+Ind+Neg+Prt+Incl+0SgO: gidayaasiiminaaban
      ayaan+VTI+Ind+Neg+Prt+2Pl+0SgO: gidayaasiinaawaaban
      ayaan+VTI+Ind+Neg+Prt+3SgProx+0SgO: odayaasiinaaban
      ayaan+VTI+Ind+Neg+Prt+3PlProx+0SgO: odayaasiinaawaaban
      ayaan+VTI+Ind+Neg+Prt+3SgObv+0SgO: odayaasiininaaban
-     ayaan+VTI+Ind+Neg+Prt+1Sg+0PlO: [indayaasiinaabaniin,indayaasiinaabanen]
+     ayaan+VTI+Ind+Neg+Prt+1Sg+0PlO: [nidayaasiinaabaniin,nidayaasiinaabanen]
      ayaan+VTI+Ind+Neg+Prt+2Sg+0PlO: [gidayaasiinaabaniin,gidayaasiinaabanen]
-     ayaan+VTI+Ind+Neg+Prt+Excl+0PlO: [indayaasiiminaabaniin,indayaasiiminaabanen]
+     ayaan+VTI+Ind+Neg+Prt+Excl+0PlO: [nidayaasiiminaabaniin,nidayaasiiminaabanen]
      ayaan+VTI+Ind+Neg+Prt+Incl+0PlO: [gidayaasiiminaabaniin,gidayaasiiminaabanen]
      ayaan+VTI+Ind+Neg+Prt+2Pl+0PlO: [gidayaasiinaawaabaniin,gidayaasiinaawaabanen]
      ayaan+VTI+Ind+Neg+Prt+3SgProx+0PlO: [odayaasiinaabaniin,odayaasiinaabanen]
      ayaan+VTI+Ind+Neg+Prt+3PlProx+0PlO: [odayaasiinaawaabaniin,odayaasiinaawaabanen]
      ayaan+VTI+Ind+Neg+Prt+3SgObv+0PlO: [odayaasiininaabaniin,odayaasiininaabanen]
-     ayaan+VTI+Ind+Neg+Prt+1Sg+0SgO: indayaasiinaaban
+     ayaan+VTI+Ind+Neg+Prt+1Sg+0SgO: nidayaasiinaaban
      ayaan+VTI+Ind+Neg+Prt+2Sg+0SgO: gidayaasiinaaban
-     ayaan+VTI+Ind+Neg+Prt+Excl+0SgO: indayaasiiminaaban
+     ayaan+VTI+Ind+Neg+Prt+Excl+0SgO: nidayaasiiminaaban
      ayaan+VTI+Ind+Neg+Prt+Incl+0SgO: gidayaasiiminaaban
      ayaan+VTI+Ind+Neg+Prt+2Pl+0SgO: gidayaasiinaawaaban
      ayaan+VTI+Ind+Neg+Prt+3SgProx+0SgO: odayaasiinaaban
      ayaan+VTI+Ind+Neg+Prt+3PlProx+0SgO: odayaasiinaawaaban
      ayaan+VTI+Ind+Neg+Prt+3SgObv+0SgO: odayaasiininaaban
-     ayaan+VTI+Ind+Neg+Prt+1Sg+0PlO: [indayaasiinaabaniin,indayaasiinaabanen]
+     ayaan+VTI+Ind+Neg+Prt+1Sg+0PlO: [nidayaasiinaabaniin,nidayaasiinaabanen]
      ayaan+VTI+Ind+Neg+Prt+2Sg+0PlO: [gidayaasiinaabaniin,gidayaasiinaabanen]
-     ayaan+VTI+Ind+Neg+Prt+Excl+0PlO: [indayaasiiminaabaniin,indayaasiiminaabanen]
+     ayaan+VTI+Ind+Neg+Prt+Excl+0PlO: [nidayaasiiminaabaniin,nidayaasiiminaabanen]
      ayaan+VTI+Ind+Neg+Prt+Incl+0PlO: [gidayaasiiminaabaniin,gidayaasiiminaabanen]
      ayaan+VTI+Ind+Neg+Prt+2Pl+0PlO: [gidayaasiinaawaabaniin,gidayaasiinaawaabanen]
      ayaan+VTI+Ind+Neg+Prt+3SgProx+0PlO: [odayaasiinaabaniin,odayaasiinaabanen]
      ayaan+VTI+Ind+Neg+Prt+3PlProx+0PlO: [odayaasiinaawaabaniin,odayaasiinaawaabanen]
      ayaan+VTI+Ind+Neg+Prt+3SgObv+0PlO: [odayaasiininaabaniin,odayaasiininaabanen]
-     ayaan+VTI+Ind+Pos+Prt+1Sg+0SgO: indayaanaaban
+     ayaan+VTI+Ind+Pos+Prt+1Sg+0SgO: nidayaanaaban
      ayaan+VTI+Ind+Pos+Prt+2Sg+0SgO: gidayaanaaban
-     ayaan+VTI+Ind+Pos+Prt+Excl+0SgO: indayaaminaaban
+     ayaan+VTI+Ind+Pos+Prt+Excl+0SgO: nidayaaminaaban
      ayaan+VTI+Ind+Pos+Prt+Incl+0SgO: gidayaaminaaban
      ayaan+VTI+Ind+Pos+Prt+2Pl+0SgO: gidayaanaawaaban
      ayaan+VTI+Ind+Pos+Prt+3SgProx+0SgO: odayaanaaban
      ayaan+VTI+Ind+Pos+Prt+3PlProx+0SgO: odayaanaawaaban
-     ayaan+VTI+Ind+Pos+Prt+1Sg+0PlO: [indayaanaabaniin,indayaanaabanen]
+     ayaan+VTI+Ind+Pos+Prt+1Sg+0PlO: [nidayaanaabaniin,nidayaanaabanen]
      ayaan+VTI+Ind+Pos+Prt+2Sg+0PlO: [gidayaanaabaniin,gidayaanaabanen]
-     ayaan+VTI+Ind+Pos+Prt+Excl+0PlO: [indayaaminaabaniin,indayaaminaabanen]
+     ayaan+VTI+Ind+Pos+Prt+Excl+0PlO: [nidayaaminaabaniin,nidayaaminaabanen]
      ayaan+VTI+Ind+Pos+Prt+Incl+0PlO: [gidayaaminaabaniin,gidayaaminaabanen]
      ayaan+VTI+Ind+Pos+Prt+2Pl+0PlO: [gidayaanaawaabaniin,gidayaanaawaabanen]
      ayaan+VTI+Ind+Pos+Prt+3SgProx+0PlO: [odayaanaabaniin,odayaanaabanen]
      ayaan+VTI+Ind+Pos+Prt+3PlProx+0PlO: [odayaanaawaabaniin,odayaanaawaabanen]
-     ayaan+VTI+Ind+Neg+Prt+Dub+3SgProx+0SgO/0PlO: ayaanziigoban
-     ayaan+VTI+Ind+Neg+Prt+Dub+3PlProx+0SgO/0PlO: ayaanziigwaaban
-     ayaan+VTI+Ind+Neg+Prt+Dub+3SgObv+0SgO/0PlO: ayaanziinigoban
-     ayaan+VTI+Ind+Pos+Prt+Dub+3SgProx+0SgO/0PlO: ayaamogoban
-     ayaan+VTI+Ind+Pos+Prt+Dub+3PlProx+0SgO/0PlO: ayaamogwaaban
-     ayaan+VTI+Ind+Pos+Prt+Dub+3SgObv+0SgO/0PlO: ayaaminigoban

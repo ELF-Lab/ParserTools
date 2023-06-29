@@ -35,11 +35,11 @@ Tests:
      gonzaabii+VII+Ind+Neg+Dub+0PlProx: gonzaabiisinodogenan
      gonzaabii+VII+Ind+Neg+Dub+0SgObv: gonzaabiisininiwidog
      gonzaabii+VII+Ind+Neg+Dub+0PlObv: gonzaabiisininiwidogenan
-     gonzaabii+VII+Ind+Pos+Prt+Dub+0SgProx: gonzaabiigoban
-     gonzaabii+VII+Ind+Pos+Prt+Dub+0PlProx: [gonzaabiigobaniin,gonzaabiigobanen]
-     gonzaabii+VII+Ind+Pos+Prt+Dub+0SgObv: gonzaabiinigoban
-     gonzaabii+VII+Ind+Pos+Prt+Dub+0PlObv: [gonzaabiinigobaniin,gonzaabiinigobanen]
-     gonzaabii+VII+Ind+Neg+Prt+Dub+0SgProx: gonzaabiisinoogoban
-     gonzaabii+VII+Ind+Neg+Prt+Dub+0PlProx: [gonzaabiisinoogobaniin,gonzaabiisinoogobanen]
-     gonzaabii+VII+Ind+Neg+Prt+Dub+0SgObv: gonzaabiisininigoban
-     gonzaabii+VII+Ind+Neg+Prt+Dub+0PlObv: [gonzaabiisininigobaniin,gonzaabiisininigobanen]
+     gonzaabii+VII+Ind+Pos+Dub+Prt+0SgProx: gonzaabiigoban
+     gonzaabii+VII+Ind+Pos+Dub+Prt+0PlProx: [gonzaabiigobaniin,gonzaabiigobanen]
+     gonzaabii+VII+Ind+Pos+Dub+Prt+0SgObv: gonzaabiinigoban
+     gonzaabii+VII+Ind+Pos+Dub+Prt+0PlObv: [gonzaabiinigobaniin,gonzaabiinigobanen]
+     gonzaabii+VII+Ind+Neg+Dub+Prt+0SgProx: gonzaabiisinoogoban
+     gonzaabii+VII+Ind+Neg+Dub+Prt+0PlProx: [gonzaabiisinoogobaniin,gonzaabiisinoogobanen]
+     gonzaabii+VII+Ind+Neg+Dub+Prt+0SgObv: gonzaabiisininigoban
+     gonzaabii+VII+Ind+Neg+Dub+Prt+0PlObv: [gonzaabiisininigobaniin,gonzaabiisininigobanen]

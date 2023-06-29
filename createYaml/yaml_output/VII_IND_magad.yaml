@@ -34,12 +34,12 @@ Tests:
      atemagad+VII+Ind+Neg+Dub+0SgProx: atemagasinodog
      atemagad+VII+Ind+Neg+Dub+0PlProx: atemagasinodogen
      atemagad+VII+Ind+Neg+Dub+0SgObv: atemagasininiwidog
-     atemagad+VII+Ind+Neg+Dub+0PlObv: atemagaininiwidogenan
-     atemagad+VII+Ind+Pos+Prt+Dub+0SgProx: atemagadogoban
-     atemagad+VII+Ind+Pos+Prt+Dub+0PlProx: [atemagadogobaniin,atemagadogobanen]
-     atemagad+VII+Ind+Pos+Prt+Dub+0SgObv: atemagadinigoban
-     atemagad+VII+Ind+Pos+Prt+Dub+0PlObv: [atemagadinigobaniin,atemagadinigobanen]
-     atemagad+VII+Ind+Neg+Prt+Dub+0SgProx: atemagasinoogoban
-     atemagad+VII+Ind+Neg+Prt+Dub+0PlProx: [atemagasinoogobaniin,atemagasinoogobanen]
-     atemagad+VII+Ind+Neg+Prt+Dub+0SgObv: atemagasininigoban
-     atemagad+VII+Ind+Neg+Prt+Dub+0PlObv: [atemagasininigobaniin,atemagasininigobanen]
+     atemagad+VII+Ind+Neg+Dub+0PlObv: atemagasininiwidogenan
+     atemagad+VII+Ind+Pos+Dub+Prt+0SgProx: atemagadogoban
+     atemagad+VII+Ind+Pos+Dub+Prt+0PlProx: [atemagadogobaniin,atemagadogobanen]
+     atemagad+VII+Ind+Pos+Dub+Prt+0SgObv: atemagadinigoban
+     atemagad+VII+Ind+Pos+Dub+Prt+0PlObv: [atemagadinigobaniin,atemagadinigobanen]
+     atemagad+VII+Ind+Neg+Dub+Prt+0SgProx: atemagasinoogoban
+     atemagad+VII+Ind+Neg+Dub+Prt+0PlProx: [atemagasinoogobaniin,atemagasinoogobanen]
+     atemagad+VII+Ind+Neg+Dub+Prt+0SgObv: atemagasininigoban
+     atemagad+VII+Ind+Neg+Dub+Prt+0PlObv: [atemagasininigobaniin,atemagasininigobanen]

@@ -23,7 +23,7 @@ Tests:
      zanagad+VII+Cnj+Pos+Dub+0SgObv/0PlObv: zanagadinigwen
      zanagad+VII+Cnj+Neg+Dub+0SgProx/0PlProx: zanagasinoogwen
      zanagad+VII+Cnj+Neg+Dub+0SgObv/0PlObv: zanagasininiigwen
-     zanagad+VII+Cnj+Pos+Prt+Dub+0SgProx/0PlProx: zanagadogobanen
-     zanagad+VII+Cnj+Pos+Prt+Dub+0SgObv/0PlObv: zanagadinigobanen
-     zanagad+VII+Cnj+Neg+Prt+Dub+0SgProx/0PlProx: zanagasinoogobanen
-     zanagad+VII+Cnj+Neg+Prt+Dub+0SgObv/0PlObv: zanagasininigobanen
+     zanagad+VII+Cnj+Pos+Dub+Prt+0SgProx/0PlProx: zanagadogobanen
+     zanagad+VII+Cnj+Pos+Dub+Prt+0SgObv/0PlObv: zanagadinigobanen
+     zanagad+VII+Cnj+Neg+Dub+Prt+0SgProx/0PlProx: zanagasinoogobanen
+     zanagad+VII+Cnj+Neg+Dub+Prt+0SgObv/0PlObv: zanagasininigobanen

@@ -35,11 +35,11 @@ Tests:
      zanagad+VII+Ind+Neg+Dub+0PlProx: zanagasinodogen
      zanagad+VII+Ind+Neg+Dub+0SgObv: zanagasininiwidog
      zanagad+VII+Ind+Neg+Dub+0PlObv: zanagasininiwidogenan
-     zanagad+VII+Ind+Pos+Prt+Dub+0SgProx: zanagadogoban
-     zanagad+VII+Ind+Pos+Prt+Dub+0PlProx: [zanagadogobaniin,zanagadogobanen]
-     zanagad+VII+Ind+Pos+Prt+Dub+0SgObv: zanagadinigoban
-     zanagad+VII+Ind+Pos+Prt+Dub+0PlObv: [zanagadinigobaniin,zanagadinigobanen]
-     zanagad+VII+Ind+Neg+Prt+Dub+0SgProx: zanagasinoogoban
-     zanagad+VII+Ind+Neg+Prt+Dub+0PlProx: [zanagasinoogobaniin,zanagasinoogobanen]
-     zanagad+VII+Ind+Neg+Prt+Dub+0SgObv: zanagasininigoban
-     zanagad+VII+Ind+Neg+Prt+Dub+0PlObv: [zanagasininigobaniin,zanagasininigobanen]
+     zanagad+VII+Ind+Pos+Dub+Prt+0SgProx: zanagadogoban
+     zanagad+VII+Ind+Pos+Dub+Prt+0PlProx: [zanagadogobaniin,zanagadogobanen]
+     zanagad+VII+Ind+Pos+Dub+Prt+0SgObv: zanagadinigoban
+     zanagad+VII+Ind+Pos+Dub+Prt+0PlObv: [zanagadinigobaniin,zanagadinigobanen]
+     zanagad+VII+Ind+Neg+Dub+Prt+0SgProx: zanagasinoogoban
+     zanagad+VII+Ind+Neg+Dub+Prt+0PlProx: [zanagasinoogobaniin,zanagasinoogobanen]
+     zanagad+VII+Ind+Neg+Dub+Prt+0SgObv: zanagasininigoban
+     zanagad+VII+Ind+Neg+Dub+Prt+0PlObv: [zanagasininigobaniin,zanagasininigobanen]

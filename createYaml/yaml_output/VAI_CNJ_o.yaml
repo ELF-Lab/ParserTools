@@ -71,23 +71,23 @@ Tests:
      nagamo+VAI+Cnj+Neg+Dub+3SgObv: nagamosiinigwen
      nagamo+VAI+Cnj+Neg+Dub+3PlObv: nagamosiinigwen
      nagamo+VAI+Cnj+Neg+Dub+X: nagamosiiwiingen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+1Sg: nagamowaambaanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+2Sg: nagamowambanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+Excl: nagamowaangibanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+Incl: nagamowangibanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+2Pl: nagamowegibanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+3SgProx: nagamogobanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+3PlProx: nagamowaagobanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+3SgObv: nagamonigobanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+3PlObv: nagamonigobanen
-     nagamo+VAI+Cnj+Pos+Prt+Dub+X: nagamowiingibanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+1Sg: nagamosiiwaambaanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+2Sg: nagamosiiwambanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+Excl: nagamosiiwaangibanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+Incl: nagamosiiwangibanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+2Pl: nagamosiiwegibanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+3SgProx: nagamosiigobanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+3PlProx: nagamosiiwaagobanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+3SgObv: nagamosiinigobanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+3PlObv: nagamosiinigobanen
-     nagamo+VAI+Cnj+Neg+Prt+Dub+X: nagamosiiwiingibanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+1Sg: nagamowaambaanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+2Sg: nagamowambanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+Excl: nagamowaangibanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+Incl: nagamowangibanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+2Pl: nagamowegibanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+3SgProx: nagamogobanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+3PlProx: nagamowaagobanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+3SgObv: nagamonigobanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+3PlObv: nagamonigobanen
+     nagamo+VAI+Cnj+Pos+Dub+Prt+X: nagamowiingibanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+1Sg: nagamosiiwaambaanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+2Sg: nagamosiiwambanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+Excl: nagamosiiwaangibanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+Incl: nagamosiiwangibanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+2Pl: nagamosiiwegibanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+3SgProx: nagamosiigobanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+3PlProx: nagamosiiwaagobanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+3SgObv: nagamosiinigobanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+3PlObv: nagamosiinigobanen
+     nagamo+VAI+Cnj+Neg+Dub+Prt+X: nagamosiiwiingibanen

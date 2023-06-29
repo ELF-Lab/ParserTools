@@ -71,23 +71,23 @@ Tests:
      wanishin+VAI+Cnj+Neg+Dub+3SgObv: wanishinziinigwen
      wanishin+VAI+Cnj+Neg+Dub+3PlObv: wanishinziinigwen
      wanishin+VAI+Cnj+Neg+Dub+X: wanishinziiwiingen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+1Sg: wanishinowaambaanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+2Sg: wanishinowambanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+Excl: wanishinowaangibanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+Incl: wanishinowangibanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+2Pl: wanishinowegibanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+3SgProx: wanishinogobanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+3PlProx: wanishinowaagobanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+3SgObv: wanishininigobanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+3PlObv: wanishininigobanen
-     wanishin+VAI+Cnj+Pos+Prt+Dub+X: wanishinowiingibanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+1Sg: wanishinziiwaambaanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+2Sg: wanishinziiwambanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+Excl: wanishinziiwaangibanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+Incl: wanishinziiwangibanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+2Pl: wanishinziiwegibanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+3SgProx: wanishinziigobanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+3PlProx: wanishinziiwaagobanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+3SgObv: wanishinziinigobanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+3PlObv: wanishinziinigobanen
-     wanishin+VAI+Cnj+Neg+Prt+Dub+X: wanishinziiwiingibanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+1Sg: wanishinowaambaanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+2Sg: wanishinowambanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+Excl: wanishinowaangibanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+Incl: wanishinowangibanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+2Pl: wanishinowegibanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+3SgProx: wanishinogobanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+3PlProx: wanishinowaagobanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+3SgObv: wanishininigobanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+3PlObv: wanishininigobanen
+     wanishin+VAI+Cnj+Pos+Dub+Prt+X: wanishinowiingibanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+1Sg: wanishinziiwaambaanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+2Sg: wanishinziiwambanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+Excl: wanishinziiwaangibanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+Incl: wanishinziiwangibanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+2Pl: wanishinziiwegibanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+3SgProx: wanishinziigobanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+3PlProx: wanishinziiwaagobanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+3SgObv: wanishinziinigobanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+3PlObv: wanishinziinigobanen
+     wanishin+VAI+Cnj+Neg+Dub+Prt+X: wanishinziiwiingibanen

@@ -35,11 +35,11 @@ Tests:
      ate+VII+Ind+Neg+Dub+0PlProx: atesinodogenan
      ate+VII+Ind+Neg+Dub+0SgObv: atesininiwidog
      ate+VII+Ind+Neg+Dub+0PlObv: atesininiwidogenan
-     ate+VII+Ind+Pos+Prt+Dub+0SgProx: ategoban
-     ate+VII+Ind+Pos+Prt+Dub+0PlProx: [ategobaniin,ategobanen]
-     ate+VII+Ind+Pos+Prt+Dub+0SgObv: atenigoban
-     ate+VII+Ind+Pos+Prt+Dub+0PlObv: [atenigobaniin,atenigobanen]
-     ate+VII+Ind+Neg+Prt+Dub+0SgProx: atesinoogoban
-     ate+VII+Ind+Neg+Prt+Dub+0PlProx: [atesinoogobaniin,atesinoogobanen]
-     ate+VII+Ind+Neg+Prt+Dub+0SgObv: atesininigoban
-     ate+VII+Ind+Neg+Prt+Dub+0PlObv: [atesininigobaniin,atesininigobanen]
+     ate+VII+Ind+Pos+Dub+Prt+0SgProx: ategoban
+     ate+VII+Ind+Pos+Dub+Prt+0PlProx: [ategobaniin,ategobanen]
+     ate+VII+Ind+Pos+Dub+Prt+0SgObv: atenigoban
+     ate+VII+Ind+Pos+Dub+Prt+0PlObv: [atenigobaniin,atenigobanen]
+     ate+VII+Ind+Neg+Dub+Prt+0SgProx: atesinoogoban
+     ate+VII+Ind+Neg+Dub+Prt+0PlProx: [atesinoogobaniin,atesinoogobanen]
+     ate+VII+Ind+Neg+Dub+Prt+0SgObv: atesininigoban
+     ate+VII+Ind+Neg+Dub+Prt+0PlObv: [atesininigobaniin,atesininigobanen]
