@@ -1,3 +1,3 @@
-# ParserTools
+# csv2fst
 
-This is the respository for the collaboration between UBC, UAlberta, UMN, and CultureFoundry on building a parser/generator for Odawa and Southwestern Ojibwe. It houses some auxiliary tools that are seaprate from the GiellaLT infrastructure such as scripts for generating yaml files from spreadsheets.
+This will house the tools for converting csv spreadsheets of Ojibwe (and eventually, we hope, Algonquian languages more generally) to lexc files that can be used to compile a foma-based FST.
