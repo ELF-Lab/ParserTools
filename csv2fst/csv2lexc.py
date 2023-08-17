@@ -3,6 +3,7 @@ import math
 import click
 import re
 import os
+from collections import defaultdict
 
 """
 This script is a mess and needs to be refactored.
@@ -16,6 +17,7 @@ PAD = "   "
 CPREF = "!!"
 CSUFF = "!!"
 
+CLASSDICT={"vai":"VAI_V", }
 def escape(sym):
     """ Escape special characters in lexc formalism """
     return re.sub("(?<!%)([<>0/])",r"%\1",sym)
@@ -194,11 +196,26 @@ def read_lexical_database(pos, stem_types, lemma_lexicon):
                 print(f"Skip lexical entry: {lemma}. Can't identify stem type")
             else:
                 lemma_lexicon.add((lemma, f"{lemma}", f"{pos}_{stem_type}_Subclass"))
-            
+
+def get_row_pos(tag):
+    if tag == "vai+o":
+        return "VAIO"
+    if tag[:3] in ["vai", "vii", "vta", "vti"]:
+        return tag[:3].upper()
+    raise ValueError
+
+def read_lexical_database(pos, stem_types, lemma_lexicon, database_file):
+    table = pd.read_csv(database_file)
+    for _, row in table.iterrows():
+        row_pos = get_row_pos(row["part_of_speech_id"])
+        if row_pos == pos:
+            stem_class = find_stem_class(row["lemma"])
+        
 @click.command()
 @click.option("--csv_file",required=True)
 @click.option("--lexc_file",required=True)
-def main(csv_file, lexc_file):
+@click.option("--database_file", required=True)
+def main(csv_file, lexc_file, database_file):
     # We need several continuation lexicons under the Root lexicon:
     # Empty prefix, ni- and gi-prefix + P-flags
     prefix_lexicon = set() 
@@ -228,13 +245,16 @@ def main(csv_file, lexc_file):
 
     # Collect all stem types
     stem_types = set()
-    
 
     table = pd.read_csv(csv_file)
     # Each row in the spreadsheet becomes a lexicon entry.
     for _, row in table.iterrows():
         row["Subject"] = escape(row["Subject"])
+
         pos = f'{row["Paradigm"]}_{row["Order"]}'
+        # Make sure the paradigm and order tags are defined.
+        multichar_symbols.add(f"+{row['Paradigm']}")
+        multichar_symbols.add(f"+{row['Order']}")
         
         #prefix_wb_lexicon.add((escape("<<"),"0",f"{pos}_Stems"))
         prefix_wb_lexicon.add((escape("<<"),escape("<<"),f"{pos}_Stems"))
@@ -248,6 +268,8 @@ def main(csv_file, lexc_file):
             lemma = row["Lemma"]
             stem_type = row["Class"]
             stem_types.add(stem_type)
+#            stem_type_endings[lemma[-1:]].add(stem_type)
+#            stem_type_endings[lemma[-2:]].add(stem_type)
             prefix, stem, suffix = split(form)
             
             # Skip empty entries
@@ -267,11 +289,10 @@ def main(csv_file, lexc_file):
             add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons, subclass_lexicons, suffix_lexicons,
                              multichar_symbols, pos)
 
-    read_lexical_database(pos, stem_types, lemma_lexicon)
+#    read_lexical_database(pos, stem_types, lemma_lexicon, database_file)
     
     print_lexc(lexc_file, pos, multichar_symbols, prefix_lexicon,
                lemma_lexicon, subclass_lexicons, flag_lexicons,
                prefix_wb_lexicon,suffix_wb_lexicons, suffix_lexicons)
-        
 if __name__=="__main__":
     main()
