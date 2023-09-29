@@ -25,10 +25,11 @@ VTI_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"]
 VTA_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"].replace(" ","")])
 
 
-def make_yaml(file_name:str, analysis:callable) -> None:
+def make_yaml(file_path:str, analysis:callable) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
-    output_path = f'{os.path.dirname(file_name)}/yaml_output/'
+    output_path = f'{os.path.dirname(file_path)}/yaml_output/'
+    file_name = (file_path.rpartition("/")[2]).replace(".csv", "")
 
     # Create the directory for the yaml output if it doesn't exist already.
     try:
@@ -36,41 +37,39 @@ def make_yaml(file_name:str, analysis:callable) -> None:
     except FileExistsError:
         pass
 
-    # Read the entire spreadsheet in order to get all the sheets in that spreadsheet.
-    xls = pd.ExcelFile(file_name)
+    df = pd.read_csv(file_path)
 
-    # Loop over each sheet.
-    for sheet in xls.sheet_names:
-        df = pd.read_excel(file_name, sheet_name=sheet)
+    # This dictionary will have keys that are stems and values that are lists of tuples of (tag, form).
+    # Example: 'aa': [(tag1, form1), (tag2, form2)].
+    yaml_dict = {}
 
-        # This dictionary will have keys that are stems and values that are lists of tuples of (tag, form).
-        # Example: 'aa': [(tag1, form1), (tag2, form2)].
-        yaml_dict = {}
+    for _, row in df.iterrows():
+        row = row.to_dict()
 
-        for _, row in df.iterrows():
-            row = row.to_dict()
+        # This will skip empty lines, which are read as floats and not strings by pandas.
+        if type(row["Form1Split"]) is float:
+            continue
 
-            # This will skip empty lines, which are read as floats and not strings by pandas.
-            if type(row["Form1"]) is float:
-                continue
+        # If the given stem is not in our dictionary yet, add it.
+        if row["Class"] not in yaml_dict:
+            yaml_dict[row["Class"]] = []
 
-            # If the given stem is not in our dictionary yet, add it.
-            if row["Class"] not in yaml_dict:
-                yaml_dict[row["Class"]] = []
+        if 'Form1Surface' in row.keys():
+            forms = f"{row['Form1Surface']}"
+        else:
+            forms = f"{row['Form1']}"
 
-            # Check if there is a second form. If there is, create the form in the expected format.
-            if type(row["Form2"]) is not float:
-                forms = f"[{row['Form1']},{row['Form2']}]"
-            else:
-                forms = f"{row['Form1']}"
+        # Check if there is a second form. If there is, create the form in the expected format.
+        if 'Form2Surface' in row.keys() and type(row["Form2Surface"]) is not float:
+            forms = f"[{forms},{row['Form2Surface']}]"
 
-            # Add this row to the dictionary appropriately.
-            yaml_dict[row["Class"]].append(("     "+analysis(row), forms))
+        # Add this row to the dictionary appropriately.
+        yaml_dict[row["Class"]].append(("     "+analysis(row), forms))
 
-        # For each stem in the dictionary, write it to its own yaml file.
-        for key, value in yaml_dict.items():
-            with open(f"{output_path}{sheet}_{key}.yaml", "w+") as yaml_file:
-                print("""Config:
+    # For each stem in the dictionary, write it to its own yaml file.
+    for key, value in yaml_dict.items():
+        with open(f"{output_path}{file_name}_{key}.yaml", "w+") as yaml_file:
+            print("""Config:
   hfst:
     Gen: ../../../src/generator-gt-norm.hfst
     Morph: ../../../src/analyser-gt-norm.hfst
@@ -83,8 +82,8 @@ Tests:
 
   Lemma - ALL :
 """, file = yaml_file)
-                for tag, forms in value:
-                    yaml_file.write(f"{tag}: {forms}\n")
+            for tag, forms in value:
+                yaml_file.write(f"{tag}: {forms}\n")
 
     print('Successfully generated yaml files.')
 
@@ -97,8 +96,6 @@ if __name__ == '__main__':
     group.add_argument('--vai', action='store_true', help="Do analysis for VAI verbs.")
     group.add_argument('--vti', action='store_true', help="Do analysis for VTI verbs.")
     group.add_argument('--vta', action='store_true', help="Do analysis for VTA verbs.")
-    # Example to add VTA:
-    #group.add_argument('--vta', action='store_true', help='Do analysis for VTA verbs.')
 
     args = parser.parse_args()
 
