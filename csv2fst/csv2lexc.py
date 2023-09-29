@@ -83,23 +83,23 @@ def print_subclass_comment(subclass,stem_type, f):
     print(sepline, file=f)
     print("",file=f)
 
-def print_lexc(lexc_file, pos, multichar_symbols, prefix_lexicon,
+def print_lexc(lexc_file, pos_mode, multichar_symbols, prefix_lexicon,
                lemma_lexicon, subclass_lexicons, flag_lexicons,
                prefix_wb_lexicon,suffix_wb_lexicons, suffix_lexicons):
     lexc_f = open(lexc_file,"w")
     print_multichar_symbols(multichar_symbols,lexc_f)
-    print_rootlex([f"{pos}_Prefix"], lexc_f)
-    print_sublex(f"{pos}_Prefix", prefix_lexicon, lexc_f)
-    print_sublex(f"{pos}_Prefix_WB",prefix_wb_lexicon, lexc_f)
-    print_sublex(f"{pos}_Stems",lemma_lexicon, lexc_f)              
+    print_rootlex([f"{pos_mode}_Prefix"], lexc_f)
+    print_sublex(f"{pos_mode}_Prefix", prefix_lexicon, lexc_f)
+    print_sublex(f"{pos_mode}_Prefix_WB",prefix_wb_lexicon, lexc_f)
+    print_sublex(f"{pos_mode}_Stems",lemma_lexicon, lexc_f)              
 
     for stem_type in flag_lexicons:
-        print_subclass_comment(pos,stem_type, lexc_f)
-        print_sublex(f"{pos}_{stem_type}_Subclass",subclass_lexicons[stem_type], lexc_f)
-        print_sublex(f"{pos}_{stem_type}_Flags",flag_lexicons[stem_type], lexc_f)
+        print_subclass_comment(pos_mode,stem_type, lexc_f)
+        print_sublex(f"{pos_mode}_{stem_type}_Subclass",subclass_lexicons[stem_type], lexc_f)
+        print_sublex(f"{pos_mode}_{stem_type}_Flags",flag_lexicons[stem_type], lexc_f)
         for rflag, _, _ in flag_lexicons[stem_type]:
-            print_sublex(f"{pos}_{stem_type}_{get_val(rflag)}_WB",suffix_wb_lexicons[(stem_type,rflag)], lexc_f)
-            print_sublex(f"{pos}_{stem_type}_{get_val(rflag)}_Endings",suffix_lexicons[(stem_type,rflag)], lexc_f)
+            print_sublex(f"{pos_mode}_{stem_type}_{get_val(rflag)}_WB",suffix_wb_lexicons[(stem_type,rflag)], lexc_f)
+            print_sublex(f"{pos_mode}_{stem_type}_{get_val(rflag)}_Endings",suffix_lexicons[(stem_type,rflag)], lexc_f)
     
 def split(form):
     """ 
@@ -119,35 +119,22 @@ def get_val(flag):
     # @R.NAME.VAL@ => VAL
     return re.findall("[.][^.]*@",flag)[0][1:-1]
 
-def is_alternant(stem, lemma, stem_type):
-    """
-        This function aims to figure out whether stem is the result of
-        phonological alternation, which are handled using rules, or
-        whether it is a genuine lexicalized variant of lemma, which have to
-        be separately stored in the lexicon. 
-    """
-    lemma = lemma[:-len(stem_type)]
-    stem = stem[:len(lemma)]
-    return lemma == stem
-
-def add_prefix_entry(prefix, pos, prefix_lexicon, multichar_symbols):
+def add_prefix_entry(prefix, pos_mode, prefix_lexicon, multichar_symbols):
     pflag = SET_NO_PREFIX_FLAG if prefix == "" else f"@P.Prefix.{prefix}@"
     rflag = CHECK_NO_PREFIX_FLAG if prefix == "" else f"@R.Prefix.{prefix}@"
     multichar_symbols.add(pflag)
     multichar_symbols.add(rflag)                
-    prefix_lexicon.add((f"{pflag}{prefix}",f"{pflag}",f"{pos}_Prefix_WB"))
+    prefix_lexicon.add((f"{pflag}{prefix}",f"{pflag}",f"{pos_mode}_Prefix_WB"))
     return pflag, rflag
 
-def add_stem_entry(stem, lemma, stem_type, pos, rflag, lemma_lexicon,
+def add_stem_entry(stem, lemma, stem_type, pos_mode, rflag, lemma_lexicon,
                    suffix_lexicons, flag_lexicons, suffix_wb_lexicons,
                    subclass_lexicons):
-    if is_alternant(stem, lemma, stem_type):
-        stem = lemma 
 
-    lemma_lexicon.add((stem, f"{lemma}", f"{pos}_{stem_type}_Subclass"))
+    lemma_lexicon.add((stem, f"{lemma}", f"{pos_mode}_{stem_type}_Subclass"))
     if not (stem_type,rflag) in suffix_lexicons:
         suffix_lexicons[(stem_type,rflag)] = set()
-        suffix_wb_lexicons[(stem_type,rflag)] = set([("%>%>","0",f"{pos}_{stem_type}_{get_val(rflag)}_Endings")])
+        suffix_wb_lexicons[(stem_type,rflag)] = set([("%>%>","0",f"{pos_mode}_{stem_type}_{get_val(rflag)}_Endings")])
     if not stem_type in flag_lexicons:
         flag_lexicons[stem_type] = set()
         subclass_lexicons[stem_type] = set()            
@@ -158,9 +145,9 @@ def strip_order(tag):
     return tag
 
 def add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons, subclass_lexicons, suffix_lexicons,
-                     multichar_symbols, pos):
-    flag_lexicons[stem_type].add((rflag,rflag,f"{pos}_{stem_type}_{get_val(rflag)}_WB"))
-    subclass_lexicons[stem_type].add(("0",f"+{strip_order(pos)}",f"{pos}_{stem_type}_Flags"))
+                     multichar_symbols, pos_mode):
+    flag_lexicons[stem_type].add((rflag,rflag,f"{pos_mode}_{stem_type}_{get_val(rflag)}_WB"))
+    subclass_lexicons[stem_type].add(("0",f"+{strip_order(pos_mode)}",f"{pos_mode}_{stem_type}_Flags"))
 
     if "Object" in row and not isnan(row["Object"]):
         suffix_tags = f"+{row['Order']}+{row['Negation']}+{row['Mode']}+{row['Subject']}+{row['Object']}"
@@ -169,7 +156,7 @@ def add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons, subclass_lexi
     suffix_tags = escape(suffix_tags)
     
     suffix_lexicons[(stem_type,rflag)].add((f"{suffix}", suffix_tags))
-    for tag in suffix_tags.split("+") + [pos]:
+    for tag in suffix_tags.split("+") + [pos_mode]:
         if tag != "" and tag[0] != "@":
             multichar_symbols.add(f"+{tag}")
 
@@ -181,22 +168,6 @@ def longest_match(line, stem_types):
         return st
     return None
 
-def read_lexical_database(pos, stem_types, lemma_lexicon):
-    database_fn = os.path.join("data",f"{pos}_stems.lexc")
-    if not os.path.isfile(database_fn):
-        print(f"Lexical database {database_fn} not found. No additional stems will be added")
-        return
-    
-    for line in open(database_fn):
-        line = line.strip()
-        if line.endswith(f"{pos}_StemEndings ;"):
-            lemma = line[:line.find(" ")]
-            stem_type = longest_match(lemma, stem_types)
-            if stem_type == None:
-                print(f"Skip lexical entry: {lemma}. Can't identify stem type")
-            else:
-                lemma_lexicon.add((lemma, f"{lemma}", f"{pos}_{stem_type}_Subclass"))
-
 def get_row_pos(tag):
     if tag == "vai+o":
         return "VAIO"
@@ -204,18 +175,55 @@ def get_row_pos(tag):
         return tag[:3].upper()
     raise ValueError
 
-def read_lexical_database(pos, stem_types, lemma_lexicon, database_file):
+def find_stem_type(lemma, stem, opd_pos):
+    for opos, pat, string, stype in [("vii", "^.*[aa|ii|oo|e]$",lemma,"VII_VV"),
+                                     ("vii", "^.*[i|o|u]$", lemma, "VII_V"),
+                                     ("vii", "^.*[n]$", lemma, "VII_n"),
+                                     ("vii", "^.*[d]$", lemma, "VII_d"),
+                                     ("vai", "^.*[aa|ii|oo|e]$",lemma, "VAI_VV"),
+                                     ("vai", "^.*[i|o|u]$", lemma,"VAI_V"),
+                                     ("vai", "^.*[n]$", lemma,"VAI_n"),
+                                     ("vai", "^.*[m]$", lemma,"VAI_m"),
+                                     ("vai2", "^.*am$", lemma,"VAI_am"),
+                                     ("vta", "^.*aw$", lemma, "VTA_aw"),
+                                     ("vta", "^.*w[bcdfghjklmnpstwz]$", stem, "VTA_Cw"),
+                                     ("vta", "^.*s$", stem, "VTA_s"),
+                                     ("vta", "^.*n$", stem, "VTA_n"),
+                                     ("vta", "^.*[bcdfghjklmnpstwz]$", stem, "VTA_C"),
+                                     ("vti1","^.*am$", lemma, "VTA_am"),
+                                     ("vti2","^.*oo$", lemma, "VTA_oo"),
+                                     ("vti3","^.*i$", lemma, "VTA_i"),
+                                     ("vti4","^.*aa$", lemma, "VTA_aa")]:
+        if opd_pos == opos and re.match(pat,string):
+            return stype
+    
+    print(f"Warning: Can't identify class for {opd_pos} \"{lemma}\" (stem=\"{stem}\"). This lexeme won't be added to the lexc file!")
+    return None
+    
+def read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_file):
     table = pd.read_csv(database_file)
     for _, row in table.iterrows():
         row_pos = get_row_pos(row["part_of_speech_id"])
         if row_pos == pos:
-            stem_class = find_stem_class(row["lemma"])
-        
+            # Check that the formatting is correct
+            if isnan(row["lemma"]) or isnan(row["stem"]) or isnan(row["part_of_speech_id"]):
+                print(f"Warning: Skipping invalid row with empty entries")
+                print(row)
+                continue
+            lemma = row["lemma"].strip()            
+            stem = row["stem"].strip()
+            opd_pos = row["part_of_speech_id"].strip()
+            stem_type = find_stem_type(lemma,stem,opd_pos)
+            if stem_type == None:
+                continue
+            lemma_lexicon.add((stem,lemma,f"{pos_mode}_{stem_type}_Subclass"))
+            
 @click.command()
 @click.option("--csv_file",required=True)
 @click.option("--lexc_file",required=True)
 @click.option("--database_file", required=True)
 def main(csv_file, lexc_file, database_file):
+    print(f"Convert {csv_file} to {lexc_file}. Read OPD lexemes from {database_file}")
     # We need several continuation lexicons under the Root lexicon:
     # Empty prefix, ni- and gi-prefix + P-flags
     prefix_lexicon = set() 
@@ -223,10 +231,10 @@ def main(csv_file, lexc_file, database_file):
     # The "<<" prefix-stem boundary symbol which can trigger rules
     prefix_wb_lexicon = set()
     
-    # Lemmas like zanagad
+    # Lemmas like "zanagad"
     lemma_lexicon = set()
 
-    # The +POS symbol which indicates verb subclass (e.g. +VII)
+    # The +POS_MODE symbol which indicates verb subclass (e.g. +VII)
     subclass_lexicons = {}
 
     # R-flags which govern combinations of prefixes and suffixes.
@@ -246,20 +254,21 @@ def main(csv_file, lexc_file, database_file):
     # Collect all stem types
     stem_types = set()
 
+    # The paradim and mode of this CSV file like VII_Ind
+    pos_mode = os.path.splitext(os.path.basename(csv_file))[0]
+    pos = pos_mode.split("_")[0]
+    
     table = pd.read_csv(csv_file)
     # Each row in the spreadsheet becomes a lexicon entry.
     for _, row in table.iterrows():
         row["Subject"] = escape(row["Subject"])
 
-        pos = f'{row["Paradigm"]}_{row["Order"]}'
         # Make sure the paradigm and order tags are defined.
         multichar_symbols.add(f"+{row['Paradigm']}")
         multichar_symbols.add(f"+{row['Order']}")
         
-        #prefix_wb_lexicon.add((escape("<<"),"0",f"{pos}_Stems"))
-        prefix_wb_lexicon.add((escape("<<"),escape("<<"),f"{pos}_Stems"))
-        # Empty prefix is always possible so we'll add a flag sublexicon entry.
-        #prefix_lexicon.add((SET_NO_PREFIX_FLAG, SET_NO_PREFIX_FLAG,f"{pos}_Stems"))
+        prefix_wb_lexicon.add((escape("<<"),escape("<<"),f"{pos_mode}_Stems"))
+
         # There may be up to 4 forms on the same row
         for form in [row[f"Form{n}Split"] for n in range(1,5) if f"Form{n}Split" in row]:
             # Skip non-existent forms
@@ -268,31 +277,29 @@ def main(csv_file, lexc_file, database_file):
             lemma = row["Lemma"]
             stem_type = row["Class"]
             stem_types.add(stem_type)
-#            stem_type_endings[lemma[-1:]].add(stem_type)
-#            stem_type_endings[lemma[-2:]].add(stem_type)
-            prefix, stem, suffix = split(form)
+            prefix, _, suffix = split(form)
+            stem = row["Stem"]
             
-            # Skip empty entries
-            #if stem == "":
-            #    continue
             pflag, rflag = add_prefix_entry(prefix,
-                                            pos,
+                                            pos_mode,
                                             prefix_lexicon,
                                             multichar_symbols)
             
             # Stem
-            add_stem_entry(stem, lemma, stem_type, pos, rflag,
+            add_stem_entry(stem, lemma, stem_type, pos_mode, rflag,
                            lemma_lexicon, suffix_lexicons, flag_lexicons,
                            suffix_wb_lexicons, subclass_lexicons)
             
             # Ending
-            add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons, subclass_lexicons, suffix_lexicons,
-                             multichar_symbols, pos)
+            add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons,
+                             subclass_lexicons, suffix_lexicons, multichar_symbols,
+                             pos_mode)
 
-#    read_lexical_database(pos, stem_types, lemma_lexicon, database_file)
+    read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_file)
     
-    print_lexc(lexc_file, pos, multichar_symbols, prefix_lexicon,
+    print_lexc(lexc_file, pos_mode, multichar_symbols, prefix_lexicon,
                lemma_lexicon, subclass_lexicons, flag_lexicons,
                prefix_wb_lexicon,suffix_wb_lexicons, suffix_lexicons)
+    
 if __name__=="__main__":
     main()
