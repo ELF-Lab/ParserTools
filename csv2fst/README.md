@@ -4,7 +4,7 @@ This directory houses the tools for converting csv spreadsheets of Ojibwe (and e
 
 ## Dependencies
 
-You will need to install the foma compiler and flookup program (which is part of the foma toolkit). Install them using these [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) or using [homebrew](https://formulae.brew.sh/formula/foma).
+You will need to install the foma compiler and flookup program (which is part of the foma toolkit). Install them using these [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) or [homebrew](https://formulae.brew.sh/formula/foma).
 
 To install python library requirements, run:
 ```
