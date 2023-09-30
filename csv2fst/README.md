@@ -23,8 +23,8 @@ If you want to run YAML tests, you will also need to install the [giella-core](h
 The Makefile requires some modifications:
 
 1. Modify the `CSVDIR` path so that it points to your `BorderLakesMorph/Spreadsheets` directory.
-2. Modify the `OPDDATABASE` so that it points to your `BorderLakesMorph/Database/main_entries-VERBS_fields-lemma-stem-POS.csv` file.
-3. Modify `FSTSCRIPT` so that it points to your `BorderLakesMorph/xfst/phonology.xfst` file
+2. Modify the `OPDDATABASE` path so that it points to your `BorderLakesMorph/Database/main_entries-VERBS_fields-lemma-stem-POS.csv` file.
+3. Modify the `FSTSCRIPT` path so that it points to your `BorderLakesMorph/xfst/phonology.xfst` file
 
 After setting all paths, you should be able to run `make all` to build
 the FST. This will create a directory `generated` which contains the
