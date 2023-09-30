@@ -30,7 +30,7 @@ After setting all paths, you should be able to run `make all` to build
 the FST. This will create a directory `generated` which contains the
 FST, lexc files and XFST rules.
 
-## Running YAML test
+## Running YAML tests
 
 The Makefile requires some modifications:
 
