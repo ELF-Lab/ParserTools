@@ -40,7 +40,7 @@ $(FSTTARGET):$(FSTSCRIPT) $(LEXCTARGETS)
 
 check:all
 	# FIXME: Enable VTA tests
-	rm yamltest.log
+	rm -f yamltest.log
 	for f in `ls $(YAMLTESTDIR)/*yaml | grep -v VTA`; do \
                   echo "YAML test file $$f"; \
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(RESDIR)/$(FSTTARGET) $$f; \
