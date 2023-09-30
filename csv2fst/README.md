@@ -37,5 +37,6 @@ The Makefile requires some modifications:
 1. You may potentially need to modify the `MORPHTEST` variable to
 point to your copy of the `morph-test.py` script (you might not need
 to do anything if you have installed `giella-core`).
+2. Change `YAMLTESTDIR` to point to a directory containing the YAML test files.
 
-You should not be able to run `make all` and `make check`.
+You should now be able to run `make all` and `make check`.
