@@ -1,9 +1,10 @@
 PYTHON=python3
 
 # Source files
-CSVDIR= ~/src/BorderLakesMorph/Spreadsheets
-OPDDATABASE=~/src/BorderLakesMorph/Database/main_entries-VERBS_fields-lemma-stem-POS.csv
-FSTSCRIPT=~/src/BorderLakesMorph/xfst/phonology.xfst
+BORDERLAKESMORPH=~/src/BorderLakesMorph
+CSVDIR= $(BORDERLAKESMORPH)/Spreadsheets
+OPDDATABASE=$(BORDERLAKESMORPH)/Database/main_entries-VERBS_fields-lemma-stem-POS.csv
+FSTSCRIPT=$(BORDERLAKESMORPH)/xfst/phonology.xfst
 
 # YAML tests
 # These depends on the env variable GTCORE which is set when you build
