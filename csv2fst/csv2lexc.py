@@ -186,10 +186,10 @@ def find_stem_type(lemma, stem, opd_pos):
                                      ("vai", "^.*[m]$", lemma,"VAI_m"),
                                      ("vai2", "^.*am$", lemma,"VAI_am"),
                                      ("vta", "^.*aw$", lemma, "VTA_aw"),
-                                     ("vta", "^.*w[bcdfghjklmnpstwz]$", stem, "VTA_Cw"),
+                                     ("vta", "^.*w[bcdfghjklmnpstwz'NS]$", stem, "VTA_Cw"),
                                      ("vta", "^.*s$", stem, "VTA_s"),
                                      ("vta", "^.*n$", stem, "VTA_n"),
-                                     ("vta", "^.*[bcdfghjklmnpstwz]$", stem, "VTA_C"),
+                                     ("vta", "^.*[bcdfghjklmnpstwz'NS]$", stem, "VTA_C"),
                                      ("vti1","^.*am$", lemma, "VTA_am"),
                                      ("vti2","^.*on$", lemma, "VTA_oo"),
                                      ("vti3","^.*in$", lemma, "VTA_i"),
@@ -216,6 +216,9 @@ def read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_fil
             stem_type = find_stem_type(lemma,stem,opd_pos)
             if stem_type == None:
                 continue
+            if stem_type in ["VTA_C","VTA_wC"]:
+                stem = re.sub("N$","n",stem)
+                stem = re.sub("S$","s",stem)
             lemma_lexicon.add((stem,lemma,f"{pos_mode}_{stem_type}_Subclass"))
             
 @click.command()
