@@ -191,9 +191,9 @@ def find_stem_type(lemma, stem, opd_pos):
                                      ("vta", "^.*n$", stem, "VTA_n"),
                                      ("vta", "^.*[bcdfghjklmnpstwz]$", stem, "VTA_C"),
                                      ("vti1","^.*am$", lemma, "VTA_am"),
-                                     ("vti2","^.*oo$", lemma, "VTA_oo"),
-                                     ("vti3","^.*i$", lemma, "VTA_i"),
-                                     ("vti4","^.*aa$", lemma, "VTA_aa")]:
+                                     ("vti2","^.*on$", lemma, "VTA_oo"),
+                                     ("vti3","^.*in$", lemma, "VTA_i"),
+                                     ("vti4","^.*an$", lemma, "VTA_aa")]:
         if opd_pos == opos and re.match(pat,string):
             return stype
     
