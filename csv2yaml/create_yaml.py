@@ -8,23 +8,29 @@
 import argparse
 import os
 import pandas as pd
+import shutil
 
 # To use this file, as an example do `python3 create_yaml.py /home/user/Documents/vii.xlsx --vii`.
 # Run just `python3 create_yaml.py` to view help.
 
 analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])
 
-
-def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
-    '''Create a yaml file for the given spreadsheet under the given analysis function.'''
-
-    output_path = f'{output_directory}/yaml_output/'
+def create_output_directory(parent_directory:str) -> str:
+    output_directory = f'{parent_directory}yaml_output/'
+    # Clear any existing yaml output files
+    if os.path.isdir(output_directory):
+        shutil.rmtree(output_directory)
 
     # Create the directory for the yaml output if it doesn't exist already.
     try:
-        os.mkdir(f'{output_path}')
+        os.mkdir(f'{output_directory}')
     except FileExistsError:
         pass
+
+    return output_directory
+
+def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
+    '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
     # na_filter prevents the reading of "NA" values (= not applicable) as NaN
     df = pd.read_csv(file_name, na_filter = False)
@@ -58,8 +64,11 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
 
     # For each stem in the dictionary, write it to its own yaml file.
     for key, value in yaml_dict.items():
-        with open(f"{output_path}{row['Paradigm']}_{row['Order']}_{key.rpartition('_')[2]}.yaml", "w+") as yaml_file:
-            print("""Config:
+        output_file_name = f"{output_directory}{key}.yaml"
+        # If the file doesn't exist, initialize it and write the forms
+        if not os.path.isfile(output_file_name):
+            with open(output_file_name, "w+") as yaml_file:
+                print("""Config:
   hfst:
     Gen: ../../../src/generator-gt-norm.hfst
     Morph: ../../../src/analyser-gt-norm.hfst
@@ -72,24 +81,31 @@ Tests:
 
   Lemma - ALL :
 """, file = yaml_file)
-            for tag, forms in value:
-                yaml_file.write(f"{tag}: {forms}\n")
+                for tag, forms in value:
+                    yaml_file.write(f"{tag}: {forms}\n")
+        # If the file already exists, just append these new forms
+        else:
+            with open(output_file_name, "a") as yaml_file:
+                for tag, forms in value:
+                    yaml_file.write(f"{tag}: {forms}\n")
 
 
 if __name__ == '__main__':
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_yaml")
     parser.add_argument("csv_directory", type=str, help="Path to the spreadsheet.")
-    parser.add_argument("output_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
+    parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
 
     args = parser.parse_args()
+
+    output_directory = create_output_directory(args.output_parent_directory)
 
     files_generated = False
 
     for file_name in os.listdir(args.csv_directory):
         full_name = args.csv_directory + file_name
-        if os.path.isfile(full_name):
-            make_yaml(full_name, args.output_directory, analysis)
+        if full_name.endswith(".csv"):
+            make_yaml(full_name, output_directory, analysis)
             files_generated = True # At least one, anyways
 
     if files_generated:
