@@ -1,0 +1,24 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     waabandam+VTI+Imp+NA+Del+2Sg+0Sg/0Pl: waabandamookan
+     waabandam+VTI+Imp+NA+Del+2Pl+0Sg/0Pl: waabandamookeg
+     waabandam+VTI+Imp+NA+Del+Incl+0Sg/0Pl: waabandamookang
+     waabandam+VTI+Imp+NA+Prb+2Sg+0Sg/0Pl: waabandangen
+     waabandam+VTI+Imp+NA+Prb+2Pl+0Sg/0Pl: waabandangegon
+     waabandam+VTI+Imp+NA+Prb+Incl+0Sg: waabandanziidaa
+     waabandam+VTI+Imp+NA+Prb+Incl+0Pl: waabandanziidaanin
+     waabandam+VTI+Imp+NA+Sim+2Sg+0Sg/0Pl: waabandan
+     waabandam+VTI+Imp+NA+Sim+2Pl+0Sg/0Pl: [waabandamog,waabandamok]
+     waabandam+VTI+Imp+NA+Sim+Incl+0Sg: waabandandaa
+     waabandam+VTI+Imp+NA+Sim+Incl+0Pl: waabandandaanin

@@ -1,0 +1,43 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     mawadish+VTA+Imp+NA+Del+2Pl+1Sg: MISSING
+     mawadish+VTA+Imp+NA+Del+2Pl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Del+2Pl+3SgProx/3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Del+2Sg+1Sg: MISSING
+     mawadish+VTA+Imp+NA+Del+2Sg+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Del+2Sg+3SgProx/3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Del+2Sg/2Pl+Excl: MISSING
+     mawadish+VTA+Imp+NA+Del+Incl+3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Del+Incl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Del+Incl+3SgProx: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Pl+1Sg: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Pl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Pl+3SgProx/3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Sg+1Sg: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Sg+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Sg+3SgProx/3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Prb+2Sg/2Pl+Excl: MISSING
+     mawadish+VTA+Imp+NA+Prb+Incl+3PlProx: MISSING
+     mawadish+VTA+Imp+NA+Prb+Incl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Prb+Incl+3SgProx: MISSING
+     mawadish+VTA+Imp+NA+Sim+2Pl+1Sg: MISSING
+     mawadish+VTA+Imp+NA+Sim+2Pl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Sim+2Pl+3SgProx/3PlProx: mawadisik
+     mawadish+VTA+Imp+NA+Sim+2Sg+1Sg: mawadishishin
+     mawadish+VTA+Imp+NA+Sim+2Sg+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Sim+2Sg+3SgProx/3PlProx: mawadish
+     mawadish+VTA+Imp+NA+Sim+2Sg/2Pl+Excl: [mawadishishinaan,mawadishishinaang]
+     mawadish+VTA+Imp+NA+Sim+Incl+3PlProx: mawadisaadaanig
+     mawadish+VTA+Imp+NA+Sim+Incl+3SgObv/3PlObv: MISSING
+     mawadish+VTA+Imp+NA+Sim+Incl+3SgProx: mawadisaadaa

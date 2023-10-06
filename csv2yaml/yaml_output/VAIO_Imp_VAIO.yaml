@@ -1,0 +1,24 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     adaawen+VAIO+Imp+NA+Sim+2Sg+0Sg/0Pl: adaawen
+     adaawen+VAIO+Imp+NA+Sim+2Pl+0Sg/0Pl: [adaaweg,adaawek]
+     adaawen+VAIO+Imp+NA+Sim+Incl+0Sg: adaawedaa
+     adaawen+VAIO+Imp+NA+Sim+Incl+0Pl: adaawedaanin
+     adaawen+VAIO+Imp+NA+Prb+2Sg+0Sg/0Pl: adaaweken
+     adaawen+VAIO+Imp+NA+Prb+2Pl+0Sg/0Pl: adaawekegon
+     adaawen+VAIO+Imp+NA+Prb+Incl+0Sg: adaawesiidaa
+     adaawen+VAIO+Imp+NA+Prb+Incl+0Pl: adaawesiidaanin
+     adaawen+VAIO+Imp+NA+Del+2Sg+0Sg/0Pl: adaawekan
+     adaawen+VAIO+Imp+NA+Del+2Pl+0Sg/0Pl: adaawekeg
+     adaawen+VAIO+Imp+NA+Del+Incl+0Sg/0Pl: adaawekang

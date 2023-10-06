@@ -1,0 +1,85 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     wanitoon+VTI+Cnj+Neg+Dub+1Sg+0Sg/0Pl: wanitoosiiwaanen
+     wanitoon+VTI+Cnj+Neg+Dub+2Pl+0Sg/0Pl: wanitoosiiwegwen
+     wanitoon+VTI+Cnj+Neg+Dub+2Sg+0Sg/0Pl: wanitoosiiwanen
+     wanitoon+VTI+Cnj+Neg+Dub+3PlProx+0Sg/0Pl: wanitoosiiwaagwen
+     wanitoon+VTI+Cnj+Neg+Dub+3SgObv/3PlObv+0Sg/0Pl: wanitoosiinigwen
+     wanitoon+VTI+Cnj+Neg+Dub+3SgProx+0Sg/0Pl: wanitoosiigwen
+     wanitoon+VTI+Cnj+Neg+Dub+Excl+0Sg/0Pl: wanitoosiiwaangen
+     wanitoon+VTI+Cnj+Neg+Dub+Incl+0Sg/0Pl: wanitoosiiwangen
+     wanitoon+VTI+Cnj+Neg+Dub+X+0Sg/0Pl: wanitoosiiwiingen
+     wanitoon+VTI+Cnj+Pos+Dub+1Sg+0Sg/0Pl: wanitoowaanen
+     wanitoon+VTI+Cnj+Pos+Dub+2Pl+0Sg/0Pl: wanitoowegwen
+     wanitoon+VTI+Cnj+Pos+Dub+2Sg+0Sg/0Pl: wanitoowanen
+     wanitoon+VTI+Cnj+Pos+Dub+3PlProx+0Sg/0Pl: wanitoowaagwen
+     wanitoon+VTI+Cnj+Pos+Dub+3SgObv/3PlObv+0Sg/0Pl: wanitoonigwen
+     wanitoon+VTI+Cnj+Pos+Dub+3SgProx+0Sg/0Pl: wanitoogwen
+     wanitoon+VTI+Cnj+Pos+Dub+Excl+0Sg/0Pl: wanitoowaangen
+     wanitoon+VTI+Cnj+Pos+Dub+Incl+0Sg/0Pl: wanitoowangen
+     wanitoon+VTI+Cnj+Pos+Dub+X+0Sg/0Pl: wanitoowiingen
+     wanitoon+VTI+Cnj+Neg+DubPrt+1Sg+0Sg/0Pl: wanitoosiiwaambaanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+2Pl+0Sg/0Pl: [wanitoosiiwegibanen,wanitoosiiwegobanen]
+     wanitoon+VTI+Cnj+Neg+DubPrt+2Sg+0Sg/0Pl: wanitoosiiwambanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+3PlProx+0Sg/0Pl: wanitoosiiwaagobanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+3SgObv/3PlObv+0Sg/0Pl: wanitoosiinigobanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+3SgProx+0Sg/0Pl: wanitoosiigobanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+Excl+0Sg/0Pl: wanitoosiiwaangibanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+Incl+0Sg/0Pl: wanitoosiiwangibanen
+     wanitoon+VTI+Cnj+Neg+DubPrt+X+0Sg/0Pl: wanitoosiiwiingibanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+1Sg+0Sg/0Pl: wanitoowaambaanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+2Pl+0Sg/0Pl: [wanitoowegibanen,wanitoowegobanen]
+     wanitoon+VTI+Cnj+Pos+DubPrt+2Sg+0Sg/0Pl: wanitoowambanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+3PlProx+0Sg/0Pl: wanitoowaagobanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+3SgObv/3PlObv+0Sg/0Pl: wanitoonigobanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+3SgProx+0Sg/0Pl: wanitoogobanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+Excl+0Sg/0Pl: wanitoowaangibanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+Incl+0Sg/0Pl: wanitoowangibanen
+     wanitoon+VTI+Cnj+Pos+DubPrt+X+0Sg/0Pl: wanitoowiingibanen
+     wanitoon+VTI+Cnj+Neg+Neu+1Sg+0Sg/0Pl: wanitoosiwaan
+     wanitoon+VTI+Cnj+Neg+Neu+2Pl+0Sg/0Pl: wanitoosiweg
+     wanitoon+VTI+Cnj+Neg+Neu+2Sg+0Sg/0Pl: wanitoosiwan
+     wanitoon+VTI+Cnj+Neg+Neu+3PlProx+0Sg/0Pl: wanitoosigwaa
+     wanitoon+VTI+Cnj+Neg+Neu+3SgObv/3PlObv+0Sg/0Pl: wanitoosinig
+     wanitoon+VTI+Cnj+Neg+Neu+3SgProx+0Sg/0Pl: wanitoosig
+     wanitoon+VTI+Cnj+Neg+Neu+Excl+0Sg/0Pl: wanitoosiwaang
+     wanitoon+VTI+Cnj+Neg+Neu+Incl+0Sg/0Pl: wanitoosiwang
+     wanitoon+VTI+Cnj+Neg+Neu+X+0Sg/0Pl: wanitoosing
+     wanitoon+VTI+Cnj+Pos+Neu+1Sg+0Sg/0Pl: wanitooyaan
+     wanitoon+VTI+Cnj+Pos+Neu+2Pl+0Sg/0Pl: wanitooyeg
+     wanitoon+VTI+Cnj+Pos+Neu+2Sg+0Sg/0Pl: wanitooyan
+     wanitoon+VTI+Cnj+Pos+Neu+3PlProx+0Sg/0Pl: wanitoowaad
+     wanitoon+VTI+Cnj+Pos+Neu+3SgObv/3PlObv+0Sg/0Pl: wanitoonid
+     wanitoon+VTI+Cnj+Pos+Neu+3SgProx+0Sg/0Pl: wanitood
+     wanitoon+VTI+Cnj+Pos+Neu+Excl+0Sg/0Pl: wanitooyaang
+     wanitoon+VTI+Cnj+Pos+Neu+Incl+0Sg/0Pl: wanitooyang
+     wanitoon+VTI+Cnj+Pos+Neu+X+0Sg/0Pl: wanitoong
+     wanitoon+VTI+Cnj+Neg+Prt+1Sg+0Sg/0Pl: wanitoosiwaambaan
+     wanitoon+VTI+Cnj+Neg+Prt+2Pl+0Sg/0Pl: [wanitoosiwegiban,wanitoosiwegoban]
+     wanitoon+VTI+Cnj+Neg+Prt+2Sg+0Sg/0Pl: wanitoosiwamban
+     wanitoon+VTI+Cnj+Neg+Prt+3PlProx+0Sg/0Pl: wanitoosigwaaban
+     wanitoon+VTI+Cnj+Neg+Prt+3SgObv/3PlObv+0Sg/0Pl: wanitoosinigoban
+     wanitoon+VTI+Cnj+Neg+Prt+3SgProx+0Sg/0Pl: wanitoosigoban
+     wanitoon+VTI+Cnj+Neg+Prt+Excl+0Sg/0Pl: wanitoosiwaangiban
+     wanitoon+VTI+Cnj+Neg+Prt+Incl+0Sg/0Pl: wanitoosiwangiban
+     wanitoon+VTI+Cnj+Neg+Prt+X+0Sg/0Pl: wanitoosingiban
+     wanitoon+VTI+Cnj+Pos+Prt+1Sg+0Sg/0Pl: wanitooyaambaan
+     wanitoon+VTI+Cnj+Pos+Prt+2Pl+0Sg/0Pl: [wanitooyegiban,wanitooyegoban]
+     wanitoon+VTI+Cnj+Pos+Prt+2Sg+0Sg/0Pl: wanitooyamban
+     wanitoon+VTI+Cnj+Pos+Prt+3PlProx+0Sg/0Pl: wanitoowaapan
+     wanitoon+VTI+Cnj+Pos+Prt+3SgObv/3PlObv+0Sg/0Pl: wanitoonipan
+     wanitoon+VTI+Cnj+Pos+Prt+3SgProx+0Sg/0Pl: wanitoopan
+     wanitoon+VTI+Cnj+Pos+Prt+Excl+0Sg/0Pl: wanitooyaangiban
+     wanitoon+VTI+Cnj+Pos+Prt+Incl+0Sg/0Pl: wanitooyangiban
+     wanitoon+VTI+Cnj+Pos+Prt+X+0Sg/0Pl: wanitoongiban

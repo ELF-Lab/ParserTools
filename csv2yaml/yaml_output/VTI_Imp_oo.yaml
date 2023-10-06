@@ -1,0 +1,24 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     wanitoon+VTI+Imp+NA+Del+2Sg+0Sg/0Pl: wanitookan
+     wanitoon+VTI+Imp+NA+Del+2Pl+0Sg/0Pl: wanitookeg
+     wanitoon+VTI+Imp+NA+Del+Incl+0Sg/0Pl: wanitookang
+     wanitoon+VTI+Imp+NA+Prb+2Sg+0Sg/0Pl: wanitooken
+     wanitoon+VTI+Imp+NA+Prb+2Pl+0Sg/0Pl: wanitookegon
+     wanitoon+VTI+Imp+NA+Prb+Incl+0Sg: wanitoosiidaa
+     wanitoon+VTI+Imp+NA+Prb+Incl+0Pl: wanitoosiidaanin
+     wanitoon+VTI+Imp+NA+Sim+2Sg+0Sg/0Pl: wanitoon
+     wanitoon+VTI+Imp+NA+Sim+2Pl+0Sg/0Pl: [wanitoog,wanitook]
+     wanitoon+VTI+Imp+NA+Sim+Incl+0Sg: wanitoodaa
+     wanitoon+VTI+Imp+NA+Sim+Incl+0Pl: wanitoodaanin

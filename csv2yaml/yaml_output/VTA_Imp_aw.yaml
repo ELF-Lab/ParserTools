@@ -1,0 +1,43 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     mikaw+VTA+Imp+NA+Del+2Pl+1Sg: MISSING
+     mikaw+VTA+Imp+NA+Del+2Pl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Del+2Pl+3SgProx/3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Del+2Sg+1Sg: MISSING
+     mikaw+VTA+Imp+NA+Del+2Sg+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Del+2Sg+3SgProx/3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Del+2Sg/2Pl+Excl: MISSING
+     mikaw+VTA+Imp+NA+Del+Incl+3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Del+Incl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Del+Incl+3SgProx: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Pl+1Sg: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Pl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Pl+3SgProx/3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Sg+1Sg: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Sg+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Sg+3SgProx/3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Prb+2Sg/2Pl+Excl: MISSING
+     mikaw+VTA+Imp+NA+Prb+Incl+3PlProx: MISSING
+     mikaw+VTA+Imp+NA+Prb+Incl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Prb+Incl+3SgProx: MISSING
+     mikaw+VTA+Imp+NA+Sim+2Pl+1Sg: MISSING
+     mikaw+VTA+Imp+NA+Sim+2Pl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Sim+2Pl+3SgProx/3PlProx: mikawik
+     mikaw+VTA+Imp+NA+Sim+2Sg+1Sg: mikawishin
+     mikaw+VTA+Imp+NA+Sim+2Sg+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Sim+2Sg+3SgProx/3PlProx: mikaw
+     mikaw+VTA+Imp+NA+Sim+2Sg/2Pl+Excl: [mikawishinaan,mikawishinaang]
+     mikaw+VTA+Imp+NA+Sim+Incl+3PlProx: mikawaadaanig
+     mikaw+VTA+Imp+NA+Sim+Incl+3SgObv/3PlObv: MISSING
+     mikaw+VTA+Imp+NA+Sim+Incl+3SgProx: mikawaadaa

@@ -1,0 +1,49 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     nibaa+VAI+Imp+NA+Del+2Sg+NA: nibaakan
+     nibaa+VAI+Imp+NA+Del+2Pl+NA: nibaakeg
+     nibaa+VAI+Imp+NA+Del+Incl+NA: nibaakang
+     webinige+VAI+Imp+NA+Del+2Sg+NA: webinigekan
+     webinige+VAI+Imp+NA+Del+2Pl+NA: webinigekeg
+     webinige+VAI+Imp+NA+Del+Incl+NA: webinigekang
+     madaabii+VAI+Imp+NA+Del+2Sg+NA: madaabiikan
+     madaabii+VAI+Imp+NA+Del+2Pl+NA: madaabiikeg
+     madaabii+VAI+Imp+NA+Del+Incl+NA: madaabiikang
+     maajiibatoo+VAI+Imp+NA+Del+2Sg+NA: maajiibatookan
+     maajiibatoo+VAI+Imp+NA+Del+2Pl+NA: maajiibatookeg
+     maajiibatoo+VAI+Imp+NA+Del+Incl+NA: maajiibatookang
+     nibaa+VAI+Imp+NA+Prb+2Sg+NA: nibaaken
+     nibaa+VAI+Imp+NA+Prb+2Pl+NA: nibaakegon
+     nibaa+VAI+Imp+NA+Prb+Incl+NA: nibaasiidaa
+     webinige+VAI+Imp+NA+Prb+2Sg+NA: MISSING
+     webinige+VAI+Imp+NA+Prb+2Pl+NA: MISSING
+     webinige+VAI+Imp+NA+Prb+Incl+NA: MISSING
+     madaabii+VAI+Imp+NA+Prb+2Sg+NA: MISSING
+     madaabii+VAI+Imp+NA+Prb+2Pl+NA: MISSING
+     madaabii+VAI+Imp+NA+Prb+Incl+NA: MISSING
+     maajiibatoo+VAI+Imp+NA+Prb+2Sg+NA: MISSING
+     maajiibatoo+VAI+Imp+NA+Prb+2Pl+NA: MISSING
+     maajiibatoo+VAI+Imp+NA+Prb+Incl+NA: MISSING
+     nibaa+VAI+Imp+NA+Sim+2Sg+NA: nibaan
+     nibaa+VAI+Imp+NA+Sim+2Pl+NA: [nibaag,nibaak]
+     nibaa+VAI+Imp+NA+Sim+Incl+NA: nibaadaa
+     webinige+VAI+Imp+NA+Sim+2Sg+NA: webinigen
+     webinige+VAI+Imp+NA+Sim+2Pl+NA: [webinigeg,webinigek]
+     webinige+VAI+Imp+NA+Sim+Incl+NA: webinigedaa
+     madaabii+VAI+Imp+NA+Sim+2Sg+NA: madaabiin
+     madaabii+VAI+Imp+NA+Sim+2Pl+NA: [madaabiig,madaabiik]
+     madaabii+VAI+Imp+NA+Sim+Incl+NA: madaabiidaa
+     maajiibatoo+VAI+Imp+NA+Sim+2Sg+NA: maajiibatoon
+     maajiibatoo+VAI+Imp+NA+Sim+2Pl+NA: [maajiibatoog,maajiibatook]
+     maajiibatoo+VAI+Imp+NA+Sim+Incl+NA: maajiibatoodaa

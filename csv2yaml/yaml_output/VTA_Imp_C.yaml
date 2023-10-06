@@ -1,0 +1,43 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     ganawaabam+VTA+Imp+NA+Del+2Pl+1Sg: ganawaabamishiikeg
+     ganawaabam+VTA+Imp+NA+Del+2Pl+3SgObv/3PlObv: ganawaabamishiikeg
+     ganawaabam+VTA+Imp+NA+Del+2Pl+3SgProx/3PlProx: ganawaabamaakang
+     ganawaabam+VTA+Imp+NA+Del+2Sg+1Sg: ganawaabamishiikan
+     ganawaabam+VTA+Imp+NA+Del+2Sg+3SgObv/3PlObv: ganawaabamimaakan
+     ganawaabam+VTA+Imp+NA+Del+2Sg+3SgProx/3PlProx: ganawaabamaakan
+     ganawaabam+VTA+Imp+NA+Del+2Sg/2Pl+Excl: MISSING
+     ganawaabam+VTA+Imp+NA+Del+Incl+3PlProx: ganawaabamaakang
+     ganawaabam+VTA+Imp+NA+Del+Incl+3SgObv/3PlObv: ganawaabamimaakang
+     ganawaabam+VTA+Imp+NA+Del+Incl+3SgProx: ganawaabamaakang
+     ganawaabam+VTA+Imp+NA+Prb+2Pl+1Sg: ganawaabamishikegon
+     ganawaabam+VTA+Imp+NA+Prb+2Pl+3SgObv/3PlObv: ganawaabamimaakegon
+     ganawaabam+VTA+Imp+NA+Prb+2Pl+3SgProx/3PlProx: ganawaabamaakegon
+     ganawaabam+VTA+Imp+NA+Prb+2Sg+1Sg: ganawaabamishiken
+     ganawaabam+VTA+Imp+NA+Prb+2Sg+3SgObv/3PlObv: ganawaabamimaaken
+     ganawaabam+VTA+Imp+NA+Prb+2Sg+3SgProx/3PlProx: ganawaabamaaken
+     ganawaabam+VTA+Imp+NA+Prb+2Sg/2Pl+Excl: ganawaabamishikaangen
+     ganawaabam+VTA+Imp+NA+Prb+Incl+3PlProx: [ganawaabamaasiwaadaanig,ganawaabamaasiidaanig]
+     ganawaabam+VTA+Imp+NA+Prb+Incl+3SgObv/3PlObv: ganawaabamimaasiwaadaa
+     ganawaabam+VTA+Imp+NA+Prb+Incl+3SgProx: [ganawaabamaasiwaadaa,ganawaabamaasiidaa]
+     ganawaabam+VTA+Imp+NA+Sim+2Pl+1Sg: ganawaabamishik
+     ganawaabam+VTA+Imp+NA+Sim+2Pl+3SgObv/3PlObv: ganawaabamimik
+     ganawaabam+VTA+Imp+NA+Sim+2Pl+3SgProx/3PlProx: ganawaabamik
+     ganawaabam+VTA+Imp+NA+Sim+2Sg+1Sg: ganawaabamishin
+     ganawaabam+VTA+Imp+NA+Sim+2Sg+3SgObv/3PlObv: ganawaabamim
+     ganawaabam+VTA+Imp+NA+Sim+2Sg+3SgProx/3PlProx: ganawaabam
+     ganawaabam+VTA+Imp+NA+Sim+2Sg/2Pl+Excl: [ganawaabamishinaan,ganawaabamishinaang]
+     ganawaabam+VTA+Imp+NA+Sim+Incl+3PlProx: ganawaabamaadaanig
+     ganawaabam+VTA+Imp+NA+Sim+Incl+3SgObv/3PlObv: ganawaabamimaadaa
+     ganawaabam+VTA+Imp+NA+Sim+Incl+3SgProx: ganawaabamaadaa

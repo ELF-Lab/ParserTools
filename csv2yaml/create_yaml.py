@@ -12,24 +12,13 @@ import pandas as pd
 # To use this file, as an example do `python3 create_yaml.py /home/user/Documents/vii.xlsx --vii`.
 # Run just `python3 create_yaml.py` to view help.
 
-## READ ME ##
-# To maintain this file, add a new analysis for each type (e.g. VTA).
-# Then, add another entry to the `group` variable below (like that on approx. line 68).
-# Lastly, add another `if` check that for that verb type (like than on approx. line 74).
+analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])
 
 
-
-VII_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
-VAI_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"].replace(" ","")])
-VTI_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"].replace(" ","")])
-VTA_analysis = lambda row: "+".join([row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"].replace(" ","")])
-
-
-def make_yaml(file_path:str, analysis:callable) -> None:
+def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
-    output_path = f'{os.path.dirname(file_path)}/yaml_output/'
-    file_name = (file_path.rpartition("/")[2]).replace(".csv", "")
+    output_path = f'{output_directory}/yaml_output/'
 
     # Create the directory for the yaml output if it doesn't exist already.
     try:
@@ -37,7 +26,8 @@ def make_yaml(file_path:str, analysis:callable) -> None:
     except FileExistsError:
         pass
 
-    df = pd.read_csv(file_path)
+    # na_filter prevents the reading of "NA" values (= not applicable) as NaN
+    df = pd.read_csv(file_name, na_filter = False)
 
     # This dictionary will have keys that are stems and values that are lists of tuples of (tag, form).
     # Example: 'aa': [(tag1, form1), (tag2, form2)].
@@ -59,8 +49,8 @@ def make_yaml(file_path:str, analysis:callable) -> None:
         else:
             forms = f"{row['Form1']}"
 
-        # Check if there is a second form. If there is, create the form in the expected format.
-        if 'Form2Surface' in row.keys() and type(row["Form2Surface"]) is not float:
+        # Check if there is a second form, and add it to the form list if so
+        if 'Form2Surface' in row.keys() and (row["Form2Surface"]):
             forms = f"[{forms},{row['Form2Surface']}]"
 
         # Add this row to the dictionary appropriately.
@@ -68,7 +58,7 @@ def make_yaml(file_path:str, analysis:callable) -> None:
 
     # For each stem in the dictionary, write it to its own yaml file.
     for key, value in yaml_dict.items():
-        with open(f"{output_path}{file_name}_{key}.yaml", "w+") as yaml_file:
+        with open(f"{output_path}{row['Paradigm']}_{row['Order']}_{key.rpartition('_')[2]}.yaml", "w+") as yaml_file:
             print("""Config:
   hfst:
     Gen: ../../../src/generator-gt-norm.hfst
@@ -85,27 +75,23 @@ Tests:
             for tag, forms in value:
                 yaml_file.write(f"{tag}: {forms}\n")
 
-    print('Successfully generated yaml files.')
 
 if __name__ == '__main__':
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_yaml")
-    parser.add_argument("xlsx_path", type=str, help="Path to the spreadsheet.")
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--vii', action='store_true', help="Do analysis for VII verbs.")
-    group.add_argument('--vai', action='store_true', help="Do analysis for VAI verbs.")
-    group.add_argument('--vti', action='store_true', help="Do analysis for VTI verbs.")
-    group.add_argument('--vta', action='store_true', help="Do analysis for VTA verbs.")
+    parser.add_argument("csv_directory", type=str, help="Path to the spreadsheet.")
+    parser.add_argument("output_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
 
     args = parser.parse_args()
 
-    if args.vii:
-        analysis = VII_analysis
-    elif args.vai:
-        analysis = VAI_analysis
-    elif args.vti:
-        analysis = VTI_analysis
-    elif args.vta:
-        analysis = VTA_analysis
+    files_generated = False
 
-    make_yaml(args.xlsx_path, analysis)
+    for file_name in os.listdir(args.csv_directory):
+        full_name = args.csv_directory + file_name
+        if os.path.isfile(full_name):
+            make_yaml(full_name, args.output_directory, analysis)
+            files_generated = True # At least one, anyways
+
+    if files_generated:
+        print('Successfully generated yaml files.')
+

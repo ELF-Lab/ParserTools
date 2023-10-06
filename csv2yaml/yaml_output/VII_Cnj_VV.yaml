@@ -1,0 +1,61 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     michaa+VII+Cnj+Neg+Dub+0SgObv/0PlObv+NA: michaasininiigwen
+     michaa+VII+Cnj+Neg+Dub+0SgProx/0PlProx+NA: michaasinoogwen
+     ate+VII+Cnj+Neg+Dub+0SgObv/0PlObv+NA: MISSING
+     ate+VII+Cnj+Neg+Dub+0SgProx/0PlProx+NA: MISSING
+     gonzaabii+VII+Cnj+Neg+Dub+0SgObv/0PlObv+NA: gonzaabiisininiigwen
+     gonzaabii+VII+Cnj+Neg+Dub+0SgProx/0PlProx+NA: gonzaabiisinoogwen
+     michaa+VII+Cnj+Pos+Dub+0SgObv/0PlObv+NA: michaanigwen
+     michaa+VII+Cnj+Pos+Dub+0SgProx/0PlProx+NA: michaagwen
+     ate+VII+Cnj+Pos+Dub+0SgObv/0PlObv+NA: atenigwen
+     ate+VII+Cnj+Pos+Dub+0SgProx/0PlProx+NA: ategwen
+     gonzaabii+VII+Cnj+Pos+Dub+0SgObv/0PlObv+NA: gonzaabiinigwen
+     gonzaabii+VII+Cnj+Pos+Dub+0SgProx/0PlProx+NA: gonzaabiigwen
+     michaa+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv+NA: michaasininigobanen
+     michaa+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx+NA: michaasinoogobanen
+     ate+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv+NA: atesininigobanen
+     ate+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx+NA: atesinoogobanen
+     gonzaabii+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv+NA: gonzaabiisininigobanen
+     gonzaabii+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx+NA: gonzaabiisinoogobanen
+     michaa+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv+NA: michaanigobanen
+     michaa+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx+NA: michaagobanen
+     ate+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv+NA: atenigobanen
+     ate+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx+NA: ategobanen
+     gonzaabii+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv+NA: gonzaabiinigobanen
+     gonzaabii+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx+NA: gonzaabiigobanen
+     michaa+VII+Cnj+Neg+Neu+0SgObv/0PlObv+NA: michaasininig
+     michaa+VII+Cnj+Neg+Neu+0SgProx/0PlProx+NA: michaasinog
+     ate+VII+Cnj+Neg+Neu+0SgObv/0PlObv+NA: atesininig
+     ate+VII+Cnj+Neg+Neu+0SgProx/0PlProx+NA: atesinog
+     gonzaabii+VII+Cnj+Neg+Neu+0SgObv/0PlObv+NA: gonzaabiisininig
+     gonzaabii+VII+Cnj+Neg+Neu+0SgProx/0PlProx+NA: gonzaabiisinog
+     michaa+VII+Cnj+Pos+Neu+0SgObv/0PlObv+NA: michaanig
+     michaa+VII+Cnj+Pos+Neu+0SgProx/0PlProx+NA: michaag
+     ate+VII+Cnj+Pos+Neu+0SgObv/0PlObv+NA: atenig
+     ate+VII+Cnj+Pos+Neu+0SgProx/0PlProx+NA: ateg
+     gonzaabii+VII+Cnj+Pos+Neu+0SgObv/0PlObv+NA: gonzaabiinig
+     gonzaabii+VII+Cnj+Pos+Neu+0SgProx/0PlProx+NA: gonzaabiig
+     michaa+VII+Cnj+Neg+Prt+0SgObv/0PlObv+NA: michaasininigiban
+     michaa+VII+Cnj+Neg+Prt+0SgProx/0PlProx+NA: michaasinoogiban
+     ate+VII+Cnj+Neg+Prt+0SgObv/0PlObv+NA: atesininigiban
+     ate+VII+Cnj+Neg+Prt+0SgProx/0PlProx+NA: atesinoogiban
+     gonzaabii+VII+Cnj+Neg+Prt+0SgObv/0PlObv+NA: gonzaabiisininigiban
+     gonzaabii+VII+Cnj+Neg+Prt+0SgProx/0PlProx+NA: gonzaabiisinoogiban
+     michaa+VII+Cnj+Pos+Prt+0SgObv/0PlObv+NA: michaanigiban
+     michaa+VII+Cnj+Pos+Prt+0SgProx/0PlProx+NA: michaagiban
+     ate+VII+Cnj+Pos+Prt+0SgObv/0PlObv+NA: atenigiban
+     ate+VII+Cnj+Pos+Prt+0SgProx/0PlProx+NA: ategiban
+     gonzaabii+VII+Cnj+Pos+Prt+0SgObv/0PlObv+NA: gonzaabiinigiban
+     gonzaabii+VII+Cnj+Pos+Prt+0SgProx/0PlProx+NA: gonzaabiigiban
