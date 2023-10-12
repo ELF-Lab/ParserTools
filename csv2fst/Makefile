@@ -10,7 +10,7 @@ FSTSCRIPT=$(BORDERLAKESMORPH)/xfst/phonology.xfst
 # These depends on the env variable GTCORE which is set when you build
 # giella-core (I think...)
 ifndef GTCORE
-       $(error The GTCORE environment variable is not set)
+       $(warning The GTCORE environment variable is not set)
 endif
 LOOKUP=flookup
 MORPHTEST=$(GTCORE)/scripts/morph-test.py 
