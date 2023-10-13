@@ -1,17 +1,17 @@
 # csv2fst
 
-This directory houses the tools for converting csv spreadsheets of Ojibwe (and eventually, we hope, Algonquian languages more generally) to lexc files that can be used to compile a foma-based FST.
+This directory houses the tools for converting csv spreadsheets of Ojibwe (and eventually, we hope, Algonquian languages more generally) to lexc files and a foma-based FST.
 
 ## Dependencies
 
-The project requires the foma compiler and flookup program. Install them using these [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) or using [homebrew](https://formulae.brew.sh/formula/foma).
+You will need to install the foma compiler and flookup program (which is part of the foma toolkit). Install them using these [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) or [homebrew](https://formulae.brew.sh/formula/foma).
 
 To install python library requirements, run:
 ```
 pip3 install -r requirements.txt
 ```
 
-In order to build the FST, you will need to get a clone of the
+In order to build the FST, you will need to clone the
 BorderLakesMorph
 [repository](https://github.com/ELF-Lab/BorderLakesMorph) which
 contains all the source data for the FST model.
