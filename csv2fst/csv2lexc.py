@@ -149,10 +149,10 @@ def add_ending_entry(stem_type, rflag, row, suffix, flag_lexicons, subclass_lexi
     flag_lexicons[stem_type].add((rflag,rflag,f"{pos_mode}_{stem_type}_{get_val(rflag)}_WB"))
     subclass_lexicons[stem_type].add(("0",f"+{strip_order(pos_mode)}",f"{pos_mode}_{stem_type}_Flags"))
 
-    if "Object" in row and not isnan(row["Object"]):
-        suffix_tags = f"+{row['Order']}+{row['Negation']}+{row['Mode']}+{row['Subject']}+{row['Object']}"
-    else:
-        suffix_tags = f"+{row['Order']}+{row['Negation']}+{row['Mode']}+{row['Subject']}"
+    suffix_tags = f"+{row['Order']}"
+    for k in "Negation Mode Subject Object".split(" "):
+        if k in row and not isnan(row[k]):
+            suffix_tags += f"+{row[k]}"
     suffix_tags = escape(suffix_tags)
     
     suffix_lexicons[(stem_type,rflag)].add((f"{suffix}", suffix_tags))
