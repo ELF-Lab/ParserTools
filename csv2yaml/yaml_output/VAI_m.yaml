@@ -20,56 +20,6 @@ Tests:
      minongwaam+VAI+Imp+NA+Sim+2Sg+NA: minongwaamin
      minongwaam+VAI+Imp+NA+Sim+2Pl+NA: [minongwaamog,minongwaamok]
      minongwaam+VAI+Imp+NA+Sim+Incl+NA: minongwaandaa
-     minongwaam+VAI+Ind+Neg+Dub+1Sg+NA: niminongwaanziinaadog
-     minongwaam+VAI+Ind+Neg+Dub+2Pl+NA: giminongwaanziimwaadog
-     minongwaam+VAI+Ind+Neg+Dub+2Sg+NA: giminongwaanziinaadog
-     minongwaam+VAI+Ind+Neg+Dub+3PlObv+NA: [minongwaanziidogena',minongwaanziidogenan]
-     minongwaam+VAI+Ind+Neg+Dub+3PlProx+NA: minongwaanziidogenag
-     minongwaam+VAI+Ind+Neg+Dub+3SgObv+NA: minongwaanziidogenan
-     minongwaam+VAI+Ind+Neg+Dub+3SgProx+NA: minongwaanziidog
-     minongwaam+VAI+Ind+Neg+Dub+Excl+NA: niminongwaanziiminaadog
-     minongwaam+VAI+Ind+Neg+Dub+Incl+NA: giminongwaanziiminaadog
-     minongwaam+VAI+Ind+Neg+Dub+X+NA: minongwaanziimwaadog
-     minongwaam+VAI+Ind+Pos+Dub+1Sg+NA: niminongwaaminaadog
-     minongwaam+VAI+Ind+Pos+Dub+2Pl+NA: giminongwaamimwaadog
-     minongwaam+VAI+Ind+Pos+Dub+2Sg+NA: giminongwaaminaadog
-     minongwaam+VAI+Ind+Pos+Dub+3PlObv+NA: [minongwaamodogena',minongwaamowidogenan]
-     minongwaam+VAI+Ind+Pos+Dub+3PlProx+NA: [minongwaamowidogenag,minongwaamodogenag]
-     minongwaam+VAI+Ind+Pos+Dub+3SgObv+NA: [minongwaamowidogenan,minongwaamodogenan]
-     minongwaam+VAI+Ind+Pos+Dub+3SgProx+NA: [minongwaamowidog,minongwaamodog]
-     minongwaam+VAI+Ind+Pos+Dub+Excl+NA: niminongwaamiminaadog
-     minongwaam+VAI+Ind+Pos+Dub+Incl+NA: giminongwaamiminaadog
-     minongwaam+VAI+Ind+Pos+Dub+X+NA: minongwaamimwaadog
-     minongwaam+VAI+Ind+Neg+DubPrt+1Sg+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+2Pl+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+2Sg+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+3PlObv+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+3PlProx+NA: minongwaanziigwaaban
-     minongwaam+VAI+Ind+Neg+DubPrt+3SgObv+NA: minongwaanziinigoban
-     minongwaam+VAI+Ind+Neg+DubPrt+3SgProx+NA: minongwaanziigoban
-     minongwaam+VAI+Ind+Neg+DubPrt+Excl+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+Incl+NA: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+X+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+1Sg+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+2Pl+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+2Sg+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+3PlObv+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+3PlProx+NA: minongwaamogwaaban
-     minongwaam+VAI+Ind+Pos+DubPrt+3SgObv+NA: minongwaaminigoban
-     minongwaam+VAI+Ind+Pos+DubPrt+3SgProx+NA: minongwaamogoban
-     minongwaam+VAI+Ind+Pos+DubPrt+Excl+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+Incl+NA: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+X+NA: MISSING
-     minongwaam+VAI+Ind+Neg+Neu+1Sg+NA: [niminongwaanzii,niminongwaanziin]
-     minongwaam+VAI+Ind+Neg+Neu+2Pl+NA: giminongwaanziim
-     minongwaam+VAI+Ind+Neg+Neu+2Sg+NA: [giminongwaanzii,giminongwaanziin]
-     minongwaam+VAI+Ind+Neg+Neu+3PlObv+NA: [minongwaanziiwa',minongwaanziiwan]
-     minongwaam+VAI+Ind+Neg+Neu+3PlProx+NA: minongwaanziiwag
-     minongwaam+VAI+Ind+Neg+Neu+3SgObv+NA: minongwaanziiwan
-     minongwaam+VAI+Ind+Neg+Neu+3SgProx+NA: [minongwaanzii,minongwaanziin]
-     minongwaam+VAI+Ind+Neg+Neu+Excl+NA: niminongwaanziimin
-     minongwaam+VAI+Ind+Neg+Neu+Incl+NA: giminongwaanziimin
-     minongwaam+VAI+Ind+Neg+Neu+X+NA: minongwaanziim
      minongwaam+VAI+Ind+Pos+Neu+1Sg+NA: niminongwaam
      minongwaam+VAI+Ind+Pos+Neu+2Pl+NA: giminongwaamim
      minongwaam+VAI+Ind+Pos+Neu+2Sg+NA: giminongwaam
@@ -80,16 +30,16 @@ Tests:
      minongwaam+VAI+Ind+Pos+Neu+Excl+NA: niminongwaamimin
      minongwaam+VAI+Ind+Pos+Neu+Incl+NA: giminongwaamimin
      minongwaam+VAI+Ind+Pos+Neu+X+NA: minongwaamim
-     minongwaam+VAI+Ind+Neg+Prt+1Sg+NA: niminongwaanziinaaban
-     minongwaam+VAI+Ind+Neg+Prt+2Pl+NA: giminongwaanziimwaaban
-     minongwaam+VAI+Ind+Neg+Prt+2Sg+NA: giminongwaanziinaaban
-     minongwaam+VAI+Ind+Neg+Prt+3PlObv+NA: [minongwaanziibanii',minongwaanziibaniin]
-     minongwaam+VAI+Ind+Neg+Prt+3PlProx+NA: minongwaanziibaniig
-     minongwaam+VAI+Ind+Neg+Prt+3SgObv+NA: minongwaanziibaniin
-     minongwaam+VAI+Ind+Neg+Prt+3SgProx+NA: minongwaanziiban
-     minongwaam+VAI+Ind+Neg+Prt+Excl+NA: niminongwaanziiminaaban
-     minongwaam+VAI+Ind+Neg+Prt+Incl+NA: giminongwaanziiminaaban
-     minongwaam+VAI+Ind+Neg+Prt+X+NA: minongwaanziimwaaban
+     minongwaam+VAI+Ind+Neg+Neu+1Sg+NA: [niminongwaanzii,niminongwaanziin]
+     minongwaam+VAI+Ind+Neg+Neu+2Pl+NA: giminongwaanziim
+     minongwaam+VAI+Ind+Neg+Neu+2Sg+NA: [giminongwaanzii,giminongwaanziin]
+     minongwaam+VAI+Ind+Neg+Neu+3PlObv+NA: [minongwaanziiwa',minongwaanziiwan]
+     minongwaam+VAI+Ind+Neg+Neu+3PlProx+NA: minongwaanziiwag
+     minongwaam+VAI+Ind+Neg+Neu+3SgObv+NA: minongwaanziiwan
+     minongwaam+VAI+Ind+Neg+Neu+3SgProx+NA: [minongwaanzii,minongwaanziin]
+     minongwaam+VAI+Ind+Neg+Neu+Excl+NA: niminongwaanziimin
+     minongwaam+VAI+Ind+Neg+Neu+Incl+NA: giminongwaanziimin
+     minongwaam+VAI+Ind+Neg+Neu+X+NA: minongwaanziim
      minongwaam+VAI+Ind+Pos+Prt+1Sg+NA: niminongwaaminaaban
      minongwaam+VAI+Ind+Pos+Prt+2Pl+NA: giminongwaamimwaaban
      minongwaam+VAI+Ind+Pos+Prt+2Sg+NA: giminongwaaminaaban
@@ -100,56 +50,56 @@ Tests:
      minongwaam+VAI+Ind+Pos+Prt+Excl+NA: niminongwaamiminaaban
      minongwaam+VAI+Ind+Pos+Prt+Incl+NA: giminongwaamiminaaban
      minongwaam+VAI+Ind+Pos+Prt+X+NA: minongwaamimwaaban
-     minongwaam+VAI+Cnj+Neg+Dub+1Sg+NA: minongwaanziiwaanen
-     minongwaam+VAI+Cnj+Neg+Dub+2Pl+NA: minongwaanziiwegwen
-     minongwaam+VAI+Cnj+Neg+Dub+2Sg+NA: minongwaanziiwanen
-     minongwaam+VAI+Cnj+Neg+Dub+3PlObv+NA: minongwaanziinigwen
-     minongwaam+VAI+Cnj+Neg+Dub+3PlProx+NA: minongwaanziiwaagwen
-     minongwaam+VAI+Cnj+Neg+Dub+3SgObv+NA: minongwaanziinigwen
-     minongwaam+VAI+Cnj+Neg+Dub+3SgProx+NA: minongwaanziigwen
-     minongwaam+VAI+Cnj+Neg+Dub+Excl+NA: minongwaanziiwaangen
-     minongwaam+VAI+Cnj+Neg+Dub+Incl+NA: minongwaanziiwangen
-     minongwaam+VAI+Cnj+Neg+Dub+X+NA: minongwaanziiwiingen
-     minongwaam+VAI+Cnj+Pos+Dub+1Sg+NA: minongwaamowaanen
-     minongwaam+VAI+Cnj+Pos+Dub+2Pl+NA: minongwaamowegwen
-     minongwaam+VAI+Cnj+Pos+Dub+2Sg+NA: minongwaamowanen
-     minongwaam+VAI+Cnj+Pos+Dub+3PlObv+NA: minongwaaminigwen
-     minongwaam+VAI+Cnj+Pos+Dub+3PlProx+NA: minongwaamowaagwen
-     minongwaam+VAI+Cnj+Pos+Dub+3SgObv+NA: minongwaaminigwen
-     minongwaam+VAI+Cnj+Pos+Dub+3SgProx+NA: minongwaamogwen
-     minongwaam+VAI+Cnj+Pos+Dub+Excl+NA: minongwaamowaangen
-     minongwaam+VAI+Cnj+Pos+Dub+Incl+NA: minongwaamowangen
-     minongwaam+VAI+Cnj+Pos+Dub+X+NA: minongwaamowiingen
-     minongwaam+VAI+Cnj+Neg+DubPrt+1Sg+NA: minongwaanziiwaambaanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+2Pl+NA: minongwaanziiwegibanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+2Sg+NA: minongwaanziiwambanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+3PlObv+NA: minongwaanziinigobanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+3PlProx+NA: minongwaanziiwaagobanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+3SgObv+NA: minongwaanziinigobanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+3SgProx+NA: minongwaanziigobanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+Excl+NA: minongwaanziiwaangibanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+Incl+NA: minongwaanziiwangibanen
-     minongwaam+VAI+Cnj+Neg+DubPrt+X+NA: minongwaanziiwiingibanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+1Sg+NA: minongwaamowaambaanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+2Pl+NA: minongwaamowegibanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+2Sg+NA: minongwaamowambanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+3PlObv+NA: minongwaaminigobanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+3PlProx+NA: minongwaamowaagobanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+3SgObv+NA: minongwaaminigobanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+3SgProx+NA: minongwaamogobanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+Excl+NA: minongwaamowaangibanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+Incl+NA: minongwaamowangibanen
-     minongwaam+VAI+Cnj+Pos+DubPrt+X+NA: minongwaamowiingibanen
-     minongwaam+VAI+Cnj+Neg+Neu+1Sg+NA: minongwaanziwaan
-     minongwaam+VAI+Cnj+Neg+Neu+2Pl+NA: minongwaanziweg
-     minongwaam+VAI+Cnj+Neg+Neu+2Sg+NA: minongwaanziwan
-     minongwaam+VAI+Cnj+Neg+Neu+3PlObv+NA: minongwaanzinig
-     minongwaam+VAI+Cnj+Neg+Neu+3PlProx+NA: minongwaanzigwaa
-     minongwaam+VAI+Cnj+Neg+Neu+3SgObv+NA: minongwaanzinig
-     minongwaam+VAI+Cnj+Neg+Neu+3SgProx+NA: minongwaanzig
-     minongwaam+VAI+Cnj+Neg+Neu+Excl+NA: minongwaanziwaang
-     minongwaam+VAI+Cnj+Neg+Neu+Incl+NA: minongwaanziwang
-     minongwaam+VAI+Cnj+Neg+Neu+X+NA: minongwaanzing
+     minongwaam+VAI+Ind+Neg+Prt+1Sg+NA: niminongwaanziinaaban
+     minongwaam+VAI+Ind+Neg+Prt+2Pl+NA: giminongwaanziimwaaban
+     minongwaam+VAI+Ind+Neg+Prt+2Sg+NA: giminongwaanziinaaban
+     minongwaam+VAI+Ind+Neg+Prt+3PlObv+NA: [minongwaanziibanii',minongwaanziibaniin]
+     minongwaam+VAI+Ind+Neg+Prt+3PlProx+NA: minongwaanziibaniig
+     minongwaam+VAI+Ind+Neg+Prt+3SgObv+NA: minongwaanziibaniin
+     minongwaam+VAI+Ind+Neg+Prt+3SgProx+NA: minongwaanziiban
+     minongwaam+VAI+Ind+Neg+Prt+Excl+NA: niminongwaanziiminaaban
+     minongwaam+VAI+Ind+Neg+Prt+Incl+NA: giminongwaanziiminaaban
+     minongwaam+VAI+Ind+Neg+Prt+X+NA: minongwaanziimwaaban
+     minongwaam+VAI+Ind+Pos+Dub+1Sg+NA: niminongwaaminaadog
+     minongwaam+VAI+Ind+Pos+Dub+2Pl+NA: giminongwaamimwaadog
+     minongwaam+VAI+Ind+Pos+Dub+2Sg+NA: giminongwaaminaadog
+     minongwaam+VAI+Ind+Pos+Dub+3PlObv+NA: [minongwaamodogena',minongwaamowidogenan]
+     minongwaam+VAI+Ind+Pos+Dub+3PlProx+NA: [minongwaamowidogenag,minongwaamodogenag]
+     minongwaam+VAI+Ind+Pos+Dub+3SgObv+NA: [minongwaamowidogenan,minongwaamodogenan]
+     minongwaam+VAI+Ind+Pos+Dub+3SgProx+NA: [minongwaamowidog,minongwaamodog]
+     minongwaam+VAI+Ind+Pos+Dub+Excl+NA: niminongwaamiminaadog
+     minongwaam+VAI+Ind+Pos+Dub+Incl+NA: giminongwaamiminaadog
+     minongwaam+VAI+Ind+Pos+Dub+X+NA: minongwaamimwaadog
+     minongwaam+VAI+Ind+Neg+Dub+1Sg+NA: niminongwaanziinaadog
+     minongwaam+VAI+Ind+Neg+Dub+2Pl+NA: giminongwaanziimwaadog
+     minongwaam+VAI+Ind+Neg+Dub+2Sg+NA: giminongwaanziinaadog
+     minongwaam+VAI+Ind+Neg+Dub+3PlObv+NA: [minongwaanziidogena',minongwaanziidogenan]
+     minongwaam+VAI+Ind+Neg+Dub+3PlProx+NA: minongwaanziidogenag
+     minongwaam+VAI+Ind+Neg+Dub+3SgObv+NA: minongwaanziidogenan
+     minongwaam+VAI+Ind+Neg+Dub+3SgProx+NA: minongwaanziidog
+     minongwaam+VAI+Ind+Neg+Dub+Excl+NA: niminongwaanziiminaadog
+     minongwaam+VAI+Ind+Neg+Dub+Incl+NA: giminongwaanziiminaadog
+     minongwaam+VAI+Ind+Neg+Dub+X+NA: minongwaanziimwaadog
+     minongwaam+VAI+Ind+Pos+DubPrt+1Sg+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+2Pl+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+2Sg+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+3PlObv+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+3PlProx+NA: minongwaamogwaaban
+     minongwaam+VAI+Ind+Pos+DubPrt+3SgObv+NA: minongwaaminigoban
+     minongwaam+VAI+Ind+Pos+DubPrt+3SgProx+NA: minongwaamogoban
+     minongwaam+VAI+Ind+Pos+DubPrt+Excl+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+Incl+NA: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+X+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+1Sg+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+2Pl+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+2Sg+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+3PlObv+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+3PlProx+NA: minongwaanziigwaaban
+     minongwaam+VAI+Ind+Neg+DubPrt+3SgObv+NA: minongwaanziinigoban
+     minongwaam+VAI+Ind+Neg+DubPrt+3SgProx+NA: minongwaanziigoban
+     minongwaam+VAI+Ind+Neg+DubPrt+Excl+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+Incl+NA: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+X+NA: MISSING
      minongwaam+VAI+Cnj+Pos+Neu+1Sg+NA: minongwaamaan
      minongwaam+VAI+Cnj+Pos+Neu+2Pl+NA: minongwaameg
      minongwaam+VAI+Cnj+Pos+Neu+2Sg+NA: minongwaaman
@@ -160,16 +110,16 @@ Tests:
      minongwaam+VAI+Cnj+Pos+Neu+Excl+NA: minongwaamaang
      minongwaam+VAI+Cnj+Pos+Neu+Incl+NA: minongwaamang
      minongwaam+VAI+Cnj+Pos+Neu+X+NA: minongwaaming
-     minongwaam+VAI+Cnj+Neg+Prt+1Sg+NA: minongwaanziwaambaan
-     minongwaam+VAI+Cnj+Neg+Prt+2Pl+NA: minongwaanziwegiban
-     minongwaam+VAI+Cnj+Neg+Prt+2Sg+NA: minongwaanziwamban
-     minongwaam+VAI+Cnj+Neg+Prt+3PlObv+NA: minongwaanzinigoban
-     minongwaam+VAI+Cnj+Neg+Prt+3PlProx+NA: minongwaanzigwaaban
-     minongwaam+VAI+Cnj+Neg+Prt+3SgObv+NA: minongwaanzinigoban
-     minongwaam+VAI+Cnj+Neg+Prt+3SgProx+NA: minongwaanzigoban
-     minongwaam+VAI+Cnj+Neg+Prt+Excl+NA: minongwaanziwaangiban
-     minongwaam+VAI+Cnj+Neg+Prt+Incl+NA: minongwaanziwangiban
-     minongwaam+VAI+Cnj+Neg+Prt+X+NA: minongwaanzingiban
+     minongwaam+VAI+Cnj+Neg+Neu+1Sg+NA: minongwaanziwaan
+     minongwaam+VAI+Cnj+Neg+Neu+2Pl+NA: minongwaanziweg
+     minongwaam+VAI+Cnj+Neg+Neu+2Sg+NA: minongwaanziwan
+     minongwaam+VAI+Cnj+Neg+Neu+3PlObv+NA: minongwaanzinig
+     minongwaam+VAI+Cnj+Neg+Neu+3PlProx+NA: minongwaanzigwaa
+     minongwaam+VAI+Cnj+Neg+Neu+3SgObv+NA: minongwaanzinig
+     minongwaam+VAI+Cnj+Neg+Neu+3SgProx+NA: minongwaanzig
+     minongwaam+VAI+Cnj+Neg+Neu+Excl+NA: minongwaanziwaang
+     minongwaam+VAI+Cnj+Neg+Neu+Incl+NA: minongwaanziwang
+     minongwaam+VAI+Cnj+Neg+Neu+X+NA: minongwaanzing
      minongwaam+VAI+Cnj+Pos+Prt+1Sg+NA: minongwaamaambaan
      minongwaam+VAI+Cnj+Pos+Prt+2Pl+NA: minongwaamegiban
      minongwaam+VAI+Cnj+Pos+Prt+2Sg+NA: minongwaamamban
@@ -180,3 +130,53 @@ Tests:
      minongwaam+VAI+Cnj+Pos+Prt+Excl+NA: minongwaamaangiban
      minongwaam+VAI+Cnj+Pos+Prt+Incl+NA: minongwaamangiban
      minongwaam+VAI+Cnj+Pos+Prt+X+NA: minongwaamingiban
+     minongwaam+VAI+Cnj+Neg+Prt+1Sg+NA: minongwaanziwaambaan
+     minongwaam+VAI+Cnj+Neg+Prt+2Pl+NA: minongwaanziwegiban
+     minongwaam+VAI+Cnj+Neg+Prt+2Sg+NA: minongwaanziwamban
+     minongwaam+VAI+Cnj+Neg+Prt+3PlObv+NA: minongwaanzinigoban
+     minongwaam+VAI+Cnj+Neg+Prt+3PlProx+NA: minongwaanzigwaaban
+     minongwaam+VAI+Cnj+Neg+Prt+3SgObv+NA: minongwaanzinigoban
+     minongwaam+VAI+Cnj+Neg+Prt+3SgProx+NA: minongwaanzigoban
+     minongwaam+VAI+Cnj+Neg+Prt+Excl+NA: minongwaanziwaangiban
+     minongwaam+VAI+Cnj+Neg+Prt+Incl+NA: minongwaanziwangiban
+     minongwaam+VAI+Cnj+Neg+Prt+X+NA: minongwaanzingiban
+     minongwaam+VAI+Cnj+Pos+Dub+1Sg+NA: minongwaamowaanen
+     minongwaam+VAI+Cnj+Pos+Dub+2Pl+NA: minongwaamowegwen
+     minongwaam+VAI+Cnj+Pos+Dub+2Sg+NA: minongwaamowanen
+     minongwaam+VAI+Cnj+Pos+Dub+3PlObv+NA: minongwaaminigwen
+     minongwaam+VAI+Cnj+Pos+Dub+3PlProx+NA: minongwaamowaagwen
+     minongwaam+VAI+Cnj+Pos+Dub+3SgObv+NA: minongwaaminigwen
+     minongwaam+VAI+Cnj+Pos+Dub+3SgProx+NA: minongwaamogwen
+     minongwaam+VAI+Cnj+Pos+Dub+Excl+NA: minongwaamowaangen
+     minongwaam+VAI+Cnj+Pos+Dub+Incl+NA: minongwaamowangen
+     minongwaam+VAI+Cnj+Pos+Dub+X+NA: minongwaamowiingen
+     minongwaam+VAI+Cnj+Neg+Dub+1Sg+NA: minongwaanziiwaanen
+     minongwaam+VAI+Cnj+Neg+Dub+2Pl+NA: minongwaanziiwegwen
+     minongwaam+VAI+Cnj+Neg+Dub+2Sg+NA: minongwaanziiwanen
+     minongwaam+VAI+Cnj+Neg+Dub+3PlObv+NA: minongwaanziinigwen
+     minongwaam+VAI+Cnj+Neg+Dub+3PlProx+NA: minongwaanziiwaagwen
+     minongwaam+VAI+Cnj+Neg+Dub+3SgObv+NA: minongwaanziinigwen
+     minongwaam+VAI+Cnj+Neg+Dub+3SgProx+NA: minongwaanziigwen
+     minongwaam+VAI+Cnj+Neg+Dub+Excl+NA: minongwaanziiwaangen
+     minongwaam+VAI+Cnj+Neg+Dub+Incl+NA: minongwaanziiwangen
+     minongwaam+VAI+Cnj+Neg+Dub+X+NA: minongwaanziiwiingen
+     minongwaam+VAI+Cnj+Pos+DubPrt+1Sg+NA: minongwaamowaambaanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+2Pl+NA: minongwaamowegibanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+2Sg+NA: minongwaamowambanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+3PlObv+NA: minongwaaminigobanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+3PlProx+NA: minongwaamowaagobanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+3SgObv+NA: minongwaaminigobanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+3SgProx+NA: minongwaamogobanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+Excl+NA: minongwaamowaangibanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+Incl+NA: minongwaamowangibanen
+     minongwaam+VAI+Cnj+Pos+DubPrt+X+NA: minongwaamowiingibanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+1Sg+NA: minongwaanziiwaambaanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+2Pl+NA: minongwaanziiwegibanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+2Sg+NA: minongwaanziiwambanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+3PlObv+NA: minongwaanziinigobanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+3PlProx+NA: minongwaanziiwaagobanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+3SgObv+NA: minongwaanziinigobanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+3SgProx+NA: minongwaanziigobanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+Excl+NA: minongwaanziiwaangibanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+Incl+NA: minongwaanziiwangibanen
+     minongwaam+VAI+Cnj+Neg+DubPrt+X+NA: minongwaanziiwiingibanen

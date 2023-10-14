@@ -11,51 +11,51 @@ Tests:
 
   Lemma - ALL :
 
-     bangisin+VII+Cnj+Neg+Dub+0SgObv/0PlObv+NA: bangisinzininiigwen
-     bangisin+VII+Cnj+Neg+Dub+0SgProx/0PlProx+NA: bangisinzinoogwen
-     bangisin+VII+Cnj+Pos+Dub+0SgObv/0PlObv+NA: bangisininigwen
-     bangisin+VII+Cnj+Pos+Dub+0SgProx/0PlProx+NA: bangisinogwen
-     bangisin+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv+NA: bangisinzininigobanen
-     bangisin+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx+NA: bangisinzinoogobanen
-     bangisin+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv+NA: bangisininigobanen
-     bangisin+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx+NA: bangisinogobanen
-     bangisin+VII+Cnj+Neg+Neu+0SgObv/0PlObv+NA: bangisinzininig
-     bangisin+VII+Cnj+Neg+Neu+0SgProx/0PlProx+NA: bangisinzinog
      bangisin+VII+Cnj+Pos+Neu+0SgObv/0PlObv+NA: bangisininig
      bangisin+VII+Cnj+Pos+Neu+0SgProx/0PlProx+NA: bangising
-     bangisin+VII+Cnj+Neg+Prt+0SgObv/0PlObv+NA: bangisinzininigiban
-     bangisin+VII+Cnj+Neg+Prt+0SgProx/0PlProx+NA: bangisinzinoogiban
+     bangisin+VII+Cnj+Neg+Neu+0SgObv/0PlObv+NA: bangisinzininig
+     bangisin+VII+Cnj+Neg+Neu+0SgProx/0PlProx+NA: bangisinzinog
      bangisin+VII+Cnj+Pos+Prt+0SgObv/0PlObv+NA: bangisininigiban
      bangisin+VII+Cnj+Pos+Prt+0SgProx/0PlProx+NA: bangisingiban
-     bangisin+VII+Ind+Neg+Dub+0PlObv+NA: bangisinzininiwidogen
-     bangisin+VII+Ind+Neg+Dub+0PlProx+NA: bangisinzinodogen
-     bangisin+VII+Ind+Neg+Dub+0SgObv+NA: bangisinzininiwidog
-     bangisin+VII+Ind+Neg+Dub+0SgProx+NA: bangisinzinodog
-     bangisin+VII+Ind+Pos+Dub+0PlObv+NA: bangisininiwidogen
-     bangisin+VII+Ind+Pos+Dub+0PlProx+NA: bangisinodogen
-     bangisin+VII+Ind+Pos+Dub+0SgObv+NA: bangisininiwidog
-     bangisin+VII+Ind+Pos+Dub+0SgProx+NA: bangisinodog
-     bangisin+VII+Ind+Neg+DubPrt+0PlObv+NA: [bangisinzininigobaniin,bangisinzininigobanen]
-     bangisin+VII+Ind+Neg+DubPrt+0PlProx+NA: [bangisinzinoogobaniin,bangisinzinoogobanen]
-     bangisin+VII+Ind+Neg+DubPrt+0SgObv+NA: bangisinzininigoban
-     bangisin+VII+Ind+Neg+DubPrt+0SgProx+NA: bangisinzinoogoban
-     bangisin+VII+Ind+Pos+DubPrt+0PlObv+NA: [bangisininigobaniin,bangisininigobanen]
-     bangisin+VII+Ind+Pos+DubPrt+0PlProx+NA: [bangisinogobaniin,bangisinogobanen]
-     bangisin+VII+Ind+Pos+DubPrt+0SgObv+NA: bangisininigoban
-     bangisin+VII+Ind+Pos+DubPrt+0SgProx+NA: bangisinogoban
-     bangisin+VII+Ind+Neg+Neu+0PlObv+NA: bangisinzininiwan
-     bangisin+VII+Ind+Neg+Neu+0PlProx+NA: bangisinzinoon
-     bangisin+VII+Ind+Neg+Neu+0SgObv+NA: bangisinzinini
-     bangisin+VII+Ind+Neg+Neu+0SgProx+NA: bangisinzinoon
+     bangisin+VII+Cnj+Neg+Prt+0SgObv/0PlObv+NA: bangisinzininigiban
+     bangisin+VII+Cnj+Neg+Prt+0SgProx/0PlProx+NA: bangisinzinoogiban
+     bangisin+VII+Cnj+Pos+Dub+0SgObv/0PlObv+NA: bangisininigwen
+     bangisin+VII+Cnj+Pos+Dub+0SgProx/0PlProx+NA: bangisinogwen
+     bangisin+VII+Cnj+Neg+Dub+0SgObv/0PlObv+NA: bangisinzininiigwen
+     bangisin+VII+Cnj+Neg+Dub+0SgProx/0PlProx+NA: bangisinzinoogwen
+     bangisin+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv+NA: bangisininigobanen
+     bangisin+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx+NA: bangisinogobanen
+     bangisin+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv+NA: bangisinzininigobanen
+     bangisin+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx+NA: bangisinzinoogobanen
      bangisin+VII+Ind+Pos+Neu+0PlObv+NA: bangisininiwan
      bangisin+VII+Ind+Pos+Neu+0PlProx+NA: bangisinoon
      bangisin+VII+Ind+Pos+Neu+0SgObv+NA: bangisinini
      bangisin+VII+Ind+Pos+Neu+0SgProx+NA: bangisin
-     bangisin+VII+Ind+Neg+Prt+0PlObv+NA: [bangisinzininiibaniin,bangisinzininiibanen]
-     bangisin+VII+Ind+Neg+Prt+0PlProx+NA: [bangisinzinoobaniin,bangisinzinoobanen]
-     bangisin+VII+Ind+Neg+Prt+0SgObv+NA: bangisinzininiiban
-     bangisin+VII+Ind+Neg+Prt+0SgProx+NA: bangisinzinooban
+     bangisin+VII+Ind+Neg+Neu+0PlObv+NA: bangisinzininiwan
+     bangisin+VII+Ind+Neg+Neu+0PlProx+NA: bangisinzinoon
+     bangisin+VII+Ind+Neg+Neu+0SgObv+NA: bangisinzinini
+     bangisin+VII+Ind+Neg+Neu+0SgProx+NA: bangisinzinoon
      bangisin+VII+Ind+Pos+Prt+0PlObv+NA: [bangisininiibaniin,bangisininiibanen]
      bangisin+VII+Ind+Pos+Prt+0PlProx+NA: [bangisinoobaniin,bangisinoobanen]
      bangisin+VII+Ind+Pos+Prt+0SgObv+NA: bangisininiiban
      bangisin+VII+Ind+Pos+Prt+0SgProx+NA: bangisinooban
+     bangisin+VII+Ind+Neg+Prt+0PlObv+NA: [bangisinzininiibaniin,bangisinzininiibanen]
+     bangisin+VII+Ind+Neg+Prt+0PlProx+NA: [bangisinzinoobaniin,bangisinzinoobanen]
+     bangisin+VII+Ind+Neg+Prt+0SgObv+NA: bangisinzininiiban
+     bangisin+VII+Ind+Neg+Prt+0SgProx+NA: bangisinzinooban
+     bangisin+VII+Ind+Pos+Dub+0PlObv+NA: bangisininiwidogen
+     bangisin+VII+Ind+Pos+Dub+0PlProx+NA: bangisinodogen
+     bangisin+VII+Ind+Pos+Dub+0SgObv+NA: bangisininiwidog
+     bangisin+VII+Ind+Pos+Dub+0SgProx+NA: bangisinodog
+     bangisin+VII+Ind+Neg+Dub+0PlObv+NA: bangisinzininiwidogen
+     bangisin+VII+Ind+Neg+Dub+0PlProx+NA: bangisinzinodogen
+     bangisin+VII+Ind+Neg+Dub+0SgObv+NA: bangisinzininiwidog
+     bangisin+VII+Ind+Neg+Dub+0SgProx+NA: bangisinzinodog
+     bangisin+VII+Ind+Pos+DubPrt+0PlObv+NA: [bangisininigobaniin,bangisininigobanen]
+     bangisin+VII+Ind+Pos+DubPrt+0PlProx+NA: [bangisinogobaniin,bangisinogobanen]
+     bangisin+VII+Ind+Pos+DubPrt+0SgObv+NA: bangisininigoban
+     bangisin+VII+Ind+Pos+DubPrt+0SgProx+NA: bangisinogoban
+     bangisin+VII+Ind+Neg+DubPrt+0PlObv+NA: [bangisinzininigobaniin,bangisinzininigobanen]
+     bangisin+VII+Ind+Neg+DubPrt+0PlProx+NA: [bangisinzinoogobaniin,bangisinzinoogobanen]
+     bangisin+VII+Ind+Neg+DubPrt+0SgObv+NA: bangisinzininigoban
+     bangisin+VII+Ind+Neg+DubPrt+0SgProx+NA: bangisinzinoogoban
