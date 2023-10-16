@@ -11,36 +11,36 @@ Tests:
 
   Lemma - ALL :
 
-     mizho+VTA+Imp+NA+Del+2Pl+1Sg: MISSING
-     mizho+VTA+Imp+NA+Del+2Pl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Del+2Pl+3SgProx/3PlProx: MISSING
-     mizho+VTA+Imp+NA+Del+2Sg+1Sg: MISSING
-     mizho+VTA+Imp+NA+Del+2Sg+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Del+2Sg+3SgProx/3PlProx: MISSING
-     mizho+VTA+Imp+NA+Del+2Sg/2Pl+Excl: MISSING
-     mizho+VTA+Imp+NA+Del+Incl+3PlProx: MISSING
-     mizho+VTA+Imp+NA+Del+Incl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Del+Incl+3SgProx: MISSING
-     mizho+VTA+Imp+NA+Prb+2Pl+1Sg: MISSING
-     mizho+VTA+Imp+NA+Prb+2Pl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Prb+2Pl+3SgProx/3PlProx: MISSING
-     mizho+VTA+Imp+NA+Prb+2Sg+1Sg: MISSING
-     mizho+VTA+Imp+NA+Prb+2Sg+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Prb+2Sg+3SgProx/3PlProx: MISSING
-     mizho+VTA+Imp+NA+Prb+2Sg/2Pl+Excl: MISSING
-     mizho+VTA+Imp+NA+Prb+Incl+3PlProx: MISSING
-     mizho+VTA+Imp+NA+Prb+Incl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Prb+Incl+3SgProx: MISSING
-     mizho+VTA+Imp+NA+Sim+2Pl+1Sg: MISSING
-     mizho+VTA+Imp+NA+Sim+2Pl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Sim+2Pl+3SgProx/3PlProx: mizhok
-     mizho+VTA+Imp+NA+Sim+2Sg+1Sg: mizhoshin
-     mizho+VTA+Imp+NA+Sim+2Sg+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Sim+2Sg+3SgProx/3PlProx: mizh
-     mizho+VTA+Imp+NA+Sim+2Sg/2Pl+Excl: [mizhoshinaan,mizhoshinaang]
-     mizho+VTA+Imp+NA+Sim+Incl+3PlProx: miizhwaadaanig
-     mizho+VTA+Imp+NA+Sim+Incl+3SgObv/3PlObv: MISSING
-     mizho+VTA+Imp+NA+Sim+Incl+3SgProx: miizhwaadaa
+     mizho+VTA+Imp+Del+2Pl+1Sg: MISSING
+     mizho+VTA+Imp+Del+2Pl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Del+2Pl+3SgProx/3PlProx: MISSING
+     mizho+VTA+Imp+Del+2Sg+1Sg: MISSING
+     mizho+VTA+Imp+Del+2Sg+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Del+2Sg+3SgProx/3PlProx: MISSING
+     mizho+VTA+Imp+Del+2Sg/2Pl+Excl: MISSING
+     mizho+VTA+Imp+Del+Incl+3PlProx: MISSING
+     mizho+VTA+Imp+Del+Incl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Del+Incl+3SgProx: MISSING
+     mizho+VTA+Imp+Prb+2Pl+1Sg: MISSING
+     mizho+VTA+Imp+Prb+2Pl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Prb+2Pl+3SgProx/3PlProx: MISSING
+     mizho+VTA+Imp+Prb+2Sg+1Sg: MISSING
+     mizho+VTA+Imp+Prb+2Sg+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Prb+2Sg+3SgProx/3PlProx: MISSING
+     mizho+VTA+Imp+Prb+2Sg/2Pl+Excl: MISSING
+     mizho+VTA+Imp+Prb+Incl+3PlProx: MISSING
+     mizho+VTA+Imp+Prb+Incl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Prb+Incl+3SgProx: MISSING
+     mizho+VTA+Imp+Sim+2Pl+1Sg: MISSING
+     mizho+VTA+Imp+Sim+2Pl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Sim+2Pl+3SgProx/3PlProx: mizhok
+     mizho+VTA+Imp+Sim+2Sg+1Sg: mizhoshin
+     mizho+VTA+Imp+Sim+2Sg+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Sim+2Sg+3SgProx/3PlProx: mizh
+     mizho+VTA+Imp+Sim+2Sg/2Pl+Excl: [mizhoshinaan,mizhoshinaang]
+     mizho+VTA+Imp+Sim+Incl+3PlProx: miizhwaadaanig
+     mizho+VTA+Imp+Sim+Incl+3SgObv/3PlObv: MISSING
+     mizho+VTA+Imp+Sim+Incl+3SgProx: miizhwaadaa
      mizho+VTA+Ind+Neg+Dub+0Pl+1Sg: nimizhogosiinaadogenan
      mizho+VTA+Ind+Neg+Dub+0Sg+1Sg: nimizhogosiinaadog
      mizho+VTA+Ind+Neg+Dub+2Pl+1Sg: gimizhosiimwaadog

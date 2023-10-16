@@ -44,7 +44,7 @@ Tests:
      waabandizo+VAI+Ind+Pos+Neu+3SgProx+3SgProx: waabandizo
      waabandizo+VAI+Ind+Pos+Neu+Excl+Excl: niwaabandizomin
      waabandizo+VAI+Ind+Pos+Neu+Incl+Incl: giwaabandizomin
-     waabandizo+VAI+Imp+NA+Sim+2Sg+2Sg: waabandizon
-     waabandizo+VAI+Imp+NA+Sim+Incl+Incl: waabandizodaa
-     waabandizo+VAI+Imp+NA+Prb+2Sg+2Sg: waabandizoken
-     waabandizo+VAI+Imp+NA+Prb+Incl+Incl: waabandizosiidaa
+     waabandizo+VAI+Imp+Sim+2Sg+2Sg: waabandizon
+     waabandizo+VAI+Imp+Sim+Incl+Incl: waabandizodaa
+     waabandizo+VAI+Imp+Prb+2Sg+2Sg: waabandizoken
+     waabandizo+VAI+Imp+Prb+Incl+Incl: waabandizosiidaa

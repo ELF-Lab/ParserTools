@@ -11,17 +11,17 @@ Tests:
 
   Lemma - ALL :
 
-     waabandan+VTI+Imp+NA+Del+2Sg+0Sg/0Pl: waabandamookan
-     waabandan+VTI+Imp+NA+Del+2Pl+0Sg/0Pl: waabandamookeg
-     waabandan+VTI+Imp+NA+Del+Incl+0Sg/0Pl: waabandamookang
-     waabandan+VTI+Imp+NA+Prb+2Sg+0Sg/0Pl: waabandangen
-     waabandan+VTI+Imp+NA+Prb+2Pl+0Sg/0Pl: waabandangegon
-     waabandan+VTI+Imp+NA+Prb+Incl+0Sg: waabandanziidaa
-     waabandan+VTI+Imp+NA+Prb+Incl+0Pl: waabandanziidaanin
-     waabandan+VTI+Imp+NA+Sim+2Sg+0Sg/0Pl: waabandan
-     waabandan+VTI+Imp+NA+Sim+2Pl+0Sg/0Pl: [waabandamog,waabandamok]
-     waabandan+VTI+Imp+NA+Sim+Incl+0Sg: waabandandaa
-     waabandan+VTI+Imp+NA+Sim+Incl+0Pl: waabandandaanin
+     waabandan+VTI+Imp+Del+2Sg+0Sg/0Pl: waabandamookan
+     waabandan+VTI+Imp+Del+2Pl+0Sg/0Pl: waabandamookeg
+     waabandan+VTI+Imp+Del+Incl+0Sg/0Pl: waabandamookang
+     waabandan+VTI+Imp+Prb+2Sg+0Sg/0Pl: waabandangen
+     waabandan+VTI+Imp+Prb+2Pl+0Sg/0Pl: waabandangegon
+     waabandan+VTI+Imp+Prb+Incl+0Sg: waabandanziidaa
+     waabandan+VTI+Imp+Prb+Incl+0Pl: waabandanziidaanin
+     waabandan+VTI+Imp+Sim+2Sg+0Sg/0Pl: waabandan
+     waabandan+VTI+Imp+Sim+2Pl+0Sg/0Pl: [waabandamog,waabandamok]
+     waabandan+VTI+Imp+Sim+Incl+0Sg: waabandandaa
+     waabandan+VTI+Imp+Sim+Incl+0Pl: waabandandaanin
      waabandan+VTI+Cnj+Pos+Neu+1Sg+0Sg/0Pl: waabandamaan
      waabandan+VTI+Cnj+Pos+Neu+2Pl+0Sg/0Pl: waabandameg
      waabandan+VTI+Cnj+Pos+Neu+2Sg+0Sg/0Pl: waabandaman

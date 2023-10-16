@@ -28,5 +28,5 @@ Tests:
      waabandiwag+VAI+Ind+Pos+Neu+3PlObv+3PlObv: waabandiwa'
      waabandiwag+VAI+Ind+Pos+Neu+Excl+Excl: niwaabandimin
      waabandiwag+VAI+Ind+Pos+Neu+Incl+Incl: giwaabandimin
-     waabandiwag+VAI+Imp+NA+Sim+Incl+Incl: waabandidaa
-     waabandiwag+VAI+Imp+NA+Del+Incl+Incl: waabandisiidaa
+     waabandiwag+VAI+Imp+Sim+Incl+Incl: waabandidaa
+     waabandiwag+VAI+Imp+Del+Incl+Incl: waabandisiidaa
