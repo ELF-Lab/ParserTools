@@ -110,8 +110,8 @@ Tests:
      wanitoon+VTI+Ind+Pos+Neu+Excl+0Sg: niwanitoomin
      wanitoon+VTI+Ind+Pos+Neu+Incl+0Pl: giwanitoomin
      wanitoon+VTI+Ind+Pos+Neu+Incl+0Sg: giwanitoomin
-     wanitoon+VTI+Ind+Pos+Neu+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+Neu+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Pos+Neu+X+0Pl: []
+     wanitoon+VTI+Ind+Pos+Neu+X+0Sg: []
      wanitoon+VTI+Ind+Neg+Neu+1Sg+0Pl: niwanitoosiinan
      wanitoon+VTI+Ind+Neg+Neu+1Sg+0Sg: niwanitoosiinan
      wanitoon+VTI+Ind+Neg+Neu+2Pl+0Pl: giwanitoosiinaawaan
@@ -128,8 +128,8 @@ Tests:
      wanitoon+VTI+Ind+Neg+Neu+Excl+0Sg: niwanitoosiimin
      wanitoon+VTI+Ind+Neg+Neu+Incl+0Pl: giwanitoosiimin
      wanitoon+VTI+Ind+Neg+Neu+Incl+0Sg: giwanitoosiimin
-     wanitoon+VTI+Ind+Neg+Neu+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+Neu+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Neg+Neu+X+0Pl: []
+     wanitoon+VTI+Ind+Neg+Neu+X+0Sg: []
      wanitoon+VTI+Ind+Pos+Prt+1Sg+0Pl: [niwanitoonaabaniin,niwanitoonaabanen]
      wanitoon+VTI+Ind+Pos+Prt+1Sg+0Sg: niwanitoonaaban
      wanitoon+VTI+Ind+Pos+Prt+2Pl+0Pl: [giwanitoonaawaabaniin,giwanitoonaawaabanen]
@@ -146,8 +146,8 @@ Tests:
      wanitoon+VTI+Ind+Pos+Prt+Excl+0Sg: niwanitoominaaban
      wanitoon+VTI+Ind+Pos+Prt+Incl+0Pl: [giwanitoominaabaniin,giwanitoominaabanen]
      wanitoon+VTI+Ind+Pos+Prt+Incl+0Sg: giwanitoominaaban
-     wanitoon+VTI+Ind+Pos+Prt+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+Prt+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Pos+Prt+X+0Pl: []
+     wanitoon+VTI+Ind+Pos+Prt+X+0Sg: []
      wanitoon+VTI+Ind+Neg+Prt+1Sg+0Pl: [niwanitoosiinaabaniin,niwanitoosiinaabanen]
      wanitoon+VTI+Ind+Neg+Prt+1Sg+0Sg: niwanitoosiinaaban
      wanitoon+VTI+Ind+Neg+Prt+2Pl+0Pl: [giwanitoosiinaawaabaniin,giwanitoosiinaawaabanen]
@@ -164,8 +164,8 @@ Tests:
      wanitoon+VTI+Ind+Neg+Prt+Excl+0Sg: niwanitoosiiminaaban
      wanitoon+VTI+Ind+Neg+Prt+Incl+0Pl: [giwanitoosiiminaabaniin,giwanitoosiiminaabanen]
      wanitoon+VTI+Ind+Neg+Prt+Incl+0Sg: giwanitoosiiminaaban
-     wanitoon+VTI+Ind+Neg+Prt+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+Prt+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Neg+Prt+X+0Pl: []
+     wanitoon+VTI+Ind+Neg+Prt+X+0Sg: []
      wanitoon+VTI+Ind+Pos+Dub+1Sg+0Pl: niwanitoonaadogenan
      wanitoon+VTI+Ind+Pos+Dub+1Sg+0Sg: niwanitoonaadog
      wanitoon+VTI+Ind+Pos+Dub+2Pl+0Pl: giwanitoonaawaadogenan
@@ -182,8 +182,8 @@ Tests:
      wanitoon+VTI+Ind+Pos+Dub+Excl+0Sg: niwanitoominaadog
      wanitoon+VTI+Ind+Pos+Dub+Incl+0Pl: giwanitoominaadogenan
      wanitoon+VTI+Ind+Pos+Dub+Incl+0Sg: giwanitoominaadog
-     wanitoon+VTI+Ind+Pos+Dub+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+Dub+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Pos+Dub+X+0Pl: []
+     wanitoon+VTI+Ind+Pos+Dub+X+0Sg: []
      wanitoon+VTI+Ind+Neg+Dub+1Sg+0Pl: niwanitoosiinaadogenan
      wanitoon+VTI+Ind+Neg+Dub+1Sg+0Sg: niwanitoosiinaadog
      wanitoon+VTI+Ind+Neg+Dub+2Pl+0Pl: giwanitoosiinaawaadogenan
@@ -200,41 +200,41 @@ Tests:
      wanitoon+VTI+Ind+Neg+Dub+Excl+0Sg: niwanitoosiiminaadog
      wanitoon+VTI+Ind+Neg+Dub+Incl+0Pl: giwanitoosiiminaadogenan
      wanitoon+VTI+Ind+Neg+Dub+Incl+0Sg: giwanitoosiiminaadog
-     wanitoon+VTI+Ind+Neg+Dub+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+Dub+X+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+1Sg+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+1Sg+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+2Pl+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+2Pl+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+2Sg+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+2Sg+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+Excl+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+Excl+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+Incl+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+Incl+0Sg: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Pos+DubPrt+X+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+1Sg+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+1Sg+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+2Pl+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+2Pl+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+2Sg+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+2Sg+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+Excl+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+Excl+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+Incl+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+Incl+0Sg: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+X+0Pl: MISSING
-     wanitoon+VTI+Ind+Neg+DubPrt+X+0Sg: MISSING
+     wanitoon+VTI+Ind+Neg+Dub+X+0Pl: []
+     wanitoon+VTI+Ind+Neg+Dub+X+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+1Sg+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+1Sg+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+2Pl+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+2Pl+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+2Sg+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+2Sg+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+Excl+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+Excl+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+Incl+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+Incl+0Sg: []
+     wanitoon+VTI+Ind+Pos+DubPrt+X+0Pl: []
+     wanitoon+VTI+Ind+Pos+DubPrt+X+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+1Sg+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+1Sg+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+2Pl+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+2Pl+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+2Sg+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+2Sg+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+Excl+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+Excl+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+Incl+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+Incl+0Sg: []
+     wanitoon+VTI+Ind+Neg+DubPrt+X+0Pl: []
+     wanitoon+VTI+Ind+Neg+DubPrt+X+0Sg: []

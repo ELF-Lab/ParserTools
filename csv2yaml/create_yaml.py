@@ -57,17 +57,37 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
         if row["Class"] not in yaml_dict:
             yaml_dict[row["Class"]] = []
 
+        # An analysis can have 0, 1, or multiple forms, because some forms are missing
+        # We want to output
+        #   - "[]" for 0 forms
+        #   - "form" for 1 form
+        #   - "[form1, form2, ...]" for multiple forms
+
+        # Grab the first form
+        forms = []
         if 'Form1Surface' in row.keys():
-            forms = f"{row['Form1Surface']}"
+            forms.append(row['Form1Surface'])
         else:
-            forms = f"{row['Form1']}"
+            forms.append(row['Form1'])
 
         # Check if there is a second form, and add it to the form list if so
         if 'Form2Surface' in row.keys() and (row["Form2Surface"]):
-            forms = f"[{forms},{row['Form2Surface']}]"
+            forms.append(row['Form2Surface'])
+
+        # Remove missing forms
+        if "MISSING" in forms:
+            forms.remove("MISSING")
+
+        # Determine how to print the forms
+        if len(forms) == 0:
+            forms_output = "[]"
+        elif len(forms) == 1:
+            forms_output = forms[0]
+        else:
+            forms_output = "[" + ",".join(forms) + "]"
 
         # Add this row to the dictionary appropriately.
-        yaml_dict[row["Class"]].append(("     "+analysis(row), forms))
+        yaml_dict[row["Class"]].append(("     "+analysis(row), forms_output))
 
     # For each stem in the dictionary, write it to its own yaml file.
     for key, value in yaml_dict.items():

@@ -100,8 +100,8 @@ Tests:
      adaawen+VAIO+Ind+Neg+Dub+2Pl+0Pl: gidadaawesiinaawaadogenan
      adaawen+VAIO+Ind+Neg+Dub+2Sg+0Sg: gidadaawesiinaadog
      adaawen+VAIO+Ind+Neg+Dub+2Sg+0Pl: gidadaawesiinaadogenan
-     adaawen+VAIO+Ind+Neg+Dub+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Dub+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Dub+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Neg+Dub+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Neg+Dub+3PlProx+0Sg: odadaawesiinaawaadog
      adaawen+VAIO+Ind+Neg+Dub+3PlProx+0Pl: odadaawesiinaawaadogenan
      adaawen+VAIO+Ind+Neg+Dub+3SgObv+0Sg: odadaawesiininaadog
@@ -112,16 +112,16 @@ Tests:
      adaawen+VAIO+Ind+Neg+Dub+Excl+0Pl: indadaawesiiminaadogenan
      adaawen+VAIO+Ind+Neg+Dub+Incl+0Sg: gidadaawesiiminaadog
      adaawen+VAIO+Ind+Neg+Dub+Incl+0Pl: gidadaawesiiminaadogenan
-     adaawen+VAIO+Ind+Neg+Dub+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Dub+X+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Dub+X+0Sg: []
+     adaawen+VAIO+Ind+Neg+Dub+X+0Pl: []
      adaawen+VAIO+Ind+Pos+Dub+1Sg+0Sg: indadaawenaadog
      adaawen+VAIO+Ind+Pos+Dub+1Sg+0Pl: indadaawenaadogenan
      adaawen+VAIO+Ind+Pos+Dub+2Pl+0Sg: gidadaawenaawaadog
      adaawen+VAIO+Ind+Pos+Dub+2Pl+0Pl: gidwadaawenaawaadogenan
      adaawen+VAIO+Ind+Pos+Dub+2Sg+0Sg: gidadaawenaadog
      adaawen+VAIO+Ind+Pos+Dub+2Sg+0Pl: gidadaawenaadogenan
-     adaawen+VAIO+Ind+Pos+Dub+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Dub+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Dub+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Pos+Dub+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Pos+Dub+3PlProx+0Sg: odadaawenaawaadog
      adaawen+VAIO+Ind+Pos+Dub+3PlProx+0Pl: odadaawenaawaadogenan
      adaawen+VAIO+Ind+Pos+Dub+3SgObv+0Sg: odadaaweninaadog
@@ -132,36 +132,36 @@ Tests:
      adaawen+VAIO+Ind+Pos+Dub+Excl+0Pl: indadaaweminaadogenan
      adaawen+VAIO+Ind+Pos+Dub+Incl+0Sg: gidadaaweminaadog
      adaawen+VAIO+Ind+Pos+Dub+Incl+0Pl: gidadaaweminaadogenan
-     adaawen+VAIO+Ind+Pos+Dub+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Dub+X+0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+1Sg+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+2Pl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+2Sg+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+3PlObv+0Sg/0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Dub+X+0Sg: []
+     adaawen+VAIO+Ind+Pos+Dub+X+0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+1Sg+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+2Pl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+2Sg+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+3PlObv+0Sg/0Pl: []
      adaawen+VAIO+Ind+Neg+DubPrt+3PlProx+0Sg/0Pl: adaawesiigwaaban
      adaawen+VAIO+Ind+Neg+DubPrt+3SgObv+0Sg/0Pl: adaawesiinigoban
      adaawen+VAIO+Ind+Neg+DubPrt+3SgProx+0Sg/0Pl: adaawesiigoban
-     adaawen+VAIO+Ind+Neg+DubPrt+Excl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+Incl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Neg+DubPrt+X+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+1Sg+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+2Pl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+2Sg+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+3PlObv+0Sg/0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+DubPrt+Excl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+Incl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Neg+DubPrt+X+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+1Sg+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+2Pl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+2Sg+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+3PlObv+0Sg/0Pl: []
      adaawen+VAIO+Ind+Pos+DubPrt+3PlProx+0Sg/0Pl: adaawegwaaban
      adaawen+VAIO+Ind+Pos+DubPrt+3SgObv+0Sg/0Pl: adaawenigoban
      adaawen+VAIO+Ind+Pos+DubPrt+3SgProx+0Sg/0Pl: adaawegoban
-     adaawen+VAIO+Ind+Pos+DubPrt+Excl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+Incl+0Sg/0Pl: MISSING
-     adaawen+VAIO+Ind+Pos+DubPrt+X+0Sg/0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+DubPrt+Excl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+Incl+0Sg/0Pl: []
+     adaawen+VAIO+Ind+Pos+DubPrt+X+0Sg/0Pl: []
      adaawen+VAIO+Ind+Neg+Neu+1Sg+0Sg: indadaawesiin
      adaawen+VAIO+Ind+Neg+Neu+1Sg+0Pl: indadaawesiinan
      adaawen+VAIO+Ind+Neg+Neu+2Pl+0Sg: gidadaawesiinaawaa
      adaawen+VAIO+Ind+Neg+Neu+2Pl+0Pl: gidadaawesiinaawaan
      adaawen+VAIO+Ind+Neg+Neu+2Sg+0Sg: gidadaawesiin
      adaawen+VAIO+Ind+Neg+Neu+2Sg+0Pl: gidadaawesiinan
-     adaawen+VAIO+Ind+Neg+Neu+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Neu+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Neu+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Neg+Neu+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Neg+Neu+3PlProx+0Sg: odadaawesiinaawaa
      adaawen+VAIO+Ind+Neg+Neu+3PlProx+0Pl: odadaawesiinaawaan
      adaawen+VAIO+Ind+Neg+Neu+3SgObv+0Sg: [odadaawesiinini,odadaawesiini]
@@ -172,16 +172,16 @@ Tests:
      adaawen+VAIO+Ind+Neg+Neu+Excl+0Pl: indadaawesiimin
      adaawen+VAIO+Ind+Neg+Neu+Incl+0Sg: gidadaawesiimin
      adaawen+VAIO+Ind+Neg+Neu+Incl+0Pl: gidadaawesiimin
-     adaawen+VAIO+Ind+Neg+Neu+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Neu+X+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Neu+X+0Sg: []
+     adaawen+VAIO+Ind+Neg+Neu+X+0Pl: []
      adaawen+VAIO+Ind+Pos+Neu+1Sg+0Sg: indadaawen
      adaawen+VAIO+Ind+Pos+Neu+1Sg+0Pl: indadaawenan
      adaawen+VAIO+Ind+Pos+Neu+2Pl+0Sg: gidadaawenaawaa
      adaawen+VAIO+Ind+Pos+Neu+2Pl+0Pl: gidadaawenaawaan
      adaawen+VAIO+Ind+Pos+Neu+2Sg+0Sg: gidadaawen
      adaawen+VAIO+Ind+Pos+Neu+2Sg+0Pl: gidadaawenan
-     adaawen+VAIO+Ind+Pos+Neu+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Neu+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Neu+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Pos+Neu+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Pos+Neu+3PlProx+0Sg: odadaawenaawaa
      adaawen+VAIO+Ind+Pos+Neu+3PlProx+0Pl: odadaawenaawaan
      adaawen+VAIO+Ind+Pos+Neu+3SgObv+0Sg: [odadaawenini,odadaaweni]
@@ -192,16 +192,16 @@ Tests:
      adaawen+VAIO+Ind+Pos+Neu+Excl+0Pl: indadaawemin
      adaawen+VAIO+Ind+Pos+Neu+Incl+0Sg: gidadaawemin
      adaawen+VAIO+Ind+Pos+Neu+Incl+0Pl: gidadaawemin
-     adaawen+VAIO+Ind+Pos+Neu+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Neu+X+0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Neu+X+0Sg: []
+     adaawen+VAIO+Ind+Pos+Neu+X+0Pl: []
      adaawen+VAIO+Ind+Neg+Prt+1Sg+0Sg: indadaawesiinaaban
      adaawen+VAIO+Ind+Neg+Prt+1Sg+0Pl: [indadaawesiinaabaniin,indadaawesiinaabanen]
      adaawen+VAIO+Ind+Neg+Prt+2Pl+0Sg: gidadaawesiinaawaaban
      adaawen+VAIO+Ind+Neg+Prt+2Pl+0Pl: [gidadaawesiinaawaabaniin,gidadaawesiinaawaabanen]
      adaawen+VAIO+Ind+Neg+Prt+2Sg+0Sg: gidadaawesiinaaban
      adaawen+VAIO+Ind+Neg+Prt+2Sg+0Pl: [gidadaawesiinaabaniin,gidadaawesiinaabanen]
-     adaawen+VAIO+Ind+Neg+Prt+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Prt+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Prt+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Neg+Prt+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Neg+Prt+3PlProx+0Sg: odadaawesiinaawaaban
      adaawen+VAIO+Ind+Neg+Prt+3PlProx+0Pl: [odadaawesiinaawaabaniin,odadaawesiinaawaabanen]
      adaawen+VAIO+Ind+Neg+Prt+3SgObv+0Sg: odadaawesiininaaban
@@ -212,16 +212,16 @@ Tests:
      adaawen+VAIO+Ind+Neg+Prt+Excl+0Pl: [indadaawesiiminaabaniin,indadaawesiiminaabanien]
      adaawen+VAIO+Ind+Neg+Prt+Incl+0Sg: gidadaawesiiminaaban
      adaawen+VAIO+Ind+Neg+Prt+Incl+0Pl: [gidadaawesiiminaabaniin,gidadaawesiiminaabanen]
-     adaawen+VAIO+Ind+Neg+Prt+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Neg+Prt+X+0Pl: MISSING
+     adaawen+VAIO+Ind+Neg+Prt+X+0Sg: []
+     adaawen+VAIO+Ind+Neg+Prt+X+0Pl: []
      adaawen+VAIO+Ind+Pos+Prt+1Sg+0Sg: indadaawenaaban
      adaawen+VAIO+Ind+Pos+Prt+1Sg+0Pl: [indadaawenaabaniin,indadaawenaabanen]
      adaawen+VAIO+Ind+Pos+Prt+2Pl+0Sg: gidadaawenaawaaban
      adaawen+VAIO+Ind+Pos+Prt+2Pl+0Pl: [gidadaawenaawaabaniin,gidadaawenaawaabanen]
      adaawen+VAIO+Ind+Pos+Prt+2Sg+0Sg: gidadaawenaaban
      adaawen+VAIO+Ind+Pos+Prt+2Sg+0Pl: [gidadaawenaabaniin,gidadaawenaabanen]
-     adaawen+VAIO+Ind+Pos+Prt+3PlObv+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Prt+3PlObv+0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Prt+3PlObv+0Sg: []
+     adaawen+VAIO+Ind+Pos+Prt+3PlObv+0Pl: []
      adaawen+VAIO+Ind+Pos+Prt+3PlProx+0Sg: odadaawenaawaaban
      adaawen+VAIO+Ind+Pos+Prt+3PlProx+0Pl: [odadaawenaawaabaniin,odadaawenaawaabanen]
      adaawen+VAIO+Ind+Pos+Prt+3SgObv+0Sg: odadaaweninaaban
@@ -232,5 +232,5 @@ Tests:
      adaawen+VAIO+Ind+Pos+Prt+Excl+0Pl: [indadaaweminaabaniin,indadaaweminaabanen]
      adaawen+VAIO+Ind+Pos+Prt+Incl+0Sg: gidadaaweminaaban
      adaawen+VAIO+Ind+Pos+Prt+Incl+0Pl: [gidadaaweminaabaniin,gidadaaweminaabanen]
-     adaawen+VAIO+Ind+Pos+Prt+X+0Sg: MISSING
-     adaawen+VAIO+Ind+Pos+Prt+X+0Pl: MISSING
+     adaawen+VAIO+Ind+Pos+Prt+X+0Sg: []
+     adaawen+VAIO+Ind+Pos+Prt+X+0Pl: []

@@ -80,26 +80,26 @@ Tests:
      wanishin+VAI+Ind+Neg+Dub+Excl: niwanishinziiminaadog
      wanishin+VAI+Ind+Neg+Dub+Incl: giwanishinziiminaadog
      wanishin+VAI+Ind+Neg+Dub+X: wanishinziimwaadog
-     wanishin+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     wanishin+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     wanishin+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     wanishin+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     wanishin+VAI+Ind+Pos+DubPrt+1Sg: []
+     wanishin+VAI+Ind+Pos+DubPrt+2Pl: []
+     wanishin+VAI+Ind+Pos+DubPrt+2Sg: []
+     wanishin+VAI+Ind+Pos+DubPrt+3PlObv: []
      wanishin+VAI+Ind+Pos+DubPrt+3PlProx: wanishinogwaaban
      wanishin+VAI+Ind+Pos+DubPrt+3SgObv: wanishininigoban
      wanishin+VAI+Ind+Pos+DubPrt+3SgProx: wanishinogoban
-     wanishin+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     wanishin+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     wanishin+VAI+Ind+Pos+DubPrt+X: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     wanishin+VAI+Ind+Pos+DubPrt+Excl: []
+     wanishin+VAI+Ind+Pos+DubPrt+Incl: []
+     wanishin+VAI+Ind+Pos+DubPrt+X: []
+     wanishin+VAI+Ind+Neg+DubPrt+1Sg: []
+     wanishin+VAI+Ind+Neg+DubPrt+2Pl: []
+     wanishin+VAI+Ind+Neg+DubPrt+2Sg: []
+     wanishin+VAI+Ind+Neg+DubPrt+3PlObv: []
      wanishin+VAI+Ind+Neg+DubPrt+3PlProx: wanishinziigwaaban
      wanishin+VAI+Ind+Neg+DubPrt+3SgObv: wanishinziinigoban
      wanishin+VAI+Ind+Neg+DubPrt+3SgProx: wanishinziigoban
-     wanishin+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     wanishin+VAI+Ind+Neg+DubPrt+X: MISSING
+     wanishin+VAI+Ind+Neg+DubPrt+Excl: []
+     wanishin+VAI+Ind+Neg+DubPrt+Incl: []
+     wanishin+VAI+Ind+Neg+DubPrt+X: []
      wanishin+VAI+Cnj+Pos+Neu+1Sg: wanishinaan
      wanishin+VAI+Cnj+Pos+Neu+2Pl: wanishineg
      wanishin+VAI+Cnj+Pos+Neu+2Sg: wanishinan

@@ -39,7 +39,7 @@ Tests:
      waabandan+VTI+Cnj+Neg+Neu+3SgProx+0Sg/0Pl: waabandanzig
      waabandan+VTI+Cnj+Neg+Neu+Excl+0Sg/0Pl: waabandanziwaang
      waabandan+VTI+Cnj+Neg+Neu+Incl+0Sg/0Pl: waabandanziwang
-     waabandan+VTI+Cnj+Neg+Neu+X+0Sg/0Pl: [MISSING,waabandanzing]
+     waabandan+VTI+Cnj+Neg+Neu+X+0Sg/0Pl: waabandanzing
      waabandan+VTI+Cnj+Pos+Prt+1Sg+0Sg/0Pl: waabandamaambaan
      waabandan+VTI+Cnj+Pos+Prt+2Pl+0Sg/0Pl: [waabandamegiban,waabandamegoban]
      waabandan+VTI+Cnj+Pos+Prt+2Sg+0Sg/0Pl: waabandamamban
@@ -110,8 +110,8 @@ Tests:
      waabandan+VTI+Ind+Pos+Neu+Excl+0Sg: niwaabandaamin
      waabandan+VTI+Ind+Pos+Neu+Incl+0Pl: giwaabandaamin
      waabandan+VTI+Ind+Pos+Neu+Incl+0Sg: giwaabandaamin
-     waabandan+VTI+Ind+Pos+Neu+X+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+Neu+X+0Sg: MISSING
+     waabandan+VTI+Ind+Pos+Neu+X+0Pl: []
+     waabandan+VTI+Ind+Pos+Neu+X+0Sg: []
      waabandan+VTI+Ind+Neg+Neu+1Sg+0Pl: niwaabandanziinan
      waabandan+VTI+Ind+Neg+Neu+1Sg+0Sg: niwaabandanziin
      waabandan+VTI+Ind+Neg+Neu+2Pl+0Pl: giwaabandanziinaawaan
@@ -128,8 +128,8 @@ Tests:
      waabandan+VTI+Ind+Neg+Neu+Excl+0Sg: niwaabandanziimin
      waabandan+VTI+Ind+Neg+Neu+Incl+0Pl: giwaabandanziimin
      waabandan+VTI+Ind+Neg+Neu+Incl+0Sg: giwaabandanziimin
-     waabandan+VTI+Ind+Neg+Neu+X+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+Neu+X+0Sg: MISSING
+     waabandan+VTI+Ind+Neg+Neu+X+0Pl: []
+     waabandan+VTI+Ind+Neg+Neu+X+0Sg: []
      waabandan+VTI+Ind+Pos+Prt+1Sg+0Pl: [niwaabandaanaabaniin,niwaabandaanaabanen]
      waabandan+VTI+Ind+Pos+Prt+1Sg+0Sg: niwaabandaanaaban
      waabandan+VTI+Ind+Pos+Prt+2Pl+0Pl: [giwaabandaanaawaabaniin,giwaabandaanaawaabanen]
@@ -146,8 +146,8 @@ Tests:
      waabandan+VTI+Ind+Pos+Prt+Excl+0Sg: niwaabandaaminaaban
      waabandan+VTI+Ind+Pos+Prt+Incl+0Pl: [giwaabandaaminaabaniin,giwaabandaaminaabanen]
      waabandan+VTI+Ind+Pos+Prt+Incl+0Sg: giwaabandaaminaaban
-     waabandan+VTI+Ind+Pos+Prt+X+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+Prt+X+0Sg: MISSING
+     waabandan+VTI+Ind+Pos+Prt+X+0Pl: []
+     waabandan+VTI+Ind+Pos+Prt+X+0Sg: []
      waabandan+VTI+Ind+Neg+Prt+1Sg+0Pl: [niwaabandanziinaabaniin,niwaabandanziinaabanen]
      waabandan+VTI+Ind+Neg+Prt+1Sg+0Sg: niwaabandanziinaaban
      waabandan+VTI+Ind+Neg+Prt+2Pl+0Pl: [giwaabandanziinaawaabaniin,giwaabandanziinaawaabanen]
@@ -164,8 +164,8 @@ Tests:
      waabandan+VTI+Ind+Neg+Prt+Excl+0Sg: niwaabandanziiminaaban
      waabandan+VTI+Ind+Neg+Prt+Incl+0Pl: [giwaabandanziiminaabaniin,giwaabandanziiminaabanen]
      waabandan+VTI+Ind+Neg+Prt+Incl+0Sg: giwaabandanziiminaaban
-     waabandan+VTI+Ind+Neg+Prt+X+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+Prt+X+0Sg: MISSING
+     waabandan+VTI+Ind+Neg+Prt+X+0Pl: []
+     waabandan+VTI+Ind+Neg+Prt+X+0Sg: []
      waabandan+VTI+Ind+Pos+Dub+1Sg+0Pl: niwaabandaanaadogenan
      waabandan+VTI+Ind+Pos+Dub+1Sg+0Sg: niwaabandaanaadog
      waabandan+VTI+Ind+Pos+Dub+2Pl+0Pl: giwaabandaanaawaadogenan
@@ -182,8 +182,8 @@ Tests:
      waabandan+VTI+Ind+Pos+Dub+Excl+0Sg: niwaabandaaminaadog
      waabandan+VTI+Ind+Pos+Dub+Incl+0Pl: giwaabandaaminaadogenan
      waabandan+VTI+Ind+Pos+Dub+Incl+0Sg: giwaabandaaminaadog
-     waabandan+VTI+Ind+Pos+Dub+X+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+Dub+X+0Sg: MISSING
+     waabandan+VTI+Ind+Pos+Dub+X+0Pl: []
+     waabandan+VTI+Ind+Pos+Dub+X+0Sg: []
      waabandan+VTI+Ind+Neg+Dub+1Sg+0Pl: niwaabandanziinaadogenan
      waabandan+VTI+Ind+Neg+Dub+1Sg+0Sg: niwaabandanziinaadog
      waabandan+VTI+Ind+Neg+Dub+2Pl+0Pl: giwaabandanziinaawaadogenan
@@ -200,41 +200,41 @@ Tests:
      waabandan+VTI+Ind+Neg+Dub+Excl+0Sg: niwaabandanziiminaadog
      waabandan+VTI+Ind+Neg+Dub+Incl+0Pl: giwaabandanziiminaadogenan
      waabandan+VTI+Ind+Neg+Dub+Incl+0Sg: giwaabandanziiminaadog
-     waabandan+VTI+Ind+Neg+Dub+X+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+Dub+X+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+1Sg+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+1Sg+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+2Pl+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+2Pl+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+2Sg+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+2Sg+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+Excl+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+Excl+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+Incl+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+Incl+0Sg: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+X+0Pl: MISSING
-     waabandan+VTI+Ind+Pos+DubPrt+X+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+1Sg+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+1Sg+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+2Pl+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+2Pl+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+2Sg+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+2Sg+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+Excl+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+Excl+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+Incl+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+Incl+0Sg: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+X+0Pl: MISSING
-     waabandan+VTI+Ind+Neg+DubPrt+X+0Sg: MISSING
+     waabandan+VTI+Ind+Neg+Dub+X+0Pl: []
+     waabandan+VTI+Ind+Neg+Dub+X+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+1Sg+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+1Sg+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+2Pl+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+2Pl+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+2Sg+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+2Sg+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+Excl+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+Excl+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+Incl+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+Incl+0Sg: []
+     waabandan+VTI+Ind+Pos+DubPrt+X+0Pl: []
+     waabandan+VTI+Ind+Pos+DubPrt+X+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+1Sg+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+1Sg+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+2Pl+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+2Pl+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+2Sg+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+2Sg+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+Excl+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+Excl+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+Incl+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+Incl+0Sg: []
+     waabandan+VTI+Ind+Neg+DubPrt+X+0Pl: []
+     waabandan+VTI+Ind+Neg+DubPrt+X+0Sg: []

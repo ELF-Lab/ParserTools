@@ -80,26 +80,26 @@ Tests:
      zaaga'am+VAI+Ind+Neg+Dub+Excl: nizaaga'anziiminaadog
      zaaga'am+VAI+Ind+Neg+Dub+Incl: gizaaga'anziiminaadog
      zaaga'am+VAI+Ind+Neg+Dub+X: zaaga'anziimwaadog
-     zaaga'am+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     zaaga'am+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     zaaga'am+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     zaaga'am+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     zaaga'am+VAI+Ind+Pos+DubPrt+1Sg: []
+     zaaga'am+VAI+Ind+Pos+DubPrt+2Pl: []
+     zaaga'am+VAI+Ind+Pos+DubPrt+2Sg: []
+     zaaga'am+VAI+Ind+Pos+DubPrt+3PlObv: []
      zaaga'am+VAI+Ind+Pos+DubPrt+3PlProx: zaaga'amogwaaban
      zaaga'am+VAI+Ind+Pos+DubPrt+3SgObv: zaaga'aminigoban
      zaaga'am+VAI+Ind+Pos+DubPrt+3SgProx: zaaga'amogoban
-     zaaga'am+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     zaaga'am+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     zaaga'am+VAI+Ind+Pos+DubPrt+X: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     zaaga'am+VAI+Ind+Pos+DubPrt+Excl: []
+     zaaga'am+VAI+Ind+Pos+DubPrt+Incl: []
+     zaaga'am+VAI+Ind+Pos+DubPrt+X: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+1Sg: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+2Pl: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+2Sg: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+3PlObv: []
      zaaga'am+VAI+Ind+Neg+DubPrt+3PlProx: zaaga'anziigwaaban
      zaaga'am+VAI+Ind+Neg+DubPrt+3SgObv: zaaga'anziinigoban
      zaaga'am+VAI+Ind+Neg+DubPrt+3SgProx: zaaga'anziigoban
-     zaaga'am+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     zaaga'am+VAI+Ind+Neg+DubPrt+X: MISSING
+     zaaga'am+VAI+Ind+Neg+DubPrt+Excl: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+Incl: []
+     zaaga'am+VAI+Ind+Neg+DubPrt+X: []
      zaaga'am+VAI+Cnj+Pos+Neu+1Sg: zaaga'amaan
      zaaga'am+VAI+Cnj+Pos+Neu+2Pl: zaaga'ameg
      zaaga'am+VAI+Cnj+Pos+Neu+2Sg: zaaga'aman

@@ -89,26 +89,26 @@ Tests:
      nagamo+VAI+Ind+Neg+Dub+Excl: ninagamosiiminaadog
      nagamo+VAI+Ind+Neg+Dub+Incl: ginagamosiiminaadog
      nagamo+VAI+Ind+Neg+Dub+X: nagamosiimwaadog
-     nagamo+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     nagamo+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     nagamo+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     nagamo+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     nagamo+VAI+Ind+Pos+DubPrt+1Sg: []
+     nagamo+VAI+Ind+Pos+DubPrt+2Pl: []
+     nagamo+VAI+Ind+Pos+DubPrt+2Sg: []
+     nagamo+VAI+Ind+Pos+DubPrt+3PlObv: []
      nagamo+VAI+Ind+Pos+DubPrt+3PlProx: nagamogwaaban
      nagamo+VAI+Ind+Pos+DubPrt+3SgObv: nagamonigoban
      nagamo+VAI+Ind+Pos+DubPrt+3SgProx: nagamogoban
-     nagamo+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     nagamo+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     nagamo+VAI+Ind+Pos+DubPrt+X: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     nagamo+VAI+Ind+Pos+DubPrt+Excl: []
+     nagamo+VAI+Ind+Pos+DubPrt+Incl: []
+     nagamo+VAI+Ind+Pos+DubPrt+X: []
+     nagamo+VAI+Ind+Neg+DubPrt+1Sg: []
+     nagamo+VAI+Ind+Neg+DubPrt+2Pl: []
+     nagamo+VAI+Ind+Neg+DubPrt+2Sg: []
+     nagamo+VAI+Ind+Neg+DubPrt+3PlObv: []
      nagamo+VAI+Ind+Neg+DubPrt+3PlProx: nagamosiigwaaban
      nagamo+VAI+Ind+Neg+DubPrt+3SgObv: nagamosiinigoban
      nagamo+VAI+Ind+Neg+DubPrt+3SgProx: nagamosiigoban
-     nagamo+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     nagamo+VAI+Ind+Neg+DubPrt+X: MISSING
+     nagamo+VAI+Ind+Neg+DubPrt+Excl: []
+     nagamo+VAI+Ind+Neg+DubPrt+Incl: []
+     nagamo+VAI+Ind+Neg+DubPrt+X: []
      niimi+VAI+Ind+Pos+Neu+1Sg: niniim
      niimi+VAI+Ind+Pos+Neu+2Pl: giniimim
      niimi+VAI+Ind+Pos+Neu+2Sg: giniim
@@ -169,26 +169,26 @@ Tests:
      niimi+VAI+Ind+Neg+Dub+Excl: niniimisiiminaadog
      niimi+VAI+Ind+Neg+Dub+Incl: giniimisiiminaadog
      niimi+VAI+Ind+Neg+Dub+X: niimisiimwaadog
-     niimi+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     niimi+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     niimi+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     niimi+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     niimi+VAI+Ind+Pos+DubPrt+1Sg: []
+     niimi+VAI+Ind+Pos+DubPrt+2Pl: []
+     niimi+VAI+Ind+Pos+DubPrt+2Sg: []
+     niimi+VAI+Ind+Pos+DubPrt+3PlObv: []
      niimi+VAI+Ind+Pos+DubPrt+3PlProx: niimigwaaan
      niimi+VAI+Ind+Pos+DubPrt+3SgObv: niiminigoban
      niimi+VAI+Ind+Pos+DubPrt+3SgProx: niimigoban
-     niimi+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     niimi+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     niimi+VAI+Ind+Pos+DubPrt+X: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     niimi+VAI+Ind+Pos+DubPrt+Excl: []
+     niimi+VAI+Ind+Pos+DubPrt+Incl: []
+     niimi+VAI+Ind+Pos+DubPrt+X: []
+     niimi+VAI+Ind+Neg+DubPrt+1Sg: []
+     niimi+VAI+Ind+Neg+DubPrt+2Pl: []
+     niimi+VAI+Ind+Neg+DubPrt+2Sg: []
+     niimi+VAI+Ind+Neg+DubPrt+3PlObv: []
      niimi+VAI+Ind+Neg+DubPrt+3PlProx: niimisiigwaaban
      niimi+VAI+Ind+Neg+DubPrt+3SgObv: niimisiinigoban
      niimi+VAI+Ind+Neg+DubPrt+3SgProx: niimisiigoban
-     niimi+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     niimi+VAI+Ind+Neg+DubPrt+X: MISSING
+     niimi+VAI+Ind+Neg+DubPrt+Excl: []
+     niimi+VAI+Ind+Neg+DubPrt+Incl: []
+     niimi+VAI+Ind+Neg+DubPrt+X: []
      nagamo+VAI+Cnj+Pos+Neu+1Sg: nagamoyaan
      nagamo+VAI+Cnj+Pos+Neu+2Pl: nagamoyeg
      nagamo+VAI+Cnj+Pos+Neu+2Sg: nagamoyan

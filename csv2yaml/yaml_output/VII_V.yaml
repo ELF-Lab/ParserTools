@@ -11,70 +11,70 @@ Tests:
 
   Lemma - ALL :
 
-     dakaagami+VII+Cnj+Pos+Neu+0SgObv/0PlObv: MISSING
+     dakaagami+VII+Cnj+Pos+Neu+0SgObv/0PlObv: []
      dakaagami+VII+Cnj+Pos+Neu+0SgProx/0PlProx: dakaagamig
-     dakaagami+VII+Cnj+Neg+Neu+0SgObv/0PlObv: MISSING
+     dakaagami+VII+Cnj+Neg+Neu+0SgObv/0PlObv: []
      dakaagami+VII+Cnj+Neg+Neu+0SgProx/0PlProx: dakaagamisinog
-     dakaagami+VII+Cnj+Pos+Prt+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Pos+Prt+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Cnj+Neg+Prt+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Neg+Prt+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Cnj+Pos+Dub+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Pos+Dub+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Cnj+Neg+Dub+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Neg+Dub+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv: MISSING
-     dakaagami+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Pos+Neu+0SgObv/0PlObv: MISSING
+     dakaagami+VII+Cnj+Pos+Prt+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Pos+Prt+0SgProx/0PlProx: []
+     dakaagami+VII+Cnj+Neg+Prt+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Neg+Prt+0SgProx/0PlProx: []
+     dakaagami+VII+Cnj+Pos+Dub+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Pos+Dub+0SgProx/0PlProx: []
+     dakaagami+VII+Cnj+Neg+Dub+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Neg+Dub+0SgProx/0PlProx: []
+     dakaagami+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx: []
+     dakaagami+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv: []
+     dakaagami+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Pos+Neu+0SgObv/0PlObv: []
      inamo+VII+Cnj+Pos+Neu+0SgProx/0PlProx: inamog
-     inamo+VII+Cnj+Neg+Neu+0SgObv/0PlObv: MISSING
+     inamo+VII+Cnj+Neg+Neu+0SgObv/0PlObv: []
      inamo+VII+Cnj+Neg+Neu+0SgProx/0PlProx: inamosinog
-     inamo+VII+Cnj+Pos+Prt+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Pos+Prt+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Neg+Prt+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Neg+Prt+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Pos+Dub+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Pos+Dub+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Neg+Dub+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Neg+Dub+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx: MISSING
-     inamo+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv: MISSING
-     inamo+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx: MISSING
-     dakaagami+VII+Ind+Pos+Neu+0PlObv: MISSING
-     dakaagami+VII+Ind+Pos+Neu+0PlProx: MISSING
+     inamo+VII+Cnj+Pos+Prt+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Pos+Prt+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Neg+Prt+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Neg+Prt+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Pos+Dub+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Pos+Dub+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Neg+Dub+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Neg+Dub+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx: []
+     inamo+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv: []
+     inamo+VII+Cnj+Neg+DubPrt+0SgProx/0PlProx: []
+     dakaagami+VII+Ind+Pos+Neu+0PlObv: []
+     dakaagami+VII+Ind+Pos+Neu+0PlProx: []
      dakaagami+VII+Ind+Pos+Neu+0SgObv: dakaagaminini
      dakaagami+VII+Ind+Pos+Neu+0SgProx: [dakaagami,dakaagamin]
-     dakaagami+VII+Ind+Neg+Neu+0PlObv: MISSING
-     dakaagami+VII+Ind+Neg+Neu+0PlProx: MISSING
+     dakaagami+VII+Ind+Neg+Neu+0PlObv: []
+     dakaagami+VII+Ind+Neg+Neu+0PlProx: []
      dakaagami+VII+Ind+Neg+Neu+0SgObv: dakaagamisinini
      dakaagami+VII+Ind+Neg+Neu+0SgProx: dakaagamisinoon
-     dakaagami+VII+Ind+Pos+Prt+0PlObv: MISSING
-     dakaagami+VII+Ind+Pos+Prt+0PlProx: MISSING
-     dakaagami+VII+Ind+Pos+Prt+0SgObv: MISSING
-     dakaagami+VII+Ind+Pos+Prt+0SgProx: MISSING
-     dakaagami+VII+Ind+Neg+Prt+0PlObv: MISSING
-     dakaagami+VII+Ind+Neg+Prt+0PlProx: MISSING
-     dakaagami+VII+Ind+Neg+Prt+0SgObv: MISSING
-     dakaagami+VII+Ind+Neg+Prt+0SgProx: MISSING
-     dakaagami+VII+Ind+Pos+Dub+0PlObv: MISSING
-     dakaagami+VII+Ind+Pos+Dub+0PlProx: MISSING
-     dakaagami+VII+Ind+Pos+Dub+0SgObv: MISSING
-     dakaagami+VII+Ind+Pos+Dub+0SgProx: MISSING
-     dakaagami+VII+Ind+Neg+Dub+0PlObv: MISSING
-     dakaagami+VII+Ind+Neg+Dub+0PlProx: MISSING
-     dakaagami+VII+Ind+Neg+Dub+0SgObv: MISSING
-     dakaagami+VII+Ind+Neg+Dub+0SgProx: MISSING
-     dakaagami+VII+Ind+Pos+DubPrt+0PlObv: MISSING
-     dakaagami+VII+Ind+Pos+DubPrt+0PlProx: MISSING
-     dakaagami+VII+Ind+Pos+DubPrt+0SgObv: MISSING
-     dakaagami+VII+Ind+Pos+DubPrt+0SgProx: MISSING
-     dakaagami+VII+Ind+Neg+DubPrt+0PlObv: MISSING
-     dakaagami+VII+Ind+Neg+DubPrt+0PlProx: MISSING
-     dakaagami+VII+Ind+Neg+DubPrt+0SgObv: MISSING
-     dakaagami+VII+Ind+Neg+DubPrt+0SgProx: MISSING
+     dakaagami+VII+Ind+Pos+Prt+0PlObv: []
+     dakaagami+VII+Ind+Pos+Prt+0PlProx: []
+     dakaagami+VII+Ind+Pos+Prt+0SgObv: []
+     dakaagami+VII+Ind+Pos+Prt+0SgProx: []
+     dakaagami+VII+Ind+Neg+Prt+0PlObv: []
+     dakaagami+VII+Ind+Neg+Prt+0PlProx: []
+     dakaagami+VII+Ind+Neg+Prt+0SgObv: []
+     dakaagami+VII+Ind+Neg+Prt+0SgProx: []
+     dakaagami+VII+Ind+Pos+Dub+0PlObv: []
+     dakaagami+VII+Ind+Pos+Dub+0PlProx: []
+     dakaagami+VII+Ind+Pos+Dub+0SgObv: []
+     dakaagami+VII+Ind+Pos+Dub+0SgProx: []
+     dakaagami+VII+Ind+Neg+Dub+0PlObv: []
+     dakaagami+VII+Ind+Neg+Dub+0PlProx: []
+     dakaagami+VII+Ind+Neg+Dub+0SgObv: []
+     dakaagami+VII+Ind+Neg+Dub+0SgProx: []
+     dakaagami+VII+Ind+Pos+DubPrt+0PlObv: []
+     dakaagami+VII+Ind+Pos+DubPrt+0PlProx: []
+     dakaagami+VII+Ind+Pos+DubPrt+0SgObv: []
+     dakaagami+VII+Ind+Pos+DubPrt+0SgProx: []
+     dakaagami+VII+Ind+Neg+DubPrt+0PlObv: []
+     dakaagami+VII+Ind+Neg+DubPrt+0PlProx: []
+     dakaagami+VII+Ind+Neg+DubPrt+0SgObv: []
+     dakaagami+VII+Ind+Neg+DubPrt+0SgProx: []
      imo+VII+Ind+Pos+Neu+0PlObv: imoniniwan
      imo+VII+Ind+Pos+Neu+0PlProx: imonoon
      imo+VII+Ind+Pos+Neu+0SgObv: imonini
@@ -83,27 +83,27 @@ Tests:
      imo+VII+Ind+Neg+Neu+0PlProx: imosinoon
      imo+VII+Ind+Neg+Neu+0SgObv: imosinini
      imo+VII+Ind+Neg+Neu+0SgProx: imosinoon
-     imo+VII+Ind+Pos+Prt+0PlObv: MISSING
-     imo+VII+Ind+Pos+Prt+0PlProx: MISSING
-     imo+VII+Ind+Pos+Prt+0SgObv: MISSING
-     imo+VII+Ind+Pos+Prt+0SgProx: MISSING
-     imo+VII+Ind+Neg+Prt+0PlObv: MISSING
-     imo+VII+Ind+Neg+Prt+0PlProx: MISSING
-     imo+VII+Ind+Neg+Prt+0SgObv: MISSING
-     imo+VII+Ind+Neg+Prt+0SgProx: MISSING
-     imo+VII+Ind+Pos+Dub+0PlObv: MISSING
-     imo+VII+Ind+Pos+Dub+0PlProx: MISSING
-     imo+VII+Ind+Pos+Dub+0SgObv: MISSING
-     imo+VII+Ind+Pos+Dub+0SgProx: MISSING
-     imo+VII+Ind+Neg+Dub+0PlObv: MISSING
-     imo+VII+Ind+Neg+Dub+0PlProx: MISSING
-     imo+VII+Ind+Neg+Dub+0SgObv: MISSING
-     imo+VII+Ind+Neg+Dub+0SgProx: MISSING
-     imo+VII+Ind+Pos+DubPrt+0PlObv: MISSING
-     imo+VII+Ind+Pos+DubPrt+0PlProx: MISSING
-     imo+VII+Ind+Pos+DubPrt+0SgObv: MISSING
-     imo+VII+Ind+Pos+DubPrt+0SgProx: MISSING
-     imo+VII+Ind+Neg+DubPrt+0PlObv: MISSING
-     imo+VII+Ind+Neg+DubPrt+0PlProx: MISSING
-     imo+VII+Ind+Neg+DubPrt+0SgObv: MISSING
-     imo+VII+Ind+Neg+DubPrt+0SgProx: MISSING
+     imo+VII+Ind+Pos+Prt+0PlObv: []
+     imo+VII+Ind+Pos+Prt+0PlProx: []
+     imo+VII+Ind+Pos+Prt+0SgObv: []
+     imo+VII+Ind+Pos+Prt+0SgProx: []
+     imo+VII+Ind+Neg+Prt+0PlObv: []
+     imo+VII+Ind+Neg+Prt+0PlProx: []
+     imo+VII+Ind+Neg+Prt+0SgObv: []
+     imo+VII+Ind+Neg+Prt+0SgProx: []
+     imo+VII+Ind+Pos+Dub+0PlObv: []
+     imo+VII+Ind+Pos+Dub+0PlProx: []
+     imo+VII+Ind+Pos+Dub+0SgObv: []
+     imo+VII+Ind+Pos+Dub+0SgProx: []
+     imo+VII+Ind+Neg+Dub+0PlObv: []
+     imo+VII+Ind+Neg+Dub+0PlProx: []
+     imo+VII+Ind+Neg+Dub+0SgObv: []
+     imo+VII+Ind+Neg+Dub+0SgProx: []
+     imo+VII+Ind+Pos+DubPrt+0PlObv: []
+     imo+VII+Ind+Pos+DubPrt+0PlProx: []
+     imo+VII+Ind+Pos+DubPrt+0SgObv: []
+     imo+VII+Ind+Pos+DubPrt+0SgProx: []
+     imo+VII+Ind+Neg+DubPrt+0PlObv: []
+     imo+VII+Ind+Neg+DubPrt+0PlProx: []
+     imo+VII+Ind+Neg+DubPrt+0SgObv: []
+     imo+VII+Ind+Neg+DubPrt+0SgProx: []

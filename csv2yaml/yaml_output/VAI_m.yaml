@@ -80,26 +80,26 @@ Tests:
      minongwaam+VAI+Ind+Neg+Dub+Excl: niminongwaanziiminaadog
      minongwaam+VAI+Ind+Neg+Dub+Incl: giminongwaanziiminaadog
      minongwaam+VAI+Ind+Neg+Dub+X: minongwaanziimwaadog
-     minongwaam+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+1Sg: []
+     minongwaam+VAI+Ind+Pos+DubPrt+2Pl: []
+     minongwaam+VAI+Ind+Pos+DubPrt+2Sg: []
+     minongwaam+VAI+Ind+Pos+DubPrt+3PlObv: []
      minongwaam+VAI+Ind+Pos+DubPrt+3PlProx: minongwaamogwaaban
      minongwaam+VAI+Ind+Pos+DubPrt+3SgObv: minongwaaminigoban
      minongwaam+VAI+Ind+Pos+DubPrt+3SgProx: minongwaamogoban
-     minongwaam+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     minongwaam+VAI+Ind+Pos+DubPrt+X: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     minongwaam+VAI+Ind+Pos+DubPrt+Excl: []
+     minongwaam+VAI+Ind+Pos+DubPrt+Incl: []
+     minongwaam+VAI+Ind+Pos+DubPrt+X: []
+     minongwaam+VAI+Ind+Neg+DubPrt+1Sg: []
+     minongwaam+VAI+Ind+Neg+DubPrt+2Pl: []
+     minongwaam+VAI+Ind+Neg+DubPrt+2Sg: []
+     minongwaam+VAI+Ind+Neg+DubPrt+3PlObv: []
      minongwaam+VAI+Ind+Neg+DubPrt+3PlProx: minongwaanziigwaaban
      minongwaam+VAI+Ind+Neg+DubPrt+3SgObv: minongwaanziinigoban
      minongwaam+VAI+Ind+Neg+DubPrt+3SgProx: minongwaanziigoban
-     minongwaam+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     minongwaam+VAI+Ind+Neg+DubPrt+X: MISSING
+     minongwaam+VAI+Ind+Neg+DubPrt+Excl: []
+     minongwaam+VAI+Ind+Neg+DubPrt+Incl: []
+     minongwaam+VAI+Ind+Neg+DubPrt+X: []
      minongwaam+VAI+Cnj+Pos+Neu+1Sg: minongwaamaan
      minongwaam+VAI+Cnj+Pos+Neu+2Pl: minongwaameg
      minongwaam+VAI+Cnj+Pos+Neu+2Sg: minongwaaman

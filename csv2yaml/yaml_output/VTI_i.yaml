@@ -110,8 +110,8 @@ Tests:
      miijin+VTI+Ind+Pos+Neu+Excl+0Sg: nimiijimin
      miijin+VTI+Ind+Pos+Neu+Incl+0Pl: gimiijimin
      miijin+VTI+Ind+Pos+Neu+Incl+0Sg: gimiijimin
-     miijin+VTI+Ind+Pos+Neu+X+0Pl: MISSING
-     miijin+VTI+Ind+Pos+Neu+X+0Sg: MISSING
+     miijin+VTI+Ind+Pos+Neu+X+0Pl: []
+     miijin+VTI+Ind+Pos+Neu+X+0Sg: []
      miijin+VTI+Ind+Neg+Neu+1Sg+0Pl: nimiijisiinan
      miijin+VTI+Ind+Neg+Neu+1Sg+0Sg: nimiijisiin
      miijin+VTI+Ind+Neg+Neu+2Pl+0Pl: gimiijisiinaawaan
@@ -128,8 +128,8 @@ Tests:
      miijin+VTI+Ind+Neg+Neu+Excl+0Sg: nimiijisiimin
      miijin+VTI+Ind+Neg+Neu+Incl+0Pl: gimiijisiimin
      miijin+VTI+Ind+Neg+Neu+Incl+0Sg: gimiijisiimin
-     miijin+VTI+Ind+Neg+Neu+X+0Pl: MISSING
-     miijin+VTI+Ind+Neg+Neu+X+0Sg: MISSING
+     miijin+VTI+Ind+Neg+Neu+X+0Pl: []
+     miijin+VTI+Ind+Neg+Neu+X+0Sg: []
      miijin+VTI+Ind+Pos+Prt+1Sg+0Pl: [nimiijinaabaniin,nimiijinaabanen]
      miijin+VTI+Ind+Pos+Prt+1Sg+0Sg: nimiijinaaban
      miijin+VTI+Ind+Pos+Prt+2Pl+0Pl: [gimiijinaawaabaniin,gimiijinaawaabanen]
@@ -146,8 +146,8 @@ Tests:
      miijin+VTI+Ind+Pos+Prt+Excl+0Sg: nimiijiminaaban
      miijin+VTI+Ind+Pos+Prt+Incl+0Pl: [gimiijiminaabaniin,gimiijiminaabanen]
      miijin+VTI+Ind+Pos+Prt+Incl+0Sg: gimiijiminaaban
-     miijin+VTI+Ind+Pos+Prt+X+0Pl: MISSING
-     miijin+VTI+Ind+Pos+Prt+X+0Sg: MISSING
+     miijin+VTI+Ind+Pos+Prt+X+0Pl: []
+     miijin+VTI+Ind+Pos+Prt+X+0Sg: []
      miijin+VTI+Ind+Neg+Prt+1Sg+0Pl: [nimiijisiinaabaniin,nimiijisiinaabanen]
      miijin+VTI+Ind+Neg+Prt+1Sg+0Sg: nimiijisiinaaban
      miijin+VTI+Ind+Neg+Prt+2Pl+0Pl: [gimiijisiinaawaabaniin,gimiijisiinaawaabanen]
@@ -164,8 +164,8 @@ Tests:
      miijin+VTI+Ind+Neg+Prt+Excl+0Sg: nimiijisiiminaaban
      miijin+VTI+Ind+Neg+Prt+Incl+0Pl: [gimiijisiiminaabaniin,gimiijisiiminaabanen]
      miijin+VTI+Ind+Neg+Prt+Incl+0Sg: gimiijisiiminaaban
-     miijin+VTI+Ind+Neg+Prt+X+0Pl: MISSING
-     miijin+VTI+Ind+Neg+Prt+X+0Sg: MISSING
+     miijin+VTI+Ind+Neg+Prt+X+0Pl: []
+     miijin+VTI+Ind+Neg+Prt+X+0Sg: []
      miijin+VTI+Ind+Pos+Dub+1Sg+0Pl: nimiijinaadogenan
      miijin+VTI+Ind+Pos+Dub+1Sg+0Sg: nimiijinaadog
      miijin+VTI+Ind+Pos+Dub+2Pl+0Pl: gimiijinaawaadogenan
@@ -182,8 +182,8 @@ Tests:
      miijin+VTI+Ind+Pos+Dub+Excl+0Sg: nimiijiminaadog
      miijin+VTI+Ind+Pos+Dub+Incl+0Pl: gimiijiminaadogenan
      miijin+VTI+Ind+Pos+Dub+Incl+0Sg: gimiijiminaadog
-     miijin+VTI+Ind+Pos+Dub+X+0Pl: MISSING
-     miijin+VTI+Ind+Pos+Dub+X+0Sg: MISSING
+     miijin+VTI+Ind+Pos+Dub+X+0Pl: []
+     miijin+VTI+Ind+Pos+Dub+X+0Sg: []
      miijin+VTI+Ind+Neg+Dub+1Sg+0Pl: nimiijisiinaadogenan
      miijin+VTI+Ind+Neg+Dub+1Sg+0Sg: nimiijisiinaadog
      miijin+VTI+Ind+Neg+Dub+2Pl+0Pl: gimiijisiinaawaadogenan
@@ -200,41 +200,41 @@ Tests:
      miijin+VTI+Ind+Neg+Dub+Excl+0Sg: nimiijisiiminaadog
      miijin+VTI+Ind+Neg+Dub+Incl+0Pl: gimiijisiiminaadogenan
      miijin+VTI+Ind+Neg+Dub+Incl+0Sg: gimiijisiiminaadog
-     miijin+VTI+Ind+Neg+Dub+X+0Pl: MISSING
-     miijin+VTI+Ind+Neg+Dub+X+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+1Sg+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+1Sg+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+2Pl+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+2Pl+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+2Sg+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+2Sg+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+Excl+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+Excl+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+Incl+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+Incl+0Sg: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+X+0Pl: MISSING
-     miijin+VTI+Ind+Pos+DubPrt+X+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+1Sg+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+1Sg+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+2Pl+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+2Pl+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+2Sg+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+2Sg+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+Excl+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+Excl+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+Incl+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+Incl+0Sg: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+X+0Pl: MISSING
-     miijin+VTI+Ind+Neg+DubPrt+X+0Sg: MISSING
+     miijin+VTI+Ind+Neg+Dub+X+0Pl: []
+     miijin+VTI+Ind+Neg+Dub+X+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+1Sg+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+1Sg+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+2Pl+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+2Pl+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+2Sg+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+2Sg+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+3PlProx+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+3PlProx+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+3SgObv/3PlObv+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+3SgProx+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+3SgProx+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+Excl+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+Excl+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+Incl+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+Incl+0Sg: []
+     miijin+VTI+Ind+Pos+DubPrt+X+0Pl: []
+     miijin+VTI+Ind+Pos+DubPrt+X+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+1Sg+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+1Sg+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+2Pl+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+2Pl+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+2Sg+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+2Sg+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+3PlProx+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+3PlProx+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+3SgObv/3PlObv+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+3SgProx+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+3SgProx+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+Excl+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+Excl+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+Incl+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+Incl+0Sg: []
+     miijin+VTI+Ind+Neg+DubPrt+X+0Pl: []
+     miijin+VTI+Ind+Neg+DubPrt+X+0Sg: []

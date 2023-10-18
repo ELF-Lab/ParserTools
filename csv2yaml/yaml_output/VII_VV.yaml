@@ -21,8 +21,8 @@ Tests:
      ate+VII+Cnj+Neg+Prt+0SgProx/0PlProx: atesinoogiban
      ate+VII+Cnj+Pos+Dub+0SgObv/0PlObv: atenigwen
      ate+VII+Cnj+Pos+Dub+0SgProx/0PlProx: ategwen
-     ate+VII+Cnj+Neg+Dub+0SgObv/0PlObv: MISSING
-     ate+VII+Cnj+Neg+Dub+0SgProx/0PlProx: MISSING
+     ate+VII+Cnj+Neg+Dub+0SgObv/0PlObv: []
+     ate+VII+Cnj+Neg+Dub+0SgProx/0PlProx: []
      ate+VII+Cnj+Pos+DubPrt+0SgObv/0PlObv: atenigobanen
      ate+VII+Cnj+Pos+DubPrt+0SgProx/0PlProx: ategobanen
      ate+VII+Cnj+Neg+DubPrt+0SgObv/0PlObv: atesininigobanen

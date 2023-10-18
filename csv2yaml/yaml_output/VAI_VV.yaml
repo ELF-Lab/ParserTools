@@ -14,18 +14,18 @@ Tests:
      maajiibatoo+VAI+Imp+Del+2Sg: maajiibatookan
      maajiibatoo+VAI+Imp+Del+2Pl: maajiibatookeg
      maajiibatoo+VAI+Imp+Del+Incl: maajiibatookang
-     maajiibatoo+VAI+Imp+Prb+2Sg: MISSING
-     maajiibatoo+VAI+Imp+Prb+2Pl: MISSING
-     maajiibatoo+VAI+Imp+Prb+Incl: MISSING
+     maajiibatoo+VAI+Imp+Prb+2Sg: []
+     maajiibatoo+VAI+Imp+Prb+2Pl: []
+     maajiibatoo+VAI+Imp+Prb+Incl: []
      maajiibatoo+VAI+Imp+Sim+2Sg: maajiibatoon
      maajiibatoo+VAI+Imp+Sim+2Pl: [maajiibatoog,maajiibatook]
      maajiibatoo+VAI+Imp+Sim+Incl: maajiibatoodaa
      madaabii+VAI+Imp+Del+2Sg: madaabiikan
      madaabii+VAI+Imp+Del+2Pl: madaabiikeg
      madaabii+VAI+Imp+Del+Incl: madaabiikang
-     madaabii+VAI+Imp+Prb+2Sg: MISSING
-     madaabii+VAI+Imp+Prb+2Pl: MISSING
-     madaabii+VAI+Imp+Prb+Incl: MISSING
+     madaabii+VAI+Imp+Prb+2Sg: []
+     madaabii+VAI+Imp+Prb+2Pl: []
+     madaabii+VAI+Imp+Prb+Incl: []
      madaabii+VAI+Imp+Sim+2Sg: madaabiin
      madaabii+VAI+Imp+Sim+2Pl: [madaabiig,madaabiik]
      madaabii+VAI+Imp+Sim+Incl: madaabiidaa
@@ -41,9 +41,9 @@ Tests:
      webinige+VAI+Imp+Del+2Sg: webinigekan
      webinige+VAI+Imp+Del+2Pl: webinigekeg
      webinige+VAI+Imp+Del+Incl: webinigekang
-     webinige+VAI+Imp+Prb+2Sg: MISSING
-     webinige+VAI+Imp+Prb+2Pl: MISSING
-     webinige+VAI+Imp+Prb+Incl: MISSING
+     webinige+VAI+Imp+Prb+2Sg: []
+     webinige+VAI+Imp+Prb+2Pl: []
+     webinige+VAI+Imp+Prb+Incl: []
      webinige+VAI+Imp+Sim+2Sg: webinigen
      webinige+VAI+Imp+Sim+2Pl: [webinigeg,webinigek]
      webinige+VAI+Imp+Sim+Incl: webinigedaa
@@ -107,26 +107,26 @@ Tests:
      maajiibatoo+VAI+Ind+Neg+Dub+Excl: nimaajiibatoosiiminaadog
      maajiibatoo+VAI+Ind+Neg+Dub+Incl: gimaajiibatoosiiminaadog
      maajiibatoo+VAI+Ind+Neg+Dub+X: maajiibatoosiimwaadog
-     maajiibatoo+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     maajiibatoo+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     maajiibatoo+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     maajiibatoo+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     maajiibatoo+VAI+Ind+Pos+DubPrt+1Sg: []
+     maajiibatoo+VAI+Ind+Pos+DubPrt+2Pl: []
+     maajiibatoo+VAI+Ind+Pos+DubPrt+2Sg: []
+     maajiibatoo+VAI+Ind+Pos+DubPrt+3PlObv: []
      maajiibatoo+VAI+Ind+Pos+DubPrt+3PlProx: maajiibatoogwaaban
      maajiibatoo+VAI+Ind+Pos+DubPrt+3SgObv: maajiibatoonigoban
      maajiibatoo+VAI+Ind+Pos+DubPrt+3SgProx: maajiibatoogoban
-     maajiibatoo+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     maajiibatoo+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     maajiibatoo+VAI+Ind+Pos+DubPrt+X: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     maajiibatoo+VAI+Ind+Pos+DubPrt+Excl: []
+     maajiibatoo+VAI+Ind+Pos+DubPrt+Incl: []
+     maajiibatoo+VAI+Ind+Pos+DubPrt+X: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+1Sg: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+2Pl: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+2Sg: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+3PlObv: []
      maajiibatoo+VAI+Ind+Neg+DubPrt+3PlProx: maajiibatoosiigwaaban
      maajiibatoo+VAI+Ind+Neg+DubPrt+3SgObv: maajiibatoosiinigoban
      maajiibatoo+VAI+Ind+Neg+DubPrt+3SgProx: maajiibatoosiigoban
-     maajiibatoo+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     maajiibatoo+VAI+Ind+Neg+DubPrt+X: MISSING
+     maajiibatoo+VAI+Ind+Neg+DubPrt+Excl: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+Incl: []
+     maajiibatoo+VAI+Ind+Neg+DubPrt+X: []
      madaabii+VAI+Ind+Pos+Neu+1Sg: nimadaabii
      madaabii+VAI+Ind+Pos+Neu+2Pl: gimadaabiim
      madaabii+VAI+Ind+Pos+Neu+2Sg: gimadaabii
@@ -187,26 +187,26 @@ Tests:
      madaabii+VAI+Ind+Neg+Dub+Excl: nimadaabiisiiminaadog
      madaabii+VAI+Ind+Neg+Dub+Incl: gimadaabiisiiminaadog
      madaabii+VAI+Ind+Neg+Dub+X: madaabiisiimwaadog
-     madaabii+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     madaabii+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     madaabii+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     madaabii+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     madaabii+VAI+Ind+Pos+DubPrt+1Sg: []
+     madaabii+VAI+Ind+Pos+DubPrt+2Pl: []
+     madaabii+VAI+Ind+Pos+DubPrt+2Sg: []
+     madaabii+VAI+Ind+Pos+DubPrt+3PlObv: []
      madaabii+VAI+Ind+Pos+DubPrt+3PlProx: madaabiigwaaban
      madaabii+VAI+Ind+Pos+DubPrt+3SgObv: madaabiinigoban
      madaabii+VAI+Ind+Pos+DubPrt+3SgProx: madaabiigoban
-     madaabii+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     madaabii+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     madaabii+VAI+Ind+Pos+DubPrt+X: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     madaabii+VAI+Ind+Pos+DubPrt+Excl: []
+     madaabii+VAI+Ind+Pos+DubPrt+Incl: []
+     madaabii+VAI+Ind+Pos+DubPrt+X: []
+     madaabii+VAI+Ind+Neg+DubPrt+1Sg: []
+     madaabii+VAI+Ind+Neg+DubPrt+2Pl: []
+     madaabii+VAI+Ind+Neg+DubPrt+2Sg: []
+     madaabii+VAI+Ind+Neg+DubPrt+3PlObv: []
      madaabii+VAI+Ind+Neg+DubPrt+3PlProx: madaabiisiigwaaban
      madaabii+VAI+Ind+Neg+DubPrt+3SgObv: madaabiisiinigoban
      madaabii+VAI+Ind+Neg+DubPrt+3SgProx: madaabiisiigoban
-     madaabii+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     madaabii+VAI+Ind+Neg+DubPrt+X: MISSING
+     madaabii+VAI+Ind+Neg+DubPrt+Excl: []
+     madaabii+VAI+Ind+Neg+DubPrt+Incl: []
+     madaabii+VAI+Ind+Neg+DubPrt+X: []
      nibaa+VAI+Ind+Pos+Neu+1Sg: ninibaa
      nibaa+VAI+Ind+Pos+Neu+2Pl: ginibaam
      nibaa+VAI+Ind+Pos+Neu+2Sg: ginibaa
@@ -267,26 +267,26 @@ Tests:
      nibaa+VAI+Ind+Neg+Dub+Excl: ninibaasiiminaadog
      nibaa+VAI+Ind+Neg+Dub+Incl: ginibaasiiminaadog
      nibaa+VAI+Ind+Neg+Dub+X: nibaasiimwaadog
-     nibaa+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     nibaa+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     nibaa+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     nibaa+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     nibaa+VAI+Ind+Pos+DubPrt+1Sg: []
+     nibaa+VAI+Ind+Pos+DubPrt+2Pl: []
+     nibaa+VAI+Ind+Pos+DubPrt+2Sg: []
+     nibaa+VAI+Ind+Pos+DubPrt+3PlObv: []
      nibaa+VAI+Ind+Pos+DubPrt+3PlProx: nibaagwaaban
      nibaa+VAI+Ind+Pos+DubPrt+3SgObv: nibaanigoban
      nibaa+VAI+Ind+Pos+DubPrt+3SgProx: nibaagoban
-     nibaa+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     nibaa+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     nibaa+VAI+Ind+Pos+DubPrt+X: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     nibaa+VAI+Ind+Pos+DubPrt+Excl: []
+     nibaa+VAI+Ind+Pos+DubPrt+Incl: []
+     nibaa+VAI+Ind+Pos+DubPrt+X: []
+     nibaa+VAI+Ind+Neg+DubPrt+1Sg: []
+     nibaa+VAI+Ind+Neg+DubPrt+2Pl: []
+     nibaa+VAI+Ind+Neg+DubPrt+2Sg: []
+     nibaa+VAI+Ind+Neg+DubPrt+3PlObv: []
      nibaa+VAI+Ind+Neg+DubPrt+3PlProx: nibaasiigwaaban
      nibaa+VAI+Ind+Neg+DubPrt+3SgObv: nibaasiinigoban
      nibaa+VAI+Ind+Neg+DubPrt+3SgProx: nibaasiigoban
-     nibaa+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     nibaa+VAI+Ind+Neg+DubPrt+X: MISSING
+     nibaa+VAI+Ind+Neg+DubPrt+Excl: []
+     nibaa+VAI+Ind+Neg+DubPrt+Incl: []
+     nibaa+VAI+Ind+Neg+DubPrt+X: []
      webinige+VAI+Ind+Pos+Neu+1Sg: niwebinige
      webinige+VAI+Ind+Pos+Neu+2Pl: giwebinigem
      webinige+VAI+Ind+Pos+Neu+2Sg: giwebinige
@@ -347,26 +347,26 @@ Tests:
      webinige+VAI+Ind+Neg+Dub+Excl: niwebinigesiiminaadog
      webinige+VAI+Ind+Neg+Dub+Incl: giwebinigesiiminaadog
      webinige+VAI+Ind+Neg+Dub+X: webinigesiimwaadog
-     webinige+VAI+Ind+Pos+DubPrt+1Sg: MISSING
-     webinige+VAI+Ind+Pos+DubPrt+2Pl: MISSING
-     webinige+VAI+Ind+Pos+DubPrt+2Sg: MISSING
-     webinige+VAI+Ind+Pos+DubPrt+3PlObv: MISSING
+     webinige+VAI+Ind+Pos+DubPrt+1Sg: []
+     webinige+VAI+Ind+Pos+DubPrt+2Pl: []
+     webinige+VAI+Ind+Pos+DubPrt+2Sg: []
+     webinige+VAI+Ind+Pos+DubPrt+3PlObv: []
      webinige+VAI+Ind+Pos+DubPrt+3PlProx: webinigegwaaban
      webinige+VAI+Ind+Pos+DubPrt+3SgObv: webinigenigoban
      webinige+VAI+Ind+Pos+DubPrt+3SgProx: webinigegoban
-     webinige+VAI+Ind+Pos+DubPrt+Excl: MISSING
-     webinige+VAI+Ind+Pos+DubPrt+Incl: MISSING
-     webinige+VAI+Ind+Pos+DubPrt+X: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+1Sg: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+2Pl: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+2Sg: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+3PlObv: MISSING
+     webinige+VAI+Ind+Pos+DubPrt+Excl: []
+     webinige+VAI+Ind+Pos+DubPrt+Incl: []
+     webinige+VAI+Ind+Pos+DubPrt+X: []
+     webinige+VAI+Ind+Neg+DubPrt+1Sg: []
+     webinige+VAI+Ind+Neg+DubPrt+2Pl: []
+     webinige+VAI+Ind+Neg+DubPrt+2Sg: []
+     webinige+VAI+Ind+Neg+DubPrt+3PlObv: []
      webinige+VAI+Ind+Neg+DubPrt+3PlProx: webinigesiigwaaban
      webinige+VAI+Ind+Neg+DubPrt+3SgObv: webinigesiinigoban
      webinige+VAI+Ind+Neg+DubPrt+3SgProx: webinigesiigoban
-     webinige+VAI+Ind+Neg+DubPrt+Excl: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+Incl: MISSING
-     webinige+VAI+Ind+Neg+DubPrt+X: MISSING
+     webinige+VAI+Ind+Neg+DubPrt+Excl: []
+     webinige+VAI+Ind+Neg+DubPrt+Incl: []
+     webinige+VAI+Ind+Neg+DubPrt+X: []
      maajiibatoo+VAI+Cnj+Pos+Neu+1Sg: maajiibatooyaan
      maajiibatoo+VAI+Cnj+Pos+Neu+2Pl: maajiibatooyeg
      maajiibatoo+VAI+Cnj+Pos+Neu+2Sg: maajiibatooyan
