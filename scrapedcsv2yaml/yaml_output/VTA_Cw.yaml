@@ -1,0 +1,24 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     adima'w+VTA+Ind+Pos: indadima'waa
+     adima'w+VTA+Ind+Pos: nindadima'waa
+     adima'w+VTA+Ind+Pos: nidadima'waa
+     adima'w+VTA+Ind+Pos: nindadima'wig
+     adima'w+VTA+Ind+Pos: gidadima'win
+     adima'w+VTA+Ind+Pos: gidadima'
+     adima'w+VTA+Ind+Pos: odadima'waan
+     adima'w+VTA+Ind+Pos: adima'waad
+     adima'w+VTA+Ind+Pos: edima'waad
+     adima'w+VTA+Ind+Pos: adima'
+     adima'w+VTA+Ind+Pos: adima'wi

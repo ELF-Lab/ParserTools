@@ -1,0 +1,31 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     adaawaagetamaw+VTA+Ind+Pos: indadaawaagetamawaa
+     adaawaagetamaw+VTA+Ind+Pos: indadaawaagetamowaa
+     adaawaagetamaw+VTA+Ind+Pos: odadaawaagetamawaan
+     adaawaagetamaw+VTA+Ind+Pos: odadaawaagetamowaan
+     adaawaagetamaw+VTA+Ind+Pos: adaawaagetamawaad
+     adaawaagetamaw+VTA+Ind+Pos: adaawaagetamowaad
+     adaawaagetamaw+VTA+Ind+Pos: edaawaagetamawaad
+     adaawaagetamaw+VTA+Ind+Pos: edaawaagetamowaad
+     adaawaagetamaw+VTA+Ind+Pos: adaawaagetamaw
+     adaawetamaw+VTA+Ind+Pos: nindadaawetamawaa
+     adaawetamaw+VTA+Ind+Pos: indadaawetamowaa
+     adaawetamaw+VTA+Ind+Pos: odadaawetamawaan
+     adaawetamaw+VTA+Ind+Pos: odadaawetamowaan
+     adaawetamaw+VTA+Ind+Pos: adaawetamawaad
+     adaawetamaw+VTA+Ind+Pos: adaawetamowaad
+     adaawetamaw+VTA+Ind+Pos: edaawetamawaad
+     adaawetamaw+VTA+Ind+Pos: edaawetamowaad
+     adaawetamaw+VTA+Ind+Pos: adaawetamaw

@@ -1,0 +1,56 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     adaawaage+VAI+Ind+Pos: adaawaaged
+     adaawaage+VAI+Ind+Pos: edaawaaged
+     adaawe+VAI+Ind+Pos: indadaawe
+     adaawe+VAI+Ind+Pos: nindadaawe
+     adaawe+VAI+Ind+Pos: nidadaawe
+     adaawe+VAI+Ind+Pos: adaawe
+     adaawe+VAI+Ind+Pos: adaawed
+     adaawe+VAI+Ind+Pos: edaawed
+     adaawensi+VAI+Ind+Pos: nindadaawens
+     adaawensi+VAI+Ind+Pos: adaawensi
+     adaawensi+VAI+Ind+Pos: adaawensid
+     adaawensi+VAI+Ind+Pos: edaawensid
+     adaawetamaadi+VAI+Ind+Pos: indadaawetamaadimin
+     adaawetamaadi+VAI+Ind+Pos: adaawetamaadiwag
+     adaawetamaadi+VAI+Ind+Pos: adaawetamaadiwaad
+     adaawetamaadi+VAI+Ind+Pos: edaawetamaadiwaad
+     adaawetamaadi+VAI+Ind+Pos: adaawetamaadig
+     adaawetamaadizo+VAI+Ind+Pos: indadaawetamaadiz
+     adaawetamaadizo+VAI+Ind+Pos: adaawetamaadizo
+     adaawetamaadizo+VAI+Ind+Pos: adaawetamaadizod
+     adaawetamaadizo+VAI+Ind+Pos: edaawetamaadizod
+     adaawetamaage+VAI+Ind+Pos: ndadawetamaage
+     adaawetamaage+VAI+Ind+Pos: adaawetamaage
+     adaawetamaage+VAI+Ind+Pos: adaawetamaaged
+     adaawetamaage+VAI+Ind+Pos: edaawetamaaged
+     adaawetamaazo+VAI+Ind+Pos: indadaawetamaaz
+     adaawetamaazo+VAI+Ind+Pos: nindadaawetamaaz
+     adaawetamaazo+VAI+Ind+Pos: nidadaawetamaaz
+     adaawetamaazo+VAI+Ind+Pos: adaawetamaazo
+     adaawetamaazo+VAI+Ind+Pos: adaawetamaazod
+     adaawetamaazo+VAI+Ind+Pos: edaawetamaazod
+     adaawewikwewi+VAI+Ind+Pos: indadaawewikwew
+     adaawewikwewi+VAI+Ind+Pos: adaawewikwewi
+     adaawewikwewi+VAI+Ind+Pos: adaawewikwewid
+     adaawewikwewi+VAI+Ind+Pos: edaawewikwewid
+     adaawewininiikwewi+VAI+Ind+Pos: indadaawewininiikwew
+     adaawewininiikwewi+VAI+Ind+Pos: adaawewininiikwewi
+     adaawewininiikwewi+VAI+Ind+Pos: adaawewininiikwewid
+     adaawewininiikwewi+VAI+Ind+Pos: edaawewininiikwewid
+     adaawewininiiwi+VAI+Ind+Pos: indadaawewininiiw
+     adaawewininiiwi+VAI+Ind+Pos: adaawewininiiwi
+     adaawewininiiwi+VAI+Ind+Pos: adaawewininiiwid
+     adaawewininiiwi+VAI+Ind+Pos: edaawewininiiwid
