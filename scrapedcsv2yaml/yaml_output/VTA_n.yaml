@@ -1,0 +1,35 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     abwaaN+VTA+Ind+Pos: indabwaanaa
+     abwaaN+VTA+Ind+Pos: nindabwaanaa
+     abwaaN+VTA+Ind+Pos: nidabwaanaa
+     abwaaN+VTA+Ind+Pos: odabwaanaan
+     abwaaN+VTA+Ind+Pos: aabwaanaad
+     abwaaN+VTA+Ind+Pos: ebwaanaad
+     abwaaN+VTA+Ind+Pos: abwaazh
+     achigaaN+VTA+Ind+Pos: indachigaanaa
+     achigaaN+VTA+Ind+Pos: odachigaanaan
+     achigaaN+VTA+Ind+Pos: achigaanaad
+     achigaaN+VTA+Ind+Pos: echigaanaad
+     achigaaN+VTA+Ind+Pos: achigaazh
+     adima'aN+VTA+Ind+Pos: nindadima'anaa
+     adima'aN+VTA+Ind+Pos: odadima'anaan
+     adima'aN+VTA+Ind+Pos: adima'anaad
+     adima'aN+VTA+Ind+Pos: edima'anaad
+     adima'aN+VTA+Ind+Pos: adima'azh
+     adimanikaaN+VTA+Ind+Pos: nindadimanikaanaa
+     adimanikaaN+VTA+Ind+Pos: odadimanikaanaan
+     adimanikaaN+VTA+Ind+Pos: adimanikaanaad
+     adimanikaaN+VTA+Ind+Pos: edimanikaanaad
+     adimanikaaN+VTA+Ind+Pos: adimanikaazh

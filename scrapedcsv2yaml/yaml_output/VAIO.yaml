@@ -11,6 +11,19 @@ Tests:
 
   Lemma - ALL :
 
+     abwe+VAIO+Ind+Pos: indabwen
+     abwe+VAIO+Ind+Pos: nindabwen
+     abwe+VAIO+Ind+Pos: nidabwen
+     abwe+VAIO+Ind+Pos: abwed
+     abwe+VAIO+Ind+Pos: odabwen
+     abwe+VAIO+Ind+Pos: ebwed
+     adaawange+VAIO+Ind+Pos: indadaawangen
+     adaawange+VAIO+Ind+Pos: nindadaawangen
+     adaawange+VAIO+Ind+Pos: nidadaawangen
+     adaawange+VAIO+Ind+Pos: odadaawaangen
+     adaawange+VAIO+Ind+Pos: adaawanged
+     adaawange+VAIO+Ind+Pos: edaawanged
+     adaawange+VAIO+Ind+Pos: adaawangen
      adaawaage+VAIO+Ind+Pos: indadaawaagen
      adaawaage+VAIO+Ind+Pos: nindadaawaagen
      adaawaage+VAIO+Ind+Pos: nidadaawaagen
@@ -21,3 +34,8 @@ Tests:
      adaawe+VAIO+Ind+Pos: adaawed
      adaawe+VAIO+Ind+Pos: odadaawen
      adaawe+VAIO+Ind+Pos: edaawed
+     adoopo+VAIO+Ind+Pos: indadoopon
+     adoopo+VAIO+Ind+Pos: odadoopon
+     adoopo+VAIO+Ind+Pos: adoopod
+     adoopo+VAIO+Ind+Pos: edoopod
+     adoopo+VAIO+Ind+Pos: adoopon

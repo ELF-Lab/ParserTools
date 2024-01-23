@@ -1,0 +1,54 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     abaagamide+VII+Ind+Pos: abaagamide
+     abaagamide+VII+Ind+Pos: abaagamideg
+     abaagamide+VII+Ind+Pos: ebaagamideg
+     abaagamide+VII+Ind+Pos: abaagamidemagad
+     abaate+VII+Ind+Pos: abaate
+     abaate+VII+Ind+Pos: abaateg
+     abaate+VII+Ind+Pos: ebaateg
+     abaate+VII+Ind+Pos: abaatemagad
+     abide+VII+Ind+Pos: abide
+     abide+VII+Ind+Pos: abideg
+     abide+VII+Ind+Pos: ebideg
+     abide+VII+Ind+Pos: abidemagad
+     abizigaade+VII+Ind+Pos: abizigaade
+     abizigaade+VII+Ind+Pos: abizigaadeg
+     abizigaade+VII+Ind+Pos: ebizigaadeg
+     abiichigaade+VII+Ind+Pos: abiichigaade
+     abiichigaade+VII+Ind+Pos: abiichigaadeg
+     abiichigaade+VII+Ind+Pos: ebiichigaadeg
+     abiichigaade+VII+Ind+Pos: abiichigaademagad
+     achigaade+VII+Ind+Pos: achigaade
+     achigaade+VII+Ind+Pos: achigaadeg
+     achigaade+VII+Ind+Pos: echigaadeg
+     achigaade+VII+Ind+Pos: achigaademagad
+     adisigaade+VII+Ind+Pos: adisigaade
+     adisigaade+VII+Ind+Pos: adisigaadeg
+     adisigaade+VII+Ind+Pos: edisigaadeg
+     adite+VII+Ind+Pos: adite
+     adite+VII+Ind+Pos: aditeg
+     adite+VII+Ind+Pos: editeg
+     adite+VII+Ind+Pos: aditemagad
+     agawaatese+VII+Ind+Pos: agawaatese
+     agawaatese+VII+Ind+Pos: agawaateseg
+     agawaatese+VII+Ind+Pos: egawaateseg
+     agawaatese+VII+Ind+Pos: agawaatesemagad
+     agaasademo+VII+Ind+Pos: agaasademon
+     agaasademo+VII+Ind+Pos: agaasademog
+     agaasademo+VII+Ind+Pos: egaasademog
+     agaasate+VII+Ind+Pos: agaasate
+     agaasate+VII+Ind+Pos: agaasateg
+     agaasate+VII+Ind+Pos: egaasateg
+     agaasate+VII+Ind+Pos: agaasatemagad

@@ -11,6 +11,21 @@ Tests:
 
   Lemma - ALL :
 
+     adaam+VTA+Ind+Pos: indadaamaa
+     adaam+VTA+Ind+Pos: nindadaamaa
+     adaam+VTA+Ind+Pos: nidadaamaa
+     adaam+VTA+Ind+Pos: odadaamaan
+     adaam+VTA+Ind+Pos: adaamaad
+     adaam+VTA+Ind+Pos: edaamaad
+     adaam+VTA+Ind+Pos: adaam
+     adaawam+VTA+Ind+Pos: indadaawamaa
+     adaawam+VTA+Ind+Pos: nindadaawamaa
+     adaawam+VTA+Ind+Pos: nidadaawamaa
+     adaawam+VTA+Ind+Pos: nindadaawamig
+     adaawam+VTA+Ind+Pos: odadaawamaan
+     adaawam+VTA+Ind+Pos: adaawamaad
+     adaawam+VTA+Ind+Pos: edaawamaad
+     adaawam+VTA+Ind+Pos: adaawam
      adim+VTA+Ind+Pos: indadimaa
      adim+VTA+Ind+Pos: nindadimaa
      adim+VTA+Ind+Pos: nidadimaa
@@ -21,8 +36,31 @@ Tests:
      adim+VTA+Ind+Pos: adimaad
      adim+VTA+Ind+Pos: edimaad
      adim+VTA+Ind+Pos: adim
-     adima'aN+VTA+Ind+Pos: nindadima'anaa
-     adima'aN+VTA+Ind+Pos: odadima'anaan
-     adima'aN+VTA+Ind+Pos: adima'anaad
-     adima'aN+VTA+Ind+Pos: edima'anaad
-     adima'aN+VTA+Ind+Pos: adima'azh
+     agadenim+VTA+Ind+Pos: nindagadenimaa
+     agadenim+VTA+Ind+Pos: nindagadenimig
+     agadenim+VTA+Ind+Pos: gidagadenimin
+     agadenim+VTA+Ind+Pos: gidagadenim
+     agadenim+VTA+Ind+Pos: odagadenimaan
+     agadenim+VTA+Ind+Pos: agadenimaad
+     agadenim+VTA+Ind+Pos: egadenimaad
+     agaji'+VTA+Ind+Pos: indagaji'aa
+     agaji'+VTA+Ind+Pos: nindagaji'aa
+     agaji'+VTA+Ind+Pos: nidagaji'aa
+     agaji'+VTA+Ind+Pos: odagaji'aan
+     agaji'+VTA+Ind+Pos: agaji'aad
+     agaji'+VTA+Ind+Pos: egaji'aad
+     agaji'+VTA+Ind+Pos: agaji'
+     agazom+VTA+Ind+Pos: nindagazomaa
+     agazom+VTA+Ind+Pos: nindagazomig
+     agazom+VTA+Ind+Pos: gidagazom
+     agazom+VTA+Ind+Pos: gidagazomin
+     agazom+VTA+Ind+Pos: odagazomaan
+     agazom+VTA+Ind+Pos: agazomaad
+     agazom+VTA+Ind+Pos: egazomaad
+     agaasade'+VTA+Ind+Pos: indagaasade'aa
+     agaasade'+VTA+Ind+Pos: nindagaasade'aa
+     agaasade'+VTA+Ind+Pos: nidagaasade'aa
+     agaasade'+VTA+Ind+Pos: odagaasade'aan
+     agaasade'+VTA+Ind+Pos: agaasade'aad
+     agaasade'+VTA+Ind+Pos: egaasade'aad
+     agaasade'+VTA+Ind+Pos: agaasade'

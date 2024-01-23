@@ -5,7 +5,7 @@ import sys
 sys.path.insert(1, os.path.join(sys.path[0], '../csv2yaml'))
 from create_yaml import create_output_directory
 
-POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti"]
+POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
 YAML_HEADER = """Config:
   hfst:
@@ -28,12 +28,11 @@ def process_csv(file_name):
 
     forms_with_info = []
 
-    df = df.truncate(before = 482, after = 608)
+    df = df.truncate(after = 1000)
     for index, row in df.iterrows():
         row = row.to_dict()
         if row["POS"] in POS_TO_KEEP:
             lexical_info = format_entry(row)
-            row = add_class(row)
 
             forms_with_info.append(lexical_info)
 
@@ -50,6 +49,13 @@ def format_entry(entry_as_dict):
     if entry_as_dict["POS"] == "vai + o":
         entry_as_dict["POS"] = "vaio"
     entry_as_dict["POS"] = entry_as_dict["POS"].upper()
+    # Dictionary uses VTI/VTI2/VTI3/VTI4 as POS, but we want to convert all of those to just VTI
+    # However, this info lets us easily determine class
+    # So we will assign class *first* before we lose those labels, then lose them!
+    entry_as_dict = add_class(entry_as_dict)
+    if "VTI" in entry_as_dict["POS"]:
+        entry_as_dict["POS"] = "VTI"
+
     lexical_info += "+" + entry_as_dict["POS"]
 
     lexical_info += "+" + "Ind"
@@ -74,24 +80,42 @@ def add_class(form_with_info):
             form_with_info.update({"Class": "aw"})
         elif stem.endswith("w") and not stem[-2] in vowels:
             form_with_info.update({"Class": "Cw"})
-        elif not stem[-1] in vowels:
+        elif stem.endswith("N"):
+            form_with_info.update({"Class": "n"})
+        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "n":
             form_with_info.update({"Class": "C"})
-    elif pos == "VTI":
-        if stem[-1] == "'":
-            form_with_info.update({"Class": "?"})
+        # Remaining classes: s, irr
     elif pos == "VAI":
-        if stem[-1] in vowels and not stem[-2] in vowels:
-            form_with_info.update({"Class": "V"})
-    elif pos == "VII":
-        if stem [-1] in vowels and stem[-2] in vowels:
+        if stem.endswith("n"):
+            form_with_info.update({"Class": "n"})
+        elif stem [-1] in vowels and stem[-2] in vowels:
             form_with_info.update({"Class": "VV"})
+        elif stem[-1] in vowels:
+            form_with_info.update({"Class": "V"})
+        # Remaining classes: am, m, rcp, rfx
+    elif pos == "VII":
+        if stem.endswith("d"):
+            form_with_info.update({"Class": "d"})
+        elif stem.endswith("n"):
+            form_with_info.update({"Class": "n"})
+        elif stem [-1] in vowels and stem[-2] in vowels:
+            form_with_info.update({"Class": "VV"})
+        elif stem [-1] in vowels:
+            form_with_info.update({"Class": "V"})
+        # Remaining classes: none!
+    if "VTI" in pos:
+        if pos == "VTI":
+            form_with_info.update({"Class": "am"})
+        elif pos == "VTI2":
+            form_with_info.update({"Class": "oo"})
+        # Remaining classes: aa, i
 
     # Make sure we assigned a class where needed
     if pos in POS_WITH_CLASS_IN_FILE_NAME:
         print(form_with_info)
         assert "Class" in form_with_info.keys(), f"\nYou need to assign a class (e.g. info about the final characters in the stem) to a form with this stem: {form_with_info['Stem']}. (POS: {pos})"
-    return form_with_info
 
+    return form_with_info
 
 def write_yaml(forms_with_info, output_directory):
     # Every time we run the code, any existing YAML files will be deleted.

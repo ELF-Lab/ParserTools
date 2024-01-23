@@ -1,0 +1,35 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     abashkwebiigininjiishin+VAI+Ind+Pos: indabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Ind+Pos: nindabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Ind+Pos: nidabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Ind+Pos: abashkwebiigininjiishing
+     abashkwebiigininjiishin+VAI+Ind+Pos: ebashkwebiigininjiishing
+     abashkwebiigizideshin+VAI+Ind+Pos: indabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Ind+Pos: nindabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Ind+Pos: nidabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Ind+Pos: abashkwebiigizideshing
+     abashkwebiigizideshin+VAI+Ind+Pos: ebashkwebiigizideshing
+     agawaatebiigishin+VAI+Ind+Pos: indagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos: nindagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos: nidagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos: agawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos: agawaatebiigishing
+     agawaatebiigishin+VAI+Ind+Pos: egawaatebiigishing
+     agawaateshin+VAI+Ind+Pos: indagawaateshin
+     agawaateshin+VAI+Ind+Pos: nindagawaateshin
+     agawaateshin+VAI+Ind+Pos: nidagawaateshin
+     agawaateshin+VAI+Ind+Pos: agawaateshin
+     agawaateshin+VAI+Ind+Pos: agawaateshing
+     agawaateshin+VAI+Ind+Pos: egawaateshing
