@@ -24,7 +24,7 @@ YAML_INDENT = "     "
 vowels = ["i", "e", "o", "a"]
 
 def process_csv(file_name):
-    df = pd.read_csv(file_name)#, na_filter = False)
+    df = pd.read_csv(file_name, keep_default_na = False)
 
     forms_with_info = []
 
@@ -61,6 +61,10 @@ def format_entry(entry_as_dict):
     lexical_info += "+" + "Ind"
 
     lexical_info += "+" + "Pos"
+
+    entry_as_dict = add_person_and_number(entry_as_dict)
+    if "PersonNum" in entry_as_dict.keys():
+        lexical_info += "+" + entry_as_dict["PersonNum"]
 
     lexical_info += ": "
 
@@ -114,6 +118,57 @@ def add_class(form_with_info):
     if pos in POS_WITH_CLASS_IN_FILE_NAME:
         print(form_with_info)
         assert "Class" in form_with_info.keys(), f"\nYou need to assign a class (e.g. info about the final characters in the stem) to a form with this stem: {form_with_info['Stem']}. (POS: {pos})"
+
+    return form_with_info
+
+# Add 1SG, 3PLObv, etc.
+# Transitive verbs (VTA, VTI) will have two participants
+# Intransitive verbs (VAI, VII) will have one participant
+# Seems like VAIO can go either way
+# The "Gloss" field contains this info in a list (+ info about ind vs. conj etc.)
+# So a verb with only one participant will have len(Gloss) = 2 e.g. ['First person singular subject', 'independent ']
+# Whereas a verb with two participants will have len(Gloss) = 3 e.g. ['First person singular subject', 'Third person singular object', 'independent ']
+def add_person_and_number(form_with_info):
+    # Gloss is a list, but it initially gets read as a string and must be converted to a lsit
+    gloss = form_with_info["Gloss"].strip('][').replace("'","").split(', ')
+    gloss_subj_dict = {
+        "First person singular subject" : "1Sg",
+        "First person inclusive plural subject" : "Incl",
+        "First person exclusive plural subject" : "Excl",
+        "Second person singular subject" : "2Sg",
+        "Second person plural subject" : "2Pl",
+        "Third person singular subject" : "3Sg",
+        "Third person obviative subject" : "3SgObv",
+        "Third person obviative subject; number not shown" : "3Obv", # ???
+        "Third person plural subject" : "3Pl",
+        "Singular inanimate subject" : "0Sg",
+        'Indefinite subject/actor (often translated as an unspecified <i>they</i>)': "X"
+    }
+    gloss_obj_dict = {
+        "First person singular object" : "1Sg",
+        "First person object; number not shown" : "1",
+        "Second person singular object" : "2Sg",
+        "Third person singular object" : "3Sg",
+        "Third person obviative object" : "3SgObv",
+        "Third person object: number not shown" : "3",
+        "Singular inanimate object" : "0Sg",
+        "Inanimate object; number not shown" : "0",
+        "Inanimate obviative object; number not shown" : "0"
+    }
+
+    # Add info for the first participant
+    participant = gloss[0]
+    if participant in gloss_subj_dict.keys():
+        form_with_info.update({"PersonNum": gloss_subj_dict[participant]})
+    else:
+        form_with_info.update({"PersonNum": "?"}) # So we take note of info we can't currently handle
+    # If there's a second participant (i.e. it's transitive), add their info too
+    if len(gloss) == 3 and (not gloss[1] == "augmented") and (not gloss[1] == "independent"):
+        participant = gloss[1]
+        if participant in gloss_obj_dict.keys():
+            form_with_info.update({"PersonNum": form_with_info["PersonNum"] + "+" + gloss_obj_dict[participant]})
+        else:
+            form_with_info.update({"PersonNum": form_with_info["PersonNum"] + "+" + "?"})
 
     return form_with_info
 

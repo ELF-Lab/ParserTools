@@ -11,9 +11,9 @@ Tests:
 
   Lemma - ALL :
 
-     agawaatebiigisin+VII+Ind+Pos: agawaatebiigisin
-     agawaatebiigisin+VII+Ind+Pos: agawaatebiigising
-     agawaatebiigisin+VII+Ind+Pos: egawaatebiigising
-     agawaatesin+VII+Ind+Pos: agawaatesin
-     agawaatesin+VII+Ind+Pos: agawaatesing
-     agawaatesin+VII+Ind+Pos: egawaatesing
+     agawaatebiigisin+VII+Ind+Pos+0Sg: agawaatebiigisin
+     agawaatebiigisin+VII+Ind+Pos+0Sg: agawaatebiigising
+     agawaatebiigisin+VII+Ind+Pos+0Sg: egawaatebiigising
+     agawaatesin+VII+Ind+Pos+0Sg: agawaatesin
+     agawaatesin+VII+Ind+Pos+0Sg: agawaatesing
+     agawaatesin+VII+Ind+Pos+0Sg: egawaatesing
