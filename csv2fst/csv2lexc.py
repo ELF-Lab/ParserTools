@@ -223,9 +223,10 @@ def read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_fil
             
 @click.command()
 @click.option("--csv_file",required=True)
+@click.option("--multichar_symbol_file",required=True)
 @click.option("--lexc_file",required=True)
-@click.option("--database_file", required=True)
-def main(csv_file, lexc_file, database_file):
+@click.option("--database_file", required=False)
+def main(csv_file,multichar_symbol_file,lexc_file, database_file):
     print(f"Convert {csv_file} to {lexc_file}. Read OPD lexemes from {database_file}")
     # We need several continuation lexicons under the Root lexicon:
     # Empty prefix, ni- and gi-prefix + P-flags
@@ -253,7 +254,9 @@ def main(csv_file, lexc_file, database_file):
     # We collect multichar symbols into this set. Boundary symbols and P-flags
     # for the empty prefix are always added.
     multichar_symbols = set(["<<",">>",SET_NO_PREFIX_FLAG,CHECK_NO_PREFIX_FLAG])
-
+    with open(multichar_symbol_file) as f:
+        multichar_symbols.update([s for s in f.read().split(" ") if s != ""])
+    
     # Collect all stem types
     stem_types = set()
 
@@ -298,7 +301,8 @@ def main(csv_file, lexc_file, database_file):
                              subclass_lexicons, suffix_lexicons, multichar_symbols,
                              pos_mode)
 
-    read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_file)
+    if database_file:
+        read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_file)
     
     print_lexc(lexc_file, pos_mode, multichar_symbols, prefix_lexicon,
                lemma_lexicon, subclass_lexicons, flag_lexicons,
