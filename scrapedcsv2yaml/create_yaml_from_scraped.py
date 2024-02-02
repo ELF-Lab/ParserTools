@@ -7,20 +7,6 @@ from create_yaml import create_output_directory
 
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
-YAML_HEADER = """Config:
-  hfst:
-    Gen: ../../../src/generator-gt-norm.hfst
-    Morph: ../../../src/analyser-gt-norm.hfst
-  xerox:
-    Gen: ../../../src/generator-gt-norm.xfst
-    Morph: ../../../src/analyser-gt-norm.xfst
-    App: lookup
-     
-Tests:
-
-  Lemma - ALL :
-"""
-YAML_INDENT = "     "
 vowels = ["i", "e", "o", "a"]
 
 def process_csv(file_name):
@@ -116,7 +102,6 @@ def add_class(form_with_info):
 
     # Make sure we assigned a class where needed
     if pos in POS_WITH_CLASS_IN_FILE_NAME:
-        print(form_with_info)
         assert "Class" in form_with_info.keys(), f"\nYou need to assign a class (e.g. info about the final characters in the stem) to a form with this stem: {form_with_info['Stem']}. (POS: {pos})"
 
     return form_with_info
@@ -159,50 +144,37 @@ def add_person_and_number(form_with_info):
     # Add info for the first participant
     participant = gloss[0]
     if participant in gloss_subj_dict.keys():
-        form_with_info.update({"PersonNum": gloss_subj_dict[participant]})
+        form_with_info.update({"Subject": gloss_subj_dict[participant]})
     else:
-        form_with_info.update({"PersonNum": "?"}) # So we take note of info we can't currently handle
+        form_with_info.update({"Subject": "?"}) # So we take note of info we can't currently handle
     # If there's a second participant (i.e. it's transitive), add their info too
     if len(gloss) == 3 and (not gloss[1] == "augmented") and (not gloss[1] == "independent"):
         participant = gloss[1]
         if participant in gloss_obj_dict.keys():
-            form_with_info.update({"PersonNum": form_with_info["PersonNum"] + "+" + gloss_obj_dict[participant]})
+            form_with_info.update({"Object": gloss_obj_dict[participant]})
         else:
-            form_with_info.update({"PersonNum": form_with_info["PersonNum"] + "+" + "?"})
+            form_with_info.update({"Object": "?"})
 
     return form_with_info
 
-def write_yaml(forms_with_info, output_directory):
-    # Every time we run the code, any existing YAML files will be deleted.
-    # So we must be creating the files anew every run.
-    # But then we are printing the forms out of order, so we need to
-    # create each file once, and after that (i.e. once the file exists)
-    # we just want to add new rows to it.
+# Reminder: forms_with_info is a list of dicts
+def write_new_csv(forms_with_info, output_dir):
+    CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source"
 
-    # For each stem in the dictionary, write it to its own yaml file.
-    for form_with_info in forms_with_info:
-        print("")
-        print(form_with_info)
-        output_file_name = f"{output_directory}/{determine_output_file(form_with_info)}"
-        # If the file doesn't exist, initialize it and write the forms
-        if not os.path.isfile(output_file_name):
-            with open(output_file_name, "w+") as yaml_file:
-                print(YAML_HEADER, file = yaml_file)
-                yaml_file.write(YAML_INDENT + f"{form_with_info['lexical_info']}\n")
-        # If the file already exists, just append these new forms
-        else:
-            with open(output_file_name, "a") as yaml_file:
-                yaml_file.write(YAML_INDENT + f"{form_with_info['lexical_info']}\n")
-
-def determine_output_file(form_with_info):
-    output_file = form_with_info["POS"]
-    if form_with_info["POS"] in POS_WITH_CLASS_IN_FILE_NAME:
-        assert("Class" in form_with_info.keys())
-        output_file += "_" + form_with_info["Class"]
-    output_file += ".yaml"
-
-    return output_file
-
+    with open(output_dir + 'inflectional_forms_for_yaml.csv', "w+") as csv:
+        csv.write(CSV_HEADER + "\n")
+        for form_with_info in forms_with_info:
+            print(form_with_info)
+            csv.write(form_with_info["POS"] + ",") # Paradigm
+            csv.write("Ind" + ",") # Order
+            if "Class" in form_with_info.keys(): # Class
+                csv.write(form_with_info["POS"] + "_" + form_with_info["Class"] + ",")
+            else:
+                csv.write(form_with_info["POS"] + ",")
+            csv.write(form_with_info["Lemma"] + ",") # Lemma
+            csv.write(form_with_info["Stem"] + ",") # Stem
+            csv.write(form_with_info["Subject"] + ",") # Subject
+            csv.write("\n") # for the new line
 
 def main():
     # Sets up argparse.
@@ -211,12 +183,13 @@ def main():
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     args = parser.parse_args()
 
+    output_directory = create_output_directory(args.output_parent_directory)
+
     forms_with_info = process_csv(args.if_csv_path)
 
-    output_dir = create_output_directory(args.output_parent_directory)
-    write_yaml(forms_with_info, output_dir)
+    write_new_csv(forms_with_info, output_directory)
 
-    print(args.if_csv_path, args.output_parent_directory)
+    print(args.if_csv_path, output_directory)
 
 if __name__ == '__main__':
     main()

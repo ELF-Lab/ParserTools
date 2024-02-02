@@ -11,44 +11,44 @@ Tests:
 
   Lemma - ALL :
 
-     abaagamide+VII+Ind+Pos+0Sg: abaagamide
-     abaagamide+VII+Ind+Pos+0Sg: abaagamideg
-     abaagamide+VII+Ind+Pos+0Sg: ebaagamideg
-     abaagamide+VII+Ind+Pos+0Sg: abaagamidemagad
-     abaate+VII+Ind+Pos+0Sg: abaate
-     abaate+VII+Ind+Pos+0Sg: abaateg
-     abaate+VII+Ind+Pos+0Sg: ebaateg
-     abaate+VII+Ind+Pos+0Sg+?: abaatemagad
-     abide+VII+Ind+Pos+0Sg: abide
-     abide+VII+Ind+Pos+0Sg: abideg
-     abide+VII+Ind+Pos+0Sg: ebideg
-     abide+VII+Ind+Pos+0Sg: abidemagad
-     abizigaade+VII+Ind+Pos+0Sg: abizigaade
-     abizigaade+VII+Ind+Pos+0Sg: abizigaadeg
-     abizigaade+VII+Ind+Pos+0Sg: ebizigaadeg
-     abiichigaade+VII+Ind+Pos+0Sg: abiichigaade
-     abiichigaade+VII+Ind+Pos+0Sg: abiichigaadeg
-     abiichigaade+VII+Ind+Pos+0Sg: ebiichigaadeg
-     abiichigaade+VII+Ind+Pos+0Sg+?: abiichigaademagad
-     achigaade+VII+Ind+Pos+0Sg: achigaade
-     achigaade+VII+Ind+Pos+0Sg: achigaadeg
-     achigaade+VII+Ind+Pos+0Sg: echigaadeg
-     achigaade+VII+Ind+Pos+0Sg+?: achigaademagad
-     adisigaade+VII+Ind+Pos+0Sg: adisigaade
-     adisigaade+VII+Ind+Pos+0Sg: adisigaadeg
-     adisigaade+VII+Ind+Pos+0Sg: edisigaadeg
-     adite+VII+Ind+Pos+0Sg: adite
-     adite+VII+Ind+Pos+0Sg: aditeg
-     adite+VII+Ind+Pos+0Sg: editeg
-     adite+VII+Ind+Pos+0Sg: aditemagad
-     agawaatese+VII+Ind+Pos+0Sg: agawaatese
-     agawaatese+VII+Ind+Pos+0Sg: agawaateseg
-     agawaatese+VII+Ind+Pos+0Sg: egawaateseg
-     agawaatese+VII+Ind+Pos+0Sg+?: agawaatesemagad
-     agaasademo+VII+Ind+Pos+0Sg: agaasademon
-     agaasademo+VII+Ind+Pos+0Sg: agaasademog
-     agaasademo+VII+Ind+Pos+0Sg: egaasademog
-     agaasate+VII+Ind+Pos+0Sg: agaasate
-     agaasate+VII+Ind+Pos+0Sg: agaasateg
-     agaasate+VII+Ind+Pos+0Sg: egaasateg
-     agaasate+VII+Ind+Pos+0Sg+?: agaasatemagad
+     abaagamide+VII+Ind+++0Sg+: 
+     abaagamide+VII+Ind+++0Sg+: 
+     abaagamide+VII+Ind+++0Sg+: 
+     abaagamide+VII+Ind+++0Sg+: 
+     abaate+VII+Ind+++0Sg+: 
+     abaate+VII+Ind+++0Sg+: 
+     abaate+VII+Ind+++0Sg+: 
+     abaate+VII+Ind+++0Sg+: 
+     abide+VII+Ind+++0Sg+: 
+     abide+VII+Ind+++0Sg+: 
+     abide+VII+Ind+++0Sg+: 
+     abide+VII+Ind+++0Sg+: 
+     abizigaade+VII+Ind+++0Sg+: 
+     abizigaade+VII+Ind+++0Sg+: 
+     abizigaade+VII+Ind+++0Sg+: 
+     abiichigaade+VII+Ind+++0Sg+: 
+     abiichigaade+VII+Ind+++0Sg+: 
+     abiichigaade+VII+Ind+++0Sg+: 
+     abiichigaade+VII+Ind+++0Sg+: 
+     achigaade+VII+Ind+++0Sg+: 
+     achigaade+VII+Ind+++0Sg+: 
+     achigaade+VII+Ind+++0Sg+: 
+     achigaade+VII+Ind+++0Sg+: 
+     adisigaade+VII+Ind+++0Sg+: 
+     adisigaade+VII+Ind+++0Sg+: 
+     adisigaade+VII+Ind+++0Sg+: 
+     adite+VII+Ind+++0Sg+: 
+     adite+VII+Ind+++0Sg+: 
+     adite+VII+Ind+++0Sg+: 
+     adite+VII+Ind+++0Sg+: 
+     agawaatese+VII+Ind+++0Sg+: 
+     agawaatese+VII+Ind+++0Sg+: 
+     agawaatese+VII+Ind+++0Sg+: 
+     agawaatese+VII+Ind+++0Sg+: 
+     agaasademon+VII+Ind+++0Sg+: 
+     agaasademon+VII+Ind+++0Sg+: 
+     agaasademon+VII+Ind+++0Sg+: 
+     agaasate+VII+Ind+++0Sg+: 
+     agaasate+VII+Ind+++0Sg+: 
+     agaasate+VII+Ind+++0Sg+: 
+     agaasate+VII+Ind+++0Sg+: 

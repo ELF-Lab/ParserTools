@@ -11,354 +11,354 @@ Tests:
 
   Lemma - ALL :
 
-     abashkwebiigizi+VAI+Ind+Pos+1Sg: indabashkwebiigiz
-     abashkwebiigizi+VAI+Ind+Pos+1Sg: nindabashkwebiigiz
-     abashkwebiigizi+VAI+Ind+Pos+1Sg: nidabashkwebiigiz
-     abashkwebiigizi+VAI+Ind+Pos+3Sg: abashkwebiigizid
-     abashkwebiigizi+VAI+Ind+Pos+3Sg: ebashkwebiigizid
-     abaabasige+VAI+Ind+Pos+1Sg: indabaabasige
-     abaabasige+VAI+Ind+Pos+3Sg: abaabasige
-     abaabasige+VAI+Ind+Pos+3Sg: abaabasiged
-     abaabasige+VAI+Ind+Pos+3Sg: ebaabasiged
-     abaabaso+VAI+Ind+Pos+1Sg: indabaabas
-     abaabaso+VAI+Ind+Pos+1Sg: nindabaabas
-     abaabaso+VAI+Ind+Pos+1Sg: nidabaabas
-     abaabaso+VAI+Ind+Pos+3Sg: abaabaso
-     abaabaso+VAI+Ind+Pos+3Sg: abaabasod
-     abaabaso+VAI+Ind+Pos+3Sg: ebaabasod
-     abaagamizige+VAI+Ind+Pos+1Sg: indabaagamizige
-     abaagamizige+VAI+Ind+Pos+1Sg: nindabaagamizige
-     abaagamizige+VAI+Ind+Pos+1Sg: nidabaagamizige
-     abaagamizige+VAI+Ind+Pos+3Sg: abaagamizige
-     abaagamizige+VAI+Ind+Pos+3Sg: abaagamiziged
-     abaagamizige+VAI+Ind+Pos+3Sg: ebaagamiziged
-     abaakiganezo+VAI+Ind+Pos+1Sg: nindabaakiganez
-     abaakiganezo+VAI+Ind+Pos+3Sg: abaakiganezo
-     abaakiganezo+VAI+Ind+Pos+3Sg: abaakiganezod
-     abaakiganezo+VAI+Ind+Pos+3Sg: ebaakiganezod
-     abaasandeke+VAI+Ind+Pos+1Sg: indabaasandeke
-     abaasandeke+VAI+Ind+Pos+1Sg: nindabaasandeke
-     abaasandeke+VAI+Ind+Pos+1Sg: nidabaasandeke
-     abaasandeke+VAI+Ind+Pos+3Sg: abaasandeke
-     abaasandeke+VAI+Ind+Pos+3Sg: abaasandeked
-     abaasandeke+VAI+Ind+Pos+3Sg: ebaasandeked
-     abaaso+VAI+Ind+Pos+1Sg: indabaas
-     abaaso+VAI+Ind+Pos+1Sg: nindabaas
-     abaaso+VAI+Ind+Pos+1Sg: nidabaas
-     abaaso+VAI+Ind+Pos+3Sg: abaaso
-     abaaso+VAI+Ind+Pos+3Sg: abaasod
-     abaaso+VAI+Ind+Pos+3Sg: ebaasod
-     abaawiganezo+VAI+Ind+Pos+1Sg: indabaawiganez
-     abaawiganezo+VAI+Ind+Pos+1Sg: nindabaawiganez
-     abaawiganezo+VAI+Ind+Pos+1Sg: nidabaawiganez
-     abaawiganezo+VAI+Ind+Pos+3Sg: abaawiganezo
-     abaawiganezo+VAI+Ind+Pos+3Sg: abaawiganezod
-     abaawiganezo+VAI+Ind+Pos+3Sg: ebaawiganezod
-     abi+VAI+Ind+Pos+1Sg: indab
-     abi+VAI+Ind+Pos+1Sg: nindab
-     abi+VAI+Ind+Pos+1Sg: nidab
-     abi+VAI+Ind+Pos+3Sg: abi
-     abi+VAI+Ind+Pos+1Sg: abiyaan
-     abi+VAI+Ind+Pos+3Sg: abid
-     abi+VAI+Ind+Pos+3Sg: ebid
-     abidiyezo+VAI+Ind+Pos+1Sg: nindabidiyez
-     abidiyezo+VAI+Ind+Pos+3Sg: abidiyezo
-     abidiyezo+VAI+Ind+Pos+3Sg: abidiyezod
-     abidiyezo+VAI+Ind+Pos+3Sg: ebidiyezod
-     abininjiizo+VAI+Ind+Pos+1Sg: indabininjiiz
-     abininjiizo+VAI+Ind+Pos+1Sg: nindabininjiiz
-     abininjiizo+VAI+Ind+Pos+1Sg: nidabininjiiz
-     abininjiizo+VAI+Ind+Pos+3Sg: abininjiizo
-     abininjiizo+VAI+Ind+Pos+3Sg: abininjiizod
-     abininjiizo+VAI+Ind+Pos+3Sg: ebininjiizod
-     abininjiizo+VAI+Ind+Pos+2Sg: abininjiizon
-     abinoojiinyikaazo+VAI+Ind+Pos+1Sg: indabinoojiinyikaaz
-     abinoojiinyikaazo+VAI+Ind+Pos+1Sg: nindabinoojiinyikaaz
-     abinoojiinyikaazo+VAI+Ind+Pos+1Sg: nidabinoojiinyikaaz
-     abinoojiinyikaazo+VAI+Ind+Pos+3Sg: abinoojiinyikaazo
-     abinoojiinyikaazo+VAI+Ind+Pos+3Sg: abinoojiinyikaazod
-     abinoojiinyikaazo+VAI+Ind+Pos+3Sg: ebinoojiinyikaazod
-     abinoojiinyiwi+VAI+Ind+Pos+1Sg: indabinoojiinyiw
-     abinoojiinyiwi+VAI+Ind+Pos+1Sg: nindabinoojiinyiw
-     abinoojiinyiwi+VAI+Ind+Pos+1Sg: nidabinoojiinyiw
-     abinoojiinyiwi+VAI+Ind+Pos+3Sg: abinoojiinyiwi
-     abinoojiinyiwi+VAI+Ind+Pos+3Sg: abinoojiinyiwid
-     abinoojiinyiwi+VAI+Ind+Pos+3Sg: ebinoojiinyiwid
-     abizidezo+VAI+Ind+Pos+1Sg: indabizidez
-     abizidezo+VAI+Ind+Pos+1Sg: nindabizidez
-     abizidezo+VAI+Ind+Pos+1Sg: nidabizidez
-     abizidezo+VAI+Ind+Pos+3Sg: abizidezo
-     abizidezo+VAI+Ind+Pos+3Sg: abizidezod
-     abizidezo+VAI+Ind+Pos+3Sg: ebizidezod
-     abizigaazo+VAI+Ind+Pos+3Sg: abizigaazo
-     abizigaazo+VAI+Ind+Pos+3Sg: abizigaazod
-     abizigaazo+VAI+Ind+Pos+3Sg: ebizigaazod
-     abizige+VAI+Ind+Pos+1Sg: indabizige
-     abizige+VAI+Ind+Pos+1Sg: nindabizige
-     abizige+VAI+Ind+Pos+1Sg: nidabizige
-     abizige+VAI+Ind+Pos+3Sg: abizige
-     abizige+VAI+Ind+Pos+3Sg: abiziged
-     abizige+VAI+Ind+Pos+3Sg: ebiziged
-     abizo+VAI+Ind+Pos+1Sg: indabiz
-     abizo+VAI+Ind+Pos+1Sg: nindabiz
-     abizo+VAI+Ind+Pos+1Sg: nidabiz
-     abizo+VAI+Ind+Pos+3Sg: abizo
-     abizo+VAI+Ind+Pos+3Sg: abizod
-     abizo+VAI+Ind+Pos+3Sg: ebizod
-     abizo+VAI+Ind+Pos+2Sg: abizon
-     abizodizo+VAI+Ind+Pos+1Sg: indabizodiz
-     abizodizo+VAI+Ind+Pos+3Sg: abizodizo
-     abizodizo+VAI+Ind+Pos+3Sg: abizodizod
-     abizodizo+VAI+Ind+Pos+3Sg: ebizodizod
-     abiigizige+VAI+Ind+Pos+1Sg: indabiigizige
-     abiigizige+VAI+Ind+Pos+1Sg: nindabiigizige
-     abiigizige+VAI+Ind+Pos+1Sg: nidabiigizige
-     abiigizige+VAI+Ind+Pos+3Sg: abiigizige
-     abiigizige+VAI+Ind+Pos+3Sg: abiigiziged
-     abiigizige+VAI+Ind+Pos+?: ebiigiziged
-     abiingwezo+VAI+Ind+Pos+1Sg: nindabiingwez
-     abiingwezo+VAI+Ind+Pos+3Sg: abiingwezo
-     abiingwezo+VAI+Ind+Pos+3Sg: abiingwezod
-     abiingwezo+VAI+Ind+Pos+3Sg: ebiingwezod
-     abwaajige+VAI+Ind+Pos+1Sg: indabwaajige
-     abwaajige+VAI+Ind+Pos+1Sg: nindabwaajige
-     abwaajige+VAI+Ind+Pos+1Sg: nidabwaajige
-     abwaajige+VAI+Ind+Pos+3Sg: abwaajiged
-     abwaajige+VAI+Ind+Pos+3Sg: ebwaajiged
-     abwe+VAI+Ind+Pos+1Sg: indabwe
-     abwe+VAI+Ind+Pos+1Sg: nindabwe
-     abwe+VAI+Ind+Pos+1Sg: nidabwe
-     abwe+VAI+Ind+Pos+3Sg: abwe
-     abwe+VAI+Ind+Pos+3Sg: abwed
-     abwe+VAI+Ind+Pos+3Sg: ebwed
-     abwemaagozi+VAI+Ind+Pos+1Sg: indabwemaagoz
-     abwemaagozi+VAI+Ind+Pos+3Sg: abwemaagozi
-     abwemaagozi+VAI+Ind+Pos+3Sg: abwemaagozid
-     abwemaagozi+VAI+Ind+Pos+3Sg: ebwemaagozid
-     abwendibe+VAI+Ind+Pos+1Sg: indabwendibe
-     abwendibe+VAI+Ind+Pos+3Sg: abwendibe
-     abwendibe+VAI+Ind+Pos+3Sg: abwendibed
-     abwendibe+VAI+Ind+Pos+3Sg: ebwendibed
-     abwenike+VAI+Ind+Pos+1Sg: indabwenike
-     abwenike+VAI+Ind+Pos+1Sg: nindabwenike
-     abwenike+VAI+Ind+Pos+3Sg: abwenike
-     abwenike+VAI+Ind+Pos+3Sg: abweniked
-     abwenike+VAI+Ind+Pos+3Sg: ebweniked
-     abwewasige+VAI+Ind+Pos+1Sg: indabwewasige
-     abwewasige+VAI+Ind+Pos+1Sg: nindabwewasige
-     abwewasige+VAI+Ind+Pos+1Sg: nidabwewasige
-     abwewasige+VAI+Ind+Pos+3Sg: abwewasiged
-     abwewasige+VAI+Ind+Pos+3Sg: ebwewasiged
-     abweyiingwe+VAI+Ind+Pos+1Sg: indabweyiingwe
-     abweyiingwe+VAI+Ind+Pos+3Sg: abweyiingwe
-     abweyiingwe+VAI+Ind+Pos+3Sg: abweyiingwed
-     abweyiingwe+VAI+Ind+Pos+3Sg: ebweyiingwed
-     abwezide+VAI+Ind+Pos+1Sg: indabwezide
-     abwezide+VAI+Ind+Pos+1Sg: nindabwezide
-     abwezide+VAI+Ind+Pos+1Sg: nidabwezide
-     abwezide+VAI+Ind+Pos+3Sg: abwezide
-     abwezide+VAI+Ind+Pos+3Sg: abwezided
-     abwezide+VAI+Ind+Pos+3Sg: ebwezided
-     abwezo+VAI+Ind+Pos+1Sg: indabwez
-     abwezo+VAI+Ind+Pos+1Sg: nindabwez
-     abwezo+VAI+Ind+Pos+1Sg: nidabwez
-     abwezo+VAI+Ind+Pos+3Sg: abwezo
-     abwezo+VAI+Ind+Pos+3Sg: abwezod
-     abwezo+VAI+Ind+Pos+3Sg: ebwezod
-     abwiike+VAI+Ind+Pos+1Sg: indabwiike
-     abwiike+VAI+Ind+Pos+1Sg: nindabwiike
-     abwiike+VAI+Ind+Pos+1Sg: nidabwiike
-     abwiike+VAI+Ind+Pos+3Sg: abwiike
-     abwiike+VAI+Ind+Pos+1Sg: abwiikeyaan
-     abwiike+VAI+Ind+Pos+3Sg: abwiiked
-     abwiike+VAI+Ind+Pos+3Sg: ebwiiked
-     abwiike+VAI+Ind+Pos+2Sg: abwiiken
-     achaabike+VAI+Ind+Pos+1Sg: nindachaabike
-     achaabike+VAI+Ind+Pos+3Sg: achaabike
-     achaabike+VAI+Ind+Pos+3Sg: achaabiked
-     achaabike+VAI+Ind+Pos+3Sg: echaabiked
-     achaawise+VAI+Ind+Pos+1Sg: indachaawise
-     achaawise+VAI+Ind+Pos+3Sg: achaawise
-     achaawise+VAI+Ind+Pos+3Sg: achaawised
-     achaawise+VAI+Ind+Pos+3Sg: echaawised
-     achigaazo+VAI+Ind+Pos+3Sg: achigaazo
-     achigaazo+VAI+Ind+Pos+3Sg: achigaazod
-     achigaazo+VAI+Ind+Pos+3Sg: echigaazod
-     achige+VAI+Ind+Pos+1Sg: indachige
-     achige+VAI+Ind+Pos+1Sg: nindachige
-     achige+VAI+Ind+Pos+1Sg: nidachige
-     achige+VAI+Ind+Pos+3Sg: achige
-     achige+VAI+Ind+Pos+3Sg: achiged
-     achige+VAI+Ind+Pos+3Sg: echiged
-     adaandi+VAI+Ind+Pos+Excl: indadaandimin
-     adaandi+VAI+Ind+Pos+3Pl: adaandiwaad
-     adaandi+VAI+Ind+Pos+3Pl: adaandiwag
-     adaandi+VAI+Ind+Pos+3Pl: edaandiwaad
-     adaawange+VAI+Ind+Pos+1Sg: indadaawange
-     adaawange+VAI+Ind+Pos+1Sg: nindadaawange
-     adaawange+VAI+Ind+Pos+1Sg: nidadaawange
-     adaawange+VAI+Ind+Pos+3Sg: adaawange
-     adaawange+VAI+Ind+Pos+3Sg: adaawanged
-     adaawange+VAI+Ind+Pos+3Sg: edaawanged
-     adaawangeshki+VAI+Ind+Pos+1Sg: indadaawangeshk
-     adaawangeshki+VAI+Ind+Pos+3Sg: adaawangeshki
-     adaawangeshki+VAI+Ind+Pos+3Sg: adaawangeshkid
-     adaawangeshki+VAI+Ind+Pos+3Sg: edaawangeshkid 
-     adaawaage+VAI+Ind+Pos+1Sg: indadaawaage
-     adaawaage+VAI+Ind+Pos+1Sg: nindadaawaage
-     adaawaage+VAI+Ind+Pos+1Sg: nidadaawaage
-     adaawaage+VAI+Ind+Pos+3Sg: adaawaage
-     adaawaage+VAI+Ind+Pos+?: adaawaaged
-     adaawaage+VAI+Ind+Pos+3Sg: edaawaaged
-     adaawe+VAI+Ind+Pos+1Sg: indadaawe
-     adaawe+VAI+Ind+Pos+1Sg: nindadaawe
-     adaawe+VAI+Ind+Pos+1Sg: nidadaawe
-     adaawe+VAI+Ind+Pos+3Sg: adaawe
-     adaawe+VAI+Ind+Pos+3Sg: adaawed
-     adaawe+VAI+Ind+Pos+3Sg: edaawed
-     adaawensi+VAI+Ind+Pos+1Sg: nindadaawens
-     adaawensi+VAI+Ind+Pos+3Sg: adaawensi
-     adaawensi+VAI+Ind+Pos+3Sg: adaawensid
-     adaawensi+VAI+Ind+Pos+3Sg: edaawensid
-     adaawetamaadi+VAI+Ind+Pos+Excl: indadaawetamaadimin
-     adaawetamaadi+VAI+Ind+Pos+3Pl: adaawetamaadiwag
-     adaawetamaadi+VAI+Ind+Pos+3Pl: adaawetamaadiwaad
-     adaawetamaadi+VAI+Ind+Pos+3Pl: edaawetamaadiwaad
-     adaawetamaadi+VAI+Ind+Pos+2Pl: adaawetamaadig
-     adaawetamaadizo+VAI+Ind+Pos+1Sg: indadaawetamaadiz
-     adaawetamaadizo+VAI+Ind+Pos+3Sg: adaawetamaadizo
-     adaawetamaadizo+VAI+Ind+Pos+3Sg: adaawetamaadizod
-     adaawetamaadizo+VAI+Ind+Pos+3Sg: edaawetamaadizod
-     adaawetamaage+VAI+Ind+Pos+1Sg: ndadawetamaage
-     adaawetamaage+VAI+Ind+Pos+3Sg: adaawetamaage
-     adaawetamaage+VAI+Ind+Pos+3Sg: adaawetamaaged
-     adaawetamaage+VAI+Ind+Pos+3Sg: edaawetamaaged
-     adaawetamaazo+VAI+Ind+Pos+1Sg: indadaawetamaaz
-     adaawetamaazo+VAI+Ind+Pos+1Sg: nindadaawetamaaz
-     adaawetamaazo+VAI+Ind+Pos+1Sg: nidadaawetamaaz
-     adaawetamaazo+VAI+Ind+Pos+3Sg: adaawetamaazo
-     adaawetamaazo+VAI+Ind+Pos+3Sg: adaawetamaazod
-     adaawetamaazo+VAI+Ind+Pos+3Sg: edaawetamaazod
-     adaawewikwewi+VAI+Ind+Pos+1Sg: indadaawewikwew
-     adaawewikwewi+VAI+Ind+Pos+3Sg: adaawewikwewi
-     adaawewikwewi+VAI+Ind+Pos+3Sg: adaawewikwewid
-     adaawewikwewi+VAI+Ind+Pos+3Sg: edaawewikwewid
-     adaawewininiikwewi+VAI+Ind+Pos+1Sg: indadaawewininiikwew
-     adaawewininiikwewi+VAI+Ind+Pos+3Sg: adaawewininiikwewi
-     adaawewininiikwewi+VAI+Ind+Pos+3Sg: adaawewininiikwewid
-     adaawewininiikwewi+VAI+Ind+Pos+3Sg: edaawewininiikwewid
-     adaawewininiiwi+VAI+Ind+Pos+1Sg: indadaawewininiiw
-     adaawewininiiwi+VAI+Ind+Pos+3Sg: adaawewininiiwi
-     adaawewininiiwi+VAI+Ind+Pos+3Sg: adaawewininiiwid
-     adaawewininiiwi+VAI+Ind+Pos+3Sg: edaawewininiiwid
-     adimanike+VAI+Ind+Pos+1Sg: nindadimanike
-     adimanike+VAI+Ind+Pos+3Sg: adimanike
-     adimanike+VAI+Ind+Pos+3Sg: adimaniked
-     adimanike+VAI+Ind+Pos+3Sg: edimaniked
-     adisigaazo+VAI+Ind+Pos+3Sg: adisigaazo
-     adisigaazo+VAI+Ind+Pos+3Sg: adisigaazod
-     adisigaazo+VAI+Ind+Pos+3Sg: edisigaazod
-     adisige+VAI+Ind+Pos+1Sg: nindadisige
-     adisige+VAI+Ind+Pos+1Sg: indadisige
-     adisige+VAI+Ind+Pos+1Sg: nidadisige
-     adisige+VAI+Ind+Pos+3Sg: adisige
-     adisige+VAI+Ind+Pos+3Sg: adisiged
-     adisige+VAI+Ind+Pos+3Sg: edisiged
-     adiso+VAI+Ind+Pos+3Sg: adiso
-     adiso+VAI+Ind+Pos+3Sg: adisod
-     adiso+VAI+Ind+Pos+3Sg: edisod
-     agadendaagozi+VAI+Ind+Pos+1Sg: indagadendaagoz
-     agadendaagozi+VAI+Ind+Pos+1Sg: nindagadendaagoz
-     agadendaagozi+VAI+Ind+Pos+1Sg: nidagadendaagoz
-     agadendaagozi+VAI+Ind+Pos+3Sg: agadendaagozi
-     agadendaagozi+VAI+Ind+Pos+3Sg: agadendaagozid
-     agadendaagozi+VAI+Ind+Pos+3Sg: egadendaagozid
-     agaji+VAI+Ind+Pos+1Sg: indagaj
-     agaji+VAI+Ind+Pos+1Sg: nindagaj
-     agaji+VAI+Ind+Pos+1Sg: nidagaj
-     agaji+VAI+Ind+Pos+3Sg: agaji
-     agaji+VAI+Ind+Pos+3Sg: agajid
-     agaji+VAI+Ind+Pos+3Sg: egajid
-     agaji'iwe+VAI+Ind+Pos+1Sg: ndagaji'iwe
-     agaji'iwe+VAI+Ind+Pos+3Sg: agaji'iwe
-     agaji'iwe+VAI+Ind+Pos+3Sg: agaji'iwed
-     agaji'iwe+VAI+Ind+Pos+3Sg: egaji'iwed
-     agajishki+VAI+Ind+Pos+1Sg: indagajishk
-     agajishki+VAI+Ind+Pos+1Sg: nindagajishk
-     agajishki+VAI+Ind+Pos+1Sg: nidagajishk
-     agajishki+VAI+Ind+Pos+3Sg: agajishki
-     agajishki+VAI+Ind+Pos+3Sg: agajishkid
-     agajishki+VAI+Ind+Pos+3Sg: egajishkid
-     agawaatebi+VAI+Ind+Pos+1Sg: indagawaateb
-     agawaatebi+VAI+Ind+Pos+3Sg: agawaatebi
-     agawaatebi+VAI+Ind+Pos+3Sg: agawaatebid
-     agawaatebi+VAI+Ind+Pos+3Sg: egawaatebid
-     agawaatese+VAI+Ind+Pos+3Sg: agawaatese
-     agawaatese+VAI+Ind+Pos+3Sg: agawaatesed
-     agawaatese+VAI+Ind+Pos+3Sg: egawaatesed
-     agazitaagozi+VAI+Ind+Pos+3Sg: agazitaagozi
-     agazitaagozi+VAI+Ind+Pos+3Sg: agazitaagozid
-     agazitaagozi+VAI+Ind+Pos+3Sg: egazitaagozid
-     agazondi+VAI+Ind+Pos+Excl: nindagazondimin
-     agazondi+VAI+Ind+Pos+3Pl: agazondiwag
-     agazondi+VAI+Ind+Pos+3Pl: agazondiwaad
-     agazondi+VAI+Ind+Pos+3Pl: egazondiwaad
-     agazondizo+VAI+Ind+Pos+1Sg: indagazondiz
-     agazondizo+VAI+Ind+Pos+3Sg: agazondizo
-     agazondizo+VAI+Ind+Pos+3Sg: agazondizod
-     agazondizo+VAI+Ind+Pos+3Sg: egazondizod
-     agazonge+VAI+Ind+Pos+1Sg: indagazonge
-     agazonge+VAI+Ind+Pos+1Sg: nindagazonge
-     agazonge+VAI+Ind+Pos+1Sg: nidagazonge
-     agazonge+VAI+Ind+Pos+3Sg: agazonge
-     agazonge+VAI+Ind+Pos+3Sg: agazonged
-     agazonge+VAI+Ind+Pos+3Sg: egazonged
-     agaamindekodaadi+VAI+Ind+Pos+Excl: nindagaamindekodaadimin
-     agaamindekodaadi+VAI+Ind+Pos+3Pl: agaamindekodaadiwag
-     agaamindekodaadi+VAI+Ind+Pos+3Pl: agaamindekodaadiwaad
-     agaamindekodaadi+VAI+Ind+Pos+3Pl: egaamindekodaadiwaad
-     agaasadengwe+VAI+Ind+Pos+1Sg: indagaasadengwe
-     agaasadengwe+VAI+Ind+Pos+1Sg: nindagaasadengwe
-     agaasadengwe+VAI+Ind+Pos+1Sg: nidagaasadengwe
-     agaasadengwe+VAI+Ind+Pos+3Sg: agaasadengwe
-     agaasadengwe+VAI+Ind+Pos+3Sg: agaasadengwed
-     agaasadengwe+VAI+Ind+Pos+3Sg: egaasadengwed
-     agaasadeyaabikizi+VAI+Ind+Pos+3Sg: agaasadeyaabikizi
-     agaasadeyaabikizi+VAI+Ind+Pos+3Sg: agaasadeyaabikizid
-     agaasadeyaabikizi+VAI+Ind+Pos+3Sg: egaasadeyaabikizid
-     agaasadeyaabiigizi+VAI+Ind+Pos+3Sg: agaasadeyaabiigizi
-     agaasadeyaabiigizi+VAI+Ind+Pos+3Sg: agaasadeyaabiigizid
-     agaasadeyaabiigizi+VAI+Ind+Pos+3Sg: egaasadeyaabiigizid
-     agaasadeyaakozi+VAI+Ind+Pos+3Sg: agaasadeyaakozi
-     agaasadeyaakozi+VAI+Ind+Pos+3Sg: agaasadeyaakozid
-     agaasadeyaakozi+VAI+Ind+Pos+3Sg: egaasadeyaakozid
-     agaasadeyiigizi+VAI+Ind+Pos+0Sg: agaasadeyiigizi
-     agaasadeyiigizi+VAI+Ind+Pos+3Sg: agaasadeyiigizid
-     agaasadeyiigizi+VAI+Ind+Pos+3Sg: egaasadeyiigizid
-     agaasadezi+VAI+Ind+Pos+3Sg: agaasadezi
-     agaasadezi+VAI+Ind+Pos+3Sg: agaasadezid
-     agaasadezi+VAI+Ind+Pos+3Sg: egaasadezid
-     agaasadezide+VAI+Ind+Pos+1Sg: indagaasadezide
-     agaasadezide+VAI+Ind+Pos+3Sg: agaasadezide
-     agaasadezide+VAI+Ind+Pos+3Sg: agaasadezided
-     agaasadezide+VAI+Ind+Pos+3Sg: egaasadezided
-     agaasaabaminaagozi+VAI+Ind+Pos+3Sg: agaasaabaminaagozid
-     agaasaabaminaagozi+VAI+Ind+Pos+3Sg: agaasaabaminaagozi
-     agaasaabaminaagozi+VAI+Ind+Pos+3Sg: egaasaabaminaagozid
-     agaasaabikizi+VAI+Ind+Pos+3Sg: agaasaabikizi
-     agaasaabikizi+VAI+Ind+Pos+3Sg: agaasaabikizid
-     agaasaabikizi+VAI+Ind+Pos+3Sg: egaasaabikizid
-     agaasaabiigizi+VAI+Ind+Pos+3Sg: agaasaabiigizi
-     agaasaabiigizi+VAI+Ind+Pos+3Sg: agaasaabiigizid
-     agaasaabiigizi+VAI+Ind+Pos+3Sg: egaasaabiigizid
-     agaasaakozi+VAI+Ind+Pos+3Sg: agaasaakozi
-     agaasaakozi+VAI+Ind+Pos+3Sg: agaasaakozid
-     agaasaakozi+VAI+Ind+Pos+3Sg: egaasaakozid
-     agaasaakwaanowe+VAI+Ind+Pos+3Sg: agaasaakwaanowe
-     agaasaakwaanowe+VAI+Ind+Pos+3Sg: agaasaakwaanowed
-     agaasaakwaanowe+VAI+Ind+Pos+3Sg: egaasaakwaanowed
-     agaasaakwaanowe+VAI+Ind+Pos+3Sg: agaasaakwaanowe
-     agaasaakwaanowe+VAI+Ind+Pos+3Sg: agaasaakwaanowed
-     agaasaanowe+VAI+Ind+Pos+3Sg: agaasaanowe
-     agaasaanowe+VAI+Ind+Pos+3Sg: agaasaanowed
-     agaasaanowe+VAI+Ind+Pos+3Sg: egaasaanowed
+     abashkwebiigizi+VAI+Ind+++1Sg+: 
+     abashkwebiigizi+VAI+Ind+++1Sg+: 
+     abashkwebiigizi+VAI+Ind+++1Sg+: 
+     abashkwebiigizi+VAI+Ind+++3Sg+: 
+     abashkwebiigizi+VAI+Ind+++3Sg+: 
+     abaabasige+VAI+Ind+++1Sg+: 
+     abaabasige+VAI+Ind+++3Sg+: 
+     abaabasige+VAI+Ind+++3Sg+: 
+     abaabasige+VAI+Ind+++3Sg+: 
+     abaabaso+VAI+Ind+++1Sg+: 
+     abaabaso+VAI+Ind+++1Sg+: 
+     abaabaso+VAI+Ind+++1Sg+: 
+     abaabaso+VAI+Ind+++3Sg+: 
+     abaabaso+VAI+Ind+++3Sg+: 
+     abaabaso+VAI+Ind+++3Sg+: 
+     abaagamizige+VAI+Ind+++1Sg+: 
+     abaagamizige+VAI+Ind+++1Sg+: 
+     abaagamizige+VAI+Ind+++1Sg+: 
+     abaagamizige+VAI+Ind+++3Sg+: 
+     abaagamizige+VAI+Ind+++3Sg+: 
+     abaagamizige+VAI+Ind+++3Sg+: 
+     abaakiganezo+VAI+Ind+++1Sg+: 
+     abaakiganezo+VAI+Ind+++3Sg+: 
+     abaakiganezo+VAI+Ind+++3Sg+: 
+     abaakiganezo+VAI+Ind+++3Sg+: 
+     abaasandeke+VAI+Ind+++1Sg+: 
+     abaasandeke+VAI+Ind+++1Sg+: 
+     abaasandeke+VAI+Ind+++1Sg+: 
+     abaasandeke+VAI+Ind+++3Sg+: 
+     abaasandeke+VAI+Ind+++3Sg+: 
+     abaasandeke+VAI+Ind+++3Sg+: 
+     abaaso+VAI+Ind+++1Sg+: 
+     abaaso+VAI+Ind+++1Sg+: 
+     abaaso+VAI+Ind+++1Sg+: 
+     abaaso+VAI+Ind+++3Sg+: 
+     abaaso+VAI+Ind+++3Sg+: 
+     abaaso+VAI+Ind+++3Sg+: 
+     abaawiganezo+VAI+Ind+++1Sg+: 
+     abaawiganezo+VAI+Ind+++1Sg+: 
+     abaawiganezo+VAI+Ind+++1Sg+: 
+     abaawiganezo+VAI+Ind+++3Sg+: 
+     abaawiganezo+VAI+Ind+++3Sg+: 
+     abaawiganezo+VAI+Ind+++3Sg+: 
+     abi+VAI+Ind+++1Sg+: 
+     abi+VAI+Ind+++1Sg+: 
+     abi+VAI+Ind+++1Sg+: 
+     abi+VAI+Ind+++3Sg+: 
+     abi+VAI+Ind+++1Sg+: 
+     abi+VAI+Ind+++3Sg+: 
+     abi+VAI+Ind+++3Sg+: 
+     abidiyezo+VAI+Ind+++1Sg+: 
+     abidiyezo+VAI+Ind+++3Sg+: 
+     abidiyezo+VAI+Ind+++3Sg+: 
+     abidiyezo+VAI+Ind+++3Sg+: 
+     abininjiizo+VAI+Ind+++1Sg+: 
+     abininjiizo+VAI+Ind+++1Sg+: 
+     abininjiizo+VAI+Ind+++1Sg+: 
+     abininjiizo+VAI+Ind+++3Sg+: 
+     abininjiizo+VAI+Ind+++3Sg+: 
+     abininjiizo+VAI+Ind+++3Sg+: 
+     abininjiizo+VAI+Ind+++2Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++1Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++1Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++1Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++3Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++3Sg+: 
+     abinoojiinyikaazo+VAI+Ind+++3Sg+: 
+     abinoojiinyiwi+VAI+Ind+++1Sg+: 
+     abinoojiinyiwi+VAI+Ind+++1Sg+: 
+     abinoojiinyiwi+VAI+Ind+++1Sg+: 
+     abinoojiinyiwi+VAI+Ind+++3Sg+: 
+     abinoojiinyiwi+VAI+Ind+++3Sg+: 
+     abinoojiinyiwi+VAI+Ind+++3Sg+: 
+     abizidezo+VAI+Ind+++1Sg+: 
+     abizidezo+VAI+Ind+++1Sg+: 
+     abizidezo+VAI+Ind+++1Sg+: 
+     abizidezo+VAI+Ind+++3Sg+: 
+     abizidezo+VAI+Ind+++3Sg+: 
+     abizidezo+VAI+Ind+++3Sg+: 
+     abizigaazo+VAI+Ind+++3Sg+: 
+     abizigaazo+VAI+Ind+++3Sg+: 
+     abizigaazo+VAI+Ind+++3Sg+: 
+     abizige+VAI+Ind+++1Sg+: 
+     abizige+VAI+Ind+++1Sg+: 
+     abizige+VAI+Ind+++1Sg+: 
+     abizige+VAI+Ind+++3Sg+: 
+     abizige+VAI+Ind+++3Sg+: 
+     abizige+VAI+Ind+++3Sg+: 
+     abizo+VAI+Ind+++1Sg+: 
+     abizo+VAI+Ind+++1Sg+: 
+     abizo+VAI+Ind+++1Sg+: 
+     abizo+VAI+Ind+++3Sg+: 
+     abizo+VAI+Ind+++3Sg+: 
+     abizo+VAI+Ind+++3Sg+: 
+     abizo+VAI+Ind+++2Sg+: 
+     abizodizo+VAI+Ind+++1Sg+: 
+     abizodizo+VAI+Ind+++3Sg+: 
+     abizodizo+VAI+Ind+++3Sg+: 
+     abizodizo+VAI+Ind+++3Sg+: 
+     abiigizige+VAI+Ind+++1Sg+: 
+     abiigizige+VAI+Ind+++1Sg+: 
+     abiigizige+VAI+Ind+++1Sg+: 
+     abiigizige+VAI+Ind+++3Sg+: 
+     abiigizige+VAI+Ind+++3Sg+: 
+     abiigizige+VAI+Ind+++?+: 
+     abiingwezo+VAI+Ind+++1Sg+: 
+     abiingwezo+VAI+Ind+++3Sg+: 
+     abiingwezo+VAI+Ind+++3Sg+: 
+     abiingwezo+VAI+Ind+++3Sg+: 
+     abwaajige+VAI+Ind+++1Sg+: 
+     abwaajige+VAI+Ind+++1Sg+: 
+     abwaajige+VAI+Ind+++1Sg+: 
+     abwaajige+VAI+Ind+++3Sg+: 
+     abwaajige+VAI+Ind+++3Sg+: 
+     abwe+VAI+Ind+++1Sg+: 
+     abwe+VAI+Ind+++1Sg+: 
+     abwe+VAI+Ind+++1Sg+: 
+     abwe+VAI+Ind+++3Sg+: 
+     abwe+VAI+Ind+++3Sg+: 
+     abwe+VAI+Ind+++3Sg+: 
+     abwemaagozi+VAI+Ind+++1Sg+: 
+     abwemaagozi+VAI+Ind+++3Sg+: 
+     abwemaagozi+VAI+Ind+++3Sg+: 
+     abwemaagozi+VAI+Ind+++3Sg+: 
+     abwendibe+VAI+Ind+++1Sg+: 
+     abwendibe+VAI+Ind+++3Sg+: 
+     abwendibe+VAI+Ind+++3Sg+: 
+     abwendibe+VAI+Ind+++3Sg+: 
+     abwenike+VAI+Ind+++1Sg+: 
+     abwenike+VAI+Ind+++1Sg+: 
+     abwenike+VAI+Ind+++3Sg+: 
+     abwenike+VAI+Ind+++3Sg+: 
+     abwenike+VAI+Ind+++3Sg+: 
+     abwewasige+VAI+Ind+++1Sg+: 
+     abwewasige+VAI+Ind+++1Sg+: 
+     abwewasige+VAI+Ind+++1Sg+: 
+     abwewasige+VAI+Ind+++3Sg+: 
+     abwewasige+VAI+Ind+++3Sg+: 
+     abweyiingwe+VAI+Ind+++1Sg+: 
+     abweyiingwe+VAI+Ind+++3Sg+: 
+     abweyiingwe+VAI+Ind+++3Sg+: 
+     abweyiingwe+VAI+Ind+++3Sg+: 
+     abwezide+VAI+Ind+++1Sg+: 
+     abwezide+VAI+Ind+++1Sg+: 
+     abwezide+VAI+Ind+++1Sg+: 
+     abwezide+VAI+Ind+++3Sg+: 
+     abwezide+VAI+Ind+++3Sg+: 
+     abwezide+VAI+Ind+++3Sg+: 
+     abwezo+VAI+Ind+++1Sg+: 
+     abwezo+VAI+Ind+++1Sg+: 
+     abwezo+VAI+Ind+++1Sg+: 
+     abwezo+VAI+Ind+++3Sg+: 
+     abwezo+VAI+Ind+++3Sg+: 
+     abwezo+VAI+Ind+++3Sg+: 
+     abwiike+VAI+Ind+++1Sg+: 
+     abwiike+VAI+Ind+++1Sg+: 
+     abwiike+VAI+Ind+++1Sg+: 
+     abwiike+VAI+Ind+++3Sg+: 
+     abwiike+VAI+Ind+++1Sg+: 
+     abwiike+VAI+Ind+++3Sg+: 
+     abwiike+VAI+Ind+++3Sg+: 
+     abwiike+VAI+Ind+++2Sg+: 
+     achaabike+VAI+Ind+++1Sg+: 
+     achaabike+VAI+Ind+++3Sg+: 
+     achaabike+VAI+Ind+++3Sg+: 
+     achaabike+VAI+Ind+++3Sg+: 
+     achaawise+VAI+Ind+++1Sg+: 
+     achaawise+VAI+Ind+++3Sg+: 
+     achaawise+VAI+Ind+++3Sg+: 
+     achaawise+VAI+Ind+++3Sg+: 
+     achigaazo+VAI+Ind+++3Sg+: 
+     achigaazo+VAI+Ind+++3Sg+: 
+     achigaazo+VAI+Ind+++3Sg+: 
+     achige+VAI+Ind+++1Sg+: 
+     achige+VAI+Ind+++1Sg+: 
+     achige+VAI+Ind+++1Sg+: 
+     achige+VAI+Ind+++3Sg+: 
+     achige+VAI+Ind+++3Sg+: 
+     achige+VAI+Ind+++3Sg+: 
+     adaandiwag+VAI+Ind+++Excl+: 
+     adaandiwag+VAI+Ind+++3Pl+: 
+     adaandiwag+VAI+Ind+++3Pl+: 
+     adaandiwag+VAI+Ind+++3Pl+: 
+     adaawange+VAI+Ind+++1Sg+: 
+     adaawange+VAI+Ind+++1Sg+: 
+     adaawange+VAI+Ind+++1Sg+: 
+     adaawange+VAI+Ind+++3Sg+: 
+     adaawange+VAI+Ind+++3Sg+: 
+     adaawange+VAI+Ind+++3Sg+: 
+     adaawangeshki+VAI+Ind+++1Sg+: 
+     adaawangeshki+VAI+Ind+++3Sg+: 
+     adaawangeshki+VAI+Ind+++3Sg+: 
+     adaawangeshki+VAI+Ind+++3Sg+: 
+     adaawaage+VAI+Ind+++1Sg+: 
+     adaawaage+VAI+Ind+++1Sg+: 
+     adaawaage+VAI+Ind+++1Sg+: 
+     adaawaage+VAI+Ind+++3Sg+: 
+     adaawaage+VAI+Ind+++?+: 
+     adaawaage+VAI+Ind+++3Sg+: 
+     adaawe+VAI+Ind+++1Sg+: 
+     adaawe+VAI+Ind+++1Sg+: 
+     adaawe+VAI+Ind+++1Sg+: 
+     adaawe+VAI+Ind+++3Sg+: 
+     adaawe+VAI+Ind+++3Sg+: 
+     adaawe+VAI+Ind+++3Sg+: 
+     adaawensi+VAI+Ind+++1Sg+: 
+     adaawensi+VAI+Ind+++3Sg+: 
+     adaawensi+VAI+Ind+++3Sg+: 
+     adaawensi+VAI+Ind+++3Sg+: 
+     adaawetamaadiwag+VAI+Ind+++Excl+: 
+     adaawetamaadiwag+VAI+Ind+++3Pl+: 
+     adaawetamaadiwag+VAI+Ind+++3Pl+: 
+     adaawetamaadiwag+VAI+Ind+++3Pl+: 
+     adaawetamaadiwag+VAI+Ind+++2Pl+: 
+     adaawetamaadizo+VAI+Ind+++1Sg+: 
+     adaawetamaadizo+VAI+Ind+++3Sg+: 
+     adaawetamaadizo+VAI+Ind+++3Sg+: 
+     adaawetamaadizo+VAI+Ind+++3Sg+: 
+     adaawetamaage+VAI+Ind+++1Sg+: 
+     adaawetamaage+VAI+Ind+++3Sg+: 
+     adaawetamaage+VAI+Ind+++3Sg+: 
+     adaawetamaage+VAI+Ind+++3Sg+: 
+     adaawetamaazo+VAI+Ind+++1Sg+: 
+     adaawetamaazo+VAI+Ind+++1Sg+: 
+     adaawetamaazo+VAI+Ind+++1Sg+: 
+     adaawetamaazo+VAI+Ind+++3Sg+: 
+     adaawetamaazo+VAI+Ind+++3Sg+: 
+     adaawetamaazo+VAI+Ind+++3Sg+: 
+     adaawewikwewi+VAI+Ind+++1Sg+: 
+     adaawewikwewi+VAI+Ind+++3Sg+: 
+     adaawewikwewi+VAI+Ind+++3Sg+: 
+     adaawewikwewi+VAI+Ind+++3Sg+: 
+     adaawewininiikwewi+VAI+Ind+++1Sg+: 
+     adaawewininiikwewi+VAI+Ind+++3Sg+: 
+     adaawewininiikwewi+VAI+Ind+++3Sg+: 
+     adaawewininiikwewi+VAI+Ind+++3Sg+: 
+     adaawewininiiwi+VAI+Ind+++1Sg+: 
+     adaawewininiiwi+VAI+Ind+++3Sg+: 
+     adaawewininiiwi+VAI+Ind+++3Sg+: 
+     adaawewininiiwi+VAI+Ind+++3Sg+: 
+     adimanike+VAI+Ind+++1Sg+: 
+     adimanike+VAI+Ind+++3Sg+: 
+     adimanike+VAI+Ind+++3Sg+: 
+     adimanike+VAI+Ind+++3Sg+: 
+     adisigaazo+VAI+Ind+++3Sg+: 
+     adisigaazo+VAI+Ind+++3Sg+: 
+     adisigaazo+VAI+Ind+++3Sg+: 
+     adisige+VAI+Ind+++1Sg+: 
+     adisige+VAI+Ind+++1Sg+: 
+     adisige+VAI+Ind+++1Sg+: 
+     adisige+VAI+Ind+++3Sg+: 
+     adisige+VAI+Ind+++3Sg+: 
+     adisige+VAI+Ind+++3Sg+: 
+     adiso+VAI+Ind+++3Sg+: 
+     adiso+VAI+Ind+++3Sg+: 
+     adiso+VAI+Ind+++3Sg+: 
+     agadendaagozi+VAI+Ind+++1Sg+: 
+     agadendaagozi+VAI+Ind+++1Sg+: 
+     agadendaagozi+VAI+Ind+++1Sg+: 
+     agadendaagozi+VAI+Ind+++3Sg+: 
+     agadendaagozi+VAI+Ind+++3Sg+: 
+     agadendaagozi+VAI+Ind+++3Sg+: 
+     agaji+VAI+Ind+++1Sg+: 
+     agaji+VAI+Ind+++1Sg+: 
+     agaji+VAI+Ind+++1Sg+: 
+     agaji+VAI+Ind+++3Sg+: 
+     agaji+VAI+Ind+++3Sg+: 
+     agaji+VAI+Ind+++3Sg+: 
+     agaji'iwe+VAI+Ind+++1Sg+: 
+     agaji'iwe+VAI+Ind+++3Sg+: 
+     agaji'iwe+VAI+Ind+++3Sg+: 
+     agaji'iwe+VAI+Ind+++3Sg+: 
+     agajishki+VAI+Ind+++1Sg+: 
+     agajishki+VAI+Ind+++1Sg+: 
+     agajishki+VAI+Ind+++1Sg+: 
+     agajishki+VAI+Ind+++3Sg+: 
+     agajishki+VAI+Ind+++3Sg+: 
+     agajishki+VAI+Ind+++3Sg+: 
+     agawaatebi+VAI+Ind+++1Sg+: 
+     agawaatebi+VAI+Ind+++3Sg+: 
+     agawaatebi+VAI+Ind+++3Sg+: 
+     agawaatebi+VAI+Ind+++3Sg+: 
+     agawaatese+VAI+Ind+++3Sg+: 
+     agawaatese+VAI+Ind+++3Sg+: 
+     agawaatese+VAI+Ind+++3Sg+: 
+     agazitaagozi+VAI+Ind+++3Sg+: 
+     agazitaagozi+VAI+Ind+++3Sg+: 
+     agazitaagozi+VAI+Ind+++3Sg+: 
+     agazondiwag+VAI+Ind+++Excl+: 
+     agazondiwag+VAI+Ind+++3Pl+: 
+     agazondiwag+VAI+Ind+++3Pl+: 
+     agazondiwag+VAI+Ind+++3Pl+: 
+     agazondizo+VAI+Ind+++1Sg+: 
+     agazondizo+VAI+Ind+++3Sg+: 
+     agazondizo+VAI+Ind+++3Sg+: 
+     agazondizo+VAI+Ind+++3Sg+: 
+     agazonge+VAI+Ind+++1Sg+: 
+     agazonge+VAI+Ind+++1Sg+: 
+     agazonge+VAI+Ind+++1Sg+: 
+     agazonge+VAI+Ind+++3Sg+: 
+     agazonge+VAI+Ind+++3Sg+: 
+     agazonge+VAI+Ind+++3Sg+: 
+     agaamindekodaadiwag+VAI+Ind+++Excl+: 
+     agaamindekodaadiwag+VAI+Ind+++3Pl+: 
+     agaamindekodaadiwag+VAI+Ind+++3Pl+: 
+     agaamindekodaadiwag+VAI+Ind+++3Pl+: 
+     agaasadengwe+VAI+Ind+++1Sg+: 
+     agaasadengwe+VAI+Ind+++1Sg+: 
+     agaasadengwe+VAI+Ind+++1Sg+: 
+     agaasadengwe+VAI+Ind+++3Sg+: 
+     agaasadengwe+VAI+Ind+++3Sg+: 
+     agaasadengwe+VAI+Ind+++3Sg+: 
+     agaasadeyaabikizi+VAI+Ind+++3Sg+: 
+     agaasadeyaabikizi+VAI+Ind+++3Sg+: 
+     agaasadeyaabikizi+VAI+Ind+++3Sg+: 
+     agaasadeyaabiigizi+VAI+Ind+++3Sg+: 
+     agaasadeyaabiigizi+VAI+Ind+++3Sg+: 
+     agaasadeyaabiigizi+VAI+Ind+++3Sg+: 
+     agaasadeyaakozi+VAI+Ind+++3Sg+: 
+     agaasadeyaakozi+VAI+Ind+++3Sg+: 
+     agaasadeyaakozi+VAI+Ind+++3Sg+: 
+     agaasadeyiigizi+VAI+Ind+++0Sg+: 
+     agaasadeyiigizi+VAI+Ind+++3Sg+: 
+     agaasadeyiigizi+VAI+Ind+++3Sg+: 
+     agaasadezi+VAI+Ind+++3Sg+: 
+     agaasadezi+VAI+Ind+++3Sg+: 
+     agaasadezi+VAI+Ind+++3Sg+: 
+     agaasadezide+VAI+Ind+++1Sg+: 
+     agaasadezide+VAI+Ind+++3Sg+: 
+     agaasadezide+VAI+Ind+++3Sg+: 
+     agaasadezide+VAI+Ind+++3Sg+: 
+     agaasaabaminaagozi+VAI+Ind+++3Sg+: 
+     agaasaabaminaagozi+VAI+Ind+++3Sg+: 
+     agaasaabaminaagozi+VAI+Ind+++3Sg+: 
+     agaasaabikizi+VAI+Ind+++3Sg+: 
+     agaasaabikizi+VAI+Ind+++3Sg+: 
+     agaasaabikizi+VAI+Ind+++3Sg+: 
+     agaasaabiigizi+VAI+Ind+++3Sg+: 
+     agaasaabiigizi+VAI+Ind+++3Sg+: 
+     agaasaabiigizi+VAI+Ind+++3Sg+: 
+     agaasaakozi+VAI+Ind+++3Sg+: 
+     agaasaakozi+VAI+Ind+++3Sg+: 
+     agaasaakozi+VAI+Ind+++3Sg+: 
+     agaasaakwaanowe+VAI+Ind+++3Sg+: 
+     agaasaakwaanowe+VAI+Ind+++3Sg+: 
+     agaasaakwaanowe+VAI+Ind+++3Sg+: 
+     agaasaakwaanowe+VAI+Ind+++3Sg+: 
+     agaasaakwaanowe+VAI+Ind+++3Sg+: 
+     agaasaanowe+VAI+Ind+++3Sg+: 
+     agaasaanowe+VAI+Ind+++3Sg+: 
+     agaasaanowe+VAI+Ind+++3Sg+: 

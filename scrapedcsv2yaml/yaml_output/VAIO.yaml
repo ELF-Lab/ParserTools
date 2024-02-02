@@ -11,31 +11,31 @@ Tests:
 
   Lemma - ALL :
 
-     abwe+VAIO+Ind+Pos+1Sg: indabwen
-     abwe+VAIO+Ind+Pos+1Sg: nindabwen
-     abwe+VAIO+Ind+Pos+1Sg: nidabwen
-     abwe+VAIO+Ind+Pos+3Sg: abwed
-     abwe+VAIO+Ind+Pos+3Sg: odabwen
-     abwe+VAIO+Ind+Pos+3Sg: ebwed
-     adaawange+VAIO+Ind+Pos+1Sg: indadaawangen
-     adaawange+VAIO+Ind+Pos+1Sg: nindadaawangen
-     adaawange+VAIO+Ind+Pos+1Sg: nidadaawangen
-     adaawange+VAIO+Ind+Pos+3Sg: odadaawaangen
-     adaawange+VAIO+Ind+Pos+3Sg: adaawanged
-     adaawange+VAIO+Ind+Pos+3Sg: edaawanged
-     adaawange+VAIO+Ind+Pos+2Sg+0Sg: adaawangen
-     adaawaage+VAIO+Ind+Pos+1Sg: indadaawaagen
-     adaawaage+VAIO+Ind+Pos+1Sg: nindadaawaagen
-     adaawaage+VAIO+Ind+Pos+1Sg: nidadaawaagen
-     adaawaage+VAIO+Ind+Pos+3Sg: odadaawaagen
-     adaawe+VAIO+Ind+Pos+1Sg: indadaawen
-     adaawe+VAIO+Ind+Pos+1Sg: nindadaawen
-     adaawe+VAIO+Ind+Pos+1Sg: nidadaawen
-     adaawe+VAIO+Ind+Pos+3Sg: adaawed
-     adaawe+VAIO+Ind+Pos+3Sg: odadaawen
-     adaawe+VAIO+Ind+Pos+3Sg: edaawed
-     adoopo+VAIO+Ind+Pos+1Sg+0Sg: indadoopon
-     adoopo+VAIO+Ind+Pos+3Sg+0Sg: odadoopon
-     adoopo+VAIO+Ind+Pos+3Sg+0: adoopod
-     adoopo+VAIO+Ind+Pos+3Sg+0: edoopod
-     adoopo+VAIO+Ind+Pos+2Sg+0: adoopon
+     abwen+VAIO+Ind+++1Sg+: 
+     abwen+VAIO+Ind+++1Sg+: 
+     abwen+VAIO+Ind+++1Sg+: 
+     abwen+VAIO+Ind+++3Sg+: 
+     abwen+VAIO+Ind+++3Sg+: 
+     abwen+VAIO+Ind+++3Sg+: 
+     adaawangen+VAIO+Ind+++1Sg+: 
+     adaawangen+VAIO+Ind+++1Sg+: 
+     adaawangen+VAIO+Ind+++1Sg+: 
+     adaawangen+VAIO+Ind+++3Sg+: 
+     adaawangen+VAIO+Ind+++3Sg+: 
+     adaawangen+VAIO+Ind+++3Sg+: 
+     adaawangen+VAIO+Ind+++2Sg+: 
+     adaawaagen+VAIO+Ind+++1Sg+: 
+     adaawaagen+VAIO+Ind+++1Sg+: 
+     adaawaagen+VAIO+Ind+++1Sg+: 
+     adaawaagen+VAIO+Ind+++3Sg+: 
+     adaawen+VAIO+Ind+++1Sg+: 
+     adaawen+VAIO+Ind+++1Sg+: 
+     adaawen+VAIO+Ind+++1Sg+: 
+     adaawen+VAIO+Ind+++3Sg+: 
+     adaawen+VAIO+Ind+++3Sg+: 
+     adaawen+VAIO+Ind+++3Sg+: 
+     adoopon+VAIO+Ind+++1Sg+: 
+     adoopon+VAIO+Ind+++3Sg+: 
+     adoopon+VAIO+Ind+++3Sg+: 
+     adoopon+VAIO+Ind+++3Sg+: 
+     adoopon+VAIO+Ind+++2Sg+: 

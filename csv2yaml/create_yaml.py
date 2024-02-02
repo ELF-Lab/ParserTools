@@ -22,8 +22,7 @@ def remove_NA(value):
 
     return has_a_value
 
-def create_output_directory(parent_directory:str) -> str:
-    output_directory = os.path.join(parent_directory,"yaml_output/")
+def create_output_directory(output_directory:str) -> str:
     # Clear any existing yaml output files
     if os.path.isdir(output_directory):
         shutil.rmtree(output_directory)
@@ -127,12 +126,12 @@ Tests:
 if __name__ == '__main__':
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_yaml")
-    parser.add_argument("csv_directory", type=str, help="Path to the spreadsheet.")
+    parser.add_argument("csv_directory", type=str, help="Path to the directory containing the spreadsheet(s).")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\"")
     args = parser.parse_args()
 
-    output_directory = create_output_directory(args.output_parent_directory)
+    output_directory = create_output_directory(args.output_parent_directory + "yaml_output/")
 
     files_generated = False
 

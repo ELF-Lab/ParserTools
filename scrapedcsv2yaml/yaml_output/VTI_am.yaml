@@ -11,96 +11,96 @@ Tests:
 
   Lemma - ALL :
 
-     abaabas+VTI+Ind+Pos+1Sg+0Sg: indabaabasaan
-     abaabas+VTI+Ind+Pos+1Sg+0Sg: nindabaabasaan
-     abaabas+VTI+Ind+Pos+1Sg+0Sg: nidabaabasaan
-     abaabas+VTI+Ind+Pos+3Sg+0Sg: odabaabasaan
-     abaabas+VTI+Ind+Pos+3Sg+0: abaabasang
-     abaabas+VTI+Ind+Pos+3Sg+0: ebaabasang
-     abaabas+VTI+Ind+Pos+2Sg+0: abaabasan
-     abaabikiz+VTI+Ind+Pos+1Sg+0Sg: nindabaabikizaan
-     abaabikiz+VTI+Ind+Pos+3Sg+0Sg: odabaabikizaan
-     abaabikiz+VTI+Ind+Pos+3Sg+0: abaabikizang
-     abaabikiz+VTI+Ind+Pos+3Sg+0: ebaabikizang
-     abaabikiz+VTI+Ind+Pos+2Sg+0: abaabikzan
-     abaagamiz+VTI+Ind+Pos+1Sg+0Sg: indabaagamizaan
-     abaagamiz+VTI+Ind+Pos+1Sg+0Sg: nindabaagamizaan
-     abaagamiz+VTI+Ind+Pos+1Sg+0Sg: ndabaagamizaan
-     abaagamiz+VTI+Ind+Pos+3Sg+0Sg: odabaagamizaan
-     abaagamiz+VTI+Ind+Pos+3Sg+0: abaagamizang
-     abaagamiz+VTI+Ind+Pos+3Sg+0: ebaagamizang
-     abaagamiz+VTI+Ind+Pos+2Sg+0: abaagamizan
-     abiz+VTI+Ind+Pos+1Sg+0Sg: indabizaan
-     abiz+VTI+Ind+Pos+1Sg+0Sg: nindabizaan
-     abiz+VTI+Ind+Pos+1Sg+0Sg: nidabizaan
-     abiz+VTI+Ind+Pos+3Sg+0Sg: odabizaan
-     abiz+VTI+Ind+Pos+3Sg+0: abizang
-     abiz+VTI+Ind+Pos+3Sg+0: ebizang
-     abiz+VTI+Ind+Pos+2Sg+0: abizan
-     abiigiz+VTI+Ind+Pos+1Sg+0Sg: nindabiigizaan
-     abiigiz+VTI+Ind+Pos+3Sg+0Sg: odabiigizaan
-     abiigiz+VTI+Ind+Pos+3Sg+0: abiigizang
-     abiigiz+VTI+Ind+Pos+3Sg+0: ebiigizang
-     abiigiz+VTI+Ind+Pos+2Sg+0: abiigizan
-     abiit+VTI+Ind+Pos+1Sg+0Sg: indabiitaan
-     abiit+VTI+Ind+Pos+1Sg+0Sg: nindabiitaan
-     abiit+VTI+Ind+Pos+1Sg+0Sg: nidabiitaan
-     abiit+VTI+Ind+Pos+3Sg+0Sg: odabiitaan
-     abiit+VTI+Ind+Pos+3Sg+0: abiitang
-     abiit+VTI+Ind+Pos+3Sg+0: ebiitang
-     abiit+VTI+Ind+Pos+3Obv+3: abiitan
-     abwaad+VTI+Ind+Pos+1Sg+0Sg: indabwaadaan
-     abwaad+VTI+Ind+Pos+1Sg+0Sg: nindabwaadaan
-     abwaad+VTI+Ind+Pos+1Sg+0Sg: nidabwaadaan
-     abwaad+VTI+Ind+Pos+3Sg+0Sg: odabwaadaan
-     abwaad+VTI+Ind+Pos+3Sg+0: abwaadang
-     abwaad+VTI+Ind+Pos+3Sg+0: ebwaadang
-     abwaad+VTI+Ind+Pos+2Sg+0: abwaadan
-     abwewas+VTI+Ind+Pos+1Sg+0Sg: indabwewasaan
-     abwewas+VTI+Ind+Pos+1Sg+0Sg: nindabwewasaan
-     abwewas+VTI+Ind+Pos+1Sg+0Sg: nidabwewasaan
-     abwewas+VTI+Ind+Pos+3Sg+0Sg: odabwewasaan
-     abwewas+VTI+Ind+Pos+3Sg+0: abwewasang
-     abwewas+VTI+Ind+Pos+3Sg+0: ebwewasang
-     abwewas+VTI+Ind+Pos+2Sg+0: abwewasan
-     achigaad+VTI+Ind+Pos+1Sg+0Sg: indachigaadaan
-     achigaad+VTI+Ind+Pos+3Sg+0Sg: odachigaadaan 
-     achigaad+VTI+Ind+Pos+3Sg+0: achigaadang
-     achigaad+VTI+Ind+Pos+3Sg+0: echigaadang
-     achigaad+VTI+Ind+Pos+2Sg+0: achigaadan
-     adima'+VTI+Ind+Pos+1Sg+0Sg: nindadima'aan
-     adima'+VTI+Ind+Pos+3Sg+0Sg: odadima'aan
-     adima'+VTI+Ind+Pos+3Sg+0: adima'ang
-     adima'+VTI+Ind+Pos+3Sg+1: edima'ang
-     adima'+VTI+Ind+Pos+2Sg+0: adima'an
-     adind+VTI+Ind+Pos+1Sg+0Sg: indadindaan
-     adind+VTI+Ind+Pos+1Sg+0Sg: nindadindaan
-     adind+VTI+Ind+Pos+1Sg+0Sg: nidadindaan
-     adind+VTI+Ind+Pos+3Sg+0Sg: odadindaan
-     adind+VTI+Ind+Pos+3Sg+0: adindang
-     adind+VTI+Ind+Pos+3Sg+0: edindang
-     adis+VTI+Ind+Pos+1Sg+0Sg: nindadisaan
-     adis+VTI+Ind+Pos+1Sg+0Sg: indadisaan
-     adis+VTI+Ind+Pos+?: ndadisaan
-     adis+VTI+Ind+Pos+3Sg+0Sg: odadisaan
-     adis+VTI+Ind+Pos+3Sg+0: adisang
-     adis+VTI+Ind+Pos+3Sg+0: edisang
-     adis+VTI+Ind+Pos+2Sg+1: adisan
-     agadend+VTI+Ind+Pos+1Sg+0Sg: indagadendaan
-     agadend+VTI+Ind+Pos+1Sg+0Sg: nindagadendaan
-     agadend+VTI+Ind+Pos+1Sg+0Sg: nidagadendaan
-     agadend+VTI+Ind+Pos+3Sg+0Sg: odagadendaan
-     agadend+VTI+Ind+Pos+3Sg+0: agadendang
-     agadend+VTI+Ind+Pos+3Sg+0: egadendang
-     agawaateshk+VTI+Ind+Pos+1Sg+0Sg: indagawaateshkaan
-     agawaateshk+VTI+Ind+Pos+1Sg+0Sg: nindagawaateshkaan
-     agawaateshk+VTI+Ind+Pos+1Sg+0Sg: nidagawaateshkaan
-     agawaateshk+VTI+Ind+Pos+3Sg+0Sg: odagawaateshkaan
-     agawaateshk+VTI+Ind+Pos+3Sg+0: agawaateshkang
-     agawaateshk+VTI+Ind+Pos+3Sg+0: egawaateshkang
-     agaasadezh+VTI+Ind+Pos+1Sg+0Sg: nindagaasadezhaan
-     agaasadezh+VTI+Ind+Pos+3Sg+0Sg: odagaasadezhaan
-     agaasadezh+VTI+Ind+Pos+3Sg+0: agaasadezhang
-     agaasadezh+VTI+Ind+Pos+3Sg+0: egaasadezhang
-     agaasadezh+VTI+Ind+Pos+2Sg+0: agaasadezhan
-     agaasend+VTI+Ind+Pos+1Sg+0Sg: indagaasendaan
+     abaabasan+VTI+Ind+++1Sg+: 
+     abaabasan+VTI+Ind+++1Sg+: 
+     abaabasan+VTI+Ind+++1Sg+: 
+     abaabasan+VTI+Ind+++3Sg+: 
+     abaabasan+VTI+Ind+++3Sg+: 
+     abaabasan+VTI+Ind+++3Sg+: 
+     abaabasan+VTI+Ind+++2Sg+: 
+     abaabikizan+VTI+Ind+++1Sg+: 
+     abaabikizan+VTI+Ind+++3Sg+: 
+     abaabikizan+VTI+Ind+++3Sg+: 
+     abaabikizan+VTI+Ind+++3Sg+: 
+     abaabikizan+VTI+Ind+++2Sg+: 
+     abaagamizan+VTI+Ind+++1Sg+: 
+     abaagamizan+VTI+Ind+++1Sg+: 
+     abaagamizan+VTI+Ind+++1Sg+: 
+     abaagamizan+VTI+Ind+++3Sg+: 
+     abaagamizan+VTI+Ind+++3Sg+: 
+     abaagamizan+VTI+Ind+++3Sg+: 
+     abaagamizan+VTI+Ind+++2Sg+: 
+     abizan+VTI+Ind+++1Sg+: 
+     abizan+VTI+Ind+++1Sg+: 
+     abizan+VTI+Ind+++1Sg+: 
+     abizan+VTI+Ind+++3Sg+: 
+     abizan+VTI+Ind+++3Sg+: 
+     abizan+VTI+Ind+++3Sg+: 
+     abizan+VTI+Ind+++2Sg+: 
+     abiigizan+VTI+Ind+++1Sg+: 
+     abiigizan+VTI+Ind+++3Sg+: 
+     abiigizan+VTI+Ind+++3Sg+: 
+     abiigizan+VTI+Ind+++3Sg+: 
+     abiigizan+VTI+Ind+++2Sg+: 
+     abiitan+VTI+Ind+++1Sg+: 
+     abiitan+VTI+Ind+++1Sg+: 
+     abiitan+VTI+Ind+++1Sg+: 
+     abiitan+VTI+Ind+++3Sg+: 
+     abiitan+VTI+Ind+++3Sg+: 
+     abiitan+VTI+Ind+++3Sg+: 
+     abiitan+VTI+Ind+++3Obv+: 
+     abwaadan+VTI+Ind+++1Sg+: 
+     abwaadan+VTI+Ind+++1Sg+: 
+     abwaadan+VTI+Ind+++1Sg+: 
+     abwaadan+VTI+Ind+++3Sg+: 
+     abwaadan+VTI+Ind+++3Sg+: 
+     abwaadan+VTI+Ind+++3Sg+: 
+     abwaadan+VTI+Ind+++2Sg+: 
+     abwewasan+VTI+Ind+++1Sg+: 
+     abwewasan+VTI+Ind+++1Sg+: 
+     abwewasan+VTI+Ind+++1Sg+: 
+     abwewasan+VTI+Ind+++3Sg+: 
+     abwewasan+VTI+Ind+++3Sg+: 
+     abwewasan+VTI+Ind+++3Sg+: 
+     abwewasan+VTI+Ind+++2Sg+: 
+     achigaadan+VTI+Ind+++1Sg+: 
+     achigaadan+VTI+Ind+++3Sg+: 
+     achigaadan+VTI+Ind+++3Sg+: 
+     achigaadan+VTI+Ind+++3Sg+: 
+     achigaadan+VTI+Ind+++2Sg+: 
+     adima'an+VTI+Ind+++1Sg+: 
+     adima'an+VTI+Ind+++3Sg+: 
+     adima'an+VTI+Ind+++3Sg+: 
+     adima'an+VTI+Ind+++3Sg+: 
+     adima'an+VTI+Ind+++2Sg+: 
+     adindan+VTI+Ind+++1Sg+: 
+     adindan+VTI+Ind+++1Sg+: 
+     adindan+VTI+Ind+++1Sg+: 
+     adindan+VTI+Ind+++3Sg+: 
+     adindan+VTI+Ind+++3Sg+: 
+     adindan+VTI+Ind+++3Sg+: 
+     adisan+VTI+Ind+++1Sg+: 
+     adisan+VTI+Ind+++1Sg+: 
+     adisan+VTI+Ind+++?+: 
+     adisan+VTI+Ind+++3Sg+: 
+     adisan+VTI+Ind+++3Sg+: 
+     adisan+VTI+Ind+++3Sg+: 
+     adisan+VTI+Ind+++2Sg+: 
+     agadendan+VTI+Ind+++1Sg+: 
+     agadendan+VTI+Ind+++1Sg+: 
+     agadendan+VTI+Ind+++1Sg+: 
+     agadendan+VTI+Ind+++3Sg+: 
+     agadendan+VTI+Ind+++3Sg+: 
+     agadendan+VTI+Ind+++3Sg+: 
+     agawaateshkan+VTI+Ind+++1Sg+: 
+     agawaateshkan+VTI+Ind+++1Sg+: 
+     agawaateshkan+VTI+Ind+++1Sg+: 
+     agawaateshkan+VTI+Ind+++3Sg+: 
+     agawaateshkan+VTI+Ind+++3Sg+: 
+     agawaateshkan+VTI+Ind+++3Sg+: 
+     agaasadezhan+VTI+Ind+++1Sg+: 
+     agaasadezhan+VTI+Ind+++3Sg+: 
+     agaasadezhan+VTI+Ind+++3Sg+: 
+     agaasadezhan+VTI+Ind+++3Sg+: 
+     agaasadezhan+VTI+Ind+++2Sg+: 
+     agaasendan+VTI+Ind+++1Sg+: 

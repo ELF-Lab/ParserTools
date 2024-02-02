@@ -11,56 +11,56 @@ Tests:
 
   Lemma - ALL :
 
-     adaam+VTA+Ind+Pos+1Sg+3Sg: indadaamaa
-     adaam+VTA+Ind+Pos+1Sg+3Sg: nindadaamaa
-     adaam+VTA+Ind+Pos+1Sg+3Sg: nidadaamaa
-     adaam+VTA+Ind+Pos+3Sg+3SgObv: odadaamaan
-     adaam+VTA+Ind+Pos+3Sg+3SgObv: adaamaad
-     adaam+VTA+Ind+Pos+3Sg+3SgObv: edaamaad
-     adaam+VTA+Ind+Pos+2Sg+0: adaam
-     adaawam+VTA+Ind+Pos+1Sg+3Sg: indadaawamaa
-     adaawam+VTA+Ind+Pos+1Sg+3Sg: nindadaawamaa
-     adaawam+VTA+Ind+Pos+1Sg+3Sg: nidadaawamaa
-     adaawam+VTA+Ind+Pos+3Sg+1Sg: nindadaawamig
-     adaawam+VTA+Ind+Pos+3Sg+3SgObv: odadaawamaan
-     adaawam+VTA+Ind+Pos+3Sg+3SgObv: adaawamaad
-     adaawam+VTA+Ind+Pos+3Sg+3SgObv: edaawamaad
-     adaawam+VTA+Ind+Pos+2Sg+3: adaawam
-     adim+VTA+Ind+Pos+1Sg+3Sg: indadimaa
-     adim+VTA+Ind+Pos+1Sg+3Sg: nindadimaa
-     adim+VTA+Ind+Pos+1Sg+3Sg: nidadimaa
-     adim+VTA+Ind+Pos+3Sg+1Sg: nindadimig
-     adim+VTA+Ind+Pos+1Sg+2Sg: gidadimin
-     adim+VTA+Ind+Pos+2Sg+1Sg: gidadim
-     adim+VTA+Ind+Pos+3Sg+3SgObv: odadimaan
-     adim+VTA+Ind+Pos+3Sg+3SgObv: adimaad
-     adim+VTA+Ind+Pos+3Sg+3SgObv: edimaad
-     adim+VTA+Ind+Pos+2Sg+3: adim
-     agadenim+VTA+Ind+Pos+1Sg+3Sg: nindagadenimaa
-     agadenim+VTA+Ind+Pos+3Sg+1Sg: nindagadenimig
-     agadenim+VTA+Ind+Pos+1Sg+2Sg: gidagadenimin
-     agadenim+VTA+Ind+Pos+2Sg+1Sg: gidagadenim
-     agadenim+VTA+Ind+Pos+3Sg+3SgObv: odagadenimaan
-     agadenim+VTA+Ind+Pos+3Sg+3SgObv: agadenimaad
-     agadenim+VTA+Ind+Pos+3Sg+3SgObv: egadenimaad
-     agaji'+VTA+Ind+Pos+1Sg+3Sg: indagaji'aa
-     agaji'+VTA+Ind+Pos+1Sg+3Sg: nindagaji'aa
-     agaji'+VTA+Ind+Pos+1Sg+3Sg: nidagaji'aa
-     agaji'+VTA+Ind+Pos+3Sg+3SgObv: odagaji'aan
-     agaji'+VTA+Ind+Pos+3Sg+3SgObv: agaji'aad
-     agaji'+VTA+Ind+Pos+3Sg+3SgObv: egaji'aad
-     agaji'+VTA+Ind+Pos+2Sg+3: agaji'
-     agazom+VTA+Ind+Pos+1Sg+3Sg: nindagazomaa
-     agazom+VTA+Ind+Pos+3Sg+1Sg: nindagazomig
-     agazom+VTA+Ind+Pos+2Sg+1Sg: gidagazom
-     agazom+VTA+Ind+Pos+1Sg+2Sg: gidagazomin
-     agazom+VTA+Ind+Pos+3Sg+3SgObv: odagazomaan
-     agazom+VTA+Ind+Pos+3Sg+3SgObv: agazomaad
-     agazom+VTA+Ind+Pos+3Sg+3SgObv: egazomaad
-     agaasade'+VTA+Ind+Pos+1Sg+3Sg: indagaasade'aa
-     agaasade'+VTA+Ind+Pos+1Sg+3Sg: nindagaasade'aa
-     agaasade'+VTA+Ind+Pos+1Sg+3Sg: nidagaasade'aa
-     agaasade'+VTA+Ind+Pos+3Sg+3SgObv: odagaasade'aan
-     agaasade'+VTA+Ind+Pos+3Sg+3SgObv: agaasade'aad
-     agaasade'+VTA+Ind+Pos+3Sg+3SgObv: egaasade'aad
-     agaasade'+VTA+Ind+Pos+3Obv+0: agaasade'
+     adaam+VTA+Ind+++1Sg+: 
+     adaam+VTA+Ind+++1Sg+: 
+     adaam+VTA+Ind+++1Sg+: 
+     adaam+VTA+Ind+++3Sg+: 
+     adaam+VTA+Ind+++3Sg+: 
+     adaam+VTA+Ind+++3Sg+: 
+     adaam+VTA+Ind+++2Sg+: 
+     adaawam+VTA+Ind+++1Sg+: 
+     adaawam+VTA+Ind+++1Sg+: 
+     adaawam+VTA+Ind+++1Sg+: 
+     adaawam+VTA+Ind+++3Sg+: 
+     adaawam+VTA+Ind+++3Sg+: 
+     adaawam+VTA+Ind+++3Sg+: 
+     adaawam+VTA+Ind+++3Sg+: 
+     adaawam+VTA+Ind+++2Sg+: 
+     adim+VTA+Ind+++1Sg+: 
+     adim+VTA+Ind+++1Sg+: 
+     adim+VTA+Ind+++1Sg+: 
+     adim+VTA+Ind+++3Sg+: 
+     adim+VTA+Ind+++1Sg+: 
+     adim+VTA+Ind+++2Sg+: 
+     adim+VTA+Ind+++3Sg+: 
+     adim+VTA+Ind+++3Sg+: 
+     adim+VTA+Ind+++3Sg+: 
+     adim+VTA+Ind+++2Sg+: 
+     agadenim+VTA+Ind+++1Sg+: 
+     agadenim+VTA+Ind+++3Sg+: 
+     agadenim+VTA+Ind+++1Sg+: 
+     agadenim+VTA+Ind+++2Sg+: 
+     agadenim+VTA+Ind+++3Sg+: 
+     agadenim+VTA+Ind+++3Sg+: 
+     agadenim+VTA+Ind+++3Sg+: 
+     agaji'+VTA+Ind+++1Sg+: 
+     agaji'+VTA+Ind+++1Sg+: 
+     agaji'+VTA+Ind+++1Sg+: 
+     agaji'+VTA+Ind+++3Sg+: 
+     agaji'+VTA+Ind+++3Sg+: 
+     agaji'+VTA+Ind+++3Sg+: 
+     agaji'+VTA+Ind+++2Sg+: 
+     agazom+VTA+Ind+++1Sg+: 
+     agazom+VTA+Ind+++3Sg+: 
+     agazom+VTA+Ind+++2Sg+: 
+     agazom+VTA+Ind+++1Sg+: 
+     agazom+VTA+Ind+++3Sg+: 
+     agazom+VTA+Ind+++3Sg+: 
+     agazom+VTA+Ind+++3Sg+: 
+     agaasade'+VTA+Ind+++1Sg+: 
+     agaasade'+VTA+Ind+++1Sg+: 
+     agaasade'+VTA+Ind+++1Sg+: 
+     agaasade'+VTA+Ind+++3Sg+: 
+     agaasade'+VTA+Ind+++3Sg+: 
+     agaasade'+VTA+Ind+++3Sg+: 
+     agaasade'+VTA+Ind+++3Obv+: 

@@ -11,25 +11,25 @@ Tests:
 
   Lemma - ALL :
 
-     abwaaN+VTA+Ind+Pos+1Sg+3Sg: indabwaanaa
-     abwaaN+VTA+Ind+Pos+1Sg+3Sg: nindabwaanaa
-     abwaaN+VTA+Ind+Pos+1Sg+3Sg: nidabwaanaa
-     abwaaN+VTA+Ind+Pos+3Sg+3SgObv: odabwaanaan
-     abwaaN+VTA+Ind+Pos+3Sg+3SgObv: aabwaanaad
-     abwaaN+VTA+Ind+Pos+3Sg+3SgObv: ebwaanaad
-     abwaaN+VTA+Ind+Pos+2Sg+3: abwaazh
-     achigaaN+VTA+Ind+Pos+1Sg+3Sg: indachigaanaa
-     achigaaN+VTA+Ind+Pos+3Sg+3SgObv: odachigaanaan
-     achigaaN+VTA+Ind+Pos+3Sg+3SgObv: achigaanaad
-     achigaaN+VTA+Ind+Pos+3Sg+3SgObv: echigaanaad
-     achigaaN+VTA+Ind+Pos+2Sg+3: achigaazh
-     adima'aN+VTA+Ind+Pos+1Sg+3Sg: nindadima'anaa
-     adima'aN+VTA+Ind+Pos+3Sg+3SgObv: odadima'anaan
-     adima'aN+VTA+Ind+Pos+3Sg+3SgObv: adima'anaad
-     adima'aN+VTA+Ind+Pos+3Sg+3SgObv: edima'anaad
-     adima'aN+VTA+Ind+Pos+2Sg+3: adima'azh
-     adimanikaaN+VTA+Ind+Pos+1Sg+3Sg: nindadimanikaanaa
-     adimanikaaN+VTA+Ind+Pos+3Sg+3SgObv: odadimanikaanaan
-     adimanikaaN+VTA+Ind+Pos+3Sg+3SgObv: adimanikaanaad
-     adimanikaaN+VTA+Ind+Pos+3Sg+3SgObv: edimanikaanaad
-     adimanikaaN+VTA+Ind+Pos+2Sg+3: adimanikaazh
+     abwaazh+VTA+Ind+++1Sg+: 
+     abwaazh+VTA+Ind+++1Sg+: 
+     abwaazh+VTA+Ind+++1Sg+: 
+     abwaazh+VTA+Ind+++3Sg+: 
+     abwaazh+VTA+Ind+++3Sg+: 
+     abwaazh+VTA+Ind+++3Sg+: 
+     abwaazh+VTA+Ind+++2Sg+: 
+     achigaazh+VTA+Ind+++1Sg+: 
+     achigaazh+VTA+Ind+++3Sg+: 
+     achigaazh+VTA+Ind+++3Sg+: 
+     achigaazh+VTA+Ind+++3Sg+: 
+     achigaazh+VTA+Ind+++2Sg+: 
+     adima'azh+VTA+Ind+++1Sg+: 
+     adima'azh+VTA+Ind+++3Sg+: 
+     adima'azh+VTA+Ind+++3Sg+: 
+     adima'azh+VTA+Ind+++3Sg+: 
+     adima'azh+VTA+Ind+++2Sg+: 
+     adimanikaazh+VTA+Ind+++1Sg+: 
+     adimanikaazh+VTA+Ind+++3Sg+: 
+     adimanikaazh+VTA+Ind+++3Sg+: 
+     adimanikaazh+VTA+Ind+++3Sg+: 
+     adimanikaazh+VTA+Ind+++2Sg+: 
