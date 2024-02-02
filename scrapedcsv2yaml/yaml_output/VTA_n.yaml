@@ -11,25 +11,25 @@ Tests:
 
   Lemma - ALL :
 
-     abwaazh+VTA+Ind+++1Sg+: 
-     abwaazh+VTA+Ind+++1Sg+: 
-     abwaazh+VTA+Ind+++1Sg+: 
-     abwaazh+VTA+Ind+++3Sg+: 
-     abwaazh+VTA+Ind+++3Sg+: 
-     abwaazh+VTA+Ind+++3Sg+: 
-     abwaazh+VTA+Ind+++2Sg+: 
-     achigaazh+VTA+Ind+++1Sg+: 
-     achigaazh+VTA+Ind+++3Sg+: 
-     achigaazh+VTA+Ind+++3Sg+: 
-     achigaazh+VTA+Ind+++3Sg+: 
-     achigaazh+VTA+Ind+++2Sg+: 
-     adima'azh+VTA+Ind+++1Sg+: 
-     adima'azh+VTA+Ind+++3Sg+: 
-     adima'azh+VTA+Ind+++3Sg+: 
-     adima'azh+VTA+Ind+++3Sg+: 
-     adima'azh+VTA+Ind+++2Sg+: 
-     adimanikaazh+VTA+Ind+++1Sg+: 
-     adimanikaazh+VTA+Ind+++3Sg+: 
-     adimanikaazh+VTA+Ind+++3Sg+: 
-     adimanikaazh+VTA+Ind+++3Sg+: 
-     adimanikaazh+VTA+Ind+++2Sg+: 
+     abwaazh+VTA+Ind+Pos+Neu+1Sg+3Sg: indabwaanaa
+     abwaazh+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabwaanaa
+     abwaazh+VTA+Ind+Pos+Neu+1Sg+3Sg: nidabwaanaa
+     abwaazh+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabwaanaan
+     abwaazh+VTA+Cnj+Pos+Neu+3Sg+3SgObv: aabwaanaad
+     abwaazh+VTA+?+Pos+Neu+3Sg+3SgObv: ebwaanaad
+     abwaazh+VTA+Imp+Pos+Neu+2Sg+3: abwaazh
+     achigaazh+VTA+Ind+Pos+Neu+1Sg+3Sg: indachigaanaa
+     achigaazh+VTA+Ind+Pos+Neu+3Sg+3SgObv: odachigaanaan
+     achigaazh+VTA+Cnj+Pos+Neu+3Sg+3SgObv: achigaanaad
+     achigaazh+VTA+?+Pos+Neu+3Sg+3SgObv: echigaanaad
+     achigaazh+VTA+Imp+Pos+Neu+2Sg+3: achigaazh
+     adima'azh+VTA+Ind+Pos+Neu+1Sg+3Sg: nindadima'anaa
+     adima'azh+VTA+Ind+Pos+Neu+3Sg+3SgObv: odadima'anaan
+     adima'azh+VTA+Cnj+Pos+Neu+3Sg+3SgObv: adima'anaad
+     adima'azh+VTA+?+Pos+Neu+3Sg+3SgObv: edima'anaad
+     adima'azh+VTA+Imp+Pos+Neu+2Sg+3: adima'azh
+     adimanikaazh+VTA+Ind+Pos+Neu+1Sg+3Sg: nindadimanikaanaa
+     adimanikaazh+VTA+Ind+Pos+Neu+3Sg+3SgObv: odadimanikaanaan
+     adimanikaazh+VTA+Cnj+Pos+Neu+3Sg+3SgObv: adimanikaanaad
+     adimanikaazh+VTA+?+Pos+Neu+3Sg+3SgObv: edimanikaanaad
+     adimanikaazh+VTA+Imp+Pos+Neu+2Sg+3: adimanikaazh

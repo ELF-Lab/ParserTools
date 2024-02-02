@@ -11,21 +11,21 @@ Tests:
 
   Lemma - ALL :
 
-     agajitoon+VTI+Ind+++1Sg+: 
-     agajitoon+VTI+Ind+++3Sg+: 
-     agajitoon+VTI+Ind+++3Sg+: 
-     agajitoon+VTI+Ind+++3Sg+: 
-     agaasadetoon+VTI+Ind+++1Sg+: 
-     agaasadetoon+VTI+Ind+++1Sg+: 
-     agaasadetoon+VTI+Ind+++1Sg+: 
-     agaasadetoon+VTI+Ind+++3Sg+: 
-     agaasadetoon+VTI+Ind+++3Sg+: 
-     agaasadetoon+VTI+Ind+++3Sg+: 
-     agaasadetoon+VTI+Ind+++2Sg+: 
-     agaasaatoon+VTI+Ind+++1Sg+: 
-     agaasaatoon+VTI+Ind+++1Sg+: 
-     agaasaatoon+VTI+Ind+++1Sg+: 
-     agaasaatoon+VTI+Ind+++3Sg+: 
-     agaasaatoon+VTI+Ind+++3Sg+: 
-     agaasaatoon+VTI+Ind+++3Sg+: 
-     agaasaatoon+VTI+Ind+++2Sg+: 
+     agajitoon+VTI+Ind+Pos+Neu+1Sg+0Sg: indagajitoon
+     agajitoon+VTI+Ind+Pos+Neu+3Sg+0Sg: odagajitoon
+     agajitoon+VTI+Cnj+Pos+Neu+3Sg+0: agajitood
+     agajitoon+VTI+?+Pos+Neu+3Sg+0: egajitood
+     agaasadetoon+VTI+Ind+Pos+Neu+1Sg+0Sg: indagaasadetoon
+     agaasadetoon+VTI+Ind+Pos+Neu+1Sg+0Sg: nindagaasadetoon
+     agaasadetoon+VTI+Ind+Pos+Neu+1Sg+0Sg: nidagaasadetoon
+     agaasadetoon+VTI+Ind+Pos+Neu+3Sg+0Sg: odagaasadetoon
+     agaasadetoon+VTI+Cnj+Pos+Neu+3Sg+0: agaasadetood
+     agaasadetoon+VTI+?+Pos+Neu+3Sg+0: egaasadetood
+     agaasadetoon+VTI+Imp+Pos+Neu+2Sg+0: agaasadetoon
+     agaasaatoon+VTI+Ind+Pos+Neu+1Sg+0Sg: indagaasaatoon
+     agaasaatoon+VTI+Ind+Pos+Neu+1Sg+0Sg: nindagaasaatoon
+     agaasaatoon+VTI+Ind+Pos+Neu+1Sg+0Sg: nidagaasaatoon
+     agaasaatoon+VTI+Ind+Pos+Neu+3Sg+0Sg: odagaasaatoon
+     agaasaatoon+VTI+Cnj+Pos+Neu+3Sg+0: agaasaatood
+     agaasaatoon+VTI+?+Pos+Neu+3Sg+0: egaasaatood
+     agaasaatoon+VTI+Imp+Pos+Neu+2Sg+0: agaasaatoon

@@ -11,25 +11,25 @@ Tests:
 
   Lemma - ALL :
 
-     abashkwebiigininjiishin+VAI+Ind+++1Sg+: 
-     abashkwebiigininjiishin+VAI+Ind+++1Sg+: 
-     abashkwebiigininjiishin+VAI+Ind+++1Sg+: 
-     abashkwebiigininjiishin+VAI+Ind+++3Sg+: 
-     abashkwebiigininjiishin+VAI+Ind+++3Sg+: 
-     abashkwebiigizideshin+VAI+Ind+++1Sg+: 
-     abashkwebiigizideshin+VAI+Ind+++1Sg+: 
-     abashkwebiigizideshin+VAI+Ind+++1Sg+: 
-     abashkwebiigizideshin+VAI+Ind+++3Sg+: 
-     abashkwebiigizideshin+VAI+Ind+++3Sg+: 
-     agawaatebiigishin+VAI+Ind+++1Sg+: 
-     agawaatebiigishin+VAI+Ind+++1Sg+: 
-     agawaatebiigishin+VAI+Ind+++1Sg+: 
-     agawaatebiigishin+VAI+Ind+++3Sg+: 
-     agawaatebiigishin+VAI+Ind+++3Sg+: 
-     agawaatebiigishin+VAI+Ind+++3Sg+: 
-     agawaateshin+VAI+Ind+++1Sg+: 
-     agawaateshin+VAI+Ind+++1Sg+: 
-     agawaateshin+VAI+Ind+++1Sg+: 
-     agawaateshin+VAI+Ind+++3Sg+: 
-     agawaateshin+VAI+Ind+++3Sg+: 
-     agawaateshin+VAI+Ind+++3Sg+: 
+     abashkwebiigininjiishin+VAI+Ind+Pos+Neu+1Sg: indabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Ind+Pos+Neu+1Sg: nindabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Ind+Pos+Neu+1Sg: nidabashkwebiigininjiishin
+     abashkwebiigininjiishin+VAI+Cnj+Pos+Neu+3Sg: abashkwebiigininjiishing
+     abashkwebiigininjiishin+VAI+?+Pos+Neu+3Sg: ebashkwebiigininjiishing
+     abashkwebiigizideshin+VAI+Ind+Pos+Neu+1Sg: indabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Ind+Pos+Neu+1Sg: nindabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Ind+Pos+Neu+1Sg: nidabashkwebiigizideshin
+     abashkwebiigizideshin+VAI+Cnj+Pos+Neu+3Sg: abashkwebiigizideshing
+     abashkwebiigizideshin+VAI+?+Pos+Neu+3Sg: ebashkwebiigizideshing
+     agawaatebiigishin+VAI+Ind+Pos+Neu+1Sg: indagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos+Neu+1Sg: nindagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos+Neu+1Sg: nidagawaatebiigishin
+     agawaatebiigishin+VAI+Ind+Pos+Neu+3Sg: agawaatebiigishin
+     agawaatebiigishin+VAI+Cnj+Pos+Neu+3Sg: agawaatebiigishing
+     agawaatebiigishin+VAI+?+Pos+Neu+3Sg: egawaatebiigishing
+     agawaateshin+VAI+Ind+Pos+Neu+1Sg: indagawaateshin
+     agawaateshin+VAI+Ind+Pos+Neu+1Sg: nindagawaateshin
+     agawaateshin+VAI+Ind+Pos+Neu+1Sg: nidagawaateshin
+     agawaateshin+VAI+Ind+Pos+Neu+3Sg: agawaateshin
+     agawaateshin+VAI+Cnj+Pos+Neu+3Sg: agawaateshing
+     agawaateshin+VAI+?+Pos+Neu+3Sg: egawaateshing

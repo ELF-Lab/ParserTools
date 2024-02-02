@@ -11,69 +11,68 @@ Tests:
 
   Lemma - ALL :
 
-     abaabas+VTA+Ind+++1Sg+: 
-     abaabas+VTA+Ind+++1Sg+: 
-     abaabas+VTA+Ind+++1Sg+: 
-     abaabas+VTA+Ind+++3Sg+: 
-     abaabas+VTA+Ind+++3Sg+: 
-     abaabas+VTA+Ind+++3Sg+: 
-     abaabas+VTA+Ind+++3Sg+: 
-     abaabas+VTA+Ind+++2Sg+: 
-     abaabas+VTA+Ind+++2Sg+: 
-     abaabikizwi+VTA+Ind+++1Sg+: 
-     abaabikizwi+VTA+Ind+++3Sg+: 
-     abaabikizwi+VTA+Ind+++3Sg+: 
-     abaabikizwi+VTA+Ind+++3Sg+: 
-     abaabikizwi+VTA+Ind+++2Sg+: 
-     abiz+VTA+Ind+++1Sg+: 
-     abiz+VTA+Ind+++1Sg+: 
-     abiz+VTA+Ind+++1Sg+: 
-     abiz+VTA+Ind+++3Sg+: 
-     abiz+VTA+Ind+++3Sg+: 
-     abiz+VTA+Ind+++3Sg+: 
-     abiz+VTA+Ind+++2Sg+: 
-     abiz+VTA+Ind+++2Sg+: 
-     abizidezwi+VTA+Ind+++1Sg+: 
-     abizidezwi+VTA+Ind+++?+: 
-     abizidezwi+VTA+Ind+++3Sg+: 
-     abizidezwi+VTA+Ind+++3Sg+: 
-     abizidezwi+VTA+Ind+++2Sg+: 
-     abizidezwi+VTA+Ind+++2Sg+: 
-     abiigizwi+VTA+Ind+++1Sg+: 
-     abiigizwi+VTA+Ind+++3Sg+: 
-     abiigizwi+VTA+Ind+++3Sg+: 
-     abiigizwi+VTA+Ind+++3Sg+: 
-     abiigizwi+VTA+Ind+++2Sg+: 
-     abwewas+VTA+Ind+++1Sg+: 
-     abwewas+VTA+Ind+++1Sg+: 
-     abwewas+VTA+Ind+++1Sg+: 
-     abwewas+VTA+Ind+++3Sg+: 
-     abwewas+VTA+Ind+++3Sg+: 
-     abwewas+VTA+Ind+++3Sg+: 
-     abwewas+VTA+Ind+++2Sg+: 
-     adima'+VTA+Ind+++1Sg+: 
-     adima'+VTA+Ind+++1Sg+: 
-     adima'+VTA+Ind+++1Sg+: 
-     adima'+VTA+Ind+++3Sg+: 
-     adima'+VTA+Ind+++1Sg+: 
-     adima'+VTA+Ind+++2Sg+: 
-     adima'+VTA+Ind+++3Sg+: 
-     adima'+VTA+Ind+++3Sg+: 
-     adima'+VTA+Ind+++3Sg+: 
-     adima'+VTA+Ind+++2Sg+: 
-     adima'+VTA+Ind+++2Sg+: 
-     adis+VTA+Ind+++1Sg+: 
-     adis+VTA+Ind+++3Sg+: 
-     adis+VTA+Ind+++3Sg+: 
-     adis+VTA+Ind+++3Sg+: 
-     adis+VTA+Ind+++2Sg+: 
-     adiswi+VTA+Ind+++1Sg+: 
-     adiswi+VTA+Ind+++3Sg+: 
-     adiswi+VTA+Ind+++3Sg+: 
-     adiswi+VTA+Ind+++3Sg+: 
-     adiswi+VTA+Ind+++2Sg+: 
-     agaasadezhwi+VTA+Ind+++1Sg+: 
-     agaasadezhwi+VTA+Ind+++3Sg+: 
-     agaasadezhwi+VTA+Ind+++3Sg+: 
-     agaasadezhwi+VTA+Ind+++3Sg+: 
-     agaasadezhwi+VTA+Ind+++2Sg+: 
+     abaabas+VTA+Ind+Pos+Neu+1Sg+3Sg: indabaabaswaa
+     abaabas+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabaabaswaa
+     abaabas+VTA+Ind+Pos+Neu+1Sg+3Sg: nidabaabaswaa
+     abaabas+VTA+Ind+Pos+Neu+3Sg+1Sg: indabaabasog
+     abaabas+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabaabaswaan
+     abaabas+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abaabaswaad
+     abaabas+VTA+?+Pos+Neu+3Sg+3SgObv: ebaabaswaad
+     abaabas+VTA+Imp+Pos+Neu+2Sg+3: abaabas
+     abaabas+VTA+Imp+Pos+Neu+2Sg+3: abaabaswi
+     abaabikizwi+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabaabikizwaa
+     abaabikizwi+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabaakizwaan
+     abaabikizwi+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abaakizwaad
+     abaabikizwi+VTA+?+Pos+Neu+3Sg+3SgObv: ebaakizwaad
+     abaabikizwi+VTA+Imp+Pos+Neu+2Sg+3: abaakizwi
+     abiz+VTA+Ind+Pos+Neu+1Sg+3Sg: indabizwaa
+     abiz+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabizwaa
+     abiz+VTA+Ind+Pos+Neu+1Sg+3Sg: nidabizwaa
+     abiz+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabizwaan
+     abiz+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abizwaad
+     abiz+VTA+?+Pos+Neu+3Sg+3SgObv: ebizwaad
+     abiz+VTA+Imp+Pos+Neu+2Sg+3: abiz
+     abiz+VTA+Imp+Pos+Neu+2Sg+3: abizwi
+     abizidezwi+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabizidezwaa
+     abizidezwi+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abizidezwaad
+     abizidezwi+VTA+?+Pos+Neu+3Sg+3SgObv: ebizidezwaad
+     abizidezwi+VTA+Imp+Pos+Neu+2Sg+3: abizidez
+     abizidezwi+VTA+Imp+Pos+Neu+2Sg+3: abizidezwi
+     abiigizwi+VTA+Ind+Pos+Neu+1Sg+3Sg: indabiigizwaa
+     abiigizwi+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabiigizwaan
+     abiigizwi+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abiigizwaad
+     abiigizwi+VTA+?+Pos+Neu+3Sg+3SgObv: ebiigizwaad
+     abiigizwi+VTA+Imp+Pos+Neu+2Sg+3: abiigizwi
+     abwewas+VTA+Ind+Pos+Neu+1Sg+3Sg: indabwewaswaa
+     abwewas+VTA+Ind+Pos+Neu+1Sg+3Sg: nindabwewaswaa
+     abwewas+VTA+Ind+Pos+Neu+1Sg+3Sg: nidabwewaswaa
+     abwewas+VTA+Cnj+Pos+Neu+3Sg+3SgObv: abwewaswaad
+     abwewas+VTA+Ind+Pos+Neu+3Sg+3SgObv: odabwewaswaan
+     abwewas+VTA+?+Pos+Neu+3Sg+3SgObv: ebwewaswaad
+     abwewas+VTA+Imp+Pos+Neu+2Sg+3: abwewas
+     adima'+VTA+Ind+Pos+Neu+1Sg+3Sg: indadima'waa
+     adima'+VTA+Ind+Pos+Neu+1Sg+3Sg: nindadima'waa
+     adima'+VTA+Ind+Pos+Neu+1Sg+3Sg: nidadima'waa
+     adima'+VTA+Ind+Pos+Neu+3Sg+1Sg: nindadima'wig
+     adima'+VTA+Ind+Pos+Neu+1Sg+2Sg: gidadima'win
+     adima'+VTA+Ind+Pos+Neu+2Sg+1Sg: gidadima'
+     adima'+VTA+Ind+Pos+Neu+3Sg+3SgObv: odadima'waan
+     adima'+VTA+Cnj+Pos+Neu+3Sg+3SgObv: adima'waad
+     adima'+VTA+?+Pos+Neu+3Sg+3SgObv: edima'waad
+     adima'+VTA+Imp+Pos+Neu+2Sg+3: adima'
+     adima'+VTA+Imp+Pos+Neu+2Sg+0: adima'wi
+     adis+VTA+Ind+Pos+Neu+1Sg+3Sg: indadiswaa
+     adis+VTA+Ind+Pos+Neu+3Sg+3SgObv: odadiswaan
+     adis+VTA+Cnj+Pos+Neu+3Sg+3SgObv: adiswaad
+     adis+VTA+?+Pos+Neu+3Sg+3SgObv: ediswaad
+     adis+VTA+Imp+Pos+Neu+2Sg+3: adis
+     adiswi+VTA+Ind+Pos+Neu+1Sg+3Sg: nindadiswaa
+     adiswi+VTA+Ind+Pos+Neu+3Sg+3SgObv: odadiswaan
+     adiswi+VTA+Cnj+Pos+Neu+3Sg+3SgObv: adiswaad
+     adiswi+VTA+?+Pos+Neu+3Sg+3SgObv: ediswaad
+     adiswi+VTA+Imp+Pos+Neu+2Sg+3: adiswi
+     agaasadezhwi+VTA+Ind+Pos+Neu+1Sg+3Sg: nindagaasadezhwaa
+     agaasadezhwi+VTA+Ind+Pos+Neu+3Sg+3SgObv: odagaasadezhwaan
+     agaasadezhwi+VTA+Cnj+Pos+Neu+3Sg+3SgObv: agaasadezhwaad
+     agaasadezhwi+VTA+?+Pos+Neu+3Sg+3SgObv: egaasadezhwaad
+     agaasadezhwi+VTA+Imp+Pos+Neu+2Sg+3: agaasadezhwi

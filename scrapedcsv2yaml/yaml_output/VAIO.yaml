@@ -11,31 +11,31 @@ Tests:
 
   Lemma - ALL :
 
-     abwen+VAIO+Ind+++1Sg+: 
-     abwen+VAIO+Ind+++1Sg+: 
-     abwen+VAIO+Ind+++1Sg+: 
-     abwen+VAIO+Ind+++3Sg+: 
-     abwen+VAIO+Ind+++3Sg+: 
-     abwen+VAIO+Ind+++3Sg+: 
-     adaawangen+VAIO+Ind+++1Sg+: 
-     adaawangen+VAIO+Ind+++1Sg+: 
-     adaawangen+VAIO+Ind+++1Sg+: 
-     adaawangen+VAIO+Ind+++3Sg+: 
-     adaawangen+VAIO+Ind+++3Sg+: 
-     adaawangen+VAIO+Ind+++3Sg+: 
-     adaawangen+VAIO+Ind+++2Sg+: 
-     adaawaagen+VAIO+Ind+++1Sg+: 
-     adaawaagen+VAIO+Ind+++1Sg+: 
-     adaawaagen+VAIO+Ind+++1Sg+: 
-     adaawaagen+VAIO+Ind+++3Sg+: 
-     adaawen+VAIO+Ind+++1Sg+: 
-     adaawen+VAIO+Ind+++1Sg+: 
-     adaawen+VAIO+Ind+++1Sg+: 
-     adaawen+VAIO+Ind+++3Sg+: 
-     adaawen+VAIO+Ind+++3Sg+: 
-     adaawen+VAIO+Ind+++3Sg+: 
-     adoopon+VAIO+Ind+++1Sg+: 
-     adoopon+VAIO+Ind+++3Sg+: 
-     adoopon+VAIO+Ind+++3Sg+: 
-     adoopon+VAIO+Ind+++3Sg+: 
-     adoopon+VAIO+Ind+++2Sg+: 
+     abwen+VAIO+Ind+Pos+Neu+1Sg: indabwen
+     abwen+VAIO+Ind+Pos+Neu+1Sg: nindabwen
+     abwen+VAIO+Ind+Pos+Neu+1Sg: nidabwen
+     abwen+VAIO+Cnj+Pos+Neu+3Sg: abwed
+     abwen+VAIO+Ind+Pos+Neu+3Sg: odabwen
+     abwen+VAIO+?+Pos+Neu+3Sg: ebwed
+     adaawangen+VAIO+Ind+Pos+Neu+1Sg: indadaawangen
+     adaawangen+VAIO+Ind+Pos+Neu+1Sg: nindadaawangen
+     adaawangen+VAIO+Ind+Pos+Neu+1Sg: nidadaawangen
+     adaawangen+VAIO+Ind+Pos+Neu+3Sg: odadaawaangen
+     adaawangen+VAIO+Cnj+Pos+Neu+3Sg: adaawanged
+     adaawangen+VAIO+?+Pos+Neu+3Sg: edaawanged
+     adaawangen+VAIO+Imp+Pos+Neu+2Sg+0Sg: adaawangen
+     adaawaagen+VAIO+Ind+Pos+Neu+1Sg: indadaawaagen
+     adaawaagen+VAIO+Ind+Pos+Neu+1Sg: nindadaawaagen
+     adaawaagen+VAIO+Ind+Pos+Neu+1Sg: nidadaawaagen
+     adaawaagen+VAIO+Ind+Pos+Neu+3Sg: odadaawaagen
+     adaawen+VAIO+Ind+Pos+Neu+1Sg: indadaawen
+     adaawen+VAIO+Ind+Pos+Neu+1Sg: nindadaawen
+     adaawen+VAIO+Ind+Pos+Neu+1Sg: nidadaawen
+     adaawen+VAIO+Cnj+Pos+Neu+3Sg: adaawed
+     adaawen+VAIO+Ind+Pos+Neu+3Sg: odadaawen
+     adaawen+VAIO+?+Pos+Neu+3Sg: edaawed
+     adoopon+VAIO+Ind+Pos+Neu+1Sg+0Sg: indadoopon
+     adoopon+VAIO+Ind+Pos+Neu+3Sg+0Sg: odadoopon
+     adoopon+VAIO+Cnj+Pos+Neu+3Sg+0: adoopod
+     adoopon+VAIO+?+Pos+Neu+3Sg+0: edoopod
+     adoopon+VAIO+Imp+Pos+Neu+2Sg+0: adoopon

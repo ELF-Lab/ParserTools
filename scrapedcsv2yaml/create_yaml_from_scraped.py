@@ -8,6 +8,7 @@ from create_yaml import create_output_directory
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
 vowels = ["i", "e", "o", "a"]
+forms_with_missing_info = []
 
 def process_csv(file_name):
     df = pd.read_csv(file_name, keep_default_na = False)
@@ -17,10 +18,15 @@ def process_csv(file_name):
     df = df.truncate(after = 1000)
     for index, row in df.iterrows():
         row = row.to_dict()
+        # Grab only the verbs!
         if row["POS"] in POS_TO_KEEP:
-            lexical_info = format_entry(row)
-
-            forms_with_info.append(lexical_info)
+            row["Abbreviated Gloss"] = row["Abbreviated Gloss"].strip()
+            # If forms don't have at least two glosses (= there would be a space), then they're missing some info
+            if not (" " in row["Abbreviated Gloss"]):
+                forms_with_missing_info.append(row)
+            else:
+                lexical_info = format_entry(row)
+                forms_with_info.append(lexical_info)
 
     return forms_with_info
 
@@ -30,7 +36,8 @@ def process_csv(file_name):
 # Also: removes the /-/ from the stem entry
 def format_entry(entry_as_dict):
     entry_as_dict["Stem"] = (entry_as_dict["Stem"].replace("/", "")).replace("-", "")
-    lexical_info = entry_as_dict["Stem"]
+
+    entry_as_dict = add_order(entry_as_dict)
 
     if entry_as_dict["POS"] == "vai + o":
         entry_as_dict["POS"] = "vaio"
@@ -42,23 +49,34 @@ def format_entry(entry_as_dict):
     if "VTI" in entry_as_dict["POS"]:
         entry_as_dict["POS"] = "VTI"
 
-    lexical_info += "+" + entry_as_dict["POS"]
-
-    lexical_info += "+" + "Ind"
-
-    lexical_info += "+" + "Pos"
-
     entry_as_dict = add_person_and_number(entry_as_dict)
-    if "PersonNum" in entry_as_dict.keys():
-        lexical_info += "+" + entry_as_dict["PersonNum"]
 
-    lexical_info += ": "
+    entry_as_dict = add_mode(entry_as_dict)
 
-    lexical_info += entry_as_dict["Inflectional Form"]
-
-    entry_as_dict.update({"lexical_info": lexical_info})
+    entry_as_dict = add_negation(entry_as_dict)
 
     return entry_as_dict
+
+# Ind, Cnj, Imp -- what about changed conjunct? No default
+def add_order(form_with_info):
+    short_gloss = form_with_info["Abbreviated Gloss"]
+
+    if "ind" in short_gloss:
+        order = "Ind"
+    elif "ch-conj" in short_gloss:
+        order = "?"
+    elif "conj" in short_gloss:
+        order = "Cnj"
+    elif "imp" in short_gloss:
+        order = "Imp"
+    elif "ic" in short_gloss:
+        order = "?"
+    else:
+        print(f"\nERROR: Form {form_with_info['Inflectional Form']} does not have an expected order value.  Please investigate this form in the spreadsheet and update the code accordingly.  Exiting...")
+        sys.exit()
+
+    form_with_info["Order"] = order
+    return form_with_info
 
 # Add an entry to the dict that indicates the class of the stem (e.g. n, am, etc.)
 def add_class(form_with_info):
@@ -144,17 +162,48 @@ def add_person_and_number(form_with_info):
     # Add info for the first participant
     participant = gloss[0]
     if participant in gloss_subj_dict.keys():
-        form_with_info.update({"Subject": gloss_subj_dict[participant]})
+        form_with_info["Subject"] = gloss_subj_dict[participant]
     else:
-        form_with_info.update({"Subject": "?"}) # So we take note of info we can't currently handle
+        form_with_info["Subject"] = "?" # So we take note of info we can't currently handle
     # If there's a second participant (i.e. it's transitive), add their info too
     if len(gloss) == 3 and (not gloss[1] == "augmented") and (not gloss[1] == "independent"):
         participant = gloss[1]
         if participant in gloss_obj_dict.keys():
-            form_with_info.update({"Object": gloss_obj_dict[participant]})
+            form_with_info["Object"] = gloss_obj_dict[participant]
         else:
-            form_with_info.update({"Object": "?"})
+            form_with_info["Object"] =  "?"
+    else:
+        form_with_info["Object"] = "NA"
 
+    return form_with_info
+
+# Neu, Prt, Dub, DubPrt, with Neu being the default
+def add_mode(form_with_info):
+    short_gloss = form_with_info["Abbreviated Gloss"]
+
+    if "pret" in short_gloss and "dub" in short_gloss:
+        mode = "DubPrt"
+    elif "pret" in short_gloss:
+        mode = "Prt"
+    elif "dub" in short_gloss:
+        mode = "Dub"
+    else:
+        mode = "Neu"
+
+    form_with_info["Mode"] = mode
+
+    return form_with_info
+
+# Neg, Pos, with Pos being the default
+def add_negation(form_with_info):
+    short_gloss = form_with_info["Abbreviated Gloss"]
+
+    if "neg" in short_gloss:
+        negation = "Neg"
+    else:
+        negation = "Pos"
+
+    form_with_info["Negation"] = negation
     return form_with_info
 
 # Reminder: forms_with_info is a list of dicts
@@ -166,7 +215,7 @@ def write_new_csv(forms_with_info, output_dir):
         for form_with_info in forms_with_info:
             print(form_with_info)
             csv.write(form_with_info["POS"] + ",") # Paradigm
-            csv.write("Ind" + ",") # Order
+            csv.write(form_with_info["Order"] + ",") # Order
             if "Class" in form_with_info.keys(): # Class
                 csv.write(form_with_info["POS"] + "_" + form_with_info["Class"] + ",")
             else:
@@ -174,6 +223,10 @@ def write_new_csv(forms_with_info, output_dir):
             csv.write(form_with_info["Lemma"] + ",") # Lemma
             csv.write(form_with_info["Stem"] + ",") # Stem
             csv.write(form_with_info["Subject"] + ",") # Subject
+            csv.write(form_with_info["Object"] + ",") # Object
+            csv.write(form_with_info["Mode"] + ",") # Mode
+            csv.write(form_with_info["Negation"] + ",") # Negation
+            csv.write(form_with_info["Inflectional Form"] + ",") # Form1Surface
             csv.write("\n") # for the new line
 
 def main():

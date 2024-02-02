@@ -11,12 +11,12 @@ Tests:
 
   Lemma - ALL :
 
-     abweninjii+VAI+Ind+++1Sg+: 
-     abweninjii+VAI+Ind+++1Sg+: 
-     abweninjii+VAI+Ind+++1Sg+: 
-     abweninjii+VAI+Ind+++3Sg+: 
-     abweninjii+VAI+Ind+++3Sg+: 
-     abweninjii+VAI+Ind+++3Sg+: 
-     agawaateshkaa+VAI+Ind+++3Sg+: 
-     agawaateshkaa+VAI+Ind+++3Sg+: 
-     agawaateshkaa+VAI+Ind+++3Sg+: 
+     abweninjii+VAI+Ind+Pos+Neu+1Sg: indabweninjii
+     abweninjii+VAI+Ind+Pos+Neu+1Sg: nindabweninjii
+     abweninjii+VAI+Ind+Pos+Neu+1Sg: nidabweninjii
+     abweninjii+VAI+Ind+Pos+Neu+3Sg: abweninjii
+     abweninjii+VAI+Cnj+Pos+Neu+3Sg: abweninjiid
+     abweninjii+VAI+?+Pos+Neu+3Sg: ebweninjiid
+     agawaateshkaa+VAI+Ind+Pos+Neu+3Sg: agawaateshkaa
+     agawaateshkaa+VAI+Cnj+Pos+Neu+3Sg: agawaateshkaad
+     agawaateshkaa+VAI+?+Pos+Neu+3Sg: egawaateshkaad

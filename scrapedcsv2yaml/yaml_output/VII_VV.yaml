@@ -11,42 +11,39 @@ Tests:
 
   Lemma - ALL :
 
-     adikokaa+VII+Ind+++0Sg+: 
-     adikokaa+VII+Ind+++0Sg+: 
-     aditebagaa+VII+Ind+++0Sg+: 
-     aditebagaa+VII+Ind+++0Sg+: 
-     adoopiikaa+VII+Ind+++0Sg+: 
-     adoopiikaa+VII+Ind+++?+: 
-     agawaateshkaa+VII+Ind+++0Sg+: 
-     agawaateshkaa+VII+Ind+++0Sg+: 
-     agawaateshkaa+VII+Ind+++0Sg+: 
-     agawaateyaa+VII+Ind+++0Sg+: 
-     agawaateyaa+VII+Ind+++0Sg+: 
-     agawaateyaa+VII+Ind+++0Sg+: 
-     agawaateyaa+VII+Ind+++0Sg+: 
-     agaasadegamaa+VII+Ind+++0Sg+: 
-     agaasadegamaa+VII+Ind+++?+: 
-     agaasadekamigaa+VII+Ind+++0Sg+: 
-     agaasadekamigaa+VII+Ind+++0Sg+: 
-     agaasadekamigaa+VII+Ind+++?+: 
-     agaasadesagaa+VII+Ind+++0Sg+: 
-     agaasadesagaa+VII+Ind+++0Sg+: 
-     agaasadesagaa+VII+Ind+++0Sg+: 
-     agaasadetigweyaa+VII+Ind+++0Sg+: 
-     agaasadetigweyaa+VII+Ind+++0Sg+: 
-     agaasadetigweyaa+VII+Ind+++0Sg+: 
-     agaasadetigweyaa+VII+Ind+++0Sg+: 
-     agaasadeyaa+VII+Ind+++0Sg+: 
-     agaasadeyaa+VII+Ind+++0Sg+: 
-     agaasadeyaa+VII+Ind+++0Sg+: 
-     agaasadeyaa+VII+Ind+++0Sg+: 
-     agaasadinaa+VII+Ind+++0Sg+: 
-     agaasadinaa+VII+Ind+++0Sg+: 
-     agaasadinaa+VII+Ind+++0Sg+: 
-     agaasadinaa+VII+Ind+++0Sg+: 
-     agaasashkiigaa+VII+Ind+++0Sg+: 
-     agaasashkiigaa+VII+Ind+++0Sg+: 
-     agaasaa+VII+Ind+++0Sg+: 
-     agaasaa+VII+Ind+++0Sg+: 
-     agaasaa+VII+Ind+++0Sg+: 
-     agaasaa+VII+Ind+++0Sg+: 
+     adikokaa+VII+Ind+Pos+Neu+0Sg: adikokaa
+     adikokaa+VII+Cnj+Pos+Neu+0Sg: adikokaag
+     aditebagaa+VII+Ind+Pos+Neu+0Sg: aditebagaa
+     aditebagaa+VII+Cnj+Pos+Neu+0Sg: aditebagaag
+     adoopiikaa+VII+Ind+Pos+Neu+0Sg: adoopiikaa
+     agawaateshkaa+VII+Ind+Pos+Neu+0Sg: agawaateshkaa
+     agawaateshkaa+VII+Cnj+Pos+Neu+0Sg: agawaateshkaag
+     agawaateshkaa+VII+?+Pos+Neu+0Sg: egawaateshkaag
+     agawaateyaa+VII+Ind+Pos+Neu+0Sg: agawaateyaa
+     agawaateyaa+VII+Cnj+Pos+Neu+0Sg: agawaateyaag
+     agawaateyaa+VII+?+Pos+Neu+0Sg: egawaateyaag
+     agawaateyaa+VII+Ind+Pos+Neu+0Sg+?: agawaateyaamagad
+     agaasadegamaa+VII+Ind+Pos+Neu+0Sg: agaasadegamaa
+     agaasadekamigaa+VII+Ind+Pos+Neu+0Sg: agaasadekamigaa
+     agaasadekamigaa+VII+Cnj+Pos+Neu+0Sg: agaasadekamigaag
+     agaasadesagaa+VII+Ind+Pos+Neu+0Sg: agaasadesagaa
+     agaasadesagaa+VII+Cnj+Pos+Neu+0Sg: agaasadesagaag
+     agaasadesagaa+VII+?+Pos+Neu+0Sg: egaasadesagaag
+     agaasadetigweyaa+VII+Ind+Pos+Neu+0Sg: agaasadetigweyaa
+     agaasadetigweyaa+VII+Cnj+Pos+Neu+0Sg: agaasadetigweyaag
+     agaasadetigweyaa+VII+?+Pos+Neu+0Sg: egaasadetigweyaag
+     agaasadetigweyaa+VII+Ind+Pos+Neu+0Sg: agaasadetigweyaamagad
+     agaasadeyaa+VII+Ind+Pos+Neu+0Sg: agaasadeyaa
+     agaasadeyaa+VII+Cnj+Pos+Neu+0Sg: agaasadeyaag
+     agaasadeyaa+VII+?+Pos+Neu+0Sg: egaasadeyaag
+     agaasadeyaa+VII+Ind+Pos+Neu+0Sg+?: agaasadeyaamagad
+     agaasadinaa+VII+Ind+Pos+Neu+0Sg: agaasadinaa
+     agaasadinaa+VII+Cnj+Pos+Neu+0Sg: agaasadinaag
+     agaasadinaa+VII+?+Pos+Neu+0Sg: egaasadinaag
+     agaasadinaa+VII+Ind+Pos+Neu+0Sg+?: agaasadinaamagad
+     agaasashkiigaa+VII+Ind+Pos+Neu+0Sg: agaasashkiigaa
+     agaasashkiigaa+VII+Cnj+Pos+Neu+0Sg: agaasashkiigaag
+     agaasaa+VII+Ind+Pos+Neu+0Sg: agaasaa
+     agaasaa+VII+Cnj+Pos+Neu+0Sg: agaasaag
+     agaasaa+VII+?+Pos+Neu+0Sg: egaasaag
+     agaasaa+VII+Ind+Pos+Neu+0Sg: agaasaamagad
