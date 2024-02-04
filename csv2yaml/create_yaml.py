@@ -36,7 +36,7 @@ def create_output_directory(parent_directory:str) -> str:
 
     return output_directory
 
-def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
+def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_tags:str) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
     # na_filter prevents the reading of "NA" values (= not applicable) as NaN
@@ -89,13 +89,15 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
         # Add this row to the dictionary appropriately.
         yaml_dict[row["Class"]].append(("     "+analysis(row), forms_output))
 
+    # Convert tag1,tag2,... -> {tag1, tag2, ...}
+    non_core_tags = set(non_core_tags.split(",")) if non_core_tags != "" else set()
+
     # For each stem in the dictionary, write it to its own yaml file.
     for key, value in yaml_dict.items():
         output_file_name = os.path.join(output_directory,f"{key}.yaml")
+        core_output_file_name = os.path.join(output_directory,f"{key}-core.yaml")
         # If the file doesn't exist, initialize it and write the forms
-        if not os.path.isfile(output_file_name):
-            with open(output_file_name, "w+") as yaml_file:
-                print("""Config:
+        header = """Config:
   hfst:
     Gen: ../../../src/generator-gt-norm.hfst
     Morph: ../../../src/analyser-gt-norm.hfst
@@ -107,14 +109,19 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
 Tests:
 
   Lemma - ALL :
-""", file = yaml_file)
-                for tag, forms in value:
-                    yaml_file.write(f"{tag}: {forms}\n")
-        # If the file already exists, just append these new forms
-        else:
-            with open(output_file_name, "a") as yaml_file:
-                for tag, forms in value:
-                    yaml_file.write(f"{tag}: {forms}\n")
+"""
+        if not os.path.isfile(output_file_name):
+            with open(output_file_name, "w+") as yaml_file, \
+                 open(core_output_file_name, "w+") as core_yaml_file:
+                print(header, file = yaml_file)
+                print(header, file = core_yaml_file)
+        with open(output_file_name, "a") as yaml_file, \
+             open(core_output_file_name, "a") as core_yaml_file:
+            for tag, forms in value:
+                yaml_file.write(f"{tag}: {forms}\n")
+                if len(non_core_tags.intersection(tag.split("+"))) != 0:
+                    continue
+                core_yaml_file.write(f"{tag}: {forms}\n")
 
 
 if __name__ == '__main__':
@@ -122,7 +129,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(prog="create_yaml")
     parser.add_argument("csv_directory", type=str, help="Path to the spreadsheet.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
-
+    parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\"")
     args = parser.parse_args()
 
     output_directory = create_output_directory(args.output_parent_directory)
@@ -132,7 +139,7 @@ if __name__ == '__main__':
     for file_name in os.listdir(args.csv_directory):
         full_name = os.path.join(args.csv_directory,file_name)
         if full_name.endswith(".csv"):
-            make_yaml(full_name, output_directory, analysis)
+            make_yaml(full_name, output_directory, analysis, args.non_core_tags)
             files_generated = True # At least one, anyways
 
     if files_generated:
