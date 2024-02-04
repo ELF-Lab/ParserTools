@@ -15,7 +15,7 @@ LexcEntry = namedtuple("LexcEntry", ["lexicon", "analysis", "surface", "next_lex
 
 # SplitForm represents a form consisting of a prefix, stem and suffix
 SplitForm = namedtuple("SplitForm", ["prefix", "stem", "suffix"])
-def entry2str(entry):
+def entry2str(entry:LexcEntry) -> str:
     """ Return the string representation of a lexc lexicon entry """
     if entry.analysis == entry.surface:
         if entry.analysis == "0":
@@ -25,12 +25,12 @@ def entry2str(entry):
     else:
         return f"{entry.analysis}:{entry.surface} {entry.next_lexicon} ;"
 
-def escape(symbol):
+def escape(symbol:str) -> str:
     """ Escape lexc special characters using a %-sign """
     return re.sub("(?<!%)([!%<>0/#; ])",r"%\1",symbol)
 
-def split_form(form):
-    """ Split a form prefix<<stem>>suffix at boundaries """
+def split_form(form:str) -> SplitForm:
+    """Split a form prefix<<stem>>suffix at boundaries."""
     # re.split results in a 5-element array [prefix, "<<", stem, ">>", suffix]
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
@@ -41,12 +41,12 @@ def split_form(form):
 class ParadigmSlot:
     # All multichar symbols (across the entire lexc file) are stored
     # in this static set
-    multichar_symbols = None
-    pre_element_tag = None
+    multichar_symbols:set[str] = None
+    pre_element_tag:str = None
     
     @classmethod
-    def __init_multichar_symbol_set(cls, conf):
-        """ Must be called before any ParadigmSlot objects are initialized. """
+    def __init_multichar_symbol_set(cls, conf:dict) -> None:
+        """Must be called before any ParadigmSlot objects are initialized."""
         cls.multichar_symbols = set(map(escape,conf["multichar_symbols"]))
         cls.pre_element_tag = escape(conf["pre_element_tag"])
         cls.multichar_symbols.add(escape(PREFIX_BOUNDARY))
@@ -54,9 +54,11 @@ class ParadigmSlot:
         cls.multichar_symbols.add(cls.pre_element_tag)
         
     @classmethod
-    def __get_prefix_flags(cls, prefix):
-        """ Get the P and R flags like @P.Prefi.=NI@ which determine
-            valid combinations of prefixes and suffixes
+    def __get_prefix_flags(cls, prefix:str) -> tuple[str]:
+        """Get the P and R flags like @P.Prefi.=NI@ which determine valid
+           combinations of prefixes and suffixes.
+
+            The flag diacritics will be added to multichar symbols.
         """
         prefix = "NONE" if prefix == "" else prefix.upper()
         pflag, rflag = f"@P.Prefix.{prefix}@", f"@R.Prefix.{prefix}@"
@@ -64,8 +66,6 @@ class ParadigmSlot:
         return pflag, rflag
 
     def __init__(self, row, conf):
-        if ParadigmSlot.multichar_symbols == None:
-            ParadigmSlot.__init_multichar_symbol_set(conf)
         self.paradigm = row["Paradigm"]
         self.klass = row["Class"]
         self.lemma = escape(row["Lemma"])
@@ -73,7 +73,10 @@ class ParadigmSlot:
         self.tags = [escape(f"+{row[feat]}")
                      for feat in conf["morph_features"]
                      if row[feat] != conf["missing_tag_marker"]]
+        if ParadigmSlot.multichar_symbols == None:
+            ParadigmSlot.__init_multichar_symbol_set(conf)
         self.__harvest_multichar_symbols()
+
         try:
             self.__read_forms(row, conf)
         except ValueError as e:
@@ -81,11 +84,15 @@ class ParadigmSlot:
             print("Warning: Skipping invalid row!", file=stderr)
             self.forms = []
             
-    def __harvest_multichar_symbols(self):
+    def __harvest_multichar_symbols(self) -> None:
+        """Add all multichar symbols from this entry to the multichar symbol
+           set
+        """
         for tag in self.tags:
             ParadigmSlot.multichar_symbols.add(tag)
 
-    def __read_forms(self,row, conf):
+    def __read_forms(self, row:pd.core.series.Series, conf:dict) -> None:
+        """Read all forms on the given dataframe row."""
         self.forms = [(row[f"Form{i}Surface"], split_form(row[f"Form{i}Split"]))
                       for i in range(MAXFORMS)
                       if (f"Form{i}Surface" in row and
@@ -94,7 +101,12 @@ class ParadigmSlot:
         if len(self.forms) == 0:
             raise ValueError(f"No surface forms given for row: {row}")
         
-    def __get_lexc_paths(self):
+    def __get_lexc_paths(self) -> list[list[LexcEntry]]:
+        """Convert this slot entry into a list of lexc lexicon paths
+           starting at the Root lexicon and ending in #.
+
+           There will be one path for each surface form.
+        """
         paths = []
         paradigm = self.paradigm
         klass = self.klass
@@ -143,7 +155,8 @@ class ParadigmSlot:
             paths.append(path)
         return paths
 
-    def extend_lexicons(self, lexicons):
+    def extend_lexicons(self, lexicons:dict) -> None:
+        """Add the lexc path representing this slot to lexicons."""
         for entry in self.__get_lexc_paths():
             lexicons["Root"].add(LexcEntry("Root","0","0",entry[0].lexicon))
             for line in entry:
