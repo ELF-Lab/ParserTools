@@ -1,7 +1,7 @@
 from paradigm_slot import ParadigmSlot, entry2str
 import json
 import pandas as pd
-import sys
+from sys import stderr
 import os
 
 class Lexicon:
@@ -9,8 +9,9 @@ class Lexicon:
         self.conf = conf
         self.lexicons = {"Root":set()}
         for fn in conf["csv_files"].split(","):
-            table = pd.read_csv(os.path.join(conf["path"],f"{fn}.csv"),
-                                keep_default_na=False)
+            path = os.path.join(conf["path"],f"{fn}.csv")
+            print(f"Reading lexicon entries from {path}", file=stderr)
+            table = pd.read_csv(path, keep_default_na=False)
             for _, row in table.iterrows():
                 paradigm_slot = ParadigmSlot(row, conf)
                 paradigm_slot.extend_lexicons(self.lexicons)
@@ -21,13 +22,15 @@ class Lexicon:
         multichar_symbols = sorted(list(ParadigmSlot.multichar_symbols))
         print(" ".join(multichar_symbols), file=lexc_file)
         print("", file=lexc_file)
-        for lexicon in self.lexicons:
+        print(f"Writing {len(self.lexicons)} sublexicons:", file=stderr)
+        for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
+            print(f"  {lexicon} ({len(lexc_rows)} entries)", file=stderr)
             print(f"LEXICON {lexicon}", file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
             print("", file=lexc_file)
-            
+
 if __name__=="__main__":
     conf = json.load(open("conf.json"))
     lexicon = Lexicon(conf)

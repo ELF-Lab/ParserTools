@@ -1,3 +1,4 @@
+from sys import stderr
 import re
 import json
 import pandas as pd
@@ -76,7 +77,8 @@ class ParadigmSlot:
         try:
             self.__read_forms(row, conf)
         except ValueError as e:
-            print(f"Warning: Skipping invalid row!\n{e}\n")
+            print(e,file=stderr)
+            print("Warning: Skipping invalid row!", file=stderr)
             self.forms = []
             
     def __harvest_multichar_symbols(self):
