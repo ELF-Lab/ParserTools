@@ -220,14 +220,8 @@ def read_lexical_database(pos, pos_mode, stem_types, lemma_lexicon, database_fil
                 stem = re.sub("N$","n",stem)
                 stem = re.sub("S$","s",stem)
             lemma_lexicon.add((stem,lemma,f"{pos_mode}_{stem_type}_Subclass"))
-            
-@click.command()
-@click.option("--csv_file",required=True)
-@click.option("--multichar_symbol_file",required=True)
-@click.option("--lexc_file",required=True)
-@click.option("--database_file", required=False)
-def main(csv_file,multichar_symbol_file,lexc_file, database_file):
-    print(f"Convert {csv_file} to {lexc_file}. Read OPD lexemes from {database_file}")
+
+def compile_regular(csv_file,lexc_file, database_file,multichar_symbols):
     # We need several continuation lexicons under the Root lexicon:
     # Empty prefix, ni- and gi-prefix + P-flags
     prefix_lexicon = set() 
@@ -251,12 +245,6 @@ def main(csv_file,multichar_symbol_file,lexc_file, database_file):
     # each prefix ("", ni- or gi-) and stem-type (e.g. magad).
     suffix_lexicons = {}
 
-    # We collect multichar symbols into this set. Boundary symbols and P-flags
-    # for the empty prefix are always added.
-    multichar_symbols = set(["<<",">>",SET_NO_PREFIX_FLAG,CHECK_NO_PREFIX_FLAG])
-    with open(multichar_symbol_file) as f:
-        multichar_symbols.update([s for s in f.read().split(" ") if s != ""])
-    
     # Collect all stem types
     stem_types = set()
 
@@ -307,6 +295,48 @@ def main(csv_file,multichar_symbol_file,lexc_file, database_file):
     print_lexc(lexc_file, pos_mode, multichar_symbols, prefix_lexicon,
                lemma_lexicon, subclass_lexicons, flag_lexicons,
                prefix_wb_lexicon,suffix_wb_lexicons, suffix_lexicons)
+
+def compile_irregular_paradigm(csv_file,lexc_file,multichar_symbols):
+    table = pd.read_csv(csv_file)
+    lexc_f = open(lexc_file,"w")
+    # Each row in the spreadsheet becomes a lexicon entry.
+    entries = []
+    for _, row in table.iterrows():
+        # Make sure the paradigm and order tags are defined.
+        tags = []
+        for field in "Paradigm Order Negation Mode Subject Object".split(" "):
+            field = row[field]
+            field = f"+{escape(field)}"
+            multichar_symbols.add(field)
+            tags.append(field)
+        tags = "".join(tags)
+        for form in [row[f"Form{n}Surface"] for n in range(1,5) if f"Form{n}Surface" in row]:
+            entries.append((f"{row['Lemma']}{tags}", form))
+    print_multichar_symbols(multichar_symbols,lexc_f)
+    print("LEXICON ROOT",file=lexc_f)
+    for analysis, wf in entries:
+        print(f"{analysis}:{wf} # ;", file=lexc_f)
+    
+@click.command()
+@click.option("--csv_file",required=True)
+@click.option("--multichar_symbol_file",required=True)
+@click.option("--lexc_file",required=True)
+@click.option("--database_file", required=False)
+def main(csv_file,multichar_symbol_file,lexc_file, database_file):
+    print(f"Convert {csv_file} to {lexc_file}")
+    print(f"Read OPD lexemes from {database_file}")
+    print(f"Read multichar-symbols from {multichar_symbol_file}")
+
+    # We collect multichar symbols into this set. Boundary symbols and P-flags
+    # for the empty prefix are always added.
+    multichar_symbols = set(["<<",">>",SET_NO_PREFIX_FLAG,CHECK_NO_PREFIX_FLAG])
+    with open(multichar_symbol_file) as f:
+        multichar_symbols.update([s for s in f.read().split(" ") if s != ""])
+        
+    if "_irr.csv" in csv_file.lower():
+        compile_irregular_paradigm(csv_file,lexc_file,multichar_symbols)
+    else:
+        compile_regular(csv_file,lexc_file, database_file,multichar_symbols)
     
 if __name__=="__main__":
     main()
