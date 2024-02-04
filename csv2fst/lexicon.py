@@ -1,0 +1,34 @@
+from paradigm_slot import ParadigmSlot, entry2str
+import json
+import pandas as pd
+import sys
+import os
+
+class Lexicon:
+    def __init__(self,conf):
+        self.conf = conf
+        self.lexicons = {"Root":set()}
+        for fn in conf["csv_files"].split(","):
+            table = pd.read_csv(os.path.join(conf["path"],f"{fn}.csv"),
+                                keep_default_na=False)
+            for _, row in table.iterrows():
+                paradigm_slot = ParadigmSlot(row, conf)
+                paradigm_slot.extend_lexicons(self.lexicons)
+            
+    def print_lexc(self):
+        lexc_file = open(self.conf["lexc_file"],"w")
+        print("Multichar_Symbols",file=lexc_file)
+        multichar_symbols = sorted(list(ParadigmSlot.multichar_symbols))
+        print(" ".join(multichar_symbols), file=lexc_file)
+        print("", file=lexc_file)
+        for lexicon in self.lexicons:
+            lexc_rows = sorted(list(self.lexicons[lexicon]))
+            print(f"LEXICON {lexicon}", file=lexc_file)
+            for row in lexc_rows:
+                print(entry2str(row), file=lexc_file)
+            print("", file=lexc_file)
+            
+if __name__=="__main__":
+    conf = json.load(open("conf.json"))
+    lexicon = Lexicon(conf)
+    lexicon.print_lexc()
