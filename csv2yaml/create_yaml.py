@@ -23,7 +23,7 @@ def remove_NA(value):
     return has_a_value
 
 def create_output_directory(parent_directory:str) -> str:
-    output_directory = f'{parent_directory}yaml_output/'
+    output_directory = os.path.join(parent_directory,"yaml_output/")
     # Clear any existing yaml output files
     if os.path.isdir(output_directory):
         shutil.rmtree(output_directory)
@@ -91,7 +91,7 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable) -> None:
 
     # For each stem in the dictionary, write it to its own yaml file.
     for key, value in yaml_dict.items():
-        output_file_name = f"{output_directory}{key}.yaml"
+        output_file_name = os.path.join(output_directory,f"{key}.yaml")
         # If the file doesn't exist, initialize it and write the forms
         if not os.path.isfile(output_file_name):
             with open(output_file_name, "w+") as yaml_file:
@@ -130,7 +130,7 @@ if __name__ == '__main__':
     files_generated = False
 
     for file_name in os.listdir(args.csv_directory):
-        full_name = args.csv_directory + file_name
+        full_name = os.path.join(args.csv_directory,file_name)
         if full_name.endswith(".csv"):
             make_yaml(full_name, output_directory, analysis)
             files_generated = True # At least one, anyways
