@@ -3,29 +3,24 @@ PYTHON=python3
 FOMA=foma
 
 # Source files
+# Change this to match your source directory
 BORDERLAKESMORPH=~/src/BorderLakesMorph
-CONFFILE=examples/ojibwe.json
-FSTSCRIPT=$(BORDERLAKESMORPH)/xfst/phonology.xfst
 
 # YAML tests
+CREATEYAML=../csv2yaml/create_yaml.py
+LOOKUP=flookup
 # These depends on the env variable GTCORE which is set when you build
 # giella-core (I think...)
 ifndef GTCORE
        $(warning The GTCORE environment variable is not set)
 endif
-CREATEYAML=../csv2yaml/create_yaml.py
-LOOKUP=flookup
 MORPHTEST=$(GTCORE)/scripts/morph-test.py 
-YAMLTESTDIR=$(shell pwd)/../csv2yaml/yaml_output
 
 # Definitions for building the LEXC files
 POS=verbs
 LEXCTARGETS=$(POS:%=generated/ojibwe_%.lexc)
 
-# Definitions for building the FST
-FSTTARGET=generated/ojibwe.fomabin
-
-all:$(LEXCTARGETS) $(FSTTARGET)
+all:$(LEXCTARGETS) generated/ojibwe.fomabin
 
 generated/%.lexc:examples/%.json
 	mkdir -p generated
@@ -33,7 +28,7 @@ generated/%.lexc:examples/%.json
 
 generated/ojibwe.fomabin:$(LEXCTARGETS)
 	mkdir -p generated
-	cp $(FSTSCRIPT) generated
+	cp $(BORDERLAKESMORPH)/xfst/phonology.xfst generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
 
