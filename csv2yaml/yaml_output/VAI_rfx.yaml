@@ -1,0 +1,50 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     waabandizo+VAI+Cnj+Neg+Neu+1Sg+1Sg: waabandizosiwaan
+     waabandizo+VAI+Cnj+Neg+Neu+2Sg+2Sg: waabandizosiwan
+     waabandizo+VAI+Cnj+Neg+Neu+2pl+2pl: waabandizosiweg
+     waabandizo+VAI+Cnj+Neg+Neu+3PlProx+3PlProx: waabandizosigwaa
+     waabandizo+VAI+Cnj+Neg+Neu+3SgObv/3PlObv+3SgObv/3PlObv: waabandizosinid
+     waabandizo+VAI+Cnj+Neg+Neu+3SgProx+3SgProx: waabandizosig
+     waabandizo+VAI+Cnj+Neg+Neu+Excl+Excl: waabandizosiwaang
+     waabandizo+VAI+Cnj+Neg+Neu+Incl+Incl: waabandizosiwang
+     waabandizo+VAI+Cnj+Pos+Neu+1Sg+1Sg: waabandizoyaan
+     waabandizo+VAI+Cnj+Pos+Neu+2Sg+2Sg: waabandizoyan
+     waabandizo+VAI+Cnj+Neg+Neu+2pl+2pl: waabandizoyeg
+     waabandizo+VAI+Cnj+Pos+Neu+3PlProx+3PlProx: waabandizowaad
+     waabandizo+VAI+Cnj+Pos+Neu+3SgObv/3PlObv+3SgObv/3PlObv: waabandizonid
+     waabandizo+VAI+Cnj+Pos+Neu+3SgProx+3SgProx: waabandizod
+     waabandizo+VAI+Cnj+Pos+Neu+Excl+Excl: waabandizoyaang
+     waabandizo+VAI+Cnj+Pos+Neu+Incl+Incl: waabandizoyang
+     waabandizo+VAI+Ind+Neg+Neu+1Sg+1Sg: niwaabandizosii
+     waabandizo+VAI+Ind+Neg+Neu+2Sg+2Sg: giwaabandizosii
+     waabandizo+VAI+Ind+Neg+Neu+2Pl+2Pl: giwaabandizosisiim
+     waabandizo+VAI+Ind+Neg+Neu+3PlProx+3PlProx: waabandizosiiwag
+     waabandizo+VAI+Ind+Neg+Neu+3SgObv+3SgObv: waabandizosiiwan
+     waabandizo+VAI+Ind+Neg+Neu+3PlObv+3PlObv: waabandizosiiwa'
+     waabandizo+VAI+Ind+Neg+Neu+3SgProx+3SgProx: waabandizosii
+     waabandizo+VAI+Ind+Neg+Neu+Excl+Excl: niwaabandizosiimin
+     waabandizo+VAI+Ind+Neg+Neu+Incl+Incl: giwaabandizosiimin
+     waabandizo+VAI+Ind+Pos+Neu+1Sg+1Sg: niwaabandiz
+     waabandizo+VAI+Ind+Pos+Neu+2Sg+2Sg: giwaabandiz
+     waabandizo+VAI+Ind+Pos+Neu+3PlProx+3PlProx: waabandizowag
+     waabandizo+VAI+Ind+Pos+Neu+3SgObv+3SgObv: waabandizowan
+     waabandizo+VAI+Ind+Pos+Neu+3PlObv+3PlObv: waabandizowa'
+     waabandizo+VAI+Ind+Pos+Neu+3SgProx+3SgProx: waabandizo
+     waabandizo+VAI+Ind+Pos+Neu+Excl+Excl: niwaabandizomin
+     waabandizo+VAI+Ind+Pos+Neu+Incl+Incl: giwaabandizomin
+     waabandizo+VAI+Imp+Sim+2Sg+2Sg: waabandizon
+     waabandizo+VAI+Imp+Sim+Incl+Incl: waabandizodaa
+     waabandizo+VAI+Imp+Prb+2Sg+2Sg: waabandizoken
+     waabandizo+VAI+Imp+Prb+Incl+Incl: waabandizosiidaa

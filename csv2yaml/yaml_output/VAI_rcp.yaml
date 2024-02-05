@@ -1,0 +1,32 @@
+Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
+
+  Lemma - ALL :
+
+     waabandiwag+VAI+Cnj+Neg+Neu+3PlProx+3PlProx: waabandisigwaa
+     waabandiwag+VAI+Cnj+Neg+Neu+3SgObv/3PlObv+3SgObv/3PlObv: waabandisinig
+     waabandiwag+VAI+Cnj+Neg+Neu+Excl+Excl: waabandisiwaang
+     waabandiwag+VAI+Cnj+Neg+Neu+Incl+Incl: waabandisiwang
+     waabandiwag+VAI+Cnj+Pos+Neu+3PlProx+3PlProx: waabandiwaad
+     waabandiwag+VAI+Cnj+Pos+Neu+3SgObv/3PlObv+3SgObv/3PlObv: waabandinid
+     waabandiwag+VAI+Cnj+Pos+Neu+Excl+Excl: waabandiyaang
+     waabandiwag+VAI+Cnj+Pos+Neu+Incl+Incl: waabandiyang
+     waabandiwag+VAI+Ind+Neg+Neu+3PlProx+3PlProx: waabandisiiwag
+     waabandiwag+VAI+Ind+Neg+Neu+3PlObv+3PlObv: waabandisiiwa'
+     waabandiwag+VAI+Ind+Neg+Neu+Excl+Excl: niwaabandisiimin
+     waabandiwag+VAI+Ind+Neg+Neu+Incl+Incl: giwaabandisiimin
+     waabandiwag+VAI+Ind+Pos+Neu+3PlProx+3PlProx: waabandiwag
+     waabandiwag+VAI+Ind+Pos+Neu+3SgObv+3SgObv: waabandiwan
+     waabandiwag+VAI+Ind+Pos+Neu+3PlObv+3PlObv: waabandiwa'
+     waabandiwag+VAI+Ind+Pos+Neu+Excl+Excl: niwaabandimin
+     waabandiwag+VAI+Ind+Pos+Neu+Incl+Incl: giwaabandimin
+     waabandiwag+VAI+Imp+Sim+Incl+Incl: waabandidaa
+     waabandiwag+VAI+Imp+Del+Incl+Incl: waabandisiidaa
