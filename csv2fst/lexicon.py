@@ -9,7 +9,7 @@ class Lexicon:
         self.conf = conf
         self.regular = regular
         self.lexicons = {"Root":set()}
-        for fn in conf["csv_files" if regular else "irregular_csv_files"].split(","):
+        for fn in conf["csv_files" if regular else "irregular_csv_files"]:
             path = os.path.join(conf["path"],f"{fn}.csv")
             print(f"Reading lexicon entries from {path}", file=stderr)
             table = pd.read_csv(path, keep_default_na=False)
