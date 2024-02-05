@@ -9,7 +9,7 @@ class Lexicon:
         self.conf = conf
         self.regular = regular
         self.lexicons = {"Root":set()}
-        for fn in conf["csv_files" if regular else "irregular_csv_files"]:
+        for fn in conf["regular_csv_files" if regular else "irregular_csv_files"]:
             path = os.path.join(conf["path"],f"{fn}.csv")
             print(f"Reading lexicon entries from {path}", file=stderr)
             table = pd.read_csv(path, keep_default_na=False)
@@ -18,7 +18,8 @@ class Lexicon:
                 paradigm_slot.extend_lexicons(self.lexicons)
             
     def print_lexc(self):
-        lexc_file = open(self.conf["lexc_file" if self.regular else "irregular_lexc_file"],"w")
+        lexc_file = open(self.conf["regular_lexc_file" if self.regular
+                                   else "irregular_lexc_file"],"w")
         print("Multichar_Symbols",file=lexc_file)
         multichar_symbols = sorted(list(ParadigmSlot.multichar_symbols))
         print(" ".join(multichar_symbols), file=lexc_file)

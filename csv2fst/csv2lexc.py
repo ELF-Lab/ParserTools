@@ -14,7 +14,7 @@ def main(config_file):
     # We'll first compile regular paradigms into a LEXC file 
     print(f"Reading spreadsheets from directory: {config['path']}", file=stderr)
     lexicon = Lexicon(config, regular=True)
-    print(f"Writing lexc output to {config['lexc_file']}", file=stderr)
+    print(f"Writing lexc output to {config['regular_lexc_file']}", file=stderr)
     lexicon.print_lexc()
 
     # We'll then compile irregular paradigms into a different LEXC
