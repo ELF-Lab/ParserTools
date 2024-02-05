@@ -65,7 +65,10 @@ class ParadigmSlot:
         cls.multichar_symbols.update([pflag, rflag])
         return pflag, rflag
 
-    def __init__(self, row, conf):
+    def __init__(self, row, conf, regular:bool):
+        self.row = row
+        self.conf = conf
+        self.regular = regular
         self.paradigm = row["Paradigm"]
         self.klass = row["Class"]
         self.lemma = escape(row["Lemma"])
@@ -111,48 +114,56 @@ class ParadigmSlot:
         paradigm = self.paradigm
         klass = self.klass
         pre_tag = ParadigmSlot.pre_element_tag
-        for _, parts in self.forms:
-            pflag, rflag = ParadigmSlot.__get_prefix_flags(parts.prefix)
-            prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
-            # The following lexc sublexicon entries generate this form. 
-            path = [
-                # @P.Prefix.<X>@:@P.Prefix.<X>@<x> <Paradigm>:PrefixBoundary ;
-                LexcEntry(f"{paradigm}:Prefix",
-                          pflag,
-                          pflag+parts.prefix,
-                          f"{paradigm}:PrefixBoundary"),
-                # 0:%<%< <Paradigm>:PreElement ;
-                LexcEntry(f"{paradigm}:PrefixBoundary",
-                          "0",
-                          escape(PREFIX_BOUNDARY),
-                          f"{paradigm}:PreElement"),
-                # <PreElement> <Paradigm>:Stems ;
-                LexcEntry(f"{paradigm}:PreElement",
-                          pre_tag,
-                          pre_tag,
-                          f"{paradigm}:Stems"),
-                # <lemma>:<stem> <Paradigm>:Class=<class>:Boundary ;
-                LexcEntry(f"{paradigm}:Stems",
-                          self.lemma,
-                          self.stem,
-                          f"{paradigm}:Class={klass}:Boundary"),
-                # 0:%>%> <Paradigm>:Class=<class>:Flags ;
-                LexcEntry(f"{paradigm}:Class={klass}:Boundary",
-                          "0",
-                          escape(SUFFIX_BOUNDARY),
-                          f"{paradigm}:Class={klass}:Flags"),
-                # @R.Prefix.<X>@ <Paradigm>:Class=<class>:Prefix=<X>:Endings ;
-                LexcEntry(f"{paradigm}:Class={klass}:Flags",
-                          rflag,
-                          rflag,
-                          f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings"),
-                # <tags>:<ending> # ;
-                LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings",
-                          "".join(self.tags),
-                          parts.suffix,
-                          "#")
-            ]
-            paths.append(path)
+        for surface, parts in self.forms:
+            if self.regular:
+                pflag, rflag = ParadigmSlot.__get_prefix_flags(parts.prefix)
+                prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
+                # The following lexc sublexicon entries generate this form. 
+                path = [
+                    # @P.Prefix.<X>@:@P.Prefix.<X>@<x> <Paradigm>:PrefixBoundary ;
+                    LexcEntry(f"{paradigm}:Prefix",
+                              pflag,
+                              pflag+parts.prefix,
+                              f"{paradigm}:PrefixBoundary"),
+                    # 0:%<%< <Paradigm>:PreElement ;
+                    LexcEntry(f"{paradigm}:PrefixBoundary",
+                              "0",
+                              escape(PREFIX_BOUNDARY),
+                              f"{paradigm}:PreElement"),
+                    # <PreElement> <Paradigm>:Stems ;
+                    LexcEntry(f"{paradigm}:PreElement",
+                              pre_tag,
+                              pre_tag,
+                              f"{paradigm}:Stems"),
+                    # <lemma>:<stem> <Paradigm>:Class=<class>:Boundary ;
+                    LexcEntry(f"{paradigm}:Stems",
+                              self.lemma,
+                              self.stem,
+                              f"{paradigm}:Class={klass}:Boundary"),
+                    # 0:%>%> <Paradigm>:Class=<class>:Flags ;
+                    LexcEntry(f"{paradigm}:Class={klass}:Boundary",
+                              "0",
+                              escape(SUFFIX_BOUNDARY),
+                              f"{paradigm}:Class={klass}:Flags"),
+                    # @R.Prefix.<X>@ <Paradigm>:Class=<class>:Prefix=<X>:Endings ;
+                    LexcEntry(f"{paradigm}:Class={klass}:Flags",
+                              rflag,
+                              rflag,
+                              f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings"),
+                    # <tags>:<ending> # ;
+                    LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings",
+                              "".join(self.tags),
+                              parts.suffix,
+                              "#")
+                ]
+                paths.append(path)
+            else:
+                # Irregular forms are treated as one chunk and simply enumerated.
+                paths.append([LexcEntry(f"{paradigm}:Irregular",
+                                        f"{self.lemma}{''.join(self.tags)}",
+                                        surface,
+                                        "#")])
+
         return paths
 
     def extend_lexicons(self, lexicons:dict) -> None:
