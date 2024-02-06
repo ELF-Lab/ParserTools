@@ -54,7 +54,7 @@ Options:
 
 ### JSON configuration files
 
-You need to specify a JSON configuration file which controls the generation of lexc files. See `examples/ojiwe_verbs.json` for an example. 
+You need to specify a JSON configuration file which controls the generation of lexc files. See [`ojibwe_verbs.json`](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/ojibwe_verbs.json) in the [BorderLakesMorph](https://github.com/ELF-Lab/BorderLakesMorph) repository for an example. 
 
 You need to specify the following parameters:
 
