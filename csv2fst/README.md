@@ -33,6 +33,7 @@ The Makefile requires modifications:
 1. You may potentially need to modify the `MORPHTEST` variable to
 point to your copy of the `morph-test.py` script (you might not need
 to do anything if you have installed `giella-core`).
-2. Change `YAMLTESTDIR` to point to a directory containing the YAML test files.
 
-You should now be able to run `make all` and `make check`.
+You should now be able to run `make all` and `make check`. This will generate two log files `yaml-test.log` and `core-yaml-test.log`. The first file represents tests for the subset of the Ojibwe morphology which we currently understand better. There is more uncertainty and dialectal variation in the tests presented in `yaml-test.log`. 
+
+Both log files should show very few failures (5-15 fails per file).
