@@ -4,7 +4,7 @@ FOMA=foma
 
 # Source files
 # Change this to match your source directory
-BORDERLAKESMORPH=~/src/BorderLakesMorph
+MORPHOLOGYSRCDIR=~/src/BorderLakesMorph
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -22,18 +22,18 @@ LEXCTARGETS=$(POS:%=generated/ojibwe_%.lexc)
 
 all:$(LEXCTARGETS) generated/ojibwe.fomabin
 
-generated/%.lexc:examples/%.json
+generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p generated
 	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path generated
 
 generated/ojibwe.fomabin:$(LEXCTARGETS)
 	mkdir -p generated
-	cp $(BORDERLAKESMORPH)/xfst/phonology.xfst generated
+	cp $(MORPHOLOGYSRCDIR)/xfst/phonology.xfst generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
 
 yaml_output:
-	$(PYTHON) $(CREATEYAML) $(BORDERLAKESMORPH)/Spreadsheets . --non-core-tags=Prt,Dub,PrtDub,DubPrt
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/Spreadsheets . --non-core-tags=Prt,Dub,PrtDub,DubPrt
 
 #####################################################################
 #                                                                   #
@@ -47,13 +47,13 @@ yaml_output:
 
 check: check-core-yaml check-yaml
 
-check-generated/%.lexc:examples/%.json
+check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p check-generated
 	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path check-generated --read-lexical-database False
 
 check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc)
 	mkdir -p check-generated
-	cp $(BORDERLAKESMORPH)/xfst/phonology.xfst check-generated
+	cp $(MORPHOLOGYSRCDIR)/xfst/phonology.xfst check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd check-generated; $(FOMA) -f phonology.xfst
 
