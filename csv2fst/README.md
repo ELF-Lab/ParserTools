@@ -53,7 +53,7 @@ Options:
   --help                          Show this message and exit.
 ```
 
-### JSON config files
+### JSON configuration files
 
 You need to specify a JSON configuration file which controls the generation of lexc files. See `examples/ojiwe_verbs.json` for an example. 
 
@@ -75,3 +75,10 @@ You need to specify the following parameters:
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
 | `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`
 
+### The external lexical database
+
+TODO
+
+### Inflectional class mapping
+
+TODO
