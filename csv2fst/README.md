@@ -69,7 +69,7 @@ You need to specify the following parameters:
 | `class_map` | A mapping from inflectional classes in the external lexical database to inflectional classes usind in the FST (i.e. the classes in the source CSV files). See further description below. | `"verb_class_map.csv"` |
 | `regular_lexc_file` | Filename for generated lexc file containing **regular** paradigms. | `"ojibwe_verbs_regular.lexc"` | 
 | `irregular_lexc_file` | Filename for generated lexc file containing **irregular** paradigms. | `"ojibwe_verbs_irregular.lexc"` | 
-| `morph_features` | This field specifies the order in which morphological features are realized in FST output fields. The elements in the list have to match columns of the spurce CSV files. |  ["Paradigm", "Order", "Negation", "Mode", "Subject", "Object"] |
+| `morph_features` | This field specifies the order in which morphological features are realized in FST output fields. The elements in the list have to match columns of the spurce CSV files. |  `["Paradigm", "Order", "Negation", "Mode", "Subject", "Object"]` |
 | `missing_tag_marker` | Tag which indicates missing values of features in the source CSV files. E.g. intransitive verbs won't have an onbject, and this tag is used to mark that fact. | `"NA"` |
 | `missing_form_marker` | Tag which indicates paradigm gaps | `"MISSING"` |
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
