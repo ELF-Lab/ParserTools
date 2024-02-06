@@ -1,4 +1,4 @@
-from paradigm_slot import ParadigmSlot, entry2str, LexcEntry
+from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
 import json
 import pandas as pd
 import os
@@ -54,8 +54,8 @@ class Lexicon:
                 paradigm = klass.split("_")[0]
                 self.lexicons[f"{paradigm}:Stems"].add(
                     LexcEntry(f"{paradigm}:Stems",
-                              row["lemma"],
-                              row["stem"],
+                              escape(row["lemma"]),
+                              escape(row["stem"]),
                               f"{paradigm}:Class={klass}:Boundary"))
             except ValueError as e:
                 warn(e,"\nSkipping lexical entry which does not match any patterns\n")
