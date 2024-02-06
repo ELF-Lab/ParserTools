@@ -5,7 +5,8 @@ import pandas as pd
 from collections import namedtuple
 from log import warn
 
-# Maximum number of alternate forms for a single analysis in the spreadsheets
+# Maximum number of alternate forms for a single analysis in the
+# spreadsheets
 MAXFORMS=5
 
 PREFIX_BOUNDARY = "<<"
@@ -40,7 +41,8 @@ def escape(symbol:str) -> str:
 
 def split_form(form:str) -> SplitForm:
     """Split a form prefix<<stem>>suffix at boundaries."""
-    # re.split results in a 5-element array [prefix, "<<", stem, ">>", suffix]
+    # re.split results in a 5-element array [prefix, "<<", stem, ">>",
+    # suffix]
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
         raise ValueError(f"Invald form: {form}")
