@@ -24,7 +24,7 @@ all:$(LEXCTARGETS) generated/ojibwe.fomabin
 
 generated/%.lexc:examples/%.json
 	mkdir -p generated
-	$(PYTHON) csv2lexc.py --config-file $^ 
+	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path generated
 
 generated/ojibwe.fomabin:$(LEXCTARGETS)
 	mkdir -p generated
@@ -35,24 +35,44 @@ generated/ojibwe.fomabin:$(LEXCTARGETS)
 yaml_output:
 	$(PYTHON) $(CREATEYAML) $(BORDERLAKESMORPH)/Spreadsheets . --non-core-tags=Prt,Dub,PrtDub,DubPrt
 
+#####################################################################
+#                                                                   #
+#                             TESTS                                 #
+#                                                                   #
+#####################################################################
+
+# We have to build a separate FST for YAML tests because entries from
+# the external lexical database will interfere with YAML testing due
+# to morphological ambiguity.
+
 check: check-core-yaml check-yaml
 
-check-core-yaml:generated/ojibwe.fomabin yaml_output
+check-generated/%.lexc:examples/%.json
+	mkdir -p check-generated
+	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path check-generated --read-lexical-database False
+
+check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc)
+	mkdir -p check-generated
+	cp $(BORDERLAKESMORPH)/xfst/phonology.xfst check-generated
+	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
+	cd check-generated; $(FOMA) -f phonology.xfst
+
+check-core-yaml:check-generated/ojibwe.fomabin yaml_output
 	rm -f core-yaml-test.log
 	for f in `ls yaml_output/*core.yaml`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor check-generated/ojibwe.fomabin $$f; \
                   echo ; \
                   done > core-yaml-test.log
 
-check-yaml:generated/ojibwe.fomabin yaml_output
+check-yaml:check-generated/ojibwe.fomabin yaml_output
 	rm -f yaml-test.log
 	for f in `ls yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor check-generated/ojibwe.fomabin $$f; \
                   echo ; \
                   done > yaml-test.log
 
 clean:
-	rm -rf generated yaml_output core-yaml-test.log yaml-test.log
+	rm -rf generated check-generated yaml_output core-yaml-test.log yaml-test.log
 

@@ -21,8 +21,10 @@
   "irregular_csv_files": [
     "VTA_IRR"
   ],
-  "regular_lexc_file": "generated/ojibwe_verbs.lexc",
-  "irregular_lexc_file": "generated/ojibwe_irregular_verbs.lexc",
+  "lexical_database": "~/src/BorderLakesMorph/Database/main_entries-VERBS_fields-lemma-stem-POS.csv",
+  "class_map": "~/src/BorderLakesMorph/Database/VERBS_paradigm_map.csv",  
+  "regular_lexc_file": "ojibwe_verbs.lexc",
+  "irregular_lexc_file": "ojibwe_irregular_verbs.lexc",
   "morph_features": [
     "Paradigm",
     "Order",
