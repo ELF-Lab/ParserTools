@@ -1,6 +1,6 @@
 {
   "comments": "You should modify the 'path' entry to match your CSV source directory",
-  "path": "~/src/BorderLakesMorph/Spreadsheets/",
+  "source_path": "~/src/BorderLakesMorph/Spreadsheets/",
   "regular_csv_files": [
     "VAIO_CNJ",
     "VAIO_IMP",
