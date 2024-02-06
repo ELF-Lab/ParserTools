@@ -17,7 +17,7 @@ class Lexicon:
                 (row["lemma"] if pattern["MatchElement"] == "lemma" else row["stem"])
             if re.match(pattern["Pattern"], element):
                 return pattern["Class"]
-        raise ValueError(f"No matching pattern for lexical entry: {row}")
+        raise ValueError(f"No matching pattern for lexical entry: {row.to_dict()}")
             
     def __init__(self,
                  conf:dict,
@@ -58,7 +58,7 @@ class Lexicon:
                               escape(row["stem"]),
                               f"{paradigm}:Class={klass}:Boundary"))
             except ValueError as e:
-                warn(e,"\nSkipping lexical entry which does not match any patterns\n")
+                warn(e)
                 skipped += 1
         info(f"Checked {len(lexeme_database)} lexical entries.\n",
              f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",

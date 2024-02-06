@@ -45,7 +45,7 @@ def split_form(form:str) -> SplitForm:
     # suffix]
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
-        raise ValueError(f"Invald form: {form}")
+        raise ValueError(f"Invald form: {form.to_dict()}")
     return SplitForm(form[0], form[2], form[4])
 
 
@@ -94,7 +94,7 @@ class ParadigmSlot:
         try:
             self.__read_forms(row, conf)
         except ValueError as e:
-            warn(e,"\nWarning: Skipping invalid row!")
+            warn(e)
             
     def __harvest_multichar_symbols(self) -> None:
         """Add all multichar symbols from this entry to the multichar symbol
@@ -111,7 +111,7 @@ class ParadigmSlot:
                           row[f"Form{i}Surface"] != conf["missing_form_marker"] and
                           row[f"Form{i}Surface"] != "")]
         if len(self.forms) == 0:
-            raise ValueError(f"No surface forms given for row: {row}")
+            raise ValueError(f"No surface forms given for row: {row.to_dict()}")
         
     def __get_lexc_paths(self) -> list[list[LexcEntry]]:
         """Convert this slot entry into a list of lexc lexicon paths
