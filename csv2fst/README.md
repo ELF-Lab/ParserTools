@@ -55,7 +55,9 @@ Options:
 
 ### JSON config files
 
-You need to specify a JSON configuration file which controlls the generation of lexc files. Check `examples/ojiwe_verbs.json` for an example. You need to specify the following parameters:
+You need to specify a JSON configuration file which controls the generation of lexc files. See `examples/ojiwe_verbs.json` for an example. 
+
+You need to specify the following parameters:
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
