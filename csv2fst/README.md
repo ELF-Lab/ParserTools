@@ -45,8 +45,7 @@ Usage: csv2lexc.py [OPTIONS]
 
 Options:
   --config-file TEXT              JSON config file  [required]
-  --lexc-path TEXT                Directory where output lexc files are stored
-                                  [required]
+  --lexc-path TEXT                Directory where output lexc files are stored [required]
   --read-lexical-database BOOLEAN
                                   Whether to include lexemes from an external
                                   lexicon database
