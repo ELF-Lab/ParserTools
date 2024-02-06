@@ -72,8 +72,3 @@ class Lexicon:
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
             print("", file=lexc_file)
-
-if __name__=="__main__":
-    conf = json.load(open("conf.json"))
-    lexicon = Lexicon(conf)
-    lexicon.print_lexc()
