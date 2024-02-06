@@ -1,42 +1,52 @@
 from paradigm_slot import ParadigmSlot, entry2str, LexcEntry
 import json
 import pandas as pd
-from sys import stderr
 import os
 import re
 
+from log import info, warn
+
 class Lexicon:
     @staticmethod
-    def __get_paradigm(row,klass_map):
+    def __get_paradigm(row:pd.core.series.Series,
+                       klass_map:pd.core.series.Series):
         for _, pattern in klass_map.iterrows():
             if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
                 continue
-            element = (row["lemma"] if pattern["MatchElement"] == "lemma"
-                                    else row["stem"])
+            element = \
+                (row["lemma"] if pattern["MatchElement"] == "lemma" else row["stem"])
             if re.match(pattern["Pattern"], element):
                 return pattern["Class"]
         raise ValueError(f"No matching pattern for lexical entry: {row}")
             
-    def __init__(self, conf:dict, lexc_path:str, read_lexical_database:bool, regular:bool):
+    def __init__(self,
+                 conf:dict,
+                 lexc_path:str,
+                 read_lexical_database:bool,
+                 regular:bool):
         self.conf = conf
         self.lexc_path = lexc_path
         self.regular = regular
         self.lexicons = {"Root":set()}
-        for fn in conf["regular_csv_files" if regular else "irregular_csv_files"]:
-            path = os.path.join(conf["source_path"],f"{fn}.csv")
-            print(f"Reading lexicon entries from {path}", file=stderr)
-            table = pd.read_csv(path, keep_default_na=False)
+
+        csv_names = conf["regular_csv_files" if regular else "irregular_csv_files"]
+        for name in csv_names:
+            csv_file = os.path.join(conf["source_path"], f"{name}.csv")
+            info(f"Reading lexicon entries from {csv_file}")
+            table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
                 paradigm_slot = ParadigmSlot(row, conf, regular)
                 paradigm_slot.extend_lexicons(self.lexicons)
+
         if read_lexical_database:
             self.read_lexemes_from_database()
             
     def read_lexemes_from_database(self):
-        print(f"Reading external lexical database {self.conf['lexical_database']}", file=stderr)
-        print(f"Reading class mapping {self.conf['class_map']}", file=stderr)
+        info(f"Reading external lexical database {self.conf['lexical_database']}\n",
+             f"Reading class mapping {self.conf['class_map']}")
         klass_map = pd.read_csv(self.conf["class_map"])
-        lexeme_database = pd.read_csv(self.conf["lexical_database"], keep_default_na=False)
+        lexeme_database = pd.read_csv(self.conf["lexical_database"],
+                                      keep_default_na=False)
         skipped = 0
         for _, row in lexeme_database.iterrows():
             try:
@@ -48,12 +58,11 @@ class Lexicon:
                               row["stem"],
                               f"{paradigm}:Class={klass}:Boundary"))
             except ValueError as e:
-                print(e)
-                print("Skipping lexical entry which does not match any patterns\n")
+                warn(e,"\nSkipping lexical entry which does not match any patterns\n")
                 skipped += 1
-        print(f"Checked {len(lexeme_database)} lexical entries.", file=stderr)
-        print(f"Added {len(lexeme_database) - skipped} entries to lexc file.", file=stderr) 
-        print(f"Skipped {skipped} invalid ones", file=stderr)
+        info(f"Checked {len(lexeme_database)} lexical entries.\n",
+             f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
+             f"Skipped {skipped} invalid ones")
 
     def print_lexc(self):
         lexc_fn = os.path.join(self.lexc_path,
@@ -64,10 +73,10 @@ class Lexicon:
         multichar_symbols = sorted(list(ParadigmSlot.multichar_symbols))
         print(" ".join(multichar_symbols), file=lexc_file)
         print("", file=lexc_file)
-        print(f"Writing {len(self.lexicons)} sublexicons:", file=stderr)
+        info(f"Writing {len(self.lexicons)} sublexicons:")
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
-            print(f"  {lexicon} ({len(lexc_rows)} entries)", file=stderr)
+            info(f"  {lexicon} ({len(lexc_rows)} entries)")
             print(f"LEXICON {lexicon}", file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)

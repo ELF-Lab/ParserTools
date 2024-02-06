@@ -3,6 +3,7 @@ import re
 import json
 import pandas as pd
 from collections import namedtuple
+from log import warn
 
 # Maximum number of alternate forms for a single analysis in the spreadsheets
 MAXFORMS=5
@@ -11,10 +12,18 @@ PREFIX_BOUNDARY = "<<"
 SUFFIX_BOUNDARY = ">>"
 
 # LexcEntry represents a lexc sublexicon entry 
-LexcEntry = namedtuple("LexcEntry", ["lexicon", "analysis", "surface", "next_lexicon"])
+LexcEntry = namedtuple("LexcEntry",
+                       ["lexicon",
+                        "analysis",
+                        "surface",
+                        "next_lexicon"])
 
 # SplitForm represents a form consisting of a prefix, stem and suffix
-SplitForm = namedtuple("SplitForm", ["prefix", "stem", "suffix"])
+SplitForm = namedtuple("SplitForm",
+                       ["prefix",
+                        "stem",
+                        "suffix"])
+
 def entry2str(entry:LexcEntry) -> str:
     """ Return the string representation of a lexc lexicon entry """
     if entry.analysis == entry.surface:
@@ -83,9 +92,7 @@ class ParadigmSlot:
         try:
             self.__read_forms(row, conf)
         except ValueError as e:
-            print(e,file=stderr)
-            print("Warning: Skipping invalid row!", file=stderr)
-            self.forms = []
+            warn(e,"\nWarning: Skipping invalid row!")
             
     def __harvest_multichar_symbols(self) -> None:
         """Add all multichar symbols from this entry to the multichar symbol
