@@ -15,7 +15,7 @@ def process_csv(file_name):
 
     forms_with_info = []
 
-    df = df.truncate(after = 1000)
+    df = df.truncate(after = 10000)
     for index, row in df.iterrows():
         row = row.to_dict()
         # Grab only the verbs!
