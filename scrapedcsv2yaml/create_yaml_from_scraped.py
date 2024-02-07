@@ -20,42 +20,63 @@ def process_csv(file_name):
         row = row.to_dict()
         # Grab only the verbs!
         if row["POS"] in POS_TO_KEEP:
-            row["Abbreviated Gloss"] = row["Abbreviated Gloss"].strip()
-            # If forms don't have at least two glosses (= there would be a space), then they're missing some info
-            if not (" " in row["Abbreviated Gloss"]):
-                forms_with_missing_info.append(row)
+            row = tidy_entry(row)
+            if missing_info_check(row):
+                row = format_entry(row)
+                forms_with_info.append(row)
             else:
-                lexical_info = format_entry(row)
-                forms_with_info.append(lexical_info)
+                forms_with_missing_info.append(row)
 
     return forms_with_info
 
-# Add a "lexical_info" entry to each row: a string formatted as Stem+Class+Imp/Ind+Pos/Neg/N/A+Neu/Prt+Person
-# e.g. zaaga'am+VAI+Imp+Del+2Sg
-# Also: capitalizes the POS entry
-# Also: removes the /-/ from the stem entry
-def format_entry(entry_as_dict):
-    entry_as_dict["Stem"] = (entry_as_dict["Stem"].replace("/", "")).replace("-", "")
+# Takes one row at a time
+# Returns a bool, True = keep it in, False = remove it
+def missing_info_check(form_with_info):
+    POSSIBLE_ORDERS = ["ind", "ch-conj", "conj", "imp", "part", "ic"]
+    has_an_order = False
+    for order in POSSIBLE_ORDERS:
+        if order in form_with_info["Abbreviated Gloss"]:
+            has_an_order = True
 
-    entry_as_dict = add_order(entry_as_dict)
+    # Check for missing stem OR an erroenous stem we noticed
+    has_a_stem = (form_with_info["Stem"] != "" and form_with_info["Stem"] != "akwaakwak")
 
-    if entry_as_dict["POS"] == "vai + o":
-        entry_as_dict["POS"] = "vaio"
-    entry_as_dict["POS"] = entry_as_dict["POS"].upper()
+    POSSIBLE_SUBJECTS = ["0s", "1s", "1p", "2s", "2p", "21p", "3s", "3'", "3p", "X"]
+    has_a_subj = False
+    for subj in POSSIBLE_SUBJECTS:
+        if subj in form_with_info["Abbreviated Gloss"]:
+            has_a_subj = True
+
+    return has_an_order and has_a_stem and has_a_subj
+
+def tidy_entry(form_with_info):
+    form_with_info["Abbreviated Gloss"] = form_with_info["Abbreviated Gloss"].strip()
+    form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
+
+    if form_with_info["POS"] == "vai + o":
+        form_with_info["POS"] = "vaio"
+    form_with_info["POS"] = form_with_info["POS"].upper()
+
+    return form_with_info
+
+# Manages the adding of fields we need for our new CSV
+def format_entry(form_with_info):
+    form_with_info = add_order(form_with_info)
+
     # Dictionary uses VTI/VTI2/VTI3/VTI4 as POS, but we want to convert all of those to just VTI
     # However, this info lets us easily determine class
     # So we will assign class *first* before we lose those labels, then lose them!
-    entry_as_dict = add_class(entry_as_dict)
-    if "VTI" in entry_as_dict["POS"]:
-        entry_as_dict["POS"] = "VTI"
+    form_with_info = add_class(form_with_info)
+    if "VTI" in form_with_info["POS"]:
+        form_with_info["POS"] = "VTI"
 
-    entry_as_dict = add_person_and_number(entry_as_dict)
+    form_with_info = add_person_and_number(form_with_info)
 
-    entry_as_dict = add_mode(entry_as_dict)
+    form_with_info = add_mode(form_with_info)
 
-    entry_as_dict = add_negation(entry_as_dict)
+    form_with_info = add_negation(form_with_info)
 
-    return entry_as_dict
+    return form_with_info
 
 # Ind, Cnj, Imp -- what about changed conjunct? No default
 def add_order(form_with_info):
@@ -71,6 +92,8 @@ def add_order(form_with_info):
         order = "Imp"
     elif "ic" in short_gloss:
         order = "?"
+    elif "part" in short_gloss:
+        order = "Particip"
     else:
         print(f"\nERROR: Form {form_with_info['Inflectional Form']} does not have an expected order value.  Please investigate this form in the spreadsheet and update the code accordingly.  Exiting...")
         sys.exit()
@@ -79,49 +102,59 @@ def add_order(form_with_info):
     return form_with_info
 
 # Add an entry to the dict that indicates the class of the stem (e.g. n, am, etc.)
+# For some POS, like VAIO, we don't want the class in the file name at all
 def add_class(form_with_info):
     pos = form_with_info["POS"]
     stem = form_with_info["Stem"]
-    # For some POS, like VAIO, we don't want the class in the file name at all
+
+    verb_class = ""
     if pos == "VTA":
         if stem.endswith("aw"):
-            form_with_info.update({"Class": "aw"})
+            verb_class = "aw"
         elif stem.endswith("w") and not stem[-2] in vowels:
-            form_with_info.update({"Class": "Cw"})
+            verb_class = "Cw"
         elif stem.endswith("N"):
-            form_with_info.update({"Class": "n"})
-        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "n":
-            form_with_info.update({"Class": "C"})
+            verb_class = "n"
+        # This condition is needlessly explicit, just to be clear about the categories
+        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "N":
+            verb_class = "C"
         # Remaining classes: s, irr
     elif pos == "VAI":
+        print(stem)
         if stem.endswith("n"):
-            form_with_info.update({"Class": "n"})
+            verb_class = "n"
+        elif stem.endswith("m") and stem[-2] != "a":
+            verb_class = "m"
+        elif stem.endswith("m") and stem[-2] == "a":
+            verb_class = "am"
         elif stem [-1] in vowels and stem[-2] in vowels:
-            form_with_info.update({"Class": "VV"})
+            verb_class = "VV"
         elif stem[-1] in vowels:
-            form_with_info.update({"Class": "V"})
-        # Remaining classes: am, m, rcp, rfx
+            verb_class = "V"
+        # Remaining classes: rcp, rfx
     elif pos == "VII":
         if stem.endswith("d"):
-            form_with_info.update({"Class": "d"})
+            verb_class = "d"
         elif stem.endswith("n"):
-            form_with_info.update({"Class": "n"})
+            verb_class = "n"
         elif stem [-1] in vowels and stem[-2] in vowels:
-            form_with_info.update({"Class": "VV"})
+            verb_class = "VV"
         elif stem [-1] in vowels:
-            form_with_info.update({"Class": "V"})
+            verb_class = "V"
         # Remaining classes: none!
     if "VTI" in pos:
         if pos == "VTI":
-            form_with_info.update({"Class": "am"})
+            verb_class = "am"
         elif pos == "VTI2":
-            form_with_info.update({"Class": "oo"})
+            verb_class = "oo"
         # Remaining classes: aa, i
 
     # Make sure we assigned a class where needed
-    if pos in POS_WITH_CLASS_IN_FILE_NAME:
-        assert "Class" in form_with_info.keys(), f"\nYou need to assign a class (e.g. info about the final characters in the stem) to a form with this stem: {form_with_info['Stem']}. (POS: {pos})"
-
+    if verb_class:
+        form_with_info["Class"] = verb_class
+    elif pos in POS_WITH_CLASS_IN_FILE_NAME:
+        print(f"\nERROR: You need to assign a class (e.g. info about the final characters in the stem) to a form with this stem: {form_with_info['Stem']}. (POS: {pos})  Exiting...")
+        sys.exit()
     return form_with_info
 
 # Add 1SG, 3PLObv, etc.
