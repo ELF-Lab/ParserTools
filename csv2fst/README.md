@@ -1,10 +1,15 @@
 # csv2fst
 
-This directory houses the tools for converting csv spreadsheets of Ojibwe (and eventually, we hope, Algonquian languages more generally) to lexc files and a foma-based FST.
+This directory houses the tools for converting csv spreadsheets of
+Ojibwe (and eventually, we hope, Algonquian languages more generally)
+to lexc files and a foma-based FST.
 
 ## Dependencies
 
-You will need to install the foma compiler and flookup program (which is part of the foma toolkit). Install them using these [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) or [homebrew](https://formulae.brew.sh/formula/foma).
+You will need to install the foma compiler and flookup program (which
+is part of the foma toolkit). Install them using these
+[instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/)
+or [homebrew](https://formulae.brew.sh/formula/foma).
 
 To install python library requirements, run:
 ```
@@ -16,12 +21,14 @@ BorderLakesMorph
 [repository](https://github.com/ELF-Lab/BorderLakesMorph) which
 contains all the source data for the FST model.
 
-If you want to run YAML tests, you will also need to install the [giella-core](https://github.com/giellalt/giella-core) repository.
+If you want to run YAML tests, you will also need to install the
+[giella-core](https://github.com/giellalt/giella-core) repository.
 
 ## Building the Ojibwe FST
 
-The Makefile requires modifications:
-1. Modify the `BORDERLAKESMORPH` variable to point to your BorderLakesMorph repo.
+The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
+variable to point to your BorderLakesMorph repo (or a different source
+directory if you are building for a different language/dialect).
 
 You should now be able to run `make all` to build the FST. This will
 create a directory `generated` which contains the FST, lexc files and
@@ -34,7 +41,11 @@ The Makefile requires modifications:
 point to your copy of the `morph-test.py` script (you might not need
 to do anything if you have installed `giella-core`).
 
-You should now be able to run `make all` and `make check`. This will generate two log files `yaml-test.log` and `core-yaml-test.log`. The first file represents tests for the subset of the Ojibwe morphology which we currently understand better. There is more uncertainty and dialectal variation in the tests presented in `yaml-test.log`. 
+You should now be able to run `make all` and `make check`. This will
+generate two log files `yaml-test.log` and `core-yaml-test.log`. The
+first file represents tests for the subset of the Ojibwe morphology
+which we currently understand better. There is more uncertainty and
+dialectal variation in the tests presented in `yaml-test.log`.
 
 Both log files should show very few failures (5-15 fails per file).
 
@@ -54,7 +65,11 @@ Options:
 
 ### JSON configuration files
 
-You need to specify a JSON configuration file which controls the generation of lexc files. See [`ojibwe_verbs.json`](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/ojibwe_verbs.json) in the [BorderLakesMorph](https://github.com/ELF-Lab/BorderLakesMorph) repository for an example. 
+You need to specify a JSON configuration file which controls the
+generation of lexc files. See
+[`ojibwe_verbs.json`](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/ojibwe_verbs.json)
+in the [BorderLakesMorph](https://github.com/ELF-Lab/BorderLakesMorph)
+repository for an example.
 
 You need to specify the following parameters:
 
