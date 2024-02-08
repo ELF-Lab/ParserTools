@@ -9,6 +9,28 @@ POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
 vowels = ["i", "e", "o", "a"]
 forms_with_missing_info = []
+PARTICIPANT_TAG_CONVERSIONS = {
+    "0" : "?",
+    "0'" : "?",
+    "0's" : "0SgObv",
+    "0p" : "0PlProx",
+    "0s" : "0SgProx",
+    "1" : "?",
+    "1s" : "1Sg",
+    "1p" : "Excl",
+    "2" : "?",
+    "2s" : "2Sg",
+    "2p" : "2Pl",
+    "21p" : "Incl",
+    "3" : "?",
+    "3'" : "?",
+    "3's" : "3SgObv",
+    "3'p" : "3PlObv",
+    "3s" : "3SgProx",
+    "3p" : "3PlProx",
+    "X" : "X"
+}
+POSSIBLE_PARTICIPANTS = PARTICIPANT_TAG_CONVERSIONS.keys()
 
 def process_csv(file_name):
     df = pd.read_csv(file_name, keep_default_na = False)
@@ -41,10 +63,11 @@ def missing_info_check(form_with_info):
     # Check for missing stem OR an erroenous stem we noticed
     has_a_stem = (form_with_info["Stem"] != "" and form_with_info["Stem"] != "akwaakwak")
 
-    POSSIBLE_SUBJECTS = ["0s", "1s", "1p", "2s", "2p", "21p", "3s", "3'", "3p", "X"]
     has_a_subj = False
-    for subj in POSSIBLE_SUBJECTS:
-        if subj in form_with_info["Abbreviated Gloss"]:
+    glosses = form_with_info["Abbreviated Gloss"].split()
+    if len(glosses) > 0:
+        potential_subj = glosses[0]
+        if potential_subj in POSSIBLE_PARTICIPANTS:
             has_a_subj = True
 
     return has_an_order and has_a_stem and has_a_subj
@@ -161,50 +184,18 @@ def add_class(form_with_info):
 # Transitive verbs (VTA, VTI) will have two participants
 # Intransitive verbs (VAI, VII) will have one participant
 # Seems like VAIO can go either way
-# The "Gloss" field contains this info in a list (+ info about ind vs. conj etc.)
-# So a verb with only one participant will have len(Gloss) = 2 e.g. ['First person singular subject', 'independent ']
-# Whereas a verb with two participants will have len(Gloss) = 3 e.g. ['First person singular subject', 'Third person singular object', 'independent ']
 def add_person_and_number(form_with_info):
-    # Gloss is a list, but it initially gets read as a string and must be converted to a lsit
-    gloss = form_with_info["Gloss"].strip('][').replace("'","").split(', ')
-    gloss_subj_dict = {
-        "First person singular subject" : "1Sg",
-        "First person inclusive plural subject" : "Incl",
-        "First person exclusive plural subject" : "Excl",
-        "Second person singular subject" : "2Sg",
-        "Second person plural subject" : "2Pl",
-        "Third person singular subject" : "3SgProx",
-        "Third person obviative subject" : "3SgObv",
-        "Third person obviative subject; number not shown" : "3SgObv",
-        "Third person plural subject" : "3Pl",
-        "Singular inanimate subject" : "0Sg",
-        'Indefinite subject/actor (often translated as an unspecified <i>they</i>)': "X"
-    }
-    gloss_obj_dict = {
-        "First person singular object" : "1Sg",
-        "First person object; number not shown" : "1",
-        "Second person singular object" : "2Sg",
-        "Third person singular object" : "3SgProx",
-        "Third person obviative object" : "3SgObv",
-        "Third person object: number not shown" : "3",
-        "Singular inanimate object" : "0Sg",
-        "Inanimate object; number not shown" : "0",
-        "Inanimate obviative object; number not shown" : "0"
-    }
+    short_gloss = form_with_info["Abbreviated Gloss"].split()
+    if "-" in short_gloss:
+        short_gloss.remove("-")
 
     # Add info for the first participant
-    participant = gloss[0]
-    if participant in gloss_subj_dict.keys():
-        form_with_info["Subject"] = gloss_subj_dict[participant]
-    else:
-        form_with_info["Subject"] = "?" # So we take note of info we can't currently handle
+    subject_participant = short_gloss[0]
+    form_with_info["Subject"] = PARTICIPANT_TAG_CONVERSIONS[subject_participant]
     # If there's a second participant (i.e. it's transitive), add their info too
-    if len(gloss) == 3 and (not gloss[1] == "augmented") and (not gloss[1] == "independent"):
-        participant = gloss[1]
-        if participant in gloss_obj_dict.keys():
-            form_with_info["Object"] = gloss_obj_dict[participant]
-        else:
-            form_with_info["Object"] =  "?"
+    if len(short_gloss) > 1 and short_gloss[1] in POSSIBLE_PARTICIPANTS:
+        object_participant = short_gloss[1]
+        form_with_info["Object"] = PARTICIPANT_TAG_CONVERSIONS[object_participant]
     else:
         form_with_info["Object"] = "NA"
 
