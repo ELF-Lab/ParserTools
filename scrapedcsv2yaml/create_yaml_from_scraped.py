@@ -173,9 +173,9 @@ def add_person_and_number(form_with_info):
         "First person exclusive plural subject" : "Excl",
         "Second person singular subject" : "2Sg",
         "Second person plural subject" : "2Pl",
-        "Third person singular subject" : "3Sg",
+        "Third person singular subject" : "3SgProx",
         "Third person obviative subject" : "3SgObv",
-        "Third person obviative subject; number not shown" : "3Obv", # ???
+        "Third person obviative subject; number not shown" : "3SgObv",
         "Third person plural subject" : "3Pl",
         "Singular inanimate subject" : "0Sg",
         'Indefinite subject/actor (often translated as an unspecified <i>they</i>)': "X"
@@ -184,7 +184,7 @@ def add_person_and_number(form_with_info):
         "First person singular object" : "1Sg",
         "First person object; number not shown" : "1",
         "Second person singular object" : "2Sg",
-        "Third person singular object" : "3Sg",
+        "Third person singular object" : "3SgProx",
         "Third person obviative object" : "3SgObv",
         "Third person object: number not shown" : "3",
         "Singular inanimate object" : "0Sg",
