@@ -18,7 +18,10 @@ def main(config_file,lexc_path,read_lexical_database):
     # We'll first compile regular paradigms into a LEXC file 
     info("Reading spreadsheets for regular paradigms from directory:",
          f"{config['source_path']}")
-    lexicon = Lexicon(config, lexc_path, read_lexical_database, regular=True)
+    lexicon = Lexicon(config,
+                      lexc_path,
+                      read_lexical_database,
+                      regular=True)
     info(f"Writing lexc output to {config['regular_lexc_file']}")
     lexicon.print_lexc()
 
