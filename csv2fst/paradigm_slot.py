@@ -1,6 +1,5 @@
 from sys import stderr
 import re
-import json
 import pandas as pd
 from collections import namedtuple
 from log import warn

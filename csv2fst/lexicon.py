@@ -1,5 +1,4 @@
 from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
-import json
 import pandas as pd
 import os
 import re
