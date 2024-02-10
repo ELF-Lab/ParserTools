@@ -27,7 +27,7 @@ If you want to run YAML tests, you will also need to install the
 1. Clone the `giella-core` repository
 2. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` and `make install`
 
-Then, add the path to the giella-core repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change directory path appropriately):
+Then, add the path to the `giella-core` repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change the directory path appropriately):
 
 ```
 export GTCORE=~/src/giella-core # Change this path to match the location of your giella-core repo
