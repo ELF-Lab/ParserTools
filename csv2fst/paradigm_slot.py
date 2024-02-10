@@ -175,7 +175,7 @@ class ParadigmSlot:
         return paths
 
     def extend_lexicons(self, lexicons:dict) -> None:
-        """Add the lexc path representing this slot to lexicons."""
+        """Add the lexc paths representing this slot to lexicons."""
         for entry in self.__get_lexc_paths():
             lexicons["Root"].add(LexcEntry("Root","0","0",entry[0].lexicon))
             for line in entry:
