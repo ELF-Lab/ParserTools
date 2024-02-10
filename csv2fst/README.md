@@ -42,12 +42,16 @@ point to your copy of the `morph-test.py` script (you might not need
 to do anything if you have installed `giella-core`).
 
 You should now be able to run `make all` and `make check`. This will
-generate two log files `yaml-test.log` and `core-yaml-test.log`. The
-first file represents tests for the subset of the Ojibwe morphology
-which we currently understand better. There is more uncertainty and
-dialectal variation in the tests presented in `yaml-test.log`.
+generate three log files:
 
-Both log files should show very few failures (5-15 fails per file).
+* `yaml-test.log` (tests for the subset of the Ojibwe morphology
+which we currently understand well)
+* `core-yaml-test.log` (there is more uncertainty and
+dialectal variation in the tests)
+* `opd-test.log` (these tests check integration of an external lexical resource)
+The
+
+The first two log files should show very few failures (5-15 fails per file). The third one will probably contain more failures
 
 ## The `csv2lexc.py` script
 
