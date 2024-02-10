@@ -21,7 +21,7 @@ BorderLakesMorph
 [repository](https://github.com/ELF-Lab/BorderLakesMorph) which
 contains all the source data for the FST model.
 
-## Dependencies for yaml tests (optional)
+## Dependencies for YAML tests (optional)
 
 If you want to run YAML tests, you will also need to install the
 [giella-core](https://github.com/giellalt/giella-core) repository. You should:
