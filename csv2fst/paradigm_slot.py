@@ -176,19 +176,19 @@ class ParadigmSlot:
 
     def extend_lexicons(self, lexicons:dict) -> None:
         """Add the lexc paths representing this slot to lexicons."""
-        for entry in self.__get_lexc_paths():
-            lexicons["Root"].add(LexcEntry("Root","0","0",entry[0].lexicon))
-            for line in entry:
-                if not line.lexicon in lexicons:
-                    lexicons[line.lexicon] = set()
-                lexicons[line.lexicon].add(line)
+        for path in self.__get_lexc_paths():
+            lexicons["Root"].add(LexcEntry("Root","0","0",path[0].lexicon))
+            for lexc_entry in path:
+                if not lexc_entry.lexicon in lexicons:
+                    lexicons[lexc_entry.lexicon] = set()
+                lexicons[lexc_entry.lexicon].add(lexc_entry)
         
     def __str__(self):        
-        entries = self.get_lexc_paths()
+        paths = self.get_lexc_paths()
         res = ""
-        for entry in entries:
-            for sublex_entry in entry:
-                res += f"{sublex_entry}\n"
+        for path in paths:
+            for lexc_entry in path:
+                res += f"{lexc_entry}\n"
             res += "----\n"
         return res
 
