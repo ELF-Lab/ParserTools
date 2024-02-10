@@ -56,7 +56,8 @@ class ParadigmSlot:
     
     @classmethod
     def __init_multichar_symbol_set(cls, conf:dict) -> None:
-        """Must be called before any ParadigmSlot objects are initialized."""
+        """Must be called when the first ParadigmSlot object is
+           initialized."""
         cls.multichar_symbols = set(map(escape,conf["multichar_symbols"]))
         cls.pre_element_tag = escape(conf["pre_element_tag"])
         cls.multichar_symbols.add(escape(PREFIX_BOUNDARY))
