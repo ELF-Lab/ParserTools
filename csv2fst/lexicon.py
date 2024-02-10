@@ -8,7 +8,7 @@ from log import info, warn
 class Lexicon:
     @staticmethod
     def __get_paradigm(row:pd.core.series.Series,
-                       klass_map:pd.core.series.Series):
+                       klass_map:pd.core.series.Series) -> str:
         for _, pattern in klass_map.iterrows():
             if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
                 continue
@@ -40,7 +40,7 @@ class Lexicon:
         if read_lexical_database:
             self.read_lexemes_from_database()
             
-    def read_lexemes_from_database(self):
+    def read_lexemes_from_database(self) -> None:
         info(f"Reading external lexical database {self.conf['lexical_database']}\n",
              f"Reading class mapping {self.conf['class_map']}")
         klass_map = pd.read_csv(self.conf["class_map"])
@@ -63,7 +63,7 @@ class Lexicon:
              f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
              f"Skipped {skipped} invalid ones")
 
-    def print_lexc(self):
+    def print_lexc(self) -> None:
         lexc_fn = os.path.join(self.lexc_path,
                                self.conf["regular_lexc_file" if self.regular
                                          else "irregular_lexc_file"])
