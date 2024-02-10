@@ -4,7 +4,7 @@ This directory houses the tools for converting csv spreadsheets of
 Ojibwe (and eventually, we hope, Algonquian languages more generally)
 to lexc files and a foma-based FST.
 
-## Dependencies
+## Dependencies for `csv2fst.py` script
 
 You will need to install the foma compiler and flookup program (which
 is part of the foma toolkit). Install them using these
@@ -20,6 +20,8 @@ In order to build the FST, you will need to clone the
 BorderLakesMorph
 [repository](https://github.com/ELF-Lab/BorderLakesMorph) which
 contains all the source data for the FST model.
+
+## Dependencies for yaml tests (optional)
 
 If you want to run YAML tests, you will also need to install the
 [giella-core](https://github.com/giellalt/giella-core) repository. You should:
