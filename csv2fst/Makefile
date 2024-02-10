@@ -79,7 +79,7 @@ check-yaml:check-generated/ojibwe.fomabin paradigm_yaml_output
                   echo ; \
                   done > yaml-test.log
 
-check-database:generated/ojibwe.fomabin
+check-database:generated/ojibwe.fomabin database_yaml_output
 	rm -f opd-test.log
 	for f in `ls database_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
