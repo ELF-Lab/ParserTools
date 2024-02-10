@@ -32,15 +32,6 @@ generated/ojibwe.fomabin:$(LEXCTARGETS)
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
 
-paradigm_yaml_output:
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/Spreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt
-	mv yaml_output $@
-
-database_yaml_output:
-	python3 ../scrapedcsv2yaml/create_yaml_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv csv_output/
-	$(PYTHON) $(CREATEYAML) csv_output/ ./
-	mv yaml_output $@
-
 #####################################################################
 #                                                                   #
 #                             TESTS                                 #
@@ -52,6 +43,15 @@ database_yaml_output:
 # to morphological ambiguity.
 
 check: check-core-yaml check-yaml check-database
+
+paradigm_yaml_output:
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/Spreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt
+	mv yaml_output $@
+
+database_yaml_output:
+	python3 ../scrapedcsv2yaml/create_yaml_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv csv_output/
+	$(PYTHON) $(CREATEYAML) csv_output/ ./
+	mv yaml_output $@
 
 check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p check-generated
