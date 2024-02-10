@@ -4,7 +4,7 @@ This directory houses the tools for converting csv spreadsheets of
 Ojibwe (and eventually, we hope, Algonquian languages more generally)
 to lexc files and a foma-based FST.
 
-## Dependencies for `csv2fst.py` script
+## Dependencies for the `csv2fst.py` script
 
 You will need to install the foma compiler and flookup program (which
 is part of the foma toolkit). Install them using these
