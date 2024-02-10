@@ -114,10 +114,50 @@ class ParadigmSlot:
             raise ValueError(f"No surface forms given for row: {row.to_dict()}")
         
     def __get_lexc_paths(self) -> list[list[LexcEntry]]:
-        """Convert this slot entry into a list of lexc lexicon paths
-           starting at the Root lexicon and ending in #.
+        """Convert this slot entry into a list of lexc lexicon paths starting
+           at the Root lexicon and ending in #. Each path is a
+           sequence of lexc sublexicon entries.
 
            There will be one path for each surface form.
+
+           For inflected forms of regular lexemes, our paths will look
+           like this (here, for the example analysis and form
+           aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):
+
+              LEXICON Root
+              VTA:Prefix ;
+
+              LEXICON VTA:Prefix
+              @P.Prefix.NI@:@P.Prefix.NI@ni VTA:PrefixBoundary ;
+
+              LEXICON VTA:PrefixBoundary
+              0:%<%< VTA:PreElement ;
+
+              LEXICON VTA:PreElement
+              [PREVERB] VTA:Stems ;
+
+              LEXICON VTA:Stems
+              aaba':aaba'w VTA:Class=VTA_C:Boundary ;
+
+              LEXICON VTA:Class=VTA_C:Boundary
+              0:%>%> VTA:Class=VTA_C:Flags ;
+
+              LEXICON VTA:Class=VTA_C:Flags
+              @R.Prefix.NI@ VTA:Class=VTA_C:Prefix=NI:Endings ;
+
+              LEXICON VTA:Class=VTA_C:Prefix=NI:Endings
+              +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+
+           For inflected forms of irregular lexemes, our pahts become
+           very simple. We just enumerate the entire form as one
+           chunk:
+
+              LEXICON Root
+              VTA:Irregular ;
+
+              LEXICON VTA:Irregular
+              izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
+
         """
         paths = []
         paradigm = self.paradigm
