@@ -35,6 +35,10 @@ Then, add the path to the `giella-core` repository to your shell startup files. 
 export GTCORE=~/src/giella-core # Change this path to match the location of your giella-core repo
 ```
 
+If you're running `bash`, this export probably needs to go to your `.bashrc` file.
+
+You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
+
 ## Building the Ojibwe FST
 
 The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
