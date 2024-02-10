@@ -18,17 +18,20 @@ MORPHTEST=$(GTCORE)/scripts/morph-test.py
 
 # Definitions for building the LEXC files
 POS=verbs
-LEXCTARGETS=$(POS:%=generated/ojibwe_%.lexc)
+LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
-all:$(LEXCTARGETS) generated/ojibwe.fomabin
+all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
 
 generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p generated
 	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path generated
 
-generated/ojibwe.fomabin:$(LEXCTARGETS)
+%/phonology.xfst:$(MORPHOLOGYSRCDIR)/xfst/phonology.xfst
+	mkdir -p $*
+	cp $^ $@
+
+generated/ojibwe.fomabin:$(LEXCTARGETS:%=generated/%) generated/phonology.xfst
 	mkdir -p generated
-	cp $(MORPHOLOGYSRCDIR)/xfst/phonology.xfst generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
 
@@ -57,9 +60,8 @@ check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p check-generated
 	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path check-generated --read-lexical-database False
 
-check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc)
+check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc) check-generated/phonology.xfst
 	mkdir -p check-generated
-	cp $(MORPHOLOGYSRCDIR)/xfst/phonology.xfst check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd check-generated; $(FOMA) -f phonology.xfst
 
