@@ -1,9 +1,10 @@
-from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
 import pandas as pd
 import os
 import re
 
+from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
 from log import info, warn
+from lexc_comment import comment_block
 
 class Lexicon:
     @staticmethod
@@ -76,6 +77,10 @@ class Lexicon:
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
             info(f"  {lexicon} ({len(lexc_rows)} entries)")
+            try:
+                print(comment_block(lexicon) + "\n", file=lexc_file)
+            except ValueError as e:
+                warn("Failed to generate comment block: {e}")
             print(f"LEXICON {lexicon}", file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
