@@ -22,7 +22,16 @@ BorderLakesMorph
 contains all the source data for the FST model.
 
 If you want to run YAML tests, you will also need to install the
-[giella-core](https://github.com/giellalt/giella-core) repository.
+[giella-core](https://github.com/giellalt/giella-core) repository. You should:
+
+1. Clone the giella-core repository
+2. In the repository, run `./autogen.sh`, `./configure`, `make` and `make install`
+
+Then, add the path to the giella-core repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change directory path appropriately):
+
+```
+export GTCORE=~/src/giella-core # Change this path to match the location of your giella-core repo
+```
 
 ## Building the Ojibwe FST
 
