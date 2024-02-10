@@ -63,7 +63,7 @@ class Lexicon:
              f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
              f"Skipped {skipped} invalid ones")
 
-    def print_lexc(self) -> None:
+    def write_lexc(self) -> None:
         lexc_fn = os.path.join(self.lexc_path,
                                self.conf["regular_lexc_file" if self.regular
                                          else "irregular_lexc_file"])

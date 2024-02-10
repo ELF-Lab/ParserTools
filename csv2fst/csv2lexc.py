@@ -23,7 +23,7 @@ def main(config_file,lexc_path,read_lexical_database):
                       read_lexical_database,
                       regular=True)
     info(f"Writing lexc output to {config['regular_lexc_file']}")
-    lexicon.print_lexc()
+    lexicon.write_lexc()
 
     # We'll then compile irregular paradigms into a different LEXC
     # file. These need to be separated because, later on, phonological
@@ -35,7 +35,7 @@ def main(config_file,lexc_path,read_lexical_database):
                                 read_lexical_database=False,
                                 regular=False)
     info(f"Writing lexc output to {config['irregular_lexc_file']}")
-    irregular_lexicon.print_lexc()
+    irregular_lexicon.write_lexc()
     
 if __name__=="__main__":
     main()
