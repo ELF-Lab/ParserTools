@@ -33,7 +33,7 @@ If you want to run YAML tests, you will also need to install the
 3. You may need to install GNU `autotools` in order to run `autogen.sh` 
      * On mac, you can install these by running `brew install autoconf automake libtool`
      * On Linux, do `sudo apt-get install autotools-dev` and `sudo apt-get install autoconf`
-5. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` (in this order)
+5. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` in this order
 
 Then, add the path to the `giella-core` repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change the directory path appropriately):
 
