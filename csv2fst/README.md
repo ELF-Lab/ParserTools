@@ -17,8 +17,7 @@ pip3 install -r requirements.txt
 ```
 
 In order to build the Border Lakes Ojibwe FST, you will need to clone the
-BorderLakesMorph
-[repository](https://github.com/ELF-Lab/BorderLakesMorph) which
+[BorderLakesMorph repository](https://github.com/ELF-Lab/BorderLakesMorph) which
 contains all the source data for the FST model.
 
 ## Dependencies for YAML tests (optional)
