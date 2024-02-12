@@ -30,7 +30,10 @@ If you want to run YAML tests, you will also need to install the
 2. You may need to install icu4c:
      * On a Mac, you can install it by `brew install icu4c`. This will install the program `uconv` but will not add it to your `PATH` environmental variable, so you'll need to manually edit your `PATH` environmental variable. Run `brew info icu4c` to check where the program is located and add its directory to `PATH` using the instructions. You probably need to open a new terminal window after this
      * On Linux, you can run `sudo apt install libicu52=52.1-6` and `sudo apt-get install libicu-dev` (**not tested**)
-4. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` (in this order)
+3. You may need to install `autotools`
+     * On mac, you can install these by running `brew install autoconf automake libtool`
+     * On Linux, do `sudo apt-get install autotools-dev` and `sudo apt-get install autoconf`
+5. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` (in this order)
 
 Then, add the path to the `giella-core` repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change the directory path appropriately):
 
