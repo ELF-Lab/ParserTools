@@ -44,11 +44,10 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
-## Building the Ojibwe FST
+## Building the Border Lakes Ojibwe FST
 
 The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
-variable to point to your BorderLakesMorph repo (or a different source
-directory if you are building for a different language/dialect).
+variable to point to your BorderLakesMorph repo.
 
 You should now be able to run `make all` to build the FST. This will
 create a directory `generated` which contains the FST, lexc files and
