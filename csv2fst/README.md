@@ -114,8 +114,76 @@ You need to specify the following parameters:
 
 ### The external lexical database
 
-TODO
+Additional lexemes are supplied in a 3-column CSV file. Here are the first rows of the lexical database file for BorderLakes Ojibwe, which stems from the [Ojibwe People's Dictionary]() (OPD): 
+
+```
+lemma,stem,part_of_speech_id
+ayaan,aya,vti4
+gidaan,gidaa,vti4
+de-miijin,de-miiji,vti3
+gigizhebaa-miijin,gigizhebaa-miiji,vti3
+miijin,miiji,vti3
+naadin,naad,vti3
+```
+
+This file is located in the BorderLakesMorph repo in the subdirectory `Database`.
+
+The columns represent:
+
+1. Lemma (this has to agree with the lemma forms in `BorderLakesMorph/Spreadsheets`)
+2. Stem (this has to agree with the stems in `BorderLakesMorph/Spreadsheets`)
+3. POS tag following OPD guidelines 
+
+In the JSON configuration file, the path to the lexical database is supplied under the key `lexical_database`.
 
 ### Inflectional class mapping
 
-TODO
+OPD pos tags, need to be maped into inflectional classes like `VTA_s` used in the paradigm spreadsheets in `BorderLakesMorph/Spreadsheets`. This mapping is realized by a specific csv file which can be given using the key `class_map` in the JSON configuration file.
+
+Here is the mapping which translates OPD pos tags to inflectional classes for the Border Lakes Ojibwe FST ([BorderLakesMorph/Database/VERBS_paradigm_map.csv](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/Database/VERBS_paradigm_map.csv)):
+
+```
+Class,OPDClass,MatchElement,Pattern
+VAI_V,vai,lemma,"^.*[^aiou][aiou]$"
+VAI_VV,vai,lemma,"^.*(aa|ii|oo|e)$"
+VAI_am,vai2,lemma,"^.*am$"
+VAI_m,vai,lemma,"^.*m$"
+VAI_n,vai,lemma,"^.*n$"
+VAI_rcp,vai,stem,"^.*idi$"
+VAI_rcp,vai,lemma,"^.*diwag$"
+VAI_rfx,vai,stem,"^.*idizo$"
+VAIO,vai+o,lemma,"^.*$"
+VII_VV,vii,lemma,"^.*(aa|ii|oo|e)$"
+VII_V,vii,lemma,"^.*[^iou][iou]$"
+VII_d,vii,lemma,"^.*d$"
+VII_n,vii,lemma,"^.*n$"
+VTA_C,vta,lemma,"^.*[bcdfghjklmptz']$"
+VTA_C,vta,lemma,"^.*[^bcdfghjklmnpstzwa']w$"
+VTA_Cw,vta,stem,"^.*[bcdfghjklmnpstwz']w$"
+VTA_aw,vta,lemma,"^.*aw$"
+VTA_n,vta,stem,"^.*n$"
+VTA_s,vta,stem,"^.*s$"
+VTI_am,vti1,lemma,"^.*an$"
+VTI_i,vti3,stem,"^.*i$"
+VTI_oo,vti2,lemma,"^.*oon$"
+VTI_aa,vti4,lemma,"^.*aan$"
+```
+
+Each row defines a test which determines the inflectional class. The test is based on the OPD POS tag, the lemma/stem of the lexical entry and a regular expression pattern, which has to be matched in order to group a lexeme to a specific inflectional class:
+
+1. The intended inflectional class in the paradigm spreadsheets
+2. The POS tag in the lexical database
+3. Whether to test the regular expression pattern on the lemma or stem of the lexeme
+4. The regular expression pattern
+
+Each test is run in order until a matching one is found.
+
+E.g. consider the row (lemma,stem,POS):
+```
+aatwaakowebin,aatwaakowebin,vta
+```
+The inflectional class will be `VTA_n` because this lexeme matches the test:
+```
+VTA_n,vta,stem,"^.*n$"
+```
+because the POS is `vta` and the stem matches the regular expression `^.*n$`.
