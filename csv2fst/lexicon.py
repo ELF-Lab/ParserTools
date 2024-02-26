@@ -10,6 +10,30 @@ class Lexicon:
     @staticmethod
     def __get_paradigm(row:pd.core.series.Series,
                        klass_map:pd.core.series.Series) -> str:
+        """Return the inflectional class (like "VTA_n") for an OPD entry.
+        
+        The argument row represents an OPD dictionary entry like:
+        
+        lemma              stem              part_of_speech_id
+        "naawakwe-miijin"  "naawakwe-miiji"  "vti3"
+
+        klass_map contains patterns which are used to determine the correct
+        inflectional class. E.g.:
+
+        Class    OPDClass    MatchElement     Pattern
+        "VTI_i"  "vti3"      "stem"           "^.*i$"
+
+        - "Class" the inflectional class in our FST
+        - "OPDClass" the corresponding POS in OPD (needs to match 
+          part_of_speech_id)
+        - "MatchElement" whether the inflectional class is determined by the 
+          lemma or stem 
+        - "Pattern" a regular expression which needs to match either the lemma or
+          stem (depending on "MatchElement").
+  
+        The function finds the first matching pattern for row in klass_map and
+        returns its "Class"."""
+        
         for _, pattern in klass_map.iterrows():
             if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
                 continue
@@ -42,6 +66,20 @@ class Lexicon:
             self.read_lexemes_from_database()
             
     def read_lexemes_from_database(self) -> None:
+        """Read OPD dictionary entries from an external CSV file given by
+        the "lexical_database" field in the configuration file.
+
+        This function maps OPD POS tags like vti3 to inflectional
+        classes like BorderLakesMorph VTI_i. It then adds each the OPD
+        lexical entry into the appropriate lexc sublexicon (like
+        VTI:Stems) with an appropriate continuation lexicon (like
+        VTI:Class=VTI_i:Boundary).
+
+        The mapping from OPD POS tags to BorderLakesMorph inflectional
+        classes is based on a mapping CSV file. This file is specified
+        in the "class_map" field in the configuration file.
+        """
+        
         info(f"Reading external lexical database {self.conf['lexical_database']}\n",
              f"Reading class mapping {self.conf['class_map']}")
         klass_map = pd.read_csv(self.conf["class_map"])
@@ -65,6 +103,12 @@ class Lexicon:
              f"Skipped {skipped} invalid ones")
 
     def write_lexc(self) -> None:
+        """Write contents to lexc file. If this is a regular lexc file, write
+           to the file given by the field "regular_lexc_file" in the
+           configuration file. Otherwise, write to the file given by
+           "irregular_lexc_file".
+        """
+        
         lexc_fn = os.path.join(self.lexc_path,
                                self.conf["regular_lexc_file" if self.regular
                                          else "irregular_lexc_file"])
