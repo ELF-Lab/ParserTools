@@ -9,28 +9,19 @@ POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
 vowels = ["i", "e", "o", "a"]
 forms_with_missing_info = []
-PARTICIPANT_TAG_CONVERSIONS = {
-    "0" : "?",
-    "0'" : "?",
-    "0's" : "0SgObv",
-    "0p" : "0PlProx",
-    "0s" : "0SgProx",
-    "1" : "?",
-    "1s" : "1Sg",
-    "1p" : "Excl",
-    "2" : "?",
-    "2s" : "2Sg",
-    "2p" : "2Pl",
-    "21p" : "Incl",
-    "3" : "?",
-    "3'" : "?",
-    "3's" : "3SgObv",
-    "3'p" : "3PlObv",
-    "3s" : "3SgProx",
-    "3p" : "3PlProx",
-    "X" : "X"
-}
-POSSIBLE_PARTICIPANTS = PARTICIPANT_TAG_CONVERSIONS.keys()
+PARTICIPANT_TAG_CONVERSIONS = {}
+POSSIBLE_PARTICIPANTS = []
+OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
+
+def read_subj_objs_tags(subj_obj_tags_csv):
+    global PARTICIPANT_TAG_CONVERSIONS
+    global POSSIBLE_PARTICIPANTS
+
+    conversions_list = pd.read_csv(subj_obj_tags_csv)
+    for i, tag_conversion in conversions_list.iterrows():
+        PARTICIPANT_TAG_CONVERSIONS[tag_conversion["OPDTag"]] = tag_conversion["OurTag"]
+
+    POSSIBLE_PARTICIPANTS = PARTICIPANT_TAG_CONVERSIONS.keys()
 
 def process_csv(file_name):
     df = pd.read_csv(file_name, keep_default_na = False)
@@ -143,7 +134,6 @@ def add_class(form_with_info):
             verb_class = "C"
         # Remaining classes: s, irr
     elif pos == "VAI":
-        print(stem)
         if stem.endswith("n"):
             verb_class = "n"
         elif stem.endswith("m") and stem[-2] != "a":
@@ -234,10 +224,9 @@ def add_negation(form_with_info):
 def write_new_csv(forms_with_info, output_dir):
     CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source"
 
-    with open(output_dir + 'inflectional_forms_for_yaml.csv', "w+") as csv:
+    with open(output_dir + OUTPUT_FILE_NAME, "w+") as csv:
         csv.write(CSV_HEADER + "\n")
         for form_with_info in forms_with_info:
-            print(form_with_info)
             csv.write(form_with_info["POS"] + ",") # Paradigm
             csv.write(form_with_info["Order"] + ",") # Order
             if "Class" in form_with_info.keys(): # Class
@@ -256,17 +245,20 @@ def write_new_csv(forms_with_info, output_dir):
 def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_if_yaml")
-    parser.add_argument("if_csv_path", type=str, help="Path to the spreadsheet.")
+    parser.add_argument("inflectional_forms_csv", type=str, help="Path to the spreadsheet.")
+    parser.add_argument("subj_obj_tags_csv", type=str, help="Path to the csv containing the tag conversions between OPD and our subj/obj tags.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     args = parser.parse_args()
 
+    read_subj_objs_tags(args.subj_obj_tags_csv)
+
     output_directory = create_output_directory(args.output_parent_directory)
 
-    forms_with_info = process_csv(args.if_csv_path)
+    forms_with_info = process_csv(args.inflectional_forms_csv)
 
     write_new_csv(forms_with_info, output_directory)
 
-    print(args.if_csv_path, output_directory)
+    print("Wrote CSV to", output_directory + OUTPUT_FILE_NAME)
 
 if __name__ == '__main__':
     main()
