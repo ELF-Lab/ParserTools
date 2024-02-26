@@ -55,7 +55,7 @@ class Lexicon:
                 self.lexicons[f"{paradigm}:Stems"].add(
                     LexcEntry(f"{paradigm}:Stems",
                               escape(row["lemma"]),
-                              escape(row["stem"]),
+                              re.sub("N$", "n", escape(row["stem"])),
                               f"{paradigm}:Class={klass}:Boundary"))
             except ValueError as e:
                 warn(e)
