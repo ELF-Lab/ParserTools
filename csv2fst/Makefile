@@ -88,6 +88,7 @@ check-database:generated/ojibwe.fomabin database_yaml_output
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
+	$(PYTHON) test_summary.py
 
 
 clean:
