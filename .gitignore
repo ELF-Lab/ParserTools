@@ -1,3 +1,9 @@
 .DS_Store
-yaml_output/
+*pycache*
+csv_output/
+*generated/
+*yaml_output/
+*.csv
+!subj_obj_tags.csv
+*.log
 *~
