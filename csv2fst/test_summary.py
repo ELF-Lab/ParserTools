@@ -36,8 +36,9 @@ def prepare_output(results):
     total_fails = 0
     total_tests = 0
     for test_section in TEST_SECTIONS:
-        # Make sure we're getting the test sections we expect
-        assert test_section in results.keys(), test_section
+        # If we don't have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
+        if not (test_section in results.keys()):
+            results.update({test_section: "0/0"})
         if ADD_APOSTROPHE:
             output_line += "'"
         # Add the results from this test section to our output line
@@ -66,7 +67,8 @@ def read_logs():
             section_results = sub("Total passes: [0-9]+, Total fails: ", "", section_results)
             section_results = section_results.replace(", Total: ", "/")
             results.update({test_section: section_results})
-    
+
+    assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
 
 def main():
