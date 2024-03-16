@@ -258,7 +258,7 @@ def main():
 
     write_new_csv(forms_with_info, output_directory)
 
-    print("Wrote CSV to", output_directory + OUTPUT_FILE_NAME)
+    print(f"Wrote CSV with {len(forms_with_info)} lines to", output_directory + OUTPUT_FILE_NAME)
 
 if __name__ == '__main__':
     main()

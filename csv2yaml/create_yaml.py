@@ -35,9 +35,10 @@ def create_output_directory(output_directory:str) -> str:
 
     return output_directory
 
-def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_tags:str) -> None:
+def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_tags:str, regular_yaml_line_count:int, core_yaml_line_count:int) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
+    output_line_count = 0
     # na_filter prevents the reading of "NA" values (= not applicable) as NaN
     df = pd.read_csv(file_name, na_filter = False)
 
@@ -118,10 +119,17 @@ Tests:
              open(core_output_file_name, "a") as core_yaml_file:
             for tag, forms in value:
                 yaml_file.write(f"{tag}: {forms}\n")
+                output_line_count += 1
+                regular_yaml_line_count += 1
                 if len(non_core_tags.intersection(tag.split("+"))) != 0:
                     continue
                 core_yaml_file.write(f"{tag}: {forms}\n")
+                core_yaml_line_count += 1
 
+        print(f"Wrote {output_line_count} lines to {output_file_name}")
+        output_line_count = 0
+
+    return regular_yaml_line_count, core_yaml_line_count
 
 if __name__ == '__main__':
     # Sets up argparse.
@@ -135,11 +143,15 @@ if __name__ == '__main__':
 
     files_generated = False
 
+    regular_yaml_line_count = 0
+    core_yaml_line_count = 0
     for file_name in os.listdir(args.csv_directory):
         full_name = os.path.join(args.csv_directory,file_name)
         if full_name.endswith(".csv"):
-            make_yaml(full_name, output_directory, analysis, args.non_core_tags)
+            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, analysis, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
             files_generated = True # At least one, anyways
 
     if files_generated:
-        print('Successfully generated yaml files.')
+        print("\nSuccessfully generated yaml files.")
+        print("Total lines printed to normal yaml files: ", regular_yaml_line_count)
+        print("Total lines printed to core yaml files:", core_yaml_line_count)
