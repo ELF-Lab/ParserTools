@@ -70,9 +70,13 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
         else:
             forms.append(row['Form1'])
 
-        # Check if there is a second form, and add it to the form list if so
+        # Check if there are additional forms, and add them to the form list if so
         if 'Form2Surface' in row.keys() and (row["Form2Surface"]):
             forms.append(row['Form2Surface'])
+        if 'Form3Surface' in row.keys() and (row["Form3Surface"]):
+            forms.append(row['Form3Surface'])
+        if 'Form4Surface' in row.keys() and (row["Form4Surface"]):
+            forms.append(row['Form4Surface'])
 
         # Remove missing forms
         if "MISSING" in forms:
@@ -146,7 +150,7 @@ if __name__ == '__main__':
     regular_yaml_line_count = 0
     core_yaml_line_count = 0
     for file_name in os.listdir(args.csv_directory):
-        full_name = os.path.join(args.csv_directory,file_name)
+        full_name = os.path.join(args.csv_directory, file_name)
         if full_name.endswith(".csv"):
             regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, analysis, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
             files_generated = True # At least one, anyways
