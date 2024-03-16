@@ -11,7 +11,7 @@ TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV"
 
 
 def write_to_csv(output_line):
-    HEADER = "Date," + ",".join(TEST_SECTIONS) +  ",Total fails"
+    HEADER = "Date," + ",".join(TEST_SECTIONS) +  ",Total fails, + Total fails (%)"
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, "w+") as csv_file:
                 print(HEADER, file = csv_file)
@@ -46,8 +46,9 @@ def prepare_output(results):
         total_fails += int((results[test_section].partition("/"))[0])
         total_tests += int((results[test_section].partition("/"))[2])
     
-    # Last column is the total count
-    output_line += str(total_fails) + "/" + str(total_tests)
+    # Last columns are the total count and then percent
+    output_line += str(total_fails) + "/" + str(total_tests) + ","
+    output_line += "{:.0%}".format(total_fails / total_tests)
 
     return output_line
 
