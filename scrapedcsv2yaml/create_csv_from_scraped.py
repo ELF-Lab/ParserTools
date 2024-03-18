@@ -143,7 +143,7 @@ def add_class(form_with_info):
             verb_class = "m"
         elif stem.endswith("m") and stem[-2] == "a":
             verb_class = "am"
-        elif stem [-1] in vowels and stem[-2] in vowels:
+        elif (stem[-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
             verb_class = "VV"
         elif stem[-1] in vowels:
             verb_class = "V"
@@ -153,7 +153,7 @@ def add_class(form_with_info):
             verb_class = "d"
         elif stem.endswith("n"):
             verb_class = "n"
-        elif stem [-1] in vowels and stem[-2] in vowels:
+        elif (stem [-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
             verb_class = "VV"
         elif stem [-1] in vowels:
             verb_class = "V"
