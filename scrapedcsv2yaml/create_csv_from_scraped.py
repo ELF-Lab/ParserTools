@@ -204,6 +204,8 @@ def add_mode(form_with_info):
         mode = "Prt"
     elif "dub" in short_gloss:
         mode = "Dub"
+    elif "imp" in short_gloss: # Imperatives get their own mode: simple
+        mode = "Sim"
     else:
         mode = "Neu"
 
@@ -217,10 +219,13 @@ def add_negation(form_with_info):
 
     if "neg" in short_gloss:
         negation = "Neg"
+    elif "imp" in short_gloss: # Imperatives don't get a negation value
+        negation = ""
     else:
         negation = "Pos"
 
-    form_with_info["Negation"] = negation
+    if negation:
+        form_with_info["Negation"] = negation
     return form_with_info
 
 # Reminder: forms_with_info is a list of dicts
@@ -235,11 +240,15 @@ def write_new_csv(forms_with_info, output_dir):
         for form_with_info in forms_with_info:
             # Compile all the analysis info
             analysis_to_write = form_with_info["POS"] + "," + form_with_info["Order"] + ","
-            if "Class" in form_with_info.keys(): # Class
+            if "Class" in form_with_info.keys():
                 analysis_to_write += form_with_info["POS"] + "_" + form_with_info["Class"] + ","
             else:
                 analysis_to_write += form_with_info["POS"] + ","
-            analysis_to_write += form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["Subject"] + "," + form_with_info["Object"] + "," + form_with_info["Mode"] + "," + form_with_info["Negation"] + ","
+            analysis_to_write += form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["Subject"] + "," + form_with_info["Object"] + "," + form_with_info["Mode"] + ","
+            if "Negation" in form_with_info.keys():
+                analysis_to_write += form_with_info["Negation"] + ","
+            else:
+                analysis_to_write += ","
 
             # If this is the first line with this analysis, finish off the previous line and start a fresh one
             if prev_analysis != analysis_to_write:

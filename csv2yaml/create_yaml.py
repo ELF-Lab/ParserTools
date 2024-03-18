@@ -13,11 +13,11 @@ import shutil
 # Run just `python3 create_yaml.py` to view help.
 
 # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
-analysis = lambda row: "+".join(list(filter(remove_NA, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
+analysis = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
 
-def remove_NA(value):
+def remove_NA_or_empty(value):
     has_a_value = True
-    if value == "NA":
+    if value == "NA" or value == "":
         has_a_value = False
 
     return has_a_value
