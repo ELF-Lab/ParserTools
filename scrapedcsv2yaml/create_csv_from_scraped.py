@@ -45,7 +45,8 @@ def process_csv(file_name):
 # Takes one row at a time
 # Returns a bool, True = keep it in, False = remove it
 def missing_info_check(form_with_info):
-    POSSIBLE_ORDERS = ["ind", "ch-conj", "conj", "imp", "part", "ic"]
+    # Add in ch-conj and ic once we can support them!
+    POSSIBLE_ORDERS = ["ind", " conj", "imp", "part"] #Space before "conj" so it doesn't match "ch-conj"
     has_an_order = False
     for order in POSSIBLE_ORDERS:
         if order in form_with_info["Abbreviated Gloss"]:
