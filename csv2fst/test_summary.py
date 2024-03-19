@@ -11,7 +11,7 @@ TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV"
 
 
 def write_to_csv(output_line):
-    HEADER = "Date," + ",".join(TEST_SECTIONS) +  ",Total fails, + Total fails (%)"
+    HEADER = "Date," + ",".join(TEST_SECTIONS) +  ",Total passes,Total passes (%)"
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, "w+") as csv_file:
                 print(HEADER, file = csv_file)
@@ -33,22 +33,22 @@ def get_prev_output_line():
 
 def prepare_output(results):
     output_line = str(date.today()) + "," # First column is the date!
-    total_fails = 0
+    total_passes = 0
     total_tests = 0
     for test_section in TEST_SECTIONS:
         # If we don't have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
         if not (test_section in results.keys()):
-            results.update({test_section: "0/0"})
+            results.update({test_section: "N/A"})
         if ADD_APOSTROPHE:
             output_line += "'"
         # Add the results from this test section to our output line
         output_line += results[test_section] + ","
-        total_fails += int((results[test_section].partition("/"))[0])
+        total_passes += int((results[test_section].partition("/"))[0])
         total_tests += int((results[test_section].partition("/"))[2])
     
     # Last columns are the total count and then percent
-    output_line += str(total_fails) + "/" + str(total_tests) + ","
-    output_line += "{:.0%}".format(total_fails / total_tests)
+    output_line += str(total_passes) + "/" + str(total_tests) + ","
+    output_line += "{:.0%}".format(total_passes / total_tests)
 
     return output_line
 
@@ -65,8 +65,8 @@ def read_logs():
         # Get the # of fails / # of tests
         elif line.startswith("Total"):
             section_results = line.strip()
-            section_results = sub("Total passes: [0-9]+, Total fails: ", "", section_results)
-            section_results = section_results.replace(", Total: ", "/")
+            section_results = section_results.replace("Total passes: ", "")
+            section_results = sub(", Total fails: [0-9]+, Total: ", "/", section_results)
             results.update({test_section: section_results})
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
