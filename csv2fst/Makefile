@@ -52,7 +52,7 @@ paradigm_yaml_output:
 	mv yaml_output $@
 
 database_yaml_output:
-	$(PYTHON) ../scrapedcsv2yaml/create_yaml_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
+	$(PYTHON) ../scrapedcsv2yaml/create_csv_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
 	$(PYTHON) $(CREATEYAML) csv_output/ ./
 	mv yaml_output $@
 
@@ -88,6 +88,7 @@ check-database:generated/ojibwe.fomabin database_yaml_output
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
+	$(PYTHON) test_summary.py
 
 
 clean:

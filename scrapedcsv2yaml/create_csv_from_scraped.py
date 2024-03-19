@@ -45,7 +45,8 @@ def process_csv(file_name):
 # Takes one row at a time
 # Returns a bool, True = keep it in, False = remove it
 def missing_info_check(form_with_info):
-    POSSIBLE_ORDERS = ["ind", "ch-conj", "conj", "imp", "part", "ic"]
+    # Add in ch-conj and ic once we can support them!
+    POSSIBLE_ORDERS = ["ind", " conj", "imp", "part"] #Space before "conj" so it doesn't match "ch-conj"
     has_an_order = False
     for order in POSSIBLE_ORDERS:
         if order in form_with_info["Abbreviated Gloss"]:
@@ -61,10 +62,13 @@ def missing_info_check(form_with_info):
         if potential_subj in POSSIBLE_PARTICIPANTS:
             has_a_subj = True
 
-    return has_an_order and has_a_stem and has_a_subj
+    contains_weird_punctuation = "=" in form_with_info["Inflectional Form"]
+
+    return has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)
 
 def tidy_entry(form_with_info):
-    form_with_info["Abbreviated Gloss"] = form_with_info["Abbreviated Gloss"].strip()
+    for field_name in form_with_info.keys():
+        form_with_info[field_name] = form_with_info[field_name].strip()
     form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
 
     if form_with_info["POS"] == "vai + o":
@@ -140,7 +144,7 @@ def add_class(form_with_info):
             verb_class = "m"
         elif stem.endswith("m") and stem[-2] == "a":
             verb_class = "am"
-        elif stem [-1] in vowels and stem[-2] in vowels:
+        elif (stem[-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
             verb_class = "VV"
         elif stem[-1] in vowels:
             verb_class = "V"
@@ -150,7 +154,7 @@ def add_class(form_with_info):
             verb_class = "d"
         elif stem.endswith("n"):
             verb_class = "n"
-        elif stem [-1] in vowels and stem[-2] in vowels:
+        elif (stem [-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
             verb_class = "VV"
         elif stem [-1] in vowels:
             verb_class = "V"
@@ -201,6 +205,8 @@ def add_mode(form_with_info):
         mode = "Prt"
     elif "dub" in short_gloss:
         mode = "Dub"
+    elif "imp" in short_gloss: # Imperatives get their own mode: simple
+        mode = "Sim"
     else:
         mode = "Neu"
 
@@ -214,33 +220,49 @@ def add_negation(form_with_info):
 
     if "neg" in short_gloss:
         negation = "Neg"
+    elif "imp" in short_gloss: # Imperatives don't get a negation value
+        negation = ""
     else:
         negation = "Pos"
 
-    form_with_info["Negation"] = negation
+    if negation:
+        form_with_info["Negation"] = negation
     return form_with_info
 
 # Reminder: forms_with_info is a list of dicts
 def write_new_csv(forms_with_info, output_dir):
-    CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source"
+    # I believe 4 is the most inflectional forms with the same analysis?
+    CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source,Form2Surface,Form2Split,Form2Source,Form3Surface,Form3Split,Form3Source,Form4Surface,Form4Split,Form4Source,"
+    prev_analysis = ""
+    line_count = 0
 
     with open(output_dir + OUTPUT_FILE_NAME, "w+") as csv:
-        csv.write(CSV_HEADER + "\n")
+        csv.write(CSV_HEADER)
         for form_with_info in forms_with_info:
-            csv.write(form_with_info["POS"] + ",") # Paradigm
-            csv.write(form_with_info["Order"] + ",") # Order
-            if "Class" in form_with_info.keys(): # Class
-                csv.write(form_with_info["POS"] + "_" + form_with_info["Class"] + ",")
+            # Compile all the analysis info
+            analysis_to_write = form_with_info["POS"] + "," + form_with_info["Order"] + ","
+            if "Class" in form_with_info.keys():
+                analysis_to_write += form_with_info["POS"] + "_" + form_with_info["Class"] + ","
             else:
-                csv.write(form_with_info["POS"] + ",")
-            csv.write(form_with_info["Lemma"] + ",") # Lemma
-            csv.write(form_with_info["Stem"] + ",") # Stem
-            csv.write(form_with_info["Subject"] + ",") # Subject
-            csv.write(form_with_info["Object"] + ",") # Object
-            csv.write(form_with_info["Mode"] + ",") # Mode
-            csv.write(form_with_info["Negation"] + ",") # Negation
-            csv.write(form_with_info["Inflectional Form"] + ",") # Form1Surface
-            csv.write("\n") # for the new line
+                analysis_to_write += form_with_info["POS"] + ","
+            analysis_to_write += form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["Subject"] + "," + form_with_info["Object"] + "," + form_with_info["Mode"] + ","
+            if "Negation" in form_with_info.keys():
+                analysis_to_write += form_with_info["Negation"] + ","
+            else:
+                analysis_to_write += ","
+
+            # If this is the first line with this analysis, finish off the previous line and start a fresh one
+            if prev_analysis != analysis_to_write:
+                line_count += 1
+                csv.write("\n") # First, complete the last line
+                csv.write(analysis_to_write) # Now start writing this analysis on a new line
+            # If not, do nothing -- just carry on adding to the previous line
+            # In either case, write the current form
+            csv.write(form_with_info["Inflectional Form"] + ",")
+            csv.write(",,")
+            prev_analysis = analysis_to_write
+
+    return line_count
 
 def main():
     # Sets up argparse.
@@ -256,9 +278,9 @@ def main():
 
     forms_with_info = process_csv(args.inflectional_forms_csv)
 
-    write_new_csv(forms_with_info, output_directory)
+    line_count = write_new_csv(forms_with_info, output_directory)
 
-    print("Wrote CSV to", output_directory + OUTPUT_FILE_NAME)
+    print(f"Wrote CSV with {len(forms_with_info)} inflectional forms in {line_count} lines to", output_directory + OUTPUT_FILE_NAME)
 
 if __name__ == '__main__':
     main()
