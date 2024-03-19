@@ -10,6 +10,10 @@ import os
 import pandas as pd
 import shutil
 
+# Assume that there are maximally five parallel forms on any given CSV
+# row
+MAX_FORMS=10
+
 # Run just `python3 create_yaml.py` to view help.
 
 # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
@@ -62,16 +66,15 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
         #   - "form" for 1 form
         #   - "[form1, form2, ...]" for multiple forms
 
-        # Grab the first form
+        # Get all forms
         forms = []
-        if 'Form1Surface' in row.keys():
-            forms.append(row['Form1Surface'])
-        else:
-            forms.append(row['Form1'])
-
-        # Check if there is a second form, and add it to the form list if so
-        if 'Form2Surface' in row.keys() and (row["Form2Surface"]):
-            forms.append(row['Form2Surface'])
+        for i in range(1,MAX_FORMS+1):
+            if f'Form{i}Surface' in row.keys() and row[f'Form{i}Surface']:
+                forms.append(row[f'Form{i}Surface'])
+            elif i == 1:
+                forms.append(row['Form1'])
+            else:
+                break
 
         # Remove missing forms
         if "MISSING" in forms:
