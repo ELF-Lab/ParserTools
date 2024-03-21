@@ -8,7 +8,6 @@ from create_yaml import create_output_directory
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
 vowels = ["i", "e", "o", "a"]
-forms_with_missing_info = []
 PARTICIPANT_TAG_CONVERSIONS = {}
 POSSIBLE_PARTICIPANTS = []
 OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
@@ -37,14 +36,12 @@ def process_csv(file_name):
             if missing_info_check(row):
                 row = format_entry(row)
                 forms_with_info.append(row)
-            else:
-                forms_with_missing_info.append(row)
 
     return forms_with_info
 
 # Takes one row at a time
 # Returns a bool, True = keep it in, False = remove it
-def missing_info_check(form_with_info):
+def missing_info_check(form_with_info, print_missing_summary = False):
     # Add in ch-conj and ic once we can support them!
     POSSIBLE_ORDERS = ["ind", " conj", "imp", "part"] #Space before "conj" so it doesn't match "ch-conj"
     has_an_order = False
@@ -63,6 +60,17 @@ def missing_info_check(form_with_info):
             has_a_subj = True
 
     contains_weird_punctuation = "=" in form_with_info["Inflectional Form"]
+
+    if print_missing_summary:
+        if not (has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)):
+            print(f"\nInflectional form: {form_with_info['Inflectional Form']} (lemma: {form_with_info['Lemma']})")
+            print("Abbreviated gloss:", form_with_info["Abbreviated Gloss"])
+        if not (has_an_order):
+            print("Problem: This stem did not have an Order that we recognized (i.e., one of ind, conj, imp, part, ic, or ch-conj).")
+        if not (has_a_stem):
+            print("Problem: This form has an empty stem.")
+        if not (has_a_subj):
+            print("Problem: This form has no subject.")
 
     return has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)
 
