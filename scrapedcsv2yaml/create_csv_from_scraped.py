@@ -18,8 +18,11 @@ def read_subj_objs_tags(subj_obj_tags_csv):
 
     conversions_list = pd.read_csv(subj_obj_tags_csv)
     for i, tag_conversion in conversions_list.iterrows():
-        PARTICIPANT_TAG_CONVERSIONS[tag_conversion["OPDTag"]] = tag_conversion["OurTag"]
-
+        if "/" in tag_conversion["OurTag"]:
+            tags = tag_conversion["OurTag"].split("/")
+            PARTICIPANT_TAG_CONVERSIONS[tag_conversion["OPDTag"]] = [tags[0], tags[1]]
+        else:
+            PARTICIPANT_TAG_CONVERSIONS[tag_conversion["OPDTag"]] = tag_conversion["OurTag"]
     POSSIBLE_PARTICIPANTS = PARTICIPANT_TAG_CONVERSIONS.keys()
 
 def process_csv(file_name):
@@ -237,6 +240,33 @@ def add_negation(form_with_info):
         form_with_info["Negation"] = negation
     return form_with_info
 
+# Sometimes there is a 2-to-1 mapping b/w OPD tags and our tags
+# For example, 3 -> 3SGProx/3PLProx
+# We want to convert such forms to TWO forms, one with each tag
+def handle_ambiguous_participant_tags(forms_with_info):
+    for i, form in enumerate(forms_with_info):
+        if type(form["Subject"]) == list:
+            # Split it into two forms
+            form_2 = form.copy()
+            form_2["Subject"] = form["Subject"][1]
+            form["Subject"] = form["Subject"][0]
+            # Remove the original, and put these two forms back into the list
+            forms_with_info.pop(i)
+            forms_with_info.insert(i, form)
+            forms_with_info.insert(i, form_2)
+
+        if type(form["Object"]) == list:
+            # Split it into two forms
+            form_2 = form.copy()
+            form_2["Object"] = form["Object"][1]
+            form["Object"] = form["Object"][0]
+            # Remove the original, and put these two forms back into the list
+            forms_with_info.pop(i)
+            forms_with_info.insert(i, form)
+            forms_with_info.insert(i, form_2)
+
+    return forms_with_info
+
 # Reminder: forms_with_info is a list of dicts
 def write_new_csv(forms_with_info, output_dir):
     # I believe 4 is the most inflectional forms with the same analysis?
@@ -285,6 +315,8 @@ def main():
     output_directory = create_output_directory(args.output_parent_directory)
 
     forms_with_info = process_csv(args.inflectional_forms_csv)
+
+    forms_with_info = handle_ambiguous_participant_tags(forms_with_info)
 
     line_count = write_new_csv(forms_with_info, output_directory)
 
