@@ -201,6 +201,9 @@ def add_person_and_number(form_with_info):
     if len(short_gloss) > 1 and short_gloss[1] in POSSIBLE_PARTICIPANTS:
         object_participant = short_gloss[1]
         form_with_info["Object"] = PARTICIPANT_TAG_CONVERSIONS[object_participant]
+    # The OPD doesn't explicitly assign objects to VAIOs, but they all have them implicitly (by definition)
+    elif form_with_info["POS"] == "VAIO":
+        form_with_info["Object"] = ["0Sg","0Pl"]
     else:
         form_with_info["Object"] = "NA"
 
