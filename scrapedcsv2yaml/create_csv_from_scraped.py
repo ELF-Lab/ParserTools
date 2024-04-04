@@ -82,6 +82,7 @@ def tidy_entry(form_with_info):
         form_with_info[field_name] = form_with_info[field_name].strip()
     form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
 
+    form_with_info["OPD POS"] = form_with_info["POS"] # Save this
     if form_with_info["POS"] == "vai + o":
         form_with_info["POS"] = "vaio"
     form_with_info["POS"] = form_with_info["POS"].upper()
@@ -304,6 +305,20 @@ def write_new_csv(forms_with_info, output_dir):
             prev_analysis = analysis_to_write
 
     return line_count
+
+def write_database_csv(forms_with_info, output_dir):
+    CSV_HEADER = "lemma,stem,part_of_speech_id\n"
+    DATABASE_CSV_NAME = "main_entries-VERBS_fields-lemma-stem-POS.csv"
+
+    lemma_set = set()
+    for form_with_info in forms_with_info:
+        output_line = form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["OPD POS"] + ",\n"
+        lemma_set.add(output_line)
+
+    with open(output_dir + DATABASE_CSV_NAME, "w+") as csv:
+        csv.write(CSV_HEADER)
+        for lemma_line in sorted(lemma_set):
+            csv.write(lemma_line)
 
 def main():
     # Sets up argparse.
