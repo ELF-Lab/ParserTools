@@ -11,6 +11,8 @@ vowels = ["i", "e", "o", "a"]
 PARTICIPANT_TAG_CONVERSIONS = {}
 POSSIBLE_PARTICIPANTS = []
 OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
+RECIPROCAL_LEMMA_ENDING = "wag"
+RECIPROCAL_STEM_ENDING = "di"
 
 def read_subj_objs_tags(subj_obj_tags_csv):
     global PARTICIPANT_TAG_CONVERSIONS
@@ -205,6 +207,9 @@ def add_person_and_number(form_with_info):
     # The OPD doesn't explicitly assign objects to VAIOs, but they all have them implicitly (by definition)
     elif form_with_info["POS"] == "VAIO":
         form_with_info["Object"] = ["0Sg","0Pl"]
+    # The OPD doesn't give reciprocals objects.  We want to explicitly specify their obj is the same as their subj!
+    elif form_with_info["POS"] == "VAI" and form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING):
+        form_with_info["Object"] = form_with_info["Subject"]
     else:
         form_with_info["Object"] = "NA"
 
