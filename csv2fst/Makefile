@@ -35,6 +35,10 @@ generated/ojibwe.fomabin:$(LEXCTARGETS:%=generated/%) generated/phonology.xfst
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
 
+generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xfst 
+	cp assets/delete_alt_tag.xfst generated
+	cd generated; $(FOMA) -f delete_alt_tag.xfst
+
 #####################################################################
 #                                                                   #
 #                             TESTS                                 #
@@ -81,11 +85,11 @@ check-yaml:check-generated/ojibwe.fomabin paradigm_yaml_output
                   echo ; \
                   done > yaml-test.log
 
-check-database:generated/ojibwe.fomabin database_yaml_output
-	rm -f opd-test.log
+check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst database_yaml_output
+	rm -f opd-test.log	
 	for f in `ls database_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
 	$(PYTHON) test_summary.py
