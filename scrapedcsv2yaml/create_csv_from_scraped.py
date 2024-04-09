@@ -6,7 +6,7 @@ sys.path.insert(1, os.path.join(sys.path[0], '../csv2yaml'))
 from create_yaml import create_output_directory
 
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
-POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
+POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI", "VTI2", "VTI3", "VTI4"]
 vowels = ["i", "e", "o", "a"]
 PARTICIPANT_TAG_CONVERSIONS = {}
 POSSIBLE_PARTICIPANTS = []
@@ -178,7 +178,10 @@ def add_class(form_with_info):
             verb_class = "am"
         elif pos == "VTI2":
             verb_class = "oo"
-        # Remaining classes: aa, i
+        elif pos == "VTI3":
+            verb_class = "i"
+        elif pos == "VTI4":
+            verb_class = "aa"
 
     # Make sure we assigned a class where needed
     if verb_class:
