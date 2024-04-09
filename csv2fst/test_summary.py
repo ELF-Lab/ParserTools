@@ -1,12 +1,13 @@
 import os
-from re import sub
+from re import search, sub
 from datetime import date
 
 OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 # If you view in Excel, this will prevent fractions from being interpreted as dates
 ADD_APOSTROPHE = True
-TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTI", "VTI_am", "VTI_oo"]
+PRINT_DETAILED_EVAL = False
+TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 
 
 
@@ -36,15 +37,19 @@ def prepare_output(results):
     total_passes = 0
     total_tests = 0
     for test_section in TEST_SECTIONS:
-        # If we don't have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
-        if not (test_section in results.keys()):
-            results.update({test_section: "N/A"})
         if ADD_APOSTROPHE:
             output_line += "'"
-        # Add the results from this test section to our output line
-        output_line += results[test_section] + ","
-        total_passes += int((results[test_section].partition("/"))[0])
-        total_tests += int((results[test_section].partition("/"))[2])
+        # If we don't have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
+        if not (test_section in results.keys()):
+            output_line += "N/A,"
+        else:
+            # Add the results from this test section to our output line
+            output_line += results[test_section][0]
+            if PRINT_DETAILED_EVAL:
+                output_line += " False pos: " + str(results[test_section][1]) + " False neg: " + str(results[test_section][2])
+            output_line += ","
+            total_passes += int((results[test_section][0].partition("/"))[0])
+            total_tests += int((results[test_section][0].partition("/"))[2])
     
     # Last columns are the total count and then percent
     output_line += str(total_passes) + "/" + str(total_tests) + ","
@@ -62,12 +67,18 @@ def read_logs():
             test_section = line.strip()
             test_section = test_section.replace("YAML test file database_yaml_output/", "")
             test_section = test_section.replace(".yaml", "")
+            false_pos = 0
+            false_neg = 0
+        elif "Missing results" in line:
+            false_neg += 1
+        elif search("Unexpected results: [a-z]", line):
+            false_pos += 1
         # Get the # of fails / # of tests
         elif line.startswith("Total"):
             section_results = line.strip()
             section_results = section_results.replace("Total passes: ", "")
             section_results = sub(", Total fails: [0-9]+, Total: ", "/", section_results)
-            results.update({test_section: section_results})
+            results.update({test_section: [section_results, false_pos, false_neg]})
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
