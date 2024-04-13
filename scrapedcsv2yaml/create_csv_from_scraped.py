@@ -6,11 +6,14 @@ sys.path.insert(1, os.path.join(sys.path[0], '../csv2yaml'))
 from create_yaml import create_output_directory
 
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
-POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI"]
+POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI", "VTI2", "VTI3", "VTI4"]
 vowels = ["i", "e", "o", "a"]
 PARTICIPANT_TAG_CONVERSIONS = {}
 POSSIBLE_PARTICIPANTS = []
 OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
+RECIPROCAL_LEMMA_ENDING = "wag"
+RECIPROCAL_STEM_ENDING = "di"
+STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
 
 def read_subj_objs_tags(subj_obj_tags_csv):
     global PARTICIPANT_TAG_CONVERSIONS
@@ -30,7 +33,6 @@ def process_csv(file_name):
 
     forms_with_info = []
 
-    df = df.truncate(after = 10000)
     for index, row in df.iterrows():
         row = row.to_dict()
         # Grab only the verbs!
@@ -53,7 +55,7 @@ def missing_info_check(form_with_info, print_missing_summary = False):
             has_an_order = True
 
     # Check for missing stem OR an erroenous stem we noticed
-    has_a_stem = (form_with_info["Stem"] != "" and form_with_info["Stem"] != "akwaakwak")
+    has_a_stem = (form_with_info["Stem"] != "" and not (form_with_info["Stem"] in STEMS_TO_EXCLUDE))
 
     has_a_subj = False
     glosses = form_with_info["Abbreviated Gloss"].split()
@@ -63,6 +65,7 @@ def missing_info_check(form_with_info, print_missing_summary = False):
             has_a_subj = True
 
     contains_weird_punctuation = "=" in form_with_info["Inflectional Form"]
+    has_a_form = form_with_info["Inflectional Form"] != ""
 
     if print_missing_summary:
         if not (has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)):
@@ -75,13 +78,15 @@ def missing_info_check(form_with_info, print_missing_summary = False):
         if not (has_a_subj):
             print("Problem: This form has no subject.")
 
-    return has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)
+    return has_an_order and has_a_stem and has_a_subj and has_a_form and not(contains_weird_punctuation)
 
 def tidy_entry(form_with_info):
+    form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
+    form_with_info["Inflectional Form"] = (form_with_info["Inflectional Form"].replace("-", "")).replace("]", "")
     for field_name in form_with_info.keys():
         form_with_info[field_name] = form_with_info[field_name].strip()
-    form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
 
+    form_with_info["OPD POS"] = form_with_info["POS"] # Save this
     if form_with_info["POS"] == "vai + o":
         form_with_info["POS"] = "vaio"
     form_with_info["POS"] = form_with_info["POS"].upper()
@@ -175,7 +180,10 @@ def add_class(form_with_info):
             verb_class = "am"
         elif pos == "VTI2":
             verb_class = "oo"
-        # Remaining classes: aa, i
+        elif pos == "VTI3":
+            verb_class = "i"
+        elif pos == "VTI4":
+            verb_class = "aa"
 
     # Make sure we assigned a class where needed
     if verb_class:
@@ -204,6 +212,9 @@ def add_person_and_number(form_with_info):
     # The OPD doesn't explicitly assign objects to VAIOs, but they all have them implicitly (by definition)
     elif form_with_info["POS"] == "VAIO":
         form_with_info["Object"] = ["0Sg","0Pl"]
+    # The OPD doesn't give reciprocals objects.  We want to explicitly specify their obj is the same as their subj!
+    elif form_with_info["POS"] == "VAI" and form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING):
+        form_with_info["Object"] = form_with_info["Subject"]
     else:
         form_with_info["Object"] = "NA"
 
@@ -304,6 +315,20 @@ def write_new_csv(forms_with_info, output_dir):
             prev_analysis = analysis_to_write
 
     return line_count
+
+def write_database_csv(forms_with_info, output_dir):
+    CSV_HEADER = "lemma,stem,part_of_speech_id\n"
+    DATABASE_CSV_NAME = "main_entries-VERBS_fields-lemma-stem-POS.csv"
+
+    lemma_set = set()
+    for form_with_info in forms_with_info:
+        output_line = form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["OPD POS"] + ",\n"
+        lemma_set.add(output_line)
+
+    with open(output_dir + DATABASE_CSV_NAME, "w+") as csv:
+        csv.write(CSV_HEADER)
+        for lemma_line in sorted(lemma_set):
+            csv.write(lemma_line)
 
 def main():
     # Sets up argparse.
