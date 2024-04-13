@@ -20,9 +20,10 @@ patterns = [
     (r"(.*):Class=(.*):Flags", (r"Paradigm: \1, Class: \2",
                                 r"Flag diacritic governing combinations between",
                                 r"prefix and ending")),
-    (r"(.*):Class=(.*):Prefix=(.*):Endings", (r"Paradigm: \1, Class: \2",
-                                              r"Endings corresponding to prefix \3")),
-    ]
+    (r"(.*):Class=(.*):Prefix=(.*):Order=(.*)", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",)),
+    (r"(.*):Class=(.*):Prefix=(.*):Order=(.*):Endings", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",
+                                                         r"Endings")),
+]
 
 def comment_str(lex_name):
     comment = None

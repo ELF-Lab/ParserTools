@@ -76,6 +76,16 @@ class ParadigmSlot:
         cls.multichar_symbols.update([pflag, rflag])
         return pflag, rflag
 
+    def __get_order_flag(self) -> tuple[str]:
+        order = "Other"
+        if "+Ind" in self.tags:
+            order = "Ind"
+        elif "+Cnj" in self.tags:
+            order = "Cnj"
+        flag = f"@U.Order.{order}@"
+        ParadigmSlot.multichar_symbols.update([flag])
+        return order, flag
+        
     def __init__(self, row, conf, regular:bool):
         self.row = row
         self.conf = conf
@@ -166,6 +176,7 @@ class ParadigmSlot:
         for surface, parts in self.forms:
             if self.regular:
                 pflag, rflag = ParadigmSlot.__get_prefix_flags(parts.prefix)
+                order, rorderflag = self.__get_order_flag()
                 prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
                 # The following lexc sublexicon entries generate this form. 
                 path = [
@@ -198,9 +209,14 @@ class ParadigmSlot:
                     LexcEntry(f"{paradigm}:Class={klass}:Flags",
                               rflag,
                               rflag,
-                              f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings"),
+                              f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}"),
+                    # @U.Order.<Y>@ <Paradigm>:Class=<class>:Prefix=<X>:Order=<Y>:Endings
+                    LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}",
+                              rorderflag,
+                              rorderflag,
+                              f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}:Endings"),
                     # <tags>:<ending> # ;
-                    LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Endings",
+                    LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}:Endings",
                               "".join(self.tags),
                               parts.suffix,
                               "#")
