@@ -30,7 +30,7 @@ generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p $*
 	cp $^ $@
 
-generated/ojibwe.fomabin:$(LEXCTARGETS:%=generated/%) generated/phonology.xfst
+generated/ojibwe.fomabin:$(LEXCTARGETS:%=generated/%) generated/phonology.xfst 
 	mkdir -p generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
@@ -52,7 +52,7 @@ generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xf
 check: check-core-yaml check-yaml check-database
 
 paradigm_yaml_output:
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/Spreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt
 	mv yaml_output $@
 
 database_yaml_output:

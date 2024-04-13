@@ -2,6 +2,7 @@ import click
 import json
 
 from lexicon import Lexicon
+from templates import render_pv_lexicon
 from log import info
 
 @click.command()
@@ -36,6 +37,13 @@ def main(config_file,lexc_path,read_lexical_database):
                                 regular=False)
     info(f"Writing lexc output to {config['irregular_lexc_file']}")
     irregular_lexicon.write_lexc()
+
+    info("Reading preverb template file from directory:",
+         f"{config['template_path']}")
+    info("Reading preverb spreadsheets from directory:",
+         f"{config['pv_source_path']}")
+    info(f"Writing lexc output to directory {lexc_path}")
+    render_pv_lexicon(config,lexc_path)
     
 if __name__=="__main__":
     main()
