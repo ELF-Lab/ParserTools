@@ -49,7 +49,7 @@ You will need to open a new terminal, after you're done with installation in ord
 The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
 variable to point to your BorderLakesMorph repo.
 
-You should now be able to run `make all` to build the FST. This will
+You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
 create a directory `generated` which contains the FST, lexc files and
 XFST rules.
 
