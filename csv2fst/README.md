@@ -111,6 +111,7 @@ You need to specify the following parameters:
 | `missing_form_marker` | Tag which indicates paradigm gaps | `"MISSING"` |
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
 | `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`
+|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of BorderLakesMorph) |
 
 ### The external lexical database
 
