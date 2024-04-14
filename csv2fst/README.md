@@ -112,6 +112,7 @@ You need to specify the following parameters:
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
 | `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`|
 |`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of BorderLakesMorph) | "~/src/BorderLakesMorph/PVSpreadsheets/" |
+| `template_path`| Path to jinja2 templates in (this is a subdirectory of BorderLakesMorph) | "~/src/BorderLakesMorph/templates" |
 
 ### The external lexical database
 
