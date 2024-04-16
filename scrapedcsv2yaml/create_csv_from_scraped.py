@@ -322,10 +322,10 @@ def write_database_csv(forms_with_info, output_dir):
 
     lemma_set = set()
     for form_with_info in forms_with_info:
-        output_line = form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["OPD POS"] + ",\n"
+        output_line = form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["OPD POS"] + "\n"
         lemma_set.add(output_line)
 
-    with open(output_dir + DATABASE_CSV_NAME, "w+") as csv:
+    with open(output_dir + DATABASE_CSV_NAME, "w") as csv:
         csv.write(CSV_HEADER)
         for lemma_line in sorted(lemma_set):
             csv.write(lemma_line)
@@ -336,6 +336,7 @@ def main():
     parser.add_argument("inflectional_forms_csv", type=str, help="Path to the spreadsheet.")
     parser.add_argument("subj_obj_tags_csv", type=str, help="Path to the csv containing the tag conversions between OPD and our subj/obj tags.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
+    parser.add_argument("-print_database_csv", action='store_true', help="Indicates if we should print the list of all stems (with lemma and POS).")
     args = parser.parse_args()
 
     read_subj_objs_tags(args.subj_obj_tags_csv)
@@ -347,6 +348,9 @@ def main():
     forms_with_info = handle_ambiguous_participant_tags(forms_with_info)
 
     line_count = write_new_csv(forms_with_info, output_directory)
+
+    if args.print_database_csv:
+        write_database_csv(forms_with_info, output_directory)
 
     print(f"Wrote CSV with {len(forms_with_info)} inflectional forms in {line_count} lines to", output_directory + OUTPUT_FILE_NAME)
 

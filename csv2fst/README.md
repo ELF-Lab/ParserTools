@@ -49,7 +49,7 @@ You will need to open a new terminal, after you're done with installation in ord
 The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
 variable to point to your BorderLakesMorph repo.
 
-You should now be able to run `make all` to build the FST. This will
+You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
 create a directory `generated` which contains the FST, lexc files and
 XFST rules.
 
@@ -99,7 +99,7 @@ You need to specify the following parameters:
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `comments`  | Comments. | `"This is a comment"` |
-| `source_path` | Directory where source CSV files reside. | `"~/src/BorderLakesMorph/Spreadsheets/"` |
+| `source_path` | Directory where source CSV files for verbs reside. | `"~/src/BorderLakesMorph/VerbSpreadsheets/"` |
 | `regular_csv_files` | List of CSV files which contain **regular** paradigms (please omit `.csv` suffix) | `["VAI_IND","VTA_CNJ",...]` |
 | `irregular_csv_files` | List of CSV files which contain **irregular** paradigms (please omit `.csv` suffix) | `["VAI_IRR"]` |
 | `lexical_database` | External CSV lexical database file. | `"verb_entries_from_dictionary.csv"` |
@@ -110,8 +110,9 @@ You need to specify the following parameters:
 | `missing_tag_marker` | Tag which indicates missing values of features in the source CSV files. E.g. intransitive verbs won't have an onbject, and this tag is used to mark that fact. | `"NA"` |
 | `missing_form_marker` | Tag which indicates paradigm gaps | `"MISSING"` |
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
-| `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`
-|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of BorderLakesMorph) |
+| `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`|
+|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of BorderLakesMorph) | "~/src/BorderLakesMorph/PVSpreadsheets/" |
+| `template_path`| Path to jinja2 templates in (this is a subdirectory of BorderLakesMorph) | "~/src/BorderLakesMorph/templates" |
 
 ### The external lexical database
 
