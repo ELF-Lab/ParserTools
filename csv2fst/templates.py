@@ -1,6 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 import pandas as pd
-from os.path import join as pjoin
+from os.path import join as pjoin, expanduser
 from math import isnan
 
 """ This module should be made more general because we want to use it
@@ -83,7 +83,7 @@ def get_generate_preverb_sub_lexicons(source_dir):
 def render_pv_lexicon(config,lexc_path):
     csv_src_path = config['pv_source_path']
     template_file = "preverbs.lexc.j2"
-    template_dir = config['template_path']
+    template_dir = expanduser(config['template_path'])
     env = Environment(loader=FileSystemLoader(template_dir))
     print(dir(env))
     jinja_template = env.get_template(template_file)
