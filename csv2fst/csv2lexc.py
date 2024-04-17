@@ -20,7 +20,7 @@ def main(config_file,source_path,lexc_path,read_lexical_database):
 
     # We'll first compile regular paradigms into a LEXC file 
     info("Reading spreadsheets for regular paradigms from directory:",
-         f"{pjoin(source_path,config['verb_source_path'])}")
+         f"{pjoin(source_path,config['morphology_source_path'])}")
     lexicon = Lexicon(config,
                       source_path,
                       lexc_path,
@@ -33,7 +33,7 @@ def main(config_file,source_path,lexc_path,read_lexical_database):
     # file. These need to be separated because, later on, phonological
     # rules are only applied to regular paradigms.
     info("Reading spreadsheets for irregular paradigms from directory:",
-         f"{pjoin(source_path,config['verb_source_path'])}")
+         f"{pjoin(source_path,config['morphology_source_path'])}")
     irregular_lexicon = Lexicon(config,
                                 source_path,
                                 lexc_path,

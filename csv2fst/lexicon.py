@@ -59,7 +59,7 @@ class Lexicon:
         csv_names = conf["regular_csv_files" if regular else "irregular_csv_files"]
         for name in csv_names:
             csv_file = os.path.join(os.path.join(self.source_path,
-                                                 conf["verb_source_path"]), f"{name}.csv")
+                                                 conf["morphology_source_path"]), f"{name}.csv")
             info(f"Reading lexicon entries from {csv_file}")
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
