@@ -24,7 +24,7 @@ all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
 
 generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p generated
-	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path generated
+	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --lexc-path generated
 
 %/phonology.xfst:$(MORPHOLOGYSRCDIR)/xfst/phonology.xfst
 	mkdir -p $*
@@ -62,7 +62,7 @@ database_yaml_output:
 
 check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p check-generated
-	$(PYTHON) csv2lexc.py --config-file $^ --lexc-path check-generated --read-lexical-database False
+	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --lexc-path check-generated --read-lexical-database False
 
 check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc) check-generated/phonology.xfst
 	mkdir -p check-generated

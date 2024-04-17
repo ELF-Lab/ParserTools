@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+from os.path import join as pjoin
 import re
 
 from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
@@ -45,17 +46,20 @@ class Lexicon:
             
     def __init__(self,
                  conf:dict,
+                 source_path:str,
                  lexc_path:str,
                  read_lexical_database:bool,
                  regular:bool):
         self.conf = conf
+        self.source_path = source_path        
         self.lexc_path = lexc_path
         self.regular = regular
         self.lexicons = {"Root":set()}
 
         csv_names = conf["regular_csv_files" if regular else "irregular_csv_files"]
         for name in csv_names:
-            csv_file = os.path.join(conf["source_path"], f"{name}.csv")
+            csv_file = os.path.join(os.path.join(self.source_path,
+                                                 conf["verb_source_path"]), f"{name}.csv")
             info(f"Reading lexicon entries from {csv_file}")
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
@@ -82,8 +86,10 @@ class Lexicon:
         
         info(f"Reading external lexical database {self.conf['lexical_database']}\n",
              f"Reading class mapping {self.conf['class_map']}")
-        klass_map = pd.read_csv(self.conf["class_map"])
-        lexeme_database = pd.read_csv(self.conf["lexical_database"],
+        klass_map = pd.read_csv(pjoin(self.source_path,
+                                      self.conf["class_map"]))
+        lexeme_database = pd.read_csv(os.path.join(self.source_path,
+                                                   self.conf["lexical_database"]),
                                       keep_default_na=False)
         skipped = 0
         for _, row in lexeme_database.iterrows():

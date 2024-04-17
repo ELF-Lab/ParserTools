@@ -80,10 +80,10 @@ def get_generate_preverb_sub_lexicons(source_dir):
         return "\n\n".join(lexicons)
     return generate_preverb_sub_lexicons
 
-def render_pv_lexicon(config,lexc_path):
-    csv_src_path = config['pv_source_path']
+def render_pv_lexicon(config,source_path,lexc_path):
+    csv_src_path = pjoin(source_path,config['pv_source_path'])
     template_file = "preverbs.lexc.j2"
-    template_dir = expanduser(config['template_path'])
+    template_dir = pjoin(expanduser(source_path),config['template_path'])
     env = Environment(loader=FileSystemLoader(template_dir))
     print(dir(env))
     jinja_template = env.get_template(template_file)
