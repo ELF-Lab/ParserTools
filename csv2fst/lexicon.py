@@ -34,14 +34,14 @@ class Lexicon:
   
         The function finds the first matching pattern for row in klass_map and
         returns its "Class"."""
-        
-        for _, pattern in klass_map.iterrows():
-            if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
-                continue
-            element = \
-                (row["lemma"] if pattern["MatchElement"] == "lemma" else row["stem"])
-            if re.match(pattern["Pattern"], element):
-                return pattern["Class"]
+        if type(klass_map) != type(None):
+            for _, pattern in klass_map.iterrows():
+                if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
+                    continue
+                element = \
+                    (row["lemma"] if pattern["MatchElement"] == "lemma" else row["stem"])
+                if re.match(pattern["Pattern"], element):
+                    return pattern["Class"]
         raise ValueError(f"No matching pattern for lexical entry: {row.to_dict()}")
             
     def __init__(self,
@@ -86,27 +86,30 @@ class Lexicon:
         
         info(f"Reading external lexical database {self.conf['lexical_database']}\n",
              f"Reading class mapping {self.conf['class_map']}")
-        klass_map = pd.read_csv(pjoin(self.source_path,
-                                      self.conf["class_map"]))
-        lexeme_database = pd.read_csv(os.path.join(self.source_path,
-                                                   self.conf["lexical_database"]),
-                                      keep_default_na=False)
-        skipped = 0
-        for _, row in lexeme_database.iterrows():
-            try:
-                klass = Lexicon.__get_paradigm(row,klass_map)
-                paradigm = klass.split("_")[0]
-                self.lexicons[f"{paradigm}:Stems"].add(
-                    LexcEntry(f"{paradigm}:Stems",
-                              escape(row["lemma"]),
-                              re.sub("N$", "n", escape(row["stem"])),
-                              f"{paradigm}:Class={klass}:Boundary"))
-            except ValueError as e:
-                warn(e)
-                skipped += 1
-        info(f"Checked {len(lexeme_database)} lexical entries.\n",
-             f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
-             f"Skipped {skipped} invalid ones")
+        klass_map = None
+        if self.conf["class_map"] != "None":
+            klass_map = pd.read_csv(pjoin(self.source_path,
+                                          self.conf["class_map"]))
+        if self.conf["lexical_database"] != "None":
+            lexeme_database = pd.read_csv(os.path.join(self.source_path,
+                                                       self.conf["lexical_database"]),
+                                          keep_default_na=False)
+            skipped = 0
+            for _, row in lexeme_database.iterrows():
+                try:
+                    klass = Lexicon.__get_paradigm(row,klass_map)
+                    paradigm = klass.split("_")[0]
+                    self.lexicons[f"{paradigm}:Stems"].add(
+                        LexcEntry(f"{paradigm}:Stems",
+                                  escape(row["lemma"]),
+                                  re.sub("N$", "n", escape(row["stem"])),
+                                  f"{paradigm}:Class={klass}:Boundary"))
+                except ValueError as e:
+                    warn(e)
+                    skipped += 1
+            info(f"Checked {len(lexeme_database)} lexical entries.\n",
+                 f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
+                 f"Skipped {skipped} invalid ones")
 
     def write_lexc(self) -> None:
         """Write contents to lexc file. If this is a regular lexc file, write
