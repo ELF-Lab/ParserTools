@@ -42,12 +42,14 @@ def main(config_file,source_path,lexc_path,read_lexical_database):
     info(f"Writing lexc output to {config['irregular_lexc_file']}")
     irregular_lexicon.write_lexc()
 
-    info("Reading preverb template file from directory:",
-         f"{config['template_path']}")
-    info("Reading preverb spreadsheets from directory:",
-         f"{config['pv_source_path']}")
-    info(f"Writing lexc output to directory {lexc_path}")
-    render_pv_lexicon(config,source_path,lexc_path)
+    if config["template_path"] != "None":
+        info("Reading preverb template file from directory:",
+             f"{config['template_path']}")
+        info("Reading preverb spreadsheets from directory:",
+             f"{config['pv_source_path']}")
+        info(f"Writing lexc output to directory {lexc_path}")
+        render_pv_lexicon(config,source_path,lexc_path)
+
     
 if __name__=="__main__":
     main()
