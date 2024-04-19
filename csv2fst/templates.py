@@ -85,7 +85,6 @@ def render_pv_lexicon(config,source_path,lexc_path):
     template_file = "preverbs.lexc.j2"
     template_dir = pjoin(expanduser(source_path),config['template_path'])
     env = Environment(loader=FileSystemLoader(template_dir))
-    print(dir(env))
     jinja_template = env.get_template(template_file)
     func_dict = {
         "load_preverb_csv":
