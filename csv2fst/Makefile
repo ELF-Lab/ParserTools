@@ -4,12 +4,13 @@ FOMA=foma
 
 # Source files
 # Change this to match your source directory
-MORPHOLOGYSRCDIR=~/src/BorderLakesMorph
+MORPHOLOGYSRCDIR=~/src/OjibweMorph
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
-# These depends on the env variable GTCORE which is set when you build
+
+# These depend on the env variable GTCORE which is set when you build
 # giella-core (I think...)
 ifndef GTCORE
        $(warning The GTCORE environment variable is not set)
@@ -17,7 +18,7 @@ endif
 MORPHTEST=$(GTCORE)/scripts/morph-test.py 
 
 # Definitions for building the LEXC files
-POS=verbs
+POS=verbs nouns
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
 all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
@@ -52,12 +53,16 @@ generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xf
 check: check-core-yaml check-yaml check-database
 
 paradigm_yaml_output:
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt
-	mv yaml_output $@
+	rm -Rf $@
+	mkdir $@
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=verb
+	mv yaml_output/* $@
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=noun
+	mv yaml_output/* $@
 
 database_yaml_output:
 	$(PYTHON) ../scrapedcsv2yaml/create_csv_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
-	$(PYTHON) $(CREATEYAML) csv_output/ ./
+	$(PYTHON) $(CREATEYAML) csv_output/ ./ --pos=verb
 	mv yaml_output $@
 
 check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
