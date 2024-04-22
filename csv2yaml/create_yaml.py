@@ -17,11 +17,12 @@ MAX_FORMS=10
 # Run just `python3 create_yaml.py` to view help.
 
 # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
-analysis = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
+VERB_ANALYSIS= lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
+NOUN_ANALYSIS = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Dim"], row["Poss"], row["Pej"], row["Pret"], row["Basic"]])))
 
 def remove_NA_or_empty(value):
     has_a_value = True
-    if value == "NA" or value == "":
+    if value == "" or value == "NONE":
         has_a_value = False
 
     return has_a_value
@@ -44,7 +45,7 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
 
     output_line_count = 0
     # na_filter prevents the reading of "NA" values (= not applicable) as NaN
-    df = pd.read_csv(file_name, na_filter = False)
+    df = pd.read_csv(file_name, keep_default_na=False)
 
     # This dictionary will have keys that are stems and values that are lists of tuples of (tag, form).
     # Example: 'aa': [(tag1, form1), (tag2, form2)].
@@ -69,7 +70,6 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
 
         # Get all forms
         forms = []
-
         for i in range(1,MAX_FORMS+1):
             if f'Form{i}Surface' in row.keys() and row[f'Form{i}Surface']:
                 forms.append(row[f'Form{i}Surface'])
@@ -141,8 +141,8 @@ if __name__ == '__main__':
     parser.add_argument("csv_directory", type=str, help="Path to the directory containing the spreadsheet(s).")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\"")
+    parser.add_argument("--pos", dest="pos", action="store", default="verb", help="Which POS are we generating tests for (noun or verb).")
     args = parser.parse_args()
-
     output_directory = create_output_directory(args.output_parent_directory + "yaml_output/")
 
     files_generated = False
@@ -151,8 +151,11 @@ if __name__ == '__main__':
     core_yaml_line_count = 0
     for file_name in os.listdir(args.csv_directory):
         full_name = os.path.join(args.csv_directory, file_name)
-        if full_name.endswith(".csv"):
-            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, analysis, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
+        if full_name.endswith(".csv") and args.pos == "verb":
+            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, VERB_ANALYSIS, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
+            files_generated = True # At least one, anyways
+        if full_name.endswith(".csv") and args.pos == "noun":
+            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, NOUN_ANALYSIS, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
             files_generated = True # At least one, anyways
 
     if files_generated:
