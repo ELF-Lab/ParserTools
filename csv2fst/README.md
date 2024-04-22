@@ -17,7 +17,7 @@ pip3 install -r requirements.txt
 ```
 
 In order to build the Border Lakes Ojibwe FST, you will need to clone the
-[BorderLakesMorph repository](https://github.com/ELF-Lab/BorderLakesMorph) which
+[OjibweMorph repository](https://github.com/ELF-Lab/OjibweMorph) which
 contains all the source data for the FST model.
 
 ## Dependencies for YAML tests (optional)
@@ -47,7 +47,7 @@ You will need to open a new terminal, after you're done with installation in ord
 ## Building the Border Lakes Ojibwe FST
 
 The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
-variable to point to your BorderLakesMorph repo.
+variable to point to your OjibweMorph repo.
 
 You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
 create a directory `generated` which contains the FST, lexc files and
@@ -90,8 +90,8 @@ Options:
 
 You need to specify a JSON configuration file which controls the
 generation of lexc files. See
-[`ojibwe_verbs.json`](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/ojibwe_verbs.json)
-in the [BorderLakesMorph](https://github.com/ELF-Lab/BorderLakesMorph)
+[`ojibwe_verbs.json`](https://github.com/ELF-Lab/OjibweMorph/blob/main/ojibwe_verbs.json)
+in the [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph)
 repository for an example.
 
 You need to specify the following parameters:
@@ -99,7 +99,7 @@ You need to specify the following parameters:
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `comments`  | Comments. | `"This is a comment"` |
-| `source_path` | Directory where source CSV files for verbs reside. | `"~/src/BorderLakesMorph/VerbSpreadsheets/"` |
+| `source_path` | Directory where source CSV files for verbs reside. | `"~/src/OjibweMorph/VerbSpreadsheets/"` |
 | `regular_csv_files` | List of CSV files which contain **regular** paradigms (please omit `.csv` suffix) | `["VAI_IND","VTA_CNJ",...]` |
 | `irregular_csv_files` | List of CSV files which contain **irregular** paradigms (please omit `.csv` suffix) | `["VAI_IRR"]` |
 | `lexical_database` | External CSV lexical database file. | `"verb_entries_from_dictionary.csv"` |
@@ -111,8 +111,8 @@ You need to specify the following parameters:
 | `missing_form_marker` | Tag which indicates paradigm gaps | `"MISSING"` |
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
 | `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`|
-|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of BorderLakesMorph) | "~/src/BorderLakesMorph/PVSpreadsheets/" |
-| `template_path`| Path to jinja2 templates in (this is a subdirectory of BorderLakesMorph).  Note that (for some reason) this file path **cannot** use a tilde symbol. | "/Users/YourName/BorderLakesMorph/templates" |
+|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of OjibweMorph) | "~/src/OjibweMorph/PVSpreadsheets/" |
+| `template_path`| Path to jinja2 templates in (this is a subdirectory of OjibweMorph).  Note that (for some reason) this file path **cannot** use a tilde symbol. | "/Users/YourName/OjibweMorph/templates" |
 
 ### The external lexical database
 
@@ -128,21 +128,21 @@ miijin,miiji,vti3
 naadin,naad,vti3
 ```
 
-This file is located in the BorderLakesMorph repo in the subdirectory `Database`.
+This file is located in the OjibweMorph repo in the subdirectory `Database`.
 
 The columns represent:
 
-1. Lemma (this has to agree with the lemma forms in `BorderLakesMorph/Spreadsheets`)
-2. Stem (this has to agree with the stems in `BorderLakesMorph/Spreadsheets`)
+1. Lemma (this has to agree with the lemma forms in `OjibweMorph/Spreadsheets`)
+2. Stem (this has to agree with the stems in `OjibweMorph/Spreadsheets`)
 3. POS tag following OPD guidelines 
 
 In the JSON configuration file, the path to the lexical database is supplied under the key `lexical_database`.
 
 ### Inflectional class mapping
 
-OPD pos tags, need to be maped into inflectional classes like `VTA_s` used in the paradigm spreadsheets in `BorderLakesMorph/Spreadsheets`. This mapping is realized by a specific csv file which can be given using the key `class_map` in the JSON configuration file.
+OPD pos tags, need to be maped into inflectional classes like `VTA_s` used in the paradigm spreadsheets in `OjibweMorph/Spreadsheets`. This mapping is realized by a specific csv file which can be given using the key `class_map` in the JSON configuration file.
 
-Here is the mapping which translates OPD pos tags to inflectional classes for the Border Lakes Ojibwe FST ([BorderLakesMorph/Database/VERBS_paradigm_map.csv](https://github.com/ELF-Lab/BorderLakesMorph/blob/main/Database/VERBS_paradigm_map.csv)):
+Here is the mapping which translates OPD pos tags to inflectional classes for the Border Lakes Ojibwe FST ([OjibweMorph/Database/VERBS_paradigm_map.csv](https://github.com/ELF-Lab/OjibweMorph/blob/main/Database/VERBS_paradigm_map.csv)):
 
 ```
 Class,OPDClass,MatchElement,Pattern
