@@ -1,5 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 import pandas as pd
+from os import listdir
 from os.path import join as pjoin, expanduser
 from math import isnan
 
@@ -57,7 +58,7 @@ def get_load_preverb_csv(source_dir):
                 if allomorph.find(NO_CH_CONJUNCT) != -1:
                     canonical = NO_CH_CONJUNCT + canonical
                 entries.append(
-                    f"{canonical}:{allomorph} {next_pv_lexicon} ;")
+                    f"{canonical}+:{allomorph} {next_pv_lexicon} ;")
         if entries == []:
             entries = ["%<EMPTYLEX%> # ;"]
         return "\n".join(entries)
@@ -76,9 +77,32 @@ def get_generate_preverb_sub_lexicons(source_dir):
                                           "PlainConjunct",
                                           "ChangedConjunct"]]
         lexicons.append(f"""LEXICON {pv_lexicon}Boundary 
-{CLEAR_CH_CONJUNCT}+:{CLEAR_CH_CONJUNCT}- {pv_lexicon} ;""")
+{CLEAR_CH_CONJUNCT}:{CLEAR_CH_CONJUNCT}- {pv_lexicon} ;""")
         return "\n\n".join(lexicons)
     return generate_preverb_sub_lexicons
+
+def pretty_join(str_list):
+    lines = [""]
+    for s in str_list:
+        if lines[-1] == "":
+            lines[-1] += s
+        elif len(lines[-1]) + len(s) + 1 <= 79:
+            lines[-1] += f" {s}"
+        else:
+            lines.append(s)
+    return "\n".join(lines)
+
+def get_all_preverb_tags(source_dir):
+    def all_preverb_tags():
+        preverb_tags = set()
+        for fn in listdir(path=source_dir):
+            if fn.endswith(".csv"):
+                df = pd.read_csv(pjoin(source_dir,fn))
+                preverb_tags.update(zip(df["Tag"],df["PV"]))
+        preverb_tags = sorted(list(preverb_tags))
+        return pretty_join([f"{tag}/{pv}+" for tag, pv in preverb_tags])
+    
+    return all_preverb_tags
 
 def render_pv_lexicon(config,source_path,lexc_path):
     csv_src_path = pjoin(source_path,config['pv_source_path'])
@@ -87,6 +111,8 @@ def render_pv_lexicon(config,source_path,lexc_path):
     env = Environment(loader=FileSystemLoader(template_dir))
     jinja_template = env.get_template(template_file)
     func_dict = {
+        "all_preverb_tags":
+        get_all_preverb_tags(csv_src_path),
         "load_preverb_csv":
         get_load_preverb_csv(csv_src_path),
         "generate_preverb_sub_lexicons":
