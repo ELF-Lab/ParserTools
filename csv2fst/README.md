@@ -50,7 +50,7 @@ The Makefile requires modifications. You can modify the `MORPHOLOGYSRCDIR`
 variable to point to your OjibweMorph repo. Alternatively, you can also run make by specifying the `MORPHOLOGYSRCDIR` variable from the command-line:
 
 ```
-make MORPHOLOGYSRCDIR="/path/to/directory/for/OjibweMorph"
+make MORPHOLOGYSRCDIR="/absolute/path/to/directory/for/OjibweMorph"
 ```
 
 You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
