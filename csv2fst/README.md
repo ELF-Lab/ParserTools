@@ -46,8 +46,12 @@ You will need to open a new terminal, after you're done with installation in ord
 
 ## Building the Border Lakes Ojibwe FST
 
-The Makefile requires modifications: 1. Modify the `MORPHOLOGYSRCDIR`
-variable to point to your OjibweMorph repo.
+The Makefile requires modifications. You can modify the `MORPHOLOGYSRCDIR`
+variable to point to your OjibweMorph repo. Alternatively, you can also run make by specifying the `MORPHOLOGYSRCDIR` variable from the command-line:
+
+```
+make MORPHOLOGYSRCDIR="/path/to/directory/for/OjibweMorph"
+```
 
 You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
 create a directory `generated` which contains the FST, lexc files and
