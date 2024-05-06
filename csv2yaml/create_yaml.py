@@ -70,7 +70,7 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
 
         # Get all forms
         forms = []
-        for i in range(1,MAX_FORMS+1):
+        for i in range(1, MAX_FORMS + 1):
             if f'Form{i}Surface' in row.keys() and row[f'Form{i}Surface']:
                 forms.append(row[f'Form{i}Surface'])
             elif i == 1:
@@ -91,7 +91,7 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
             forms_output = "[" + ",".join(forms) + "]"
 
         # Add this row to the dictionary appropriately.
-        yaml_dict[row["Class"]].append(("     "+analysis(row), forms_output))
+        yaml_dict[row["Class"]].append(("     " + analysis(row), forms_output))
 
     # Convert tag1,tag2,... -> {tag1, tag2, ...}
     non_core_tags = set(non_core_tags.split(",")) if non_core_tags != "" else set()
