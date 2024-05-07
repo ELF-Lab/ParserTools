@@ -20,7 +20,7 @@ endif
 MORPHTEST=$(GTCORE)/scripts/morph-test.py 
 
 # Definitions for building the LEXC files
-POS=verbs nouns
+POS=verbs nouns pronouns
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
 all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
@@ -70,7 +70,7 @@ database_yaml_output:
 	$(PYTHON) $(CREATEYAML) csv_output/ ./ --pos=verb
 	mv yaml_output $@
 
-check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
+check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p check-generated
 	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path check-generated --read-lexical-database False
 
