@@ -47,10 +47,10 @@ You will need to open a new terminal, after you're done with installation in ord
 ## Building the Border Lakes Ojibwe FST
 
 The Makefile requires modifications. You can modify the `MORPHOLOGYSRCDIR`
-variable to point to your OjibweMorph repo. Alternatively, you can also run make by specifying the `MORPHOLOGYSRCDIR` variable from the command-line:
+variable to point to your OjibweMorph repo and modify the `DATABASEDIR` variable to point to your OPDDatabase repo. Alternatively, you can also run make by specifying the `MORPHOLOGYSRCDIR` and `DATABASEDIR` variables from the command-line:
 
 ```
-make MORPHOLOGYSRCDIR="/absolute/path/to/directory/for/OjibweMorph"
+make MORPHOLOGYSRCDIR="/absolute/path/to/directory/for/OjibweMorph" DATABASEDIR="/absolute/path/to/directory/for/OPDDatabase" 
 ```
 
 You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
