@@ -106,8 +106,7 @@ You need to specify the following parameters:
 | `source_path` | Directory where source CSV files for verbs reside. | `"~/src/OjibweMorph/VerbSpreadsheets/"` |
 | `regular_csv_files` | List of CSV files which contain **regular** paradigms (please omit `.csv` suffix) | `["VAI_IND","VTA_CNJ",...]` |
 | `irregular_csv_files` | List of CSV files which contain **irregular** paradigms (please omit `.csv` suffix) | `["VAI_IRR"]` |
-| `lexical_database` | External CSV lexical database file. | `"verb_entries_from_dictionary.csv"` |
-| `class_map` | A mapping from inflectional classes in the external lexical database to inflectional classes usind in the FST (i.e. the classes in the source CSV files). See further description below. | `"verb_class_map.csv"` |
+| `lexical_database` | External CSV lexical database file. | `"VERBS.csv"` |
 | `regular_lexc_file` | Filename for generated lexc file containing **regular** paradigms. | `"ojibwe_verbs_regular.lexc"` | 
 | `irregular_lexc_file` | Filename for generated lexc file containing **irregular** paradigms. | `"ojibwe_verbs_irregular.lexc"` | 
 | `morph_features` | This field specifies the order in which morphological features are realized in FST output fields. The elements in the list have to match columns of the spurce CSV files. |  `["Paradigm", "Order", "Negation", "Mode", "Subject", "Object"]` |
