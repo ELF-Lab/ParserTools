@@ -48,6 +48,7 @@ class Lexicon:
                  conf:dict,
                  source_path:str,
                  lexc_path:str,
+                 database_path:str,
                  read_lexical_database:bool,
                  regular:bool):
         self.conf = conf
@@ -67,11 +68,12 @@ class Lexicon:
                 paradigm_slot.extend_lexicons(self.lexicons)
 
         if read_lexical_database:
-            self.read_lexemes_from_database()
+            self.read_lexemes_from_database(database_path)
             
-    def read_lexemes_from_database(self) -> None:
-        """Read OPD dictionary entries from an external CSV file given by
-        the "lexical_database" field in the configuration file.
+    def read_lexemes_from_database(self, database_path) -> None:
+        """Read OPD dictionary entries from an external CSV file given by the
+        "lexical_database" field in the configuration file. The CVS is
+        located in the directory given by database_path
 
         This function maps OPD POS tags like vti3 to inflectional
         classes like BorderLakesMorph VTI_i. It then adds each the OPD
@@ -82,27 +84,25 @@ class Lexicon:
         The mapping from OPD POS tags to BorderLakesMorph inflectional
         classes is based on a mapping CSV file. This file is specified
         in the "class_map" field in the configuration file.
+
         """
         
-        info(f"Reading external lexical database {self.conf['lexical_database']}\n",
-             f"Reading class mapping {self.conf['class_map']}")
-        klass_map = None
-        if self.conf["class_map"] != "None":
-            klass_map = pd.read_csv(pjoin(self.source_path,
-                                          self.conf["class_map"]))
+        info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
         if self.conf["lexical_database"] != "None":
-            lexeme_database = pd.read_csv(os.path.join(self.source_path,
+            lexeme_database = pd.read_csv(os.path.join(database_path,
                                                        self.conf["lexical_database"]),
                                           keep_default_na=False)
             skipped = 0
             for _, row in lexeme_database.iterrows():
                 try:
-                    klass = Lexicon.__get_paradigm(row,klass_map)
-                    paradigm = klass.split("_")[0]
+                    klass = row.Class
+                    paradigm = row.Paradigm
+#                    klass = Lexicon.__get_paradigm(row,klass_map)
+#                    paradigm = klass.split("_")[0]
                     self.lexicons[f"{paradigm}:Stems"].add(
                         LexcEntry(f"{paradigm}:Stems",
-                                  escape(row["lemma"]),
-                                  re.sub("N$", "n", escape(row["stem"])),
+                                  escape(row.Lemma),
+                                  escape(row.Stem),
                                   f"{paradigm}:Class={klass}:Boundary"))
                 except ValueError as e:
                     warn(e)

@@ -9,11 +9,12 @@ from log import info
 @click.command()
 @click.option('--config-file', required=True, help="JSON config file")
 @click.option('--source-path', required=True, help="Path to the source files for the FST (e.g. your BorderLakesMorph directory)")
+@click.option('--database-path', required=False, default="", help="Path to lexical database directory")
 @click.option('--lexc-path', required=True,
               help="Directory where output lexc files are stored")
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
-def main(config_file,source_path,lexc_path,read_lexical_database):
+def main(config_file,source_path,lexc_path,database_path,read_lexical_database):
     info(f"Configure file {config_file}:")
     config = json.load(open(config_file))
     info(json.dumps(config, indent=2))
@@ -24,6 +25,7 @@ def main(config_file,source_path,lexc_path,read_lexical_database):
     lexicon = Lexicon(config,
                       source_path,
                       lexc_path,
+                      database_path,
                       read_lexical_database,
                       regular=True)
     info(f"Writing lexc output to {config['regular_lexc_file']}")
@@ -37,15 +39,16 @@ def main(config_file,source_path,lexc_path,read_lexical_database):
     irregular_lexicon = Lexicon(config,
                                 source_path,
                                 lexc_path,
+                                database_path,
                                 read_lexical_database=False,
                                 regular=False)
     info(f"Writing lexc output to {config['irregular_lexc_file']}")
     irregular_lexicon.write_lexc()
 
     if config["template_path"] != "None":
-        info("Reading preverb template file from directory:",
+        info("Reading preverb/prenoun template file from directory:",
              f"{config['template_path']}")
-        info("Reading preverb spreadsheets from directory:",
+        info("Reading preverb/prenoun spreadsheets from directory:",
              f"{config['pv_source_path']}")
         info(f"Writing lexc output to directory {lexc_path}")
         render_pv_lexicon(config,source_path,lexc_path)

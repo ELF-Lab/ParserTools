@@ -3,8 +3,10 @@ PYTHON=python3
 FOMA=foma
 
 # Source files
-# Change this to match your source directory
+# Change this to match your source morphology directory
 MORPHOLOGYSRCDIR=~/src/OjibweMorph
+# Change this to match your Lexical database directory
+DATABASEDIR=~/src/OPDDatabase
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -23,9 +25,12 @@ LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
 all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
 
+release:all
+	zip generated.zip generated/*
+
 generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p generated
-	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --lexc-path generated
+	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path generated
 
 %/phonology.xfst:$(MORPHOLOGYSRCDIR)/xfst/phonology.xfst
 	mkdir -p $*
@@ -67,7 +72,7 @@ database_yaml_output:
 
 check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
 	mkdir -p check-generated
-	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --lexc-path check-generated --read-lexical-database False
+	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path check-generated --read-lexical-database False
 
 check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc) check-generated/phonology.xfst
 	mkdir -p check-generated
