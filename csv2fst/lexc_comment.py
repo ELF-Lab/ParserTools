@@ -42,8 +42,8 @@ def print_to_index(substring, string, i):
     return "".join(string)
     
 def comment_block(lex_name):
-    border = "#" * COMMENT_BLOCK_WIDTH
-    comment_template = "#" + " " * (COMMENT_BLOCK_WIDTH - 2) + "#"
+    border = "!" * COMMENT_BLOCK_WIDTH
+    comment_template = "!" + " " * (COMMENT_BLOCK_WIDTH - 2) + "!"
     comment_lines = comment_str(lex_name)
     block = ([border,
               comment_template] +
