@@ -28,7 +28,7 @@ all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
 release:all
 	zip generated.zip generated/*
 
-generated/%.lexc:$(MORPHOLOGYSRCDIR)/%.json
+generated/%.lexc:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p generated
 	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path generated
 
