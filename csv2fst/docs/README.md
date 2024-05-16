@@ -7,7 +7,7 @@ The word form *walked* can be split into two *morphemes*:
 * The **stem** *walk* and
 * the **affix** *ed*.
 
-The stem is the **unchanging** part of all inflected forms of *walk*, namely, *walk*., *walks*, *walking*, *walked*. The set of all inflected forms of *walk* is called the *lexeme* /walk/. The lexeme is denoted using one of the inflected forms of *walk*. In the case of English verbs, this is the infinitive form.   
+The stem is the **unchanging** part of all inflected forms of *walk*, namely, *walk*, *walks*, *walking*, *walked*. The set of all inflected forms of *walk* is called the *lexeme* /walk/. The lexeme is denoted using one of the inflected forms of *walk*. In the case of English verbs, this is the infinitive form.   
 
 Inflectional affixes that occur before the stem are called **prefixes**, affixes that occur after the stem are called **suffixes**.
 
