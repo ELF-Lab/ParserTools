@@ -2,7 +2,7 @@
 
 Morphological FST analyzers translate an input **word form** like *walked* into an **analysis** like `walk+V+Past`. 
 
-The word form *walked* can be split into two *morphemes*: 
+The word form *walked* can be split into two **morphemes**: 
 
 * The **stem** *walk* and
 * the **affix** *ed*.
