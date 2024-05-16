@@ -7,9 +7,13 @@ The word form *walked* can be split into two *morphemes*:
 * The **stem** *walk* and
 * the **affix** *ed*.
 
-The stem is the **unchanging** part of all inflected forms of *walk*, namely, *walk*, *walks*, *walking*, *walked*. The set of all inflected forms of *walk* is called the *lexeme* /walk/. The lexeme is denoted using one of the inflected forms of *walk*. In the case of English verbs, this is the infinitive form.   
+The stem is the **unchanging** part of all inflected forms of *walk*, namely, *walk*, *walks*, *walking*, *walked*. The set of all inflected forms of *walk* is called the *lexeme* /walk/. The lexeme is denoted using one of the inflected forms of *walk* which is called the **base form** or **lemma** of the /walk/ lexeme. In the case of English verbs, this is the infinitive form.   
 
 Inflectional affixes that occur before the stem are called **prefixes**, affixes that occur after the stem are called **suffixes**.
+
+The morphological analysis `walk+V+Past` consists of the lemma `walk` and a number of **morphological features** like `+V` and `+Past` which here mark part of speech and tense, respectively.
+
+Some word forms like *walks* are **ambiguous** in the sense that they correspond to two or more analyses. The form *walks* can be analyzed either as `walk+V+3Sg+Pres` (the 3rd singular present tense form of the verb walk) or `walk+N+Pl` (the plural form of the noun walk). This is called **morphological ambiguity**. An FST morphological analyzer should return all of the possible analyses given an input form like *walk*. 
 
 ## Ojibwe verbs
 
