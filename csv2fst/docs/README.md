@@ -13,7 +13,7 @@ Inflectional affixes that occur before the stem are called **prefixes** and affi
 
 The morphological analysis `walk+V+Past` consists of the lemma `walk` and a number of **morphological features** like `+V` and `+Past` which here mark part of speech and tense, respectively.
 
-Some word forms like *walks* are **ambiguous** in the sense that they correspond to two or more analyses. The form *walks* can be analyzed either as `walk+V+3Sg+Pres` (the 3rd singular present tense form of the verb walk) or `walk+N+Pl` (the plural form of the noun walk). This is called **morphological ambiguity**. An FST morphological analyzer should return all of the possible analyses given an input form like *walk*. 
+Some word forms like *walks* are **ambiguous** in the sense that they correspond to more than one analysis. The form *walks* can be analyzed either as `walk+V+3Sg+Pres` (the 3rd singular present tense form of the verb walk) or `walk+N+Pl` (the plural form of the noun walk). This is called **morphological ambiguity**. An FST morphological analyzer should return all of the possible analyses given an input form like *walk*. 
 
 ## Ojibwe verbs
 
