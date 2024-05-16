@@ -1,6 +1,6 @@
 ## A bit of terminology
 
-Morphological FST analyzers translate an input **word form** like *walked* into an **analysis** like =walk+V+Past=. 
+Morphological FST analyzers translate an input **word form** like *walked* into an **analysis** like `walk+V+Past`. 
 
 The word form *walked* can be split into two *morphemes*: 
 
