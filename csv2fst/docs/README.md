@@ -5,7 +5,7 @@ Morphological FST analyzers translate an input **word form** like *walked* into 
 The word form *walked* can be split into two **morphemes**: 
 
 * The **stem** *walk* and
-* the **affix** *ed*.
+* the **affix** *ed* (sometimes denoted as *-ed* to mark that it is bound to the stem).
 
 The stem is the **unchanging** part of all inflected forms of *walk*, namely, *walk*, *walks*, *walking*, *walked*. The set of all inflected forms of *walk* is called the *lexeme* /walk/. The lexeme is denoted using one of the inflected forms of *walk* which is called the **base form** or **lemma** of the /walk/ lexeme. In the case of English verbs, this is the infinitive form.   
 
