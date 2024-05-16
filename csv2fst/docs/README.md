@@ -17,7 +17,7 @@ Some word forms like *walks* are **ambiguous** in the sense that they correspond
 
 ## Ojibwe verbs
 
-Ojibwe verbforms can be split into three segments:
+Ojibwe verb forms split into three segments:
 
 1. Prefix
 2. Stem
@@ -27,16 +27,29 @@ The following example illustrates this division:
 
 ![Ojibwe verb](word.png)
 
-### The verb prefix
+### Verb prefix
 
-The prefix can consist of several elements falling into two categories. The prefix can start with a person prefix which can be followed by one or more preverbs. One or both of these can also be missing.
+The prefix can be empty or consist of several elements falling into two categories. The prefix starts with a **person prefix** which is followed by zero or more **preverbs**.
 
 #### Person prefix
 
-The person prefix marks subject. It is exclusively present in the independent order (see below) and only for the VAIO, VTI and VTA paradigms (see below) which take both a subject and an object. In the illustration above, the verb prefix contains the person prefix *ni* and a preverb *gii-*
+The person prefix denotes the subject of the verb. It is exclusively present in the independent order (see below) and only for the VAIO, VTI and VTA paradigms (see below), which take both a subject and an object. In the illustration above, the verb prefix contains the person prefix *ni* and a preverb *gii-*
 
-Preverbs are marked by a preverb tag like *PVTense/gii+* in the verb analysis. 
+Preverbs are marked by a preverb tag like *PVTense/gii+* in the verb analysis. There are five types preverb markers:
 
-### The verb stem
+1. `PVSub/xyz` & `ChCnj+` (subordinate preverb and changed conjunct marker)
+2. `PVTense/xyz` (tense preverb)
+3. `PVDir/xyz` (directional preverb)
+4. `PDLex/xyz` (lexical preverb)
+
+Where `xyz` is the canonical form of the preverb, e.g. `PVTense/gii+`, `PVTense/ga+` and `PVSub/a+`. In the example above, we can see that the analysis contains the tag `PVTense/gii+` which in the word form is realized as the prefix `gii-`.
+
+The changed conjunct marker differs from the other preverbs in the sense that it is not realized as a prefix. Rather, it causes a *phonoloigcal alternation* in the first vowel of the word form.  
+
+### The verb stem and lexeme
+
+The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. 
 
 ### The verb suffix
+
+The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a contiguous string like *aabaniig* in the example above. In reality, it consists of several smaller suffixes with complex dependencies that are difficult to model. 
