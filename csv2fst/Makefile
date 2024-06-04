@@ -20,10 +20,10 @@ endif
 MORPHTEST=$(GTCORE)/scripts/morph-test.py 
 
 # Definitions for building the LEXC files
-POS=verbs nouns pronouns
+POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
-all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin
+all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin generated/ojibwe.att
 
 release:all
 	zip generated.zip generated/*
