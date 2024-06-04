@@ -44,7 +44,7 @@ def split_form(form:str) -> SplitForm:
     # suffix]
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
-        raise ValueError(f"Invald form: {form.to_dict()}")
+        raise ValueError(f"Invald form: {form}")
     return SplitForm(form[0], form[2], form[4])
 
 
