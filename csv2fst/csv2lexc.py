@@ -3,7 +3,7 @@ import json
 from os.path import join as pjoin
 
 from lexicon import Lexicon
-from templates import render_pv_lexicon
+from templates import render_pre_element_lexicon
 from log import info
 
 @click.command()
@@ -34,24 +34,25 @@ def main(config_file,source_path,lexc_path,database_path,read_lexical_database):
     # We'll then compile irregular paradigms into a different LEXC
     # file. These need to be separated because, later on, phonological
     # rules are only applied to regular paradigms.
-    info("Reading spreadsheets for irregular paradigms from directory:",
-         f"{pjoin(source_path,config['morphology_source_path'])}")
-    irregular_lexicon = Lexicon(config,
-                                source_path,
-                                lexc_path,
-                                database_path,
-                                read_lexical_database=False,
-                                regular=False)
-    info(f"Writing lexc output to {config['irregular_lexc_file']}")
-    irregular_lexicon.write_lexc()
+    if config['irregular_lexc_file'] != "None":
+        info("Reading spreadsheets for irregular paradigms from directory:",
+             f"{pjoin(source_path,config['morphology_source_path'])}")
+        irregular_lexicon = Lexicon(config,
+                                    source_path,
+                                    lexc_path,
+                                    database_path,
+                                    read_lexical_database=False,
+                                    regular=False)
+        info(f"Writing lexc output to {config['irregular_lexc_file']}")
+        irregular_lexicon.write_lexc()
 
     if config["template_path"] != "None":
-        info("Reading preverb/prenoun template file from directory:",
+        info("Reading preverb/prenoun template file from:",
              f"{config['template_path']}")
         info("Reading preverb/prenoun spreadsheets from directory:",
              f"{config['pv_source_path']}")
         info(f"Writing lexc output to directory {lexc_path}")
-        render_pv_lexicon(config,source_path,lexc_path)
+        render_pre_element_lexicon(config,source_path,lexc_path)
 
     
 if __name__=="__main__":
