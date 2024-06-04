@@ -1,7 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 import pandas as pd
 from os import listdir
-from os.path import join as pjoin, expanduser
+from os.path import join as pjoin, expanduser, basename, dirname
 from math import isnan
 
 """ This module should be made more general because we want to use it
@@ -44,34 +44,40 @@ def get_allomorph(pv,order_filter):
         raise ValueError(f"Unknown order filter {order_filter}")
     return None if allomorph == None else (canonical, allomorph)
 
-def get_load_preverb_csv(source_dir):
-    def load_preverb_csv(csv_fn,pv_tag,next_pv_lexicon,order_filter):
+def get_load_pre_element_csv(source_dir):
+#    def load_pre_element_csv(csv_fn,pv_tag,next_pv_lexicon,order_filter):
+    def load_pre_element_csv(sources,next_pv_lexicon,order_filter):
         entries = []
-        df = pd.read_csv(pjoin(source_dir, csv_fn))
-        for _, pv in df.iterrows():
-            res = get_allomorph(pv, order_filter)
-            if res != None:
-                canonical, allomorph = res
-                canonical = pv_tag + canonical
-                # If the allomorph has a disallow changed conjunct
-                # tag, add one to the canonical form as well
-                if allomorph.find(NO_CH_CONJUNCT) != -1:
-                    canonical = NO_CH_CONJUNCT + canonical
-                entries.append(
-                    f"{canonical}+:{allomorph} {next_pv_lexicon} ;")
+        for csv_fn, pv_tag in sources:
+            df = pd.read_csv(pjoin(source_dir, csv_fn))
+            for _, pv in df.iterrows():
+                res = get_allomorph(pv, order_filter)
+                if res != None:
+                    canonical, allomorph = res
+                    canonical = pv_tag + canonical
+                    # If the allomorph has a disallow changed conjunct
+                    # tag, add one to the canonical form as well
+                    if allomorph.find(NO_CH_CONJUNCT) != -1:
+                        canonical = NO_CH_CONJUNCT + canonical
+                    entries.append(
+                        f"{canonical}+:{allomorph} {next_pv_lexicon} ;")
         if entries == []:
             entries = ["%<EMPTYLEX%> # ;"]
         return "\n".join(entries)
-    return load_preverb_csv
+    return load_pre_element_csv
 
-def get_generate_preverb_sub_lexicons(source_dir):
-    load_preverb_csv = get_load_preverb_csv(source_dir)
-    def generate_preverb_sub_lexicons(csv_fn,pv_tag,pv_lexicon):
+def get_generate_pre_element_sub_lexicons(source_dir):
+    load_pre_element_csv = get_load_pre_element_csv(source_dir)
+#    def generate_pre_element_sub_lexicons(csv_fn,pv_tag,pv_lexicon):
+    def generate_pre_element_sub_lexicons(sources,pv_lexicon):
         lexicons = [(f"LEXICON {pv_lexicon}{order_filter}\n" +
-                     load_preverb_csv(csv_fn,
-                                      pv_tag,
-                                      f"{pv_lexicon}Boundary",
-                                      order_filter))
+#                     load_pre_element_csv(csv_fn,
+#                                          pv_tag,
+#                                          f"{pv_lexicon}Boundary",
+#                                          order_filter))
+                     load_pre_element_csv(sources,
+                                          f"{pv_lexicon}Boundary",
+                                          order_filter))                     
                      for order_filter in ["Any",
                                           "Independent",
                                           "PlainConjunct",
@@ -79,7 +85,7 @@ def get_generate_preverb_sub_lexicons(source_dir):
         lexicons.append(f"""LEXICON {pv_lexicon}Boundary 
 {CLEAR_CH_CONJUNCT}:{CLEAR_CH_CONJUNCT}- {pv_lexicon} ;""")
         return "\n\n".join(lexicons)
-    return generate_preverb_sub_lexicons
+    return generate_pre_element_sub_lexicons
 
 def pretty_join(str_list):
     lines = [""]
@@ -92,37 +98,38 @@ def pretty_join(str_list):
             lines.append(s)
     return "\n".join(lines)
 
-def get_all_preverb_tags(source_dir):
-    def all_preverb_tags():
-        preverb_tags = set()
+def get_all_pre_element_tags(source_dir):
+    def all_pre_element_tags(tag_transformation='lambda x:x'):
+        pre_element_tags = set()
+        tag_transformation = eval(tag_transformation)
         for fn in listdir(path=source_dir):
             if fn.endswith(".csv"):
                 df = pd.read_csv(pjoin(source_dir,fn))
-                preverb_tags.update(zip(df["Tag"],df["PV"]))
-        preverb_tags = sorted(list(preverb_tags))
-        return pretty_join([f"{tag}/{pv}+" for tag, pv in preverb_tags])
+                df.Tag = df.Tag.transform(tag_transformation)
+                pre_element_tags.update(zip(df["Tag"],df["PV"]))
+        pre_element_tags = sorted(list(pre_element_tags))
+        return pretty_join([f"{tag}/{pv}+" for tag, pv in pre_element_tags])
     
-    return all_preverb_tags
+    return all_pre_element_tags
 
-def render_pv_lexicon(config,source_path,lexc_path):
+def render_pre_element_lexicon(config,source_path,lexc_path):
     csv_src_path = pjoin(source_path,config['pv_source_path'])
-    template_file = "preverbs.lexc.j2"
-    template_dir = pjoin(expanduser(source_path),config['template_path'])
+    template_file = basename(config['template_path'])
+    template_dir = pjoin(expanduser(source_path),
+                         dirname(config['template_path']))
     env = Environment(loader=FileSystemLoader(template_dir))
     jinja_template = env.get_template(template_file)
     func_dict = {
-        "all_preverb_tags":
-        get_all_preverb_tags(csv_src_path),
-        "load_preverb_csv":
-        get_load_preverb_csv(csv_src_path),
-        "generate_preverb_sub_lexicons":
-        get_generate_preverb_sub_lexicons(csv_src_path)
+        "all_pre_element_tags":
+        get_all_pre_element_tags(csv_src_path),
+        "load_pre_element_csv":
+        get_load_pre_element_csv(csv_src_path),
+        "generate_pre_element_sub_lexicons":
+        get_generate_pre_element_sub_lexicons(csv_src_path)
     }
     jinja_template.globals.update(func_dict)
     template_string = jinja_template.render()
-    with open(pjoin(lexc_path, "preverbs.lexc"),"w") as f:
+    with open(pjoin(lexc_path, template_file.replace(".j2","")),"w") as f:
         print(template_string, file=f)
 
 
-if __name__ == "__main__":
-    print(render("../PVSpreadsheets","preverbs.lexc.j2","."))
