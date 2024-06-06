@@ -18,7 +18,7 @@ MAX_FORMS=10
 
 # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
 VERB_ANALYSIS= lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
-NOUN_ANALYSIS = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["PersPoss"], row["Dim"], row["Poss"], row["Pej"], row["Pret"], row["Basic"]])))
+NOUN_ANALYSIS = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Dim"], row["Poss"], row["Pej"], row["Pret"], row["Basic"], row["PersPoss"]])))
 
 def remove_NA_or_empty(value):
     has_a_value = True
