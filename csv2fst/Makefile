@@ -106,5 +106,5 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
 
 
 clean:
-	rm -rf generated check-generated paradigm_yaml_output database_yaml_output compile.log core-yaml-test.log yaml-test.log opd-test.log paradigm_yaml_output
+	rm -rf generated check-generated paradigm_yaml_output database_yaml_output compile.log core-yaml-test.log yaml-test.log opd-test.log paradigm_yaml_output csv_output
 
