@@ -3,6 +3,7 @@ import pandas as pd
 from os import listdir
 from os.path import join as pjoin, expanduser, basename, dirname
 from math import isnan
+from paradigm_slot import escape
 
 """ This module should be made more general because we want to use it
 to handle prenouns in addition to preverbs.  """
@@ -52,7 +53,7 @@ def get_load_pre_element_csv(source_dir):
             df = pd.read_csv(pjoin(source_dir, csv_fn))
             for _, pv in df.iterrows():
                 res = get_allomorph(pv, order_filter)
-                if res != None:
+                if res != None and not "NONE" in res:
                     canonical, allomorph = res
                     canonical = pv_tag + canonical
                     # If the allomorph has a disallow changed conjunct
@@ -60,7 +61,7 @@ def get_load_pre_element_csv(source_dir):
                     if allomorph.find(NO_CH_CONJUNCT) != -1:
                         canonical = NO_CH_CONJUNCT + canonical
                     entries.append(
-                        f"{canonical}+:{allomorph} {next_pv_lexicon} ;")
+                        f"{escape(canonical)}+:{escape(allomorph)} {next_pv_lexicon} ;")
         if entries == []:
             entries = ["%<EMPTYLEX%> # ;"]
         return "\n".join(entries)
@@ -112,6 +113,11 @@ def get_all_pre_element_tags(source_dir):
     
     return all_pre_element_tags
 
+def get_add_lexeme_multichar_symbols(config):
+    def add_lexeme_multichar_symbols():
+        return pretty_join([escape(symbol) for symbol in config["multichar_symbols"]])
+    return add_lexeme_multichar_symbols
+
 def render_pre_element_lexicon(config,source_path,lexc_path):
     csv_src_path = pjoin(source_path,config['pv_source_path'])
     template_file = basename(config['template_path'])
@@ -125,7 +131,9 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
         "load_pre_element_csv":
         get_load_pre_element_csv(csv_src_path),
         "generate_pre_element_sub_lexicons":
-        get_generate_pre_element_sub_lexicons(csv_src_path)
+        get_generate_pre_element_sub_lexicons(csv_src_path),
+        "add_lexeme_multichar_symbols":
+        get_add_lexeme_multichar_symbols(config)
     }
     jinja_template.globals.update(func_dict)
     template_string = jinja_template.render()
