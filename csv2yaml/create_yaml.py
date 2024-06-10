@@ -134,7 +134,8 @@ Tests:
 
 def generate_analysis(json_file):
     config = load(open(json_file))
-    tags = config["morph_features"]
+    tags = ["Lemma"]
+    tags.extend(config["morph_features"])
 
     # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
     analysis = lambda row: "+".join(list(filter(remove_NA_or_empty,[row[x] for x in tags])))
