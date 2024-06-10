@@ -5,6 +5,8 @@ FOMA=foma
 # Source files
 # Change this to match your source morphology directory
 MORPHOLOGYSRCDIR=~/src/OjibweMorph
+VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
+NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
 DATABASEDIR=~/src/OPDDatabase
 
@@ -60,14 +62,14 @@ check: check-core-yaml check-yaml check-database
 paradigm_yaml_output:
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=verb
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets $(VERB_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=noun
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets $(NOUN_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=noun
 	mv yaml_output/* $@
 
 database_yaml_output:
-	$(PYTHON) ../scrapedcsv2yaml/create_csv_from_scraped.py $(MORPHOLOGYSRCDIR)/Database/inflectional_forms.csv ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
-	$(PYTHON) $(CREATEYAML) csv_output/ ./ --pos=verb
+	$(PYTHON) ../scrapedcsv2yaml/create_csv_from_scraped.py $(DATABASEDIR)/data/OPD_inflectional_forms.csv ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
+	$(PYTHON) $(CREATEYAML) csv_output/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output $@
 
 check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/config/%.json
