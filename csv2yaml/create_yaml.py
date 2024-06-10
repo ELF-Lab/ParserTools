@@ -6,6 +6,7 @@
 #!/bin/env python3
 
 import argparse
+from json import load
 import os
 import pandas as pd
 import shutil
@@ -15,10 +16,6 @@ import shutil
 MAX_FORMS=10
 
 # Run just `python3 create_yaml.py` to view help.
-
-# Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
-VERB_ANALYSIS= lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Order"], row["Negation"], row["Mode"], row["Subject"], row["Object"]])))
-NOUN_ANALYSIS = lambda row: "+".join(list(filter(remove_NA_or_empty, [row["Lemma"], row["Paradigm"], row["Dim"], row["Poss"], row["Pej"], row["Pret"], row["Basic"], row["PersPoss"]])))
 
 def remove_NA_or_empty(value):
     has_a_value = True
@@ -135,10 +132,19 @@ Tests:
 
     return regular_yaml_line_count, core_yaml_line_count
 
+def generate_analysis(json_file):
+    config = load(open(json_file))
+    tags = config["morph_features"]
+
+    # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
+    analysis = lambda row: "+".join(list(filter(remove_NA_or_empty,[row[x] for x in tags])))
+    return analysis
+
 if __name__ == '__main__':
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_yaml")
     parser.add_argument("csv_directory", type=str, help="Path to the directory containing the spreadsheet(s).")
+    parser.add_argument("morphological_tag_file", type=str, help="Path to the JSON file containing \"morph_features\", specifying the order of tags for this POS.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\"")
     parser.add_argument("--pos", dest="pos", action="store", default="verb", help="Which POS are we generating tests for (noun or verb).")
@@ -147,15 +153,17 @@ if __name__ == '__main__':
 
     files_generated = False
 
+    analysis = generate_analysis(args.morphological_tag_file)
+
     regular_yaml_line_count = 0
     core_yaml_line_count = 0
     for file_name in os.listdir(args.csv_directory):
         full_name = os.path.join(args.csv_directory, file_name)
         if full_name.endswith(".csv") and args.pos == "verb":
-            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, VERB_ANALYSIS, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
+            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, analysis, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
             files_generated = True # At least one, anyways
         if full_name.endswith(".csv") and args.pos == "noun":
-            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, NOUN_ANALYSIS, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
+            regular_yaml_line_count, core_yaml_line_count = make_yaml(full_name, output_directory, analysis, args.non_core_tags, regular_yaml_line_count, core_yaml_line_count)
             files_generated = True # At least one, anyways
 
     if files_generated:
