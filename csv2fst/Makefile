@@ -23,20 +23,25 @@ MORPHTEST=$(GTCORE)/scripts/morph-test.py
 POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 
-all:$(LEXCTARGETS:%=generated/%) generated/ojibwe.fomabin generated/ojibwe.att
+all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att
 
 release:all
 	zip generated.zip generated/*
 
-generated/%.lexc:$(MORPHOLOGYSRCDIR)/config/%.json
+generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p generated
-	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path generated
+	$(PYTHON) csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+                              --source-path $(MORPHOLOGYSRCDIR) \
+                              --database-path $(DATABASEDIR) \
+                              --lexc-path generated
+	cd generated; \
+        cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
 %/phonology.xfst:$(MORPHOLOGYSRCDIR)/xfst/phonology.xfst
 	mkdir -p $*
 	cp $^ $@
 
-generated/ojibwe.fomabin:$(LEXCTARGETS:%=generated/%) generated/phonology.xfst 
+generated/ojibwe.fomabin:generated/all.lexc generated/phonology.xfst 
 	mkdir -p generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd generated; $(FOMA) -f phonology.xfst
@@ -70,11 +75,17 @@ database_yaml_output:
 	$(PYTHON) $(CREATEYAML) csv_output/ ./ --pos=verb
 	mv yaml_output $@
 
-check-generated/%.lexc:$(MORPHOLOGYSRCDIR)/config/%.json
+check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p check-generated
-	$(PYTHON) csv2lexc.py --config-file $^ --source-path $(MORPHOLOGYSRCDIR) --database-path $(DATABASEDIR) --lexc-path check-generated --read-lexical-database False
+	$(PYTHON) csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+                              --source-path $(MORPHOLOGYSRCDIR) \
+                              --database-path $(DATABASEDIR) \
+                              --lexc-path check-generated \
+                              --read-lexical-database False
+	cd check-generated; \
+        cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
-check-generated/ojibwe.fomabin:$(POS:%=check-generated/ojibwe_%.lexc) check-generated/phonology.xfst
+check-generated/ojibwe.fomabin:check-generated/all.lexc check-generated/phonology.xfst 
 	mkdir -p check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd check-generated; $(FOMA) -f phonology.xfst

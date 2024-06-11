@@ -51,18 +51,18 @@ def split_form(form:str) -> SplitForm:
 class ParadigmSlot:
     # All multichar symbols (across the entire lexc file) are stored
     # in this static set
-    multichar_symbols:set[str] = None
+    multichar_symbols:set[str] = set()
     pre_element_tag:str = None
     
     @classmethod
-    def __init_multichar_symbol_set(cls, conf:dict) -> None:
+    def update_multichar_symbol_set(cls, conf:dict) -> None:
         """Must be called when the first ParadigmSlot object is
            initialized."""
-        cls.multichar_symbols = set(map(escape,conf["multichar_symbols"]))
-        cls.pre_element_tag = escape(conf["pre_element_tag"])
+        cls.multichar_symbols.update(set(map(escape,conf["multichar_symbols"])))
+        #cls.pre_element_tag = escape(conf["pre_element_tag"])
         cls.multichar_symbols.add(escape(PREFIX_BOUNDARY))
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
-        cls.multichar_symbols.add(cls.pre_element_tag)
+        #cls.multichar_symbols.add(cls.pre_element_tag)
         
     @classmethod
     def __get_prefix_flags(cls, prefix:str) -> tuple[str]:
@@ -76,6 +76,12 @@ class ParadigmSlot:
         cls.multichar_symbols.update([pflag, rflag])
         return pflag, rflag
 
+    @classmethod
+    def __get_paradigm_flags(cls, paradigm:str) -> tuple[str]:
+        pflag, rflag = f"@P.Paradigm.{paradigm}@", f"@R.Paradigm.{paradigm}@"
+        cls.multichar_symbols.update([pflag, rflag])        
+        return pflag, rflag
+    
     def __get_order_flag(self) -> tuple[str]:
         order = "Other"
         if "+Ind" in self.tags:
@@ -85,8 +91,9 @@ class ParadigmSlot:
         flag = f"@U.Order.{order}@"
         ParadigmSlot.multichar_symbols.update([flag])
         return order, flag
-        
+
     def __init__(self, row, conf, regular:bool):
+        self.root_lexicon = conf["root_lexicon"]
         self.row = row
         self.conf = conf
         self.regular = regular
@@ -97,8 +104,8 @@ class ParadigmSlot:
         self.tags = [escape(f"+{row[feat]}")
                      for feat in conf["morph_features"]
                      if row[feat] != conf["missing_tag_marker"]]
-        if ParadigmSlot.multichar_symbols == None:
-            ParadigmSlot.__init_multichar_symbol_set(conf)
+#        if ParadigmSlot.multichar_symbols == None:
+#        ParadigmSlot.__upda_multichar_symbol_set(conf)
         self.__harvest_multichar_symbols()
 
         try:
@@ -125,8 +132,9 @@ class ParadigmSlot:
         
     def __get_lexc_paths(self) -> list[list[LexcEntry]]:
         """Convert this slot entry into a list of lexc lexicon paths starting
-           at the Root lexicon and ending in #. Each path is a
-           sequence of lexc sublexicon entries.
+           at the ROOT lexicon (this could be VerbRoot, NounRoot etc.)
+           and ending in #. Each path is a sequence of lexc sublexicon
+           entries.
 
            There will be one path for each surface form.
 
@@ -134,7 +142,7 @@ class ParadigmSlot:
            like this (here, for the example analysis and form
            aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):
 
-              LEXICON Root
+              LEXICON ROOT
               VTA:Prefix ;
 
               LEXICON VTA:Prefix
@@ -162,7 +170,7 @@ class ParadigmSlot:
            very simple. We just enumerate the entire form as one
            chunk:
 
-              LEXICON Root
+              LEXICON ROOT
               VTA:Irregular ;
 
               LEXICON VTA:Irregular
@@ -175,25 +183,29 @@ class ParadigmSlot:
         pre_tag = ParadigmSlot.pre_element_tag
         for surface, parts in self.forms:
             if self.regular:
-                pflag, rflag = ParadigmSlot.__get_prefix_flags(parts.prefix)
-                order, rorderflag = self.__get_order_flag()
+                p_prefix_flag, r_prefix_flag = ParadigmSlot.__get_prefix_flags(parts.prefix)
+                _, r_paradigm_flag = ParadigmSlot.__get_paradigm_flags(paradigm)
+                order, r_order_flag = self.__get_order_flag()
                 prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
                 # The following lexc sublexicon entries generate this form. 
                 path = [
                     # @P.Prefix.<X>@:@P.Prefix.<X>@<x> <Paradigm>:PrefixBoundary ;
                     LexcEntry(f"{paradigm}:Prefix",
-                              pflag,
-                              pflag+parts.prefix,
+                              p_prefix_flag,
+                              p_prefix_flag+parts.prefix,
                               f"{paradigm}:PrefixBoundary"),
                     # 0:%<%< <Paradigm>:PreElement ;
                     LexcEntry(f"{paradigm}:PrefixBoundary",
                               "0",
                               escape(PREFIX_BOUNDARY),
-                              f"{paradigm}:PreElement"),
+                              self.conf["prefix_root"]
+                              if "prefix_root" in self.conf
+                              else f"{self.conf['pos']}Stems"),
+#                              f"{paradigm}:PreElement"),
                     # <PreElement> <Paradigm>:Stems ;
-                    LexcEntry(f"{paradigm}:PreElement",
-                              pre_tag,
-                              pre_tag,
+                    LexcEntry(f"{self.conf['pos']}Stems",
+                              r_paradigm_flag,
+                              r_paradigm_flag,
                               f"{paradigm}:Stems"),
                     # <lemma>:<stem> <Paradigm>:Class=<class>:Boundary ;
                     LexcEntry(f"{paradigm}:Stems",
@@ -207,13 +219,13 @@ class ParadigmSlot:
                               f"{paradigm}:Class={klass}:Flags"),
                     # @R.Prefix.<X>@ <Paradigm>:Class=<class>:Prefix=<X>:Endings ;
                     LexcEntry(f"{paradigm}:Class={klass}:Flags",
-                              rflag,
-                              rflag,
+                              r_prefix_flag,
+                              r_prefix_flag,
                               f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}"),
                     # @U.Order.<Y>@ <Paradigm>:Class=<class>:Prefix=<X>:Order=<Y>:Endings
                     LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}",
-                              rorderflag,
-                              rorderflag,
+                              r_order_flag,
+                              r_order_flag,
                               f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}:Endings"),
                     # <tags>:<ending> # ;
                     LexcEntry(f"{paradigm}:Class={klass}:Prefix={prefix_id}:Order={order}:Endings",
@@ -233,8 +245,15 @@ class ParadigmSlot:
 
     def extend_lexicons(self, lexicons:dict) -> None:
         """Add the lexc paths representing this slot to lexicons."""
+        def get_paradigm(s):
+            return re.sub(":.*","",s)
         for path in self.__get_lexc_paths():
-            lexicons["Root"].add(LexcEntry("Root","0","0",path[0].lexicon))
+            paradigm = get_paradigm(path[0].lexicon)
+            p_paradigm_flag, _ = ParadigmSlot.__get_paradigm_flags(paradigm)
+            lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
+                                                      p_paradigm_flag,
+                                                      p_paradigm_flag,
+                                                      path[0].lexicon))
             for lexc_entry in path:
                 if not lexc_entry.lexicon in lexicons:
                     lexicons[lexc_entry.lexicon] = set()

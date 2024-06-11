@@ -43,7 +43,23 @@ class Lexicon:
                 if re.match(pattern["Pattern"], element):
                     return pattern["Class"]
         raise ValueError(f"No matching pattern for lexical entry: {row.to_dict()}")
-            
+
+    @staticmethod
+    def write_multichar_symbols(multichar_symbol_set, lexc_file):
+        print("Multichar_Symbols",file=lexc_file)
+        multichar_symbols = sorted(list(multichar_symbol_set))
+        print(" ".join(multichar_symbols), file=lexc_file)
+        print("", file=lexc_file)
+
+    def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+        with open(root_lexc_filename,"w") as root_lexc_file:
+            Lexicon.write_multichar_symbols(ParadigmSlot.multichar_symbols,
+                                            root_lexc_file)
+            print("LEXICON Root", file=root_lexc_file)
+            for lexicon_name in pos_root_lexicons:
+                print(f"{lexicon_name} ;", file=root_lexc_file)
+            print("", file=root_lexc_file)
+        
     def __init__(self,
                  conf:dict,
                  source_path:str,
@@ -52,11 +68,13 @@ class Lexicon:
                  read_lexical_database:bool,
                  regular:bool):
         self.conf = conf
+        self.root_lexicon = conf["root_lexicon"]
         self.source_path = source_path        
         self.lexc_path = lexc_path
         self.regular = regular
-        self.lexicons = {"Root":set()}
-
+        self.lexicons = {self.root_lexicon:set()}
+        ParadigmSlot.update_multichar_symbol_set(self.conf)
+        
         csv_names = conf["regular_csv_files" if regular else "irregular_csv_files"]
         for name in csv_names:
             csv_file = os.path.join(os.path.join(self.source_path,
@@ -122,10 +140,6 @@ class Lexicon:
                                self.conf["regular_lexc_file" if self.regular
                                          else "irregular_lexc_file"])
         lexc_file = open(lexc_fn,"w")
-        print("Multichar_Symbols",file=lexc_file)
-        multichar_symbols = sorted(list(ParadigmSlot.multichar_symbols))
-        print(" ".join(multichar_symbols), file=lexc_file)
-        print("", file=lexc_file)
         info(f"Writing {len(self.lexicons)} sublexicons:")
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
