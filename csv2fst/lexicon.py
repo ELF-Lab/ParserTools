@@ -117,11 +117,11 @@ class Lexicon:
                     paradigm = row.Paradigm
 #                    klass = Lexicon.__get_paradigm(row,klass_map)
 #                    paradigm = klass.split("_")[0]
-                    self.lexicons[f"{paradigm}:Stems"].add(
-                        LexcEntry(f"{paradigm}:Stems",
+                    self.lexicons[f"{paradigm}_Stems"].add(
+                        LexcEntry(f"{paradigm}_Stems",
                                   escape(row.Lemma),
                                   escape(row.Stem),
-                                  f"{paradigm}:Class={klass}:Boundary"))
+                                  f"{paradigm}_Class={klass}_Boundary"))
                 except ValueError as e:
                     warn(e)
                     skipped += 1
