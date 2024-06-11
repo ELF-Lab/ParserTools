@@ -218,6 +218,17 @@ def add_person_and_number(form_with_info):
     else:
         form_with_info["Object"] = "NA"
 
+    # Our tags also have "Subj" or "Obj" at the end e.g., 2SgSubj
+    if type(form_with_info["Subject"]) == str:
+        form_with_info["Subject"] = form_with_info["Subject"] + "Subj"
+    elif type(form_with_info["Subject"]) == list:
+        form_with_info["Subject"] = [x + "Subj" for x in form_with_info["Subject"]]
+
+    if type(form_with_info["Object"]) == str:
+        form_with_info["Object"] = form_with_info["Object"] + "Obj"
+    elif type(form_with_info["Object"]) == list:
+        form_with_info["Object"] = [(x + "Obj") for x in form_with_info["Object"]]
+
     return form_with_info
 
 # Neu, Prt, Dub, DubPrt, with Neu being the default
