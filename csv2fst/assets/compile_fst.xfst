@@ -1,0 +1,26 @@
+! This script is used to apply the rules in phonology.xfst to the
+! master lexc file all.lexc
+
+! Read lexc file from disk and compile
+read lexc all.lexc
+define Lexicon ;
+
+! Read rule file from disk and compile
+source phonology.xfst
+define Rules ;
+
+! Make sure that flag diacritics don't interfere with composition.
+set flag-is-epsilon ON
+
+! Compose lexicon and rules
+read regex Lexicon .o. Rules ;
+
+! Eliminate all flags which configure lexicon combinatorics. This is
+! good practice because generation can get stuck in an infinite loop
+! when there are flags. The FST will grow but its behavior remains the
+! same.
+eliminate flags
+set flag-is-epsilon OFF
+
+save stack ojibwe.fomabin
+write att > ojibwe.att
