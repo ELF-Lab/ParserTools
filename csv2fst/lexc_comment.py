@@ -7,21 +7,21 @@ INITIAL_SPACE=10
 # Patterns and substitutions which can be used to translate lexc
 # sublexicon names to comments using re.sub().
 patterns = [
-    (r"(.*):Prefix", (r"Paradigm: \1",
+    (r"(.*)_Prefix", (r"Paradigm: \1",
                       r"Prefixes")),
-    (r"(.*):PrefixBoundary", (r"Paradigm: \1",
+    (r"(.*)_PrefixBoundary", (r"Paradigm: \1",
                               r"Morpheme boundary between prefix and stem")),
-    (r"(.*):PreElement", (r"Paradigm: \1",
+    (r"(.*)_PreElement", (r"Paradigm: \1",
                           r"Pre-verbs/nouns")),
-    (r"(.*):Stems", (r"Paradigm: \1",
+    (r"(.*)_Stems", (r"Paradigm: \1",
                      r"Stems")),
-    (r"(.*):Class=(.*):Boundary", (r"Paradigm: \1, Class: \2",
+    (r"(.*)_Class=(.*)_Boundary", (r"Paradigm: \1, Class: \2",
                                    r"Morpheme boundary between stem and suffix")),
-    (r"(.*):Class=(.*):Flags", (r"Paradigm: \1, Class: \2",
+    (r"(.*)_Class=(.*)_Flags", (r"Paradigm: \1, Class: \2",
                                 r"Flag diacritic governing combinations between",
                                 r"prefix and ending")),
-    (r"(.*):Class=(.*):Prefix=(.*):Order=(.*)", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",)),
-    (r"(.*):Class=(.*):Prefix=(.*):Order=(.*):Endings", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",
+    (r"(.*)_Class=(.*)_Prefix=(.*)_Order=(.*)", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",)),
+    (r"(.*)_Class=(.*)_Prefix=(.*)_Order=(.*)_Endings", (r"Paradigm: \1, Class: \2, Prefix: \3, Order: \4",
                                                          r"Endings")),
 ]
 
