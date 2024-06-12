@@ -43,10 +43,18 @@ generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p $*
 	cp $^ $@
 
-generated/ojibwe.fomabin:generated/all.lexc generated/phonology.xfst 
+generated/compile_fst.xfst:./assets/compile_fst.xfst
+	mkdir -p generated
+	cp $^ $@
+
+check-generated/compile_fst.xfst:./assets/compile_fst.xfst
+	mkdir -p check_generated
+	cp $^ $@
+
+generated/ojibwe.fomabin:generated/all.lexc generated/phonology.xfst generated/compile_fst.xfst
 	mkdir -p generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
-	cd generated; $(FOMA) -f phonology.xfst
+	cd generated; $(FOMA) -f compile_fst.xfst
 
 generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xfst 
 	cp assets/delete_alt_tag.xfst generated
@@ -87,10 +95,10 @@ check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json"
 	cd check-generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
-check-generated/ojibwe.fomabin:check-generated/all.lexc check-generated/phonology.xfst 
+check-generated/ojibwe.fomabin:check-generated/all.lexc check-generated/phonology.xfst check-generated/compile_fst.xfst 
 	mkdir -p check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
-	cd check-generated; $(FOMA) -f phonology.xfst
+	cd check-generated; $(FOMA) -f compile_fst.xfst
 
 check-core-yaml:check-generated/ojibwe.fomabin paradigm_yaml_output
 	rm -f core-yaml-test.log
