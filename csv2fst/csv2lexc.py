@@ -25,6 +25,7 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
     for config_file in config_files:
         info(f"Processing configuration file {config_file}:")
         config = json.load(open(config_file))
+        config["database_src_dir"] = database_path
         info(json.dumps(config, indent=2))
         pos_root_lexicons.add(config["root_lexicon"])
         
