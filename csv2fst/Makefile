@@ -60,6 +60,15 @@ generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xf
 	cp assets/delete_alt_tag.xfst generated
 	cd generated; $(FOMA) -f delete_alt_tag.xfst
 
+# For building spell checkers etc. using Giellatekno infrastructure.
+generated/lang-ciw:generated/all.lexc generated/phonology.xfst
+	cd generated; \
+        git clone git@github.com:giellalt/lang-ciw.git; \
+	cp root.lexc lang-ciw/src/fst/morphology/ ; \
+	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
+	cp $(LEXCTARGETS) lang-ciw/src/fst/morphology/stems/; \
+	cp preverbs.lexc prenouns.lexc lang-ciw/src/fst/morphology/stems/
+
 #####################################################################
 #                                                                   #
 #                             TESTS                                 #
