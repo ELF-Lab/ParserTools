@@ -15,11 +15,22 @@ set flag-is-epsilon ON
 ! Compose lexicon and rules
 read regex Lexicon .o. Rules ;
 
+! Get rid of unused multichar symbols in sigma. This prevents problems
+! where input character sequences are interpreted as a multicharacter
+! symbol
+compact sigma
+
 ! Eliminate all flags which configure lexicon combinatorics. This is
 ! good practice because generation can get stuck in an infinite loop
 ! when there are flags. The FST will grow but its behavior remains the
 ! same.
 eliminate flags
+
+! Let's filter out empty strings because those are annoying when you
+! run random-pairs. This can only be done after flag elimination.
+define Analyzer ;
+regex Analyzer .o. [ ?+ ] ;
+
 set flag-is-epsilon OFF
 
 save stack ojibwe.fomabin
