@@ -224,10 +224,11 @@ def add_person_and_number(form_with_info):
     elif type(form_with_info["Subject"]) == list:
         form_with_info["Subject"] = [x + "Subj" for x in form_with_info["Subject"]]
 
-    if type(form_with_info["Object"]) == str:
-        form_with_info["Object"] = form_with_info["Object"] + "Obj"
-    elif type(form_with_info["Object"]) == list:
-        form_with_info["Object"] = [(x + "Obj") for x in form_with_info["Object"]]
+    if form_with_info["Object"] != "NA":
+        if type(form_with_info["Object"]) == str:
+            form_with_info["Object"] = form_with_info["Object"] + "Obj"
+        elif type(form_with_info["Object"]) == list:
+            form_with_info["Object"] = [(x + "Obj") for x in form_with_info["Object"]]
 
     return form_with_info
 

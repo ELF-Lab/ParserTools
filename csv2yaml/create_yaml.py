@@ -19,7 +19,7 @@ MAX_FORMS=10
 
 def remove_NA_or_empty(value):
     has_a_value = True
-    if value == "" or value == "NONE":
+    if value == "" or value == "NONE" or value == "NA":
         has_a_value = False
 
     return has_a_value
@@ -70,7 +70,7 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
         for i in range(1, MAX_FORMS + 1):
             if f'Form{i}Surface' in row.keys() and row[f'Form{i}Surface']:
                 forms.append(row[f'Form{i}Surface'])
-            elif i == 1:
+            elif i == 1 and 'Form1' in row.keys():
                 forms.append(row['Form1'])
             else:
                 break
