@@ -4,6 +4,7 @@ from os import listdir
 from os.path import join as pjoin, expanduser, basename, dirname
 from math import isnan
 from paradigm_slot import escape, ParadigmSlot
+from re import sub
 
 """ This module should be made more general because we want to use it
 to handle prenouns in addition to preverbs.  """
@@ -45,6 +46,23 @@ def get_allomorph(pv,order_filter):
         raise ValueError(f"Unknown order filter {order_filter}")
     return None if allomorph == None else (canonical, allomorph)
 
+def get_load_pre_element_database(source_dir,prefix_database):
+    def load_pre_element_database(pv_tag,next_sublex):
+        res = ""
+        paradigm = sub("/$","",pv_tag)
+        if not prefix_database in ["None", None] and not source_dir in ["None", None] :
+            df = pd.read_csv(pjoin(source_dir, prefix_database))
+            for _, pv in df.iterrows():
+                if pv.Paradigm == paradigm:
+                    if res != "":
+                        res += "\n"
+                    tag = escape(f"{pv_tag}{pv.Lemma}+")
+                    # We need to register our preverb/prenoun tag as a multicharacter symbol
+                    ParadigmSlot.multichar_symbols.add(tag)
+                    res += f"{tag}:{pv.Stem} {next_sublex} ;"
+        return res    
+    return load_pre_element_database
+    
 def get_load_pre_element_csv(source_dir):
 #    def load_pre_element_csv(csv_fn,pv_tag,next_pv_lexicon,order_filter):
     def load_pre_element_csv(sources,next_pv_lexicon,order_filter):
@@ -58,7 +76,7 @@ def get_load_pre_element_csv(source_dir):
                     canonical = pv_tag + canonical
                     # We need to define preverb/prenoun tag as a multichar symbol
                     print(f"{escape(canonical)}+")
-                    ParadigmSlot.multichar_symbols.add(f"{escape(canonical)}+")                    
+                    ParadigmSlot.multichar_symbols.add(f"{escape(canonical)}+")
                     # If the allomorph has a disallow changed conjunct
                     # tag, add one to the canonical form as well
                     if allomorph.find(NO_CH_CONJUNCT) != -1:
@@ -127,12 +145,18 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
     template_dir = pjoin(expanduser(source_path),
                          dirname(config['template_path']))
     env = Environment(loader=FileSystemLoader(template_dir))
+    database_src_dir = config["database_src_dir"]
+    prefix_database = (config["lexical_prefix_database"]
+                       if "lexical_prefix_database" in config
+                       else "None")
     jinja_template = env.get_template(template_file)
     func_dict = {
         "all_pre_element_tags":
         get_all_pre_element_tags(csv_src_path),
         "load_pre_element_csv":
         get_load_pre_element_csv(csv_src_path),
+        "load_pre_element_database":
+        get_load_pre_element_database(database_src_dir,prefix_database),
         "generate_pre_element_sub_lexicons":
         get_generate_pre_element_sub_lexicons(csv_src_path),
         "add_lexeme_multichar_symbols":
