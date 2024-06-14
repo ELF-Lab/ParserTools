@@ -6,7 +6,7 @@ from log import warn
 
 # Maximum number of alternate forms for a single analysis in the
 # spreadsheets
-MAXFORMS=5
+MAXFORMS=100
 
 PREFIX_BOUNDARY = "<<"
 SUFFIX_BOUNDARY = ">>"
@@ -42,10 +42,16 @@ def split_form(form:str) -> SplitForm:
     """Split a form prefix<<stem>>suffix at boundaries."""
     # re.split results in a 5-element array [prefix, "<<", stem, ">>",
     # suffix]
+    if not "<<" in form:
+        form = "<<" + form
+        warn("Invalid form: {form}. Appending morpheme boundary '<<' at the start.")    
+    if not ">>" in form:
+        form += ">>"
+        warn("Invalid form: {form}. Aappending morpheme boundary '>>' at the end.")
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
-        raise ValueError(f"Invald form: {form}")
-    return SplitForm(form[0], form[2], form[4])
+        raise ValueError(f"Invalid form: {orig_form}. Split: {form}")
+    return SplitForm(escape(form[0]), escape(form[2]), escape(form[4]))
 
 
 class ParadigmSlot:
@@ -103,7 +109,8 @@ class ParadigmSlot:
         self.stem = escape(row["Stem"])
         self.tags = [escape(f"+{row[feat]}")
                      for feat in conf["morph_features"]
-                     if row[feat] != conf["missing_tag_marker"]]
+                     if (row[feat] != conf["missing_tag_marker"] and
+                         row[feat] != "")]
 #        if ParadigmSlot.multichar_symbols == None:
 #        ParadigmSlot.__upda_multichar_symbol_set(conf)
         self.__harvest_multichar_symbols()
