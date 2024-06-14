@@ -5,6 +5,11 @@
 read lexc all.lexc
 define Lexicon ;
 
+! Punctuation model
+define Punct PUNCT:0 [0:"," | 0:"." | 0:"-" | 0:"?" | 0:";" | 0:%!  |
+                      0:":" | 0:%"  | 0:"`" | 0:"<" | 0:">" | 0:"+" |
+		      0:"*" | 0:"–" | 0:"_" ]+ ;
+
 ! Read rule file from disk and compile
 source phonology.xfst
 define Rules ;
@@ -13,7 +18,7 @@ define Rules ;
 set flag-is-epsilon ON
 
 ! Compose lexicon and rules
-read regex Lexicon .o. Rules ;
+read regex [ Lexicon .o. Rules ] | Punct ;
 
 ! Get rid of unused multichar symbols in sigma. This prevents problems
 ! where input character sequences are interpreted as a multicharacter
