@@ -23,13 +23,11 @@ Multichar_Symbols
 
 !!!!! End of Multichar_Symbols !!!!!
 
-! A unique Root lexicon is always required. This represents
-! the root of the lexicon tree. All forms start here
 LEXICON Root
-! When there is only one entry on the lexicon line, it is
-! assumed to be the name of a continuation lexicon
+! A unique Root lexicon is always required. This represents
+! the root of the lexicon tree. All forms start here.
 Noun ;  
-Verb ; 
+Verb ; ! When there is only one entry on the lexicon line, it refers to a continuation lexicon
 
 LEXICON Noun
 ! Here, we get the stem "dog" which also doubles as a lemma.
