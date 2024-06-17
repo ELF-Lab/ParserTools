@@ -40,7 +40,8 @@ Preverbs are separated from the stem (and other preverbs) by a hyphen `-`. In th
 1. `PVSub/xyz` & `ChCnj+` (subordinate preverb and changed conjunct marker)
 2. `PVTense/xyz` (tense preverb)
 3. `PVDir/xyz` (directional preverb)
-4. `PDLex/xyz` (lexical preverb)
+4. `PVQnt/xyz` (quantifier preverb)
+5. `PVLex/xyz` (lexical preverb)
 
 Where `xyz` is the canonical form of the preverb followed by `+`, e.g. `PVTense/gii+`, `PVTense/ga+` and `PVSub/a+`. In the example above, we can see that the analysis contains the tag `PVTense/gii+` which in the word form is realized as the prefix `gii-`.
 
@@ -48,8 +49,34 @@ The subordinate preverbs and changed conjunct marker can only occur in conjunct 
 
 ### The verb stem and lexeme
 
-The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. Unlike tags, e.g. `+` 
+The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. Unlike tags, e.g. `+1SgSubj` which are represented as one symbol, the stem internally consists of individual characters: `w a a b a m`. This can be important when we write foma regular expressions to match verb forms.  
+
+To match the analysis of the example form in the illustration, we can use one of the following foma regular expressions:
+
+```
+regex "PVTense/gii+" w a a b a m "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3SgObjProx"
+regex "PVTense/gii+" {waabam} "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3SgObjProx"
+```
+
+The `"..."` syntax tells foma to treat the sequence as one symbol ignoring all special characters like `+`. The syntax `{...}` tells foma to split the sequence into individual utf-8 characters, once again ignoring all special characters.
 
 ### The verb suffix
 
-The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a contiguous string like *aabaniig* in the example above. In reality, it consists of several smaller suffixes with complex dependencies that are difficult to model. 
+The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a morpheme chunk like *aabaniig* in the example above. This chunk encodes information about the order, mode, polarity (positive vs. negative form), subject and object of the verb form. In reality, the chunk internally consists of several shorter suffixes with complex phonological dependencies. The dependencies could be modeled but this would unnecessarily complicate the rule-set of the FST so we don't do this. 
+
+## Ambiguity
+
+Ambuiguity happens in two directions in Ojibwe. A word form can have multiple analyses:
+
+```
+foma[1]: up nimaajiibatoo
+PVDir/ni+maajiibatoo+VAI+Ind+Pos+Neu+3SgProxSubj
+maajiibatoo+VAI+Ind+Pos+Neu+1SgSubj
+```
+An analysis can also correspond to multiple inflected forms:
+
+```
+foma[1]: down oyoosi+VAI+Ind+Pos+Dub+3SgProxSubj
+oyoosidog
+oyoosiwidog
+```
