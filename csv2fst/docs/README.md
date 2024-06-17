@@ -73,7 +73,7 @@ foma[1]: up nimaajiibatoo
 PVDir/ni+maajiibatoo+VAI+Ind+Pos+Neu+3SgProxSubj
 maajiibatoo+VAI+Ind+Pos+Neu+1SgSubj
 ```
-An analysis can also correspond to multiple inflected forms:
+An analysis can also correspond to multiple inflected word forms:
 
 ```
 foma[1]: down oyoosi+VAI+Ind+Pos+Dub+3SgProxSubj
