@@ -1,3 +1,5 @@
+# A CS oriented introduction to Algonquian (though really just Ojibwe) morphology
+
 ## A bit of terminology
 
 Morphological FST analyzers translate an input **word form** like *walked* into an **analysis** like `walk+V+Past`. 
