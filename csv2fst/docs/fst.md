@@ -6,8 +6,7 @@ FSTs (finite-state transducers) are models which map between two different set o
 
 ## Lexc lexicons
 
-As discussed in the [morphology document](morphology.md), word forms like `walked` consist of a stem `walk` and inflectional affixes `-ed`. A **lexc lexicon** specifies stems for different word classes and their various affixes. Logically, it can be represented as a tree structure:
-
+As discussed in the [morphology document](morphology.md), word forms like `walked` consist of a stem `walk` and inflectional affixes `-ed`. A **lexc lexicon** specifies stems for different word classes and their various affixes:
 ```
 ! The Multichar_Symbols section lists string which should
 ! be treated as atomic tags.
@@ -54,3 +53,7 @@ LEXICON VerbEnding
 +Verb+Inf:0 # ;
 +Verb+Past:ed # ;
 ```
+
+Logically, the lexc file can be represented as a tree-structure:
+
+![Lexc tree](img/tree.png)
