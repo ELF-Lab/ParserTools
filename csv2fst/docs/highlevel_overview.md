@@ -27,7 +27,7 @@ The following directories are included in the OjibweMorph repository:
 | `templates` | Jinja templates for lexc files (j2 files). Used by ParserTools during compilation. |
 | `xfst` | Xfst phonological rewrite rules. Used by foma during compilation. |
 
-### Spreadsheets
+### Morphological paradigm spreadsheets
 
 We have spreadsheets both for nouns and verbs. Both follow this overall structure:
 
@@ -52,6 +52,8 @@ Additionally **Form1Source** can be used to indicate information about the given
 Note that the stem and affixes can sometimes contain special charcters like `w1` in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified below. Otherwise, lexc won't know to compile them into multi-character symbols (Note to self: maybe introduce a special format instead so these can be identified automatically?).
 
 Morphological features (here: **Order**, **Mode**, **Negation**, **Subject**, **Object**) can vary by paradigm (e.g. they are different for nouns and verbs) and the set is customizable using a configuation file.
+
+### Preverb (and prenoun) spreadsheets
 
 ### Configuration files
 
