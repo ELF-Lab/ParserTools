@@ -27,7 +27,7 @@ Ojibwe verb forms split into three segments:
 
 The following example illustrates this division:
 
-![Ojibwe verb](word.png)
+![Ojibwe verb](img/word.png)
 
 ### Verb prefix
 
