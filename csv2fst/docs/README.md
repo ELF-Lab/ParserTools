@@ -33,24 +33,22 @@ The following example illustrates this division:
 
 The prefix can be empty or consist of several elements falling into two categories. The prefix starts with a **person prefix** which is followed by zero or more **preverbs**.
 
-#### Person prefix
+The person prefix denotes the subject of the verb. It is exclusively present in the independent order (see below) and only for the VAIO, VTI and VTA paradigms (see below). In the illustration above, the verb prefix contains the person prefix *ni* and a preverb *gii-*
 
-The person prefix denotes the subject of the verb. It is exclusively present in the independent order (see below) and only for the VAIO, VTI and VTA paradigms (see below), which take both a subject and an object. In the illustration above, the verb prefix contains the person prefix *ni* and a preverb *gii-*
-
-Preverbs are marked by a preverb tag like *PVTense/gii+* in the verb analysis. There are five types preverb markers:
+Preverbs are separated from the stem (and other preverbs) by a hyphen `-`. In the verb analysis, they are marked by a preverb tag like *PVTense/gii+*. There are five types preverb markers:
 
 1. `PVSub/xyz` & `ChCnj+` (subordinate preverb and changed conjunct marker)
 2. `PVTense/xyz` (tense preverb)
 3. `PVDir/xyz` (directional preverb)
 4. `PDLex/xyz` (lexical preverb)
 
-Where `xyz` is the canonical form of the preverb, e.g. `PVTense/gii+`, `PVTense/ga+` and `PVSub/a+`. In the example above, we can see that the analysis contains the tag `PVTense/gii+` which in the word form is realized as the prefix `gii-`.
+Where `xyz` is the canonical form of the preverb followed by `+`, e.g. `PVTense/gii+`, `PVTense/ga+` and `PVSub/a+`. In the example above, we can see that the analysis contains the tag `PVTense/gii+` which in the word form is realized as the prefix `gii-`.
 
-The changed conjunct marker differs from the other preverbs in the sense that it is not realized as a prefix. Rather, it causes a *phonoloigcal alternation* in the first vowel of the word form.  
+The subordinate preverbs and changed conjunct marker can only occur in conjunct forms. The changed conjunct marker differs from the other preverbs in the sense that it is not realized as a prefix. Rather, it causes a *phonological alternation* in the first vowel of the verb form.  
 
 ### The verb stem and lexeme
 
-The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. 
+The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. Unlike tags, e.g. `+` 
 
 ### The verb suffix
 
