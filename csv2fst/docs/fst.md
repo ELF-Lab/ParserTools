@@ -54,6 +54,25 @@ LEXICON VerbEnding
 +Verb+Past:ed # ;
 ```
 
+This lexc file recognizes the following analysis–word form pairs:
+
+```
+talk+Verb+Past	talked
+talk+Verb+Inf	talk
+walk+Verb+Past	walked
+walk+Verb+Inf	walk
+cat+Noun+Pl	cats
+cat+Noun+Sg	cat
+dog+Noun+Pl	dogs
+dog+Noun+Sg	dog
+```
+
 Logically, the lexc file can be represented as a tree-structure:
 
 ![Lexc tree](img/tree.png)
+
+Each analysis–word form pair `walk+Verb+Past:walked` corresponds to a unique path from the root node to a terminal node `#` in the tree. We can, therefore, also think of the lexc file as encoding a set of paths like:
+
+```
+(LEXICON Root, LEXICON Verb, walk, LEXICON VerbEnding, +Verb+Past:ed, #)
+```
