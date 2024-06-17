@@ -27,11 +27,16 @@ Multichar_Symbols
 ! A unique Root lexicon is always required. This represents
 ! the root of the lexicon tree. All forms start here
 LEXICON Root
-Noun ; ! When there is only one entry on the lexicon line, it is assumed to be the name of a continuation lexicon 
+! When there is only one entry on the lexicon line, it is
+! assumed to be the name of a continuation lexicon
+Noun ;  
 Verb ; 
 
 LEXICON Noun
-dog NounEnding ; ! Here, we get the stem "dog" which doubles as a lemma. The rest of the form can be found in the continuation lexicon NounEnding
+! Here, we get the stem "dog" which also doubles as a lemma.
+! The rest of the form can be found in the continuation
+! lexicon NounEnding
+dog NounEnding ; 
 cat NounEnding ;
 
 LEXICON Verb
@@ -39,7 +44,10 @@ walk VerbEnding ;
 talk VerbEnding ;
 
 LEXICON NounEnding
-+Noun+Sg:0 # ; ! When the upper and lower string differ, they need to be separated by a colon ":". The upper (analysis) string is written on the left and the lower (word form) string on the right.
+! When the upper and lower string differ, they need to be separated
+! by a colon ":". The upper (analysis) string is written on the left
+! and the lower (word form) string on the right.
++Noun+Sg:0 # ; 
 +Noun+Pl:s # ; ! '#' marks that the word form ends here.
 
 LEXICON VerbEnding
