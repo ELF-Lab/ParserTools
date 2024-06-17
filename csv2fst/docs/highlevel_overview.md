@@ -14,6 +14,19 @@ The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used
 
 ## [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/)
 
+The following directories are included in the OjibweMorph repository:
+
+| Directory | Description |
+|-----------|-------------|
+| `NounSpreadsheets` | Morphological paradigms for nouns (CSV spredsheets) | 
+| `OtherSpreadsheets` | Morphological paradigms for uninflecting classes (CSV spreadsheets) |
+| `PVSpreadsheets` | Preverbs spreadsheets (CSV spreadsheets) |
+| `VerbSpreadsheets` | Morphological paradigms for verbs (CSV spreadsheets)
+| `config` | Configuration files for compiling lexc files from spreadsheets for different word classes (json code) |
+| `lexc` | Legacy lexc files (currently not used) |   
+| `templates` | Jinja templates for lexc files (j2 files). Used by ParserTools during compilation. |
+| `xfst` | Xfst phonological rewrite rules. Used by foma during compilation. |
+
 ### Spreadsheets
 
 We have spreadsheets both for nouns and verbs. Both follow this overall structure:
@@ -46,6 +59,6 @@ Morphological features (here: **Order**, **Mode**, **Negation**, **Subject**, **
 
 ### Xfst phonological replace rules 
 
-## OPDDatabase
+## [OPDDatabase](https://github.com/ELF-Lab/OPDDatabase/)
 
-## ParserTools
+## [ParserTools](https://github.com/ELF-Lab/ParserTools/)
