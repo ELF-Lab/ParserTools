@@ -54,8 +54,8 @@ The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* 
 To match the analysis of the example form in the illustration, we can use one of the following foma regular expressions:
 
 ```
-regex "PVTense/gii+" w a a b a m "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3SgObjProx"
-regex "PVTense/gii+" {waabam} "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3SgObjProx"
+regex "PVTense/gii+" w a a b a m "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3PlProxObj"
+regex "PVTense/gii+" {waabam} "+VTA" "+Ind+" "+Pos" "+Prt" "+1SgSubj" "+3PlProxObj"
 ```
 
 The `"..."` syntax tells foma to treat the sequence as one symbol ignoring all special characters like `+`. The syntax `{...}` tells foma to split the sequence into individual utf-8 characters, once again ignoring all special characters.
