@@ -4,7 +4,7 @@
 
 The FST analyzer is built using three source repositories:
 
-* OjibweMorph houses [morphological paradigms](paradigms.md), skeleton lexc code and the xfst phonological rewrite rules (this repository either is already freely available or will short be made freely available for under a non-commerical license)
+* OjibweMorph houses morphological paradigms, skeleton lexc code and the xfst phonological rewrite rules (this repository either is already freely available or will short be made freely available for under a non-commerical license)
 * OPDDatabase houses a lexical database from the Ojibwe People's Dictionary (this repository will not be made publicly available)
 * ParserTools houses the code for compiling lexc files from the source data in OjibweMorph and OPDDatabase (this repository is publicly available and licensed under CC Deed)
 
