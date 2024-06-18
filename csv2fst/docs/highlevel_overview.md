@@ -12,22 +12,61 @@ We split the code into three different repositories mainly due to licensing issu
 
 The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
 
+## Example useage of `csv2lexc.py`
+
 How to compile lexc-files (for nouns and verbs) using `csv2lexc.py`:
 
 ```
 # OjibweMorph and OPDDatabase (or a different set of morphological paradigms and another lexical database)
 # are required for compilation
-export MORPHOLOGY_DIR=/path/to/OjibweMorph
-export LEXICAL_DIR=/path/to/OPDDatabase
+$ export MORPHOLOGY_DIR=/path/to/OjibweMorph
+$ export LEXICAL_DIR=/path/to/OPDDatabase
 
-python3 csv2lexc.py --config-files $MORPHOLOGY_DIR/config/ojibwe_nouns.json,$MORPHOLOGY_DIR/config/ojibwe_verbs.json \
-                    --source-path  $MORPHOLOGY_DIR \
-                    --database-path $LEXICAL_DIR \
-                    --lexc-path generated_lexc_code \
-                    --read-lexical-database True
+$ python3 csv2lexc.py --config-files $MORPHOLOGY_DIR/config/ojibwe_nouns.json,$MORPHOLOGY_DIR/config/ojibwe_verbs.json \
+                      --source-path  $MORPHOLOGY_DIR \
+                      --database-path $LEXICAL_DIR \
+                      --lexc-path generated_lexc_code \
+                      --read-lexical-database True
 ```
 
-Description of required command-line arguments:
+Depending on how you've defined the configuration files, the command might generate the following files in the directory `generated_lexc_code`:
+
+```
+ojibwe_irregular_verbs.lexc   # Irregular verbs
+ojibwe_nouns.lexc             # Nouns
+ojibwe_verbs.lexc             # Verbs
+preverbs.lexc                 # Preverbs
+prenouns.lexc                 # Prenouns
+root.lexc                     # The root lexicon file contains Multicharacter_Symbols and LEXICON Root
+```
+
+If you want to compile the lexc code using foma, you will need to combine the lexc-files into a master lexc-file first:
+
+```
+$ cd generated_lexc_code
+
+# You can cat the files in almost any order but root.lexc always needs to be the first lexicon file. 
+$ cat root.lexc prenouns.lexc preverbs.lexc ojibwe_verbs.lexc ojibwe_nouns.lexc ojibwe_irregular_verbs.lexc > all.lexc
+
+$ foma
+Foma, version 0.10.0
+Copyright © 2008-2021 Mans Hulden
+This is free software; see the source code for copying conditions.
+There is ABSOLUTELY NO WARRANTY; for details, type "help license"
+
+Type "help" to list all commands available.
+Type "help <topic>" or help "<operator>" for further help.
+
+foma[0]: read lexc all.lexc 
+Root...7, PrenounRoot...2, LexPN...170, LexPNBoundary...1, PrenounEnd...1,
+...
+Determinizing...
+Minimizing...
+Done!
+936.4 kB. 35315 states, 58742 arcs, Cyclic.
+```
+
+Description of required command-line arguments for `csv2lexc.py`:
 
 | Argument | Description |
 |----------|-------------|
