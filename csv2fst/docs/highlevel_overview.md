@@ -27,6 +27,16 @@ python3 csv2lexc.py --config-files ojibwe_nouns.json,ojibwe_verbs.json \
                     --read-lexical-database True
 ```
 
+Description of required command-line arguments:
+
+| Argument | Description |
+|----------|-------------|
+| `config-files` | Comma-separated list of configuration files for lexc compilation. One is required for each word class (string) |
+| `source-path` | Path to OjibweMorph or another morphological paradigm repository (string) |
+| `database-path` | Path to OPDDatabase or another lexical database (string) |
+| `lexc-path` | Target directory for generated lexc files (string) |
+| `read-lexical-database` | Whether to include lexemes from database (True|False) |
+
 ## [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/)
 
 The following directories are included in the OjibweMorph repository:
