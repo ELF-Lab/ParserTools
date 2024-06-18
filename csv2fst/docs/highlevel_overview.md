@@ -66,6 +66,8 @@ In addition to the aforementioned columns, the spreadsheet can include other col
 ### Configuration files
 
 ```
+OjibweMorph/config/ojibwe_verbs.json:
+
 {
     "pos":"Verb",
     "root_lexicon":"VerbRoot",
