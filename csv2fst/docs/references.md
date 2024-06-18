@@ -6,6 +6,10 @@
 2. Mans Hulden. [*Morphological Analysis Tutorial*](https://fomafst.github.io/morphtut.html)
 3. Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). (Demonstrated that phonology and morphology are at least predominantly representable using finite-state transducers)
 
+## Ojibwe resources
+
+1. [*Ojibwe People's Dictionary* ](https://ojibwe.lib.umn.edu/), i.e. OPD. 
+
 ## Other FST projects
 
 1. [Foma](https://github.com/mhulden/foma/tree/master)
