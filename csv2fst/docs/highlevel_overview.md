@@ -23,7 +23,7 @@ The FST analyzer is built using three source repositories:
 
 We split the code into three different repositories mainly due to licensing issues. We want everyone to be able to use OjibweMorph and ParserTools together with their own lexical database for Ojibwe or a different Algonquian language.
 
-<img src="img/flow_chart.png" style="display:block; margin-lef:auto; margin-right:auto;" width="500"/>
+<img src="img/flow_chart.png" width="500"/>
 
 The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
 
