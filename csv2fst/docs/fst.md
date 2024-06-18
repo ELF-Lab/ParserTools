@@ -104,7 +104,7 @@ LEXICON NiStem
 niimi NiEnding ;
 
 LEXICON GiEnding
-+VAI+Ind+Pos+Neu+2PlSubj:n # ;
++VAI+Ind+Pos+Neu+2PlSubj:m # ;
 
 LEXICON NiEnding
 +VAI+Ind+Pos+Neu+ExclSubj:min # ;
@@ -136,7 +136,7 @@ LEXICON Ending
 @R.Prefix.Ni@ NiEnding ;
 
 LEXICON GiEnding
-+VAI+Ind+Pos+Neu+2PlSubj:n # ;
++VAI+Ind+Pos+Neu+2PlSubj:m # ;
 
 LEXICON NiEnding
 +VAI+Ind+Pos+Neu+ExclSubj:min # ;
@@ -153,7 +153,7 @@ LEXICON Stem
 niimi Ending ;
 
 LEXICON Ending
-@R.Prefix.Gi@+VAI+Ind+Pos+Neu+2PlSubj:@R.Prefix.Gi@n # ;
+@R.Prefix.Gi@+VAI+Ind+Pos+Neu+2PlSubj:@R.Prefix.Gi@m # ;
 @R.Prefix.Ni@+VAI+Ind+Pos+Neu+ExclSubj:@R.Prefix.Ni@min # ;
 
 ```
