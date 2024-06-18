@@ -64,6 +64,14 @@ The `"..."` syntax tells foma to treat the sequence as one symbol ignoring all s
 
 The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a morpheme chunk like *aabaniig* in the example above. This chunk encodes information about the order, mode, polarity (positive vs. negative form), subject and object of the verb form. In reality, the chunk internally consists of several shorter suffixes with complex phonological dependencies. The dependencies could be modeled but this would unnecessarily complicate the rule-set of the FST so we don't do this. 
 
+## Ojibwe nouns
+
+TBD
+
+## Other word classes (adverbs, pronouns, ...)
+
+TBD
+
 ## Ambiguity
 
 Ambuiguity happens in two directions in Ojibwe. A word form can have multiple analyses:
