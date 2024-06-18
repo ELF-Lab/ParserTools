@@ -12,7 +12,20 @@ We split the code into three different repositories mainly due to licensing issu
 
 The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
 
-`[Illustrate use]`
+How to compile lexc-files (for nouns and verbs) using `csv2lexc.py`:
+
+```
+# OjibweMorph and OPDDatabase (or a different set of morphological paradigms and another lexical database)
+# are required for compilation
+export MORPHOLOGY_DIR=/path/to/OjibweMorph
+export LEXICAL_DIR=/path/to/OPDDatabase
+
+python3 csv2lexc.py --config-files ojibwe_nouns.json,ojibwe_verbs.json \
+                    --source-path  $MORPHOLOGY_DIR \
+                    --database-path $LEXICAL_DIR \
+                    --lexc-path generated_lexc_code \
+                    --read-lexical-database True
+```
 
 ## [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/)
 
