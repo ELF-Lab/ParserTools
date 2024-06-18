@@ -134,7 +134,7 @@ Configuration files are used to control the compilation of lexc files for a part
 | Feature | Description | Value | Notes |
 |---------|-------------|-------|-------|
 | `"pos"` | Word class  | `"Verb"`, `"Noun"`, ... | |
-| `"root_lexicon"` | Root lexicon name | Word class specific root lexicon | `"VerbRoot"`, `"NounRoot"`, ... | This could be automatically deduced |
+| `"root_lexicon"` | Root lexicon name | `"VerbRoot"`, `"NounRoot"`, ...| Word class specific root lexicon  | This could be automatically deduced |
 | `"morphology_source_path"` | Path to paradigm spreadsheets for this word class | "VerbSreadsheets" | This would usually be a directory in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. |
 | `"regular_csv_files"` | List of spreadsheets to include when compiling **regular** lexemes | `["VTA_IND"`, "VTI_CNJ", ... ]` | Spreadhseets listed here will undergo regular phonological rules. |
 | `"irregular_csv_files"` | List of spreadsheets to include when compiling **irregular** lexemes | `["VTA_IRR"]` | Spreadsheets listed here will not undergo any phonological rules. This is catgory is meant for lexemes which do not belong to a larger inflection class, and where we simply list every single inflected form in verbatim. In Ojibwe, the only irregular verb is `izhi`. |
