@@ -23,7 +23,7 @@ The following directories are included in the OjibweMorph repository:
 | `PVSpreadsheets` | Preverbs spreadsheets (CSV spreadsheets) |
 | `VerbSpreadsheets` | Morphological paradigms for verbs (CSV spreadsheets)
 | `config` | Configuration files for compiling lexc files from spreadsheets for different word classes (json code) |
-| `lexc` | Legacy lexc files (currently not used) |   
+| `lexc` | Legacy lexc files (not used) |   
 | `templates` | Jinja templates for lexc files (j2 files). Used by ParserTools during compilation. |
 | `xfst` | Xfst phonological rewrite rules. Used by foma during compilation. |
 
