@@ -20,7 +20,7 @@ How to compile lexc-files (for nouns and verbs) using `csv2lexc.py`:
 export MORPHOLOGY_DIR=/path/to/OjibweMorph
 export LEXICAL_DIR=/path/to/OPDDatabase
 
-python3 csv2lexc.py --config-files ojibwe_nouns.json,ojibwe_verbs.json \
+python3 csv2lexc.py --config-files $MORPHOLOGY_DIR/config/ojibwe_nouns.json,$MORPHOLOGY_DIR/config/ojibwe_verbs.json \
                     --source-path  $MORPHOLOGY_DIR \
                     --database-path $LEXICAL_DIR \
                     --lexc-path generated_lexc_code \
