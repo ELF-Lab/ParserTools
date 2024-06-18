@@ -2,9 +2,9 @@
 
 ## Books, articles and tutorials
 
-1. Kenneth R. Beesley and Lauri Karttunen. [*Finite State Morphology*]. 2003. CSLI Publications. (not available online but ask Miikka)
+1. Kenneth R. Beesley and Lauri Karttunen. *Finite State Morphology*. 2003. CSLI Publications. (Not available online but ask Miikka)
 2. Mans Hulden. [*Morphological Analysis Tutorial*](https://fomafst.github.io/morphtut.html)
-3. Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). Demonstrated that phonology and morphology are at least predominantly representable using finite-state transducers.
+3. Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). (Demonstrated that phonology and morphology are at least predominantly representable using finite-state transducers)
 
 ## Other FST projects
 
