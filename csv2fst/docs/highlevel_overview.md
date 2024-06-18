@@ -47,7 +47,7 @@ Seven of the columns are obligatory:
 * **Form1Surface** gives the word form itself
 * **Form1Split** gives a split of the form into `prefix<<stem>>suffix`. Note that the `stem` here doesn't need to correspond to the **Stem** colum because the stem might vary due to phonolgical factors based on the prefix and suffix (this is the case for the form `omizhogonan`, where the default stem `mizhw` is realized as `mizho` in this specific form). We have xfst replace rules which transform the stem in the **Stem** column into its various realizations.
 
-Additionally **Form1Source** can be used to indicate information about the given form, which elder it comes from, which dialect etc. Additional forms are given by specifying `Form2Surface`, `Form2Split`, `Form3Surface`, `Form3Split`, etc. When these forms are missing, the fields can be left empty.
+Additionally **Form1Source** can be used to indicate information about the given form, which elder it comes from, which dialect etc. Additional forms are given by specifying **Form2Surface**, **Form2Split**, **Form3Surface**, **Form3Split**, etc. When these forms are missing, the fields can be left empty.
 
 Note that the stem and affixes can sometimes contain special charcters like `w1` in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified below. Otherwise, lexc won't know to compile them into multi-character symbols (Note to self: maybe introduce a special format instead so these can be identified automatically?).
 
@@ -59,9 +59,67 @@ Sometimes the value of a particular morphological feature is missing. For exampl
 |----------|-------|-------|-------|------|---------|--------|------|----------|--------------|------------|-------------|--------------|------------|-------------|
 | `VII`    | `Ind` | `VII_VV` | `ate` | `ate` | `0PlObvSubj` | `NONE` | `Dub` | `Neg` | `atesininiwidogen` | `<<ate>>sininiwidogen` | `JDN-2010-MS-VII-p9` |
 
+In addition to the aforementioned columns, the spreadsheet can include other columns as well. For example **Notes**, could be a useful one in some cases.
+
 ### Preverb (and prenoun) spreadsheets
 
 ### Configuration files
+
+```
+{
+    "pos":"Verb",
+    "root_lexicon":"VerbRoot",
+    "morphology_source_path": "./VerbSpreadsheets/",
+    "regular_csv_files": [
+        "VAIO_CNJ",
+        "VAIO_IMP",
+        "VAIO_IND",
+        "VAI_CNJ",
+        "VAI_IMP",
+        "VAI_IND",
+        "VAIPL",
+        "VAI_Reflex_Recip",
+        "VII_CNJ",
+        "VII_IND",
+        "VIIPL",      
+        "VTA_CNJ",
+        "VTA_IMP",
+        "VTA_IND",
+        "VTI_CNJ",
+        "VTI_IMP",
+        "VTI_IND"
+    ],
+    "irregular_csv_files": [
+        "VTA_IRR"
+    ],
+    "lexical_database": "generated/VERBS.csv",
+    "lexical_prefix_database": "generated/LEXICAL_PREVERBS.csv",    
+    "regular_lexc_file": "ojibwe_verbs.lexc",
+    "irregular_lexc_file": "ojibwe_irregular_verbs.lexc",
+    "morph_features": [
+        "Paradigm",
+        "Order",
+        "Negation",
+        "Mode",
+        "Subject",
+        "Object"
+    ],
+    "missing_tag_marker": "NONE",
+    "missing_form_marker": "MISSING",
+    "multichar_symbols": [
+        "i1",
+        "s1",
+        "n1",
+        "w1",
+        "V1",
+        "w2",
+        "<T>"
+    ],
+    "prefix_root":"PreverbRoot",
+    "template_path":"templates/preverbs.lexc.j2",
+    "pv_source_path":"PVSpreadsheets"  
+}
+```
 
 ### Jinja lexc templates
 
