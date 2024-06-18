@@ -1,4 +1,4 @@
-# Installation and running scripts
+# Installing and running scripts
 
 ## Compilation of the FST using the `Makefile`
 
