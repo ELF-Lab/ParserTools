@@ -148,7 +148,7 @@ Configuration files are used to control the compilation of lexc files for a part
 | `"multichar_symbols"` | List of multi-character symbols | `["w1", "y1", "y2", ...]` | Rules often reference special multi-character symbols like `"w1"`. These are included in spreadsheets (sometimes also the lexical database) and need to be declared so that they can be added to the lexc `Multichar_Symbols` section. |
 | `"prefix_root"` | Custom root lexicon for prenouns/preverbs | `"PreverbRoot"` | Can be omitted when there are no prenouns/preverbs and for all other word classes except nouns and verbs. |
 | `"template_path"` | Path to jinja lexc template file for prenouns/preverbs | `"templates/preverbs.lexc.j2"` | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
-| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
+| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | `"PVSpreadsheets"` | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
 ```
 OjibweMorph/config/ojibwe_verbs.json:
 
