@@ -13,7 +13,7 @@ Lexc lexicons tend to get quite messy and hard to maintain when the lexicon grow
 
 Our spreadsheets are ultimately compiled into lexc code and then compiled into an FST model using the foma toolkit.  
 
-## Overvivew of the compilation process
+## Compilation of the FST at a glance
 
 The FST analyzer is built using three source repositories:
 
