@@ -1,3 +1,18 @@
+## Introduction
+
+This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
+
+A morphological analyzer is a model which can do two things:
+
+* Analyze an inflected word as a combination of a lemma and morphological features: `walked -> walk+Verb+Past`
+* Generate inflected forms from a lemma and some morphological features: `walk+Verb+Past -> walked`
+
+Traditionally morphologocal analyzers are implemented as finite-state transducers (FST). These have been shown to adequately model the inflectional processes for most if not all human languages. Foma is one of the most popular tookits for compilation of FST morphological analyzers. It uses formalisms originally developed by Xerox to present lexical information (**lexc** formalism) and phonological rules (**xfst** formalism). The lexical component provides information about word stems like `bake` and affixes like `-ed`. The rule-component determines how stems and affixes are combined into word forms. For example, for the combination `bake+ed`, the rules might delete the `e` in the affix, thereby, giving a valid English word form: `bake+ed -> bake+d -> baked`.
+
+Lexc lexicons tend to get quite messy and hard to maintain when the lexicon grows, especially for morphologically complex languages like many of the Indigenous languages of Canada and the US. Our project instead represents lexical information in a spreadsheet format which is easy to view, edit and maintain even without extensive technical experience. The aim is to make FST development accessible for a broader range of developers and community members who do not necessarily need to be professional linguists or computational linguists. 
+
+Our spreadsheets are ultimately compiled into lexc code and then compiled into an FST model using the foma toolkit.  
+
 ## Overvivew of the compilation process
 
 The FST analyzer is built using three source repositories:
