@@ -1,4 +1,4 @@
-## Introduction
+## High-level overview
 
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
