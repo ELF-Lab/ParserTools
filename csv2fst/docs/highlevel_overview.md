@@ -10,7 +10,9 @@ We split the code into three different repositories mainly due to licensing issu
 
 <img src="img/flow_chart.png" align="center" width="500"/>
 
-The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use.     
+The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
+
+`[Illustrate use]`
 
 ## [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/)
 
@@ -29,7 +31,7 @@ The following directories are included in the OjibweMorph repository:
 
 ### Morphological paradigm spreadsheets
 
-We have spreadsheets both for nouns and verbs. Both follow this overall structure:
+We have spreadsheets both for nouns and verbs. All lexical spreadsheets follow this overall structure:
 
 | Paradigm | Order | Class | Lemma | Stem | Subject | Object | Mode | Negation | Form1Surface | Form1Split | Form1Source | Form2Surface | Form2Split | Form2Source | 
 |----------|-------|-------|-------|------|---------|--------|------|----------|--------------|------------|-------------|--------------|------------|-------------|
@@ -65,13 +67,33 @@ In addition to the aforementioned columns, the spreadsheet can include other col
 
 ### Configuration files
 
+Configuration files are used to control the compilation of lexc files for a particular word class (nouns, verbs, pronouns, numerals, adverbs and particles). The configuration file all if the central ifformation related to compilation: which spreadsheets to use as source, what the morphological features are, whether to include prenouns/preverbs etc. Below, you can see a description of all the features which can be specified along with an example configuration file for Ojibwe verbs: 
+
+| Feature | Description | Value | Notes |
+|---------|-------------|-------|-------|
+| `"pos"` | Word class  | `"Verb"`, `"Noun"`, ... | |
+| `"root_lexicon"` | Root lexicon name | Word class specific root lexicon | `"VerbRoot"`, `"NounRoot"`, ... | This could be automatically deduced |
+| `"morphology_source_path"` | Path to paradigm spreadsheets for this word class | "VerbSreadsheets" | This would usually be a directory in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. |
+| `"regular_csv_files"` | List of spreadsheets to include when compiling **regular** lexemes | `["VTA_IND"`, "VTI_CNJ", ... ]` | Spreadhseets listed here will undergo regular phonological rules. |
+| `"irregular_csv_files"` | List of spreadsheets to include when compiling **irregular** lexemes | `["VTA_IRR"]` | Spreadsheets listed here will not undergo any phonological rules. This is catgory is meant for lexemes which do not belong to a larger inflection class, and where we simply list every single inflected form in verbatim. In Ojibwe, the only irregular verb is `izhi`. |
+| `"lexical_database"` | Path to lexical database | `generated/VERBS.csv` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
+| `"lexical_prefix_database"` | Path to preverb/prenoun database | `"generated/LEXICAL_PREVERBS.csv"` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
+| `"regular_lexc_file"` | Store compiled lexc code for regular paradigms in this file | `"ojibwe_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
+| `"irregular_lexc_file"` | Store compiled lexc code for irregular paradigms in this file | `"ojibwe_irregular_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
+| `"morph_features"` | This list specifies the columns in the paradigm spreadsheets which are used as morphological features. | `[ "Paradigm", "Order", "Negation",  ... ]` | This list specifies both which columns to use from a spreasheet like `VTA_IND.csv` and the order in which the features appear in the analysis. E.g. `VTA+Ind+Pos...` |
+| `"missing_tag_marker"` | This symbol is used to mark tags like grammatical object for VIIs which might be missing from the spreadsheet. | `"NONE"` | |
+| `"missing_form_marker"` | This symbol is used to mark morphological gaps, where an analysis has no surface realizations. | `"MISSING"` | Sometimes we might simply not know what the form looks like. We might also not know if a form even exists. This happens e.g. with dubitative preterite forms in Ojibwe, which currently are poorly documented and understood. Sometimes, we know that the sureface realization is impossible due to a logical contradiction. |
+| `"multichar_symbols"` | List of multi-character symbols | `["w1", "y1", "y2", ...]` | Rules often reference special multi-character symbols like `"w1"`. These are included in spreadsheets (sometimes also the lexical database) and need to be declared so that they can be added to the lexc `Multichar_Symbols` section. |
+| `"prefix_root"` | Custom root lexicon for prenouns/preverbs | `"PreverbRoot"` | Can be omitted when there are no prenouns/preverbs and for all other word classes except nouns and verbs. |
+| `"template_path"` | Path to jinja lexc template file for prenouns/preverbs | `"templates/preverbs.lexc.j2"` | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
+| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
 ```
 OjibweMorph/config/ojibwe_verbs.json:
 
 {
     "pos":"Verb",
     "root_lexicon":"VerbRoot",
-    "morphology_source_path": "./VerbSpreadsheets/",
+    "morphology_source_path": "VerbSpreadsheets/",
     "regular_csv_files": [
         "VAIO_CNJ",
         "VAIO_IMP",
