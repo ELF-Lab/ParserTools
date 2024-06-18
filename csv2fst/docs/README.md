@@ -31,7 +31,7 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 
 ## Additional topics
 
-1. [Installation and running scripts](howto.md) 
+1. [Installing and running scripts](howto.md) 
 2. [Intro to Ojibwe morphology](morphology.md) 
 3. [Intro to FST morphology](fst.md)
 4. [The OjibweMorph repo](ojibwemorph.md)
