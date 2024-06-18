@@ -15,6 +15,8 @@ Our spreadsheets are ultimately compiled into lexc code and then compiled into a
 
 ## Compilation of the FST at a glance
 
+<img src="img/flow_chart.png" width="500"/>
+
 The FST analyzer is built using three source repositories:
 
 * OjibweMorph houses morphological paradigms, skeleton lexc code and the xfst phonological rewrite rules (this repository either is already freely available or will short be made freely available for under a non-commerical license)
@@ -25,9 +27,7 @@ We split the code into three different repositories mainly due to licensing issu
 
 The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
 
-More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) morphological paradigms for nouns, verbs and other word classes from `OjibweMorph` (2) a database of lexical information from OPDDdatabase and (3) configuration files for compiling lexc code from OjibweMorph. It then generates a set of lexc-files which are combined with xfst rules manually specified in OjibweMorph using the foma toolkit. Ultimately, foma saves the result as an FST. The pipeline is depicted below:
-
-<img src="img/flow_chart.png" width="500"/>
+More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) morphological paradigms for nouns, verbs and other word classes from `OjibweMorph` (2) a database of lexical information from OPDDdatabase and (3) configuration files for compiling lexc code from OjibweMorph. It then generates a set of lexc-files which are combined with xfst rules manually specified in OjibweMorph using the foma toolkit. Ultimately, foma saves the result as an FST.
 
 ## Additional topics
 
