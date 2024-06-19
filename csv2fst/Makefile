@@ -149,5 +149,5 @@ clean:
 # the docs
 
 doc:*py
-	pdoc --force --html .; mv html docs/csv2fst_html_docs
+	pdoc --force --html .; mv html/csv2fst/* docs/csv2fst_html_docs
 
