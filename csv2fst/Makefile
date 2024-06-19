@@ -138,3 +138,16 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
 clean:
 	rm -rf generated check-generated paradigm_yaml_output database_yaml_output compile.log core-yaml-test.log yaml-test.log opd-test.log paradigm_yaml_output csv_output
 
+#####################################################################
+#                                                                   #
+#                       DOCUMENTATION                               #
+#                                                                   #
+#####################################################################
+
+# Generating documentation requires the python module pdoc
+# Install it by `pip3 install pdoc3` if you need to build
+# the docs
+
+doc:*py
+	pdoc --force --html .; mv html docs/csv2fst_html_docs
+
