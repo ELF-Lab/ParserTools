@@ -54,7 +54,7 @@ def split_form(form:str) -> SplitForm:
     return SplitForm(escape(form[0]), escape(form[2]), escape(form[4]))
 
 
-class ParadigmSlot:
+class LexcPath:
     # All multichar symbols (across the entire lexc file) are stored
     # in this static set
     multichar_symbols:set[str] = set()
@@ -62,7 +62,7 @@ class ParadigmSlot:
     
     @classmethod
     def update_multichar_symbol_set(cls, conf:dict) -> None:
-        """Must be called when the first ParadigmSlot object is
+        """Must be called when the first LexcPath object is
            initialized."""
         cls.multichar_symbols.update(set(map(escape,conf["multichar_symbols"])))
         #cls.pre_element_tag = escape(conf["pre_element_tag"])
@@ -95,7 +95,7 @@ class ParadigmSlot:
         elif "+Cnj" in self.tags:
             order = "Cnj"
         flag = f"@U.Order.{order}@"
-        ParadigmSlot.multichar_symbols.update([flag])
+        LexcPath.multichar_symbols.update([flag])
         return order, flag
 
     def __init__(self, row, conf, regular:bool):
@@ -111,8 +111,8 @@ class ParadigmSlot:
                      for feat in conf["morph_features"]
                      if (row[feat] != conf["missing_tag_marker"] and
                          row[feat] != "")]
-#        if ParadigmSlot.multichar_symbols == None:
-#        ParadigmSlot.__upda_multichar_symbol_set(conf)
+#        if LexcPath.multichar_symbols == None:
+#        LexcPath.__upda_multichar_symbol_set(conf)
         self.__harvest_multichar_symbols()
 
         try:
@@ -125,7 +125,7 @@ class ParadigmSlot:
            set
         """
         for tag in self.tags:
-            ParadigmSlot.multichar_symbols.add(tag)
+            LexcPath.multichar_symbols.add(tag)
 
     def __read_forms(self, row:pd.core.series.Series, conf:dict) -> None:
         """Read all forms on the given dataframe row."""
@@ -138,7 +138,7 @@ class ParadigmSlot:
             raise ValueError(f"No surface forms given for row: {row.to_dict()}")
         
     def __get_lexc_paths(self) -> list[list[LexcEntry]]:
-        """Convert this slot entry into a list of lexc lexicon paths starting
+        """Convert this path entry into a list of lexc lexicon paths starting
            at the ROOT lexicon (this could be VerbRoot, NounRoot etc.)
            and ending in #. Each path is a sequence of lexc sublexicon
            entries.
@@ -187,11 +187,11 @@ class ParadigmSlot:
         paths = []
         paradigm = self.paradigm
         klass = self.klass
-        pre_tag = ParadigmSlot.pre_element_tag
+        pre_tag = LexcPath.pre_element_tag
         for surface, parts in self.forms:
             if self.regular:
-                p_prefix_flag, r_prefix_flag = ParadigmSlot.__get_prefix_flags(parts.prefix)
-                _, r_paradigm_flag = ParadigmSlot.__get_paradigm_flags(paradigm)
+                p_prefix_flag, r_prefix_flag = LexcPath.__get_prefix_flags(parts.prefix)
+                _, r_paradigm_flag = LexcPath.__get_paradigm_flags(paradigm)
                 order, r_order_flag = self.__get_order_flag()
                 prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
                 # The following lexc sublexicon entries generate this form. 
@@ -251,12 +251,12 @@ class ParadigmSlot:
         return paths
 
     def extend_lexicons(self, lexicons:dict) -> None:
-        """Add the lexc paths representing this slot to lexicons."""
+        """Add the lexc paths representing this path to lexicons."""
         def get_paradigm(s):
             return re.sub("[_].*","",s)
         for path in self.__get_lexc_paths():
             paradigm = get_paradigm(path[0].lexicon)
-            p_paradigm_flag, _ = ParadigmSlot.__get_paradigm_flags(paradigm)
+            p_paradigm_flag, _ = LexcPath.__get_paradigm_flags(paradigm)
             lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
                                                       p_paradigm_flag,
                                                       p_paradigm_flag,

@@ -3,7 +3,7 @@ import os
 from os.path import join as pjoin
 import re
 
-from paradigm_slot import ParadigmSlot, entry2str, LexcEntry, escape
+from lexc_path import LexcPath, entry2str, LexcEntry, escape
 from log import info, warn
 from lexc_comment import comment_block
 
@@ -53,7 +53,7 @@ class Lexicon:
 
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
         with open(root_lexc_filename,"w") as root_lexc_file:
-            Lexicon.write_multichar_symbols(ParadigmSlot.multichar_symbols,
+            Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
             print("LEXICON Root", file=root_lexc_file)
             for lexicon_name in pos_root_lexicons:
@@ -73,7 +73,7 @@ class Lexicon:
         self.lexc_path = lexc_path
         self.regular = regular
         self.lexicons = {self.root_lexicon:set()}
-        ParadigmSlot.update_multichar_symbol_set(self.conf)
+        LexcPath.update_multichar_symbol_set(self.conf)
         
         csv_names = conf["regular_csv_files" if regular else "irregular_csv_files"]
         for name in csv_names:
@@ -82,8 +82,8 @@ class Lexicon:
             info(f"Reading lexicon entries from {csv_file}")
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
-                paradigm_slot = ParadigmSlot(row, conf, regular)
-                paradigm_slot.extend_lexicons(self.lexicons)
+                lexc_path = LexcPath(row, conf, regular)
+                lexc_path.extend_lexicons(self.lexicons)
 
         if read_lexical_database:
             self.read_lexemes_from_database(database_path)

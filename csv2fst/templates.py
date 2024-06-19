@@ -3,7 +3,7 @@ import pandas as pd
 from os import listdir
 from os.path import join as pjoin, expanduser, basename, dirname
 from math import isnan
-from paradigm_slot import escape, ParadigmSlot
+from lexc_path import escape, LexcPath
 from re import sub
 
 """ This module should be made more general because we want to use it
@@ -58,7 +58,7 @@ def get_load_pre_element_database(source_dir,prefix_database):
                         res += "\n"
                     tag = escape(f"{pv_tag}{pv.Lemma}+")
                     # We need to register our preverb/prenoun tag as a multicharacter symbol
-                    ParadigmSlot.multichar_symbols.add(tag)
+                    LexcPath.multichar_symbols.add(tag)
                     res += f"{tag}:{pv.Stem} {next_sublex} ;"
         return res    
     return load_pre_element_database
@@ -76,7 +76,7 @@ def get_load_pre_element_csv(source_dir):
                     canonical = pv_tag + canonical
                     # We need to define preverb/prenoun tag as a multichar symbol
                     print(f"{escape(canonical)}+")
-                    ParadigmSlot.multichar_symbols.add(f"{escape(canonical)}+")
+                    LexcPath.multichar_symbols.add(f"{escape(canonical)}+")
                     # If the allomorph has a disallow changed conjunct
                     # tag, add one to the canonical form as well
                     if allomorph.find(NO_CH_CONJUNCT) != -1:
@@ -179,7 +179,7 @@ def render_root_lexicon(source_path, lexc_path):
     jinja_template = env.get_template(template_file)
     func_dict = {
         "add_harvested_multichar_symbols":
-        get_add_harvested_multichar_symbols(ParadigmSlot.multichar_symbols)
+        get_add_harvested_multichar_symbols(LexcPath.multichar_symbols)
     }
     jinja_template.globals.update(func_dict)
     template_string = jinja_template.render()
