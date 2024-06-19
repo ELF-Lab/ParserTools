@@ -1,4 +1,4 @@
-# A CS oriented introduction to Algonquian (though really just Ojibwe) morphology
+# A CS-oriented introduction to Algonquian (though really just Ojibwe) morphology
 
 ## A bit of terminology
 
