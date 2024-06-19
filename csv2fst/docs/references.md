@@ -18,7 +18,7 @@
 
 | ID | Reference |
 |----|----|
-| P1 | [Foma](https://github.com/mhulden/foma/tree/master) |
+| P1 | [Foma](https://github.com/mhulden/foma/tree/master) (We mostly use this toolkit to compile FSTs) |
 | P2 | [Pyfoma](https://github.com/mhulden/pyfoma/tree/main) (Python implementation of foma) |
 | P3 | [AltLab](https://altlab.ualberta.ca/) (The University of Alberta language technology project, great resources for Plains Cree and Algonquian languages) |
 | P4 | [Giellatekno](https://giellatekno.uit.no/index.eng.html) (can be used to generate many tools from an FST, e.g. a spellchecker) |
