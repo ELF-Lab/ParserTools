@@ -1,3 +1,5 @@
+"""A script for summarizing results of morphological analysis tests on OPD forms."""
+
 import os
 from re import search, sub
 from datetime import date

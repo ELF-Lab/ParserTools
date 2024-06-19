@@ -1,3 +1,8 @@
+"""Functions and classes for converting a morphological paradigm
+   spreadsheet row into one or more paths in a lexc file.
+
+"""
+
 from sys import stderr
 import re
 import pandas as pd

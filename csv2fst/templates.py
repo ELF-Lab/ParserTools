@@ -1,3 +1,6 @@
+"""Code for dealing with conversion of Jinja2 templates to lexc
+   code."""
+
 from jinja2 import Environment, FileSystemLoader
 import pandas as pd
 from os import listdir

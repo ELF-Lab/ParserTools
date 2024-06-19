@@ -1,3 +1,6 @@
+"""Main script for compiling lexc code from morphological paradigm
+   spreadsheets."""
+
 import click
 import json
 from os.path import join as pjoin

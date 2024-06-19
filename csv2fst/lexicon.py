@@ -1,3 +1,5 @@
+"""Class for representing a lexc file."""
+
 import pandas as pd
 import os
 from os.path import join as pjoin
