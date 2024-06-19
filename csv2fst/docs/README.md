@@ -1,6 +1,6 @@
 # Overview
 
-<mark>Up-to-date docs under construction</mark>
+<mark>Docs under construction</mark>
 
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
