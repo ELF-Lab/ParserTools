@@ -14,6 +14,7 @@ OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
 RECIPROCAL_LEMMA_ENDING = "wag"
 RECIPROCAL_STEM_ENDING = "di"
 STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
+EMPTY_FIELD_MARKER = "NONE"
 
 def read_subj_objs_tags(subj_obj_tags_csv):
     global PARTICIPANT_TAG_CONVERSIONS
@@ -216,7 +217,7 @@ def add_person_and_number(form_with_info):
     elif form_with_info["POS"] == "VAI" and form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING):
         form_with_info["Object"] = form_with_info["Subject"]
     else:
-        form_with_info["Object"] = "NA"
+        form_with_info["Object"] = EMPTY_FIELD_MARKER
 
     # Our tags also have "Subj" or "Obj" at the end e.g., 2SgSubj
     if type(form_with_info["Subject"]) == str:
@@ -224,7 +225,7 @@ def add_person_and_number(form_with_info):
     elif type(form_with_info["Subject"]) == list:
         form_with_info["Subject"] = [x + "Subj" for x in form_with_info["Subject"]]
 
-    if form_with_info["Object"] != "NA":
+    if form_with_info["Object"] != EMPTY_FIELD_MARKER:
         if type(form_with_info["Object"]) == str:
             form_with_info["Object"] = form_with_info["Object"] + "Obj"
         elif type(form_with_info["Object"]) == list:

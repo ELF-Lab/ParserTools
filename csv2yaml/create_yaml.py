@@ -14,12 +14,13 @@ import shutil
 # Assume that there are maximally five parallel forms on any given CSV
 # row
 MAX_FORMS=10
+EMPTY_FIELD_MARKER = "NONE"
 
 # Run just `python3 create_yaml.py` to view help.
 
-def remove_NA_or_empty(value):
+def remove_empty(value):
     has_a_value = True
-    if value == "" or value == "NONE" or value == "NA":
+    if value == "" or value == EMPTY_FIELD_MARKER:
         has_a_value = False
 
     return has_a_value
@@ -138,7 +139,7 @@ def generate_analysis(json_file):
     tags.extend(config["morph_features"])
 
     # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
-    analysis = lambda row: "+".join(list(filter(remove_NA_or_empty,[row[x] for x in tags])))
+    analysis = lambda row: "+".join(list(filter(remove_empty,[row[x] for x in tags])))
     return analysis
 
 if __name__ == '__main__':
