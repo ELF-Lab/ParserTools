@@ -4,28 +4,79 @@ import pandas as pd
 from collections import namedtuple
 from log import warn
 
-# Maximum number of alternate forms for a single analysis in the
-# spreadsheets
 MAXFORMS=100
+"""Maximum number of alternate forms for a single analysis in the
+    spreadsheets.
+
+"""
 
 PREFIX_BOUNDARY = "<<"
-SUFFIX_BOUNDARY = ">>"
+"""Morpheme boundary between prefix and stem."""
 
-# LexcEntry represents a lexc sublexicon entry 
+SUFFIX_BOUNDARY = ">>"
+"""Morpheme boundary between stem and suffix."""
+
 LexcEntry = namedtuple("LexcEntry",
                        ["lexicon",
                         "analysis",
                         "surface",
                         "next_lexicon"])
+LexcEntry.__doc__ = \
+"""LexcEntry represents a Lexc sublexicon entry like:
 
-# SplitForm represents a form consisting of a prefix, stem and suffix
+    ```
+    LEXICON Lex
+       upper:lower NextLex ;
+    ```
+
+    which corresponds to: 
+
+    ```
+    entry = LexcEntry("Lex", "upper", "lower", "NextLex")
+    ```
+
+    Access features as:
+
+    ```
+    entry.lexicon, entry.analysis, entry.surface, entry.next_lexicon
+    ```
+"""
+
 SplitForm = namedtuple("SplitForm",
                        ["prefix",
                         "stem",
                         "suffix"])
+SplitForm.__doc__ = \
+"""SplitForm represents an inflected word form consisting of a
+    prefix, stem and suffix:
+
+    ```
+    "pre<<st>>suf"
+    ```
+
+    corresponds to:
+
+    ```
+    split_form = SplitForm("pre","st","suf")
+    ```
+
+    Access features as:
+
+    ```
+    split_form.prefix, split_form.stem, split_form.suffix
+    ```
+
+"""
+
 
 def entry2str(entry:LexcEntry) -> str:
-    """ Return the string representation of a lexc lexicon entry """
+    """Return the string representation of a LexcEntry object. When the
+        upper and lower string are identical, the function will
+        collapse them into one entry. If the upper and lower string
+        are empty, only the continuation lexicon is retained.  This
+        enhances readability of the lexc file.
+
+    """
     if entry.analysis == entry.surface:
         if entry.analysis == "0":
             return f"{entry.next_lexicon} ;"
@@ -35,19 +86,30 @@ def entry2str(entry:LexcEntry) -> str:
         return f"{entry.analysis}:{entry.surface} {entry.next_lexicon} ;"
 
 def escape(symbol:str) -> str:
-    """ Escape lexc special characters using a %-sign """
+    """Escape lexc special characters using a `%`. If the character is
+        already escaped using `%`, don't add a second escape
+        symbol. This function will escape symbols in the range
+        `[!%<>0/#; ]`
+
+    """
     return re.sub("(?<!%)([!%<>0/#; ])",r"%\1",symbol)
 
 def split_form(form:str) -> SplitForm:
-    """Split a form prefix<<stem>>suffix at boundaries."""
+    """Split a form `prefix<<stem>>suffix` (e.g. found in the column
+        `Form1Split` in paradigm spreadsheets) at morpheme boundaries
+        (`<<` and `>>`). If either boundary is missing, the function
+        will add one at the start and end and issue a warning. A
+        SplitForm object is returned.
+
+    """
     # re.split results in a 5-element array [prefix, "<<", stem, ">>",
     # suffix]
-    if not "<<" in form:
-        form = "<<" + form
-        warn("Invalid form: {form}. Appending morpheme boundary '<<' at the start.")    
-    if not ">>" in form:
-        form += ">>"
-        warn("Invalid form: {form}. Aappending morpheme boundary '>>' at the end.")
+    if not PREFIX_BOUNDARY in form:
+        form = PREFIX_BOUNDARY + form
+        warn(f"Invalid form: {form}. Appending morpheme boundary '{PREFIX_BOUNDARY}' at the start.")    
+    if not SUFFIX_BOUNDARY in form:
+        form += SUFFIX_BOUNDARY
+        warn(f"Invalid form: {form}. Appending morpheme boundary '{SUFFIX_BOUNDARY}' at the end.")
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
         raise ValueError(f"Invalid form: {orig_form}. Split: {form}")
@@ -55,27 +117,50 @@ def split_form(form:str) -> SplitForm:
 
 
 class LexcPath:
-    # All multichar symbols (across the entire lexc file) are stored
-    # in this static set
+    """The LexcPath class represents a path in a lexc file from a root
+       lexicon like `VerbRoot` or `NounRoot` to the terminal lexicon
+       `#`. This path corresponds to a list of LexcEntry objects: 
+
+       ``` [entry_1, entry_2, ..., entry_n] ``` 
+
+       where `entry_1.lexicon` is the root lexicon, 
+       `entry_i+1.lexicon = entry_i.next_lexicon` and
+       `entry_n.next_lexicon = "#"`
+
+       A lexc file can be thought of as a union of this type of paths.
+
+       A LexcPath object encodes all the information on one spreadsheet
+       row (e.g. a row in VTA_IND.csv in the OjibweMorph repo). Thus
+       the path can contain multiple surface forms (Surface1Form,
+       Surface2Form, ...). LexcPath can therefore encode multiple
+       sub-lexicon entries e.g. corresponding to alternative endings of
+       an inflected form.
+    """
+
     multichar_symbols:set[str] = set()
-    pre_element_tag:str = None
-    
+    """Multichar symbols (across all lexc files) are stored in this static
+       set
+
+    """
+
     @classmethod
     def update_multichar_symbol_set(cls, conf:dict) -> None:
-        """Must be called when the first LexcPath object is
-           initialized."""
-        cls.multichar_symbols.update(set(map(escape,conf["multichar_symbols"])))
-        #cls.pre_element_tag = escape(conf["pre_element_tag"])
+        """This function adds all multicharacter symbols speficied in a
+           configuration file + morpheme boundaries into the
+           `multichar_symbols` set.
+
+        """
+        cls.multichar_symbols.update(map(escape,conf["multichar_symbols"]))
         cls.multichar_symbols.add(escape(PREFIX_BOUNDARY))
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
-        #cls.multichar_symbols.add(cls.pre_element_tag)
         
     @classmethod
     def __get_prefix_flags(cls, prefix:str) -> tuple[str]:
-        """Get the P and R flags like @P.Prefi.=NI@ which determine valid
-           combinations of prefixes and suffixes.
+        """Get P and R flag diacritics like @P.Prefix.NI@ which
+           determine valid combinations of prefixes and suffixes.
 
-            The flag diacritics will be added to multichar symbols.
+           The flag diacritics will be added to `multichar_symbols`.
+
         """
         prefix = "NONE" if prefix == "" else prefix.upper()
         pflag, rflag = f"@P.Prefix.{prefix}@", f"@R.Prefix.{prefix}@"
@@ -84,11 +169,21 @@ class LexcPath:
 
     @classmethod
     def __get_paradigm_flags(cls, paradigm:str) -> tuple[str]:
+        """Get P and R flag diacritics for a given paradigm like VTA.
+
+           The flag diacritics will be added to `multichar_symbols`.
+
+        """        
         pflag, rflag = f"@P.Paradigm.{paradigm}@", f"@R.Paradigm.{paradigm}@"
         cls.multichar_symbols.update([pflag, rflag])        
         return pflag, rflag
     
     def __get_order_flag(self) -> tuple[str]:
+        """Get a U flag matching the order of this LexcEntry: Ind, Cnj or
+           Other (in case of imperative or other unspecified order).
+
+           The flag diacritic will be added to `multichar_symbols`.
+        """
         order = "Other"
         if "+Ind" in self.tags:
             order = "Ind"
@@ -98,7 +193,18 @@ class LexcPath:
         LexcPath.multichar_symbols.update([flag])
         return order, flag
 
-    def __init__(self, row, conf, regular:bool):
+    def __init__(self, row:pd.core.series.Series, conf:dict, regular:bool):
+        """Initialize this LexcEntry using the configuration file conf and a
+        spreadsheet row. The boolean parameter regular determines whether this
+        is treated as a regular form (which should have morpheme boundaries
+        and undergo phonological rules) or an irregular form which is stored
+        in the lexc file in verbatim.
+
+        All morphological features like "+VTA", "+Ind" and "+1SgSubj"
+        apperaing on the spreadsheet row will be added to
+        multichar_symbols.
+
+        """
         self.root_lexicon = conf["root_lexicon"]
         self.row = row
         self.conf = conf
@@ -111,8 +217,6 @@ class LexcPath:
                      for feat in conf["morph_features"]
                      if (row[feat] != conf["missing_tag_marker"] and
                          row[feat] != "")]
-#        if LexcPath.multichar_symbols == None:
-#        LexcPath.__upda_multichar_symbol_set(conf)
         self.__harvest_multichar_symbols()
 
         try:
@@ -121,19 +225,29 @@ class LexcPath:
             warn(e)
             
     def __harvest_multichar_symbols(self) -> None:
-        """Add all multichar symbols from this entry to the multichar symbol
-           set
+        """Add all morphological features like "+VTA", "+Ind" and "+1SgSubj"
+           from this entry to the multichar_symbols set
+
         """
         for tag in self.tags:
             LexcPath.multichar_symbols.add(tag)
 
     def __read_forms(self, row:pd.core.series.Series, conf:dict) -> None:
-        """Read all forms on the given dataframe row."""
+        """Read all forms on the given dataframe row. Store both the plain
+           surface form and segmented form.
+
+        """
+        def get_form_indices() -> list[Int]:
+            # Return all indices i which are associated with a surface
+            # form on this row, i.e. i where Form{i}Surface is a
+            # column on the row and the entry in that column is
+            # non-empty.
+            missing = conf["missing_form_marker"]
+            return [i for i in range(MAXFORMS) if f"Form{i}Surface" in row and
+                                                  not row[f"Form{i}Surface"] in [missing, ""]]
+        
         self.forms = [(row[f"Form{i}Surface"], split_form(row[f"Form{i}Split"]))
-                      for i in range(MAXFORMS)
-                      if (f"Form{i}Surface" in row and
-                          row[f"Form{i}Surface"] != conf["missing_form_marker"] and
-                          row[f"Form{i}Surface"] != "")]
+                      for i in get_form_indices()]
         if len(self.forms) == 0:
             raise ValueError(f"No surface forms given for row: {row.to_dict()}")
         
@@ -187,7 +301,6 @@ class LexcPath:
         paths = []
         paradigm = self.paradigm
         klass = self.klass
-        pre_tag = LexcPath.pre_element_tag
         for surface, parts in self.forms:
             if self.regular:
                 p_prefix_flag, r_prefix_flag = LexcPath.__get_prefix_flags(parts.prefix)
@@ -196,7 +309,7 @@ class LexcPath:
                 prefix_id = "NONE" if parts.prefix == "" else parts.prefix.upper()
                 # The following lexc sublexicon entries generate this form. 
                 path = [
-                    # @P.Prefix.<X>@_@P.Prefix.<X>@<x> <Paradigm>_PrefixBoundary ;
+                    # @P.Prefix.<X>@:@P.Prefix.<X>@<x> <Paradigm>_PrefixBoundary ;
                     LexcEntry(f"{paradigm}_Prefix",
                               p_prefix_flag,
                               p_prefix_flag+parts.prefix,
