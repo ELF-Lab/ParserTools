@@ -88,3 +88,7 @@ foma[1]: down oyoosi+VAI+Ind+Pos+Dub+3SgProxSubj
 oyoosidog
 oyoosiwidog
 ```
+
+## Inflection classes
+
+TBD
