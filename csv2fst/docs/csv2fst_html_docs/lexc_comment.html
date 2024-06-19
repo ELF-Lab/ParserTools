@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>csv2fst.lexc_comment API documentation</title>
-<meta name="description" content="" />
+<meta name="description" content="Functions for transforming sublexicon names like
+`VAIO_PrefixBoundary` into lexc comment blocks: …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -22,19 +23,39 @@
 <h1 class="title">Module <code>csv2fst.lexc_comment</code></h1>
 </header>
 <section id="section-intro">
+<p>Functions for transforming sublexicon names like
+<code>VAIO_PrefixBoundary</code> into lexc comment blocks:</p>
+<pre><code>!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                                                              !
+!         Paradigm: VAIO                                                       !
+!         Morpheme boundary between prefix and stem                            !
+!                                                                              !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+</code></pre>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">import re
+<pre><code class="python">&#34;&#34;&#34;Functions for transforming sublexicon names like
+   `VAIO_PrefixBoundary` into lexc comment blocks:
+
+   ```
+   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   !                                                                              !
+   !         Paradigm: VAIO                                                       !
+   !         Morpheme boundary between prefix and stem                            !
+   !                                                                              !
+   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   ```
+&#34;&#34;&#34;
+
+import re
 
 SEP=&#34;&lt;&lt;&lt;SEP&gt;&gt;&gt;&#34;
 COMMENT_BLOCK_WIDTH=80
 INITIAL_SPACE=10
 
-# Patterns and substitutions which can be used to translate lexc
-# sublexicon names to comments using re.sub().
-patterns = [
+PATTERNS = [
     (r&#34;(.*)_Prefix&#34;, (r&#34;Paradigm: \1&#34;,
                       r&#34;Prefixes&#34;)),
     (r&#34;(.*)_PrefixBoundary&#34;, (r&#34;Paradigm: \1&#34;,
@@ -52,10 +73,18 @@ patterns = [
     (r&#34;(.*)_Class=(.*)_Prefix=(.*)_Order=(.*)_Endings&#34;, (r&#34;Paradigm: \1, Class: \2, Prefix: \3, Order: \4&#34;,
                                                          r&#34;Endings&#34;)),
 ]
+&#34;&#34;&#34;Patterns and substitutions which can be used to translate lexc
+   sublexicon names to comments using re.sub().
 
-def comment_str(lex_name):
+&#34;&#34;&#34;
+
+def comment_str(lex_name:str) -&gt; str:
+    &#34;&#34;&#34;Transform lexc sublexicon name into a comment string for the lexc
+       file.
+
+    &#34;&#34;&#34;
     comment = None
-    for pattern, subst in patterns:
+    for pattern, subst in PATTERNS:
         if re.match(pattern, lex_name):
             comment = re.sub(pattern, SEP.join(subst), lex_name)
             comment = comment.split(SEP)
@@ -64,12 +93,16 @@ def comment_str(lex_name):
             f&#34;Lexicon name {lex_name} does not match any comment patterns&#34;)
     return comment
 
-def print_to_index(substring, string, i):
+def print_to_index(substring:str, string:str, i:int) -&gt; str:
+    &#34;&#34;&#34;Replace the content starting at i in string and spanning for
+       len(substring) symbols by substring.&#34;&#34;&#34;
     string = [c for c in string]
     string[i:i+len(substring)] = substring
     return &#34;&#34;.join(string)
     
-def comment_block(lex_name):
+def comment_block(lex_name:str) -&gt; str:
+    &#34;&#34;&#34;Return a lexc comment block corresponding to sublexicon name
+       lex_name&#34;&#34;&#34;
     border = &#34;!&#34; * COMMENT_BLOCK_WIDTH
     comment_template = &#34;!&#34; + &#34; &#34; * (COMMENT_BLOCK_WIDTH - 2) + &#34;!&#34;
     comment_lines = comment_str(lex_name)
@@ -88,20 +121,31 @@ def comment_block(lex_name):
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="csv2fst.lexc_comment.PATTERNS"><code class="name">var <span class="ident">PATTERNS</span></code></dt>
+<dd>
+<div class="desc"><p>Patterns and substitutions which can be used to translate lexc
+sublexicon names to comments using re.sub().</p></div>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="csv2fst.lexc_comment.comment_block"><code class="name flex">
-<span>def <span class="ident">comment_block</span></span>(<span>lex_name)</span>
+<span>def <span class="ident">comment_block</span></span>(<span>lex_name: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Return a lexc comment block corresponding to sublexicon name
+lex_name</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def comment_block(lex_name):
+<pre><code class="python">def comment_block(lex_name:str) -&gt; str:
+    &#34;&#34;&#34;Return a lexc comment block corresponding to sublexicon name
+       lex_name&#34;&#34;&#34;
     border = &#34;!&#34; * COMMENT_BLOCK_WIDTH
     comment_template = &#34;!&#34; + &#34; &#34; * (COMMENT_BLOCK_WIDTH - 2) + &#34;!&#34;
     comment_lines = comment_str(lex_name)
@@ -118,17 +162,22 @@ def comment_block(lex_name):
 </details>
 </dd>
 <dt id="csv2fst.lexc_comment.comment_str"><code class="name flex">
-<span>def <span class="ident">comment_str</span></span>(<span>lex_name)</span>
+<span>def <span class="ident">comment_str</span></span>(<span>lex_name: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Transform lexc sublexicon name into a comment string for the lexc
+file.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def comment_str(lex_name):
+<pre><code class="python">def comment_str(lex_name:str) -&gt; str:
+    &#34;&#34;&#34;Transform lexc sublexicon name into a comment string for the lexc
+       file.
+
+    &#34;&#34;&#34;
     comment = None
-    for pattern, subst in patterns:
+    for pattern, subst in PATTERNS:
         if re.match(pattern, lex_name):
             comment = re.sub(pattern, SEP.join(subst), lex_name)
             comment = comment.split(SEP)
@@ -139,15 +188,18 @@ def comment_block(lex_name):
 </details>
 </dd>
 <dt id="csv2fst.lexc_comment.print_to_index"><code class="name flex">
-<span>def <span class="ident">print_to_index</span></span>(<span>substring, string, i)</span>
+<span>def <span class="ident">print_to_index</span></span>(<span>substring: str, string: str, i: int) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Replace the content starting at i in string and spanning for
+len(substring) symbols by substring.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def print_to_index(substring, string, i):
+<pre><code class="python">def print_to_index(substring:str, string:str, i:int) -&gt; str:
+    &#34;&#34;&#34;Replace the content starting at i in string and spanning for
+       len(substring) symbols by substring.&#34;&#34;&#34;
     string = [c for c in string]
     string[i:i+len(substring)] = substring
     return &#34;&#34;.join(string)</code></pre>
@@ -167,6 +219,11 @@ def comment_block(lex_name):
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a title="csv2fst" href="index.html">csv2fst</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="csv2fst.lexc_comment.PATTERNS" href="#csv2fst.lexc_comment.PATTERNS">PATTERNS</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
