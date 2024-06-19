@@ -6,7 +6,7 @@
 |----|----|
 | A1 | Kenneth R. Beesley and Lauri Karttunen. *Finite State Morphology*. 2003. CSLI Publications. (Documents the lexc and xfst formalisms. Not available online but ask Miikka) |
 | A2 | Mans Hulden. [*Morphological Analysis Tutorial*](https://fomafst.github.io/morphtut.html) |
-| A3 | Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). (Demonstrated that phonology and morphology are at least predominantly representable using finite-state transducers) |
+| A3 | Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). (Demonstrated that phonology and morphology are at least predominantly realizable using finite-state transducers) |
 
 ## Ojibwe resources
 
