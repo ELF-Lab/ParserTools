@@ -29,7 +29,7 @@ The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used
 
 More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) morphological paradigms for nouns, verbs and other word classes from `OjibweMorph` (2) a database of lexical information from OPDDdatabase and (3) configuration files for compiling lexc code from OjibweMorph. It then generates a set of lexc-files which are combined with xfst rules manually specified in OjibweMorph using the foma toolkit. Ultimately, foma saves the result as an FST.
 
-## Additional topics
+## Topics
 
 1. [Installing and running scripts](howto.md) 
 2. [Intro to Ojibwe morphology](morphology.md) 
