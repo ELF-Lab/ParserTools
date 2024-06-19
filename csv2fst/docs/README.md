@@ -40,4 +40,7 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 5. [The OPDDatabase repo](opddatabase.md)
 6. [The ParserTools repo](parsertools.md)
 7. [Useful references](references.md)
-   
+
+## Documentation for classes and functions
+
+1. [`ParserTools/csv2fst`](csv2fst_html_docs)
