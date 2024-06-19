@@ -1,5 +1,7 @@
 # Overview
 
+**Up-to-date docs under construction**
+
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
 A morphological analyzer is a model which can do two things:
