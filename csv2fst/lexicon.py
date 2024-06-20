@@ -11,49 +11,19 @@ from lexc_comment import comment_block
 
 class Lexicon:
     @staticmethod
-    def __get_paradigm(row:pd.core.series.Series,
-                       klass_map:pd.core.series.Series) -> str:
-        """Return the inflectional class (like "VTA_n") for an OPD entry.
-        
-        The argument row represents an OPD dictionary entry like:
-        
-        lemma              stem              part_of_speech_id
-        "naawakwe-miijin"  "naawakwe-miiji"  "vti3"
-
-        klass_map contains patterns which are used to determine the correct
-        inflectional class. E.g.:
-
-        Class    OPDClass    MatchElement     Pattern
-        "VTI_i"  "vti3"      "stem"           "^.*i$"
-
-        - "Class" the inflectional class in our FST
-        - "OPDClass" the corresponding POS in OPD (needs to match 
-          part_of_speech_id)
-        - "MatchElement" whether the inflectional class is determined by the 
-          lemma or stem 
-        - "Pattern" a regular expression which needs to match either the lemma or
-          stem (depending on "MatchElement").
-  
-        The function finds the first matching pattern for row in klass_map and
-        returns its "Class"."""
-        if type(klass_map) != type(None):
-            for _, pattern in klass_map.iterrows():
-                if row["part_of_speech_id"].lower() != pattern["OPDClass"].lower():
-                    continue
-                element = \
-                    (row["lemma"] if pattern["MatchElement"] == "lemma" else row["stem"])
-                if re.match(pattern["Pattern"], element):
-                    return pattern["Class"]
-        raise ValueError(f"No matching pattern for lexical entry: {row.to_dict()}")
-
-    @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
+        """Write the `Multichar_Symbols` section into a lexc_file"""
         print("Multichar_Symbols",file=lexc_file)
         multichar_symbols = sorted(list(multichar_symbol_set))
         print(" ".join(multichar_symbols), file=lexc_file)
         print("", file=lexc_file)
 
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+        """Write the `LEXICON Root` into a lexc_file. Each POS has their own
+           custom root lexicon (e.g. VerbRoot and NounRoot) which the
+           master root lexicon needs to reference.
+
+        """
         with open(root_lexc_filename,"w") as root_lexc_file:
             Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
@@ -69,6 +39,14 @@ class Lexicon:
                  database_path:str,
                  read_lexical_database:bool,
                  regular:bool):
+        """Initialize the lexicon using a configuration file. Parameters: 
+           * `conf` configuration 
+           * `source_path` path to OjibweMorph repo
+           * `lexc_path` destination directory for lexc code
+           * `database_path` path to OPDDatabase
+           * `read_lexical_database` whether to include lexemes from database 
+           * `regular` whether this is a lexc file for regular or irregular lexemes 
+        """
         self.conf = conf
         self.root_lexicon = conf["root_lexicon"]
         self.source_path = source_path        
@@ -117,8 +95,6 @@ class Lexicon:
                 try:
                     klass = row.Class
                     paradigm = row.Paradigm
-#                    klass = Lexicon.__get_paradigm(row,klass_map)
-#                    paradigm = klass.split("_")[0]
                     self.lexicons[f"{paradigm}_Stems"].add(
                         LexcEntry(f"{paradigm}_Stems",
                                   escape(row.Lemma),
