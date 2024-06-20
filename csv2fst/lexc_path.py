@@ -406,7 +406,11 @@ class LexcPath:
         return paths
 
     def extend_lexicons(self, lexicons:dict) -> None:
-        """Add the lexc paths representing this path to lexicons."""
+        """Add the all lexicon entries on this path to lexicons. The parameter
+           lexicons represents all sublexicons in the lexc file and their lexicon
+           entries.
+
+        """
         def get_paradigm(s):
             return re.sub("[_].*","",s)
         for path in self.get_lexc_paths():

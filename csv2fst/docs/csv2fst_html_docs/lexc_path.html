@@ -437,7 +437,11 @@ class LexcPath:
         return paths
 
     def extend_lexicons(self, lexicons:dict) -&gt; None:
-        &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
+        &#34;&#34;&#34;Add the all lexicon entries on this path to lexicons. The parameter
+           lexicons represents all sublexicons in the lexc file and their lexicon
+           entries.
+
+        &#34;&#34;&#34;
         def get_paradigm(s):
             return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
         for path in self.get_lexc_paths():
@@ -936,7 +940,11 @@ multichar_symbols.</p></div>
         return paths
 
     def extend_lexicons(self, lexicons:dict) -&gt; None:
-        &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
+        &#34;&#34;&#34;Add the all lexicon entries on this path to lexicons. The parameter
+           lexicons represents all sublexicons in the lexc file and their lexicon
+           entries.
+
+        &#34;&#34;&#34;
         def get_paradigm(s):
             return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
         for path in self.get_lexc_paths():
@@ -1050,13 +1058,19 @@ def update_multichar_symbol_set(cls, conf:dict) -&gt; None:
 <span>def <span class="ident">extend_lexicons</span></span>(<span>self, lexicons: dict) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add the lexc paths representing this path to lexicons.</p></div>
+<div class="desc"><p>Add the all lexicon entries on this path to lexicons. The parameter
+lexicons represents all sublexicons in the lexc file and their lexicon
+entries.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def extend_lexicons(self, lexicons:dict) -&gt; None:
-    &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
+    &#34;&#34;&#34;Add the all lexicon entries on this path to lexicons. The parameter
+       lexicons represents all sublexicons in the lexc file and their lexicon
+       entries.
+
+    &#34;&#34;&#34;
     def get_paradigm(s):
         return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
     for path in self.get_lexc_paths():
