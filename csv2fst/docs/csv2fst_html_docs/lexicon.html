@@ -47,6 +47,7 @@ class Lexicon:
         print(&#34; &#34;.join(multichar_symbols), file=lexc_file)
         print(&#34;&#34;, file=lexc_file)
 
+    @staticmethod
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
         &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
            custom root lexicon (e.g. VerbRoot and NounRoot) which the
@@ -195,6 +196,7 @@ class Lexicon:
         print(&#34; &#34;.join(multichar_symbols), file=lexc_file)
         print(&#34;&#34;, file=lexc_file)
 
+    @staticmethod
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
         &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
            custom root lexicon (e.g. VerbRoot and NounRoot) which the
@@ -328,6 +330,33 @@ def write_multichar_symbols(multichar_symbol_set, lexc_file):
     print(&#34;&#34;, file=lexc_file)</code></pre>
 </details>
 </dd>
+<dt id="csv2fst.lexicon.Lexicon.write_root_lexc"><code class="name flex">
+<span>def <span class="ident">write_root_lexc</span></span>(<span>root_lexc_filename, pos_root_lexicons)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write the <code>LEXICON Root</code> into a lexc_file. Each POS has their own
+custom root lexicon (e.g. VerbRoot and NounRoot) which the
+master root lexicon needs to reference.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@staticmethod
+def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+    &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
+       custom root lexicon (e.g. VerbRoot and NounRoot) which the
+       master root lexicon needs to reference.
+
+    &#34;&#34;&#34;
+    with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
+        Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
+                                        root_lexc_file)
+        print(&#34;LEXICON Root&#34;, file=root_lexc_file)
+        for lexicon_name in pos_root_lexicons:
+            print(f&#34;{lexicon_name} ;&#34;, file=root_lexc_file)
+        print(&#34;&#34;, file=root_lexc_file)</code></pre>
+</details>
+</dd>
 </dl>
 <h3>Methods</h3>
 <dl>
@@ -425,32 +454,6 @@ configuration file. Otherwise, write to the file given by
         for row in lexc_rows:
             print(entry2str(row), file=lexc_file)
         print(&#34;&#34;, file=lexc_file)</code></pre>
-</details>
-</dd>
-<dt id="csv2fst.lexicon.Lexicon.write_root_lexc"><code class="name flex">
-<span>def <span class="ident">write_root_lexc</span></span>(<span>root_lexc_filename, pos_root_lexicons)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Write the <code>LEXICON Root</code> into a lexc_file. Each POS has their own
-custom root lexicon (e.g. VerbRoot and NounRoot) which the
-master root lexicon needs to reference.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def write_root_lexc(root_lexc_filename,pos_root_lexicons):
-    &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
-       custom root lexicon (e.g. VerbRoot and NounRoot) which the
-       master root lexicon needs to reference.
-
-    &#34;&#34;&#34;
-    with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
-        Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
-                                        root_lexc_file)
-        print(&#34;LEXICON Root&#34;, file=root_lexc_file)
-        for lexicon_name in pos_root_lexicons:
-            print(f&#34;{lexicon_name} ;&#34;, file=root_lexc_file)
-        print(&#34;&#34;, file=root_lexc_file)</code></pre>
 </details>
 </dd>
 </dl>
