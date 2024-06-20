@@ -47,6 +47,8 @@ Where `xyz` is the canonical form of the preverb followed by `+`, e.g. `PVTense/
 
 The subordinate preverbs and changed conjunct marker can only occur in conjunct forms. The changed conjunct marker differs from the other preverbs in the sense that it is not realized as a prefix. Rather, it causes a *phonological alternation* in the first vowel of the verb form.  
 
+[TBD: explain independent and conjunct relaizations for preverbs]
+
 ### The verb stem and lexeme
 
 The verb stem in the example above is `waabam`. It marks *nigii-waabamaabaniig* as an inflected form of the lexeme /waabam/. We can also see that the analysis contains the lemma `waabam`. Unlike tags, e.g. `+1SgSubj` which are represented as one symbol, the stem internally consists of individual characters: `w a a b a m`. This can be important when we write foma regular expressions to match verb forms.  
