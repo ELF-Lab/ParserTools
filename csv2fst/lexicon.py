@@ -18,6 +18,7 @@ class Lexicon:
         print(" ".join(multichar_symbols), file=lexc_file)
         print("", file=lexc_file)
 
+    @staticmethod
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
         """Write the `LEXICON Root` into a lexc_file. Each POS has their own
            custom root lexicon (e.g. VerbRoot and NounRoot) which the
