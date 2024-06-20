@@ -157,3 +157,7 @@ LEXICON Ending
 @R.Prefix.Ni@+VAI+Ind+Pos+Neu+ExclSubj:@R.Prefix.Ni@min # ;
 
 ```
+
+List of flag diacritics:
+
+TBD
