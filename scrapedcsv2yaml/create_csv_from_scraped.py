@@ -13,6 +13,7 @@ POSSIBLE_PARTICIPANTS = []
 OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
 RECIPROCAL_LEMMA_ENDING = "wag"
 RECIPROCAL_STEM_ENDING = "di"
+REFLEXIVE_LEMMA_ENDING = "dizo"
 STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
 EMPTY_FIELD_MARKER = "NONE"
 
@@ -214,7 +215,8 @@ def add_person_and_number(form_with_info):
     elif form_with_info["POS"] == "VAIO":
         form_with_info["Object"] = ["0Sg","0Pl"]
     # The OPD doesn't give reciprocals objects.  We want to explicitly specify their obj is the same as their subj!
-    elif form_with_info["POS"] == "VAI" and form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING):
+    # The same is true of *reflexives*!
+    elif form_with_info["POS"] == "VAI" and (form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING)) or (form_with_info["Lemma"].endswith(REFLEXIVE_LEMMA_ENDING)):
         form_with_info["Object"] = form_with_info["Subject"]
     else:
         form_with_info["Object"] = EMPTY_FIELD_MARKER
