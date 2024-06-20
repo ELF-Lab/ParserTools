@@ -191,7 +191,7 @@ class LexcPath:
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
         
     @classmethod
-    def __get_prefix_flags(cls, prefix:str) -&gt; tuple[str]:
+    def get_prefix_flags(cls, prefix:str) -&gt; tuple[str]:
         &#34;&#34;&#34;Get P and R flag diacritics like @P.Prefix.NI@ which
            determine valid combinations of prefixes and suffixes.
 
@@ -204,7 +204,7 @@ class LexcPath:
         return pflag, rflag
 
     @classmethod
-    def __get_paradigm_flags(cls, paradigm:str) -&gt; tuple[str]:
+    def get_paradigm_flags(cls, paradigm:str) -&gt; tuple[str]:
         &#34;&#34;&#34;Get P and R flag diacritics for a given paradigm like VTA.
 
            The flag diacritics will be added to `multichar_symbols`.
@@ -214,8 +214,8 @@ class LexcPath:
         cls.multichar_symbols.update([pflag, rflag])        
         return pflag, rflag
     
-    def __get_order_flag(self) -&gt; tuple[str]:
-        &#34;&#34;&#34;Get a U flag matching the order of this LexcEntry: Ind, Cnj or
+    def get_order_flag(self) -&gt; tuple[str]:
+        &#34;&#34;&#34;Get a U flag matching the order of this LexcPath: Ind, Cnj or
            Other (in case of imperative or other unspecified order).
 
            The flag diacritic will be added to `multichar_symbols`.
@@ -230,7 +230,7 @@ class LexcPath:
         return order, flag
 
     def __init__(self, row:pd.core.series.Series, conf:dict, regular:bool):
-        &#34;&#34;&#34;Initialize this LexcEntry using the configuration file conf and a
+        &#34;&#34;&#34;Initialize this LexcPath using the configuration file conf and a
         spreadsheet row. The boolean parameter regular determines whether this
         is treated as a regular form (which should have morpheme boundaries
         and undergo phonological rules) or an irregular form which is stored
@@ -253,30 +253,30 @@ class LexcPath:
                      for feat in conf[&#34;morph_features&#34;]
                      if (row[feat] != conf[&#34;missing_tag_marker&#34;] and
                          row[feat] != &#34;&#34;)]
-        self.__harvest_multichar_symbols()
+        self.harvest_multichar_symbols()
 
         try:
-            self.__read_forms(row, conf)
+            self.read_forms(row, conf)
         except ValueError as e:
             warn(e)
             
-    def __harvest_multichar_symbols(self) -&gt; None:
+    def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
-           from this entry to the multichar_symbols set
+           from this path to the multichar_symbols set
 
         &#34;&#34;&#34;
         for tag in self.tags:
             LexcPath.multichar_symbols.add(tag)
 
-    def __read_forms(self, row:pd.core.series.Series, conf:dict) -&gt; None:
+    def read_forms(self, row:pd.core.series.Series, conf:dict) -&gt; None:
         &#34;&#34;&#34;Read all forms on the given dataframe row. Store both the plain
            surface form and segmented form.
 
         &#34;&#34;&#34;
-        def get_form_indices() -&gt; list[Int]:
+        def get_form_indices() -&gt; list[int]:
             # Return all indices i which are associated with a surface
             # form on this row, i.e. i where Form{i}Surface is a
-            # column on the row and the entry in that column is
+            # column on the row and the form in that column is
             # non-empty.
             missing = conf[&#34;missing_form_marker&#34;]
             return [i for i in range(MAXFORMS) if f&#34;Form{i}Surface&#34; in row and
@@ -287,104 +287,141 @@ class LexcPath:
         if len(self.forms) == 0:
             raise ValueError(f&#34;No surface forms given for row: {row.to_dict()}&#34;)
         
-    def __get_lexc_paths(self) -&gt; list[list[LexcEntry]]:
-        &#34;&#34;&#34;Convert this path entry into a list of lexc lexicon paths starting
-           at the ROOT lexicon (this could be VerbRoot, NounRoot etc.)
-           and ending in #. Each path is a sequence of lexc sublexicon
-           entries.
+    def get_lexc_paths(self) -&gt; list[list[LexcEntry]]:
+        &#34;&#34;&#34;Convert this path into a list of lexc lexicon paths starting
+           at a person prefix lexicon (this could be VTA_Prefix, NA_Prefix, 
+           etc.) and ending in the terminal lexicon #. Each path is a 
+           sequence of lexc sublexicon entries.
 
-           There will be one path for each surface form.
+           There will be one list-element for each surface form (note that 
+           there may be several surface forms Form1Surface, Form2Surface, 
+           ...).
 
            For inflected forms of regular lexemes, our paths will look
            like this (here, for the example analysis and form
            aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
 
-              LEXICON ROOT
-              VTA:Prefix ;
+           ```
+              ! Person prefix lexicon for nouns and verbs. For all other 
+              ! word classes the prefix is always empty (@P.Prefix.NONE@)
+              LEXICON VTA_Prefix
+              @P.Prefix.NI@:@P.Prefix.NI@ni VTA_PrefixBoundary ;
 
-              LEXICON VTA:Prefix
-              @P.Prefix.NI@:@P.Prefix.NI@ni VTA:PrefixBoundary ;
+              ! Morpheme boundary for person prefix. Note that we can jump
+              ! to a preverb lexicon here. For all word classes apart from
+              ! nouns and verbs, we jump directly to the a stem lexicon.
+              LEXICON VTA_PrefixBoundary
+              0:%&lt;%&lt; PreverbRoot ;
+        
+              ! After adding preverbs, we return to this lexicon. Need to
+              ! match the correct paradigm here
+              LEXICON VerbStems
+              @R.Paradigm.VTA@ VTA_Stems ;
 
-              LEXICON VTA:PrefixBoundary
-              0:%&lt;%&lt; VTA:PreElement ;
+              ! Stem lexicon. aaba&#39; belongs to the VTA_C inflection class,
+              ! so we continue to the VTA_C suffix boundary lexicon.
+              LEXICON VTA_Stems
+              aaba&#39;:aaba&#39;w VTA_Class=VTA_C_Boundary ;
 
-              LEXICON VTA:PreElement
-              [PREVERB] VTA:Stems ;
+              ! Suffix boundary
+              LEXICON VTA_Class=VTA_C_Boundary
+              0:%&gt;%&gt; VTA_Class=VTA_C_Flags ;
 
-              LEXICON VTA:Stems
-              aaba&#39;:aaba&#39;w VTA:Class=VTA_C:Boundary ;
+              ! This sublexicon makes sure that we get the correct 
+              ! combination of person prefix (&#34;ni-&#34; in this case) and ending.
+              ! The combinatorics is handled by matching the value of the 
+              ! feature Prefix (NI in this case).
+              LEXICON VTA_Class=VTA_C_Flags
+              @R.Prefix.NI@ VTA_Class=VTA_C_Flags_Prefix=NI ;
 
-              LEXICON VTA:Class=VTA_C:Boundary
-              0:%&gt;%&gt; VTA:Class=VTA_C:Flags ;
+              ! We need to match the correct order here
+              LEXICON VTA_Class=VTA_C_Flags_Prefix=NI ;
+              @U.Order.Ind@ VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings ;
 
-              LEXICON VTA:Class=VTA_C:Flags
-              @R.Prefix.NI@ VTA:Class=VTA_C:Prefix=NI:Endings ;
-
-              LEXICON VTA:Class=VTA_C:Prefix=NI:Endings
+              ! This lexicon enumerates endings for the inflection class
+              ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
+              LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
               +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+           ```
 
-           For inflected forms of irregular lexemes, our pahts become
+           For inflected forms of irregular lexemes, our paths become
            very simple. We just enumerate the entire form as one
-           chunk:
+           chunk without morpheme boundaries. This effectively prevents any
+           phonological rules from applying, which is exactly what we want
+           for irregular lexemes:
 
+           ```
               LEXICON ROOT
-              VTA:Irregular ;
+              VTA_Irregular ;
 
-              LEXICON VTA:Irregular
+              LEXICON VTA_Irregular
               izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
-
+           ```
         &#34;&#34;&#34;
         paths = []
         paradigm = self.paradigm
         klass = self.klass
         for surface, parts in self.forms:
             if self.regular:
-                p_prefix_flag, r_prefix_flag = LexcPath.__get_prefix_flags(parts.prefix)
-                _, r_paradigm_flag = LexcPath.__get_paradigm_flags(paradigm)
-                order, r_order_flag = self.__get_order_flag()
-                prefix_id = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
-                # The following lexc sublexicon entries generate this form. 
+                # Flag diacritics which:
+                # (1) control combinations of person prefix and inflectional ending,
+                # (2) check that we&#39;ve got the correct paradigm (this is needed to
+                #     make sure that return to the correct paradigm after adding
+                #     preverbs), and
+                # (3) check the order (we track this because subordinate preverbs
+                #     and the changed-conjunct marker require conjunct order and some
+                #     preverbs have distinct independent and conjunct order surface
+                #     forms) 
+                set_prefix_flag, check_prefix_flag = LexcPath.get_prefix_flags(parts.prefix)
+                _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
+                order, check_order_flag = self.get_order_flag()
+
+                # The person prefix for this form
+                prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
+
+                # Continuation lexicons needed on this path
+                person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
+                morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
+                preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm
+                                   if &#34;prefix_root&#34; in self.conf
+                                   else None)
+                pos_stem_lexicon = f&#34;{self.conf[&#39;pos&#39;]}Stems&#34; # E.g. VerbStems
+                paradigm_stem_lexicon = f&#34;{paradigm}_Stems&#34; # E.g. VTA_Stems
+                inflection_class_lexicon = f&#34;{paradigm}_Class={klass}_Boundary&#34;
+                check_prefix_lexicon = f&#34;{paradigm}_Class={klass}_Flags&#34;
+                check_order_lexicon = f&#34;{paradigm}_Class={klass}_Flags_Prefix={prefix}&#34;
+                ending_lexicon = f&#34;{paradigm}_Class={klass}_Prefix={prefix}_Order={order}_Endings&#34;
+                
                 path = [
-                    # @P.Prefix.&lt;X&gt;@:@P.Prefix.&lt;X&gt;@&lt;x&gt; &lt;Paradigm&gt;_PrefixBoundary ;
-                    LexcEntry(f&#34;{paradigm}_Prefix&#34;,
-                              p_prefix_flag,
-                              p_prefix_flag+parts.prefix,
-                              f&#34;{paradigm}_PrefixBoundary&#34;),
-                    # 0_%&lt;%&lt; &lt;Paradigm&gt;_PreElement ;
-                    LexcEntry(f&#34;{paradigm}_PrefixBoundary&#34;,
+                    LexcEntry(person_prefix_lexicon,
+                              set_prefix_flag,
+                              set_prefix_flag+parts.prefix,
+                              morpheme_boundary_lexicon),
+                    LexcEntry(morpheme_boundary_lexicon,
                               &#34;0&#34;,
                               escape(PREFIX_BOUNDARY),
-                              self.conf[&#34;prefix_root&#34;]
-                              if &#34;prefix_root&#34; in self.conf
-                              else f&#34;{self.conf[&#39;pos&#39;]}Stems&#34;),
-#                              f&#34;{paradigm}_PreElement&#34;),
-                    # &lt;PreElement&gt; &lt;Paradigm&gt;_Stems ;
-                    LexcEntry(f&#34;{self.conf[&#39;pos&#39;]}Stems&#34;,
-                              r_paradigm_flag,
-                              r_paradigm_flag,
-                              f&#34;{paradigm}_Stems&#34;),
-                    # &lt;lemma&gt;_&lt;stem&gt; &lt;Paradigm&gt;_Class=&lt;class&gt;_Boundary ;
-                    LexcEntry(f&#34;{paradigm}_Stems&#34;,
+                              preverb_lexicon or pos_stem_lexicon),
+                    LexcEntry(pos_stem_lexicon,
+                              check_paradigm_flag,
+                              check_paradigm_flag,
+                              paradigm_stem_lexicon),
+                    LexcEntry(paradigm_stem_lexicon,
                               self.lemma,
                               self.stem,
-                              f&#34;{paradigm}_Class={klass}_Boundary&#34;),
-                    # 0_%&gt;%&gt; &lt;Paradigm&gt;_Class=&lt;class&gt;_Flags ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Boundary&#34;,
+                              inflection_class_lexicon),
+                    LexcEntry(inflection_class_lexicon,
                               &#34;0&#34;,
                               escape(SUFFIX_BOUNDARY),
-                              f&#34;{paradigm}_Class={klass}_Flags&#34;),
-                    # @R.Prefix.&lt;X&gt;@ &lt;Paradigm&gt;_Class=&lt;class&gt;_Prefix=&lt;X&gt;_Endings ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Flags&#34;,
-                              r_prefix_flag,
-                              r_prefix_flag,
-                              f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}&#34;),
-                    # @U.Order.&lt;Y&gt;@ &lt;Paradigm&gt;_Class=&lt;class&gt;_Prefix=&lt;X&gt;_Order=&lt;Y&gt;_Endings
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}&#34;,
-                              r_order_flag,
-                              r_order_flag,
-                              f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}_Endings&#34;),
-                    # &lt;tags&gt;_&lt;ending&gt; # ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}_Endings&#34;,
+                              check_prefix_lexicon),
+                    LexcEntry(check_prefix_lexicon,
+                              check_prefix_flag,
+                              check_prefix_flag,
+                              check_order_lexicon),
+                    LexcEntry(check_order_lexicon,
+                              check_order_flag,
+                              check_order_flag,
+                              ending_lexicon),
+                    LexcEntry(ending_lexicon,
                               &#34;&#34;.join(self.tags),
                               parts.suffix,
                               &#34;#&#34;)
@@ -403,9 +440,9 @@ class LexcPath:
         &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
         def get_paradigm(s):
             return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
-        for path in self.__get_lexc_paths():
+        for path in self.get_lexc_paths():
             paradigm = get_paradigm(path[0].lexicon)
-            p_paradigm_flag, _ = LexcPath.__get_paradigm_flags(paradigm)
+            p_paradigm_flag, _ = LexcPath.get_paradigm_flags(paradigm)
             lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
                                                       p_paradigm_flag,
                                                       p_paradigm_flag,
@@ -602,7 +639,7 @@ the path can contain multiple surface forms (Surface1Form,
 Surface2Form, &hellip;). LexcPath can therefore encode multiple
 sub-lexicon entries e.g. corresponding to alternative endings of
 an inflected form.</p>
-<p>Initialize this LexcEntry using the configuration file conf and a
+<p>Initialize this LexcPath using the configuration file conf and a
 spreadsheet row. The boolean parameter regular determines whether this
 is treated as a regular form (which should have morpheme boundaries
 and undergo phonological rules) or an irregular form which is stored
@@ -653,7 +690,7 @@ multichar_symbols.</p></div>
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
         
     @classmethod
-    def __get_prefix_flags(cls, prefix:str) -&gt; tuple[str]:
+    def get_prefix_flags(cls, prefix:str) -&gt; tuple[str]:
         &#34;&#34;&#34;Get P and R flag diacritics like @P.Prefix.NI@ which
            determine valid combinations of prefixes and suffixes.
 
@@ -666,7 +703,7 @@ multichar_symbols.</p></div>
         return pflag, rflag
 
     @classmethod
-    def __get_paradigm_flags(cls, paradigm:str) -&gt; tuple[str]:
+    def get_paradigm_flags(cls, paradigm:str) -&gt; tuple[str]:
         &#34;&#34;&#34;Get P and R flag diacritics for a given paradigm like VTA.
 
            The flag diacritics will be added to `multichar_symbols`.
@@ -676,8 +713,8 @@ multichar_symbols.</p></div>
         cls.multichar_symbols.update([pflag, rflag])        
         return pflag, rflag
     
-    def __get_order_flag(self) -&gt; tuple[str]:
-        &#34;&#34;&#34;Get a U flag matching the order of this LexcEntry: Ind, Cnj or
+    def get_order_flag(self) -&gt; tuple[str]:
+        &#34;&#34;&#34;Get a U flag matching the order of this LexcPath: Ind, Cnj or
            Other (in case of imperative or other unspecified order).
 
            The flag diacritic will be added to `multichar_symbols`.
@@ -692,7 +729,7 @@ multichar_symbols.</p></div>
         return order, flag
 
     def __init__(self, row:pd.core.series.Series, conf:dict, regular:bool):
-        &#34;&#34;&#34;Initialize this LexcEntry using the configuration file conf and a
+        &#34;&#34;&#34;Initialize this LexcPath using the configuration file conf and a
         spreadsheet row. The boolean parameter regular determines whether this
         is treated as a regular form (which should have morpheme boundaries
         and undergo phonological rules) or an irregular form which is stored
@@ -715,30 +752,30 @@ multichar_symbols.</p></div>
                      for feat in conf[&#34;morph_features&#34;]
                      if (row[feat] != conf[&#34;missing_tag_marker&#34;] and
                          row[feat] != &#34;&#34;)]
-        self.__harvest_multichar_symbols()
+        self.harvest_multichar_symbols()
 
         try:
-            self.__read_forms(row, conf)
+            self.read_forms(row, conf)
         except ValueError as e:
             warn(e)
             
-    def __harvest_multichar_symbols(self) -&gt; None:
+    def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
-           from this entry to the multichar_symbols set
+           from this path to the multichar_symbols set
 
         &#34;&#34;&#34;
         for tag in self.tags:
             LexcPath.multichar_symbols.add(tag)
 
-    def __read_forms(self, row:pd.core.series.Series, conf:dict) -&gt; None:
+    def read_forms(self, row:pd.core.series.Series, conf:dict) -&gt; None:
         &#34;&#34;&#34;Read all forms on the given dataframe row. Store both the plain
            surface form and segmented form.
 
         &#34;&#34;&#34;
-        def get_form_indices() -&gt; list[Int]:
+        def get_form_indices() -&gt; list[int]:
             # Return all indices i which are associated with a surface
             # form on this row, i.e. i where Form{i}Surface is a
-            # column on the row and the entry in that column is
+            # column on the row and the form in that column is
             # non-empty.
             missing = conf[&#34;missing_form_marker&#34;]
             return [i for i in range(MAXFORMS) if f&#34;Form{i}Surface&#34; in row and
@@ -749,104 +786,141 @@ multichar_symbols.</p></div>
         if len(self.forms) == 0:
             raise ValueError(f&#34;No surface forms given for row: {row.to_dict()}&#34;)
         
-    def __get_lexc_paths(self) -&gt; list[list[LexcEntry]]:
-        &#34;&#34;&#34;Convert this path entry into a list of lexc lexicon paths starting
-           at the ROOT lexicon (this could be VerbRoot, NounRoot etc.)
-           and ending in #. Each path is a sequence of lexc sublexicon
-           entries.
+    def get_lexc_paths(self) -&gt; list[list[LexcEntry]]:
+        &#34;&#34;&#34;Convert this path into a list of lexc lexicon paths starting
+           at a person prefix lexicon (this could be VTA_Prefix, NA_Prefix, 
+           etc.) and ending in the terminal lexicon #. Each path is a 
+           sequence of lexc sublexicon entries.
 
-           There will be one path for each surface form.
+           There will be one list-element for each surface form (note that 
+           there may be several surface forms Form1Surface, Form2Surface, 
+           ...).
 
            For inflected forms of regular lexemes, our paths will look
            like this (here, for the example analysis and form
            aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
 
-              LEXICON ROOT
-              VTA:Prefix ;
+           ```
+              ! Person prefix lexicon for nouns and verbs. For all other 
+              ! word classes the prefix is always empty (@P.Prefix.NONE@)
+              LEXICON VTA_Prefix
+              @P.Prefix.NI@:@P.Prefix.NI@ni VTA_PrefixBoundary ;
 
-              LEXICON VTA:Prefix
-              @P.Prefix.NI@:@P.Prefix.NI@ni VTA:PrefixBoundary ;
+              ! Morpheme boundary for person prefix. Note that we can jump
+              ! to a preverb lexicon here. For all word classes apart from
+              ! nouns and verbs, we jump directly to the a stem lexicon.
+              LEXICON VTA_PrefixBoundary
+              0:%&lt;%&lt; PreverbRoot ;
+        
+              ! After adding preverbs, we return to this lexicon. Need to
+              ! match the correct paradigm here
+              LEXICON VerbStems
+              @R.Paradigm.VTA@ VTA_Stems ;
 
-              LEXICON VTA:PrefixBoundary
-              0:%&lt;%&lt; VTA:PreElement ;
+              ! Stem lexicon. aaba&#39; belongs to the VTA_C inflection class,
+              ! so we continue to the VTA_C suffix boundary lexicon.
+              LEXICON VTA_Stems
+              aaba&#39;:aaba&#39;w VTA_Class=VTA_C_Boundary ;
 
-              LEXICON VTA:PreElement
-              [PREVERB] VTA:Stems ;
+              ! Suffix boundary
+              LEXICON VTA_Class=VTA_C_Boundary
+              0:%&gt;%&gt; VTA_Class=VTA_C_Flags ;
 
-              LEXICON VTA:Stems
-              aaba&#39;:aaba&#39;w VTA:Class=VTA_C:Boundary ;
+              ! This sublexicon makes sure that we get the correct 
+              ! combination of person prefix (&#34;ni-&#34; in this case) and ending.
+              ! The combinatorics is handled by matching the value of the 
+              ! feature Prefix (NI in this case).
+              LEXICON VTA_Class=VTA_C_Flags
+              @R.Prefix.NI@ VTA_Class=VTA_C_Flags_Prefix=NI ;
 
-              LEXICON VTA:Class=VTA_C:Boundary
-              0:%&gt;%&gt; VTA:Class=VTA_C:Flags ;
+              ! We need to match the correct order here
+              LEXICON VTA_Class=VTA_C_Flags_Prefix=NI ;
+              @U.Order.Ind@ VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings ;
 
-              LEXICON VTA:Class=VTA_C:Flags
-              @R.Prefix.NI@ VTA:Class=VTA_C:Prefix=NI:Endings ;
-
-              LEXICON VTA:Class=VTA_C:Prefix=NI:Endings
+              ! This lexicon enumerates endings for the inflection class
+              ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
+              LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
               +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+           ```
 
-           For inflected forms of irregular lexemes, our pahts become
+           For inflected forms of irregular lexemes, our paths become
            very simple. We just enumerate the entire form as one
-           chunk:
+           chunk without morpheme boundaries. This effectively prevents any
+           phonological rules from applying, which is exactly what we want
+           for irregular lexemes:
 
+           ```
               LEXICON ROOT
-              VTA:Irregular ;
+              VTA_Irregular ;
 
-              LEXICON VTA:Irregular
+              LEXICON VTA_Irregular
               izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
-
+           ```
         &#34;&#34;&#34;
         paths = []
         paradigm = self.paradigm
         klass = self.klass
         for surface, parts in self.forms:
             if self.regular:
-                p_prefix_flag, r_prefix_flag = LexcPath.__get_prefix_flags(parts.prefix)
-                _, r_paradigm_flag = LexcPath.__get_paradigm_flags(paradigm)
-                order, r_order_flag = self.__get_order_flag()
-                prefix_id = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
-                # The following lexc sublexicon entries generate this form. 
+                # Flag diacritics which:
+                # (1) control combinations of person prefix and inflectional ending,
+                # (2) check that we&#39;ve got the correct paradigm (this is needed to
+                #     make sure that return to the correct paradigm after adding
+                #     preverbs), and
+                # (3) check the order (we track this because subordinate preverbs
+                #     and the changed-conjunct marker require conjunct order and some
+                #     preverbs have distinct independent and conjunct order surface
+                #     forms) 
+                set_prefix_flag, check_prefix_flag = LexcPath.get_prefix_flags(parts.prefix)
+                _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
+                order, check_order_flag = self.get_order_flag()
+
+                # The person prefix for this form
+                prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
+
+                # Continuation lexicons needed on this path
+                person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
+                morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
+                preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm
+                                   if &#34;prefix_root&#34; in self.conf
+                                   else None)
+                pos_stem_lexicon = f&#34;{self.conf[&#39;pos&#39;]}Stems&#34; # E.g. VerbStems
+                paradigm_stem_lexicon = f&#34;{paradigm}_Stems&#34; # E.g. VTA_Stems
+                inflection_class_lexicon = f&#34;{paradigm}_Class={klass}_Boundary&#34;
+                check_prefix_lexicon = f&#34;{paradigm}_Class={klass}_Flags&#34;
+                check_order_lexicon = f&#34;{paradigm}_Class={klass}_Flags_Prefix={prefix}&#34;
+                ending_lexicon = f&#34;{paradigm}_Class={klass}_Prefix={prefix}_Order={order}_Endings&#34;
+                
                 path = [
-                    # @P.Prefix.&lt;X&gt;@:@P.Prefix.&lt;X&gt;@&lt;x&gt; &lt;Paradigm&gt;_PrefixBoundary ;
-                    LexcEntry(f&#34;{paradigm}_Prefix&#34;,
-                              p_prefix_flag,
-                              p_prefix_flag+parts.prefix,
-                              f&#34;{paradigm}_PrefixBoundary&#34;),
-                    # 0_%&lt;%&lt; &lt;Paradigm&gt;_PreElement ;
-                    LexcEntry(f&#34;{paradigm}_PrefixBoundary&#34;,
+                    LexcEntry(person_prefix_lexicon,
+                              set_prefix_flag,
+                              set_prefix_flag+parts.prefix,
+                              morpheme_boundary_lexicon),
+                    LexcEntry(morpheme_boundary_lexicon,
                               &#34;0&#34;,
                               escape(PREFIX_BOUNDARY),
-                              self.conf[&#34;prefix_root&#34;]
-                              if &#34;prefix_root&#34; in self.conf
-                              else f&#34;{self.conf[&#39;pos&#39;]}Stems&#34;),
-#                              f&#34;{paradigm}_PreElement&#34;),
-                    # &lt;PreElement&gt; &lt;Paradigm&gt;_Stems ;
-                    LexcEntry(f&#34;{self.conf[&#39;pos&#39;]}Stems&#34;,
-                              r_paradigm_flag,
-                              r_paradigm_flag,
-                              f&#34;{paradigm}_Stems&#34;),
-                    # &lt;lemma&gt;_&lt;stem&gt; &lt;Paradigm&gt;_Class=&lt;class&gt;_Boundary ;
-                    LexcEntry(f&#34;{paradigm}_Stems&#34;,
+                              preverb_lexicon or pos_stem_lexicon),
+                    LexcEntry(pos_stem_lexicon,
+                              check_paradigm_flag,
+                              check_paradigm_flag,
+                              paradigm_stem_lexicon),
+                    LexcEntry(paradigm_stem_lexicon,
                               self.lemma,
                               self.stem,
-                              f&#34;{paradigm}_Class={klass}_Boundary&#34;),
-                    # 0_%&gt;%&gt; &lt;Paradigm&gt;_Class=&lt;class&gt;_Flags ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Boundary&#34;,
+                              inflection_class_lexicon),
+                    LexcEntry(inflection_class_lexicon,
                               &#34;0&#34;,
                               escape(SUFFIX_BOUNDARY),
-                              f&#34;{paradigm}_Class={klass}_Flags&#34;),
-                    # @R.Prefix.&lt;X&gt;@ &lt;Paradigm&gt;_Class=&lt;class&gt;_Prefix=&lt;X&gt;_Endings ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Flags&#34;,
-                              r_prefix_flag,
-                              r_prefix_flag,
-                              f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}&#34;),
-                    # @U.Order.&lt;Y&gt;@ &lt;Paradigm&gt;_Class=&lt;class&gt;_Prefix=&lt;X&gt;_Order=&lt;Y&gt;_Endings
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}&#34;,
-                              r_order_flag,
-                              r_order_flag,
-                              f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}_Endings&#34;),
-                    # &lt;tags&gt;_&lt;ending&gt; # ;
-                    LexcEntry(f&#34;{paradigm}_Class={klass}_Prefix={prefix_id}_Order={order}_Endings&#34;,
+                              check_prefix_lexicon),
+                    LexcEntry(check_prefix_lexicon,
+                              check_prefix_flag,
+                              check_prefix_flag,
+                              check_order_lexicon),
+                    LexcEntry(check_order_lexicon,
+                              check_order_flag,
+                              check_order_flag,
+                              ending_lexicon),
+                    LexcEntry(ending_lexicon,
                               &#34;&#34;.join(self.tags),
                               parts.suffix,
                               &#34;#&#34;)
@@ -865,9 +939,9 @@ multichar_symbols.</p></div>
         &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
         def get_paradigm(s):
             return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
-        for path in self.__get_lexc_paths():
+        for path in self.get_lexc_paths():
             paradigm = get_paradigm(path[0].lexicon)
-            p_paradigm_flag, _ = LexcPath.__get_paradigm_flags(paradigm)
+            p_paradigm_flag, _ = LexcPath.get_paradigm_flags(paradigm)
             lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
                                                       p_paradigm_flag,
                                                       p_paradigm_flag,
@@ -899,6 +973,53 @@ set</p></div>
 </dl>
 <h3>Static methods</h3>
 <dl>
+<dt id="csv2fst.lexc_path.LexcPath.get_paradigm_flags"><code class="name flex">
+<span>def <span class="ident">get_paradigm_flags</span></span>(<span>paradigm: str) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get P and R flag diacritics for a given paradigm like VTA.</p>
+<p>The flag diacritics will be added to <code>multichar_symbols</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def get_paradigm_flags(cls, paradigm:str) -&gt; tuple[str]:
+    &#34;&#34;&#34;Get P and R flag diacritics for a given paradigm like VTA.
+
+       The flag diacritics will be added to `multichar_symbols`.
+
+    &#34;&#34;&#34;        
+    pflag, rflag = f&#34;@P.Paradigm.{paradigm}@&#34;, f&#34;@R.Paradigm.{paradigm}@&#34;
+    cls.multichar_symbols.update([pflag, rflag])        
+    return pflag, rflag</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.lexc_path.LexcPath.get_prefix_flags"><code class="name flex">
+<span>def <span class="ident">get_prefix_flags</span></span>(<span>prefix: str) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get P and R flag diacritics like @P.Prefix.NI@ which
+determine valid combinations of prefixes and suffixes.</p>
+<p>The flag diacritics will be added to <code>multichar_symbols</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def get_prefix_flags(cls, prefix:str) -&gt; tuple[str]:
+    &#34;&#34;&#34;Get P and R flag diacritics like @P.Prefix.NI@ which
+       determine valid combinations of prefixes and suffixes.
+
+       The flag diacritics will be added to `multichar_symbols`.
+
+    &#34;&#34;&#34;
+    prefix = &#34;NONE&#34; if prefix == &#34;&#34; else prefix.upper()
+    pflag, rflag = f&#34;@P.Prefix.{prefix}@&#34;, f&#34;@R.Prefix.{prefix}@&#34;
+    cls.multichar_symbols.update([pflag, rflag])
+    return pflag, rflag</code></pre>
+</details>
+</dd>
 <dt id="csv2fst.lexc_path.LexcPath.update_multichar_symbol_set"><code class="name flex">
 <span>def <span class="ident">update_multichar_symbol_set</span></span>(<span>conf: dict) ‑> None</span>
 </code></dt>
@@ -938,9 +1059,9 @@ def update_multichar_symbol_set(cls, conf:dict) -&gt; None:
     &#34;&#34;&#34;Add the lexc paths representing this path to lexicons.&#34;&#34;&#34;
     def get_paradigm(s):
         return re.sub(&#34;[_].*&#34;,&#34;&#34;,s)
-    for path in self.__get_lexc_paths():
+    for path in self.get_lexc_paths():
         paradigm = get_paradigm(path[0].lexicon)
-        p_paradigm_flag, _ = LexcPath.__get_paradigm_flags(paradigm)
+        p_paradigm_flag, _ = LexcPath.get_paradigm_flags(paradigm)
         lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
                                                   p_paradigm_flag,
                                                   p_paradigm_flag,
@@ -949,6 +1070,302 @@ def update_multichar_symbol_set(cls, conf:dict) -&gt; None:
             if not lexc_entry.lexicon in lexicons:
                 lexicons[lexc_entry.lexicon] = set()
             lexicons[lexc_entry.lexicon].add(lexc_entry)</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.lexc_path.LexcPath.get_lexc_paths"><code class="name flex">
+<span>def <span class="ident">get_lexc_paths</span></span>(<span>self) ‑> list</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert this path into a list of lexc lexicon paths starting
+at a person prefix lexicon (this could be VTA_Prefix, NA_Prefix,
+etc.) and ending in the terminal lexicon #. Each path is a
+sequence of lexc sublexicon entries.</p>
+<p>There will be one list-element for each surface form (note that
+there may be several surface forms Form1Surface, Form2Surface,
+&hellip;).</p>
+<p>For inflected forms of regular lexemes, our paths will look
+like this (here, for the example analysis and form
+aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):</p>
+<pre><code>   ! Person prefix lexicon for nouns and verbs. For all other 
+   ! word classes the prefix is always empty (@P.Prefix.NONE@)
+   LEXICON VTA_Prefix
+   @P.Prefix.NI@:@P.Prefix.NI@ni VTA_PrefixBoundary ;
+
+   ! Morpheme boundary for person prefix. Note that we can jump
+   ! to a preverb lexicon here. For all word classes apart from
+   ! nouns and verbs, we jump directly to the a stem lexicon.
+   LEXICON VTA_PrefixBoundary
+   0:%&lt;%&lt; PreverbRoot ;
+
+   ! After adding preverbs, we return to this lexicon. Need to
+   ! match the correct paradigm here
+   LEXICON VerbStems
+   @R.Paradigm.VTA@ VTA_Stems ;
+
+   ! Stem lexicon. aaba' belongs to the VTA_C inflection class,
+   ! so we continue to the VTA_C suffix boundary lexicon.
+   LEXICON VTA_Stems
+   aaba':aaba'w VTA_Class=VTA_C_Boundary ;
+
+   ! Suffix boundary
+   LEXICON VTA_Class=VTA_C_Boundary
+   0:%&gt;%&gt; VTA_Class=VTA_C_Flags ;
+
+   ! This sublexicon makes sure that we get the correct 
+   ! combination of person prefix (&quot;ni-&quot; in this case) and ending.
+   ! The combinatorics is handled by matching the value of the 
+   ! feature Prefix (NI in this case).
+   LEXICON VTA_Class=VTA_C_Flags
+   @R.Prefix.NI@ VTA_Class=VTA_C_Flags_Prefix=NI ;
+
+   ! We need to match the correct order here
+   LEXICON VTA_Class=VTA_C_Flags_Prefix=NI ;
+   @U.Order.Ind@ VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings ;
+
+   ! This lexicon enumerates endings for the inflection class
+   ! VAT_C which correspond to person prefix &quot;ni-&quot; and order Ind.
+   LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
+   +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+</code></pre>
+<p>For inflected forms of irregular lexemes, our paths become
+very simple. We just enumerate the entire form as one
+chunk without morpheme boundaries. This effectively prevents any
+phonological rules from applying, which is exactly what we want
+for irregular lexemes:</p>
+<pre><code>   LEXICON ROOT
+   VTA_Irregular ;
+
+   LEXICON VTA_Irregular
+   izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_lexc_paths(self) -&gt; list[list[LexcEntry]]:
+    &#34;&#34;&#34;Convert this path into a list of lexc lexicon paths starting
+       at a person prefix lexicon (this could be VTA_Prefix, NA_Prefix, 
+       etc.) and ending in the terminal lexicon #. Each path is a 
+       sequence of lexc sublexicon entries.
+
+       There will be one list-element for each surface form (note that 
+       there may be several surface forms Form1Surface, Form2Surface, 
+       ...).
+
+       For inflected forms of regular lexemes, our paths will look
+       like this (here, for the example analysis and form
+       aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
+
+       ```
+          ! Person prefix lexicon for nouns and verbs. For all other 
+          ! word classes the prefix is always empty (@P.Prefix.NONE@)
+          LEXICON VTA_Prefix
+          @P.Prefix.NI@:@P.Prefix.NI@ni VTA_PrefixBoundary ;
+
+          ! Morpheme boundary for person prefix. Note that we can jump
+          ! to a preverb lexicon here. For all word classes apart from
+          ! nouns and verbs, we jump directly to the a stem lexicon.
+          LEXICON VTA_PrefixBoundary
+          0:%&lt;%&lt; PreverbRoot ;
+    
+          ! After adding preverbs, we return to this lexicon. Need to
+          ! match the correct paradigm here
+          LEXICON VerbStems
+          @R.Paradigm.VTA@ VTA_Stems ;
+
+          ! Stem lexicon. aaba&#39; belongs to the VTA_C inflection class,
+          ! so we continue to the VTA_C suffix boundary lexicon.
+          LEXICON VTA_Stems
+          aaba&#39;:aaba&#39;w VTA_Class=VTA_C_Boundary ;
+
+          ! Suffix boundary
+          LEXICON VTA_Class=VTA_C_Boundary
+          0:%&gt;%&gt; VTA_Class=VTA_C_Flags ;
+
+          ! This sublexicon makes sure that we get the correct 
+          ! combination of person prefix (&#34;ni-&#34; in this case) and ending.
+          ! The combinatorics is handled by matching the value of the 
+          ! feature Prefix (NI in this case).
+          LEXICON VTA_Class=VTA_C_Flags
+          @R.Prefix.NI@ VTA_Class=VTA_C_Flags_Prefix=NI ;
+
+          ! We need to match the correct order here
+          LEXICON VTA_Class=VTA_C_Flags_Prefix=NI ;
+          @U.Order.Ind@ VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings ;
+
+          ! This lexicon enumerates endings for the inflection class
+          ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
+          LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
+          +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+       ```
+
+       For inflected forms of irregular lexemes, our paths become
+       very simple. We just enumerate the entire form as one
+       chunk without morpheme boundaries. This effectively prevents any
+       phonological rules from applying, which is exactly what we want
+       for irregular lexemes:
+
+       ```
+          LEXICON ROOT
+          VTA_Irregular ;
+
+          LEXICON VTA_Irregular
+          izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
+       ```
+    &#34;&#34;&#34;
+    paths = []
+    paradigm = self.paradigm
+    klass = self.klass
+    for surface, parts in self.forms:
+        if self.regular:
+            # Flag diacritics which:
+            # (1) control combinations of person prefix and inflectional ending,
+            # (2) check that we&#39;ve got the correct paradigm (this is needed to
+            #     make sure that return to the correct paradigm after adding
+            #     preverbs), and
+            # (3) check the order (we track this because subordinate preverbs
+            #     and the changed-conjunct marker require conjunct order and some
+            #     preverbs have distinct independent and conjunct order surface
+            #     forms) 
+            set_prefix_flag, check_prefix_flag = LexcPath.get_prefix_flags(parts.prefix)
+            _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
+            order, check_order_flag = self.get_order_flag()
+
+            # The person prefix for this form
+            prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
+
+            # Continuation lexicons needed on this path
+            person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
+            morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
+            preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm
+                               if &#34;prefix_root&#34; in self.conf
+                               else None)
+            pos_stem_lexicon = f&#34;{self.conf[&#39;pos&#39;]}Stems&#34; # E.g. VerbStems
+            paradigm_stem_lexicon = f&#34;{paradigm}_Stems&#34; # E.g. VTA_Stems
+            inflection_class_lexicon = f&#34;{paradigm}_Class={klass}_Boundary&#34;
+            check_prefix_lexicon = f&#34;{paradigm}_Class={klass}_Flags&#34;
+            check_order_lexicon = f&#34;{paradigm}_Class={klass}_Flags_Prefix={prefix}&#34;
+            ending_lexicon = f&#34;{paradigm}_Class={klass}_Prefix={prefix}_Order={order}_Endings&#34;
+            
+            path = [
+                LexcEntry(person_prefix_lexicon,
+                          set_prefix_flag,
+                          set_prefix_flag+parts.prefix,
+                          morpheme_boundary_lexicon),
+                LexcEntry(morpheme_boundary_lexicon,
+                          &#34;0&#34;,
+                          escape(PREFIX_BOUNDARY),
+                          preverb_lexicon or pos_stem_lexicon),
+                LexcEntry(pos_stem_lexicon,
+                          check_paradigm_flag,
+                          check_paradigm_flag,
+                          paradigm_stem_lexicon),
+                LexcEntry(paradigm_stem_lexicon,
+                          self.lemma,
+                          self.stem,
+                          inflection_class_lexicon),
+                LexcEntry(inflection_class_lexicon,
+                          &#34;0&#34;,
+                          escape(SUFFIX_BOUNDARY),
+                          check_prefix_lexicon),
+                LexcEntry(check_prefix_lexicon,
+                          check_prefix_flag,
+                          check_prefix_flag,
+                          check_order_lexicon),
+                LexcEntry(check_order_lexicon,
+                          check_order_flag,
+                          check_order_flag,
+                          ending_lexicon),
+                LexcEntry(ending_lexicon,
+                          &#34;&#34;.join(self.tags),
+                          parts.suffix,
+                          &#34;#&#34;)
+            ]
+            paths.append(path)
+        else:
+            # Irregular forms are treated as one chunk and simply enumerated.
+            paths.append([LexcEntry(f&#34;{paradigm}_Irregular&#34;,
+                                    f&#34;{self.lemma}{&#39;&#39;.join(self.tags)}&#34;,
+                                    surface,
+                                    &#34;#&#34;)])
+
+    return paths</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.lexc_path.LexcPath.get_order_flag"><code class="name flex">
+<span>def <span class="ident">get_order_flag</span></span>(<span>self) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a U flag matching the order of this LexcPath: Ind, Cnj or
+Other (in case of imperative or other unspecified order).</p>
+<p>The flag diacritic will be added to <code>multichar_symbols</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_order_flag(self) -&gt; tuple[str]:
+    &#34;&#34;&#34;Get a U flag matching the order of this LexcPath: Ind, Cnj or
+       Other (in case of imperative or other unspecified order).
+
+       The flag diacritic will be added to `multichar_symbols`.
+    &#34;&#34;&#34;
+    order = &#34;Other&#34;
+    if &#34;+Ind&#34; in self.tags:
+        order = &#34;Ind&#34;
+    elif &#34;+Cnj&#34; in self.tags:
+        order = &#34;Cnj&#34;
+    flag = f&#34;@U.Order.{order}@&#34;
+    LexcPath.multichar_symbols.update([flag])
+    return order, flag</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.lexc_path.LexcPath.harvest_multichar_symbols"><code class="name flex">
+<span>def <span class="ident">harvest_multichar_symbols</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add all morphological features like "+VTA", "+Ind" and "+1SgSubj"
+from this path to the multichar_symbols set</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def harvest_multichar_symbols(self) -&gt; None:
+    &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
+       from this path to the multichar_symbols set
+
+    &#34;&#34;&#34;
+    for tag in self.tags:
+        LexcPath.multichar_symbols.add(tag)</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.lexc_path.LexcPath.read_forms"><code class="name flex">
+<span>def <span class="ident">read_forms</span></span>(<span>self, row: pandas.core.series.Series, conf: dict) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read all forms on the given dataframe row. Store both the plain
+surface form and segmented form.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read_forms(self, row:pd.core.series.Series, conf:dict) -&gt; None:
+    &#34;&#34;&#34;Read all forms on the given dataframe row. Store both the plain
+       surface form and segmented form.
+
+    &#34;&#34;&#34;
+    def get_form_indices() -&gt; list[int]:
+        # Return all indices i which are associated with a surface
+        # form on this row, i.e. i where Form{i}Surface is a
+        # column on the row and the form in that column is
+        # non-empty.
+        missing = conf[&#34;missing_form_marker&#34;]
+        return [i for i in range(MAXFORMS) if f&#34;Form{i}Surface&#34; in row and
+                                              not row[f&#34;Form{i}Surface&#34;] in [missing, &#34;&#34;]]
+    
+    self.forms = [(row[f&#34;Form{i}Surface&#34;], split_form(row[f&#34;Form{i}Split&#34;]))
+                  for i in get_form_indices()]
+    if len(self.forms) == 0:
+        raise ValueError(f&#34;No surface forms given for row: {row.to_dict()}&#34;)</code></pre>
 </details>
 </dd>
 </dl>
@@ -1031,7 +1448,13 @@ prefix, stem and suffix:</p>
 <h4><code><a title="csv2fst.lexc_path.LexcPath" href="#csv2fst.lexc_path.LexcPath">LexcPath</a></code></h4>
 <ul class="">
 <li><code><a title="csv2fst.lexc_path.LexcPath.extend_lexicons" href="#csv2fst.lexc_path.LexcPath.extend_lexicons">extend_lexicons</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.get_lexc_paths" href="#csv2fst.lexc_path.LexcPath.get_lexc_paths">get_lexc_paths</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.get_order_flag" href="#csv2fst.lexc_path.LexcPath.get_order_flag">get_order_flag</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.get_paradigm_flags" href="#csv2fst.lexc_path.LexcPath.get_paradigm_flags">get_paradigm_flags</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.get_prefix_flags" href="#csv2fst.lexc_path.LexcPath.get_prefix_flags">get_prefix_flags</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.harvest_multichar_symbols" href="#csv2fst.lexc_path.LexcPath.harvest_multichar_symbols">harvest_multichar_symbols</a></code></li>
 <li><code><a title="csv2fst.lexc_path.LexcPath.multichar_symbols" href="#csv2fst.lexc_path.LexcPath.multichar_symbols">multichar_symbols</a></code></li>
+<li><code><a title="csv2fst.lexc_path.LexcPath.read_forms" href="#csv2fst.lexc_path.LexcPath.read_forms">read_forms</a></code></li>
 <li><code><a title="csv2fst.lexc_path.LexcPath.update_multichar_symbol_set" href="#csv2fst.lexc_path.LexcPath.update_multichar_symbol_set">update_multichar_symbol_set</a></code></li>
 </ul>
 </li>
