@@ -160,7 +160,7 @@ class LexcPath:
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
         
     @classmethod
-    def __get_prefix_flags(cls, prefix:str) -> tuple[str]:
+    def get_prefix_flags(cls, prefix:str) -> tuple[str]:
         """Get P and R flag diacritics like @P.Prefix.NI@ which
            determine valid combinations of prefixes and suffixes.
 
@@ -173,7 +173,7 @@ class LexcPath:
         return pflag, rflag
 
     @classmethod
-    def __get_paradigm_flags(cls, paradigm:str) -> tuple[str]:
+    def get_paradigm_flags(cls, paradigm:str) -> tuple[str]:
         """Get P and R flag diacritics for a given paradigm like VTA.
 
            The flag diacritics will be added to `multichar_symbols`.
@@ -183,7 +183,7 @@ class LexcPath:
         cls.multichar_symbols.update([pflag, rflag])        
         return pflag, rflag
     
-    def __get_order_flag(self) -> tuple[str]:
+    def get_order_flag(self) -> tuple[str]:
         """Get a U flag matching the order of this LexcPath: Ind, Cnj or
            Other (in case of imperative or other unspecified order).
 
@@ -222,14 +222,14 @@ class LexcPath:
                      for feat in conf["morph_features"]
                      if (row[feat] != conf["missing_tag_marker"] and
                          row[feat] != "")]
-        self.__harvest_multichar_symbols()
+        self.harvest_multichar_symbols()
 
         try:
-            self.__read_forms(row, conf)
+            self.read_forms(row, conf)
         except ValueError as e:
             warn(e)
             
-    def __harvest_multichar_symbols(self) -> None:
+    def harvest_multichar_symbols(self) -> None:
         """Add all morphological features like "+VTA", "+Ind" and "+1SgSubj"
            from this path to the multichar_symbols set
 
@@ -237,7 +237,7 @@ class LexcPath:
         for tag in self.tags:
             LexcPath.multichar_symbols.add(tag)
 
-    def __read_forms(self, row:pd.core.series.Series, conf:dict) -> None:
+    def read_forms(self, row:pd.core.series.Series, conf:dict) -> None:
         """Read all forms on the given dataframe row. Store both the plain
            surface form and segmented form.
 
@@ -256,7 +256,7 @@ class LexcPath:
         if len(self.forms) == 0:
             raise ValueError(f"No surface forms given for row: {row.to_dict()}")
         
-    def __get_lexc_paths(self) -> list[list[LexcEntry]]:
+    def get_lexc_paths(self) -> list[list[LexcEntry]]:
         """Convert this path into a list of lexc lexicon paths starting
            at a person prefix lexicon (this could be VTA_Prefix, NA_Prefix, 
            etc.) and ending in the terminal lexicon #. Each path is a 
@@ -281,6 +281,11 @@ class LexcPath:
               ! nouns and verbs, we jump directly to the a stem lexicon.
               LEXICON VTA_PrefixBoundary
               0:%<%< PreverbRoot ;
+        
+              ! After adding preverbs, we return to this lexicon. Need to
+              ! match the correct paradigm here
+              LEXICON VerbStems
+              @R.Paradigm.VTA@ VTA_Stems ;
 
               ! Stem lexicon. aaba' belongs to the VTA_C inflection class,
               ! so we continue to the VTA_C suffix boundary lexicon.
@@ -296,18 +301,23 @@ class LexcPath:
               ! The combinatorics is handled by matching the value of the 
               ! feature Prefix (NI in this case).
               LEXICON VTA_Class=VTA_C_Flags
-              @R.Prefix.NI@ VTA_Class=VTA_C_Prefix=NI_Endings ;
+              @R.Prefix.NI@ VTA_Class=VTA_C_Flags_Prefix=NI ;
+
+              ! We need to match the correct order here
+              LEXICON VTA_Class=VTA_C_Flags_Prefix=NI ;
+              @U.Order.Ind@ VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings ;
 
               ! This lexicon enumerates endings for the inflection class
-              ! VAT_C which correspond to person prefix "ni-".
-              LEXICON VTA_Class=VTA_C_Prefix=NI_Endings
+              ! VAT_C which correspond to person prefix "ni-" and order Ind.
+              LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
               +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
            ```
 
-           For inflected forms of irregular lexemes, our pahts become
+           For inflected forms of irregular lexemes, our paths become
            very simple. We just enumerate the entire form as one
            chunk without morpheme boundaries. This effectively prevents any
-           phonological rules from applying which is exactly what we want:
+           phonological rules from applying, which is exactly what we want
+           for irregular lexemes:
 
            ```
               LEXICON ROOT
@@ -331,9 +341,9 @@ class LexcPath:
                 #     and the changed-conjunct marker require conjunct order and some
                 #     preverbs have distinct independent and conjunct order surface
                 #     forms) 
-                set_prefix_flag, check_prefix_flag = LexcPath.__get_prefix_flags(parts.prefix)
-                _, check_paradigm_flag = LexcPath.__get_paradigm_flags(paradigm)
-                order, check_order_flag = self.__get_order_flag()
+                set_prefix_flag, check_prefix_flag = LexcPath.get_prefix_flags(parts.prefix)
+                _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
+                order, check_order_flag = self.get_order_flag()
 
                 # The person prefix for this form
                 prefix = "NONE" if parts.prefix == "" else parts.prefix.upper()
@@ -399,9 +409,9 @@ class LexcPath:
         """Add the lexc paths representing this path to lexicons."""
         def get_paradigm(s):
             return re.sub("[_].*","",s)
-        for path in self.__get_lexc_paths():
+        for path in self.get_lexc_paths():
             paradigm = get_paradigm(path[0].lexicon)
-            p_paradigm_flag, _ = LexcPath.__get_paradigm_flags(paradigm)
+            p_paradigm_flag, _ = LexcPath.get_paradigm_flags(paradigm)
             lexicons[self.root_lexicon].add(LexcEntry(self.root_lexicon,
                                                       p_paradigm_flag,
                                                       p_paradigm_flag,
