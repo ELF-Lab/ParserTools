@@ -40,49 +40,19 @@ from lexc_comment import comment_block
 
 class Lexicon:
     @staticmethod
-    def __get_paradigm(row:pd.core.series.Series,
-                       klass_map:pd.core.series.Series) -&gt; str:
-        &#34;&#34;&#34;Return the inflectional class (like &#34;VTA_n&#34;) for an OPD entry.
-        
-        The argument row represents an OPD dictionary entry like:
-        
-        lemma              stem              part_of_speech_id
-        &#34;naawakwe-miijin&#34;  &#34;naawakwe-miiji&#34;  &#34;vti3&#34;
-
-        klass_map contains patterns which are used to determine the correct
-        inflectional class. E.g.:
-
-        Class    OPDClass    MatchElement     Pattern
-        &#34;VTI_i&#34;  &#34;vti3&#34;      &#34;stem&#34;           &#34;^.*i$&#34;
-
-        - &#34;Class&#34; the inflectional class in our FST
-        - &#34;OPDClass&#34; the corresponding POS in OPD (needs to match 
-          part_of_speech_id)
-        - &#34;MatchElement&#34; whether the inflectional class is determined by the 
-          lemma or stem 
-        - &#34;Pattern&#34; a regular expression which needs to match either the lemma or
-          stem (depending on &#34;MatchElement&#34;).
-  
-        The function finds the first matching pattern for row in klass_map and
-        returns its &#34;Class&#34;.&#34;&#34;&#34;
-        if type(klass_map) != type(None):
-            for _, pattern in klass_map.iterrows():
-                if row[&#34;part_of_speech_id&#34;].lower() != pattern[&#34;OPDClass&#34;].lower():
-                    continue
-                element = \
-                    (row[&#34;lemma&#34;] if pattern[&#34;MatchElement&#34;] == &#34;lemma&#34; else row[&#34;stem&#34;])
-                if re.match(pattern[&#34;Pattern&#34;], element):
-                    return pattern[&#34;Class&#34;]
-        raise ValueError(f&#34;No matching pattern for lexical entry: {row.to_dict()}&#34;)
-
-    @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
+        &#34;&#34;&#34;Write the `Multichar_Symbols` section into a lexc_file&#34;&#34;&#34;
         print(&#34;Multichar_Symbols&#34;,file=lexc_file)
         multichar_symbols = sorted(list(multichar_symbol_set))
         print(&#34; &#34;.join(multichar_symbols), file=lexc_file)
         print(&#34;&#34;, file=lexc_file)
 
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+        &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
+           custom root lexicon (e.g. VerbRoot and NounRoot) which the
+           master root lexicon needs to reference.
+
+        &#34;&#34;&#34;
         with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
             Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
@@ -98,6 +68,14 @@ class Lexicon:
                  database_path:str,
                  read_lexical_database:bool,
                  regular:bool):
+        &#34;&#34;&#34;Initialize the lexicon using a configuration file. Parameters: 
+           * `conf` configuration 
+           * `source_path` path to OjibweMorph repo
+           * `lexc_path` destination directory for lexc code
+           * `database_path` path to OPDDatabase
+           * `read_lexical_database` whether to include lexemes from database 
+           * `regular` whether this is a lexc file for regular or irregular lexemes 
+        &#34;&#34;&#34;
         self.conf = conf
         self.root_lexicon = conf[&#34;root_lexicon&#34;]
         self.source_path = source_path        
@@ -146,8 +124,6 @@ class Lexicon:
                 try:
                     klass = row.Class
                     paradigm = row.Paradigm
-#                    klass = Lexicon.__get_paradigm(row,klass_map)
-#                    paradigm = klass.split(&#34;_&#34;)[0]
                     self.lexicons[f&#34;{paradigm}_Stems&#34;].add(
                         LexcEntry(f&#34;{paradigm}_Stems&#34;,
                                   escape(row.Lemma),
@@ -199,56 +175,32 @@ class Lexicon:
 <span>(</span><span>conf: dict, source_path: str, lexc_path: str, database_path: str, read_lexical_database: bool, regular: bool)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Initialize the lexicon using a configuration file. Parameters:
+* <code>conf</code> configuration
+* <code>source_path</code> path to OjibweMorph repo
+* <code>lexc_path</code> destination directory for lexc code
+* <code>database_path</code> path to OPDDatabase
+* <code>read_lexical_database</code> whether to include lexemes from database
+* <code>regular</code> whether this is a lexc file for regular or irregular lexemes</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Lexicon:
     @staticmethod
-    def __get_paradigm(row:pd.core.series.Series,
-                       klass_map:pd.core.series.Series) -&gt; str:
-        &#34;&#34;&#34;Return the inflectional class (like &#34;VTA_n&#34;) for an OPD entry.
-        
-        The argument row represents an OPD dictionary entry like:
-        
-        lemma              stem              part_of_speech_id
-        &#34;naawakwe-miijin&#34;  &#34;naawakwe-miiji&#34;  &#34;vti3&#34;
-
-        klass_map contains patterns which are used to determine the correct
-        inflectional class. E.g.:
-
-        Class    OPDClass    MatchElement     Pattern
-        &#34;VTI_i&#34;  &#34;vti3&#34;      &#34;stem&#34;           &#34;^.*i$&#34;
-
-        - &#34;Class&#34; the inflectional class in our FST
-        - &#34;OPDClass&#34; the corresponding POS in OPD (needs to match 
-          part_of_speech_id)
-        - &#34;MatchElement&#34; whether the inflectional class is determined by the 
-          lemma or stem 
-        - &#34;Pattern&#34; a regular expression which needs to match either the lemma or
-          stem (depending on &#34;MatchElement&#34;).
-  
-        The function finds the first matching pattern for row in klass_map and
-        returns its &#34;Class&#34;.&#34;&#34;&#34;
-        if type(klass_map) != type(None):
-            for _, pattern in klass_map.iterrows():
-                if row[&#34;part_of_speech_id&#34;].lower() != pattern[&#34;OPDClass&#34;].lower():
-                    continue
-                element = \
-                    (row[&#34;lemma&#34;] if pattern[&#34;MatchElement&#34;] == &#34;lemma&#34; else row[&#34;stem&#34;])
-                if re.match(pattern[&#34;Pattern&#34;], element):
-                    return pattern[&#34;Class&#34;]
-        raise ValueError(f&#34;No matching pattern for lexical entry: {row.to_dict()}&#34;)
-
-    @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
+        &#34;&#34;&#34;Write the `Multichar_Symbols` section into a lexc_file&#34;&#34;&#34;
         print(&#34;Multichar_Symbols&#34;,file=lexc_file)
         multichar_symbols = sorted(list(multichar_symbol_set))
         print(&#34; &#34;.join(multichar_symbols), file=lexc_file)
         print(&#34;&#34;, file=lexc_file)
 
     def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+        &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
+           custom root lexicon (e.g. VerbRoot and NounRoot) which the
+           master root lexicon needs to reference.
+
+        &#34;&#34;&#34;
         with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
             Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
@@ -264,6 +216,14 @@ class Lexicon:
                  database_path:str,
                  read_lexical_database:bool,
                  regular:bool):
+        &#34;&#34;&#34;Initialize the lexicon using a configuration file. Parameters: 
+           * `conf` configuration 
+           * `source_path` path to OjibweMorph repo
+           * `lexc_path` destination directory for lexc code
+           * `database_path` path to OPDDatabase
+           * `read_lexical_database` whether to include lexemes from database 
+           * `regular` whether this is a lexc file for regular or irregular lexemes 
+        &#34;&#34;&#34;
         self.conf = conf
         self.root_lexicon = conf[&#34;root_lexicon&#34;]
         self.source_path = source_path        
@@ -312,8 +272,6 @@ class Lexicon:
                 try:
                     klass = row.Class
                     paradigm = row.Paradigm
-#                    klass = Lexicon.__get_paradigm(row,klass_map)
-#                    paradigm = klass.split(&#34;_&#34;)[0]
                     self.lexicons[f&#34;{paradigm}_Stems&#34;].add(
                         LexcEntry(f&#34;{paradigm}_Stems&#34;,
                                   escape(row.Lemma),
@@ -356,13 +314,14 @@ class Lexicon:
 <span>def <span class="ident">write_multichar_symbols</span></span>(<span>multichar_symbol_set, lexc_file)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Write the <code>Multichar_Symbols</code> section into a lexc_file</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@staticmethod
 def write_multichar_symbols(multichar_symbol_set, lexc_file):
+    &#34;&#34;&#34;Write the `Multichar_Symbols` section into a lexc_file&#34;&#34;&#34;
     print(&#34;Multichar_Symbols&#34;,file=lexc_file)
     multichar_symbols = sorted(list(multichar_symbol_set))
     print(&#34; &#34;.join(multichar_symbols), file=lexc_file)
@@ -391,46 +350,44 @@ in the "class_map" field in the configuration file.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">    def read_lexemes_from_database(self, database_path) -&gt; None:
-        &#34;&#34;&#34;Read OPD dictionary entries from an external CSV file given by the
-        &#34;lexical_database&#34; field in the configuration file. The CVS is
-        located in the directory given by database_path
+<pre><code class="python">def read_lexemes_from_database(self, database_path) -&gt; None:
+    &#34;&#34;&#34;Read OPD dictionary entries from an external CSV file given by the
+    &#34;lexical_database&#34; field in the configuration file. The CVS is
+    located in the directory given by database_path
 
-        This function maps OPD POS tags like vti3 to inflectional
-        classes like BorderLakesMorph VTI_i. It then adds each the OPD
-        lexical entry into the appropriate lexc sublexicon (like
-        VTI:Stems) with an appropriate continuation lexicon (like
-        VTI:Class=VTI_i:Boundary).
+    This function maps OPD POS tags like vti3 to inflectional
+    classes like BorderLakesMorph VTI_i. It then adds each the OPD
+    lexical entry into the appropriate lexc sublexicon (like
+    VTI:Stems) with an appropriate continuation lexicon (like
+    VTI:Class=VTI_i:Boundary).
 
-        The mapping from OPD POS tags to BorderLakesMorph inflectional
-        classes is based on a mapping CSV file. This file is specified
-        in the &#34;class_map&#34; field in the configuration file.
+    The mapping from OPD POS tags to BorderLakesMorph inflectional
+    classes is based on a mapping CSV file. This file is specified
+    in the &#34;class_map&#34; field in the configuration file.
 
-        &#34;&#34;&#34;
-        
-        info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;)
-        if self.conf[&#34;lexical_database&#34;] != &#34;None&#34;:
-            lexeme_database = pd.read_csv(os.path.join(database_path,
-                                                       self.conf[&#34;lexical_database&#34;]),
-                                          keep_default_na=False)
-            skipped = 0
-            for _, row in lexeme_database.iterrows():
-                try:
-                    klass = row.Class
-                    paradigm = row.Paradigm
-#                    klass = Lexicon.__get_paradigm(row,klass_map)
-#                    paradigm = klass.split(&#34;_&#34;)[0]
-                    self.lexicons[f&#34;{paradigm}_Stems&#34;].add(
-                        LexcEntry(f&#34;{paradigm}_Stems&#34;,
-                                  escape(row.Lemma),
-                                  escape(row.Stem),
-                                  f&#34;{paradigm}_Class={klass}_Boundary&#34;))
-                except ValueError as e:
-                    warn(e)
-                    skipped += 1
-            info(f&#34;Checked {len(lexeme_database)} lexical entries.\n&#34;,
-                 f&#34;Added {len(lexeme_database) - skipped} entries to lexc file.\n&#34;,
-                 f&#34;Skipped {skipped} invalid ones&#34;)</code></pre>
+    &#34;&#34;&#34;
+    
+    info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;)
+    if self.conf[&#34;lexical_database&#34;] != &#34;None&#34;:
+        lexeme_database = pd.read_csv(os.path.join(database_path,
+                                                   self.conf[&#34;lexical_database&#34;]),
+                                      keep_default_na=False)
+        skipped = 0
+        for _, row in lexeme_database.iterrows():
+            try:
+                klass = row.Class
+                paradigm = row.Paradigm
+                self.lexicons[f&#34;{paradigm}_Stems&#34;].add(
+                    LexcEntry(f&#34;{paradigm}_Stems&#34;,
+                              escape(row.Lemma),
+                              escape(row.Stem),
+                              f&#34;{paradigm}_Class={klass}_Boundary&#34;))
+            except ValueError as e:
+                warn(e)
+                skipped += 1
+        info(f&#34;Checked {len(lexeme_database)} lexical entries.\n&#34;,
+             f&#34;Added {len(lexeme_database) - skipped} entries to lexc file.\n&#34;,
+             f&#34;Skipped {skipped} invalid ones&#34;)</code></pre>
 </details>
 </dd>
 <dt id="csv2fst.lexicon.Lexicon.write_lexc"><code class="name flex">
@@ -474,12 +431,19 @@ configuration file. Otherwise, write to the file given by
 <span>def <span class="ident">write_root_lexc</span></span>(<span>root_lexc_filename, pos_root_lexicons)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Write the <code>LEXICON Root</code> into a lexc_file. Each POS has their own
+custom root lexicon (e.g. VerbRoot and NounRoot) which the
+master root lexicon needs to reference.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def write_root_lexc(root_lexc_filename,pos_root_lexicons):
+    &#34;&#34;&#34;Write the `LEXICON Root` into a lexc_file. Each POS has their own
+       custom root lexicon (e.g. VerbRoot and NounRoot) which the
+       master root lexicon needs to reference.
+
+    &#34;&#34;&#34;
     with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
         Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
                                         root_lexc_file)
