@@ -44,3 +44,9 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 ## Documentation for constants, classes and functions
 
 1. [`ParserTools/csv2fst`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/ParserTools/blob/master/csv2fst/docs/csv2fst_html_docs/index.html)
+
+## How to cite this project
+
+TBD 
+
+(We'll put together a small technical report which can be cited. Ultimately the idea is to write a proper paper on the project.)
