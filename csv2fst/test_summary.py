@@ -1,7 +1,7 @@
 """A script for summarizing results of morphological analysis tests on OPD forms."""
 
 import os
-from re import search, sub
+from re import search, split
 from datetime import date
 
 OUTPUT_FILE_NAME = "test_summary.csv"
@@ -10,8 +10,6 @@ INPUT_FILE_NAME = "opd-test.log"
 ADD_APOSTROPHE = True
 PRINT_DETAILED_EVAL = False
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
-
-
 
 def write_to_csv(output_line):
     HEADER = "Date," + ",".join(TEST_SECTIONS) +  ",Total passes,Total passes (%)"
@@ -46,12 +44,12 @@ def prepare_output(results):
             output_line += "N/A,"
         else:
             # Add the results from this test section to our output line
-            output_line += results[test_section][0]
+            output_line += results[test_section]["log_passes"] + "/" + results[test_section]["log_total"]
             if PRINT_DETAILED_EVAL:
-                output_line += " False pos: " + str(results[test_section][1]) + " False neg: " + str(results[test_section][2])
+                output_line += " False pos: " + str(results[test_section]["false_pos"]) + " False neg: " + str(results[test_section]["false_neg"])
             output_line += ","
-            total_passes += int((results[test_section][0].partition("/"))[0])
-            total_tests += int((results[test_section][0].partition("/"))[2])
+            total_passes += int(results[test_section]["log_passes"])
+            total_tests += int(results[test_section]["log_total"])
     
     # Last columns are the total count and then percent
     output_line += str(total_passes) + "/" + str(total_tests) + ","
@@ -79,8 +77,11 @@ def read_logs():
         elif line.startswith("Total"):
             section_results = line.strip()
             section_results = section_results.replace("Total passes: ", "")
-            section_results = sub(", Total fails: [0-9]+, Total: ", "/", section_results)
-            results.update({test_section: [section_results, false_pos, false_neg]})
+            section_results = split(", Total fails: [0-9]+, Total: ", section_results)
+            log_passes = section_results[0]
+            log_total = section_results[1]
+            test_section_results = {"log_passes": log_passes, "log_total": log_total, "false_pos": false_pos, "false_neg": false_neg}
+            results.update({test_section: test_section_results})
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
