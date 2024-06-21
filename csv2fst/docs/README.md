@@ -51,3 +51,19 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 TBD 
 
 (We'll put together a small technical report which can be cited. Ultimately the idea is to write a proper paper on the project.)
+
+## Acknowledgements
+
+* Antti Arppe
+* Chris Hamerly
+* Nora Livesay
+* Minh Nguyen
+* Scott Parhill
+* Sandra Radic
+* Miikka Silfverberg
+* Anna Stacey
+
+* AltLab
+* CultureFoundry
+* Ojibwe People's Dictionary
+* UBC
