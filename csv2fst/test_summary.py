@@ -74,10 +74,12 @@ def read_logs():
             false_pos = 0
             false_neg = 0
             forms_with_no_results = 0
+        # "Missing" = an OPD analysis that the FST failed to produce
         elif "Missing results" in line:
-            false_neg += 1
+            false_neg += (1 + line.count(","))
+        # "Unexpected" = an analysis produced by the FST not shared by the OPD
         elif search(r"Unexpected results: [a-z]", line):
-            false_pos += 1
+            false_pos += (1 + line.count(","))
         elif search(r"Unexpected results: \+\?", line):
             forms_with_no_results += 1
         # Get the # of fails / # of tests
