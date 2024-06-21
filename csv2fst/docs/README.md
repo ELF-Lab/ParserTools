@@ -54,6 +54,8 @@ TBD
 
 ## Acknowledgements
 
+People:
+
 * Antti Arppe
 * Chris Hamerly
 * Nora Livesay
@@ -62,6 +64,8 @@ TBD
 * Sandra Radic
 * Miikka Silfverberg
 * Anna Stacey
+
+Organizations:
 
 * AltLab
 * CultureFoundry
