@@ -9,24 +9,64 @@ from math import isnan
 from lexc_path import escape, LexcPath
 from re import sub
 
-""" This module should be made more general because we want to use it
-to handle prenouns in addition to preverbs.  """
-
 NO_CH_CONJUNCT="@D.ChCnj@"
+"""Flag diacritic which disallows any value for the changed-conjunct
+   feature `ChCnj`
+
+""" 
+
 CLEAR_CH_CONJUNCT="@C.ChCnj@"
+"""Flag diacritic which clears the value of the changed-conjunct
+   feature `ChCnj`
+
+"""
 
 def check_na(val):
+    """Safely check if a value represents NaN. Will return True if the
+       value is numeric and NaN. False, otherwise.
+
+    """    
     try:
         return isnan(val)
     except:
         return False
 
 def get_plain_conjunct(plain_conjunct,changed_conjunct):
+    """Get a lexicon entry for the plain conjunct form of a preverb. Only
+       add a disallow changed-conjunct flag diacritic if we have to,
+       i.e. if a separate changed-conjunct form is specified (meaning
+       `changed_conjunct != None`). This keeps the lexc file from
+       getting cluttered with loads of unnecessary disallow flags.
+
+    """    
     return (plain_conjunct
             if check_na(changed_conjunct)
             else f"{NO_CH_CONJUNCT}{plain_conjunct}")
 
 def get_allomorph(pv,order_filter):
+    """Return either the plain conjunct, changed conjunct or indpendent
+       form of a preverb row (= spreadsheet row) depending on
+       `order_filter`. This will do into different lexc continuation
+       lexicons.
+
+       The aim is to add a minimal set of rows into the lexc file in 
+       hopes of not cluttering it too badly. E.g. we only add separate 
+       independent and conjunct order forms if those are not identical. 
+       If they are identical, we will instead add just one form into an 
+       order-neutral continuation lexicon.  
+
+       The legal values of `order_filter` are:
+    
+       * `"Independent"`: return the independent form if it differs from 
+          the conjunct form, otherwise `None`.
+       * `"PlainConjunct"`: return the conjunct form if it differs from
+         the independent form, otherwise `None`.
+       * `"Any"`: return the independent form if it is identical to the
+         conjunct form, otherwise `None`.
+       * `"ChangedConjunct"`: return a special changed-cnjunct form if 
+         one is given. Otherwise, return `None`.
+
+    """    
     canonical = pv["PV"]
     if order_filter == "Any":
         allomorph = (None
@@ -50,6 +90,11 @@ def get_allomorph(pv,order_filter):
     return None if allomorph == None else (canonical, allomorph)
 
 def get_load_pre_element_database(source_dir,prefix_database):
+    """Return a function which can be used to load the preverb database
+       in a jinja template file. We need a specialized function because
+       information about file paths is not accessible from the template.
+
+    """    
     def load_pre_element_database(pv_tag,next_sublex):
         res = ""
         paradigm = sub("/$","",pv_tag)
@@ -67,7 +112,11 @@ def get_load_pre_element_database(source_dir,prefix_database):
     return load_pre_element_database
     
 def get_load_pre_element_csv(source_dir):
-#    def load_pre_element_csv(csv_fn,pv_tag,next_pv_lexicon,order_filter):
+    """Return a function which can be used to load a preverb spreadsheet
+       from a jinja template file. We need a specialized function because
+       information about file paths is not accessible from the template.
+
+    """    
     def load_pre_element_csv(sources,next_pv_lexicon,order_filter):
         entries = []
         for csv_fn, pv_tag in sources:
@@ -92,14 +141,15 @@ def get_load_pre_element_csv(source_dir):
     return load_pre_element_csv
 
 def get_generate_pre_element_sub_lexicons(source_dir):
+    """Return a function which will generate Any, Independent,
+       PlainConjuct and ChangedConjunct preverb lexicons in a jinja
+       template file. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+    """    
     load_pre_element_csv = get_load_pre_element_csv(source_dir)
-#    def generate_pre_element_sub_lexicons(csv_fn,pv_tag,pv_lexicon):
     def generate_pre_element_sub_lexicons(sources,pv_lexicon):
         lexicons = [(f"LEXICON {pv_lexicon}{order_filter}\n" +
-#                     load_pre_element_csv(csv_fn,
-#                                          pv_tag,
-#                                          f"{pv_lexicon}Boundary",
-#                                          order_filter))
                      load_pre_element_csv(sources,
                                           f"{pv_lexicon}Boundary",
                                           order_filter))                     
@@ -113,6 +163,7 @@ def get_generate_pre_element_sub_lexicons(source_dir):
     return generate_pre_element_sub_lexicons
 
 def pretty_join(str_list):
+    """Split a string into lines of 80 characters at white space"""    
     lines = [""]
     for s in str_list:
         if lines[-1] == "":
@@ -124,6 +175,12 @@ def pretty_join(str_list):
     return "\n".join(lines)
 
 def get_all_pre_element_tags(source_dir):
+    """Return a function which harvests all preverb/prenoun tags from a
+       spreadsheet.  The fucntion can be called from a jinja template
+       file. We need a specialized function because information about
+       file paths is not accessible from the template.
+
+    """    
     def all_pre_element_tags(tag_transformation='lambda x:x'):
         pre_element_tags = set()
         tag_transformation = eval(tag_transformation)
@@ -138,11 +195,18 @@ def get_all_pre_element_tags(source_dir):
     return all_pre_element_tags
 
 def get_add_lexeme_multichar_symbols(config):
+    """Return a function which adds multichar symbols from a config file
+       to a Jinja template. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+
+    """
     def add_lexeme_multichar_symbols():
         return pretty_join([escape(symbol) for symbol in config["multichar_symbols"]])
     return add_lexeme_multichar_symbols
 
 def render_pre_element_lexicon(config,source_path,lexc_path):
+    """ Render a preverb or prenoun Jinja template into lexc code."""
     csv_src_path = pjoin(source_path,config['pv_source_path'])
     template_file = basename(config['template_path'])
     template_dir = pjoin(expanduser(source_path),
@@ -171,11 +235,18 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
         print(template_string, file=f)
 
 def get_add_harvested_multichar_symbols(multichar_symbols):
+    """Return a function which adds multichar symbols from a set
+       to a Jinja template. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+
+    """    
     def add_harvested_multichar_symbols():
         return pretty_join(sorted(multichar_symbols))
     return add_harvested_multichar_symbols
 
 def render_root_lexicon(source_path, lexc_path):
+    """ Render a root lexicon Jinja template into lexc code."""
     template_dir = dirname(expanduser(source_path))
     env = Environment(loader=FileSystemLoader(template_dir))
     template_file = basename(source_path)

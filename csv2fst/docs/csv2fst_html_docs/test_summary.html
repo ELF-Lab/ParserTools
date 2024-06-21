@@ -30,7 +30,7 @@
 <pre><code class="python">&#34;&#34;&#34;A script for summarizing results of morphological analysis tests on OPD forms.&#34;&#34;&#34;
 
 import os
-from re import search, sub
+from re import search, split
 from datetime import date
 
 OUTPUT_FILE_NAME = &#34;test_summary.csv&#34;
@@ -39,8 +39,6 @@ INPUT_FILE_NAME = &#34;opd-test.log&#34;
 ADD_APOSTROPHE = True
 PRINT_DETAILED_EVAL = False
 TEST_SECTIONS = [&#34;VAIO&#34;, &#34;VAI_V&#34;, &#34;VAI_VV&#34;, &#34;VAI_am&#34;, &#34;VAI_n&#34;, &#34;VII_V&#34;, &#34;VII_VV&#34;, &#34;VII_d&#34;, &#34;VII_n&#34;, &#34;VTA_C&#34;, &#34;VTA_Cw&#34;, &#34;VTA_aw&#34;, &#34;VTA_n&#34;, &#34;VTI_aa&#34;, &#34;VTI_am&#34;, &#34;VTI_i&#34;, &#34;VTI_oo&#34;]
-
-
 
 def write_to_csv(output_line):
     HEADER = &#34;Date,&#34; + &#34;,&#34;.join(TEST_SECTIONS) +  &#34;,Total passes,Total passes (%)&#34;
@@ -75,12 +73,12 @@ def prepare_output(results):
             output_line += &#34;N/A,&#34;
         else:
             # Add the results from this test section to our output line
-            output_line += results[test_section][0]
+            output_line += results[test_section][&#34;log_passes&#34;] + &#34;/&#34; + results[test_section][&#34;log_total&#34;]
             if PRINT_DETAILED_EVAL:
-                output_line += &#34; False pos: &#34; + str(results[test_section][1]) + &#34; False neg: &#34; + str(results[test_section][2])
+                output_line += &#34; False pos: &#34; + str(results[test_section][&#34;false_pos&#34;]) + &#34; False neg: &#34; + str(results[test_section][&#34;false_neg&#34;])
             output_line += &#34;,&#34;
-            total_passes += int((results[test_section][0].partition(&#34;/&#34;))[0])
-            total_tests += int((results[test_section][0].partition(&#34;/&#34;))[2])
+            total_passes += int(results[test_section][&#34;log_passes&#34;])
+            total_tests += int(results[test_section][&#34;log_total&#34;])
     
     # Last columns are the total count and then percent
     output_line += str(total_passes) + &#34;/&#34; + str(total_tests) + &#34;,&#34;
@@ -108,8 +106,11 @@ def read_logs():
         elif line.startswith(&#34;Total&#34;):
             section_results = line.strip()
             section_results = section_results.replace(&#34;Total passes: &#34;, &#34;&#34;)
-            section_results = sub(&#34;, Total fails: [0-9]+, Total: &#34;, &#34;/&#34;, section_results)
-            results.update({test_section: [section_results, false_pos, false_neg]})
+            section_results = split(&#34;, Total fails: [0-9]+, Total: &#34;, section_results)
+            log_passes = section_results[0]
+            log_total = section_results[1]
+            test_section_results = {&#34;log_passes&#34;: log_passes, &#34;log_total&#34;: log_total, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg}
+            results.update({test_section: test_section_results})
 
     assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
     return results
@@ -193,12 +194,12 @@ main()</code></pre>
             output_line += &#34;N/A,&#34;
         else:
             # Add the results from this test section to our output line
-            output_line += results[test_section][0]
+            output_line += results[test_section][&#34;log_passes&#34;] + &#34;/&#34; + results[test_section][&#34;log_total&#34;]
             if PRINT_DETAILED_EVAL:
-                output_line += &#34; False pos: &#34; + str(results[test_section][1]) + &#34; False neg: &#34; + str(results[test_section][2])
+                output_line += &#34; False pos: &#34; + str(results[test_section][&#34;false_pos&#34;]) + &#34; False neg: &#34; + str(results[test_section][&#34;false_neg&#34;])
             output_line += &#34;,&#34;
-            total_passes += int((results[test_section][0].partition(&#34;/&#34;))[0])
-            total_tests += int((results[test_section][0].partition(&#34;/&#34;))[2])
+            total_passes += int(results[test_section][&#34;log_passes&#34;])
+            total_tests += int(results[test_section][&#34;log_total&#34;])
     
     # Last columns are the total count and then percent
     output_line += str(total_passes) + &#34;/&#34; + str(total_tests) + &#34;,&#34;
@@ -236,8 +237,11 @@ main()</code></pre>
         elif line.startswith(&#34;Total&#34;):
             section_results = line.strip()
             section_results = section_results.replace(&#34;Total passes: &#34;, &#34;&#34;)
-            section_results = sub(&#34;, Total fails: [0-9]+, Total: &#34;, &#34;/&#34;, section_results)
-            results.update({test_section: [section_results, false_pos, false_neg]})
+            section_results = split(&#34;, Total fails: [0-9]+, Total: &#34;, section_results)
+            log_passes = section_results[0]
+            log_total = section_results[1]
+            test_section_results = {&#34;log_passes&#34;: log_passes, &#34;log_total&#34;: log_total, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg}
+            results.update({test_section: test_section_results})
 
     assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
     return results</code></pre>
