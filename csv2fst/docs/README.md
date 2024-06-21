@@ -39,7 +39,8 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 4. [The OjibweMorph repo](ojibwemorph.md)
 5. [The OPDDatabase repo](opddatabase.md)
 6. [The ParserTools repo](parsertools.md)
-7. [Useful references](references.md)
+7. [Adding a new language or dialect](addlanguage.md)
+8. [Useful references](references.md)
 
 ## Developer documentation
 
