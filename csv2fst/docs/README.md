@@ -54,7 +54,7 @@ TBD
 
 ## Acknowledgements
 
-People:
+### People
 
 * Antti Arppe
 * Chris Hamerly
@@ -65,9 +65,11 @@ People:
 * Miikka Silfverberg
 * Anna Stacey
 
-Organizations:
+### Organizations and resources
 
-* AltLab
-* CultureFoundry
-* Ojibwe People's Dictionary
-* UBC
+* [AltLab](https://altlab.ualberta.ca/)
+* [CultureFoundry](https://www.culturefoundrystudios.com/)
+* [Foma](https://fomafst.github.io/)
+* [Giellatekno](https://giellatekno.uit.no/index.eng.html)
+* [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu/about-ojibwe-language)
+* [UBC ELF-Lab](https://github.com/ELF-Lab)
