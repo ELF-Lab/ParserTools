@@ -54,11 +54,15 @@ TBD
 
 ## Acknowledgements
 
+Several people and organizations have contributed code, advice, tools and/or materials to this project. We extend our most sincerest gratitude for the help! 
+
 ### People
 
 * Antti Arppe
 * Chris Hamerly
+* Nancy Jones
 * Nora Livesay
+* John Nichols
 * Minh Nguyen
 * Scott Parhill
 * Sandra Radic
@@ -73,3 +77,4 @@ TBD
 * [Giellatekno](https://giellatekno.uit.no/index.eng.html)
 * [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu/about-ojibwe-language)
 * [UBC ELF-Lab](https://github.com/ELF-Lab)
+
