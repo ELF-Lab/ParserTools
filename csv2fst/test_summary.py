@@ -8,7 +8,6 @@ OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 # If you view in Excel, this will prevent fractions from being interpreted as dates
 ADD_APOSTROPHE = True
-PRINT_DETAILED_EVAL = False
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 
 def write_to_csv(output_line):
@@ -46,9 +45,9 @@ def prepare_output(results):
         else:
             # Add the results from this test section to our output line
             output_line += results[test_section]["log_passes"] + "/" + results[test_section]["log_total"]
-            if PRINT_DETAILED_EVAL:
-                output_line += " False pos: " + str(results[test_section]["false_pos"]) + " False neg: " + str(results[test_section]["false_neg"])+ " Forms with no results: " + str(results[test_section]["forms_with_no_results"])
+            output_line += " False pos: " + str(results[test_section]["false_pos"]) + " False neg: " + str(results[test_section]["false_neg"])+ " Forms with no results: " + str(results[test_section]["forms_with_no_results"])
             output_line += ","
+            # Add to our counts
             total_passes += int(results[test_section]["log_passes"])
             total_tests += int(results[test_section]["log_total"])
             total_forms_with_no_results += results[test_section]["forms_with_no_results"]
