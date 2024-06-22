@@ -12,11 +12,12 @@ TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV"
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
     HEADER_2 = ","
-    TEST_SECTIONS.append("Total")
-    for section in TEST_SECTIONS:
+    summary_sections = ["Total"]
+    summary_sections.extend(TEST_SECTIONS)
+    for section in summary_sections:
         HEADER_1 += section + ","
         HEADER_1 += ",,"
-        HEADER_2 += "Precision,Recall,Number of Missing Forms,"
+        HEADER_2 += "Precision,Recall,Missing Forms,"
 
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, "w+") as csv_file:
@@ -39,7 +40,7 @@ def get_prev_output_line():
     return prev_output_line
 
 def prepare_output(results):
-    output_line = str(date.today()) + "," # First column is the date!
+    output_line = ""
     total_true_pos = 0
     total_false_pos = 0
     total_false_neg = 0
@@ -64,9 +65,12 @@ def prepare_output(results):
     # Some summary info
     total_precision = get_precision(total_true_pos, total_false_pos)
     total_recall = get_recall(total_true_pos, total_false_neg)
-    output_line += str(total_precision) + "%,"
-    output_line += str(total_recall) + "%,"
-    output_line += str(total_forms_with_no_results) + ","
+    # Put the summary info at the *start* of the output line
+    total_output = str(total_precision) + "%," + str(total_recall) + "%," + str(total_forms_with_no_results) + ","
+    output_line = total_output + output_line
+
+    # First column is the date!
+    output_line = str(date.today()) + ","  + output_line
 
     return output_line
 
