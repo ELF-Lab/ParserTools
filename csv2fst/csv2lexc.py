@@ -26,7 +26,7 @@ import click
 import json
 from os.path import join as pjoin
 
-from lexicon import Lexicon
+from lexicon import LexcFile
 from templates import render_pre_element_lexicon, render_root_lexicon
 from log import set_verbose, info
 from lexc_path import LexcPath
@@ -63,7 +63,7 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
         # We'll first compile regular paradigms into a LEXC file 
         info("Reading spreadsheets for regular paradigms from directory:",
              f"{pjoin(source_path,config['morphology_source_path'])}")
-        lexicon = Lexicon(config,
+        lexicon = LexcFile(config,
                           source_path,
                           lexc_path,
                           database_path,
@@ -80,7 +80,7 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
                  f"{pjoin(source_path,config['morphology_source_path'])}")
             config["root_lexicon"] += "Irregular"
             pos_root_lexicons.add(config["root_lexicon"])
-            irregular_lexicon = Lexicon(config,
+            irregular_lexicon = LexcFile(config,
                                         source_path,
                                         lexc_path,
                                         database_path,
@@ -100,7 +100,6 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
             
     render_root_lexicon(pjoin(source_path,"templates","root.lexc.j2"),
                         lexc_path)
-#    Lexicon.write_root_lexc(pjoin(lexc_path,"root.lexc"), pos_root_lexicons)
 
 if __name__=="__main__":
     main()
