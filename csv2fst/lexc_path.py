@@ -267,8 +267,8 @@ class LexcPath:
            ...).
 
            For inflected forms of regular lexemes, our paths will look
-           like this (here, for the example analysis and form
-           aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):
+           like this (here, for the example analysis and intermediate form
+           aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:ni<<aaba'w>>igosiinaadogenan):
 
            ```
               ! Person prefix lexicon for nouns and verbs. For all other 
@@ -310,7 +310,7 @@ class LexcPath:
               ! This lexicon enumerates endings for the inflection class
               ! VAT_C which correspond to person prefix "ni-" and order Ind.
               LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
-              +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+              +VTA+Ind+Neg+Dub+%0PlSubj+1SgObj:igosiinaadogenan # ;
            ```
 
            For inflected forms of irregular lexemes, our paths become
