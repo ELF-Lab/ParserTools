@@ -68,6 +68,7 @@ Several people and organizations have (directly or indirectly) contributed code,
 * Sandra Radic
 * Miikka Silfverberg
 * Anna Stacey
+* Reed Steiner
 
 ### Organizations and resources
 
