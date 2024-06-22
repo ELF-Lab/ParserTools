@@ -51,3 +51,30 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 TBD 
 
 (We'll put together a small technical report which can be cited. Ultimately the idea is to write a proper paper on the project.)
+
+## Acknowledgements
+
+Several people and organizations have (directly or indirectly) contributed code, advice, tools and/or materials to this project. We extend our sincerest gratitude for the help! 
+
+### People
+
+* Antti Arppe
+* Chris Hamerly
+* Nancy (Ogimaawigwanebiik) Jones
+* Nora Livesay
+* John Nichols
+* Minh Nguyen
+* Scott Parhill
+* Sandra Radic
+* Miikka Silfverberg
+* Anna Stacey
+
+### Organizations and resources
+
+* [AltLab](https://altlab.ualberta.ca/)
+* [CultureFoundry](https://www.culturefoundrystudios.com/)
+* [Foma](https://fomafst.github.io/)
+* [Giellatekno](https://giellatekno.uit.no/index.eng.html)
+* [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu/about-ojibwe-language)
+* [UBC ELF-Lab](https://github.com/ELF-Lab)
+

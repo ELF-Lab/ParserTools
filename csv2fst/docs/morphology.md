@@ -93,7 +93,7 @@ The `"..."` syntax tells foma to treat the sequence as one symbol ignoring all s
 
 ### The verb suffix
 
-The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a morpheme chunk like *aabaniig* in the example above. This chunk encodes information about the order, mode, polarity (positive vs. negative form), subject and object of the verb form. In reality, the chunk internally consists of several shorter suffixes with complex phonological dependencies. The dependencies could be modeled but this would unnecessarily complicate the rule-set of the FST so we don't do this. 
+The suffix encodes most of the inflectional information in the verb form. We have chosen to treat the verb suffix as a morpheme chunk like *aabaniig* in the example above. This chunk encodes information about the order, mode, polarity (positive vs. negative form), subject and object of the verb form. In reality, the chunk internally consists of several shorter suffixes with complex phonological dependencies. The dependencies could be modeled but this would unnecessarily complicate the rule-set of the FST so we don't do this. A clear downside of that added complexity is that the implementation of the morphology becomes very brittle. Dozens of interconnected rules are very difficult to modify (perhaps for a different dialect of Ojibwe or a different Algonquian language altogether) and fix if they are working incorrectly. 
 
 ## Ojibwe nouns
 
