@@ -60,10 +60,10 @@ Several people and organizations have (directly or indirectly) contributed code,
 
 * Antti Arppe
 * Chris Hamerly
+* Ogimaawigwanebiik Nancy Jones
 * Nora Livesay
 * John Nichols
 * Minh Nguyen
-* Ogimaawigwanebiik miinawaa Ogimaakwewibiik (Nancy Jones)
 * Scott Parhill
 * Sandra Radic
 * Miikka Silfverberg
