@@ -111,12 +111,10 @@ def split_form(form:str) -> SplitForm:
     # suffix]
     if not PREFIX_BOUNDARY in form:
         form = PREFIX_BOUNDARY + form
-        warn(f"Invalid form: {form}. Appending morpheme boundary '{PREFIX_BOUNDARY}' at the start.",
-             force=False)    
+        warn(f"Invalid segmented form: {form}. Appending morpheme boundary '{PREFIX_BOUNDARY}' at the start.")    
     if not SUFFIX_BOUNDARY in form:
         form += SUFFIX_BOUNDARY
-        warn(f"Invalid form: {form}. Appending morpheme boundary '{SUFFIX_BOUNDARY}' at the end.",
-             force=False)
+        warn(f"Invalid segmented form: {form}. Appending morpheme boundary '{SUFFIX_BOUNDARY}' at the end.")
     form = re.split(f"({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})", form)
     if len(form) != 5:
         raise ValueError(f"Invalid form: {orig_form}. Split: {form}")
