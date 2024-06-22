@@ -142,10 +142,10 @@ def split_form(form:str) -&gt; SplitForm:
     # suffix]
     if not PREFIX_BOUNDARY in form:
         form = PREFIX_BOUNDARY + form
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
     if not SUFFIX_BOUNDARY in form:
         form += SUFFIX_BOUNDARY
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
     form = re.split(f&#34;({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})&#34;, form)
     if len(form) != 5:
         raise ValueError(f&#34;Invalid form: {orig_form}. Split: {form}&#34;)
@@ -258,7 +258,7 @@ class LexcPath:
         try:
             self.read_forms(row, conf)
         except ValueError as e:
-            warn(e)
+            warn(e, force=False)
             
     def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
@@ -570,10 +570,10 @@ SplitForm object is returned.</p></div>
     # suffix]
     if not PREFIX_BOUNDARY in form:
         form = PREFIX_BOUNDARY + form
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
     if not SUFFIX_BOUNDARY in form:
         form += SUFFIX_BOUNDARY
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
     form = re.split(f&#34;({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})&#34;, form)
     if len(form) != 5:
         raise ValueError(f&#34;Invalid form: {orig_form}. Split: {form}&#34;)
@@ -761,7 +761,7 @@ multichar_symbols.</p></div>
         try:
             self.read_forms(row, conf)
         except ValueError as e:
-            warn(e)
+            warn(e, force=False)
             
     def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;

@@ -9,7 +9,7 @@ from lexc_path import LexcPath, entry2str, LexcEntry, escape
 from log import info, warn
 from lexc_comment import comment_block
 
-class Lexicon:
+class LexcFile:
     @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
         """Write the `Multichar_Symbols` section into a lexc_file"""
@@ -26,7 +26,7 @@ class Lexicon:
 
         """
         with open(root_lexc_filename,"w") as root_lexc_file:
-            Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
+            LexcFile.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
             print("LEXICON Root", file=root_lexc_file)
             for lexicon_name in pos_root_lexicons:

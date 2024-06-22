@@ -38,7 +38,7 @@ from lexc_path import LexcPath, entry2str, LexcEntry, escape
 from log import info, warn
 from lexc_comment import comment_block
 
-class Lexicon:
+class LexcFile:
     @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
         &#34;&#34;&#34;Write the `Multichar_Symbols` section into a lexc_file&#34;&#34;&#34;
@@ -55,7 +55,7 @@ class Lexicon:
 
         &#34;&#34;&#34;
         with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
-            Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
+            LexcFile.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
             print(&#34;LEXICON Root&#34;, file=root_lexc_file)
             for lexicon_name in pos_root_lexicons:
@@ -89,7 +89,7 @@ class Lexicon:
         for name in csv_names:
             csv_file = os.path.join(os.path.join(self.source_path,
                                                  conf[&#34;morphology_source_path&#34;]), f&#34;{name}.csv&#34;)
-            info(f&#34;Reading lexicon entries from {csv_file}&#34;)
+            info(f&#34;Reading inflection table from {csv_file}&#34;,force=False)
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
                 lexc_path = LexcPath(row, conf, regular)
@@ -115,7 +115,8 @@ class Lexicon:
 
         &#34;&#34;&#34;
         
-        info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;)
+        info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;,
+             force=False)
         if self.conf[&#34;lexical_database&#34;] != &#34;None&#34;:
             lexeme_database = pd.read_csv(os.path.join(database_path,
                                                        self.conf[&#34;lexical_database&#34;]),
@@ -148,14 +149,14 @@ class Lexicon:
                                self.conf[&#34;regular_lexc_file&#34; if self.regular
                                          else &#34;irregular_lexc_file&#34;])
         lexc_file = open(lexc_fn,&#34;w&#34;)
-        info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;)
+        info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;,force=False)
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
-            info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;)
+            info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;,force=False)
             try:
                 print(comment_block(lexicon) + &#34;\n&#34;, file=lexc_file)
             except ValueError as e:
-                warn(&#34;Failed to generate comment block: {e}&#34;)
+                warn(f&#34;Failed to generate comment block: {e}&#34;)
             print(f&#34;LEXICON {lexicon}&#34;, file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
@@ -171,8 +172,8 @@ class Lexicon:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="csv2fst.lexicon.Lexicon"><code class="flex name class">
-<span>class <span class="ident">Lexicon</span></span>
+<dt id="csv2fst.lexicon.LexcFile"><code class="flex name class">
+<span>class <span class="ident">LexcFile</span></span>
 <span>(</span><span>conf: dict, source_path: str, lexc_path: str, database_path: str, read_lexical_database: bool, regular: bool)</span>
 </code></dt>
 <dd>
@@ -187,7 +188,7 @@ class Lexicon:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class Lexicon:
+<pre><code class="python">class LexcFile:
     @staticmethod
     def write_multichar_symbols(multichar_symbol_set, lexc_file):
         &#34;&#34;&#34;Write the `Multichar_Symbols` section into a lexc_file&#34;&#34;&#34;
@@ -204,7 +205,7 @@ class Lexicon:
 
         &#34;&#34;&#34;
         with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
-            Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
+            LexcFile.write_multichar_symbols(LexcPath.multichar_symbols,
                                             root_lexc_file)
             print(&#34;LEXICON Root&#34;, file=root_lexc_file)
             for lexicon_name in pos_root_lexicons:
@@ -238,7 +239,7 @@ class Lexicon:
         for name in csv_names:
             csv_file = os.path.join(os.path.join(self.source_path,
                                                  conf[&#34;morphology_source_path&#34;]), f&#34;{name}.csv&#34;)
-            info(f&#34;Reading lexicon entries from {csv_file}&#34;)
+            info(f&#34;Reading inflection table from {csv_file}&#34;,force=False)
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
                 lexc_path = LexcPath(row, conf, regular)
@@ -264,7 +265,8 @@ class Lexicon:
 
         &#34;&#34;&#34;
         
-        info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;)
+        info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;,
+             force=False)
         if self.conf[&#34;lexical_database&#34;] != &#34;None&#34;:
             lexeme_database = pd.read_csv(os.path.join(database_path,
                                                        self.conf[&#34;lexical_database&#34;]),
@@ -297,14 +299,14 @@ class Lexicon:
                                self.conf[&#34;regular_lexc_file&#34; if self.regular
                                          else &#34;irregular_lexc_file&#34;])
         lexc_file = open(lexc_fn,&#34;w&#34;)
-        info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;)
+        info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;,force=False)
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
-            info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;)
+            info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;,force=False)
             try:
                 print(comment_block(lexicon) + &#34;\n&#34;, file=lexc_file)
             except ValueError as e:
-                warn(&#34;Failed to generate comment block: {e}&#34;)
+                warn(f&#34;Failed to generate comment block: {e}&#34;)
             print(f&#34;LEXICON {lexicon}&#34;, file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
@@ -312,7 +314,7 @@ class Lexicon:
 </details>
 <h3>Static methods</h3>
 <dl>
-<dt id="csv2fst.lexicon.Lexicon.write_multichar_symbols"><code class="name flex">
+<dt id="csv2fst.lexicon.LexcFile.write_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">write_multichar_symbols</span></span>(<span>multichar_symbol_set, lexc_file)</span>
 </code></dt>
 <dd>
@@ -330,7 +332,7 @@ def write_multichar_symbols(multichar_symbol_set, lexc_file):
     print(&#34;&#34;, file=lexc_file)</code></pre>
 </details>
 </dd>
-<dt id="csv2fst.lexicon.Lexicon.write_root_lexc"><code class="name flex">
+<dt id="csv2fst.lexicon.LexcFile.write_root_lexc"><code class="name flex">
 <span>def <span class="ident">write_root_lexc</span></span>(<span>root_lexc_filename, pos_root_lexicons)</span>
 </code></dt>
 <dd>
@@ -349,7 +351,7 @@ def write_root_lexc(root_lexc_filename,pos_root_lexicons):
 
     &#34;&#34;&#34;
     with open(root_lexc_filename,&#34;w&#34;) as root_lexc_file:
-        Lexicon.write_multichar_symbols(LexcPath.multichar_symbols,
+        LexcFile.write_multichar_symbols(LexcPath.multichar_symbols,
                                         root_lexc_file)
         print(&#34;LEXICON Root&#34;, file=root_lexc_file)
         for lexicon_name in pos_root_lexicons:
@@ -360,7 +362,7 @@ def write_root_lexc(root_lexc_filename,pos_root_lexicons):
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="csv2fst.lexicon.Lexicon.read_lexemes_from_database"><code class="name flex">
+<dt id="csv2fst.lexicon.LexcFile.read_lexemes_from_database"><code class="name flex">
 <span>def <span class="ident">read_lexemes_from_database</span></span>(<span>self, database_path) ‑> None</span>
 </code></dt>
 <dd>
@@ -396,7 +398,8 @@ in the "class_map" field in the configuration file.</p></div>
 
     &#34;&#34;&#34;
     
-    info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;)
+    info(f&#34;Reading external lexical database {self.conf[&#39;lexical_database&#39;]} from directory {database_path}\n&#34;,
+         force=False)
     if self.conf[&#34;lexical_database&#34;] != &#34;None&#34;:
         lexeme_database = pd.read_csv(os.path.join(database_path,
                                                    self.conf[&#34;lexical_database&#34;]),
@@ -419,7 +422,7 @@ in the "class_map" field in the configuration file.</p></div>
              f&#34;Skipped {skipped} invalid ones&#34;)</code></pre>
 </details>
 </dd>
-<dt id="csv2fst.lexicon.Lexicon.write_lexc"><code class="name flex">
+<dt id="csv2fst.lexicon.LexcFile.write_lexc"><code class="name flex">
 <span>def <span class="ident">write_lexc</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -442,14 +445,14 @@ configuration file. Otherwise, write to the file given by
                            self.conf[&#34;regular_lexc_file&#34; if self.regular
                                      else &#34;irregular_lexc_file&#34;])
     lexc_file = open(lexc_fn,&#34;w&#34;)
-    info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;)
+    info(f&#34;Writing {len(self.lexicons)} sublexicons:&#34;,force=False)
     for lexicon in self.lexicons:            
         lexc_rows = sorted(list(self.lexicons[lexicon]))
-        info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;)
+        info(f&#34;  {lexicon} ({len(lexc_rows)} entries)&#34;,force=False)
         try:
             print(comment_block(lexicon) + &#34;\n&#34;, file=lexc_file)
         except ValueError as e:
-            warn(&#34;Failed to generate comment block: {e}&#34;)
+            warn(f&#34;Failed to generate comment block: {e}&#34;)
         print(f&#34;LEXICON {lexicon}&#34;, file=lexc_file)
         for row in lexc_rows:
             print(entry2str(row), file=lexc_file)
@@ -475,12 +478,12 @@ configuration file. Otherwise, write to the file given by
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="csv2fst.lexicon.Lexicon" href="#csv2fst.lexicon.Lexicon">Lexicon</a></code></h4>
+<h4><code><a title="csv2fst.lexicon.LexcFile" href="#csv2fst.lexicon.LexcFile">LexcFile</a></code></h4>
 <ul class="">
-<li><code><a title="csv2fst.lexicon.Lexicon.read_lexemes_from_database" href="#csv2fst.lexicon.Lexicon.read_lexemes_from_database">read_lexemes_from_database</a></code></li>
-<li><code><a title="csv2fst.lexicon.Lexicon.write_lexc" href="#csv2fst.lexicon.Lexicon.write_lexc">write_lexc</a></code></li>
-<li><code><a title="csv2fst.lexicon.Lexicon.write_multichar_symbols" href="#csv2fst.lexicon.Lexicon.write_multichar_symbols">write_multichar_symbols</a></code></li>
-<li><code><a title="csv2fst.lexicon.Lexicon.write_root_lexc" href="#csv2fst.lexicon.Lexicon.write_root_lexc">write_root_lexc</a></code></li>
+<li><code><a title="csv2fst.lexicon.LexcFile.read_lexemes_from_database" href="#csv2fst.lexicon.LexcFile.read_lexemes_from_database">read_lexemes_from_database</a></code></li>
+<li><code><a title="csv2fst.lexicon.LexcFile.write_lexc" href="#csv2fst.lexicon.LexcFile.write_lexc">write_lexc</a></code></li>
+<li><code><a title="csv2fst.lexicon.LexcFile.write_multichar_symbols" href="#csv2fst.lexicon.LexcFile.write_multichar_symbols">write_multichar_symbols</a></code></li>
+<li><code><a title="csv2fst.lexicon.LexcFile.write_root_lexc" href="#csv2fst.lexicon.LexcFile.write_root_lexc">write_root_lexc</a></code></li>
 </ul>
 </li>
 </ul>

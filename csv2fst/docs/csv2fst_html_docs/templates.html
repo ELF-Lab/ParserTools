@@ -158,7 +158,6 @@ def get_load_pre_element_csv(source_dir):
                     canonical, allomorph = res
                     canonical = pv_tag + canonical
                     # We need to define preverb/prenoun tag as a multichar symbol
-                    print(f&#34;{escape(canonical)}+&#34;)
                     LexcPath.multichar_symbols.add(f&#34;{escape(canonical)}+&#34;)
                     # If the allomorph has a disallow changed conjunct
                     # tag, add one to the canonical form as well
@@ -554,7 +553,6 @@ information about file paths is not accessible from the template.</p></div>
                     canonical, allomorph = res
                     canonical = pv_tag + canonical
                     # We need to define preverb/prenoun tag as a multichar symbol
-                    print(f&#34;{escape(canonical)}+&#34;)
                     LexcPath.multichar_symbols.add(f&#34;{escape(canonical)}+&#34;)
                     # If the allomorph has a disallow changed conjunct
                     # tag, add one to the canonical form as well
