@@ -18,4 +18,5 @@ def info(*msg, force=True):
 
 def warn(*msg, force=True):
     if force or verbose:
-        print(*msg, file=stderr)
+        print("\033[0;31m",end="",file=stderr)
+        print(*msg, "\033[0m", file=stderr)

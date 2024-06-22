@@ -127,8 +127,7 @@ class Lexicon:
             try:
                 print(comment_block(lexicon) + "\n", file=lexc_file)
             except ValueError as e:
-                warn(f"Failed to generate comment block: {e}",
-                     force=False)
+                warn(f"Failed to generate comment block: {e}")
             print(f"LEXICON {lexicon}", file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)
