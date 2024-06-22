@@ -332,7 +332,7 @@ class LexcPath:
         klass = self.klass
         for surface, parts in self.forms:
             if self.regular:
-                # Flag diacritics which:
+                # Initialize flag diacritics which:
                 # (1) control combinations of person prefix and inflectional ending,
                 # (2) check that we've got the correct paradigm (this is needed to
                 #     make sure that return to the correct paradigm after adding
@@ -345,10 +345,10 @@ class LexcPath:
                 _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
                 order, check_order_flag = self.get_order_flag()
 
-                # The person prefix for this form
+                # Initialize the person prefix for this form
                 prefix = "NONE" if parts.prefix == "" else parts.prefix.upper()
 
-                # Continuation lexicons needed on this path
+                # Initialize continuation lexicons needed on this path
                 person_prefix_lexicon = f"{paradigm}_Prefix"
                 morpheme_boundary_lexicon = f"{paradigm}_PrefixBoundary"
                 preverb_lexicon = (self.conf["prefix_root"] # This can also be the prenoun lexicon depending on paradigm
