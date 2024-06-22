@@ -60,7 +60,7 @@ Several people and organizations have (directly or indirectly) contributed code,
 
 * Antti Arppe
 * Chris Hamerly
-* Nancy (Koko) Jones
+* Nancy (Ogimaawigwanebiik) Jones
 * Nora Livesay
 * John Nichols
 * Minh Nguyen
