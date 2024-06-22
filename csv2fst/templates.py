@@ -127,7 +127,6 @@ def get_load_pre_element_csv(source_dir):
                     canonical, allomorph = res
                     canonical = pv_tag + canonical
                     # We need to define preverb/prenoun tag as a multichar symbol
-                    print(f"{escape(canonical)}+")
                     LexcPath.multichar_symbols.add(f"{escape(canonical)}+")
                     # If the allomorph has a disallow changed conjunct
                     # tag, add one to the canonical form as well

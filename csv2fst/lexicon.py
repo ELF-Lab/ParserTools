@@ -60,7 +60,7 @@ class Lexicon:
         for name in csv_names:
             csv_file = os.path.join(os.path.join(self.source_path,
                                                  conf["morphology_source_path"]), f"{name}.csv")
-            info(f"Reading lexicon entries from {csv_file}")
+            info(f"Reading inflection table from {csv_file}",force=False)
             table = pd.read_csv(csv_file, keep_default_na=False)
             for _, row in table.iterrows():
                 lexc_path = LexcPath(row, conf, regular)
@@ -86,7 +86,8 @@ class Lexicon:
 
         """
         
-        info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
+        info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n",
+             force=False)
         if self.conf["lexical_database"] != "None":
             lexeme_database = pd.read_csv(os.path.join(database_path,
                                                        self.conf["lexical_database"]),
@@ -119,14 +120,15 @@ class Lexicon:
                                self.conf["regular_lexc_file" if self.regular
                                          else "irregular_lexc_file"])
         lexc_file = open(lexc_fn,"w")
-        info(f"Writing {len(self.lexicons)} sublexicons:")
+        info(f"Writing {len(self.lexicons)} sublexicons:",force=False)
         for lexicon in self.lexicons:            
             lexc_rows = sorted(list(self.lexicons[lexicon]))
-            info(f"  {lexicon} ({len(lexc_rows)} entries)")
+            info(f"  {lexicon} ({len(lexc_rows)} entries)",force=False)
             try:
                 print(comment_block(lexicon) + "\n", file=lexc_file)
             except ValueError as e:
-                warn("Failed to generate comment block: {e}")
+                warn(f"Failed to generate comment block: {e}",
+                     force=False)
             print(f"LEXICON {lexicon}", file=lexc_file)
             for row in lexc_rows:
                 print(entry2str(row), file=lexc_file)

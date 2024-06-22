@@ -28,7 +28,7 @@ from os.path import join as pjoin
 
 from lexicon import Lexicon
 from templates import render_pre_element_lexicon, render_root_lexicon
-from log import info
+from log import set_verbose, info
 from lexc_path import LexcPath
 
 @click.command()
@@ -39,7 +39,14 @@ from lexc_path import LexcPath
               help="Directory where output lexc files are stored")
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
-def main(config_files,source_path,lexc_path,database_path,read_lexical_database):
+@click.option('--verbose', required=False, default=False,
+              help="Print very detailed diagnostics")
+def main(config_files, source_path, lexc_path, database_path, read_lexical_database, verbose):
+    set_verbose(verbose)
+    if verbose:
+        info("Compiling in verbose mode. Omit --verbose to disable.")
+    else:
+        info("Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose.")
     config_files = config_files.split(",")
     info(f"Got {len(config_files)} configuration files: {', '.join(config_files)}")
 
@@ -50,7 +57,7 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
         info(f"Processing configuration file {config_file}:")
         config = json.load(open(config_file))
         config["database_src_dir"] = database_path
-        info(json.dumps(config, indent=2))
+        info(json.dumps(config, indent=2),force=False)
         pos_root_lexicons.add(config["root_lexicon"])
         
         # We'll first compile regular paradigms into a LEXC file 
