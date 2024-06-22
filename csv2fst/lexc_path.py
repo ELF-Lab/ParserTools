@@ -268,7 +268,7 @@ class LexcPath:
 
            For inflected forms of regular lexemes, our paths will look
            like this (here, for the example analysis and intermediate form
-           aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:ni<<aaba'w>>igosiinaadogenan):
+           `aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:ni<<aaba'w>>igosiinaadogenan`):
 
            ```
               ! Person prefix lexicon for nouns and verbs. For all other 
