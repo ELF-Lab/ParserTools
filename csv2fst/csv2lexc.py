@@ -46,7 +46,7 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
     if verbose:
         info("Compiling in verbose mode. Omit --verbose to disable.")
     else:
-        info("Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose.")
+        info("Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose=True.")
     config_files = config_files.split(",")
     info(f"Got {len(config_files)} configuration files: {', '.join(config_files)}")
 
