@@ -19,6 +19,29 @@ from lexc_path import LexcPath
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
 def main(config_files,source_path,lexc_path,database_path,read_lexical_database):
+    """Script for compiling a set of lexc files from the following resources:
+
+       * CSV files representing inflection tables (these live in the OjibweMorph repository)
+       * Lexical database files in CSV format (there live in the OPDDatabase repository)
+       * Configuration files for different word classes (these live in the OjibweMorph repository)
+
+       `config_files` is a comma-separated list of configuration file names read from 
+       the directory `source_path`/config
+
+       `source_path` gives the path to the OjibweMorph repository.
+
+       `database_path` gives the path to the OPDDatabase repository.
+
+       The output lexc files root.lexc, ojibwe_POS.lexc (for each word class POS) and potentially 
+       preverbs.lexc and/or prenouns.lexc will be written into the directory `lexc_path`.
+
+       The boolean parameter `read_lexical_database` determines whether we're including the lexical 
+       entries from the database.
+
+       To compile the lexc files, you can use the unix command `cat` to combine them into a file
+       all.lexc. The file root.lexc should be at the top of all.lexc. Apart from that, order doesn't
+       matter when concatenating.
+"""
     config_files = config_files.split(",")
     info(f"Got {len(config_files)} configuration files: {', '.join(config_files)}")
 
