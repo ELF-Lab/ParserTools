@@ -54,7 +54,7 @@ TBD
 
 ## Acknowledgements
 
-Several people and organizations have contributed code, advice, tools and/or materials to this project. We extend our most sincerest gratitude for the help! 
+Several people and organizations have contributed code, advice, tools and/or materials to this project. We extend our sincerest gratitude for the help! 
 
 ### People
 
