@@ -4,11 +4,11 @@ FOMA=foma
 
 # Source files
 # Change this to match your source morphology directory
-MORPHOLOGYSRCDIR=~/src/OjibweMorph
+MORPHOLOGYSRCDIR=~/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
-DATABASEDIR=~/src/OPDDatabase
+DATABASEDIR=~/OPDDatabase
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -32,7 +32,7 @@ release:all
 
 generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p generated
-	$(PYTHON) csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
                               --lexc-path generated
@@ -96,7 +96,7 @@ database_yaml_output:
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p check-generated
-	$(PYTHON) csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
                               --lexc-path check-generated \
@@ -132,7 +132,7 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
-	$(PYTHON) test_summary.py
+	$(PYTHON) csv2fst/test_summary.py
 
 
 clean:
