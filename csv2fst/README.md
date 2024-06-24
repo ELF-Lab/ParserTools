@@ -11,9 +11,15 @@ is part of the foma toolkit). Install them using these
 [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/)
 or [homebrew](https://formulae.brew.sh/formula/foma).
 
-To install python library requirements, run:
+This project uses [poetry](https://python-poetry.org/) to manage python requirements. In `ParserTools/csv2fst` run:
 ```
-pip3 install -r requirements.txt
+python3 -m venv venv           # Create virtual environment.
+source venv/bin/activate       # Activate virtual environment.
+pip3 install -U pip setuptools # Update pip and setuptools.
+pip3 install poetry            # Install poetry.
+poetry install                 # Use poetry to install the project
+                               # into the virtual environment.
+                               # Bob's your uncle
 ```
 
 In order to build the Border Lakes Ojibwe FST, you will need to clone the
