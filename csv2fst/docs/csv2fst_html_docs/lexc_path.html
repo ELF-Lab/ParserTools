@@ -142,10 +142,10 @@ def split_form(form:str) -&gt; SplitForm:
     # suffix]
     if not PREFIX_BOUNDARY in form:
         form = PREFIX_BOUNDARY + form
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
     if not SUFFIX_BOUNDARY in form:
         form += SUFFIX_BOUNDARY
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
     form = re.split(f&#34;({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})&#34;, form)
     if len(form) != 5:
         raise ValueError(f&#34;Invalid form: {orig_form}. Split: {form}&#34;)
@@ -258,7 +258,7 @@ class LexcPath:
         try:
             self.read_forms(row, conf)
         except ValueError as e:
-            warn(e)
+            warn(e, force=False)
             
     def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
@@ -298,8 +298,8 @@ class LexcPath:
            ...).
 
            For inflected forms of regular lexemes, our paths will look
-           like this (here, for the example analysis and form
-           aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
+           like this (here, for the example analysis and intermediate form
+           `aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:ni&lt;&lt;aaba&#39;w&gt;&gt;igosiinaadogenan`):
 
            ```
               ! Person prefix lexicon for nouns and verbs. For all other 
@@ -341,7 +341,7 @@ class LexcPath:
               ! This lexicon enumerates endings for the inflection class
               ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
               LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
-              +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+              +VTA+Ind+Neg+Dub+%0PlSubj+1SgObj:igosiinaadogenan # ;
            ```
 
            For inflected forms of irregular lexemes, our paths become
@@ -363,7 +363,7 @@ class LexcPath:
         klass = self.klass
         for surface, parts in self.forms:
             if self.regular:
-                # Flag diacritics which:
+                # Initialize flag diacritics which:
                 # (1) control combinations of person prefix and inflectional ending,
                 # (2) check that we&#39;ve got the correct paradigm (this is needed to
                 #     make sure that return to the correct paradigm after adding
@@ -376,10 +376,10 @@ class LexcPath:
                 _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
                 order, check_order_flag = self.get_order_flag()
 
-                # The person prefix for this form
+                # Initialize the person prefix for this form
                 prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
 
-                # Continuation lexicons needed on this path
+                # Initialize continuation lexicons needed on this path
                 person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
                 morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
                 preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm
@@ -570,10 +570,10 @@ SplitForm object is returned.</p></div>
     # suffix]
     if not PREFIX_BOUNDARY in form:
         form = PREFIX_BOUNDARY + form
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{PREFIX_BOUNDARY}&#39; at the start.&#34;)    
     if not SUFFIX_BOUNDARY in form:
         form += SUFFIX_BOUNDARY
-        warn(f&#34;Invalid form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
+        warn(f&#34;Invalid segmented form: {form}. Appending morpheme boundary &#39;{SUFFIX_BOUNDARY}&#39; at the end.&#34;)
     form = re.split(f&#34;({PREFIX_BOUNDARY}|{SUFFIX_BOUNDARY})&#34;, form)
     if len(form) != 5:
         raise ValueError(f&#34;Invalid form: {orig_form}. Split: {form}&#34;)
@@ -761,7 +761,7 @@ multichar_symbols.</p></div>
         try:
             self.read_forms(row, conf)
         except ValueError as e:
-            warn(e)
+            warn(e, force=False)
             
     def harvest_multichar_symbols(self) -&gt; None:
         &#34;&#34;&#34;Add all morphological features like &#34;+VTA&#34;, &#34;+Ind&#34; and &#34;+1SgSubj&#34;
@@ -801,8 +801,8 @@ multichar_symbols.</p></div>
            ...).
 
            For inflected forms of regular lexemes, our paths will look
-           like this (here, for the example analysis and form
-           aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
+           like this (here, for the example analysis and intermediate form
+           `aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:ni&lt;&lt;aaba&#39;w&gt;&gt;igosiinaadogenan`):
 
            ```
               ! Person prefix lexicon for nouns and verbs. For all other 
@@ -844,7 +844,7 @@ multichar_symbols.</p></div>
               ! This lexicon enumerates endings for the inflection class
               ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
               LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
-              +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+              +VTA+Ind+Neg+Dub+%0PlSubj+1SgObj:igosiinaadogenan # ;
            ```
 
            For inflected forms of irregular lexemes, our paths become
@@ -866,7 +866,7 @@ multichar_symbols.</p></div>
         klass = self.klass
         for surface, parts in self.forms:
             if self.regular:
-                # Flag diacritics which:
+                # Initialize flag diacritics which:
                 # (1) control combinations of person prefix and inflectional ending,
                 # (2) check that we&#39;ve got the correct paradigm (this is needed to
                 #     make sure that return to the correct paradigm after adding
@@ -879,10 +879,10 @@ multichar_symbols.</p></div>
                 _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
                 order, check_order_flag = self.get_order_flag()
 
-                # The person prefix for this form
+                # Initialize the person prefix for this form
                 prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
 
-                # Continuation lexicons needed on this path
+                # Initialize continuation lexicons needed on this path
                 person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
                 morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
                 preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm
@@ -1098,8 +1098,8 @@ sequence of lexc sublexicon entries.</p>
 there may be several surface forms Form1Surface, Form2Surface,
 &hellip;).</p>
 <p>For inflected forms of regular lexemes, our paths will look
-like this (here, for the example analysis and form
-aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):</p>
+like this (here, for the example analysis and intermediate form
+<code>aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:ni&lt;&lt;aaba'w&gt;&gt;igosiinaadogenan</code>):</p>
 <pre><code>   ! Person prefix lexicon for nouns and verbs. For all other 
    ! word classes the prefix is always empty (@P.Prefix.NONE@)
    LEXICON VTA_Prefix
@@ -1139,7 +1139,7 @@ aaba'+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba'wigosiinaadogenan):</p>
    ! This lexicon enumerates endings for the inflection class
    ! VAT_C which correspond to person prefix &quot;ni-&quot; and order Ind.
    LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
-   +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+   +VTA+Ind+Neg+Dub+%0PlSubj+1SgObj:igosiinaadogenan # ;
 </code></pre>
 <p>For inflected forms of irregular lexemes, our paths become
 very simple. We just enumerate the entire form as one
@@ -1167,8 +1167,8 @@ for irregular lexemes:</p>
        ...).
 
        For inflected forms of regular lexemes, our paths will look
-       like this (here, for the example analysis and form
-       aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:aaba&#39;wigosiinaadogenan):
+       like this (here, for the example analysis and intermediate form
+       `aaba&#39;+VTA+Ind+Neg+Dub+0Pl+1Sg:ni&lt;&lt;aaba&#39;w&gt;&gt;igosiinaadogenan`):
 
        ```
           ! Person prefix lexicon for nouns and verbs. For all other 
@@ -1210,7 +1210,7 @@ for irregular lexemes:</p>
           ! This lexicon enumerates endings for the inflection class
           ! VAT_C which correspond to person prefix &#34;ni-&#34; and order Ind.
           LEXICON VTA_Class=VTA_C_Prefix=NI_Order=Ind_Endings
-          +VTA+Ind+Neg+Dub+%0Pl+1Sg:igosiinaadogenan # ;
+          +VTA+Ind+Neg+Dub+%0PlSubj+1SgObj:igosiinaadogenan # ;
        ```
 
        For inflected forms of irregular lexemes, our paths become
@@ -1232,7 +1232,7 @@ for irregular lexemes:</p>
     klass = self.klass
     for surface, parts in self.forms:
         if self.regular:
-            # Flag diacritics which:
+            # Initialize flag diacritics which:
             # (1) control combinations of person prefix and inflectional ending,
             # (2) check that we&#39;ve got the correct paradigm (this is needed to
             #     make sure that return to the correct paradigm after adding
@@ -1245,10 +1245,10 @@ for irregular lexemes:</p>
             _, check_paradigm_flag = LexcPath.get_paradigm_flags(paradigm)
             order, check_order_flag = self.get_order_flag()
 
-            # The person prefix for this form
+            # Initialize the person prefix for this form
             prefix = &#34;NONE&#34; if parts.prefix == &#34;&#34; else parts.prefix.upper()
 
-            # Continuation lexicons needed on this path
+            # Initialize continuation lexicons needed on this path
             person_prefix_lexicon = f&#34;{paradigm}_Prefix&#34;
             morpheme_boundary_lexicon = f&#34;{paradigm}_PrefixBoundary&#34;
             preverb_lexicon = (self.conf[&#34;prefix_root&#34;] # This can also be the prenoun lexicon depending on paradigm

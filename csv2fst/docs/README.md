@@ -39,7 +39,8 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 4. [The OjibweMorph repo](ojibwemorph.md)
 5. [The OPDDatabase repo](opddatabase.md)
 6. [The ParserTools repo](parsertools.md)
-7. [Useful references](references.md)
+7. [Adding a new language or dialect](addlanguage.md)
+8. [Useful references](references.md)
 
 ## Developer documentation
 
@@ -50,3 +51,31 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 TBD 
 
 (We'll put together a small technical report which can be cited. Ultimately the idea is to write a proper paper on the project.)
+
+## Acknowledgements
+
+Several people and organizations have (directly or indirectly) contributed code, advice, tools and/or materials to this project. We extend our sincerest gratitude for the help! 
+
+### People
+
+* Antti Arppe
+* Chris Hamerly
+* Ogimaawigwanebiik Nancy Jones
+* Nora Livesay
+* John Nichols
+* Minh Nguyen
+* Scott Parhill
+* Sandra Radic
+* Miikka Silfverberg
+* Anna Stacey
+* Reed Steiner
+
+### Organizations and resources
+
+* [AltLab](https://altlab.ualberta.ca/)
+* [CultureFoundry](https://www.culturefoundrystudios.com/)
+* [Foma](https://fomafst.github.io/)
+* [Giellatekno](https://giellatekno.uit.no/index.eng.html)
+* [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu/about-ojibwe-language)
+* [UBC ELF-Lab](https://github.com/ELF-Lab)
+

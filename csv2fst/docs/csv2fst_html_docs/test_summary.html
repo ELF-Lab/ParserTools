@@ -30,23 +30,28 @@
 <pre><code class="python">&#34;&#34;&#34;A script for summarizing results of morphological analysis tests on OPD forms.&#34;&#34;&#34;
 
 import os
-from re import search, sub
+from re import findall, search
 from datetime import date
 
 OUTPUT_FILE_NAME = &#34;test_summary.csv&#34;
 INPUT_FILE_NAME = &#34;opd-test.log&#34;
 # If you view in Excel, this will prevent fractions from being interpreted as dates
-ADD_APOSTROPHE = True
-PRINT_DETAILED_EVAL = False
 TEST_SECTIONS = [&#34;VAIO&#34;, &#34;VAI_V&#34;, &#34;VAI_VV&#34;, &#34;VAI_am&#34;, &#34;VAI_n&#34;, &#34;VII_V&#34;, &#34;VII_VV&#34;, &#34;VII_d&#34;, &#34;VII_n&#34;, &#34;VTA_C&#34;, &#34;VTA_Cw&#34;, &#34;VTA_aw&#34;, &#34;VTA_n&#34;, &#34;VTI_aa&#34;, &#34;VTI_am&#34;, &#34;VTI_i&#34;, &#34;VTI_oo&#34;]
 
-
-
 def write_to_csv(output_line):
-    HEADER = &#34;Date,&#34; + &#34;,&#34;.join(TEST_SECTIONS) +  &#34;,Total passes,Total passes (%)&#34;
+    HEADER_1 = &#34;Date,&#34;
+    HEADER_2 = &#34;,&#34;
+    summary_sections = [&#34;Total&#34;]
+    summary_sections.extend(TEST_SECTIONS)
+    for section in summary_sections:
+        HEADER_1 += section + &#34;,&#34;
+        HEADER_1 += &#34;,,&#34;
+        HEADER_2 += &#34;Precision,Recall,Missing Forms,&#34;
+
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, &#34;w+&#34;) as csv_file:
-                print(HEADER, file = csv_file)
+                print(HEADER_1, file = csv_file)
+                print(HEADER_2, file = csv_file)
     with open(OUTPUT_FILE_NAME, &#34;a&#34;) as csv_file:
             csv_file.write(output_line + &#34;\n&#34;)
     
@@ -64,27 +69,37 @@ def get_prev_output_line():
     return prev_output_line
 
 def prepare_output(results):
-    output_line = str(date.today()) + &#34;,&#34; # First column is the date!
-    total_passes = 0
-    total_tests = 0
+    output_line = &#34;&#34;
+    total_true_pos = 0
+    total_false_pos = 0
+    total_false_neg = 0
+    total_forms_with_no_results = 0
     for test_section in TEST_SECTIONS:
-        if ADD_APOSTROPHE:
-            output_line += &#34;&#39;&#34;
         # If we don&#39;t have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
         if not (test_section in results.keys()):
             output_line += &#34;N/A,&#34;
         else:
+            precision = get_precision(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_pos&#34;])
+            recall = get_recall(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_neg&#34;])
             # Add the results from this test section to our output line
-            output_line += results[test_section][0]
-            if PRINT_DETAILED_EVAL:
-                output_line += &#34; False pos: &#34; + str(results[test_section][1]) + &#34; False neg: &#34; + str(results[test_section][2])
-            output_line += &#34;,&#34;
-            total_passes += int((results[test_section][0].partition(&#34;/&#34;))[0])
-            total_tests += int((results[test_section][0].partition(&#34;/&#34;))[2])
+            output_line += str(precision) + &#34;%,&#34;
+            output_line += str(recall) + &#34;%,&#34;
+            output_line += str(results[test_section][&#34;forms_with_no_results&#34;]) + &#34;,&#34;
+            # Add to our counts
+            total_forms_with_no_results += results[test_section][&#34;forms_with_no_results&#34;]
+            total_true_pos += results[test_section][&#34;true_pos&#34;]
+            total_false_pos += results[test_section][&#34;false_pos&#34;]
+            total_false_neg += results[test_section][&#34;false_neg&#34;]
     
-    # Last columns are the total count and then percent
-    output_line += str(total_passes) + &#34;/&#34; + str(total_tests) + &#34;,&#34;
-    output_line += &#34;{:.0%}&#34;.format(total_passes / total_tests)
+    # Some summary info
+    total_precision = get_precision(total_true_pos, total_false_pos)
+    total_recall = get_recall(total_true_pos, total_false_neg)
+    # Put the summary info at the *start* of the output line
+    total_output = str(total_precision) + &#34;%,&#34; + str(total_recall) + &#34;%,&#34; + str(total_forms_with_no_results) + &#34;,&#34;
+    output_line = total_output + output_line
+
+    # First column is the date!
+    output_line = str(date.today()) + &#34;,&#34;  + output_line
 
     return output_line
 
@@ -100,19 +115,44 @@ def read_logs():
             test_section = test_section.replace(&#34;.yaml&#34;, &#34;&#34;)
             false_pos = 0
             false_neg = 0
+            forms_with_no_results = 0
+
+        # &#34;Missing&#34; = an OPD analysis that the FST failed to produce
         elif &#34;Missing results&#34; in line:
-            false_neg += 1
-        elif search(&#34;Unexpected results: [a-z]&#34;, line):
-            false_pos += 1
-        # Get the # of fails / # of tests
+            false_neg += (1 + line.count(&#34;,&#34;))
+
+        # &#34;Unexpected&#34; = an analysis produced by the FST not shared by the OPD
+        elif search(r&#34;Unexpected results: [a-z]&#34;, line):
+            false_pos += (1 + line.count(&#34;,&#34;))
+
+        elif search(r&#34;Unexpected results: \+\?&#34;, line):
+            forms_with_no_results += 1
+
+        # The final line for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith(&#34;Total&#34;):
-            section_results = line.strip()
-            section_results = section_results.replace(&#34;Total passes: &#34;, &#34;&#34;)
-            section_results = sub(&#34;, Total fails: [0-9]+, Total: &#34;, &#34;/&#34;, section_results)
-            results.update({test_section: [section_results, false_pos, false_neg]})
+            # There&#39;s a pass for every correctly predicted analysis = true positives
+            # The # of passes is the first number in this line
+            true_pos = int((findall(r&#34;[0-9]+&#34;, line))[0])
+
+            test_section_results = {&#34;true_pos&#34;: true_pos, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg, &#34;forms_with_no_results&#34;: forms_with_no_results}
+            results.update({test_section: test_section_results})
 
     assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
     return results
+
+def get_precision(true_pos, false_pos):
+    precision = 0
+    if true_pos + false_pos &gt; 0:
+        precision = round((true_pos / (true_pos + false_pos)) * 100, 2)
+
+    return precision
+
+def get_recall(true_pos, false_neg):
+    recall = 0
+    if true_pos + false_neg &gt; 0:
+        recall = round((true_pos / (true_pos + false_neg)) * 100, 2)
+
+    return recall
 
 def main():
     results = read_logs()
@@ -133,6 +173,23 @@ main()</code></pre>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="csv2fst.test_summary.get_precision"><code class="name flex">
+<span>def <span class="ident">get_precision</span></span>(<span>true_pos, false_pos)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_precision(true_pos, false_pos):
+    precision = 0
+    if true_pos + false_pos &gt; 0:
+        precision = round((true_pos / (true_pos + false_pos)) * 100, 2)
+
+    return precision</code></pre>
+</details>
+</dd>
 <dt id="csv2fst.test_summary.get_prev_output_line"><code class="name flex">
 <span>def <span class="ident">get_prev_output_line</span></span>(<span>)</span>
 </code></dt>
@@ -151,6 +208,23 @@ main()</code></pre>
                 prev_output_line = lines[-1].strip()
 
     return prev_output_line</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.test_summary.get_recall"><code class="name flex">
+<span>def <span class="ident">get_recall</span></span>(<span>true_pos, false_neg)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_recall(true_pos, false_neg):
+    recall = 0
+    if true_pos + false_neg &gt; 0:
+        recall = round((true_pos / (true_pos + false_neg)) * 100, 2)
+
+    return recall</code></pre>
 </details>
 </dd>
 <dt id="csv2fst.test_summary.main"><code class="name flex">
@@ -182,27 +256,37 @@ main()</code></pre>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def prepare_output(results):
-    output_line = str(date.today()) + &#34;,&#34; # First column is the date!
-    total_passes = 0
-    total_tests = 0
+    output_line = &#34;&#34;
+    total_true_pos = 0
+    total_false_pos = 0
+    total_false_neg = 0
+    total_forms_with_no_results = 0
     for test_section in TEST_SECTIONS:
-        if ADD_APOSTROPHE:
-            output_line += &#34;&#39;&#34;
         # If we don&#39;t have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
         if not (test_section in results.keys()):
             output_line += &#34;N/A,&#34;
         else:
+            precision = get_precision(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_pos&#34;])
+            recall = get_recall(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_neg&#34;])
             # Add the results from this test section to our output line
-            output_line += results[test_section][0]
-            if PRINT_DETAILED_EVAL:
-                output_line += &#34; False pos: &#34; + str(results[test_section][1]) + &#34; False neg: &#34; + str(results[test_section][2])
-            output_line += &#34;,&#34;
-            total_passes += int((results[test_section][0].partition(&#34;/&#34;))[0])
-            total_tests += int((results[test_section][0].partition(&#34;/&#34;))[2])
+            output_line += str(precision) + &#34;%,&#34;
+            output_line += str(recall) + &#34;%,&#34;
+            output_line += str(results[test_section][&#34;forms_with_no_results&#34;]) + &#34;,&#34;
+            # Add to our counts
+            total_forms_with_no_results += results[test_section][&#34;forms_with_no_results&#34;]
+            total_true_pos += results[test_section][&#34;true_pos&#34;]
+            total_false_pos += results[test_section][&#34;false_pos&#34;]
+            total_false_neg += results[test_section][&#34;false_neg&#34;]
     
-    # Last columns are the total count and then percent
-    output_line += str(total_passes) + &#34;/&#34; + str(total_tests) + &#34;,&#34;
-    output_line += &#34;{:.0%}&#34;.format(total_passes / total_tests)
+    # Some summary info
+    total_precision = get_precision(total_true_pos, total_false_pos)
+    total_recall = get_recall(total_true_pos, total_false_neg)
+    # Put the summary info at the *start* of the output line
+    total_output = str(total_precision) + &#34;%,&#34; + str(total_recall) + &#34;%,&#34; + str(total_forms_with_no_results) + &#34;,&#34;
+    output_line = total_output + output_line
+
+    # First column is the date!
+    output_line = str(date.today()) + &#34;,&#34;  + output_line
 
     return output_line</code></pre>
 </details>
@@ -228,16 +312,27 @@ main()</code></pre>
             test_section = test_section.replace(&#34;.yaml&#34;, &#34;&#34;)
             false_pos = 0
             false_neg = 0
+            forms_with_no_results = 0
+
+        # &#34;Missing&#34; = an OPD analysis that the FST failed to produce
         elif &#34;Missing results&#34; in line:
-            false_neg += 1
-        elif search(&#34;Unexpected results: [a-z]&#34;, line):
-            false_pos += 1
-        # Get the # of fails / # of tests
+            false_neg += (1 + line.count(&#34;,&#34;))
+
+        # &#34;Unexpected&#34; = an analysis produced by the FST not shared by the OPD
+        elif search(r&#34;Unexpected results: [a-z]&#34;, line):
+            false_pos += (1 + line.count(&#34;,&#34;))
+
+        elif search(r&#34;Unexpected results: \+\?&#34;, line):
+            forms_with_no_results += 1
+
+        # The final line for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith(&#34;Total&#34;):
-            section_results = line.strip()
-            section_results = section_results.replace(&#34;Total passes: &#34;, &#34;&#34;)
-            section_results = sub(&#34;, Total fails: [0-9]+, Total: &#34;, &#34;/&#34;, section_results)
-            results.update({test_section: [section_results, false_pos, false_neg]})
+            # There&#39;s a pass for every correctly predicted analysis = true positives
+            # The # of passes is the first number in this line
+            true_pos = int((findall(r&#34;[0-9]+&#34;, line))[0])
+
+            test_section_results = {&#34;true_pos&#34;: true_pos, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg, &#34;forms_with_no_results&#34;: forms_with_no_results}
+            results.update({test_section: test_section_results})
 
     assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
     return results</code></pre>
@@ -253,10 +348,19 @@ main()</code></pre>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def write_to_csv(output_line):
-    HEADER = &#34;Date,&#34; + &#34;,&#34;.join(TEST_SECTIONS) +  &#34;,Total passes,Total passes (%)&#34;
+    HEADER_1 = &#34;Date,&#34;
+    HEADER_2 = &#34;,&#34;
+    summary_sections = [&#34;Total&#34;]
+    summary_sections.extend(TEST_SECTIONS)
+    for section in summary_sections:
+        HEADER_1 += section + &#34;,&#34;
+        HEADER_1 += &#34;,,&#34;
+        HEADER_2 += &#34;Precision,Recall,Missing Forms,&#34;
+
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, &#34;w+&#34;) as csv_file:
-                print(HEADER, file = csv_file)
+                print(HEADER_1, file = csv_file)
+                print(HEADER_2, file = csv_file)
     with open(OUTPUT_FILE_NAME, &#34;a&#34;) as csv_file:
             csv_file.write(output_line + &#34;\n&#34;)
     
@@ -282,7 +386,9 @@ main()</code></pre>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
+<li><code><a title="csv2fst.test_summary.get_precision" href="#csv2fst.test_summary.get_precision">get_precision</a></code></li>
 <li><code><a title="csv2fst.test_summary.get_prev_output_line" href="#csv2fst.test_summary.get_prev_output_line">get_prev_output_line</a></code></li>
+<li><code><a title="csv2fst.test_summary.get_recall" href="#csv2fst.test_summary.get_recall">get_recall</a></code></li>
 <li><code><a title="csv2fst.test_summary.main" href="#csv2fst.test_summary.main">main</a></code></li>
 <li><code><a title="csv2fst.test_summary.prepare_output" href="#csv2fst.test_summary.prepare_output">prepare_output</a></code></li>
 <li><code><a title="csv2fst.test_summary.read_logs" href="#csv2fst.test_summary.read_logs">read_logs</a></code></li>

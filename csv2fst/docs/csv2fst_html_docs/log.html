@@ -36,22 +36,39 @@ from sys import stderr
 
 # This is a temporary solution and should be replaced with proper logging
 
-def info(*msg):
-    print(*msg, file=stderr)
+verbose=False
+&#34;&#34;&#34;Ugly global variable toggles verbose mode for warnings&#34;&#34;&#34;
 
-def warn(*msg):
-    print(*msg, file=stderr)</code></pre>
+def set_verbose(mode):
+    global verbose
+    verbose = mode
+    
+def info(*msg, force=True):
+    if force or verbose:
+        print(*msg, file=stderr)
+
+def warn(*msg, force=True):
+    if force or verbose:
+        print(&#34;\033[0;31m&#34;,end=&#34;&#34;,file=stderr)
+        print(*msg, &#34;\033[0m&#34;, file=stderr)</code></pre>
 </details>
 </section>
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="csv2fst.log.verbose"><code class="name">var <span class="ident">verbose</span></code></dt>
+<dd>
+<div class="desc"><p>Ugly global variable toggles verbose mode for warnings</p></div>
+</dd>
+</dl>
 </section>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
 <dt id="csv2fst.log.info"><code class="name flex">
-<span>def <span class="ident">info</span></span>(<span>*msg)</span>
+<span>def <span class="ident">info</span></span>(<span>*msg, force=True)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -59,12 +76,27 @@ def warn(*msg):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def info(*msg):
-    print(*msg, file=stderr)</code></pre>
+<pre><code class="python">def info(*msg, force=True):
+    if force or verbose:
+        print(*msg, file=stderr)</code></pre>
+</details>
+</dd>
+<dt id="csv2fst.log.set_verbose"><code class="name flex">
+<span>def <span class="ident">set_verbose</span></span>(<span>mode)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_verbose(mode):
+    global verbose
+    verbose = mode</code></pre>
 </details>
 </dd>
 <dt id="csv2fst.log.warn"><code class="name flex">
-<span>def <span class="ident">warn</span></span>(<span>*msg)</span>
+<span>def <span class="ident">warn</span></span>(<span>*msg, force=True)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -72,8 +104,10 @@ def warn(*msg):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def warn(*msg):
-    print(*msg, file=stderr)</code></pre>
+<pre><code class="python">def warn(*msg, force=True):
+    if force or verbose:
+        print(&#34;\033[0;31m&#34;,end=&#34;&#34;,file=stderr)
+        print(*msg, &#34;\033[0m&#34;, file=stderr)</code></pre>
 </details>
 </dd>
 </dl>
@@ -92,9 +126,15 @@ def warn(*msg):
 <li><code><a title="csv2fst" href="index.html">csv2fst</a></code></li>
 </ul>
 </li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="csv2fst.log.verbose" href="#csv2fst.log.verbose">verbose</a></code></li>
+</ul>
+</li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
 <li><code><a title="csv2fst.log.info" href="#csv2fst.log.info">info</a></code></li>
+<li><code><a title="csv2fst.log.set_verbose" href="#csv2fst.log.set_verbose">set_verbose</a></code></li>
 <li><code><a title="csv2fst.log.warn" href="#csv2fst.log.warn">warn</a></code></li>
 </ul>
 </li>

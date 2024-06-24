@@ -5,8 +5,18 @@ from sys import stderr
 
 # This is a temporary solution and should be replaced with proper logging
 
-def info(*msg):
-    print(*msg, file=stderr)
+verbose=False
+"""Ugly global variable toggles verbose mode for warnings"""
 
-def warn(*msg):
-    print(*msg, file=stderr)
+def set_verbose(mode):
+    global verbose
+    verbose = mode
+    
+def info(*msg, force=True):
+    if force or verbose:
+        print(*msg, file=stderr)
+
+def warn(*msg, force=True):
+    if force or verbose:
+        print("\033[0;31m",end="",file=stderr)
+        print(*msg, "\033[0m", file=stderr)

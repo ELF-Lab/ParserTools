@@ -1,13 +1,34 @@
-"""Main script for compiling lexc code from morphological paradigm
-   spreadsheets."""
+"""Script for compiling a set of lexc files from the following resources:
+
+   * CSV files representing inflection tables (these live in the OjibweMorph repository)
+   * Lexical database files in CSV format (there live in the OPDDatabase repository)
+   * Configuration files for different word classes (these live in the OjibweMorph repository)
+
+   `config_files` is a comma-separated list of configuration file names read from 
+    the directory `source_path`/config
+
+   `source_path` gives the path to the OjibweMorph repository.
+
+   `database_path` gives the path to the OPDDatabase repository.
+
+   The output lexc files root.lexc, ojibwe_POS.lexc (for each word class POS) and potentially 
+   preverbs.lexc and/or prenouns.lexc will be written into the directory `lexc_path`.
+
+   The boolean parameter `read_lexical_database` determines whether we're including the lexical 
+   entries from the database.
+
+   To compile the lexc files, you can use the unix command `cat` to combine them into a file
+   all.lexc. The file root.lexc should be at the top of all.lexc. Apart from that, order doesn't
+   matter when concatenating.
+"""
 
 import click
 import json
 from os.path import join as pjoin
 
-from lexicon import Lexicon
+from lexicon import LexcFile
 from templates import render_pre_element_lexicon, render_root_lexicon
-from log import info
+from log import set_verbose, info
 from lexc_path import LexcPath
 
 @click.command()
@@ -18,7 +39,14 @@ from lexc_path import LexcPath
               help="Directory where output lexc files are stored")
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
-def main(config_files,source_path,lexc_path,database_path,read_lexical_database):
+@click.option('--verbose', required=False, default=False,
+              help="Print very detailed diagnostics")
+def main(config_files, source_path, lexc_path, database_path, read_lexical_database, verbose):
+    set_verbose(verbose)
+    if verbose:
+        info("Compiling in verbose mode. Omit --verbose to disable.")
+    else:
+        info("Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose=True.")
     config_files = config_files.split(",")
     info(f"Got {len(config_files)} configuration files: {', '.join(config_files)}")
 
@@ -29,13 +57,13 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
         info(f"Processing configuration file {config_file}:")
         config = json.load(open(config_file))
         config["database_src_dir"] = database_path
-        info(json.dumps(config, indent=2))
+        info(json.dumps(config, indent=2),force=False)
         pos_root_lexicons.add(config["root_lexicon"])
         
         # We'll first compile regular paradigms into a LEXC file 
         info("Reading spreadsheets for regular paradigms from directory:",
              f"{pjoin(source_path,config['morphology_source_path'])}")
-        lexicon = Lexicon(config,
+        lexicon = LexcFile(config,
                           source_path,
                           lexc_path,
                           database_path,
@@ -52,7 +80,7 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
                  f"{pjoin(source_path,config['morphology_source_path'])}")
             config["root_lexicon"] += "Irregular"
             pos_root_lexicons.add(config["root_lexicon"])
-            irregular_lexicon = Lexicon(config,
+            irregular_lexicon = LexcFile(config,
                                         source_path,
                                         lexc_path,
                                         database_path,
@@ -72,7 +100,6 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
             
     render_root_lexicon(pjoin(source_path,"templates","root.lexc.j2"),
                         lexc_path)
-#    Lexicon.write_root_lexc(pjoin(lexc_path,"root.lexc"), pos_root_lexicons)
 
 if __name__=="__main__":
     main()

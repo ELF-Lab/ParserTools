@@ -5,8 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
 <title>csv2fst.csv2lexc API documentation</title>
-<meta name="description" content="Main script for compiling lexc code from morphological paradigm
-spreadsheets." />
+<meta name="description" content="Script for compiling a set of lexc files from the following resources: …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -23,22 +22,58 @@ spreadsheets." />
 <h1 class="title">Module <code>csv2fst.csv2lexc</code></h1>
 </header>
 <section id="section-intro">
-<p>Main script for compiling lexc code from morphological paradigm
-spreadsheets.</p>
+<p>Script for compiling a set of lexc files from the following resources:</p>
+<ul>
+<li>CSV files representing inflection tables (these live in the OjibweMorph repository)</li>
+<li>Lexical database files in CSV format (there live in the OPDDatabase repository)</li>
+<li>Configuration files for different word classes (these live in the OjibweMorph repository)</li>
+</ul>
+<p><code>config_files</code> is a comma-separated list of configuration file names read from
+the directory <code>source_path</code>/config</p>
+<p><code>source_path</code> gives the path to the OjibweMorph repository.</p>
+<p><code>database_path</code> gives the path to the OPDDatabase repository.</p>
+<p>The output lexc files root.lexc, ojibwe_POS.lexc (for each word class POS) and potentially
+preverbs.lexc and/or prenouns.lexc will be written into the directory <code>lexc_path</code>.</p>
+<p>The boolean parameter <code>read_lexical_database</code> determines whether we're including the lexical
+entries from the database.</p>
+<p>To compile the lexc files, you can use the unix command <code>cat</code> to combine them into a file
+all.lexc. The file root.lexc should be at the top of all.lexc. Apart from that, order doesn't
+matter when concatenating.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;Main script for compiling lexc code from morphological paradigm
-   spreadsheets.&#34;&#34;&#34;
+<pre><code class="python">&#34;&#34;&#34;Script for compiling a set of lexc files from the following resources:
+
+   * CSV files representing inflection tables (these live in the OjibweMorph repository)
+   * Lexical database files in CSV format (there live in the OPDDatabase repository)
+   * Configuration files for different word classes (these live in the OjibweMorph repository)
+
+   `config_files` is a comma-separated list of configuration file names read from 
+    the directory `source_path`/config
+
+   `source_path` gives the path to the OjibweMorph repository.
+
+   `database_path` gives the path to the OPDDatabase repository.
+
+   The output lexc files root.lexc, ojibwe_POS.lexc (for each word class POS) and potentially 
+   preverbs.lexc and/or prenouns.lexc will be written into the directory `lexc_path`.
+
+   The boolean parameter `read_lexical_database` determines whether we&#39;re including the lexical 
+   entries from the database.
+
+   To compile the lexc files, you can use the unix command `cat` to combine them into a file
+   all.lexc. The file root.lexc should be at the top of all.lexc. Apart from that, order doesn&#39;t
+   matter when concatenating.
+&#34;&#34;&#34;
 
 import click
 import json
 from os.path import join as pjoin
 
-from lexicon import Lexicon
+from lexicon import LexcFile
 from templates import render_pre_element_lexicon, render_root_lexicon
-from log import info
+from log import set_verbose, info
 from lexc_path import LexcPath
 
 @click.command()
@@ -49,7 +84,14 @@ from lexc_path import LexcPath
               help=&#34;Directory where output lexc files are stored&#34;)
 @click.option(&#39;--read-lexical-database&#39;, required=False, default=True,
               help=&#34;Whether to include lexemes from an external lexicon database&#34;)
-def main(config_files,source_path,lexc_path,database_path,read_lexical_database):
+@click.option(&#39;--verbose&#39;, required=False, default=False,
+              help=&#34;Print very detailed diagnostics&#34;)
+def main(config_files, source_path, lexc_path, database_path, read_lexical_database, verbose):
+    set_verbose(verbose)
+    if verbose:
+        info(&#34;Compiling in verbose mode. Omit --verbose to disable.&#34;)
+    else:
+        info(&#34;Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose=True.&#34;)
     config_files = config_files.split(&#34;,&#34;)
     info(f&#34;Got {len(config_files)} configuration files: {&#39;, &#39;.join(config_files)}&#34;)
 
@@ -60,13 +102,13 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
         info(f&#34;Processing configuration file {config_file}:&#34;)
         config = json.load(open(config_file))
         config[&#34;database_src_dir&#34;] = database_path
-        info(json.dumps(config, indent=2))
+        info(json.dumps(config, indent=2),force=False)
         pos_root_lexicons.add(config[&#34;root_lexicon&#34;])
         
         # We&#39;ll first compile regular paradigms into a LEXC file 
         info(&#34;Reading spreadsheets for regular paradigms from directory:&#34;,
              f&#34;{pjoin(source_path,config[&#39;morphology_source_path&#39;])}&#34;)
-        lexicon = Lexicon(config,
+        lexicon = LexcFile(config,
                           source_path,
                           lexc_path,
                           database_path,
@@ -83,7 +125,7 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
                  f&#34;{pjoin(source_path,config[&#39;morphology_source_path&#39;])}&#34;)
             config[&#34;root_lexicon&#34;] += &#34;Irregular&#34;
             pos_root_lexicons.add(config[&#34;root_lexicon&#34;])
-            irregular_lexicon = Lexicon(config,
+            irregular_lexicon = LexcFile(config,
                                         source_path,
                                         lexc_path,
                                         database_path,
@@ -103,7 +145,6 @@ def main(config_files,source_path,lexc_path,database_path,read_lexical_database)
             
     render_root_lexicon(pjoin(source_path,&#34;templates&#34;,&#34;root.lexc.j2&#34;),
                         lexc_path)
-#    Lexicon.write_root_lexc(pjoin(lexc_path,&#34;root.lexc&#34;), pos_root_lexicons)
 
 if __name__==&#34;__main__&#34;:
     main()</code></pre>
