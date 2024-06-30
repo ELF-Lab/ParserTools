@@ -1,5 +1,6 @@
 import argparse
 import pandas as pd
+import json
 import os
 import sys
 sys.path.insert(1, os.path.join(sys.path[0], '../csv2yaml'))
@@ -17,6 +18,8 @@ REFLEXIVE_LEMMA_ENDING = "dizo"
 STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
 EMPTY_FIELD_MARKER = "NONE"
 
+PRINT_MISSING_INFO_SUMMARY = False
+
 def read_subj_objs_tags(subj_obj_tags_csv):
     global PARTICIPANT_TAG_CONVERSIONS
     global POSSIBLE_PARTICIPANTS
@@ -30,25 +33,37 @@ def read_subj_objs_tags(subj_obj_tags_csv):
             PARTICIPANT_TAG_CONVERSIONS[tag_conversion["OPDTag"]] = tag_conversion["OurTag"]
     POSSIBLE_PARTICIPANTS = PARTICIPANT_TAG_CONVERSIONS.keys()
 
-def process_csv(file_name):
-    df = pd.read_csv(file_name, keep_default_na = False)
-
+def process_json(file_name):
+    scraped_data = json.load(open(file_name))
     forms_with_info = []
 
-    for index, row in df.iterrows():
-        row = row.to_dict()
+    for row in scraped_data:
         # Grab only the verbs!
-        if row["POS"] in POS_TO_KEEP:
-            row = tidy_entry(row)
-            if missing_info_check(row):
-                row = format_entry(row)
-                forms_with_info.append(row)
+        if row["pos_type"] in POS_TO_KEEP:
+            forms_and_stem = row["section_inflection_forms"]
+            # Check if there's any inflectional forms
+            if len(forms_and_stem) > 1:
+                # Missing info check
+                if "lemma" in row and "stem" in forms_and_stem[-1] and "pos_type" in row:
+                    stem_etc = {"Lemma": row["lemma"], "Stem": forms_and_stem[-1]["stem"], "POS": row["pos_type"]}
+                    # Add each inflectional form
+                    for form in forms_and_stem[:-1]:
+                        form_with_info = {"Inflectional Form": form["word"], "Abbreviated Gloss": form["desc"]}
+                        form_with_info.update(stem_etc)
+                        form_with_info = tidy_entry(form_with_info)
+                        if missing_info_check(form_with_info):
+                            form_with_info = format_entry(form_with_info)
+                            forms_with_info.append(form_with_info)
+
+                elif PRINT_MISSING_INFO_SUMMARY:
+                    print("\nForm(s) excluded due to missing lemma/stem/pos. Info:")
+                    print(row)
 
     return forms_with_info
 
 # Takes one row at a time
 # Returns a bool, True = keep it in, False = remove it
-def missing_info_check(form_with_info, print_missing_summary = False):
+def missing_info_check(form_with_info):
     # Add in ch-conj and ic once we can support them!
     POSSIBLE_ORDERS = ["ind", " conj", "imp", "part"] #Space before "conj" so it doesn't match "ch-conj"
     has_an_order = False
@@ -69,7 +84,7 @@ def missing_info_check(form_with_info, print_missing_summary = False):
     contains_weird_punctuation = "=" in form_with_info["Inflectional Form"]
     has_a_form = form_with_info["Inflectional Form"] != ""
 
-    if print_missing_summary:
+    if PRINT_MISSING_INFO_SUMMARY:
         if not (has_an_order and has_a_stem and has_a_subj and not(contains_weird_punctuation)):
             print(f"\nInflectional form: {form_with_info['Inflectional Form']} (lemma: {form_with_info['Lemma']})")
             print("Abbreviated gloss:", form_with_info["Abbreviated Gloss"])
@@ -348,7 +363,7 @@ def write_database_csv(forms_with_info, output_dir):
 def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="create_if_yaml")
-    parser.add_argument("inflectional_forms_csv", type=str, help="Path to the spreadsheet.")
+    parser.add_argument("inflectional_forms_json", type=str, help="Path to the spreadsheet.")
     parser.add_argument("subj_obj_tags_csv", type=str, help="Path to the csv containing the tag conversions between OPD and our subj/obj tags.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
     parser.add_argument("-print_database_csv", action='store_true', help="Indicates if we should print the list of all stems (with lemma and POS).")
@@ -358,7 +373,7 @@ def main():
 
     output_directory = create_output_directory(args.output_parent_directory)
 
-    forms_with_info = process_csv(args.inflectional_forms_csv)
+    forms_with_info = process_json(args.inflectional_forms_json)
 
     forms_with_info = handle_ambiguous_participant_tags(forms_with_info)
 
