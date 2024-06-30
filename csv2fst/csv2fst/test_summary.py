@@ -16,7 +16,7 @@ def write_to_csv(output_line):
     for section in summary_sections:
         HEADER_1 += section + ","
         HEADER_1 += ",,,"
-        HEADER_2 += "Precision,Recall,Total Forms,Forms Without Results,"
+        HEADER_2 += "Precision,Recall,Forms,Forms Without Results,"
 
     if not os.path.isfile(OUTPUT_FILE_NAME):
             with open(OUTPUT_FILE_NAME, "w+") as csv_file:
@@ -45,6 +45,7 @@ def prepare_output(results):
     total_false_neg = 0
     total_forms = 0
     total_forms_with_no_results = 0
+    total_percent_forms_with_no_results = 0
     for test_section in TEST_SECTIONS:
         # If we don't have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
         if not (test_section in results.keys()):
@@ -52,11 +53,14 @@ def prepare_output(results):
         else:
             precision = get_precision(results[test_section]["true_pos"], results[test_section]["false_pos"])
             recall = get_recall(results[test_section]["true_pos"], results[test_section]["false_neg"])
+            assert(results[test_section]["number_of_forms"] > 0)
+            percent_of_forms_with_no_results = round((results[test_section]["number_of_forms_with_no_results"] / results[test_section]["number_of_forms"]) * 100, 2)
             # Add the results from this test section to our output line
             output_line += str(precision) + "%,"
             output_line += str(recall) + "%,"
             output_line += str(results[test_section]["number_of_forms"]) + ","
-            output_line += str(results[test_section]["number_of_forms_with_no_results"]) + ","
+            output_line += str(results[test_section]["number_of_forms_with_no_results"])
+            output_line += " (" + str(percent_of_forms_with_no_results)+ "%),"
             # Add to our counts
             total_forms += results[test_section]["number_of_forms"]
             total_forms_with_no_results += results[test_section]["number_of_forms_with_no_results"]
@@ -67,8 +71,9 @@ def prepare_output(results):
     # Some summary info
     total_precision = get_precision(total_true_pos, total_false_pos)
     total_recall = get_recall(total_true_pos, total_false_neg)
+    total_percent_forms_with_no_results = round((total_forms_with_no_results / total_forms) * 100, 2)
     # Put the summary info at the *start* of the output line
-    total_output = str(total_precision) + "%," + str(total_recall) + "%," + str(total_forms) + "," + str(total_forms_with_no_results) + ","
+    total_output = str(total_precision) + "%," + str(total_recall) + "%," + str(total_forms) + "," + str(total_forms_with_no_results) + " (" + str(total_percent_forms_with_no_results) + "%),"
     output_line = total_output + output_line
 
     # First column is the date!
