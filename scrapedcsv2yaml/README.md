@@ -7,4 +7,4 @@ This code was created to convert scraped OPD data into a spreadsheet with more s
     - The first argument refers to the csv that is being converted and should be modified to match its location on your system.
     - For more information on the arguments, check the argument help in `create_yaml_from_scraped.py`.
 - Then to generate the yaml, run:  
-`python3 csv2yaml/create_yaml.py "scrapedcsv2yaml/csv_output/" "scrapedcsv2yaml/"`
+`python3 csv2yaml/create_yaml.py "scrapedcsv2yaml/csv_output/" "verbs.json" "scrapedcsv2yaml/"`
