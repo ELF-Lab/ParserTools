@@ -6,7 +6,7 @@ from datetime import date
 
 OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
-TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
+TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"

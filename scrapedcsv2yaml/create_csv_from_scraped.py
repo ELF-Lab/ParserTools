@@ -169,7 +169,9 @@ def add_class(form_with_info):
         # This condition is needlessly explicit, just to be clear about the categories
         elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "N":
             verb_class = "C"
-        # Remaining classes: s, irr
+        elif stem[-1] == "s":
+            verb_class = "s"
+        # Remaining classes: irr
     elif pos == "VAI":
         if stem.endswith("n"):
             verb_class = "n"
