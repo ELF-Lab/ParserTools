@@ -164,10 +164,10 @@ def add_class(form_with_info):
             verb_class = "aw"
         elif stem.endswith("w") and not stem[-2] in vowels:
             verb_class = "Cw"
-        elif stem.endswith("N"):
+        elif stem.endswith("n"):
             verb_class = "n"
         # This condition is needlessly explicit, just to be clear about the categories
-        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "N":
+        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "n":
             verb_class = "C"
         elif stem[-1] == "s":
             verb_class = "s"
@@ -230,7 +230,7 @@ def add_person_and_number(form_with_info):
         form_with_info["Object"] = PARTICIPANT_TAG_CONVERSIONS[object_participant]
     # The OPD doesn't explicitly assign objects to VAIOs, but they all have them implicitly (by definition)
     elif form_with_info["POS"] == "VAIO":
-        form_with_info["Object"] = ["0Sg","0Pl"]
+        form_with_info["Object"] = "0Sg"
     # The OPD doesn't give reciprocals objects.  We want to explicitly specify their obj is the same as their subj!
     # The same is true of *reflexives*!
     elif form_with_info["POS"] == "VAI" and (form_with_info["Lemma"].endswith(RECIPROCAL_LEMMA_ENDING) and form_with_info["Stem"].endswith(RECIPROCAL_STEM_ENDING)) or (form_with_info["Lemma"].endswith(REFLEXIVE_LEMMA_ENDING)):
