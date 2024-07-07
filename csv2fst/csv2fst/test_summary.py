@@ -3,10 +3,12 @@
 import os
 from re import findall, search
 from datetime import date
+import pandas as pd
 
 OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
+DO_PRINT_FORMS_WITH_NO_RESULTS = False
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
@@ -83,6 +85,7 @@ def prepare_output(results):
 
 def read_logs():
     results = {}
+    forms_with_no_results = []
     file = open(INPUT_FILE_NAME, "r")
     test_section = ""
     for line in file:
@@ -113,6 +116,9 @@ def read_logs():
 
         elif search(r"Unexpected results: \+\?", line):
             number_of_forms_with_no_results += 1
+            form_start = line.index("[FAIL] ") + len("[FAIL] ")
+            form_end = line.index(" =>") - 1
+            forms_with_no_results.append({"form": line[form_start:form_end + 1].strip(), "pos": test_section})
 
         # The final line for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith("Total"):
@@ -123,8 +129,33 @@ def read_logs():
             test_section_results = {"true_pos": true_pos, "false_pos": false_pos, "false_neg": false_neg, "number_of_forms": number_of_forms, "number_of_forms_with_no_results": number_of_forms_with_no_results}
             results.update({test_section: test_section_results})
 
+    if DO_PRINT_FORMS_WITH_NO_RESULTS:
+        print_forms_with_no_results(forms_with_no_results)
+
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
+
+def print_forms_with_no_results(form_list):
+    if len(form_list) > 0:
+        # Read in the spreadsheet to get more info about this form
+        df = pd.read_csv("~/Documents/ELF/OjibweTesting/ParserTools/scrapedcsv2yaml/csv_output/inflectional_forms_for_yaml.csv", keep_default_na=False)
+
+        current_section = form_list[0]["pos"]
+        print(f"------ {current_section}: ------")
+        # Go through each of the forms we flagged as having no results
+        for form in form_list:
+            # Print a new header for each section e.g., VAIO, VAI_V, etc.
+            if form["pos"] != current_section:
+                current_section = form["pos"]
+                print(f"\n\n------ {current_section}: ------")
+
+            print("Form:", form["form"])
+            for _, row in df.iterrows():
+                row = row.to_dict()
+                # Find the form we're looking for in the big spreadsheet
+                if form["form"] == row["Form1Surface"]:
+                    print(f"Info from OPD: Order: {row['Order']}, Class: {row['Class']}, Lemma: {row['Lemma']}, Stem: {row['Stem']}, Subject: {row['Subject']}, Object: {row['Object']}, Mode: {row['Mode']}, Negation: {row['Negation']}\n")
+                    break # Stop looking when we've found it!
 
 def get_precision(true_pos, false_pos):
     precision = 0
