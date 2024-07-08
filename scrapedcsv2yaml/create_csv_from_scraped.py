@@ -6,19 +6,21 @@ import sys
 sys.path.insert(1, os.path.join(sys.path[0], '../csv2yaml'))
 from create_yaml import create_output_directory
 
+# Parameters for the user to specify
+OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
+STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
+PRINT_MISSING_INFO_SUMMARY = False
+
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI", "VTI2", "VTI3", "VTI4"]
-vowels = ["i", "e", "o", "a"]
-PARTICIPANT_TAG_CONVERSIONS = {}
-POSSIBLE_PARTICIPANTS = []
-OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
+VOWELS = ["i", "e", "o", "a"]
 RECIPROCAL_LEMMA_ENDING = "wag"
 RECIPROCAL_STEM_ENDING = "di"
 REFLEXIVE_LEMMA_ENDING = "dizo"
-STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
 EMPTY_FIELD_MARKER = "NONE"
-
-PRINT_MISSING_INFO_SUMMARY = False
+# These will be filled out by reading in the relevant file
+PARTICIPANT_TAG_CONVERSIONS = {}
+POSSIBLE_PARTICIPANTS = []
 
 def read_subj_objs_tags(subj_obj_tags_csv):
     global PARTICIPANT_TAG_CONVERSIONS
@@ -162,12 +164,12 @@ def add_class(form_with_info):
     if pos == "VTA":
         if stem.endswith("aw"):
             verb_class = "aw"
-        elif stem.endswith("w") and not stem[-2] in vowels:
+        elif stem.endswith("w") and not stem[-2] in VOWELS:
             verb_class = "Cw"
         elif stem.endswith("n"):
             verb_class = "n"
         # This condition is needlessly explicit, just to be clear about the categories
-        elif not stem[-1] in vowels and not stem[-1] == "s" and not stem[-1] == "n":
+        elif not stem[-1] in VOWELS and not stem[-1] == "s" and not stem[-1] == "n":
             verb_class = "C"
         elif stem[-1] == "s":
             verb_class = "s"
@@ -179,9 +181,9 @@ def add_class(form_with_info):
             verb_class = "m"
         elif stem.endswith("m") and stem[-2] == "a":
             verb_class = "am"
-        elif (stem[-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
+        elif (stem[-1] in VOWELS and stem[-2] in VOWELS) or stem.endswith("e"):
             verb_class = "VV"
-        elif stem[-1] in vowels:
+        elif stem[-1] in VOWELS:
             verb_class = "V"
         # Remaining classes: rcp, rfx
     elif pos == "VII":
@@ -189,9 +191,9 @@ def add_class(form_with_info):
             verb_class = "d"
         elif stem.endswith("n"):
             verb_class = "n"
-        elif (stem [-1] in vowels and stem[-2] in vowels) or stem.endswith("e"):
+        elif (stem [-1] in VOWELS and stem[-2] in VOWELS) or stem.endswith("e"):
             verb_class = "VV"
-        elif stem [-1] in vowels:
+        elif stem [-1] in VOWELS:
             verb_class = "V"
         # Remaining classes: none!
     if "VTI" in pos:
