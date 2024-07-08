@@ -73,7 +73,7 @@ def prepare_output(results):
     # Some summary info
     total_precision = get_precision(total_true_pos, total_false_pos)
     total_recall = get_recall(total_true_pos, total_false_neg)
-    total_percent_forms_with_no_results = round((total_forms_with_no_results / total_forms) * 100, 2)
+    total_percent_forms_with_no_results = (round((total_forms_with_no_results / total_forms) * 100, 2) if total_forms > 0 else 0)
     # Put the summary info at the *start* of the output line
     total_output = str(total_precision) + "%," + str(total_recall) + "%," + str(total_forms) + "," + str(total_forms_with_no_results) + " (" + str(total_percent_forms_with_no_results) + "%),"
     output_line = total_output + output_line
@@ -92,17 +92,17 @@ def read_logs():
         # Get the name of the current test section
         if line.startswith("YAML test file"):
             test_section = line.strip()
-            test_section = test_section.replace("YAML test file database_yaml_output/", "")
+            test_section = test_section[test_section.index("/") + 1:]
             test_section = test_section.replace(".yaml", "")
             false_pos = 0
             false_neg = 0
             number_of_forms = 0
             number_of_forms_with_no_results = 0
 
-        # Get the number of forms being tested in this section
-        if "1/" in line:
-            # The format is [1/X], where we want X
-            denominator_starting_pos = line.index("1/") + 2
+        # Get the number of forms being tested in this section (if we don't already have it)
+        elif number_of_forms == 0 and search(r"/[0-9]+\]", line):
+            # The format is [X/Y], where we want Y
+            denominator_starting_pos = line.index("/") + 1
             denominator_ending_pos = line.index("]") - 1
             number_of_forms = int(line[denominator_starting_pos: denominator_ending_pos + 1])
 
@@ -111,9 +111,10 @@ def read_logs():
             false_neg += (1 + line.count(","))
 
         # "Unexpected" = an analysis produced by the FST not shared by the OPD
-        elif search(r"Unexpected results: [a-z]", line):
+        elif search(r"Unexpected results: [A-Za-z]", line):
             false_pos += (1 + line.count(","))
 
+        # Some FST analyses are "Unexpected" because they're empty!
         elif search(r"Unexpected results: \+\?", line):
             number_of_forms_with_no_results += 1
             form_start = line.index("[FAIL] ") + len("[FAIL] ")
