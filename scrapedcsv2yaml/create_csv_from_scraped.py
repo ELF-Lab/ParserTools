@@ -8,7 +8,7 @@ from create_yaml import create_output_directory
 
 # Parameters for the user to specify
 OUTPUT_FILE_NAME = "inflectional_forms_for_yaml.csv"
-STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
+STEMS_TO_EXCLUDE = ["akwaakwak", "banzw", "baakindesijiged", "baasindibeshkoozo", "begaki-ozaawaakiganed", "biimitaag", "gawishimo'", "gikas", "giitakizine'", "gwayakomaagwad", "ikwabiitaw", "ishkwegamaag", "makadewitawag", "begakiozaawaakiganed", "miiwanaand", "onzw", "ozhibii'igetamaw", "waazhwi", "wiijishimotaadiwag", "zagwakizowag"]
 PRINT_MISSING_INFO_SUMMARY = False
 
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
@@ -100,8 +100,12 @@ def missing_info_check(form_with_info):
     return has_an_order and has_a_stem and has_a_subj and has_a_form and not(contains_weird_punctuation)
 
 def tidy_entry(form_with_info):
-    form_with_info["Stem"] = (form_with_info["Stem"].replace("/", "")).replace("-", "")
-    form_with_info["Inflectional Form"] = (form_with_info["Inflectional Form"].replace("-", "")).replace("]", "")
+    # Stems are typically written with a final hyphen, which should be removed
+    if form_with_info["Stem"].endswith("-"):
+        form_with_info["Stem"] = form_with_info["Stem"][:-1]
+    # This check, however, is to fix erroneous forms!
+    if form_with_info["Inflectional Form"].startswith("-"):
+        form_with_info["Inflectional Form"] = form_with_info["Inflectional Form"][2:]
     for field_name in form_with_info.keys():
         form_with_info[field_name] = form_with_info[field_name].strip()
 
