@@ -13,6 +13,8 @@ PRINT_MISSING_INFO_SUMMARY = False
 
 POS_TO_KEEP = ["vai + o", "vta", "vai", "vii", "vti", "vti2", "vti3", "vti4"]
 POS_WITH_CLASS_IN_FILE_NAME = ["VAI", "VTA", "VII", "VTI", "VTI2", "VTI3", "VTI4"]
+ALL_OPD_ORDERS = {"ch-conj", "conj", "ic", "imp", "ind", "part"}
+PERMITTED_ORDER_CONVERSIONS = {"conj": "Cnj", "imp": "Imp", "ind": "Ind"} # Just add entries here once we're supporting other orders!
 VOWELS = ["i", "e", "o", "a"]
 RECIPROCAL_LEMMA_ENDING = "wag"
 RECIPROCAL_STEM_ENDING = "di"
@@ -66,13 +68,6 @@ def process_json(file_name):
 # Takes one row at a time
 # Returns a bool, True = keep it in, False = remove it
 def missing_info_check(form_with_info):
-    # Add in ch-conj and ic once we can support them!
-    POSSIBLE_ORDERS = ["ind", " conj", "imp", "part"] #Space before "conj" so it doesn't match "ch-conj"
-    has_an_order = False
-    for order in POSSIBLE_ORDERS:
-        if order in form_with_info["Abbreviated Gloss"]:
-            has_an_order = True
-
     # Check for missing stem OR an erroenous stem we noticed
     has_a_stem = (form_with_info["Stem"] != "" and not (form_with_info["Stem"] in STEMS_TO_EXCLUDE))
 
@@ -82,6 +77,15 @@ def missing_info_check(form_with_info):
         potential_subj = glosses[0]
         if potential_subj in POSSIBLE_PARTICIPANTS:
             has_a_subj = True
+
+    has_an_order = False
+    # To be thorough, check if both a) one of the permitted orders is listed and b) none of the non-permitted orders are
+    for permitted_order in PERMITTED_ORDER_CONVERSIONS.keys():
+        if permitted_order in glosses:
+            has_an_order = True
+            for non_permitted_order in (ALL_OPD_ORDERS - PERMITTED_ORDER_CONVERSIONS.keys()):
+                if non_permitted_order in glosses:
+                    has_an_order = False
 
     contains_weird_punctuation = "=" in form_with_info["Inflectional Form"]
     has_a_form = form_with_info["Inflectional Form"] != ""
@@ -135,28 +139,21 @@ def format_entry(form_with_info):
 
     return form_with_info
 
-# Ind, Cnj, Imp -- what about changed conjunct? No default
 def add_order(form_with_info):
     short_gloss = form_with_info["Abbreviated Gloss"]
+    order = None
 
-    if "ind" in short_gloss:
-        order = "Ind"
-    elif "ch-conj" in short_gloss:
-        order = "?"
-    elif "conj" in short_gloss:
-        order = "Cnj"
-    elif "imp" in short_gloss:
-        order = "Imp"
-    elif "ic" in short_gloss:
-        order = "?"
-    elif "part" in short_gloss:
-        order = "Particip"
-    else:
+    for possible_order in PERMITTED_ORDER_CONVERSIONS.keys():
+        if possible_order in short_gloss:
+            order = PERMITTED_ORDER_CONVERSIONS[possible_order]
+            break # Match found! Stop looking
+
+    if not order:
         print(f"\nERROR: Form {form_with_info['Inflectional Form']} does not have an expected order value.  Please investigate this form in the spreadsheet and update the code accordingly.  Exiting...")
         sys.exit()
-
-    form_with_info["Order"] = order
-    return form_with_info
+    else:
+        form_with_info["Order"] = order
+        return form_with_info
 
 # Add an entry to the dict that indicates the class of the stem (e.g. n, am, etc.)
 # For some POS, like VAIO, we don't want the class in the file name at all
