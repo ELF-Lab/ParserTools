@@ -39,9 +39,11 @@ from lexc_path import LexcPath
               help="Directory where output lexc files are stored")
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
+@click.option('--alt-tag', required=False, default=False,
+              help="If this option is enabled, a \"+Alt\" tag is appended to \"non-standard\" analyses")
 @click.option('--verbose', required=False, default=False,
               help="Print very detailed diagnostics")
-def main(config_files, source_path, lexc_path, database_path, read_lexical_database, verbose):
+def main(config_files, source_path, lexc_path, database_path, read_lexical_database, alt_tag, verbose):
     set_verbose(verbose)
     if verbose:
         info("Compiling in verbose mode. Omit --verbose to disable.")
@@ -57,6 +59,7 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
         info(f"Processing configuration file {config_file}:")
         config = json.load(open(config_file))
         config["database_src_dir"] = database_path
+        config["append_alt_tag"] = alt_tag
         info(json.dumps(config, indent=2),force=False)
         pos_root_lexicons.add(config["root_lexicon"])
         

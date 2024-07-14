@@ -8,6 +8,7 @@ import re
 import pandas as pd
 from collections import namedtuple
 from log import warn
+from copy import deepcopy
 
 MAXFORMS=100
 """Maximum number of alternate forms for a single analysis in the
@@ -20,6 +21,9 @@ PREFIX_BOUNDARY = "<<"
 
 SUFFIX_BOUNDARY = ">>"
 """Morpheme boundary between stem and suffix."""
+
+ALT_TAG = "+Alt"
+""" Tag which indicates alternative or non-standard analyses. """
 
 LexcEntry = namedtuple("LexcEntry",
                        ["lexicon",
@@ -158,6 +162,7 @@ class LexcPath:
         cls.multichar_symbols.update(map(escape,conf["multichar_symbols"]))
         cls.multichar_symbols.add(escape(PREFIX_BOUNDARY))
         cls.multichar_symbols.add(escape(SUFFIX_BOUNDARY))
+        cls.multichar_symbols.add(escape(ALT_TAG))
         
     @classmethod
     def get_prefix_flags(cls, prefix:str) -> tuple[str]:
@@ -330,7 +335,12 @@ class LexcPath:
         paths = []
         paradigm = self.paradigm
         klass = self.klass
-        for surface, parts in self.forms:
+        for i, (surface, parts) in enumerate(self.forms):
+            tags = deepcopy(self.tags)
+            # Possibly append a +Alt tag to all analyses except the
+            # first one.
+            if i > 0 and self.conf["append_alt_tag"]:
+                tags.append(ALT_TAG)
             if self.regular:
                 # Initialize flag diacritics which:
                 # (1) control combinations of person prefix and inflectional ending,
@@ -391,7 +401,7 @@ class LexcPath:
                               check_order_flag,
                               ending_lexicon),
                     LexcEntry(ending_lexicon,
-                              "".join(self.tags),
+                              "".join(tags),
                               parts.suffix,
                               "#")
                 ]
@@ -399,7 +409,7 @@ class LexcPath:
             else:
                 # Irregular forms are treated as one chunk and simply enumerated.
                 paths.append([LexcEntry(f"{paradigm}_Irregular",
-                                        f"{self.lemma}{''.join(self.tags)}",
+                                        f"{self.lemma}{''.join(tags)}",
                                         surface,
                                         "#")])
 

@@ -4,11 +4,11 @@ FOMA=foma
 
 # Source files
 # Change this to match your source morphology directory
-MORPHOLOGYSRCDIR=~/OjibweMorph
+MORPHOLOGYSRCDIR=~/src/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
-DATABASEDIR=~/OPDDatabase
+DATABASEDIR=~/src/OPDDatabase
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -24,6 +24,7 @@ MORPHTEST=$(GTCORE)/scripts/morph-test.py
 # Definitions for building the LEXC files
 POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
+ALTTAG=False
 
 all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att
 
@@ -35,6 +36,7 @@ generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
+                              --alt-tag $(ALTTAG) \
                               --lexc-path generated
 	cd generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
@@ -100,7 +102,8 @@ check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json"
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
                               --lexc-path check-generated \
-                              --read-lexical-database False
+                              --read-lexical-database False \
+                              --alt-tag False
 	cd check-generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
