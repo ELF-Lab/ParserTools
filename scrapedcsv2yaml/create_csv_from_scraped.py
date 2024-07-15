@@ -319,7 +319,7 @@ def handle_ambiguous_participant_tags(forms_with_info):
 # Reminder: forms_with_info is a list of dicts
 def write_new_csv(forms_with_info, output_dir):
     # I believe 4 is the most inflectional forms with the same analysis?
-    CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source,Form2Surface,Form2Split,Form2Source,Form3Surface,Form3Split,Form3Source,Form4Surface,Form4Split,Form4Source,"
+    CSV_HEADER = "Paradigm,Order,Class,Lemma,Stem,Head,Subject,Object,Mode,Negation,Form1Surface,Form1Split,Form1Source,Form2Surface,Form2Split,Form2Source,Form3Surface,Form3Split,Form3Source,Form4Surface,Form4Split,Form4Source,"
     prev_analysis = ""
     line_count = 0
 
@@ -332,7 +332,7 @@ def write_new_csv(forms_with_info, output_dir):
                 analysis_to_write += form_with_info["POS"] + "_" + form_with_info["Class"] + ","
             else:
                 analysis_to_write += form_with_info["POS"] + ","
-            analysis_to_write += form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + form_with_info["Subject"] + "," + form_with_info["Object"] + "," + form_with_info["Mode"] + ","
+            analysis_to_write += form_with_info["Lemma"] + "," + form_with_info["Stem"] + "," + EMPTY_FIELD_MARKER + "," + form_with_info["Subject"] + "," + form_with_info["Object"] + "," + form_with_info["Mode"] + ","
             if "Negation" in form_with_info.keys():
                 analysis_to_write += form_with_info["Negation"] + ","
             else:
