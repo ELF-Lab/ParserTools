@@ -10,6 +10,10 @@ define Punct PUNCT:0 [0:"," | 0:"." | 0:"-" | 0:"?" | 0:";" | 0:%!  |
                       0:":" | 0:%"  | 0:"`" | 0:"<" | 0:">" | 0:"+" |
 		      0:"*" | 0:"–" | 0:"_" ]+ ;
 
+define PREBD "<<"+ ;
+define SUFBD ">>"+ ;
+define BD ["<<" | ">>"]+ ;
+
 ! Read rule file from disk and compile
 source phonology.xfst
 define Rules ;
@@ -30,13 +34,12 @@ compact sigma
 ! when there are flags. The FST will grow but its behavior remains the
 ! same.
 eliminate flags
+set flag-is-epsilon OFF
 
 ! Let's filter out empty strings because those are annoying when you
 ! run random-pairs. This can only be done after flag elimination.
 define Analyzer ;
 regex Analyzer .o. [ ?+ ] ;
-
-set flag-is-epsilon OFF
 
 save stack ojibwe.fomabin
 write att > ojibwe.att
