@@ -25,6 +25,7 @@ MORPHTEST=$(GTCORE)/scripts/morph-test.py
 POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
 ALTTAG=False
+DERIVATIONS=True
 
 all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att
 
@@ -37,6 +38,7 @@ generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
                               --alt-tag $(ALTTAG) \
+                              --add-derivations $(DERIVATIONS) \
                               --lexc-path generated
 	cd generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
@@ -102,6 +104,7 @@ check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json"
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-path $(DATABASEDIR) \
                               --lexc-path check-generated \
+                              --add-derivations $(DERIVATIONS) \
                               --read-lexical-database False \
                               --alt-tag False
 	cd check-generated; \

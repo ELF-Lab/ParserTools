@@ -124,7 +124,6 @@ def split_form(form:str) -> SplitForm:
         raise ValueError(f"Invalid form: {orig_form}. Split: {form}")
     return SplitForm(escape(form[0]), escape(form[2]), escape(form[4]))
 
-
 class LexcPath:
     """The LexcPath class represents a path in a lexc file from a root
        lexicon like `VerbRoot` or `NounRoot` to the terminal lexicon
@@ -446,3 +445,27 @@ class LexcPath:
 
     def __hash__(self):
         return hash(str(self))
+
+class DerivationPath:
+    def __init__(self, row:pd.core.series.Series, conf:dict):
+        self.conf = conf
+        self.form = row.Form
+        self.tag = f"+{row.Tag}"
+        self.input_paradigm = row.InputParadigm
+        self.input_class = row.InputClass
+        self.output_paradigm = row.OutputParadigm
+        self.output_class = row.OutputClass
+        LexcPath.multichar_symbols.update([self.tag])
+        
+    def extend_lexicons(self, lexicons:dict) -> None:
+        input_boundary_lexicon = f"{self.input_paradigm}_Class={self.input_class}_Boundary"
+        analysis = f"+{self.input_paradigm}{self.tag}"
+        surface = f"0{escape(SUFFIX_BOUNDARY)}{self.form}"
+        output_boundary_lexicon = f"{self.output_paradigm}_Class={self.output_class}_Boundary"
+        if not input_boundary_lexicon in lexicons:
+            lexicons[input_boundary_lexicon] = set()
+        lexicons[input_boundary_lexicon].add(LexcEntry(input_boundary_lexicon,
+                                                       analysis,
+                                                       surface,
+                                                       output_boundary_lexicon))
+        

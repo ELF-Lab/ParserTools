@@ -39,11 +39,13 @@ from lexc_path import LexcPath
               help="Directory where output lexc files are stored")
 @click.option('--read-lexical-database', required=False, default=True,
               help="Whether to include lexemes from an external lexicon database")
+@click.option('--add-derivations', required=True,
+              help="Whether to include derivational morphology")
 @click.option('--alt-tag', required=False, default=False,
               help="If this option is enabled, a \"+Alt\" tag is appended to \"non-standard\" analyses")
 @click.option('--verbose', required=False, default=False,
               help="Print very detailed diagnostics")
-def main(config_files, source_path, lexc_path, database_path, read_lexical_database, alt_tag, verbose):
+def main(config_files, source_path, lexc_path, database_path, read_lexical_database, add_derivations, alt_tag, verbose):
     set_verbose(verbose)
     if verbose:
         info("Compiling in verbose mode. Omit --verbose to disable.")
@@ -67,11 +69,12 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
         info("Reading spreadsheets for regular paradigms from directory:",
              f"{pjoin(source_path,config['morphology_source_path'])}")
         lexicon = LexcFile(config,
-                          source_path,
-                          lexc_path,
-                          database_path,
-                          read_lexical_database,
-                          regular=True)
+                           source_path,
+                           lexc_path,
+                           database_path,
+                           read_lexical_database,
+                           add_derivations,
+                           regular=True)
         info(f"Writing lexc output to {config['regular_lexc_file']}")
         lexicon.write_lexc()
 
@@ -84,11 +87,12 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
             config["root_lexicon"] += "Irregular"
             pos_root_lexicons.add(config["root_lexicon"])
             irregular_lexicon = LexcFile(config,
-                                        source_path,
-                                        lexc_path,
-                                        database_path,
-                                        read_lexical_database=False,
-                                        regular=False)
+                                         source_path,
+                                         lexc_path,
+                                         database_path,
+                                         read_lexical_database=False,
+                                         add_derivations=False,
+                                         regular=False)
             info(f"Writing lexc output to {config['irregular_lexc_file']}")
             irregular_lexicon.write_lexc()
 

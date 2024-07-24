@@ -5,7 +5,7 @@ import os
 from os.path import join as pjoin
 import re
 
-from lexc_path import LexcPath, entry2str, LexcEntry, escape
+from lexc_path import LexcPath, DerivationPath, entry2str, LexcEntry, escape
 from log import info, warn
 from lexc_comment import comment_block
 
@@ -39,6 +39,7 @@ class LexcFile:
                  lexc_path:str,
                  database_path:str,
                  read_lexical_database:bool,
+                 add_derivations:bool,
                  regular:bool):
         """Initialize the lexicon using a configuration file. Parameters: 
            * `conf` configuration 
@@ -68,6 +69,9 @@ class LexcFile:
 
         if read_lexical_database:
             self.read_lexemes_from_database(database_path)
+
+        if add_derivations and "derivational_csv_file" in conf:
+            self.add_derivations()
             
     def read_lexemes_from_database(self, database_path) -> None:
         """Read OPD dictionary entries from an external CSV file given by the
@@ -109,6 +113,11 @@ class LexcFile:
                  f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
                  f"Skipped {skipped} invalid ones")
 
+    def add_derivations(self):
+        der_csv = pd.read_csv(pjoin(self.source_path, self.conf["derivational_csv_file"]))
+        for _, row in der_csv.iterrows():
+            DerivationPath(row,self.conf).extend_lexicons(self.lexicons)
+            
     def write_lexc(self) -> None:
         """Write contents to lexc file. If this is a regular lexc file, write
            to the file given by the field "regular_lexc_file" in the
