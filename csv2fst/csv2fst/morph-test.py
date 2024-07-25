@@ -193,13 +193,23 @@ class MorphTest:
                           errlist=", ".join(errlist))
             self.write(x)
 
-        def result(self, title, test, counts):
+        def result(self, title, test, counts, unique_tests, stems_with_no_analyses):
             p = counts["Pass"]
             f = counts["Fail"]
+            no_analysis_fails = counts["No-Analysis Fail"]
+            false_neg = counts["Missing Fail"]
+            # Don't count empty analyses as false positives!
+            false_pos = counts["Unexpected Fail"] - no_analysis_fails
             text = colourise("\nTest {n} - Passes: {green}{passes}{reset}, " +
                    "Fails: {red}{fails}{reset}, " +
-                   "Total: {light_blue}{total}{reset}\n",
-                   n=test, passes=p, fails=f, total=p+f)
+                   "Total: {light_blue}{total}{reset}\n" +
+                   "True positives ('passes'): {green}{passes}{reset}, " +
+                   "False negatives ('missing OPD analyses'): {red}{false_neg}{reset}, " +
+                   "False positives ('unexpected FST analyses'): {red}{false_pos}{reset}, " +
+                   "Forms with no analysis whatsoever: {light_blue}{no_analysis_fails}{reset}, " +
+                   "Unique inflected forms being tested: {light_blue}{unique_tests}{reset}\n" +
+                   "Stems with no analyses whatsoever: {light_blue}{stems_with_no_analyses}{reset}\n",
+                   n=test, passes=p, fails=f, total=p+f, false_neg=false_neg, false_pos=false_pos, no_analysis_fails=no_analysis_fails, unique_tests=unique_tests, stems_with_no_analyses=stems_with_no_analyses)
             self.write(text)
 
     class CompactOutput(AllOutput):
@@ -411,24 +421,34 @@ class MorphTest:
         title = "Test %d: %s" % (c, d)
         self.out.title(title)
 
-        self.count[d] = {"Pass": 0, "Fail": 0}
+        self.count[d] = {"Pass": 0, "Fail": 0, "Missing Fail": 0, "Unexpected Fail": 0, "No-Analysis Fail": 0}
 
         caseslen = len(tests)
+        does_this_stem_have_any_analyses = {}
         for n, testcase in enumerate(tests):
             n += 1 # off by one annoyance
 
             test = testcase.input
             forms = testcase.outputs
 
-            actual_results = set(res[test.lstrip("~")])
+            actual_results = set(res[test.lstrip("~")]) # = analyses the FST outputs
             test, detested_results, expected_results = self.get_forms(test, forms)
+            assert(len(expected_results) > 0)
+            assert(len(detested_results) == 0) # Not sure what this even is!
 
-            missing = set()
-            invalid = set()
-            success = set()
-            detested = set()
-            missing_detested = set()
+            stem = ""
+            stem = (expected_results.copy().pop()).partition("+")[0]
+            if stem not in does_this_stem_have_any_analyses.keys():
+                does_this_stem_have_any_analyses.update({stem: False})
 
+            missing = set() # Missing
+            invalid = set() # Unexpected
+            success = set() # Pass
+            detested = set() # ??
+            missing_detested = set() # ??
+
+            # Go through the actual and expected results to make our lists of
+            # passes and fails (missing and unexpected)
             for form in expected_results:
                 if not form in actual_results:
                     missing.add(form)
@@ -443,13 +463,15 @@ class MorphTest:
             for form in actual_results:
                 if not form in expected_results:
                     invalid.add(form)
+                if not form in (missing | invalid | detested):
+                    success.add(form)
 
             if len(expected_results) > 0:
                 for form in actual_results:
                     if not form in (missing | invalid | detested):
                         passed = True
-                        success.add(form)
                         self.count[d]["Pass"] += 1
+                        does_this_stem_have_any_analyses.update({stem: True})
                         if not self.args.hide_pass:
                             self.out.success(n, caseslen, test, form)
                 for form in missing_detested:
@@ -457,6 +479,7 @@ class MorphTest:
                     self.count[d]["Pass"] += 1
                     if not self.args.hide_pass:
                         self.out.success(n, caseslen, test, "<No '%s' %s>" % (form, desc.lower()))
+
             else:
                 if len(invalid) == 1 and list(invalid)[0].endswith("+?"):
                     invalid = set()
@@ -467,6 +490,7 @@ class MorphTest:
             if len(missing) > 0:
                 if not self.args.hide_fail:
                     self.out.failure(n, caseslen, test, "Missing results", missing)
+                    self.count[d]["Missing Fail"] += len(missing)
                 #self.count[d]["Fail"] += len(missing)
 
             if len(invalid) > 0:
@@ -474,6 +498,12 @@ class MorphTest:
                     invalid = set() # hide this for the final check
                 elif not self.args.hide_fail:
                     self.out.failure(n, caseslen, test, "Unexpected results", invalid)
+                    self.count[d]["Unexpected Fail"] += len(invalid)
+                    # Check if the FST "analysis" is unexpected because there's no analysis whatsover!
+                    if "+?" in invalid:
+                        self.count[d]["No-Analysis Fail"] += 1
+                    else:
+                        does_this_stem_have_any_analyses.update({stem: True})
                 #self.count[d]["Fail"] += len(invalid)
 
             if len(detested) > 0:
@@ -487,10 +517,17 @@ class MorphTest:
             if len(detested) + len(missing) + len(invalid) > 0:
                 self.count[d]["Fail"] += 1
 
-        self.out.result(title, c, self.count[d])
+        stems_with_no_analyses = []
+        for stem in does_this_stem_have_any_analyses.keys():
+            if not (does_this_stem_have_any_analyses[stem]):
+                stems_with_no_analyses.append(stem)
+
+        self.out.result(title, c, self.count[d], caseslen, stems_with_no_analyses)
 
         self.passes += self.count[d]["Pass"]
         self.fails += self.count[d]["Fail"]
+
+
 
     def parse_fst_output(self, fst):
         parsed = {}
