@@ -14,12 +14,7 @@ DATABASEDIR=~/src/OPDDatabase
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
 
-# These depend on the env variable GTCORE which is set when you build
-# giella-core (I think...)
-ifndef GTCORE
-       $(warning The GTCORE environment variable is not set)
-endif
-MORPHTEST=$(GTCORE)/scripts/morph-test.py 
+MORPHTEST=csv2fst/morph-test.py
 
 # Definitions for building the LEXC files
 POS=verbs nouns pronouns adverbs particles numerals
