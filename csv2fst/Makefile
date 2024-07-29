@@ -89,8 +89,7 @@ paradigm_yaml_output:
 	mv yaml_output/* $@
 
 database_yaml_output:
-	$(PYTHON) ../scrapedcsv2yaml/create_csv_from_scraped.py $(DATABASEDIR)/data/full_batch_lemma.json ../scrapedcsv2yaml/subj_obj_tags.csv csv_output/
-	$(PYTHON) $(CREATEYAML) csv_output/ $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
