@@ -99,13 +99,6 @@ def read_logs():
             number_of_forms = 0
             number_of_forms_with_no_results = 0
 
-        # Get the number of forms being tested in this section (if we don't already have it)
-        elif number_of_forms == 0 and search(r"/[0-9]+\]", line):
-            # The format is [X/Y], where we want Y
-            denominator_starting_pos = line.index("/") + 1
-            denominator_ending_pos = line.index("]") - 1
-            number_of_forms = int(line[denominator_starting_pos: denominator_ending_pos + 1])
-
         # "Missing" = an OPD analysis that the FST failed to produce
         elif "Missing results" in line:
             false_neg += (1 + line.count(","))
@@ -121,7 +114,10 @@ def read_logs():
             form_end = line.index(" =>") - 1
             forms_with_no_results.append({"form": line[form_start:form_end + 1].strip(), "pos": test_section})
 
-        # The final line for this section -- get the # of passes (true pos), and calculate summary stats
+        elif line.startswith("True"): # A final line with summary info
+            number_of_forms = int(line.partition("Unique inflected forms being tested: ")[2])
+
+        # The final line summarative for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith("Total"):
             # There's a pass for every correctly predicted analysis = true positives
             # The # of passes is the first number in this line
