@@ -19,10 +19,11 @@ MORPHTEST=csv2fst/morph-test.py
 # Definitions for building the LEXC files
 POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
+TAG_CONFIGURATION_FILES=$(POS:%=generated/%_tags.json)
 ALTTAG=False
 DERIVATIONS=True
 
-all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att
+all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att $(TAG_CONFIGURATION_FILES)
 
 release:all
 	zip generated.zip generated/*
@@ -61,12 +62,33 @@ generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xf
 
 # For building spell checkers etc. using Giellatekno infrastructure.
 generated/lang-ciw:generated/all.lexc generated/phonology.xfst
+	mkdir -p generated
 	cd generated; \
         git clone git@github.com:giellalt/lang-ciw.git; \
 	cp root.lexc lang-ciw/src/fst/morphology/ ; \
 	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
 	cp $(LEXCTARGETS) lang-ciw/src/fst/morphology/stems/; \
 	cp preverbs.lexc prenouns.lexc lang-ciw/src/fst/morphology/stems/
+
+# Tag specification file
+generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
+	mkdir -p generated
+	python3 csv2fst/extract_tag_combinations.py \
+             --config-file $< \
+             --source-path $(MORPHOLOGYSRCDIR) \
+             --pre-element=TensePreverbs \
+             --pre-element-tags="PVTense/gii,0" \
+             --post-element=Derivations \
+             --post-element-tags="Augment/magad,0" \
+             --output-file $@
+
+generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
+	mkdir -p generated
+	python3 csv2fst/extract_tag_combinations.py \
+             --config-file $< \
+             --source-path ../../OjibweMorph \
+             --output-file $@
+
 
 #####################################################################
 #                                                                   #
