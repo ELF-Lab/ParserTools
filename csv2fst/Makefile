@@ -79,7 +79,7 @@ generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
              --pre-element=TensePreverbs \
              --pre-element-tags="PVTense/gii,0" \
              --post-element=Derivations \
-             --post-element-tags="Augment/magad,0" \
+             --post-element-tags="VII+Augment/magad,0" \
              --output-file $@
 
 generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
