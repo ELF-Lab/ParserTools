@@ -224,7 +224,8 @@ class LexcPath:
         self.stem = escape(row["Stem"])
         self.tags = [escape(f"+{row[feat]}")
                      for feat in conf["morph_features"]
-                     if (row[feat] != conf["missing_tag_marker"] and
+                     if (feat in row.keys() and # Some features are optional, e.g., Aug
+                         row[feat] != conf["missing_tag_marker"] and
                          row[feat] != "")]
         self.harvest_multichar_symbols()
 

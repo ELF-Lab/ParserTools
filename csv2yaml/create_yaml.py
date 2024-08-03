@@ -139,7 +139,8 @@ def generate_analysis(json_file):
     tags.extend(config["morph_features"])
 
     # Using filter with remove_NA to make sure "not applicable" values do not end up in the analysis
-    analysis = lambda row: "+".join(list(filter(remove_empty,[row[x] for x in tags])))
+    # Checking if the tag is actually used by the row, because some tags not in all spreadsheets (e.g., Augmented)
+    analysis = lambda row: "+".join(list(filter(remove_empty,[row[tag] for tag in tags if tag in row.keys()])))
     return analysis
 
 if __name__ == '__main__':
