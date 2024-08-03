@@ -8,6 +8,7 @@ import pandas as pd
 OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAI_VV", "VAI_am", "VAI_n", "VII_V", "VII_VV", "VII_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
+YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False
 
 def write_to_csv(output_line):
@@ -177,7 +178,27 @@ def get_recall(true_pos, false_neg):
 
     return recall
 
+# test_summary.csv's header has a section for every class (e.g., VAI_am, VAI_m, etc.)
+# If a new class has been added, there'll be nowhere to include those results in the CSV!
+# You'll have to delete your existing CSV and run this code again, so that a new CSV with the
+# correct headers is created.
+# And don't forget to update TEST_SECTIONS with the new section!
+# This check will flag this scenario.
+# I didn't want this all to happen automatically, in case you want to save your old CSV first.
+def check_test_sections():
+    test_sections_in_yaml = []
+    for root, dirs, files in os.walk(YAML_FOLDER):
+        for file_name in files:
+            if not "core" in file_name:
+                test_sections_in_yaml.append(file_name.partition(".")[0])
+
+    for test_section in test_sections_in_yaml:
+        if test_section not in TEST_SECTIONS:
+            print(f"\nA new test section ({test_section}) has been detected.  You should delete your current test_summary.csv, add the new section to TEST_SECTIONS, and re-run this, because we need a new CSV header to capture the current test sections!\nExiting...")
+            exit()
+
 def main():
+    check_test_sections()
     results = read_logs()
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
