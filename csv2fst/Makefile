@@ -86,7 +86,7 @@ generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
 	mkdir -p generated
 	python3 csv2fst/extract_tag_combinations.py \
              --config-file $< \
-             --source-path ../../OjibweMorph \
+             --source-path $(MORPHOLOGYSRCDIR) \
              --output-file $@
 
 
