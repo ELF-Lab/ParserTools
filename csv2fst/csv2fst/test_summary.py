@@ -9,7 +9,8 @@ OUTPUT_FILE_NAME = "test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 YAML_FOLDER = "./database_yaml_output"
-DO_PRINT_FORMS_WITH_NO_RESULTS = False
+DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
+SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/inflectional_forms_for_yaml.csv"
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
@@ -133,29 +134,34 @@ def read_logs():
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
 
+# Print a subset of the reformatted scrape CSV, with only rows for those forms with no results
 def print_forms_with_no_results(form_list):
-    SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/inflectional_forms_for_yaml.csv"
-
     if len(form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(SCRAPED_CSV_PATH, keep_default_na = False)
+        scraped_forms = scraped_forms.sort_values(by='Class', ignore_index=True) # To accelerate the search process
+        paradigm_indices = {}
+        new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
-        current_section = form_list[0]["pos"]
-        print(f"------ {current_section}: ------")
         # Go through each of the forms we flagged as having no results
         for form in form_list:
-            # Print a new header for each section e.g., VAIO, VAI_V, etc.
-            if form["pos"] != current_section:
-                current_section = form["pos"]
-                print(f"\n\n------ {current_section}: ------")
+
+            # Check if we know the starting point for this paradigm/pos yet
+            if form["pos"] not in paradigm_indices.keys():
+                index = scraped_forms["Class"].searchsorted(form["pos"], side = 'left')
+                paradigm_indices.update({form["pos"]: index})
 
             # Find the form we're looking for in the big spreadsheet
-            for _, row in scraped_forms.iterrows():
+            inflectional_form = form["form"]
+            search_starting_point = paradigm_indices[form["pos"]]
+            for _, row in (scraped_forms[search_starting_point:]).iterrows():
                 row = row.to_dict()
-                if form["form"] == row["Form1Surface"]:
-                    print("Form:", form["form"])
-                    print(f"Info from OPD: Order: {row['Order']}, Class: {row['Class']}, Lemma: {row['Lemma']}, Stem: {row['Stem']}, Subject: {row['Subject']}, Object: {row['Object']}, Mode: {row['Mode']}, Negation: {row['Negation']}\n")
+                if inflectional_form == row["Form1Surface"]:
+                    new_csv = new_csv._append(row, ignore_index = True)
                     break # Stop looking when we've found it!
+
+        # Print the results
+        new_csv.to_csv("forms_with_no_analyses.csv", index = False)
 
 def get_precision(true_pos, false_pos):
     precision = 0
