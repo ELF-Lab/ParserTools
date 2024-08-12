@@ -134,16 +134,11 @@ def read_logs():
     return results
 
 def print_forms_with_no_results(form_list):
-    SCRAPED_CSV_PATH = "~/ParserTools/scrapedcsv2yaml/csv_output/inflectional_forms_for_yaml.csv"
-    ERRONEOUS_FORMS_CSV_PATH = "~/OPDDatabase/data/OPDPatch.csv"
+    SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/inflectional_forms_for_yaml.csv"
 
     if len(form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(SCRAPED_CSV_PATH, keep_default_na = False)
-        # Read in the spreadsheet of forms that have already been identified as OPD errors,
-        # because they don't need to be investigated again!
-        erroneous_forms = pd.read_csv(ERRONEOUS_FORMS_CSV_PATH, keep_default_na = False)
-        erroneous_lemmas = [row["OPDLemma"] for _, row in erroneous_forms.iterrows()]
 
         current_section = form_list[0]["pos"]
         print(f"------ {current_section}: ------")
@@ -158,10 +153,8 @@ def print_forms_with_no_results(form_list):
             for _, row in scraped_forms.iterrows():
                 row = row.to_dict()
                 if form["form"] == row["Form1Surface"]:
-                    # Check that this form isn't in our list of already-known errors
-                    if row["Lemma"] not in erroneous_lemmas:
-                        print("Form:", form["form"])
-                        print(f"Info from OPD: Order: {row['Order']}, Class: {row['Class']}, Lemma: {row['Lemma']}, Stem: {row['Stem']}, Subject: {row['Subject']}, Object: {row['Object']}, Mode: {row['Mode']}, Negation: {row['Negation']}\n")
+                    print("Form:", form["form"])
+                    print(f"Info from OPD: Order: {row['Order']}, Class: {row['Class']}, Lemma: {row['Lemma']}, Stem: {row['Stem']}, Subject: {row['Subject']}, Object: {row['Object']}, Mode: {row['Mode']}, Negation: {row['Negation']}\n")
                     break # Stop looking when we've found it!
 
 def get_precision(true_pos, false_pos):
