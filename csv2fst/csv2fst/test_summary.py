@@ -10,7 +10,10 @@ INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
-SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
+DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
+SCRAPED_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
+FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
+FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
@@ -88,9 +91,16 @@ def prepare_output(results):
 def read_logs():
     results = {}
     forms_with_no_results = []
+    forms_with_only_unexpected_results = []
+    any_passes = False
     file = open(INPUT_FILE_NAME, "r")
+    lines = file.readlines()
     test_section = ""
-    for line in file:
+    for index, line in enumerate(lines):
+        # First, a little check so we know if --hide-passes is on
+        if not(any_passes) and "[PASS]" in line:
+            any_passes = True
+
         # Get the name of the current test section
         if line.startswith("YAML test file"):
             test_section = line.strip()
@@ -108,6 +118,15 @@ def read_logs():
         # "Unexpected" = an analysis produced by the FST not shared by the OPD
         elif search(r"Unexpected results: [A-Za-z]", line):
             false_pos += (1 + line.count(","))
+            # Is this a form with NO passes?
+            # If yes -> prev line will be "missing results", prev prev line will be unrelated
+            # If no (has passes) -> either prev or prev prev line will be passes
+            test_id = line.partition("[FAIL]")[0]
+            if not (lines[index - 1].startswith(test_id) and "[PASS]" in lines[index - 1]):
+                if not (lines[index - 2].startswith(test_id) and "[PASS]" in lines[index - 2]):
+                        form_start = line.index("[FAIL] ") + len("[FAIL] ")
+                        form_end = line.index(" =>") - 1
+                        forms_with_only_unexpected_results.append({"form": line[form_start:form_end + 1].strip(), "pos": test_section})
 
         # Some FST analyses are "Unexpected" because they're empty!
         elif search(r"Unexpected results: \+\?", line):
@@ -129,13 +148,21 @@ def read_logs():
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
-        print_forms_with_no_results(forms_with_no_results)
+        print(f"\nWriting to {FORMS_WITH_NO_ANALYSES_FILE}...")
+        print_form_sublist_as_csv(forms_with_no_results, FORMS_WITH_NO_ANALYSES_FILE)
+
+    if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
+        if any_passes:
+            print(f"Writing to {FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE}...")
+            print_form_sublist_as_csv(forms_with_only_unexpected_results, FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE)
+        else:
+            print(f"\nRequested print of {FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
 
-# Print a subset of the reformatted scrape CSV, with only rows for those forms with no results
-def print_forms_with_no_results(form_list):
+# Print a subset of the reformatted scrape CSV, with only rows for certain forms
+def print_form_sublist_as_csv(form_list, output_file):
     if len(form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(SCRAPED_CSV_PATH, keep_default_na = False)
@@ -143,7 +170,7 @@ def print_forms_with_no_results(form_list):
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
-        # Go through each of the forms we flagged as having no results
+        # Go through each of the forms we flagged as wanting to print
         for form in form_list:
 
             # Check if we know the starting point for this paradigm/pos yet
@@ -161,7 +188,7 @@ def print_forms_with_no_results(form_list):
                     break # Stop looking when we've found it!
 
         # Print the results
-        new_csv.to_csv("forms_with_no_analyses.csv", index = False)
+        new_csv.to_csv(output_file, index = False)
 
 def get_precision(true_pos, false_pos):
     precision = 0

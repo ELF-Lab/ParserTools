@@ -151,7 +151,7 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
 	rm -f opd-test.log	
 	for f in `ls database_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
 	$(PYTHON) csv2fst/test_summary.py
