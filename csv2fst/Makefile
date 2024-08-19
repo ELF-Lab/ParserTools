@@ -111,7 +111,7 @@ paradigm_yaml_output:
 	mv yaml_output/* $@
 
 database_yaml_output:
-	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/ $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")

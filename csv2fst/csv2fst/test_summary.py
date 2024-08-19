@@ -10,7 +10,7 @@ INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
-SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/inflectional_forms_for_yaml.csv"
+SCRAPED_CSV_PATH = "~/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
