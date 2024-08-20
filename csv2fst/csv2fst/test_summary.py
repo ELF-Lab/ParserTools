@@ -1,17 +1,24 @@
 """A script for summarizing results of morphological analysis tests on OPD forms."""
 
+import argparse
 import os
 from re import findall, search
 from datetime import date
 import pandas as pd
 
-OUTPUT_FILE_NAME = "test_summary.csv"
+OUTPUT_FILE_NAME = ""
+NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
+VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
-TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
+TEST_SECTIONS = []
+VERB_TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
+NOUN_TEST_SECTIONS = ["NI_aa", "NI_Kana", "NI_ShortC", "NI_ShortCy", "NI_VV"]
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
-SCRAPED_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
+SCRAPED_CSV_PATH = ""
+SCRAPED_VERB_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
+SCRAPED_NOUN_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/nouns/noun_inflectional_forms_for_yaml.csv"
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
 FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
 
@@ -204,27 +211,25 @@ def get_recall(true_pos, false_neg):
 
     return recall
 
-# test_summary.csv's header has a section for every class (e.g., VAI_am, VAI_m, etc.)
-# If a new class has been added, there'll be nowhere to include those results in the CSV!
-# You'll have to delete your existing CSV and run this code again, so that a new CSV with the
-# correct headers is created.
-# And don't forget to update TEST_SECTIONS with the new section!
-# This check will flag this scenario.
-# I didn't want this all to happen automatically, in case you want to save your old CSV first.
-def check_test_sections():
-    test_sections_in_yaml = []
-    for root, dirs, files in os.walk(YAML_FOLDER):
-        for file_name in files:
-            if not "core" in file_name:
-                test_sections_in_yaml.append(file_name.partition(".")[0])
-
-    for test_section in test_sections_in_yaml:
-        if test_section not in TEST_SECTIONS:
-            print(f"\nA new test section ({test_section}) has been detected.  You should delete your current test_summary.csv, add the new section to TEST_SECTIONS, and re-run this, because we need a new CSV header to capture the current test sections!\nExiting...")
-            exit()
-
 def main():
-    check_test_sections()
+    # Sets up argparse.
+    parser = argparse.ArgumentParser(prog="test_summary")
+    parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
+    args = parser.parse_args()
+
+    # Configure the summary for nouns OR verbs
+    global TEST_SECTIONS
+    global SCRAPED_CSV_PATH
+    global OUTPUT_FILE_NAME
+    if args.for_nouns:
+        TEST_SECTIONS = NOUN_TEST_SECTIONS
+        SCRAPED_CSV_PATH = SCRAPED_NOUN_CSV_PATH
+        OUTPUT_FILE_NAME = NOUN_OUTPUT_FILE_NAME
+    else:
+        TEST_SECTIONS = VERB_TEST_SECTIONS
+        SCRAPED_CSV_PATH = SCRAPED_VERB_CSV_PATH
+        OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
+
     results = read_logs()
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()

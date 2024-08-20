@@ -111,8 +111,12 @@ paradigm_yaml_output:
 	mv yaml_output/* $@
 
 database_yaml_output:
+	rm -Rf $@
+	mkdir $@
 	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
-	mv yaml_output $@
+	mv yaml_output/* $@
+	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
+	mv yaml_output/* $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p check-generated
@@ -155,6 +159,7 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
                   echo ; \
                   done > opd-test.log
 	$(PYTHON) csv2fst/test_summary.py
+	$(PYTHON) csv2fst/test_summary.py --for_nouns
 
 
 clean:
