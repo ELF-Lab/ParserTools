@@ -11,16 +11,25 @@ NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
 VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = []
-VERB_TEST_SECTIONS = ["VAIO", "VAI_V", "VAIPL_V", "VAI_VV", "VAIPL_VV", "VAI_am", "VAI_m", "VAI_n", "VAIPL_n", "VAI_rcp", "VAI_rfx", "VII_V", "VII_VV", "VIIPL_VV", "VII_d", "VIIPL_d", "VII_n", "VTA_C", "VTA_Cw", "VTA_aw", "VTA_n", "VTA_s", "VTI_aa", "VTI_am", "VTI_i", "VTI_oo"]
-NOUN_TEST_SECTIONS = ["NI_Kana", "NI_C", "NI_ShortC", "NI_Cw", "NI_Cy", "NI_ShortCy", "NI_aa", "NI_VV", "NI_VVny", "NI_Vw", "NA_ShortCw", "NA_ShortC", "NA_Cy", "NA_VVny", "NA_VVw", "NA_VV", "NA_VVy", "NA_Vw", "NA_irrCw", "NA_Cw", "NA_C"]
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
 SCRAPED_CSV_PATH = ""
 SCRAPED_VERB_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
 SCRAPED_NOUN_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/nouns/noun_inflectional_forms_for_yaml.csv"
+NOUN_PARADIGM_MAP_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/assets/NOUNS_paradigm_map.csv"
+VERB_PARADIGM_MAP_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/assets/VERBS_paradigm_map.csv"
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
 FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
+
+def get_test_sections_from_paradigm_map(paradigm_map_file):
+    test_sections = set()
+    paradigm_map = pd.read_csv(paradigm_map_file)
+    for i, row in paradigm_map.iterrows():
+        test_sections.add(row["Class"])
+
+    test_sections = sorted(list(test_sections))
+    return test_sections
 
 def write_to_csv(output_line):
     HEADER_1 = "Date,"
@@ -222,11 +231,11 @@ def main():
     global SCRAPED_CSV_PATH
     global OUTPUT_FILE_NAME
     if args.for_nouns:
-        TEST_SECTIONS = NOUN_TEST_SECTIONS
+        TEST_SECTIONS = get_test_sections_from_paradigm_map(NOUN_PARADIGM_MAP_PATH)
         SCRAPED_CSV_PATH = SCRAPED_NOUN_CSV_PATH
         OUTPUT_FILE_NAME = NOUN_OUTPUT_FILE_NAME
     else:
-        TEST_SECTIONS = VERB_TEST_SECTIONS
+        TEST_SECTIONS = get_test_sections_from_paradigm_map(VERB_PARADIGM_MAP_PATH)
         SCRAPED_CSV_PATH = SCRAPED_VERB_CSV_PATH
         OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
 
