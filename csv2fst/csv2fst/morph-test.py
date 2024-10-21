@@ -198,6 +198,7 @@ class MorphTest:
             f = counts["Fail"]
             no_analysis_fails = counts["No-Analysis Fail"]
             false_neg = counts["Missing Fail"]
+            form_analysis_pairs = p + false_neg
             # Don't count empty analyses as false positives!
             false_pos = counts["Unexpected Fail"] - no_analysis_fails
             text = colourise("\nTest {n} - Passes: {green}{passes}{reset}, " +
@@ -206,10 +207,11 @@ class MorphTest:
                    "True positives ('passes'): {green}{passes}{reset}, " +
                    "False negatives ('missing OPD analyses'): {red}{false_neg}{reset}, " +
                    "False positives ('unexpected FST analyses'): {red}{false_pos}{reset}, " +
-                   "Forms with no analysis whatsoever: {light_blue}{no_analysis_fails}{reset}, " +
-                   "Unique inflected forms being tested: {light_blue}{unique_tests}{reset}\n" +
+                   "Forms with no analysis whatsoever: {light_blue}{no_analysis_fails}{reset}\n" +
+                   "Unique inflected forms being tested: {light_blue}{unique_tests}{reset}, " +
+                   "Inflected form + analysis pairs being tested: {light_blue}{form_analysis_pairs}{reset}\n" +
                    "Stems with no analyses whatsoever: {light_blue}{stems_with_no_analyses}{reset}\n",
-                   n=test, passes=p, fails=f, total=p+f, false_neg=false_neg, false_pos=false_pos, no_analysis_fails=no_analysis_fails, unique_tests=unique_tests, stems_with_no_analyses=stems_with_no_analyses)
+                   n=test, passes=p, fails=f, total=p+f, false_neg=false_neg, false_pos=false_pos, no_analysis_fails=no_analysis_fails, unique_tests=unique_tests, form_analysis_pairs=form_analysis_pairs, stems_with_no_analyses=stems_with_no_analyses)
             self.write(text)
 
     class CompactOutput(AllOutput):

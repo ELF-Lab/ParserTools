@@ -151,8 +151,8 @@ def read_logs(for_nouns):
             form_end = line.index(" =>") - 1
             forms_with_no_results.append({"form": line[form_start:form_end + 1].strip(), "pos": test_section})
 
-        elif line.startswith("True"): # A final line with summary info
-            number_of_forms = int(line.partition("Unique inflected forms being tested: ")[2])
+        elif line.startswith("Unique"): # A final line with summary info
+            number_of_forms = int(((line.partition("Unique inflected forms being tested: "))[2]).partition(",")[0])
 
         # The final line summarative for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith("Total"):
