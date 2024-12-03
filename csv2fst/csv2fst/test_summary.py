@@ -153,6 +153,7 @@ def read_logs(for_nouns):
 
         elif line.startswith("Unique"): # A final line with summary info
             number_of_forms = int(((line.partition("Unique inflected forms being tested: "))[2]).partition(",")[0])
+            number_of_form_analysis_pairs = int(line.partition("Inflected form + analysis pairs being tested: ")[2])
 
         # The final line summarative for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith("Total"):
@@ -160,7 +161,7 @@ def read_logs(for_nouns):
             # The # of passes is the first number in this line
             true_pos = int((findall(r"[0-9]+", line))[0])
 
-            test_section_results = {"true_pos": true_pos, "false_pos": false_pos, "false_neg": false_neg, "number_of_forms": number_of_forms, "number_of_forms_with_no_results": number_of_forms_with_no_results}
+            test_section_results = {"true_pos": true_pos, "false_pos": false_pos, "false_neg": false_neg, "number_of_forms": number_of_forms, "number_of_form_analysis_pairs": number_of_form_analysis_pairs, "number_of_forms_with_no_results": number_of_forms_with_no_results}
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
@@ -234,6 +235,19 @@ def get_recall(true_pos, false_neg):
 
     return recall
 
+def print_summary_stats(results, for_nouns):
+    total_form_analysis_pairs_tested = 0
+    for section in results.keys():
+        if section in TEST_SECTIONS:
+            results_by_section = results[section]
+            total_form_analysis_pairs_tested += results_by_section["number_of_form_analysis_pairs"]
+
+    if for_nouns:
+        test_label = "noun"
+    else:
+        test_label = "verb"
+    print(f"\nThe {test_label} tests covered {total_form_analysis_pairs_tested} form-analysis pairs.")
+
 def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
@@ -260,5 +274,6 @@ def main():
         print(f"Did not write to CSV ({OUTPUT_FILE_NAME}) as there were no changes to the test results (or date!).")
     else:
         write_to_csv(output_line)
+    print_summary_stats(results, args.for_nouns)
 
 main()
