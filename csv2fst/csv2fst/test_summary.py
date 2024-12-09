@@ -104,7 +104,7 @@ def prepare_output(results):
 
     return output_line
 
-def read_logs():
+def read_logs(for_nouns):
     results = {}
     forms_with_no_results = []
     forms_with_only_unexpected_results = []
@@ -151,8 +151,9 @@ def read_logs():
             form_end = line.index(" =>") - 1
             forms_with_no_results.append({"form": line[form_start:form_end + 1].strip(), "pos": test_section})
 
-        elif line.startswith("True"): # A final line with summary info
-            number_of_forms = int(line.partition("Unique inflected forms being tested: ")[2])
+        elif line.startswith("Unique"): # A final line with summary info
+            number_of_forms = int(((line.partition("Unique inflected forms being tested: "))[2]).partition(",")[0])
+            number_of_form_analysis_pairs = int(line.partition("Inflected form + analysis pairs being tested: ")[2])
 
         # The final line summarative for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith("Total"):
@@ -160,19 +161,27 @@ def read_logs():
             # The # of passes is the first number in this line
             true_pos = int((findall(r"[0-9]+", line))[0])
 
-            test_section_results = {"true_pos": true_pos, "false_pos": false_pos, "false_neg": false_neg, "number_of_forms": number_of_forms, "number_of_forms_with_no_results": number_of_forms_with_no_results}
+            test_section_results = {"true_pos": true_pos, "false_pos": false_pos, "false_neg": false_neg, "number_of_forms": number_of_forms, "number_of_form_analysis_pairs": number_of_form_analysis_pairs, "number_of_forms_with_no_results": number_of_forms_with_no_results}
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
-        print(f"\nWriting to {FORMS_WITH_NO_ANALYSES_FILE}...")
-        print_form_sublist_as_csv(forms_with_no_results, FORMS_WITH_NO_ANALYSES_FILE)
+        if for_nouns:
+            output_file = "noun_" + FORMS_WITH_NO_ANALYSES_FILE
+        else:
+            output_file = "verb_" + FORMS_WITH_NO_ANALYSES_FILE
+        print(f"\nWriting to {output_file}...")
+        print_form_sublist_as_csv(forms_with_no_results, output_file)
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
-        if any_passes:
-            print(f"Writing to {FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE}...")
-            print_form_sublist_as_csv(forms_with_only_unexpected_results, FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE)
+        if for_nouns:
+            output_file = "noun_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
         else:
-            print(f"\nRequested print of {FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
+            output_file = "verb_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
+        if any_passes:
+            print(f"Writing to {output_file}...")
+            print_form_sublist_as_csv(forms_with_only_unexpected_results, output_file)
+        else:
+            print(f"\nRequested print of {output_file}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
@@ -186,9 +195,15 @@ def print_form_sublist_as_csv(form_list, output_file):
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
+        print("Number of forms to write:", len(form_list))
         # Go through each of the forms we flagged as wanting to print
-        for form in form_list:
-
+        for i, form in enumerate(form_list):
+            update_increment = 100
+            if i % update_increment == 0:
+                if i + update_increment < len(form_list):
+                    print(f"Writing forms {i}-{i + update_increment - 1}...")
+                else:
+                    print(f"Writing forms {i}-{len(form_list) - 1}...")
             # Check if we know the starting point for this paradigm/pos yet
             if form["pos"] not in paradigm_indices.keys():
                 index = scraped_forms["Class"].searchsorted(form["pos"], side = 'left')
@@ -220,6 +235,19 @@ def get_recall(true_pos, false_neg):
 
     return recall
 
+def print_summary_stats(results, for_nouns):
+    total_form_analysis_pairs_tested = 0
+    for section in results.keys():
+        if section in TEST_SECTIONS:
+            results_by_section = results[section]
+            total_form_analysis_pairs_tested += results_by_section["number_of_form_analysis_pairs"]
+
+    if for_nouns:
+        test_label = "noun"
+    else:
+        test_label = "verb"
+    print(f"\nThe {test_label} tests covered {total_form_analysis_pairs_tested} form-analysis pairs.")
+
 def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
@@ -239,12 +267,13 @@ def main():
         SCRAPED_CSV_PATH = SCRAPED_VERB_CSV_PATH
         OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
 
-    results = read_logs()
+    results = read_logs(args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:
         print(f"Did not write to CSV ({OUTPUT_FILE_NAME}) as there were no changes to the test results (or date!).")
     else:
         write_to_csv(output_line)
+    print_summary_stats(results, args.for_nouns)
 
 main()
