@@ -15,10 +15,10 @@ YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
 SCRAPED_CSV_PATH = ""
-SCRAPED_VERB_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
-SCRAPED_NOUN_CSV_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/generated/for_yaml/nouns/noun_inflectional_forms_for_yaml.csv"
-NOUN_PARADIGM_MAP_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/assets/NOUNS_paradigm_map.csv"
-VERB_PARADIGM_MAP_PATH = "~/Documents/ELF/OjibweTesting/OPDDatabase/assets/VERBS_paradigm_map.csv"
+SCRAPED_VERB_CSV_PATH = "~/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
+SCRAPED_NOUN_CSV_PATH = "~/OPDDatabase/generated/for_yaml/nouns/noun_inflectional_forms_for_yaml.csv"
+NOUN_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/NOUNS_paradigm_map.csv"
+VERB_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/VERBS_paradigm_map.csv"
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
 FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
 

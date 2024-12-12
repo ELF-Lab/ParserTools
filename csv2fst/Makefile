@@ -4,11 +4,11 @@ FOMA=foma
 
 # Source files
 # Change this to match your source morphology directory
-MORPHOLOGYSRCDIR=~/src/OjibweMorph
+MORPHOLOGYSRCDIR=~/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
-DATABASEDIR=~/src/OPDDatabase
+DATABASEDIR=~/OPDDatabase
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -64,11 +64,11 @@ generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xf
 generated/lang-ciw:generated/all.lexc generated/phonology.xfst
 	mkdir -p generated
 	cd generated; \
-        git clone git@github.com:giellalt/lang-ciw.git; \
+        git clone https://github.com/giellalt/lang-ciw.git; \
 	cp root.lexc lang-ciw/src/fst/morphology/ ; \
 	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
 	cp $(LEXCTARGETS) lang-ciw/src/fst/morphology/stems/; \
-	cp preverbs.lexc prenouns.lexc lang-ciw/src/fst/morphology/stems/
+	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
 
 # Tag specification file
 generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
