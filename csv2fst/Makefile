@@ -158,8 +158,8 @@ check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst databas
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > opd-test.log
-	$(PYTHON) csv2fst/test_summary.py
-	$(PYTHON) csv2fst/test_summary.py --for_nouns
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "opd-test.log"
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "opd-test.log" --for_nouns
 
 
 clean:

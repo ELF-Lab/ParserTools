@@ -9,7 +9,6 @@ import pandas as pd
 OUTPUT_FILE_NAME = ""
 NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
 VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
-INPUT_FILE_NAME = "opd-test.log"
 TEST_SECTIONS = []
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
@@ -104,12 +103,12 @@ def prepare_output(results):
 
     return output_line
 
-def read_logs(for_nouns):
+def read_logs(input_file_name, for_nouns):
     results = {}
     forms_with_no_results = []
     forms_with_only_unexpected_results = []
     any_passes = False
-    file = open(INPUT_FILE_NAME, "r")
+    file = open(input_file_name, "r")
     lines = file.readlines()
     test_section = ""
     for index, line in enumerate(lines):
@@ -251,6 +250,7 @@ def print_summary_stats(results, for_nouns):
 def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
+    parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
@@ -267,7 +267,7 @@ def main():
         SCRAPED_CSV_PATH = SCRAPED_VERB_CSV_PATH
         OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
 
-    results = read_logs(args.for_nouns)
+    results = read_logs(args.input_file_name, args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:
