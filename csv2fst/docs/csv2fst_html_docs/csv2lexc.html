@@ -101,7 +101,7 @@ def main(config_files, source_path, lexc_path, database_path, read_lexical_datab
     for config_file in config_files:
         info(f&#34;Processing configuration file {config_file}:&#34;)
         config = json.load(open(config_file))
-        config[&#34;database_src_dir&#34;] = database_path
+        config[&#34;database_src_dirs&#34;] = database_path
         info(json.dumps(config, indent=2),force=False)
         pos_root_lexicons.add(config[&#34;root_lexicon&#34;])
         

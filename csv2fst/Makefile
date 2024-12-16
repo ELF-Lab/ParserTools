@@ -8,7 +8,9 @@ MORPHOLOGYSRCDIR=~/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
-DATABASEDIR=~/OPDDatabase
+INFLECTIONAL_FORMS_DIR=~/OPDDatabase
+# Can be a list (separated by commas)
+LEMMAS_DIR=$(INFLECTIONAL_FORMS_DIR)
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -32,7 +34,7 @@ generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p generated
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
-                              --database-path $(DATABASEDIR) \
+                              --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
                               --add-derivations $(DERIVATIONS) \
                               --lexc-path generated
@@ -113,16 +115,16 @@ paradigm_yaml_output:
 database_yaml_output:
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(INFLECTIONAL_FORMS_DIR)/generated/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(DATABASEDIR)/generated/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
+	$(PYTHON) $(CREATEYAML) $(INFLECTIONAL_FORMS_DIR)/generated/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p check-generated
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
-                              --database-path $(DATABASEDIR) \
+                              --database-paths $(LEMMAS_DIR) \
                               --lexc-path check-generated \
                               --add-derivations $(DERIVATIONS) \
                               --read-lexical-database False \

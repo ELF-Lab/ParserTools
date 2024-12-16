@@ -242,7 +242,7 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
     template_dir = pjoin(expanduser(source_path),
                          dirname(config[&#39;template_path&#39;]))
     env = Environment(loader=FileSystemLoader(template_dir))
-    database_src_dir = config[&#34;database_src_dir&#34;]
+    database_src_dirs = config[&#34;database_src_dirs&#34;]
     prefix_database = (config[&#34;lexical_prefix_database&#34;]
                        if &#34;lexical_prefix_database&#34; in config
                        else &#34;None&#34;)
@@ -253,7 +253,7 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
         &#34;load_pre_element_csv&#34;:
         get_load_pre_element_csv(csv_src_path),
         &#34;load_pre_element_database&#34;:
-        get_load_pre_element_database(database_src_dir,prefix_database),
+        get_load_pre_element_database(database_src_dirs,prefix_database),
         &#34;generate_pre_element_sub_lexicons&#34;:
         get_generate_pre_element_sub_lexicons(csv_src_path),
         &#34;add_lexeme_multichar_symbols&#34;:
@@ -664,7 +664,7 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
     template_dir = pjoin(expanduser(source_path),
                          dirname(config[&#39;template_path&#39;]))
     env = Environment(loader=FileSystemLoader(template_dir))
-    database_src_dir = config[&#34;database_src_dir&#34;]
+    database_src_dirs = config[&#34;database_src_dirs&#34;]
     prefix_database = (config[&#34;lexical_prefix_database&#34;]
                        if &#34;lexical_prefix_database&#34; in config
                        else &#34;None&#34;)
@@ -675,7 +675,7 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
         &#34;load_pre_element_csv&#34;:
         get_load_pre_element_csv(csv_src_path),
         &#34;load_pre_element_database&#34;:
-        get_load_pre_element_database(database_src_dir,prefix_database),
+        get_load_pre_element_database(database_src_dirs,prefix_database),
         &#34;generate_pre_element_sub_lexicons&#34;:
         get_generate_pre_element_sub_lexicons(csv_src_path),
         &#34;add_lexeme_multichar_symbols&#34;:
