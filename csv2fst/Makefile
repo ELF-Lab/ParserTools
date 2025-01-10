@@ -4,11 +4,11 @@ FOMA=foma
 
 # Source files
 # Change this to match your source morphology directory
-MORPHOLOGYSRCDIR=~/OjibweMorph
+MORPHOLOGYSRCDIR=$(MORPHOLOGY_DIR)
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
-DATABASEDIR=~/OPDDatabase
+DATABASEDIR=$(LEXICAL_DIR)
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py

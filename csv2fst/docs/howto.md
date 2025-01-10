@@ -21,10 +21,14 @@ $ cd ..
 
 `make` will print a lot of information about the compilation process. You may want to keep track of how many skipped OPD entries there are for nouns, verbs and all other word classes. The number of skipped entries for nouns and verbs should be < 100 each (37 skipped lexemes for nouns and 56 for verbs when Miikka built on 2024/06/18). For other word classes, there should be no skipped entries. 
 
-Then you need to run `make` in ParserTools, which builds the FST in the directors ParserTools/csv2fst/generated. Remember to also install python library requirements. Before you run make, you will need to edit two Makefile variables:
+Next, you will need to export two environment variables:
 
-* `MORPHOLOGYSRCDIR` which should point to your OjibweMorph clone.
-* `DATABASEDIR` which should point to your OPDDatabase clone
+```
+$ export MORPHOLOGY_DIR=/path/to/OjibweMorph
+$ export LEXICAL_DIR=/path/to/OPDDatabase
+```
+
+Then you need to run `make` in ParserTools, which builds the FST in the directors ParserTools/csv2fst/generated. Remember to also install python library requirements. 
 
 ```
 $ cd ParserTools/csv2fst
@@ -90,11 +94,9 @@ The first two log files should show very few failures (5-15 fails per file). The
 
 ## The `ParserTools/csv2fst/csv2lexc.py` script
 
-How to compile lexc-files (for nouns and verbs) using `csv2lexc.py`:
+To compile lexc-files (for nouns and verbs) using `csv2lexc.py`, OjibweMorph and OPDDatabase (or a different set of morphological paradigms and another lexical database) are required for compilation. You may have already used these repositories in previous steps.
 
 ```
-# OjibweMorph and OPDDatabase (or a different set of morphological paradigms and another lexical database)
-# are required for compilation
 $ export MORPHOLOGY_DIR=/path/to/OjibweMorph
 $ export LEXICAL_DIR=/path/to/OPDDatabase
 
@@ -102,10 +104,11 @@ $ python3 csv2lexc.py --config-files $MORPHOLOGY_DIR/config/ojibwe_nouns.json,$M
                       --source-path  $MORPHOLOGY_DIR \
                       --database-path $LEXICAL_DIR \
                       --lexc-path generated_lexc_code \
-                      --read-lexical-database True
+                      --read-lexical-database True \
+                      --add-derivations True
 ```
 
-Depending on how you've defined the configuration files, the command might generate the following files in the directory `generated_lexc_code`:
+Depending on how you've defined the target `lexc-path` directory in configuration files, the command might generate the following files in the directory `generated_lexc_code`. Note that the `lexc-path` must exist in order to write to it.
 
 ```
 ojibwe_irregular_verbs.lexc   # Irregular verbs
