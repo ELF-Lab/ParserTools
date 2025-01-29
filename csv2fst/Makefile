@@ -10,7 +10,7 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Change this to match your Lexical database directory
 INFLECTIONAL_FORMS_DIR=~/OPDDatabase
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
-LEMMAS_DIR=$(INFLECTIONAL_FORMS_DIR)
+LEMMAS_DIR=~/OjibweLexicon/OPD
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
