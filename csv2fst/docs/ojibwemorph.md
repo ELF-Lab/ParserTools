@@ -60,8 +60,8 @@ Configuration files are used to control the compilation of lexc files for a part
 | `"morphology_source_path"` | Path to paradigm spreadsheets for this word class | "VerbSreadsheets" | This would usually be a directory in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. |
 | `"regular_csv_files"` | List of spreadsheets to include when compiling **regular** lexemes | `["VTA_IND"`, "VTI_CNJ", ... ]` | Spreadhseets listed here will undergo regular phonological rules. |
 | `"irregular_csv_files"` | List of spreadsheets to include when compiling **irregular** lexemes | `["VTA_IRR"]` | Spreadsheets listed here will not undergo any phonological rules. This is catgory is meant for lexemes which do not belong to a larger inflection class, and where we simply list every single inflected form in verbatim. In Ojibwe, the only irregular verb is `izhi`. |
-| `"lexical_database"` | Path to lexical database | `generated/VERBS.csv` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
-| `"lexical_prefix_database"` | Path to preverb/prenoun database | `"generated/LEXICAL_PREVERBS.csv"` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
+| `"lexical_database"` | Path to lexical database | `VERBS.csv` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
+| `"lexical_prefix_database"` | Path to preverb/prenoun database | `"LEXICAL_PREVERBS.csv"` | This would typically be a file in `OPDDatabase`. Note that the parent lexical database directory (e.g. the path to OPDDatabase) is provided as a command-line argument to `csv2lexc.py`. |
 | `"regular_lexc_file"` | Store compiled lexc code for regular paradigms in this file | `"ojibwe_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
 | `"irregular_lexc_file"` | Store compiled lexc code for irregular paradigms in this file | `"ojibwe_irregular_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
 | `"morph_features"` | This list specifies the columns in the paradigm spreadsheets which are used as morphological features. | `[ "Paradigm", "Order", "Negation",  ... ]` | This list specifies both which columns to use from a spreasheet like `VTA_IND.csv` and the order in which the features appear in the analysis. E.g. `VTA+Ind+Pos...` |
@@ -100,8 +100,8 @@ OjibweMorph/config/ojibwe_verbs.json:
     "irregular_csv_files": [
         "VTA_IRR"
     ],
-    "lexical_database": "generated/VERBS.csv",
-    "lexical_prefix_database": "generated/LEXICAL_PREVERBS.csv",    
+    "lexical_database": "VERBS.csv",
+    "lexical_prefix_database": "LEXICAL_PREVERBS.csv",
     "regular_lexc_file": "ojibwe_verbs.lexc",
     "irregular_lexc_file": "ojibwe_irregular_verbs.lexc",
     "morph_features": [
