@@ -1,8 +1,8 @@
 # csv2fst
 
-This directory houses the tools for converting csv spreadsheets of
-Ojibwe (and eventually, we hope, Algonquian languages more generally)
-to lexc files and a foma-based FST.
+This directory houses the tools for converting CSV spreadsheets of
+language data to lexc files and a foma-based FST.  
+Examples are given for Ojibwe, with the relevant language data accessible in other repos.  However, this FST-generating code is intended to be applicable for other Algonquian languages and beyond -- if you have the necessary spreadsheets for your target language, it should be compatible with this code!
 
 ## Dependencies for the `csv2fst.py` script
 
@@ -22,9 +22,8 @@ poetry install                 # Use poetry to install the project
                                # Bob's your uncle
 ```
 
-In order to build the Border Lakes Ojibwe FST, you will need to clone the
-[OjibweMorph repository](https://github.com/ELF-Lab/OjibweMorph) which
-contains all the source data for the FST model.
+In order to build the  example FST for BorderLakesOjibwe, you will need to clone the repos with the relevant language data:
+[OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).
 
 ## Dependencies for YAML tests (optional)
 
@@ -50,18 +49,19 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
-## Building the Border Lakes Ojibwe FST
+## Building an FST
+The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
+- `MORPHOLOGYSRCDIR` must point to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
+- `LEMMAS_DIR` must point to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
+     This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma.
+- `INFLECTIONAL_FORMS_DIR` must point to a directory that contains inflectional forms used to test the FST.  The example directory (for Border Lakes Ojibwe) is OPDDatabase, but this is not currently publicly available.  This should perhaps be made optional, since users do not necessarily need to run the tests.
 
-The Makefile requires modifications. You can modify the `MORPHOLOGYSRCDIR`
-variable to point to your OjibweMorph repo and modify the `DATABASEDIR` variable to point to your OPDDatabase repo. Alternatively, you can also run make by specifying the `MORPHOLOGYSRCDIR` and `DATABASEDIR` variables from the command-line:
+You should go into the Makefile and edit the values of these variables so that the correct directory is specified.  Once complete, you can run `make all` (or just `make`) to build the FST (e.g., `ojibwe.fomabin`). This will create a directory `generated` which contains the FST, lexc files and XFST rules.
 
+Alternatively, rather than editing the Makefile contents, you can just specify the directory paths when you call `make all`.  For example:
 ```
-make MORPHOLOGYSRCDIR="/absolute/path/to/directory/for/OjibweMorph" DATABASEDIR="/absolute/path/to/directory/for/OPDDatabase" 
+make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph INFLECTIONAL_FORMS_DIR=~/Documents/OPDDatabase LEMMAS_DIR=~/Documents/OjibweLexicon/OPD
 ```
-
-You should now be able to run `make all` to build the FST `ojibwe.fomabin`. This will
-create a directory `generated` which contains the FST, lexc files and
-XFST rules.
 
 ## Running YAML tests
 
@@ -109,41 +109,32 @@ You need to specify the following parameters:
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `comments`  | Comments. | `"This is a comment"` |
-| `source_path` | Directory where source CSV files for verbs reside. | `"~/src/OjibweMorph/VerbSpreadsheets/"` |
+| `source_path` | Directory where source CSV files reside. | `"~/Documents/OjibweMorph/VerbSpreadsheets/"` |
 | `regular_csv_files` | List of CSV files which contain **regular** paradigms (please omit `.csv` suffix) | `["VAI_IND","VTA_CNJ",...]` |
 | `irregular_csv_files` | List of CSV files which contain **irregular** paradigms (please omit `.csv` suffix) | `["VAI_IRR"]` |
 | `lexical_database` | External CSV lexical database file. | `"VERBS.csv"` |
 | `regular_lexc_file` | Filename for generated lexc file containing **regular** paradigms. | `"ojibwe_verbs_regular.lexc"` | 
 | `irregular_lexc_file` | Filename for generated lexc file containing **irregular** paradigms. | `"ojibwe_verbs_irregular.lexc"` | 
 | `morph_features` | This field specifies the order in which morphological features are realized in FST output fields. The elements in the list have to match columns of the spurce CSV files. |  `["Paradigm", "Order", "Negation", "Mode", "Subject", "Object"]` |
-| `missing_tag_marker` | Tag which indicates missing values of features in the source CSV files. E.g. intransitive verbs won't have an onbject, and this tag is used to mark that fact. | `"NA"` |
+| `missing_tag_marker` | Tag which indicates missing values of features in the source CSV files. E.g. intransitive verbs won't have an object, and this tag is used to mark that fact. | `"NA"` |
 | `missing_form_marker` | Tag which indicates paradigm gaps | `"MISSING"` |
 | `multichar_symbols` | List of multi-character symbols which are used in the source CSV files | `["i1", "w1"]` |
 | `pre_element_tag` | A tag which is used to indicate the position of pre-elements like preverbs and prenouns in the lexc files | `"[PREVERB]"`|
-|`pv_source_path`| This should point to your PVSpreadsheets directory (this is a subdirectory of OjibweMorph) | "~/src/OjibweMorph/PVSpreadsheets/" |
-| `template_path`| Path to jinja2 templates in (this is a subdirectory of OjibweMorph).  Note that (for some reason) this file path **cannot** use a tilde symbol. | "/Users/YourName/OjibweMorph/templates" |
+|`pv_source_path`| This should point to your `PVSpreadsheets` directory | `"~/Documents/OjibweMorph/PVSpreadsheets/"` |
+| `template_path`| Path to jinja2 templates.  Note that (for some reason) this file path **cannot** use a tilde symbol. | `"/Users/YourName/Documents/OjibweMorph/templates"` |
 
 ### The external lexical database
 
-Additional lexemes are supplied in a 3-column CSV file. Here are the first rows of the lexical database file for BorderLakes Ojibwe, which stems from the [Ojibwe People's Dictionary]() (OPD): 
+Additional lexemes are supplied in CSV files. For example, here are the first few rows of the [lexical database file of verbs](https://github.com/ELF-Lab/OjibweLexicon/blob/main/OPD/VERBS.csv) for Border Lakes Ojibwe, sourced from the [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu) (OPD): 
 
 ```
-lemma,stem,part_of_speech_id
-ayaan,aya,vti4
-gidaan,gidaa,vti4
-de-miijin,de-miiji,vti3
-gigizhebaa-miijin,gigizhebaa-miiji,vti3
-miijin,miiji,vti3
-naadin,naad,vti3
+Lemma,Stem,Paradigm,Class,Translation,Source
+aazhoogaadebi,aazhoogaadebi,VAI,VAI_V,NONE,https://ojibwe.lib.umn.edu/main-entry/aazhoogaadebi-vai
+aayaazhoogaadebi,aayaazhoogaadebi,VAI,VAI_V,NONE,https://ojibwe.lib.umn.edu/main-entry/aazhoogaadebi-vai
+aazhooshkaa,aazhooshkaa,VAI,VAI_VV,NONE,https://ojibwe.lib.umn.edu/main-entry/aazhooshkaa-vai
 ```
 
-This file is located in the OjibweMorph repo in the subdirectory `Database`.
-
-The columns represent:
-
-1. Lemma (this has to agree with the lemma forms in `OjibweMorph/Spreadsheets`)
-2. Stem (this has to agree with the stems in `OjibweMorph/Spreadsheets`)
-3. POS tag following OPD guidelines 
+The lemma and stem must agree with the forms in the source spreadsheets where applicable (stored in `source_path` as specified above).
 
 In the JSON configuration file, the path to the lexical database is supplied under the key `lexical_database`.
 
