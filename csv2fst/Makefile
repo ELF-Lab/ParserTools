@@ -9,6 +9,7 @@ VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
+SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -113,9 +114,9 @@ paradigm_yaml_output:
 database_yaml_output:
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(LEMMAS_DIR)/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/verbs/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(LEMMAS_DIR)/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
+	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/nouns/ $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
