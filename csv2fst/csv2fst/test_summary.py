@@ -13,9 +13,6 @@ TEST_SECTIONS = []
 YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
-SCRAPED_CSV_PATH = ""
-SCRAPED_VERB_CSV_PATH = "~/OPDDatabase/generated/for_yaml/verbs/verb_inflectional_forms_for_yaml.csv"
-SCRAPED_NOUN_CSV_PATH = "~/OPDDatabase/generated/for_yaml/nouns/noun_inflectional_forms_for_yaml.csv"
 NOUN_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/NOUNS_paradigm_map.csv"
 VERB_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/VERBS_paradigm_map.csv"
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
@@ -103,7 +100,7 @@ def prepare_output(results):
 
     return output_line
 
-def read_logs(input_file_name, for_nouns):
+def read_logs(input_file_name, scraped_csv_path, for_nouns):
     results = {}
     forms_with_no_results = []
     forms_with_only_unexpected_results = []
@@ -169,7 +166,7 @@ def read_logs(input_file_name, for_nouns):
         else:
             output_file = "verb_" + FORMS_WITH_NO_ANALYSES_FILE
         print(f"\nWriting to {output_file}...")
-        print_form_sublist_as_csv(forms_with_no_results, output_file)
+        print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, output_file)
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
         if for_nouns:
@@ -178,7 +175,7 @@ def read_logs(input_file_name, for_nouns):
             output_file = "verb_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
         if any_passes:
             print(f"Writing to {output_file}...")
-            print_form_sublist_as_csv(forms_with_only_unexpected_results, output_file)
+            print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, output_file)
         else:
             print(f"\nRequested print of {output_file}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
 
@@ -186,10 +183,10 @@ def read_logs(input_file_name, for_nouns):
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, output_file):
+def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file):
     if len(form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
-        scraped_forms = pd.read_csv(SCRAPED_CSV_PATH, keep_default_na = False)
+        scraped_forms = pd.read_csv(scraped_csv_path, keep_default_na = False)
         scraped_forms = scraped_forms.sort_values(by='Class', ignore_index=True) # To accelerate the search process
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
@@ -251,23 +248,21 @@ def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
+    parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
     # Configure the summary for nouns OR verbs
     global TEST_SECTIONS
-    global SCRAPED_CSV_PATH
     global OUTPUT_FILE_NAME
     if args.for_nouns:
         TEST_SECTIONS = get_test_sections_from_paradigm_map(NOUN_PARADIGM_MAP_PATH)
-        SCRAPED_CSV_PATH = SCRAPED_NOUN_CSV_PATH
         OUTPUT_FILE_NAME = NOUN_OUTPUT_FILE_NAME
     else:
         TEST_SECTIONS = get_test_sections_from_paradigm_map(VERB_PARADIGM_MAP_PATH)
-        SCRAPED_CSV_PATH = SCRAPED_VERB_CSV_PATH
         OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
 
-    results = read_logs(args.input_file_name, args.for_nouns)
+    results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:
