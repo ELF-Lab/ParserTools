@@ -54,13 +54,13 @@ The FST is built using a Makefile.  Before building, there are three variables w
 - `MORPHOLOGYSRCDIR` must point to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
 - `LEMMAS_DIR` must point to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
      This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma.
-- `SPREADHSEETS_FOR_YAML_DIR` must point to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
+- `SPREADSHEETS_FOR_YAML_DIR` must point to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
 
 You should go into the Makefile and edit the values of these variables so that the correct directory is specified.  Once complete, you can run `make all` (or just `make`) to build the FST (e.g., `ojibwe.fomabin`). This will create a directory `generated` which contains the FST, lexc files and XFST rules.
 
 Alternatively, rather than editing the Makefile contents, you can just specify the directory paths when you call `make all`.  For example:
 ```
-make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADHSEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml
+make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADSHEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml
 ```
 
 ## Running YAML tests
