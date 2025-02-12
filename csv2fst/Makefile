@@ -7,8 +7,6 @@ FOMA=foma
 MORPHOLOGYSRCDIR=~/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
-# Change this to match your Lexical database directory
-INFLECTIONAL_FORMS_DIR=~/OPDDatabase
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
 
@@ -115,9 +113,9 @@ paradigm_yaml_output:
 database_yaml_output:
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(INFLECTIONAL_FORMS_DIR)/generated/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(LEMMAS_DIR)/for_yaml/verbs/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(INFLECTIONAL_FORMS_DIR)/generated/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
+	$(PYTHON) $(CREATEYAML) $(LEMMAS_DIR)/for_yaml/nouns/ $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 
 check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")

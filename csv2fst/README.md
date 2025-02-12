@@ -50,17 +50,16 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
 ## Building an FST
-The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
+The FST is built using a Makefile.  Before building, there are two variables within the Makefile which must be set to point to the right directory locations:  
 - `MORPHOLOGYSRCDIR` must point to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
-- `LEMMAS_DIR` must point to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
+- `LEMMAS_DIR` must point to a directory that contains CSVs listing all the lemmas that will be used to build the FST (as well as files for running YAML tests).  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
      This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma.
-- `INFLECTIONAL_FORMS_DIR` must point to a directory that contains inflectional forms used to test the FST.  The example directory (for Border Lakes Ojibwe) is OPDDatabase, but this is not currently publicly available.  This should perhaps be made optional, since users do not necessarily need to run the tests.
 
 You should go into the Makefile and edit the values of these variables so that the correct directory is specified.  Once complete, you can run `make all` (or just `make`) to build the FST (e.g., `ojibwe.fomabin`). This will create a directory `generated` which contains the FST, lexc files and XFST rules.
 
 Alternatively, rather than editing the Makefile contents, you can just specify the directory paths when you call `make all`.  For example:
 ```
-make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph INFLECTIONAL_FORMS_DIR=~/Documents/OPDDatabase LEMMAS_DIR=~/Documents/OjibweLexicon/OPD
+make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD
 ```
 
 ## Running YAML tests
