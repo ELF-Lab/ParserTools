@@ -10,7 +10,6 @@ OUTPUT_FILE_NAME = ""
 NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
 VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 TEST_SECTIONS = []
-YAML_FOLDER = "./database_yaml_output"
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
 NOUN_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/NOUNS_paradigm_map.csv"
@@ -116,7 +115,7 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
         # Get the name of the current test section
         if line.startswith("YAML test file"):
             test_section = line.strip()
-            test_section = test_section[test_section.index("/") + 1:]
+            test_section = test_section[test_section.rindex("/") + 1:]
             test_section = test_section.replace(".yaml", "")
             false_pos = 0
             false_neg = 0

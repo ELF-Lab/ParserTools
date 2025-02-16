@@ -50,18 +50,21 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
 ## Building an FST
-The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
-- `MORPHOLOGYSRCDIR` must point to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
-- `LEMMAS_DIR` must point to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
+The FST is built using a Makefile.  Before building, there are four variables within the Makefile which must be set to point to the right directory locations:  
+- `MORPHOLOGYSRCDIR` points to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
+- `LEMMAS_DIR` points to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
      This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma.
-- `SPREADSHEETS_FOR_YAML_DIR` must point to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
+- `SPREADSHEETS_FOR_YAML_DIR` points to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
+- `OUTPUT_DIR` points to the directory where all files generated will go.  Note that in order for the testing code to work (i.e., when running `make check`), this **must be a relative path** (for some reason).
 
 You should go into the Makefile and edit the values of these variables so that the correct directory is specified.  Once complete, you can run `make all` (or just `make`) to build the FST (e.g., `ojibwe.fomabin`). This will create a directory `generated` which contains the FST, lexc files and XFST rules.
 
 Alternatively, rather than editing the Makefile contents, you can just specify the directory paths when you call `make all`.  For example:
 ```
-make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADSHEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml
+make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADSHEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml OUTPUT_DIR=../../OjibweMorph/FST
 ```
+
+These variables must all be set for running other commands, like `make check` or `make clean`.
 
 ## Running YAML tests
 

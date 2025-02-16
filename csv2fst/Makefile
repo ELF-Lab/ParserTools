@@ -10,6 +10,7 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
 SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
+OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -20,51 +21,51 @@ MORPHTEST=csv2fst/morph-test.py
 # Definitions for building the LEXC files
 POS=verbs nouns pronouns adverbs particles numerals
 LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
-TAG_CONFIGURATION_FILES=$(POS:%=generated/%_tags.json)
+TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
 DERIVATIONS=True
 
-all:generated/all.lexc generated/ojibwe.fomabin generated/ojibwe.att $(TAG_CONFIGURATION_FILES)
+all:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/ojibwe.fomabin $(OUTPUT_DIR)/generated/ojibwe.att $(TAG_CONFIGURATION_FILES)
 
 release:all
-	zip generated.zip generated/*
+	zip generated.zip $(OUTPUT_DIR)/generated/*
 
-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
-	mkdir -p generated
+$(OUTPUT_DIR)/generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+	mkdir -p $(OUTPUT_DIR)/generated
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
                               --add-derivations $(DERIVATIONS) \
-                              --lexc-path generated
-	cd generated; \
+                              --lexc-path $(OUTPUT_DIR)/generated
+	cd $(OUTPUT_DIR)/generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
 %/phonology.xfst:$(MORPHOLOGYSRCDIR)/xfst/phonology.xfst
 	mkdir -p $*
 	cp $^ $@
 
-generated/compile_fst.xfst:./assets/compile_fst.xfst
-	mkdir -p generated
+$(OUTPUT_DIR)/generated/compile_fst.xfst:./assets/compile_fst.xfst
+	mkdir -p $(OUTPUT_DIR)/generated
 	cp $^ $@
 
-check-generated/compile_fst.xfst:./assets/compile_fst.xfst
-	mkdir -p check_generated
+$(OUTPUT_DIR)/check-generated/compile_fst.xfst:./assets/compile_fst.xfst
+	mkdir -p $(OUTPUT_DIR)/check-generated
 	cp $^ $@
 
-generated/ojibwe.fomabin:generated/all.lexc generated/phonology.xfst generated/compile_fst.xfst
-	mkdir -p generated
+$(OUTPUT_DIR)/generated/ojibwe.fomabin:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/phonology.xfst $(OUTPUT_DIR)/generated/compile_fst.xfst
+	mkdir -p $(OUTPUT_DIR)/generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
-	cd generated; $(FOMA) -f compile_fst.xfst
+	cd $(OUTPUT_DIR)/generated; $(FOMA) -f compile_fst.xfst
 
-generated/ojibwe.noAlt.fomabin:generated/ojibwe.fomabin assets/delete_alt_tag.xfst 
-	cp assets/delete_alt_tag.xfst generated
-	cd generated; $(FOMA) -f delete_alt_tag.xfst
+$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin:$(OUTPUT_DIR)/generated/ojibwe.fomabin assets/delete_alt_tag.xfst 
+	cp assets/delete_alt_tag.xfst $(OUTPUT_DIR)/generated
+	cd $(OUTPUT_DIR)/generated; $(FOMA) -f delete_alt_tag.xfst
 
 # For building spell checkers etc. using Giellatekno infrastructure.
-generated/lang-ciw:generated/all.lexc generated/phonology.xfst
-	mkdir -p generated
-	cd generated; \
+$(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/phonology.xfst
+	mkdir -p $(OUTPUT_DIR)/generated
+	cd $(OUTPUT_DIR)/generated; \
         git clone https://github.com/giellalt/lang-ciw.git; \
 	cp root.lexc lang-ciw/src/fst/morphology/ ; \
 	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
@@ -72,8 +73,8 @@ generated/lang-ciw:generated/all.lexc generated/phonology.xfst
 	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
 
 # Tag specification file
-generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
-	mkdir -p generated
+$(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
+	mkdir -p $(OUTPUT_DIR)/generated
 	python3 csv2fst/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
@@ -83,8 +84,8 @@ generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
              --post-element-tags="VII+Augment/magad,0" \
              --output-file $@
 
-generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
-	mkdir -p generated
+$(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
+	mkdir -p $(OUTPUT_DIR)/generated
 	python3 csv2fst/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
@@ -103,68 +104,70 @@ generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
 
 check: check-core-yaml check-yaml check-database
 
-paradigm_yaml_output:
+$(OUTPUT_DIR)/paradigm_yaml_output:
 	rm -Rf $@
 	mkdir $@
 	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets $(VERB_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=verb
 	mv yaml_output/* $@
 	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets $(NOUN_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=noun
 	mv yaml_output/* $@
+	rm -d yaml_output
 
-database_yaml_output:
+$(OUTPUT_DIR)/database_yaml_output:
 	rm -Rf $@
 	mkdir $@
 	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/verbs/ $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
 	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/nouns/ $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
+	rm -d yaml_output
 
-check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
-	mkdir -p check-generated
+$(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+	mkdir -p $(OUTPUT_DIR)/check-generated
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
-                              --lexc-path check-generated \
+                              --lexc-path $(OUTPUT_DIR)/check-generated \
                               --add-derivations $(DERIVATIONS) \
                               --read-lexical-database False \
                               --alt-tag False
-	cd check-generated; \
+	cd $(OUTPUT_DIR)/check-generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
-check-generated/ojibwe.fomabin:check-generated/all.lexc check-generated/phonology.xfst check-generated/compile_fst.xfst 
-	mkdir -p check-generated
+$(OUTPUT_DIR)/check-generated/ojibwe.fomabin:$(OUTPUT_DIR)/check-generated/all.lexc $(OUTPUT_DIR)/check-generated/phonology.xfst $(OUTPUT_DIR)/check-generated/compile_fst.xfst 
+	mkdir -p $(OUTPUT_DIR)/check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
-	cd check-generated; $(FOMA) -f compile_fst.xfst
+	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
 
-check-core-yaml:check-generated/ojibwe.fomabin paradigm_yaml_output
-	rm -f core-yaml-test.log
-	for f in `ls paradigm_yaml_output/*core.yaml`; do \
+check-core-yaml:$(OUTPUT_DIR)/check-generated/ojibwe.fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+	rm -f $(OUTPUT_DIR)/core-yaml-test.log
+	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*core.yaml`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor check-generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/ojibwe.fomabin $$f; \
                   echo ; \
-                  done > core-yaml-test.log
+                  done > $(OUTPUT_DIR)/core-yaml-test.log
 
-check-yaml:check-generated/ojibwe.fomabin paradigm_yaml_output
-	rm -f yaml-test.log
-	for f in `ls paradigm_yaml_output/*.yaml | grep -v core`; do \
+check-yaml:$(OUTPUT_DIR)/check-generated/ojibwe.fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+	rm -f $(OUTPUT_DIR)/yaml-test.log
+	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor check-generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/ojibwe.fomabin $$f; \
                   echo ; \
-                  done > yaml-test.log
+                  done > $(OUTPUT_DIR)/yaml-test.log
 
-check-database:generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst database_yaml_output
-	rm -f opd-test.log	
-	for f in `ls database_yaml_output/*.yaml | grep -v core`; do \
+check-database:$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/database_yaml_output
+	rm -f $(OUTPUT_DIR)/opd-test.log	
+	for f in `ls $(OUTPUT_DIR)/database_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor generated/ojibwe.noAlt.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
-                  done > opd-test.log
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv"
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --for_nouns
+                  done > $(OUTPUT_DIR)/opd-test.log
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv"
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --for_nouns
 
 
 clean:
-	rm -rf generated check-generated paradigm_yaml_output database_yaml_output compile.log core-yaml-test.log yaml-test.log opd-test.log paradigm_yaml_output csv_output
+	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/database_yaml_output $(OUTPUT_DIR)/core-yaml-test.log $(OUTPUT_DIR)/yaml-test.log $(OUTPUT_DIR)/opd-test.log csv_output
 
 #####################################################################
 #                                                                   #
