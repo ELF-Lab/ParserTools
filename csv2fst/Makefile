@@ -162,8 +162,8 @@ check-database:$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin assets/delete_alt_ta
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/opd-test.log
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv"
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --for_nouns
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --output_dir $(OUTPUT_DIR)
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --output_dir $(OUTPUT_DIR) --for_nouns
 
 
 clean:

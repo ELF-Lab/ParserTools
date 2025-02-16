@@ -6,7 +6,7 @@ from re import findall, search
 from datetime import date
 import pandas as pd
 
-OUTPUT_FILE_NAME = ""
+OUTPUT_FILE_PATH = ""
 NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
 VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 TEST_SECTIONS = []
@@ -36,20 +36,20 @@ def write_to_csv(output_line):
         HEADER_1 += ",,,"
         HEADER_2 += "Precision,Recall,Forms,Forms Without Results,"
 
-    if not os.path.isfile(OUTPUT_FILE_NAME):
-            with open(OUTPUT_FILE_NAME, "w+") as csv_file:
+    if not os.path.isfile(OUTPUT_FILE_PATH):
+            with open(OUTPUT_FILE_PATH, "w+") as csv_file:
                 print(HEADER_1, file = csv_file)
                 print(HEADER_2, file = csv_file)
-    with open(OUTPUT_FILE_NAME, "a") as csv_file:
+    with open(OUTPUT_FILE_PATH, "a") as csv_file:
             csv_file.write(output_line + "\n")
     
-    print("Wrote to", OUTPUT_FILE_NAME)
+    print("Wrote to", OUTPUT_FILE_PATH)
     csv_file.close()
 
 def get_prev_output_line():
     prev_output_line = ""
-    if os.path.isfile(OUTPUT_FILE_NAME):
-        with open(OUTPUT_FILE_NAME, "r") as csv_file:
+    if os.path.isfile(OUTPUT_FILE_PATH):
+        with open(OUTPUT_FILE_PATH, "r") as csv_file:
             lines = csv_file.readlines()
             if len(lines) >= 2: # At least one header and content line
                 prev_output_line = lines[-1].strip()
@@ -248,24 +248,25 @@ def main():
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
     parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.")
+    parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
     # Configure the summary for nouns OR verbs
     global TEST_SECTIONS
-    global OUTPUT_FILE_NAME
+    global OUTPUT_FILE_PATH
     if args.for_nouns:
         TEST_SECTIONS = get_test_sections_from_paradigm_map(NOUN_PARADIGM_MAP_PATH)
-        OUTPUT_FILE_NAME = NOUN_OUTPUT_FILE_NAME
+        OUTPUT_FILE_PATH = args.output_dir + "/" + NOUN_OUTPUT_FILE_NAME
     else:
         TEST_SECTIONS = get_test_sections_from_paradigm_map(VERB_PARADIGM_MAP_PATH)
-        OUTPUT_FILE_NAME = VERB_OUTPUT_FILE_NAME
+        OUTPUT_FILE_PATH = args.output_dir + "/" + VERB_OUTPUT_FILE_NAME
 
     results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:
-        print(f"Did not write to CSV ({OUTPUT_FILE_NAME}) as there were no changes to the test results (or date!).")
+        print(f"Did not write to CSV ({OUTPUT_FILE_PATH}) as there were no changes to the test results (or date!).")
     else:
         write_to_csv(output_line)
     print_summary_stats(results, args.for_nouns)
