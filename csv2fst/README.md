@@ -50,21 +50,30 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
 ## Building an FST
-The FST is built using a Makefile.  Before building, there are four variables within the Makefile which must be set to point to the right directory locations:  
+The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
 - `MORPHOLOGYSRCDIR` points to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
 - `LEMMAS_DIR` points to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
-     This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma.
-- `SPREADSHEETS_FOR_YAML_DIR` points to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
+     - This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma. 
 - `OUTPUT_DIR` points to the directory where all files generated will go.  Note that in order for the testing code to work (i.e., when running `make check`), this **must be a relative path** (for some reason).
 
 You should go into the Makefile and edit the values of these variables so that the correct directory is specified.  Once complete, you can run `make all` (or just `make`) to build the FST (e.g., `ojibwe.fomabin`). This will create a directory `generated` which contains the FST, lexc files and XFST rules.
 
 Alternatively, rather than editing the Makefile contents, you can just specify the directory paths when you call `make all`.  For example:
 ```
-make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADSHEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml OUTPUT_DIR=../../OjibweMorph/FST
+make all MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD OUTPUT_DIR=../../OjibweMorph/FST
+```
+These variables should also be set when running `make clean`.
+
+Additionally, there are two other variables that must be specified if you're going to run the tests for the FST:
+- `SPREADSHEETS_FOR_YAML_DIR` points to a directory which contains CSVs for running the YAML tests.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD/for_yaml](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD/for_yaml).
+- `PARADIGM_MAPS_DIR` points to a directory which contains paradigm maps created for sorting words into different categories, but used here because they contain a complete list of 'Class' values that become the test sections (e.g., VAI_V, VAI_VV, etc.).  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/resources](https://github.com/ELF-Lab/OjibweLexicon/tree/main/resources).
+
+So when running `make check` to run the FST tests, you either need to edit all five variables right in the Makefile, or supply their values when calling `make check`:
+```
+make check MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/OjibweLexicon/OPD SPREADSHEETS_FOR_YAML_DIR=~/Documents/OjibweLexicon/OPD/for_yaml PARADIGM_MAPS_DIR=~/Documents/OjibweLexicon/resources OUTPUT_DIR=../../OjibweMorph/FST
 ```
 
-These variables must all be set for running other commands, like `make check` or `make clean`.
+Also written into the Makefile are the expected names of many of these files (e.g., the paradigm map file for the verb tests of the FST being called `VERBS_paradigm_map.csv`), so if any of these names differ, the Makefile will have to be updated accordingly.
 
 ## Running YAML tests
 

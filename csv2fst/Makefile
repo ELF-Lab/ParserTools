@@ -9,8 +9,10 @@ VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
-SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
+# Additional info used for testing the FST
+SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
+PARADIGM_MAPS_DIR=~/OjibweLexicon/resources
 
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
@@ -162,8 +164,8 @@ check-database:$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin assets/delete_alt_ta
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/opd-test.log
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --output_dir $(OUTPUT_DIR)
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --output_dir $(OUTPUT_DIR) --for_nouns
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR)
+	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --for_nouns
 
 
 clean:

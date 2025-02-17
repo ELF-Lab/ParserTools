@@ -12,8 +12,6 @@ VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 TEST_SECTIONS = []
 DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
-NOUN_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/NOUNS_paradigm_map.csv"
-VERB_PARADIGM_MAP_PATH = "~/OPDDatabase/assets/VERBS_paradigm_map.csv"
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
 FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
 
@@ -248,6 +246,7 @@ def main():
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
     parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.")
+    parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
@@ -255,11 +254,10 @@ def main():
     # Configure the summary for nouns OR verbs
     global TEST_SECTIONS
     global OUTPUT_FILE_PATH
+    TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
     if args.for_nouns:
-        TEST_SECTIONS = get_test_sections_from_paradigm_map(NOUN_PARADIGM_MAP_PATH)
         OUTPUT_FILE_PATH = args.output_dir + "/" + NOUN_OUTPUT_FILE_NAME
     else:
-        TEST_SECTIONS = get_test_sections_from_paradigm_map(VERB_PARADIGM_MAP_PATH)
         OUTPUT_FILE_PATH = args.output_dir + "/" + VERB_OUTPUT_FILE_NAME
 
     results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
