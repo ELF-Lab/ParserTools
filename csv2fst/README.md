@@ -82,6 +82,16 @@ make check MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/Ojibw
 
 Also written into the Makefile are the expected names of many of these files (e.g., the paradigm map file for the verb tests of the FST being called `VERBS_paradigm_map.csv`), so if any of these names differ, the Makefile will have to be updated accordingly.
 
+## Using the FST
+Successfully compiling the FST will result in a `fomabin` file being created.  An example of using that file is given below:
+```
+foma                                # run foma
+load FST/generated/ojibwe.fomabin   # load the FST
+up wiigwaas                         # input an inflected form -- as output, you should get an analysis
+down wiigwaas+NI+SG                 # input an analysis -- as output, you should get an inflected form
+quit                                # stop running foma
+```
+
 ## Running YAML tests
 
 The Makefile requires modifications:
