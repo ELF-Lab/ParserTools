@@ -9,18 +9,20 @@ Examples are given for Ojibwe, with the relevant language data accessible in oth
 You will need to install the foma compiler and flookup program (which
 is part of the foma toolkit). Install them using these
 [instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/)
-or [homebrew](https://formulae.brew.sh/formula/foma).
+(or [homebrew](https://formulae.brew.sh/formula/foma)).
+> Note for Windows users: In addition to the page given above, we found [these instructions](https://ufal.mff.cuni.cz/~zeman/vyuka/morfosynt/lab-twolm/get-foma.html) useful for installing.  Also, ensure that the directory you add to your PATH immediately contains `foma.exe` and `flookup.exe`.  For example, if the path to `foma.exe` is `C:\Program Files (x86)\Foma\win32\foma.exe`, then add `C:\Program Files (x86)\Foma\win32` (not `C:\Program Files (x86)\Foma\`) to your PATH.
 
 This project uses [poetry](https://python-poetry.org/) to manage python requirements. In `ParserTools/csv2fst` run:
 ```
-python3 -m venv venv           # Create virtual environment.
-source venv/bin/activate       # Activate virtual environment.
+python3 -m venv myvenv         # Create virtual environment (using the python command that works on your system e.g., `python` instead of `python3`).
+source myvenv/bin/activate     # Activate virtual environment (`source myvenv/Scripts/activate` instead on Windows).
 pip3 install -U pip setuptools # Update pip and setuptools.
 pip3 install poetry            # Install poetry.
 poetry install                 # Use poetry to install the project
                                # into the virtual environment.
                                # Bob's your uncle
 ```
+You may then need to make some changes to the `Makefile` in this directory.  For example, changing the python command -- there is a variable for doing this right at the top of the file.
 
 In order to build the  example FST for BorderLakesOjibwe, you will need to clone the repos with the relevant language data:
 [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).
