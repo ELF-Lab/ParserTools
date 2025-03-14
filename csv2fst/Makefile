@@ -77,7 +77,7 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	python3 csv2fst/extract_tag_combinations.py \
+	$(PYTHON) csv2fst/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --pre-element=TensePreverbs \
@@ -88,7 +88,7 @@ $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.
 
 $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	python3 csv2fst/extract_tag_combinations.py \
+	$(PYTHON) csv2fst/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --output-file $@
