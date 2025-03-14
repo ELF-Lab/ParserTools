@@ -27,6 +27,11 @@ You may then need to make some changes to the `Makefile` in this directory.  For
 In order to build the  example FST for BorderLakesOjibwe, you will need to clone the repos with the relevant language data:
 [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).
 
+When you're done running the virtual environment, you can close it via:
+```
+deactivate myvenv
+```
+
 ## Dependencies for YAML tests (optional)
 
 If you want to run YAML tests, you will also need to install the
