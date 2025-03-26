@@ -5,8 +5,8 @@ FOMA=foma
 # Source files
 # Change this to match your source morphology directory
 MORPHOLOGYSRCDIR=~/OjibweMorph
-VERB_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
-NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/ojibwe_nouns.json
+VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
+NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
@@ -25,7 +25,7 @@ MORPHTEST=csv2fst/morph-test.py
 
 # Definitions for building the LEXC files
 POS=verbs nouns pronouns adverbs particles numerals
-LEXCTARGETS=$(POS:%=ojibwe_%.lexc)
+LEXCTARGETS=$(POS:%=%.lexc)
 TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
 DERIVATIONS=True
@@ -79,7 +79,7 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
 
 # Tag specification file
-$(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.json
+$(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 	mkdir -p $(OUTPUT_DIR)/generated
 	$(PYTHON) csv2fst/extract_tag_combinations.py \
              --config-file $< \
@@ -90,7 +90,7 @@ $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_verbs.
              --post-element-tags="VII+Augment/magad,0" \
              --output-file $@
 
-$(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/ojibwe_%.json
+$(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p $(OUTPUT_DIR)/generated
 	$(PYTHON) csv2fst/extract_tag_combinations.py \
              --config-file $< \
