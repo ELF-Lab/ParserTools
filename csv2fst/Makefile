@@ -14,6 +14,9 @@ OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
 PARADIGM_MAPS_DIR=~/OjibweLexicon/resources
 
+# For naming output files
+LANGUAGE_NAME=language
+
 # YAML tests
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
@@ -27,7 +30,7 @@ TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
 DERIVATIONS=True
 
-all:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/ojibwe.fomabin $(OUTPUT_DIR)/generated/ojibwe.att $(TAG_CONFIGURATION_FILES)
+all:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).att $(TAG_CONFIGURATION_FILES)
 
 release:all
 	zip generated.zip $(OUTPUT_DIR)/generated/*
@@ -50,18 +53,19 @@ $(OUTPUT_DIR)/generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name 
 $(OUTPUT_DIR)/generated/compile_fst.xfst:./assets/compile_fst.xfst
 	mkdir -p $(OUTPUT_DIR)/generated
 	cp $^ $@
+	cat $^ | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $@
 
 $(OUTPUT_DIR)/check-generated/compile_fst.xfst:./assets/compile_fst.xfst
 	mkdir -p $(OUTPUT_DIR)/check-generated
-	cp $^ $@
+	cat $^ | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $@
 
-$(OUTPUT_DIR)/generated/ojibwe.fomabin:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/phonology.xfst $(OUTPUT_DIR)/generated/compile_fst.xfst
+$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/phonology.xfst $(OUTPUT_DIR)/generated/compile_fst.xfst
 	mkdir -p $(OUTPUT_DIR)/generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd $(OUTPUT_DIR)/generated; $(FOMA) -f compile_fst.xfst
 
-$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin:$(OUTPUT_DIR)/generated/ojibwe.fomabin assets/delete_alt_tag.xfst 
-	cp assets/delete_alt_tag.xfst $(OUTPUT_DIR)/generated
+$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin assets/delete_alt_tag.xfst 
+	cat assets/delete_alt_tag.xfst | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $(OUTPUT_DIR)/generated/delete_alt_tag.xfst
 	cd $(OUTPUT_DIR)/generated; $(FOMA) -f delete_alt_tag.xfst
 
 # For building spell checkers etc. using Giellatekno infrastructure.
@@ -136,32 +140,32 @@ $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ 
 	cd $(OUTPUT_DIR)/check-generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
-$(OUTPUT_DIR)/check-generated/ojibwe.fomabin:$(OUTPUT_DIR)/check-generated/all.lexc $(OUTPUT_DIR)/check-generated/phonology.xfst $(OUTPUT_DIR)/check-generated/compile_fst.xfst 
+$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-generated/all.lexc $(OUTPUT_DIR)/check-generated/phonology.xfst $(OUTPUT_DIR)/check-generated/compile_fst.xfst 
 	mkdir -p $(OUTPUT_DIR)/check-generated
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
 
-check-core-yaml:$(OUTPUT_DIR)/check-generated/ojibwe.fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+check-core-yaml:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
 	rm -f $(OUTPUT_DIR)/core-yaml-test.log
 	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*core.yaml`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/core-yaml-test.log
 
-check-yaml:$(OUTPUT_DIR)/check-generated/ojibwe.fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+check-yaml:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
 	rm -f $(OUTPUT_DIR)/yaml-test.log
 	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/ojibwe.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/yaml-test.log
 
-check-database:$(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/database_yaml_output
+check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/database_yaml_output
 	rm -f $(OUTPUT_DIR)/opd-test.log	
 	for f in `ls $(OUTPUT_DIR)/database_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/ojibwe.noAlt.fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/opd-test.log
 	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR)

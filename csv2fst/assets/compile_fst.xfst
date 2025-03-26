@@ -41,5 +41,5 @@ set flag-is-epsilon OFF
 define Analyzer ;
 regex Analyzer .o. [ ?+ ] ;
 
-save stack ojibwe.fomabin
-write att > ojibwe.att
+save stack LANGUAGE_NAME.fomabin
+write att > LANGUAGE_NAME.att
