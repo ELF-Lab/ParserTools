@@ -24,7 +24,7 @@ LOOKUP=flookup
 MORPHTEST=csv2fst/morph-test.py
 
 # Definitions for building the LEXC files
-POS=verbs nouns pronouns adverbs particles numerals
+POS=adverbs nouns numerals particles pronouns verbs
 LEXCTARGETS=$(POS:%=%.lexc)
 TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
