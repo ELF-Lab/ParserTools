@@ -129,7 +129,7 @@ Options:
 
 You need to specify a JSON configuration file which controls the
 generation of lexc files. See
-[`ojibwe_verbs.json`](https://github.com/ELF-Lab/OjibweMorph/blob/main/ojibwe_verbs.json)
+[`verbs.json`](https://github.com/ELF-Lab/OjibweMorph/blob/main/config/verbs.json)
 in the [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph)
 repository for an example.
 
