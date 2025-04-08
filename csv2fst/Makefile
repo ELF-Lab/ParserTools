@@ -24,7 +24,10 @@ LOOKUP=flookup
 MORPHTEST=csv2fst/morph-test.py
 
 # Definitions for building the LEXC files
-POS=adverbs nouns numerals particles pronouns proper_nouns verbs
+# POS are determined by the files in config/
+CONFIG_FILES=$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+# Strip each file path to only include the POS e.g., "../config/nouns.json" -> "nouns"
+POS=$(shell awk '{ gsub($(MORPHOLOGYSRCDIR)\/config\/+/, ""); gsub(/\.json/, ""); print }' <<< "$(CONFIG_FILES)")
 LEXCTARGETS=$(POS:%=%.lexc)
 TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
@@ -35,7 +38,7 @@ all:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fo
 release:all
 	zip generated.zip $(OUTPUT_DIR)/generated/*
 
-$(OUTPUT_DIR)/generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+$(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
 	mkdir -p $(OUTPUT_DIR)/generated
 	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
