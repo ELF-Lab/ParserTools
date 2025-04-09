@@ -4,7 +4,7 @@ This repository houses a set of language-neutral tools for converting spreadshee
 
 The documentation is in progress!
 
-# Citation
+## Citation
 
 To cite this work or the contents of the repository in an academic work, please use the following:
 
