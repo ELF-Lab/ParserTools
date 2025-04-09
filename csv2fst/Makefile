@@ -26,8 +26,10 @@ MORPHTEST=csv2fst/morph-test.py
 # Definitions for building the LEXC files
 # POS are determined by the files in config/
 CONFIG_FILES=$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+# Add escape chars to the file path so it can be used in the gsub below
+MORPHOLOGYSRCDIR_REGEX=$(shell echo $(MORPHOLOGYSRCDIR) | sed 's/\./\\\./g' | sed 's/\//\\\//g')
 # Strip each file path to only include the POS e.g., "../config/nouns.json" -> "nouns"
-POS=$(shell awk '{ gsub($(MORPHOLOGYSRCDIR)\/config\/+/, ""); gsub(/\.json/, ""); print }' <<< "$(CONFIG_FILES)")
+POS=$(shell awk '{ gsub(/$(MORPHOLOGYSRCDIR_REGEX)\/config\/+/, ""); gsub(/\.json/, ""); print }' <<< "$(CONFIG_FILES)")
 LEXCTARGETS=$(POS:%=%.lexc)
 TAG_CONFIGURATION_FILES=$(POS:%=$(OUTPUT_DIR)/generated/%_tags.json)
 ALTTAG=False
