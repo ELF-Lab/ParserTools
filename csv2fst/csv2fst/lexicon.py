@@ -74,25 +74,18 @@ class LexcFile:
             self.add_derivations()
             
     def read_lexemes_from_database(self, database_paths) -> None:
-        """Read OPD dictionary entries from an external CSV file given by the
-        "lexical_database" field in the configuration file. The CSV is
-        located in the directory given by database_path
+        """Read lemma/stem entries from one or more external CSV file
+        given by the "lexical_database" field in the configuration file.
+        The CSVs are located in the directory(s) listed in database_paths.
 
-        This function maps OPD POS tags like vti3 to inflectional
-        classes like BorderLakesMorph VTI_i. It then adds each the OPD
-        lexical entry into the appropriate lexc sublexicon (like
-        VTI:Stems) with an appropriate continuation lexicon (like
-        VTI:Class=VTI_i:Boundary).
-
-        The mapping from OPD POS tags to BorderLakesMorph inflectional
-        classes is based on a mapping CSV file. This file is specified
-        in the "class_map" field in the configuration file.
+        This function adds each lexical entry into the appropriate lexc
+        sublexicon (like VTI:Stems) with an appropriate continuation
+        lexicon (like VTI:Class=VTI_i:Boundary).
 
         """
         print(f"Reading in {len(database_paths)} lexical database input(s).")
         for database_path in database_paths:
-            info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n",
-                force=False)
+            info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
             if self.conf["lexical_database"] != "None":
                 lexeme_database = pd.read_csv(os.path.join(database_path,
                                                         self.conf["lexical_database"]),
