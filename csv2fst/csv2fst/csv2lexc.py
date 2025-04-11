@@ -1,17 +1,19 @@
 """Script for compiling a set of lexc files from the following resources:
 
-   * CSV files representing inflection tables (these live in the OjibweMorph repository)
-   * Lexical database files in CSV format (there live in the OPDDatabase repository)
-   * Configuration files for different word classes (these live in the OjibweMorph repository)
+   * CSV files representing inflection tables (these live in `source_path`)
+   * Lexical database files in CSV format (these live in `database_paths`)
+   * Configuration files for different word classes (these live in `source_path`/config)
 
-   `config_files` is a comma-separated list of configuration file names read from 
+   `config_files` is a comma-separated list of .json configuration file names read from
     the directory `source_path`/config
 
-   `source_path` gives the path to the OjibweMorph repository.
+   `source_path` gives the path the directory containing morphological information,
+   plus phonological rules.  An example for Ojibwe is OjibweMorph.
 
-   `database_paths` gives the path to the OPDDatabase repository (but can take a list of directories).
+   `database_paths` gives the path to 1+ directories where CSVs containing lexical information
+   (lemmas/stems) are stored.  An example for Ojibwe would be OjibweLexicon/OPD.
 
-   The output lexc files root.lexc, ojibwe_POS.lexc (for each word class POS) and potentially 
+   The output lexc files root.lexc, languagename_POS.lexc (for each word class POS) and potentially
    preverbs.lexc and/or prenouns.lexc will be written into the directory `lexc_path`.
 
    The boolean parameter `read_lexical_database` determines whether we're including the lexical 
@@ -32,8 +34,8 @@ from log import set_verbose, info
 from lexc_path import LexcPath
 
 @click.command()
-@click.option('--config-files', required=True, help="JSON config files separated by commas. E.g. verb_conf.json,noun_conf.json")
-@click.option('--source-path', required=True, help="Path to the source files for the FST (e.g. your BorderLakesMorph directory)")
+@click.option('--config-files', required=True, help="JSON config files separated by commas. E.g. verb_conf.json, noun_conf.json")
+@click.option('--source-path', required=True, help="Path to the source files for the FST (e.g. your OjibweMorph directory)")
 @click.option('--database-paths', required=False, help="Path to lexical database directory for lemmas.  Can be multiple file paths separated by commas.")
 @click.option('--lexc-path', required=True,
               help="Directory where output lexc files are stored")
