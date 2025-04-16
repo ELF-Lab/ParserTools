@@ -9,6 +9,7 @@ VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEMMAS_DIR=~/OjibweLexicon/OPD
+LEXICAL_DATA_TO_EXCLUDE=""
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 # Additional info used for testing the FST
 SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
@@ -47,7 +48,8 @@ $(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
                               --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
                               --add-derivations $(DERIVATIONS) \
-                              --lexc-path $(OUTPUT_DIR)/generated
+                              --lexc-path $(OUTPUT_DIR)/generated \
+                              --lexical-data-to-exclude $(LEXICAL_DATA_TO_EXCLUDE)
 	cd $(OUTPUT_DIR)/generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 
@@ -141,7 +143,8 @@ $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ 
                               --lexc-path $(OUTPUT_DIR)/check-generated \
                               --add-derivations $(DERIVATIONS) \
                               --read-lexical-database False \
-                              --alt-tag False
+                              --alt-tag False \
+                              --lexical-data-to-exclude $(LEXICAL_DATA_TO_EXCLUDE)
 	cd $(OUTPUT_DIR)/check-generated; \
         cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
 

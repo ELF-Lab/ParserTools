@@ -38,6 +38,7 @@ class LexcFile:
                  source_path:str,
                  lexc_path:str,
                  database_paths:str,
+                 lexical_data_to_exclude:str,
                  read_lexical_database:bool,
                  add_derivations:bool,
                  regular:bool):
@@ -45,7 +46,8 @@ class LexcFile:
            * `conf` configuration 
            * `source_path` path to OjibweMorph repo
            * `lexc_path` destination directory for lexc code
-           * `database_paths` paths to e.g., OPDDatabase
+           * `database_paths` paths to lexical data CSVs (with lemmas/stems)
+           * `lexical_data_to_exclude` path to CSV listing lexical data to NOT include
            * `read_lexical_database` whether to include lexemes from database 
            * `regular` whether this is a lexc file for regular or irregular lexemes 
         """
@@ -68,12 +70,12 @@ class LexcFile:
                 lexc_path.extend_lexicons(self.lexicons)
 
         if read_lexical_database:
-            self.read_lexemes_from_database(database_paths)
+            self.read_lexemes_from_database(database_paths, lexical_data_to_exclude)
 
         if add_derivations and "derivational_csv_file" in conf:
             self.add_derivations()
             
-    def read_lexemes_from_database(self, database_paths) -> None:
+    def read_lexemes_from_database(self, database_paths, lexical_data_to_exclude) -> None:
         """Read lemma/stem entries from one or more external CSV file
         given by the "lexical_database" field in the configuration file.
         The CSVs are located in the directory(s) listed in database_paths.
@@ -82,30 +84,50 @@ class LexcFile:
         sublexicon (like VTI:Stems) with an appropriate continuation
         lexicon (like VTI:Class=VTI_i:Boundary).
 
+        Forms from any of the lexical sources can be excluded, as specified in
+        the CSV given in `lexical_data_to_exclude`.  Each entry there specifies
+        a form by providing the source (which lexical database CSV), the field
+        (e.g., lemma, POS), and the value of that field.
+
         """
+        # Determine which forms to exclude, as specified by the user
+        lemmas_to_exclude = []
+        # There may have been no CSV supplied (if no exclusions necessary)
+        if lexical_data_to_exclude:
+            exclusion_info = pd.read_csv(lexical_data_to_exclude)
+            for index, row in exclusion_info.iterrows():
+                lemmas_to_exclude.append(row['Lemma'])
+
         print(f"Reading in {len(database_paths)} lexical database input(s).")
         for database_path in database_paths:
             info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
             if self.conf["lexical_database"] != "None":
                 lexeme_database = pd.read_csv(os.path.join(database_path,
-                                                        self.conf["lexical_database"]),
-                                            keep_default_na=False)
+                                                self.conf["lexical_database"]),
+                                                keep_default_na=False)
                 skipped = 0
+                excluded = 0
                 for _, row in lexeme_database.iterrows():
                     try:
                         klass = row.Class
                         paradigm = row.Paradigm
-                        self.lexicons[f"{paradigm}_Stems"].add(
-                            LexcEntry(f"{paradigm}_Stems",
-                                    escape(row.Lemma),
-                                    escape(row.Stem),
-                                    f"{paradigm}_Class={klass}_Boundary"))
+                        lemma = row.Lemma
+                        stem = row.Stem
+                        if not(lemma in lemmas_to_exclude):
+                            self.lexicons[f"{paradigm}_Stems"].add(
+                                LexcEntry(f"{paradigm}_Stems",
+                                        escape(lemma),
+                                        escape(stem),
+                                        f"{paradigm}_Class={klass}_Boundary"))
+                        else:
+                            excluded += 1
                     except ValueError as e:
                         warn(e)
                         skipped += 1
                 info(f"Checked {len(lexeme_database)} lexical entries.\n",
                     f"Added {len(lexeme_database) - skipped} entries to lexc file.\n",
-                    f"Skipped {skipped} invalid ones")
+                    f"Skipped {skipped} invalid entries.\n",
+                    f"Excluded {excluded} entries specified by the user.")
 
     def add_derivations(self):
         der_csv = pd.read_csv(pjoin(self.source_path, self.conf["derivational_csv_file"]))
