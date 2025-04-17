@@ -91,14 +91,31 @@ class LexcFile:
 
         """
         # Determine which forms to exclude, as specified by the user
+        # Each row of the CSV specifies the "Field" and its "Value"
+        # e.g., to exclude all forms with lemma X, Field=Lemma and Value=X
+        classes_to_exclude = []
         lemmas_to_exclude = []
+        paradigms_to_exclude = []
+        stems_to_exclude = []
         # There may have been no CSV supplied (if no exclusions necessary)
         if lexical_data_to_exclude:
             exclusion_info = pd.read_csv(lexical_data_to_exclude)
             for index, row in exclusion_info.iterrows():
-                lemmas_to_exclude.append(row['Lemma'])
+                field = row["Field"]
+                if field == "Class":
+                    classes_to_exclude.append(row['Value'])
+                elif field == "Lemma":
+                    lemmas_to_exclude.append(row['Value'])
+                elif field == "Paradigm":
+                    paradigms_to_exclude.append(row['Value'])
+                elif field == "Stem":
+                    stems_to_exclude.append(row['Value'])
+                else:
+                    print(f"ERROR: CSV with forms to exclude ({lexical_data_to_exclude}) has an erroneous row.",
+                          f"\nRow {index} has the Field '{field}', which is not a recognized value.",
+                          f"\nRecognized values are: Class, Lemma")
 
-        print(f"Reading in {len(database_paths)} lexical database input(s).")
+        info(f"Reading in {len(database_paths)} lexical database input(s).")
         for database_path in database_paths:
             info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
             if self.conf["lexical_database"] != "None":
@@ -113,7 +130,8 @@ class LexcFile:
                         paradigm = row.Paradigm
                         lemma = row.Lemma
                         stem = row.Stem
-                        if not(lemma in lemmas_to_exclude):
+                        # Only proceed if this stems is *not* to be excluded
+                        if not(klass in classes_to_exclude) and not(lemma in lemmas_to_exclude) and not(paradigm in paradigms_to_exclude) and not (stem in stems_to_exclude):
                             self.lexicons[f"{paradigm}_Stems"].add(
                                 LexcEntry(f"{paradigm}_Stems",
                                         escape(lemma),
