@@ -116,12 +116,43 @@ class LexcFile:
                           f"\nRecognized values are: Class, Lemma")
 
         info(f"Reading in {len(database_paths)} lexical database input(s).")
+        # Read through *each* lexical database source
         for database_path in database_paths:
             info(f"Reading external lexical database {self.conf['lexical_database']} from directory {database_path}\n")
             if self.conf["lexical_database"] != "None":
                 lexeme_database = pd.read_csv(os.path.join(database_path,
                                                 self.conf["lexical_database"]),
                                                 keep_default_na=False)
+
+                # Determine which forms to exclude, as specified by the user
+                # Each row of the CSV specifies the "Field" and its "Value"
+                # e.g., to exclude all forms with lemma X, Field=Lemma and Value=X
+                classes_to_exclude = []
+                lemmas_to_exclude = []
+                paradigms_to_exclude = []
+                stems_to_exclude = []
+                # There may have been no CSV supplied (if no exclusions necessary)
+                if lexical_data_to_exclude:
+                    exclusion_info = pd.read_csv(lexical_data_to_exclude)
+                    for index, row in exclusion_info.iterrows():
+                        directory = row["Directory"]
+                        # Only apply exclusions intended for this lexical database source
+                        if database_path.endswith(directory):
+                            field = row["Field"]
+                            if field == "Class":
+                                classes_to_exclude.append(row['Value'])
+                            elif field == "Lemma":
+                                lemmas_to_exclude.append(row['Value'])
+                            elif field == "Paradigm":
+                                paradigms_to_exclude.append(row['Value'])
+                            elif field == "Stem":
+                                stems_to_exclude.append(row['Value'])
+                            else:
+                                print(f"ERROR: CSV with forms to exclude ({lexical_data_to_exclude}) has an erroneous row.",
+                                    f"\nRow {index} has the Field '{field}', which is not a recognized value.",
+                                    f"\nRecognized values are: Class, Lemma")
+
+                # Extract the data from the lexical database file
                 skipped = 0
                 excluded = 0
                 for _, row in lexeme_database.iterrows():
