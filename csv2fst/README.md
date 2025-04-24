@@ -7,12 +7,10 @@ Examples are given for Ojibwe, with the relevant language data accessible in oth
 ## Dependencies for the `csv2fst.py` script
 
 You will need to install the foma compiler and flookup program (which
-is part of the foma toolkit). Install them using these
-[instructions](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/)
-(or [homebrew](https://formulae.brew.sh/formula/foma)).
+is part of the foma toolkit). On Mac or Linux, the easiest way to install is via [homebrew](https://formulae.brew.sh/formula/foma).  Just use the command `brew install foma`.  Alternatively, there are other installation instructions [here](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) (including for Windows users).
 > Note for Windows users: In addition to the page given above, we found [these instructions](https://ufal.mff.cuni.cz/~zeman/vyuka/morfosynt/lab-twolm/get-foma.html) useful for installing.  Also, ensure that the directory you add to your PATH immediately contains `foma.exe` and `flookup.exe`.  For example, if the path to `foma.exe` is `C:\Program Files (x86)\Foma\win32\foma.exe`, then add `C:\Program Files (x86)\Foma\win32` (not `C:\Program Files (x86)\Foma\`) to your PATH.
 
-This project uses [poetry](https://python-poetry.org/) to manage python requirements. In `ParserTools/csv2fst` run:
+This project uses [poetry](https://python-poetry.org/) to manage python requirements. First, navigate to the directory `ParserTools/csv2fst`.  Then, run:
 ```
 python3 -m venv myvenv         # Create virtual environment (using the python command that works on your system e.g., `python` instead of `python3`).
 source myvenv/bin/activate     # Activate virtual environment (`source myvenv/Scripts/activate` instead on Windows).
@@ -22,15 +20,17 @@ poetry install                 # Use poetry to install the project
                                # into the virtual environment.
                                # Bob's your uncle
 ```
-You may then need to make some changes to the `Makefile` in this directory.  For example, changing the python command -- there is a variable for doing this right at the top of the file.
+You may then need to make some changes to the `Makefile` in this directory.  For example, changing the python version being used -- there is a variable for doing this right at the top of the file.
 
-In order to build the  example FST for BorderLakesOjibwe, you will need to clone the repos with the relevant language data:
-[OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).
+In order to build the  example FST for Ojibwe, you will need to clone the repos with the relevant language data:
+[OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).  Once you have the set-up here complete, OjibweMorph contains instructions for how to create the FST without having to touch the code here.
 
 When you're done running the virtual environment, you can close it via:
 ```
 deactivate myvenv
 ```
+
+Once the virtual environment has been set up, you only need to activate (`source myvenv/bin/activate`) and deactivate (`deactivate myvenv`) it in future.  
 
 ## Dependencies for YAML tests (optional)
 
