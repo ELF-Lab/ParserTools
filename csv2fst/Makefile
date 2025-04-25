@@ -22,7 +22,7 @@ LANGUAGE_NAME=language
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
 
-MORPHTEST=csv2fst/morph-test.py
+MORPHTEST=src/morph-test.py
 
 # Definitions for building the LEXC files
 # POS are determined by the files in config/
@@ -43,7 +43,7 @@ release:all
 
 $(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
@@ -88,7 +88,7 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) csv2fst/extract_tag_combinations.py \
+	$(PYTHON) src/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --pre-element=TensePreverbs \
@@ -99,7 +99,7 @@ $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 
 $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) csv2fst/extract_tag_combinations.py \
+	$(PYTHON) src/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --output-file $@
@@ -137,7 +137,7 @@ $(OUTPUT_DIR)/database_yaml_output:
 
 $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p $(OUTPUT_DIR)/check-generated
-	$(PYTHON) csv2fst/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --lexc-path $(OUTPUT_DIR)/check-generated \
@@ -176,8 +176,8 @@ check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/del
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/opd-test.log
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR)
-	$(PYTHON) csv2fst/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --for_nouns
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR)
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --for_nouns
 
 
 clean:
