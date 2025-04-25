@@ -10,27 +10,44 @@ You will need to install the foma compiler and flookup program (which
 is part of the foma toolkit). On Mac or Linux, the easiest way to install is via [homebrew](https://formulae.brew.sh/formula/foma).  Just use the command `brew install foma`.  Alternatively, there are other installation instructions [here](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) (including for Windows users).
 > Note for Windows users: In addition to the page given above, we found [these instructions](https://ufal.mff.cuni.cz/~zeman/vyuka/morfosynt/lab-twolm/get-foma.html) useful for installing.  Also, ensure that the directory you add to your PATH immediately contains `foma.exe` and `flookup.exe`.  For example, if the path to `foma.exe` is `C:\Program Files (x86)\Foma\win32\foma.exe`, then add `C:\Program Files (x86)\Foma\win32` (not `C:\Program Files (x86)\Foma\`) to your PATH.
 
-This project uses [poetry](https://python-poetry.org/) to manage python requirements. First, navigate to the directory `ParserTools/csv2fst`.  Then, run:
+This project uses [poetry](https://python-poetry.org/) to manage python requirements.  These can be installed as follows:
+1. Navigate to `ParserTools/csv2fst`.
+2. Create a virtual environment (using the python command that works on your system e.g., `python` instead of `python3` if needed):
 ```
-python3 -m venv myvenv         # Create virtual environment (using the python command that works on your system e.g., `python` instead of `python3`).
-source myvenv/bin/activate     # Activate virtual environment (`source myvenv/Scripts/activate` instead on Windows).
-pip3 install -U pip setuptools # Update pip and setuptools.
-pip3 install poetry            # Install poetry.
-poetry install                 # Use poetry to install the project
-                               # into the virtual environment.
-                               # Bob's your uncle
+python3 -m venv myvenv
 ```
-You may then need to make some changes to the `Makefile` in this directory.  For example, changing the python version being used -- there is a variable for doing this right at the top of the file.
+3. Activate the virtual environment.  
+On Mac or Linux, run:
+```
+source myvenv/bin/activate  
+```   
+On Windows, run:
+```
+source myvenv/Scripts/activate
+```
+4. Update `pip` and `setuptools`:
+```
+pip3 install -U pip setuptools
+```
+5. Install `poetry`:
+```
+pip3 install poetry
+```
+6. Use poetry to install the project into the virtual environment:
+```
+poetry install
+```
 
-In order to build the  example FST for Ojibwe, you will need to clone the repos with the relevant language data:
-[OjibweMorph](https://github.com/ELF-Lab/OjibweMorph) and [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon/tree/main).  Once you have the set-up here complete, OjibweMorph contains instructions for how to create the FST without having to touch the code here.
+Now, the dependencies are set up!
 
-When you're done running the virtual environment, you can close it via:
+Eventually, when you're done running the virtual environment, you can close it via:
 ```
 deactivate myvenv
 ```
 
-Once the virtual environment has been set up, you only need to activate (`source myvenv/bin/activate`) and deactivate (`deactivate myvenv`) it in future.  
+> Note: The `Makefile` in this directory begins with some variables you can change if you run into errors.  For example, you can change the command for running python (on Windows, we had to change this from `python3` to `python`).
+
+If you're working towards building the example FST for Ojibwe, once you're done with installing these prerequisites, carry on with the instructions in [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph#building-the-fst).
 
 ## Dependencies for YAML tests (optional)
 
@@ -58,7 +75,7 @@ You will need to open a new terminal, after you're done with installation in ord
 
 ## Building an FST
 The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
-- `MORPHOLOGYSRCDIR` points to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/tree/dev).
+- `MORPHOLOGYSRCDIR` points to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph).
 - `LEMMAS_DIR` points to a directory that contains CSVs listing all the lemmas that will be used to build the FST.  An example directory (for Border Lakes Ojibwe) is [OjibweLexicon/OPD](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
      - This variable can also be set to a list of directories (each containing CSVs to be used), separated by a comma. 
 - `OUTPUT_DIR` points to the directory where all files generated will go.  Note that in order for the testing code to work (i.e., when running `make check`), this **must be a relative path** (for some reason).
