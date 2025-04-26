@@ -100,14 +100,12 @@ make check MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/Ojibw
 Also written into the Makefile are the expected names of many of these files (e.g., the paradigm map file for the verb tests of the FST being called `VERBS_paradigm_map.csv`), so if any of these names differ, the Makefile will have to be updated accordingly.
 
 ### Running the YAML tests
-The Makefile requires modifications:
+The Makefile may require additional modifications:
 1. You may potentially need to modify the `MORPHTEST` variable to
 point to your copy of the `morph-test.py` script (you might not need
 to do anything if you have installed `giella-core`).
 
-You should now be able to run `make all` and `make check`. This will
-generate three log files:
-
+You should now be able to run `make check`. This will generate three log files:
 * `yaml-test.log` (tests for the subset of the Ojibwe morphology
 which we currently understand well)
 * `core-yaml-test.log` (there is more uncertainty and
