@@ -115,7 +115,7 @@ $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 # the external lexical database will interfere with YAML testing due
 # to morphological ambiguity.
 
-check: check-core-yaml check-yaml check-database
+check: check-core-paradigm check-paradigm check-database
 
 $(OUTPUT_DIR)/paradigm_yaml_output:
 	rm -Rf $@
@@ -153,21 +153,21 @@ $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-gener
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
 
-check-core-yaml:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
-	rm -f $(OUTPUT_DIR)/core-yaml-test.log
+check-core-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+	rm -f $(OUTPUT_DIR)/core-paradigm-test.log
 	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*core.yaml`; do \
                   echo "YAML test file $$f"; \
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
-                  done > $(OUTPUT_DIR)/core-yaml-test.log
+                  done > $(OUTPUT_DIR)/core-paradigm-test.log
 
-check-yaml:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
-	rm -f $(OUTPUT_DIR)/yaml-test.log
+check-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
+	rm -f $(OUTPUT_DIR)/paradigm-test.log
 	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
-                  done > $(OUTPUT_DIR)/yaml-test.log
+                  done > $(OUTPUT_DIR)/paradigm-test.log
 
 check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/database_yaml_output
 	rm -f $(OUTPUT_DIR)/opd-test.log	
@@ -181,7 +181,7 @@ check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/del
 
 
 clean:
-	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/database_yaml_output $(OUTPUT_DIR)/core-yaml-test.log $(OUTPUT_DIR)/yaml-test.log $(OUTPUT_DIR)/opd-test.log csv_output
+	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/database_yaml_output $(OUTPUT_DIR)/core-paradigm-test.log $(OUTPUT_DIR)/paradigm-test.log $(OUTPUT_DIR)/opd-test.log csv_output
 
 #####################################################################
 #                                                                   #
