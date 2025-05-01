@@ -1,6 +1,13 @@
 # ParserTools
-
 This repository houses a set of language-neutral tools for converting CSVs to a finite-state transducer (FST), as well as for testing that FST via YAML files.
+
+## Contents
+- [User Instructions](#user-instructions)
+    - [Getting set up to build the FST](#getting-set-up-to-build-the-fst)
+    - [Getting set up to run the YAML tests (optional)](#getting-set-up-to-run-the-yaml-tests-optional)
+    - [Building the FST](#building-the-fst)
+    - [Running the YAML tests](#running-the-yaml-tests)
+- [Citation](#citation)
 
 ## User Instructions
 Examples are given for Ojibwe, with the relevant language data accessible in other repos.  However, this FST-generating code is intended to be applicable for other Algonquian languages and beyond -- if you have the necessary spreadsheets for your target language, it should be compatible with this code!
@@ -54,11 +61,11 @@ If you're working towards building the example FST for Ojibwe, once you're done 
 If you want to run YAML tests, you will also need to install the
 [giella-core](https://github.com/giellalt/giella-core) repository. You should:
 
-1. Clone the `giella-core` repository
-2. You may need to install ICU for enhanced Unicode character set support:
+1. Clone the `giella-core` repository.
+2. If necessary, install ICU for enhanced Unicode character set support:
     - On a Mac, you can install it by `brew install icu4c`. This will install the program `uconv`, which is used by `giella-core`, but will not add it to your `PATH` environmental variable, so you'll need to manually edit `PATH`. Run `brew info icu4c` to check where the program is located. The info command also prints instructions for adding the `uconv` location to `PATH`. You probably need to open a new terminal window after editing `PATH` to activate the changes
     - On Linux, you can run `sudo apt install libicu52=52.1-6` and `sudo apt-get install libicu-dev` (**not tested**)
-3. You may need to install GNU `autotools` in order to run `autogen.sh` 
+3. If necessary, install GNU `autotools` in order to run `autogen.sh` 
     - On mac, you can install these by running `brew install autoconf automake libtool`
     - On Linux, do `sudo apt-get install autotools-dev` and `sudo apt-get install autoconf`
 5. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` in this order
@@ -102,21 +109,19 @@ Also written into the Makefile are the expected names of many of these files (e.
 ### Running the YAML tests
 The Makefile may require additional modifications:
 1. You may potentially need to modify the `MORPHTEST` variable to
-point to your copy of the `morph-test.py` script (you might not need
-to do anything if you have installed `giella-core`).
+point to your copy of the `morph-test.py` script.  You might not need
+to do anything if you have installed `giella-core`.
 
 You should now be able to run `make check`. This will generate three log files:
 * `yaml-test.log` (tests for the subset of the Ojibwe morphology
-which we currently understand well)
+which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`)
 * `core-yaml-test.log` (there is more uncertainty and
 dialectal variation in the tests)
-* `opd-test.log` (these tests check integration of an external lexical resource)
-The
+* `opd-test.log` (these tests check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu))
 
 The first two log files should show very few failures (5-15 fails per file). The third one will probably contain more failures
 
 ## Citation
-
 To cite this work or the contents of the repository in an academic work, please use the following:
 
 > [Hammerly, C., Livesay, N., Arppe A., Stacey, A., & Silfverberg, M. (Submitted) OjibweMorph: An approachable morphological parser for Ojibwe](https://christopherhammerly.com/publication/ojibwemorph/OjibweMorph.pdf)
