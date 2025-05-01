@@ -115,7 +115,7 @@ $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 # the external lexical database will interfere with YAML testing due
 # to morphological ambiguity.
 
-check: check-core-paradigm check-paradigm check-database
+check: check-core-paradigm check-paradigm check-opd
 
 $(OUTPUT_DIR)/paradigm_yaml_output:
 	rm -Rf $@
@@ -126,7 +126,7 @@ $(OUTPUT_DIR)/paradigm_yaml_output:
 	mv yaml_output/* $@
 	rm -d yaml_output
 
-$(OUTPUT_DIR)/database_yaml_output:
+$(OUTPUT_DIR)/opd_yaml_output:
 	rm -Rf $@
 	mkdir $@
 	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/verbs/ $(VERB_JSON) ./ --pos=verb
@@ -169,9 +169,9 @@ check-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_D
                   echo ; \
                   done > $(OUTPUT_DIR)/paradigm-test.log
 
-check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/database_yaml_output
+check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/opd_yaml_output
 	rm -f $(OUTPUT_DIR)/opd-test.log	
-	for f in `ls $(OUTPUT_DIR)/database_yaml_output/*.yaml | grep -v core`; do \
+	for f in `ls $(OUTPUT_DIR)/opd_yaml_output/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin $$f; \
                   echo ; \
@@ -181,7 +181,7 @@ check-database:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/del
 
 
 clean:
-	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/database_yaml_output $(OUTPUT_DIR)/core-paradigm-test.log $(OUTPUT_DIR)/paradigm-test.log $(OUTPUT_DIR)/opd-test.log csv_output
+	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/opd_yaml_output $(OUTPUT_DIR)/core-paradigm-test.log $(OUTPUT_DIR)/paradigm-test.log $(OUTPUT_DIR)/opd-test.log csv_output
 
 #####################################################################
 #                                                                   #
