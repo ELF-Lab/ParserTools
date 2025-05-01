@@ -168,6 +168,8 @@ check-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_D
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/paradigm-test.log
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/paradigm-test.log" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_verb_test_summary.csv"
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/paradigm-test.log" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_noun_test_summary.csv" --for_nouns
 
 check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/opd_yaml_output
 	rm -f $(OUTPUT_DIR)/opd-test.log	
@@ -176,8 +178,8 @@ check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_a
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/opd-test.log
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR)
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --for_nouns
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "opd_verb_test_summary.csv"
+	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --scraped_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "opd_noun_test_summary.csv" --for_nouns
 
 
 clean:

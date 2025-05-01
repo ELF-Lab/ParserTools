@@ -255,17 +255,15 @@ def main():
     parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
+    parser.add_argument("--output_file_name", type=str, help="The name of the main summary CSV to be written.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
     # Configure the summary for nouns OR verbs
     global TEST_SECTIONS
     global OUTPUT_FILE_PATH
+    OUTPUT_FILE_PATH = args.output_dir + "/" + args.output_file_name
     TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
-    if args.for_nouns:
-        OUTPUT_FILE_PATH = args.output_dir + "/" + NOUN_OUTPUT_FILE_NAME
-    else:
-        OUTPUT_FILE_PATH = args.output_dir + "/" + VERB_OUTPUT_FILE_NAME
 
     results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
     output_line = prepare_output(results)
