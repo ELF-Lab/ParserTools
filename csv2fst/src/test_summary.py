@@ -10,8 +10,8 @@ OUTPUT_FILE_PATH = ""
 NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
 VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
 TEST_SECTIONS = []
-DO_PRINT_FORMS_WITH_NO_RESULTS = False # If true, ensure the below path is correct for your system
-DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False # If true, ensure the below path is correct for your system
+DO_PRINT_FORMS_WITH_NO_RESULTS = False
+DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False
 FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
 FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
 
