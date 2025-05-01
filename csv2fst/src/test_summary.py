@@ -158,23 +158,30 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
-        if for_nouns:
-            output_file = "noun_" + FORMS_WITH_NO_ANALYSES_FILE
+        if scraped_csv_path:
+            if for_nouns:
+                output_file = "noun_" + FORMS_WITH_NO_ANALYSES_FILE
+            else:
+                output_file = "verb_" + FORMS_WITH_NO_ANALYSES_FILE
+            print(f"\nWriting to {output_file}...")
+            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, output_file)
         else:
-            output_file = "verb_" + FORMS_WITH_NO_ANALYSES_FILE
-        print(f"\nWriting to {output_file}...")
-        print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, output_file)
+            print("\nCannot print forms with *no results*.  No scraped CSV path given, which is used to get additional information about these forms.")
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
-        if for_nouns:
-            output_file = "noun_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
+        if scraped_csv_path:
+            if for_nouns:
+                output_file = "noun_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
+            else:
+                output_file = "verb_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
+            if any_passes:
+                print(f"Writing to {output_file}...")
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, output_file)
+            else:
+                print(f"\nRequested print of {output_file}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
         else:
-            output_file = "verb_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
-        if any_passes:
-            print(f"Writing to {output_file}...")
-            print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, output_file)
-        else:
-            print(f"\nRequested print of {output_file}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
+            print("\nCannot print forms with *only unexpected results*.  No scraped CSV path given, which is used to get additional information about these forms.")
+
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
@@ -245,7 +252,7 @@ def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
-    parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.")
+    parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
