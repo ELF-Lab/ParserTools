@@ -15,8 +15,8 @@ TEST_SECTIONS = []
 DO_PRINT_FORMS_WITH_NO_RESULTS = True
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False
 # "noun" and "verb" will be added to the start of these names9/9++9
-FORMS_WITH_NO_ANALYSES_FILE_NAME = "forms_with_no_analyses.csv"
-FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE_NAME = "forms_with_only_unexpected_results.csv"
+FORMS_WITH_NO_RESULTS_FILE_NAME = "forms_with_no_results.csv"
+FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME = "forms_with_only_unexpected_results.csv"
 
 def get_test_sections_from_paradigm_map(paradigm_map_file):
     test_sections = set()
@@ -162,14 +162,14 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
         if scraped_csv_path:
-            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, for_nouns)
+            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
         else:
             print("\nCannot print forms with *no results*.  No scraped CSV path given, which is used to get additional information about these forms.")
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
         if scraped_csv_path:
             if any_passes:
-                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, for_nouns)
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
             else:
                 print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
         else:
@@ -180,7 +180,7 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
+def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file_name, for_nouns):
     # Need to remove the nouns or verbs
     updated_form_list = []
     for form in form_list:
@@ -218,17 +218,17 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
                 row = row.to_dict()
                 if inflectional_form in [row[form_column] for form_column in form_columns]:
                     # Add this column, so that in cases with *mulitple* surface forms,
-                    # it's clear which is the form without analyses
-                    row["FormWithoutAnalyses"] = inflectional_form
+                    # it's clear which is the form without results
+                    row["FormWithoutResults"] = inflectional_form
                     new_csv = new_csv._append(row, ignore_index = True)
                     forms_written += 1
                     break # Stop looking when we've found it!
 
         # Print the results
         if for_nouns:
-            output_file_path = OUTPUT_DIR + "/" + "noun_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
+            output_file_path = OUTPUT_DIR + "/" + "noun_" + output_file_name
         else:
-            output_file_path = OUTPUT_DIR + "/" + "verb_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
+            output_file_path = OUTPUT_DIR + "/" + "verb_" + output_file_name
         new_csv.to_csv(output_file_path, index = False)
         print(f"\nWrote {forms_written} forms to {output_file_path}")
 
