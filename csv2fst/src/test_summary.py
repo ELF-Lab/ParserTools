@@ -188,9 +188,12 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
             updated_form_list.append(form)
 
     if len(updated_form_list) > 0:
+        forms_written = 0
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(scraped_csv_path, keep_default_na = False)
         scraped_forms = scraped_forms.sort_values(by='Class', ignore_index=True) # To accelerate the search process
+        # Determine how many "surface forms" there are per row
+        form_columns = [column for column in list(scraped_forms) if column.endswith("Surface") ]
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
@@ -211,10 +214,14 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
             # Find the form we're looking for in the big spreadsheet
             inflectional_form = form["form"]
             search_starting_point = paradigm_indices[form["pos"]]
-            for _, row in (scraped_forms[search_starting_point:]).iterrows():
+            for index, row in (scraped_forms[search_starting_point:]).iterrows():
                 row = row.to_dict()
-                if inflectional_form == row["Form1Surface"]:
+                if inflectional_form in [row[form_column] for form_column in form_columns]:
+                    # Add this column, so that in cases with *mulitple* surface forms,
+                    # it's clear which is the form without analyses
+                    row["FormWithoutAnalyses"] = inflectional_form
                     new_csv = new_csv._append(row, ignore_index = True)
+                    forms_written += 1
                     break # Stop looking when we've found it!
 
         # Print the results
@@ -222,8 +229,8 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
             output_file_path = OUTPUT_DIR + "/" + "noun_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
         else:
             output_file_path = OUTPUT_DIR + "/" + "verb_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
-        print(f"\nWriting to {output_file_path}...")
         new_csv.to_csv(output_file_path, index = False)
+        print(f"\nWrote {forms_written} forms to {output_file_path}")
 
 def get_precision(true_pos, false_pos):
     precision = 0
