@@ -181,22 +181,28 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
 def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
-    if len(form_list) > 0:
+    # Need to remove the nouns or verbs
+    updated_form_list = []
+    for form in form_list:
+        if (not(for_nouns) and form["pos"].startswith("V")) or (for_nouns and form["pos"].startswith("N")):
+            updated_form_list.append(form)
+
+    if len(updated_form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(scraped_csv_path, keep_default_na = False)
         scraped_forms = scraped_forms.sort_values(by='Class', ignore_index=True) # To accelerate the search process
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
-        print("Number of forms to write:", len(form_list))
+        print("Number of forms to write:", len(updated_form_list))
         # Go through each of the forms we flagged as wanting to print
-        for i, form in enumerate(form_list):
+        for i, form in enumerate(updated_form_list):
             update_increment = 100
             if i % update_increment == 0:
-                if i + update_increment < len(form_list):
+                if i + update_increment < len(updated_form_list):
                     print(f"Writing forms {i}-{i + update_increment - 1}...")
                 else:
-                    print(f"Writing forms {i}-{len(form_list) - 1}...")
+                    print(f"Writing forms {i}-{len(updated_form_list) - 1}...")
             # Check if we know the starting point for this paradigm/pos yet
             if form["pos"] not in paradigm_indices.keys():
                 index = scraped_forms["Class"].searchsorted(form["pos"], side = 'left')
@@ -217,7 +223,7 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
         else:
             output_file_path = OUTPUT_DIR + "/" + "verb_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
         print(f"\nWriting to {output_file_path}...")
-        new_csv.to_csv(OUTPUT_DIR + "/" + output_file_path, index = False)
+        new_csv.to_csv(output_file_path, index = False)
 
 def get_precision(true_pos, false_pos):
     precision = 0
