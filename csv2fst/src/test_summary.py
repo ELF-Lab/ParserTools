@@ -6,14 +6,17 @@ from re import findall, search
 from datetime import date
 import pandas as pd
 
+# Determined by command line args
+OUTPUT_DIR = ""
 OUTPUT_FILE_PATH = ""
-NOUN_OUTPUT_FILE_NAME = "noun_test_summary.csv"
-VERB_OUTPUT_FILE_NAME = "verb_test_summary.csv"
+# Determined by the paradigm map file
 TEST_SECTIONS = []
-DO_PRINT_FORMS_WITH_NO_RESULTS = False
+# Change these booleans as desired!
+DO_PRINT_FORMS_WITH_NO_RESULTS = True
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False
-FORMS_WITH_NO_ANALYSES_FILE = "forms_with_no_analyses.csv"
-FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE = "forms_with_only_unexpected_results.csv"
+# "noun" and "verb" will be added to the start of these names9/9++9
+FORMS_WITH_NO_ANALYSES_FILE_NAME = "forms_with_no_analyses.csv"
+FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE_NAME = "forms_with_only_unexpected_results.csv"
 
 def get_test_sections_from_paradigm_map(paradigm_map_file):
     test_sections = set()
@@ -159,26 +162,16 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
         if scraped_csv_path:
-            if for_nouns:
-                output_file = "noun_" + FORMS_WITH_NO_ANALYSES_FILE
-            else:
-                output_file = "verb_" + FORMS_WITH_NO_ANALYSES_FILE
-            print(f"\nWriting to {output_file}...")
-            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, output_file)
+            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, for_nouns)
         else:
             print("\nCannot print forms with *no results*.  No scraped CSV path given, which is used to get additional information about these forms.")
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
         if scraped_csv_path:
-            if for_nouns:
-                output_file = "noun_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
-            else:
-                output_file = "verb_" + FORMS_WITH_ONLY_UNEXPECTED_ANALYSES_FILE
             if any_passes:
-                print(f"Writing to {output_file}...")
-                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, output_file)
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, for_nouns)
             else:
-                print(f"\nRequested print of {output_file}, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
+                print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
         else:
             print("\nCannot print forms with *only unexpected results*.  No scraped CSV path given, which is used to get additional information about these forms.")
 
@@ -187,7 +180,7 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file):
+def print_form_sublist_as_csv(form_list, scraped_csv_path, for_nouns):
     if len(form_list) > 0:
         # Read in the spreadsheet of scraped forms to get more info about this form
         scraped_forms = pd.read_csv(scraped_csv_path, keep_default_na = False)
@@ -219,7 +212,12 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file):
                     break # Stop looking when we've found it!
 
         # Print the results
-        new_csv.to_csv(output_file, index = False)
+        if for_nouns:
+            output_file_path = OUTPUT_DIR + "/" + "noun_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
+        else:
+            output_file_path = OUTPUT_DIR + "/" + "verb_" + FORMS_WITH_NO_ANALYSES_FILE_NAME
+        print(f"\nWriting to {output_file_path}...")
+        new_csv.to_csv(OUTPUT_DIR + "/" + output_file_path, index = False)
 
 def get_precision(true_pos, false_pos):
     precision = 0
@@ -259,10 +257,11 @@ def main():
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
-    # Configure the summary for nouns OR verbs
-    global TEST_SECTIONS
+    global OUTPUT_DIR
     global OUTPUT_FILE_PATH
-    OUTPUT_FILE_PATH = args.output_dir + "/" + args.output_file_name
+    global TEST_SECTIONS
+    OUTPUT_DIR = args.output_dir
+    OUTPUT_FILE_PATH = OUTPUT_DIR + "/" + args.output_file_name
     TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
 
     results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
