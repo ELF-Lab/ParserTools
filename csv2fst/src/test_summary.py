@@ -12,7 +12,7 @@ OUTPUT_FILE_PATH = ""
 # Determined by the paradigm map file
 TEST_SECTIONS = []
 # Change these booleans as desired!
-DO_PRINT_FORMS_WITH_NO_RESULTS = True
+DO_PRINT_FORMS_WITH_NO_RESULTS = False
 DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS = False
 # "noun" and "verb" will be added to the start of these names9/9++9
 FORMS_WITH_NO_RESULTS_FILE_NAME = "forms_with_no_results.csv"
