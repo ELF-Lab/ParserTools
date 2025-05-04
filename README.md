@@ -57,29 +57,6 @@ deactivate myvenv
 
 If you're working towards building the example FST for Ojibwe, once you're done with installing these prerequisites, carry on with the instructions in [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph#building-the-fst).
 
-### Getting set up to run the YAML tests (optional)
-If you want to run YAML tests, you will also need to install the
-[giella-core](https://github.com/giellalt/giella-core) repository. You should:
-
-1. Clone the `giella-core` repository.
-2. If necessary, install ICU for enhanced Unicode character set support:
-    - On a Mac, you can install it by `brew install icu4c`. This will install the program `uconv`, which is used by `giella-core`, but will not add it to your `PATH` environmental variable, so you'll need to manually edit `PATH`. Run `brew info icu4c` to check where the program is located. The info command also prints instructions for adding the `uconv` location to `PATH`. You probably need to open a new terminal window after editing `PATH` to activate the changes
-    - On Linux, you can run `sudo apt install libicu52=52.1-6` and `sudo apt-get install libicu-dev` (**not tested**)
-3. If necessary, install GNU `autotools` in order to run `autogen.sh` 
-    - On mac, you can install these by running `brew install autoconf automake libtool`
-    - On Linux, do `sudo apt-get install autotools-dev` and `sudo apt-get install autoconf`
-5. In the `giella-core` directory, run `./autogen.sh`, `./configure`, `make` (probably doesn't do anything) and `make install` in this order
-
-Then, add the path to the `giella-core` repository to your shell startup files. E.g. if you're running `zsh`, you should add the following to the `.zshenv` file in your home directory (where you change the directory path appropriately):
-
-```
-export GTCORE=~/src/giella-core # Change this path to match the location of your giella-core repo
-```
-
-If you're running `bash`, this export probably needs to go to your `.bashrc` or `.profile` file (or both to be on the safe side).
-
-You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
-
 ### Building the FST
 The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
 - `MORPHOLOGYSRCDIR` points to a directory that contains most of the morphological information needed to build the FST.  The example directory (for Border Lakes Ojibwe) is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph).
@@ -106,18 +83,15 @@ make check MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/Ojibw
 
 Also written into the Makefile are the expected names of many of these files (e.g., the paradigm map file for the verb tests of the FST being called `VERBS_paradigm_map.csv`), so if any of these names differ, the Makefile will have to be updated accordingly.
 
-### Running the YAML tests
-The Makefile may require additional modifications:
-1. You may potentially need to modify the `MORPHTEST` variable to
-point to your copy of the `morph-test.py` script.  You might not need
-to do anything if you have installed `giella-core`.
+### Running the YAML Tests
+The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included in this repo, modified to customize the .log output format.
 
-You should now be able to run `make check`. This will generate three log files:
-* `yaml-test.log` (tests for the subset of the Ojibwe morphology
-which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`)
-* `core-yaml-test.log` (there is more uncertainty and
-dialectal variation in the tests)
-* `opd-test.log` (these tests check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu))
+Run the tests with `make check`. This will generate three log files:
+* `paradigm-test.log`: tests for the subset of the Ojibwe morphology
+which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`
+* `core-paradigm-test.log`: there is more uncertainty and
+dialectal variation in the tests
+* `opd-test.log`: these tests check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu)
 
 The first two log files should show very few failures (5-15 fails per file). The third one will probably contain more failures
 
