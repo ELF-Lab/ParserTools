@@ -4,7 +4,6 @@ This repository houses a set of language-neutral tools for converting CSVs to a 
 ## Contents
 - [User Instructions](#user-instructions)
     - [Getting set up to build the FST](#getting-set-up-to-build-the-fst)
-    - [Getting set up to run the YAML tests (optional)](#getting-set-up-to-run-the-yaml-tests-optional)
     - [Building the FST](#building-the-fst)
     - [Running the YAML tests](#running-the-yaml-tests)
 - [Citation](#citation)
@@ -87,13 +86,9 @@ Also written into the Makefile are the expected names of many of these files (e.
 The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included in this repo, modified to customize the .log output format.
 
 Run the tests with `make check`. This will generate three log files:
-* `paradigm-test.log`: tests for the subset of the Ojibwe morphology
-which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`
-* `core-paradigm-test.log`: there is more uncertainty and
-dialectal variation in the tests
-* `opd-test.log`: these tests check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu)
-
-The first two log files should show very few failures (5-15 fails per file). The third one will probably contain more failures
+* `paradigm-test.log`: tests for the subset of the Ojibwe morphology which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`
+* `core-paradigm-test.log`: there is more uncertainty and dialectal variation in these tests
+* `opd-test.log`: tests that check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu)
 
 ## Citation
 To cite this work or the contents of the repository in an academic work, please use the following:
