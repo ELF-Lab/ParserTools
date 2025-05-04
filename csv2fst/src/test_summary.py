@@ -1,4 +1,4 @@
-"""A script for summarizing results of morphological analysis tests on OPD forms."""
+"""A script for summarizing results of morphological analysis tests on YAML forms."""
 
 import argparse
 import os
@@ -100,7 +100,7 @@ def prepare_output(results):
 
     return output_line
 
-def read_logs(input_file_name, scraped_csv_path, for_nouns):
+def read_logs(input_file_name, yaml_source_csv_path, for_nouns):
     results = {}
     forms_with_no_results = []
     forms_with_only_unexpected_results = []
@@ -123,11 +123,11 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
             number_of_forms = 0
             number_of_forms_with_no_results = 0
 
-        # "Missing" = an OPD analysis that the FST failed to produce
+        # "Missing" = an analysis in the YAML that the FST failed to produce
         elif "Missing results" in line:
             false_neg += (1 + line.count(","))
 
-        # "Unexpected" = an analysis produced by the FST not shared by the OPD
+        # "Unexpected" = an analysis produced by the FST not found in the YAML
         elif search(r"Unexpected results: [A-Za-z]", line):
             false_pos += (1 + line.count(","))
             # Is this a form with NO passes?
@@ -161,26 +161,26 @@ def read_logs(input_file_name, scraped_csv_path, for_nouns):
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
-        if scraped_csv_path:
-            print_form_sublist_as_csv(forms_with_no_results, scraped_csv_path, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
+        if yaml_source_csv_path:
+            print_form_sublist_as_csv(forms_with_no_results, yaml_source_csv_path, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
         else:
-            print("\nCannot print forms with *no results*.  No scraped CSV path given, which is used to get additional information about these forms.")
+            print("\nCannot print forms with *no results*.  No language data CSV path given, which is used to get additional information about these forms.")
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
-        if scraped_csv_path:
+        if yaml_source_csv_path:
             if any_passes:
-                print_form_sublist_as_csv(forms_with_only_unexpected_results, scraped_csv_path, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, yaml_source_csv_path, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
             else:
                 print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
         else:
-            print("\nCannot print forms with *only unexpected results*.  No scraped CSV path given, which is used to get additional information about these forms.")
+            print("\nCannot print forms with *only unexpected results*.  No language data CSV path given, which is used to get additional information about these forms.")
 
 
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file_name, for_nouns):
+def print_form_sublist_as_csv(form_list, yaml_source_csv_path, output_file_name, for_nouns):
     # Need to remove the nouns or verbs
     updated_form_list = []
     for form in form_list:
@@ -189,11 +189,11 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file_name, for
 
     if len(updated_form_list) > 0:
         forms_written = 0
-        # Read in the spreadsheet of scraped forms to get more info about this form
-        scraped_forms = pd.read_csv(scraped_csv_path, keep_default_na = False)
-        scraped_forms = scraped_forms.sort_values(by='Class', ignore_index=True) # To accelerate the search process
+        # Read in the spreadsheet of forms used to generate the YAML to get more info about this form
+        lexical_data = pd.read_csv(yaml_source_csv_path, keep_default_na = False)
+        lexical_data = lexical_data.sort_values(by='Class', ignore_index=True) # To accelerate the search process
         # Determine how many "surface forms" there are per row
-        form_columns = [column for column in list(scraped_forms) if column.endswith("Surface") ]
+        form_columns = [column for column in list(lexical_data) if column.endswith("Surface") ]
         paradigm_indices = {}
         new_csv = pd.DataFrame() # To print (the subset of the scrape)
 
@@ -208,13 +208,13 @@ def print_form_sublist_as_csv(form_list, scraped_csv_path, output_file_name, for
                     print(f"Writing forms {i}-{len(updated_form_list) - 1}...")
             # Check if we know the starting point for this paradigm/pos yet
             if form["pos"] not in paradigm_indices.keys():
-                index = scraped_forms["Class"].searchsorted(form["pos"], side = 'left')
+                index = lexical_data["Class"].searchsorted(form["pos"], side = 'left')
                 paradigm_indices.update({form["pos"]: index})
 
             # Find the form we're looking for in the big spreadsheet
             inflectional_form = form["form"]
             search_starting_point = paradigm_indices[form["pos"]]
-            for index, row in (scraped_forms[search_starting_point:]).iterrows():
+            for index, row in (lexical_data[search_starting_point:]).iterrows():
                 row = row.to_dict()
                 if inflectional_form in [row[form_column] for form_column in form_columns]:
                     # Add this column, so that in cases with *mulitple* surface forms,
@@ -263,7 +263,7 @@ def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
-    parser.add_argument("--scraped_csv_path", type=str, help="The .csv file containing the language data.  Optional; only used if you want to print out some extra information about the test data.")
+    parser.add_argument("--yaml_source_csv_path", type=str, help="The .csv file containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
     parser.add_argument("--output_file_name", type=str, help="The name of the main summary CSV to be written.")
@@ -277,7 +277,7 @@ def main():
     OUTPUT_FILE_PATH = OUTPUT_DIR + "/" + args.output_file_name
     TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
 
-    results = read_logs(args.input_file_name, args.scraped_csv_path, args.for_nouns)
+    results = read_logs(args.input_file_name, args.yaml_source_csv_path, args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:

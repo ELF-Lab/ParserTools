@@ -205,8 +205,8 @@ class MorphTest:
                    "Fails: {red}{fails}{reset}, " +
                    "Total: {light_blue}{total}{reset}\n" +
                    "True positives ('passes'): {green}{passes}{reset}, " +
-                   "False negatives ('missing OPD analyses'): {red}{false_neg}{reset}, " +
-                   "False positives ('unexpected FST analyses'): {red}{false_pos}{reset}, " +
+                   "False negatives ('analyses missing from the FST'): {red}{false_neg}{reset}, " +
+                   "False positives ('unexpected analyses from the FST'): {red}{false_pos}{reset}, " +
                    "Forms with no analysis whatsoever: {light_blue}{no_analysis_fails}{reset}\n" +
                    "Unique inflected forms being tested: {light_blue}{unique_tests}{reset}, " +
                    "Inflected form + analysis pairs being tested: {light_blue}{form_analysis_pairs}{reset}\n" +
