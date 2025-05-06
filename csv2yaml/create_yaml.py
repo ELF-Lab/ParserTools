@@ -11,12 +11,23 @@ import os
 import pandas as pd
 import shutil
 
-# Assume that there are maximally five parallel forms on any given CSV
-# row
+# Run just `python3 create_yaml.py` to view help.
+# Assume that there are maximally five parallel forms on any given CSV row
 MAX_FORMS=10
 EMPTY_FIELD_MARKER = "NONE"
+HEADER = """Config:
+  hfst:
+    Gen: ../../../src/generator-gt-norm.hfst
+    Morph: ../../../src/analyser-gt-norm.hfst
+  xerox:
+    Gen: ../../../src/generator-gt-norm.xfst
+    Morph: ../../../src/analyser-gt-norm.xfst
+    App: lookup
+     
+Tests:
 
-# Run just `python3 create_yaml.py` to view help.
+  Lemma - ALL :
+"""
 
 def remove_empty(value):
     has_a_value = True
@@ -41,7 +52,6 @@ def create_output_directory(output_directory:str) -> str:
 def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_tags:str, regular_yaml_line_count:int, core_yaml_line_count:int) -> None:
     '''Create a yaml file for the given spreadsheet under the given analysis function.'''
 
-    output_line_count = 0
     # na_filter prevents the reading of "NA" values (= not applicable) as NaN
     df = pd.read_csv(file_name, keep_default_na=False)
 
@@ -94,44 +104,47 @@ def make_yaml(file_name:str, output_directory:str, analysis:callable, non_core_t
     # Convert tag1,tag2,... -> {tag1, tag2, ...}
     non_core_tags = set(non_core_tags.split(",")) if non_core_tags != "" else set()
 
-    # For each stem in the dictionary, write it to its own yaml file.
-    for key, value in yaml_dict.items():
-        output_file_name = os.path.join(output_directory,f"{key}.yaml")
-        core_output_file_name = os.path.join(output_directory,f"{key}-core.yaml")
-        # If the file doesn't exist, initialize it and write the forms
-        header = """Config:
-  hfst:
-    Gen: ../../../src/generator-gt-norm.hfst
-    Morph: ../../../src/analyser-gt-norm.hfst
-  xerox:
-    Gen: ../../../src/generator-gt-norm.xfst
-    Morph: ../../../src/analyser-gt-norm.xfst
-    App: lookup
-     
-Tests:
-
-  Lemma - ALL :
-"""
-        if not os.path.isfile(output_file_name):
-            with open(output_file_name, "w+") as yaml_file, \
-                 open(core_output_file_name, "w+") as core_yaml_file:
-                print(header, file = yaml_file)
-                print(header, file = core_yaml_file)
-        with open(output_file_name, "a") as yaml_file, \
-             open(core_output_file_name, "a") as core_yaml_file:
-            for tag, forms in value:
-                yaml_file.write(f"{tag}: {forms}\n")
-                output_line_count += 1
-                regular_yaml_line_count += 1
-                if len(non_core_tags.intersection(tag.split("+"))) != 0:
-                    continue
-                core_yaml_file.write(f"{tag}: {forms}\n")
-                core_yaml_line_count += 1
-
-        print(f"Wrote {output_line_count} lines to {output_file_name}")
-        output_line_count = 0
+    # For each word class in the dictionary, create its own YAML file.
+    for klass, analysis_and_forms_list in yaml_dict.items():
+        regular_output_file_name = os.path.join(output_directory,f"{klass}.yaml")
+        core_output_file_name = os.path.join(output_directory,f"{klass}-core.yaml")
+        regular_yaml_line_count, core_yaml_line_count = write_to_file(analysis_and_forms_list, regular_output_file_name, regular_yaml_line_count, core_output_file_name, core_yaml_line_count, non_core_tags)
 
     return regular_yaml_line_count, core_yaml_line_count
+
+
+def write_to_file(analysis_and_forms_list, regular_output_file_name, total_regular_yaml_line_count, core_output_file_name, total_core_yaml_line_count, non_core_tags):
+    current_regular_yaml_line_count = 0
+    current_core_yaml_line_count = 0
+
+    # If the file doesn't exist, initialize it
+    if not os.path.isfile(regular_output_file_name):
+        with open(regular_output_file_name, "w+") as yaml_file:
+            print(HEADER, file = yaml_file)
+        # Don't bother with the "core" files if there's no tags given
+        if non_core_tags:
+            with open(core_output_file_name, "w+") as core_yaml_file:
+                print(HEADER, file = core_yaml_file)
+    # Write the forms
+    for analysis, forms in analysis_and_forms_list:
+        with open(regular_output_file_name, "a") as yaml_file:
+            yaml_file.write(f"{analysis}: {forms}\n")
+            current_regular_yaml_line_count += 1
+            # Don't bother with the "core" files if there's no tags given
+            # If there are, check if we should write to the core file now
+            if non_core_tags and len(non_core_tags.intersection(analysis.split("+"))) == 0:
+                with open(core_output_file_name, "a") as core_yaml_file:
+                    core_yaml_file.write(f"{analysis}: {forms}\n")
+                    current_core_yaml_line_count += 1
+
+    print(f"Wrote {current_regular_yaml_line_count} lines to {regular_output_file_name}")
+    if non_core_tags:
+        print(f"Wrote {current_core_yaml_line_count} lines to {core_output_file_name}")
+
+    total_regular_yaml_line_count += current_regular_yaml_line_count
+    total_core_yaml_line_count += current_core_yaml_line_count
+
+    return total_regular_yaml_line_count, total_core_yaml_line_count
 
 def generate_analysis(json_file):
     config = load(open(json_file))
