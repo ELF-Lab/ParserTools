@@ -86,9 +86,8 @@ Also written into the Makefile are the expected names of many of these files (e.
 The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included in this repo, modified to customize the .log output format.
 
 Run the tests with `make check`. This will generate three log files:
-* `paradigm-test.log`: tests for the subset of the Ojibwe morphology which we currently understand well, from the noun and verb spreadsheets in `OjibweMorph`
-* `core-paradigm-test.log`: there is more uncertainty and dialectal variation in these tests
-* `opd-test.log`: tests that check integration of an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu)
+* `paradigm-test.log`: A smaller set of tests covering the noun and verb spreadsheets in `OjibweMorph`.
+* `opd-test.log`: A larger set of tests covering an external lexical resource, [the OPD](https://ojibwe.lib.umn.edu).
 
 ## Citation
 To cite this work or the contents of the repository in an academic work, please use the following:

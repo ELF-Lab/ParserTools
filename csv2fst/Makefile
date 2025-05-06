@@ -4,16 +4,16 @@ FOMA=foma
 
 # Source files
 # Change this to match your source morphology directory
-MORPHOLOGYSRCDIR=~/OjibweMorph
+MORPHOLOGYSRCDIR=~/Documents/ELF/OjibweTesting/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
-LEMMAS_DIR=~/OjibweLexicon/OPD
+LEMMAS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/OPD,~/Documents/ELF/OjibweTesting/OjibweLexicon/HammerlyFieldwork
 LEXICAL_DATA_TO_EXCLUDE=""
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 # Additional info used for testing the FST
-SPREADSHEETS_FOR_YAML_DIR=~/OjibweLexicon/OPD/for_yaml
-PARADIGM_MAPS_DIR=~/OjibweLexicon/resources
+SPREADSHEETS_FOR_YAML_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/OPD/for_yaml
+PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
 
 # For naming output files
 LANGUAGE_NAME=language
@@ -117,12 +117,13 @@ $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 
 check: check-core-paradigm check-paradigm check-opd
 
+# Add non-core-tags if you want to run some "core" tests as well
 $(OUTPUT_DIR)/paradigm_yaml_output:
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets $(VERB_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=verb
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets $(NOUN_JSON) ./ --non-core-tags=Prt,Dub,PrtDub,DubPrt --pos=noun
+	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 	rm -d yaml_output
 
@@ -153,6 +154,7 @@ $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-gener
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
 
+# If there are no core YAML files, this will do nothing.
 check-core-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
 	rm -f $(OUTPUT_DIR)/core-paradigm-test.log
 	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*core.yaml`; do \
@@ -160,6 +162,9 @@ check-core-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUT
                   $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
                   echo ; \
                   done > $(OUTPUT_DIR)/core-paradigm-test.log
+	if [ ! -s "$(OUTPUT_DIR)/core-paradigm-test.log" ]; then \
+		rm -f $(OUTPUT_DIR)/core-paradigm-test.log; \
+	fi
 
 check-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
 	rm -f $(OUTPUT_DIR)/paradigm-test.log

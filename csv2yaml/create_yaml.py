@@ -161,7 +161,7 @@ if __name__ == '__main__':
     parser.add_argument("csv_directory", type=str, help="Path to the directory containing the spreadsheet(s).")
     parser.add_argument("morphological_tag_file", type=str, help="Path to the JSON file containing \"morph_features\", specifying the order of tags for this POS.")
     parser.add_argument("output_parent_directory", type=str, help="Path to the folder where the yaml files will be saved (inside their own subdirectory).")
-    parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\"")
+    parser.add_argument("--non-core-tags", dest="non_core_tags", action="store",default="",help="If one of these tags occurs in the analysis, the form will not be included in core yaml tests. Example: \"Prt,Dub,PrtDub\".  If no non-core-tags are specified, no core files are written, as they would be identical to the regular YAML files.")
     parser.add_argument("--pos", dest="pos", action="store", default="verb", help="Which POS are we generating tests for (noun or verb).")
     args = parser.parse_args()
     output_directory = create_output_directory(args.output_parent_directory + "yaml_output/")
