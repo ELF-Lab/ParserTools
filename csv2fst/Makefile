@@ -18,11 +18,24 @@ PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
 # For naming output files
 LANGUAGE_NAME=language
 
-# YAML tests
+# *** Constants for YAML TESTS ***
+# * Tools *
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
-
 MORPHTEST=src/morph-test.py
+# * Change the below values to specify your tests *
+# A keyword that will be used to name output files etc.
+LABEL_FOR_TESTS="paradigm"
+VERB_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/VerbSpreadsheets
+NOUN_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/NounSpreadsheets
+# This can be the regular FST, or some alternative versions created further
+# below in the Tests section of this Makefile
+FST_FOR_TESTS=$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin
+# * Do not change the below values; determined automatically *
+YAML_DIR=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)_yaml_output
+REGULAR_TEST_LOG=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)-test.log
+CORE_TEST_LOG=$(OUTPUT_DIR)/core-$(LABEL_FOR_TESTS)-test.log
+
 
 # Definitions for building the LEXC files
 # POS are determined by the files in config/
@@ -139,12 +152,12 @@ $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-gener
 
 # Generate the YAML files for testing
 # Add non-core-tags if you want to run some "core" tests as well
-$(OUTPUT_DIR)/paradigm_yaml_output:
+$(YAML_DIR):
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/VerbSpreadsheets $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATEYAML) $(VERB_DATA_FOR_TESTS_DIR) $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(MORPHOLOGYSRCDIR)/NounSpreadsheets $(NOUN_JSON) ./ --pos=noun
+	$(PYTHON) $(CREATEYAML) $(NOUN_DATA_FOR_TESTS_DIR) $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 	rm -d yaml_output
 
@@ -159,26 +172,26 @@ $(OUTPUT_DIR)/opd_yaml_output:
 
 # Create test .log files from the YAML files
 # If there are no core YAML files, this will do nothing.
-check-core-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
-	rm -f $(OUTPUT_DIR)/core-paradigm-test.log
-	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*core.yaml`; do \
+check-core-paradigm:$(FST_FOR_TESTS) $(YAML_DIR)
+	rm -f $(CORE_TEST_LOG)
+	for f in `ls $(YAML_DIR)/*core.yaml`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
-                  done > $(OUTPUT_DIR)/core-paradigm-test.log
-	if [ ! -s "$(OUTPUT_DIR)/core-paradigm-test.log" ]; then \
-		rm -f $(OUTPUT_DIR)/core-paradigm-test.log; \
+                  done > $(CORE_TEST_LOG)
+	if [ ! -s "$(CORE_TEST_LOG)" ]; then \
+		rm -f $(CORE_TEST_LOG); \
 	fi
 
-check-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
-	rm -f $(OUTPUT_DIR)/paradigm-test.log
-	for f in `ls $(OUTPUT_DIR)/paradigm_yaml_output/*.yaml | grep -v core`; do \
+check-paradigm:$(FST_FOR_TESTS) $(YAML_DIR)
+	rm -f $(REGULAR_TEST_LOG)
+	for f in `ls $(YAML_DIR)/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $$f; \
+                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
-                  done > $(OUTPUT_DIR)/paradigm-test.log
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/paradigm-test.log" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_verb_test_summary.csv"
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/paradigm-test.log" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_noun_test_summary.csv" --for_nouns
+                  done > $(REGULAR_TEST_LOG)
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_verb_test_summary.csv"
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_noun_test_summary.csv" --for_nouns
 
 check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/opd_yaml_output
 	rm -f $(OUTPUT_DIR)/opd-test.log	
@@ -192,7 +205,7 @@ check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_a
 
 
 clean:
-	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(OUTPUT_DIR)/paradigm_yaml_output $(OUTPUT_DIR)/opd_yaml_output $(OUTPUT_DIR)/core-paradigm-test.log $(OUTPUT_DIR)/paradigm-test.log $(OUTPUT_DIR)/opd-test.log csv_output
+	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(YAML_DIR) $(OUTPUT_DIR)/opd_yaml_output $(CORE_TEST_LOG) $(REGULAR_TEST_LOG) $(OUTPUT_DIR)/opd-test.log csv_output
 
 #####################################################################
 #                                                                   #
