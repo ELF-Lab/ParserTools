@@ -1,9 +1,11 @@
-# Tools
+# *** Constants for generating the FST ***
+# * Tools *
 PYTHON=python3
 FOMA=foma
-
-# Source files
-# Change this to match your source morphology directory
+# * Keyword (for naming output files, etc.) *
+LANGUAGE_NAME=language
+# * Source files *
+# Change the below values to point to the relevant files on your system
 MORPHOLOGYSRCDIR=~/Documents/ELF/OjibweTesting/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
@@ -11,33 +13,29 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 LEMMAS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/OPD,~/Documents/ELF/OjibweTesting/OjibweLexicon/HammerlyFieldwork
 LEXICAL_DATA_TO_EXCLUDE=""
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
-# Additional info used for testing the FST
-SPREADSHEETS_FOR_YAML_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/OPD/for_yaml
-PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
 
-# For naming output files
-LANGUAGE_NAME=language
-
-# *** Constants for YAML TESTS ***
+# *** Constants for YAML tests ***
 # * Tools *
 CREATEYAML=../csv2yaml/create_yaml.py
 LOOKUP=flookup
 MORPHTEST=src/morph-test.py
-# * Change the below values to specify your tests *
-# A keyword that will be used to name output files etc.
+# * Keyword (for naming output files, etc.) *
 LABEL_FOR_TESTS="paradigm"
+# * Source files *
+# Change the below values to point to the relevant files on your system
+PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
 VERB_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/VerbSpreadsheets
 NOUN_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/NounSpreadsheets
 # This can be the regular FST, or some alternative versions created further
 # below in the Tests section of this Makefile
 FST_FOR_TESTS=$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin
-# * Do not change the below values; determined automatically *
+# Do not change the below values; determined automatically
 YAML_DIR=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)_yaml_output
 REGULAR_TEST_LOG=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)-test.log
 CORE_TEST_LOG=$(OUTPUT_DIR)/core-$(LABEL_FOR_TESTS)-test.log
 
-
-# Definitions for building the LEXC files
+# *** Constants for building the LEXC files ***
+# Likely no need to change any of these values!
 # POS are determined by the files in config/
 CONFIG_FILES=$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 # Add escape chars to the file path so it can be used in the gsub below
@@ -124,11 +122,11 @@ $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 #                                                                   #
 #####################################################################
 
-# We have to build a separate FST for YAML tests because entries from
-# the external lexical database will interfere with YAML testing due
-# to morphological ambiguity.
+# We can build a separate FST which you can use for YAML tests because
+# entries from the external lexical database will interfere with YAML
+# testing due to morphological ambiguity.
 
-check: check-core-paradigm check-paradigm check-opd
+check: check-core-tests check-tests
 
 # A different version of the lexc files that *doesn't* use the external lexical database
 $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
@@ -161,18 +159,19 @@ $(YAML_DIR):
 	mv yaml_output/* $@
 	rm -d yaml_output
 
-$(OUTPUT_DIR)/opd_yaml_output:
-	rm -Rf $@
-	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/verbs/ $(VERB_JSON) ./ --pos=verb
-	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(SPREADSHEETS_FOR_YAML_DIR)/nouns/ $(NOUN_JSON) ./ --pos=noun
-	mv yaml_output/* $@
-	rm -d yaml_output
-
 # Create test .log files from the YAML files
+check-tests:$(FST_FOR_TESTS) $(YAML_DIR)
+	rm -f $(REGULAR_TEST_LOG)
+	for f in `ls $(YAML_DIR)/*.yaml | grep -v core`; do \
+                  echo "YAML test file $$f"; \
+                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
+                  echo ; \
+                  done > $(REGULAR_TEST_LOG)
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_verb_test_summary.csv"
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_noun_test_summary.csv" --for_nouns
+
 # If there are no core YAML files, this will do nothing.
-check-core-paradigm:$(FST_FOR_TESTS) $(YAML_DIR)
+check-core-tests:$(FST_FOR_TESTS) $(YAML_DIR)
 	rm -f $(CORE_TEST_LOG)
 	for f in `ls $(YAML_DIR)/*core.yaml`; do \
                   echo "YAML test file $$f"; \
@@ -183,29 +182,8 @@ check-core-paradigm:$(FST_FOR_TESTS) $(YAML_DIR)
 		rm -f $(CORE_TEST_LOG); \
 	fi
 
-check-paradigm:$(FST_FOR_TESTS) $(YAML_DIR)
-	rm -f $(REGULAR_TEST_LOG)
-	for f in `ls $(YAML_DIR)/*.yaml | grep -v core`; do \
-                  echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
-                  echo ; \
-                  done > $(REGULAR_TEST_LOG)
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_verb_test_summary.csv"
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "paradigm_noun_test_summary.csv" --for_nouns
-
-check-opd:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin assets/delete_alt_tag.xfst $(OUTPUT_DIR)/opd_yaml_output
-	rm -f $(OUTPUT_DIR)/opd-test.log	
-	for f in `ls $(OUTPUT_DIR)/opd_yaml_output/*.yaml | grep -v core`; do \
-                  echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin $$f; \
-                  echo ; \
-                  done > $(OUTPUT_DIR)/opd-test.log
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --yaml_source_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/verbs/verb_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "opd_verb_test_summary.csv"
-	$(PYTHON) src/test_summary.py --input_file_name "$(OUTPUT_DIR)/opd-test.log" --yaml_source_csv_path "$(SPREADSHEETS_FOR_YAML_DIR)/nouns/noun_inflectional_forms_for_yaml.csv" --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "opd_noun_test_summary.csv" --for_nouns
-
-
 clean:
-	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(YAML_DIR) $(OUTPUT_DIR)/opd_yaml_output $(CORE_TEST_LOG) $(REGULAR_TEST_LOG) $(OUTPUT_DIR)/opd-test.log csv_output
+	rm -rf $(OUTPUT_DIR)/generated $(OUTPUT_DIR)/check-generated $(YAML_DIR) $(CORE_TEST_LOG) $(REGULAR_TEST_LOG) csv_output
 
 #####################################################################
 #                                                                   #
