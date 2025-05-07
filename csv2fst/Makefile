@@ -117,6 +117,27 @@ $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 
 check: check-core-paradigm check-paradigm check-opd
 
+# A different version of the lexc files that *doesn't* use the external lexical database
+$(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
+	mkdir -p $(OUTPUT_DIR)/check-generated
+	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+                              --source-path $(MORPHOLOGYSRCDIR) \
+                              --database-paths $(LEMMAS_DIR) \
+                              --lexc-path $(OUTPUT_DIR)/check-generated \
+                              --add-derivations $(DERIVATIONS) \
+                              --read-lexical-database False \
+                              --alt-tag False \
+                              --lexical-data-to-exclude $(LEXICAL_DATA_TO_EXCLUDE)
+	cd $(OUTPUT_DIR)/check-generated; \
+        cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
+
+# A different version of the FST that *doesn't* use the external lexical database
+$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-generated/all.lexc $(OUTPUT_DIR)/check-generated/phonology.xfst $(OUTPUT_DIR)/check-generated/compile_fst.xfst
+	mkdir -p $(OUTPUT_DIR)/check-generated
+	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
+	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
+
+# Generate the YAML files for testing
 # Add non-core-tags if you want to run some "core" tests as well
 $(OUTPUT_DIR)/paradigm_yaml_output:
 	rm -Rf $@
@@ -136,24 +157,7 @@ $(OUTPUT_DIR)/opd_yaml_output:
 	mv yaml_output/* $@
 	rm -d yaml_output
 
-$(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
-	mkdir -p $(OUTPUT_DIR)/check-generated
-	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
-                              --source-path $(MORPHOLOGYSRCDIR) \
-                              --database-paths $(LEMMAS_DIR) \
-                              --lexc-path $(OUTPUT_DIR)/check-generated \
-                              --add-derivations $(DERIVATIONS) \
-                              --read-lexical-database False \
-                              --alt-tag False \
-                              --lexical-data-to-exclude $(LEXICAL_DATA_TO_EXCLUDE)
-	cd $(OUTPUT_DIR)/check-generated; \
-        cat root.lexc `ls *lexc | grep -v root.lexc | tr '\n' ' '` > all.lexc
-
-$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-generated/all.lexc $(OUTPUT_DIR)/check-generated/phonology.xfst $(OUTPUT_DIR)/check-generated/compile_fst.xfst 
-	mkdir -p $(OUTPUT_DIR)/check-generated
-	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
-	cd $(OUTPUT_DIR)/check-generated; $(FOMA) -f compile_fst.xfst
-
+# Create test .log files from the YAML files
 # If there are no core YAML files, this will do nothing.
 check-core-paradigm:$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin $(OUTPUT_DIR)/paradigm_yaml_output
 	rm -f $(OUTPUT_DIR)/core-paradigm-test.log
