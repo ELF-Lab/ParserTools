@@ -54,7 +54,10 @@ deactivate myvenv
 
 > Note: The `Makefile` in this directory begins with some variables you can change if you run into errors.  For example, you can change the command for running python (on Windows, we had to change this from `python3` to `python`).
 
-If you're working towards building the example FST for Ojibwe, once you're done with installing these prerequisites, carry on with the instructions in [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph#building-the-fst).
+If you're working towards building the example FST for Ojibwe, once you're done with installing these prerequisites, carry on with the instructions in [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph#building-the-fst).  But make sure you keep the virtual environment you set up here up and running!
+- Just change directories so that you end up back in your local copy of OjibweMorph, ready to run commands there, with this virtual environment still active.  For example, if you installed OjibweMorph and ParserTools in the same directory, just use the command `cd ../..OjibweMorph/` (because you're currently in `ParserTools/csv2fst/`).
+- If you get a `ModuleNotFoundError` when running commands in OjibweMorph, it may be that you are no longer in the virtual environment (and so the modules installed in the virtual environment are not accessible).
+- You can always check that the name of the virtual environment still appears in your command line prompt to know if it is active.
 
 ### Building the FST
 The FST is built using a Makefile.  Before building, there are three variables within the Makefile which must be set to point to the right directory locations:  
