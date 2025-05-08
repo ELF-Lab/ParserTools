@@ -100,7 +100,7 @@ def prepare_output(results):
 
     return output_line
 
-def read_logs(input_file_name, yaml_source_csv_path, for_nouns):
+def read_logs(input_file_name, yaml_source_csv_dir, for_nouns):
     results = {}
     forms_with_no_results = []
     forms_with_only_unexpected_results = []
@@ -161,15 +161,15 @@ def read_logs(input_file_name, yaml_source_csv_path, for_nouns):
             results.update({test_section: test_section_results})
 
     if DO_PRINT_FORMS_WITH_NO_RESULTS:
-        if yaml_source_csv_path:
-            print_form_sublist_as_csv(forms_with_no_results, yaml_source_csv_path, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
+        if yaml_source_csv_dir:
+            print_form_sublist_as_csv(forms_with_no_results, yaml_source_csv_dir, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
         else:
             print("\nCannot print forms with *no results*.  No language data CSV path given, which is used to get additional information about these forms.")
 
     if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
-        if yaml_source_csv_path:
+        if yaml_source_csv_dir:
             if any_passes:
-                print_form_sublist_as_csv(forms_with_only_unexpected_results, yaml_source_csv_path, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, yaml_source_csv_dir, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
             else:
                 print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
         else:
@@ -180,7 +180,7 @@ def read_logs(input_file_name, yaml_source_csv_path, for_nouns):
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, yaml_source_csv_path, output_file_name, for_nouns):
+def print_form_sublist_as_csv(form_list, yaml_source_csv_dir, output_file_name, for_nouns):
     # Need to remove the nouns or verbs
     updated_form_list = []
     for form in form_list:
@@ -188,9 +188,19 @@ def print_form_sublist_as_csv(form_list, yaml_source_csv_path, output_file_name,
             updated_form_list.append(form)
 
     if len(updated_form_list) > 0:
+        lexical_data = None
         forms_written = 0
-        # Read in the spreadsheet of forms used to generate the YAML to get more info about this form
-        lexical_data = pd.read_csv(yaml_source_csv_path, keep_default_na = False)
+        # Read in the CSV(s) of forms used to generate the YAML to get more info about this form
+        for file_name in os.listdir(yaml_source_csv_dir):
+            full_file_name = os.path.join(yaml_source_csv_dir, file_name)
+            if full_file_name.endswith(".csv"):
+                csv_data = pd.read_csv(full_file_name, keep_default_na = False)
+                if type(lexical_data) == pd.core.frame.DataFrame:
+                    lexical_data = pd.concat([lexical_data, csv_data])
+                else:
+                    lexical_data = csv_data
+        # Now we have one dataframe with all the data from the CSV(s)
+
         lexical_data = lexical_data.sort_values(by='Class', ignore_index=True) # To accelerate the search process
         # Determine how many "surface forms" there are per row
         form_columns = [column for column in list(lexical_data) if column.endswith("Surface") ]
@@ -203,9 +213,9 @@ def print_form_sublist_as_csv(form_list, yaml_source_csv_path, output_file_name,
             update_increment = 100
             if i % update_increment == 0:
                 if i + update_increment < len(updated_form_list):
-                    print(f"Writing forms {i}-{i + update_increment - 1}...")
+                    print(f"Writing forms {i + 1}-{i + update_increment}...")
                 else:
-                    print(f"Writing forms {i}-{len(updated_form_list) - 1}...")
+                    print(f"Writing forms {i + 1}-{len(updated_form_list)}...")
             # Check if we know the starting point for this paradigm/pos yet
             if form["pos"] not in paradigm_indices.keys():
                 index = lexical_data["Class"].searchsorted(form["pos"], side = 'left')
@@ -263,7 +273,7 @@ def main():
     # Sets up argparse.
     parser = argparse.ArgumentParser(prog="test_summary")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
-    parser.add_argument("--yaml_source_csv_path", type=str, help="The .csv file containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.")
+    parser.add_argument("--yaml_source_csv_dir", type=str, help="The directory containing the .csv file(s) containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
     parser.add_argument("--output_file_name", type=str, help="The name of the main summary CSV to be written.")
@@ -277,7 +287,7 @@ def main():
     OUTPUT_FILE_PATH = OUTPUT_DIR + "/" + args.output_file_name
     TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
 
-    results = read_logs(args.input_file_name, args.yaml_source_csv_path, args.for_nouns)
+    results = read_logs(args.input_file_name, args.yaml_source_csv_dir, args.for_nouns)
     output_line = prepare_output(results)
     prev_output_line = get_prev_output_line()
     if prev_output_line == output_line:

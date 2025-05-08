@@ -26,8 +26,6 @@ LABEL_FOR_TESTS="paradigm"
 PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
 VERB_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/VerbSpreadsheets
 NOUN_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/NounSpreadsheets
-VERB_YAML_SOURCE_CSV=""
-NOUN_YAML_SOURCE_CSV=""
 # This can be the regular FST, or some alternative versions created further
 # below in the Tests section of this Makefile
 FST_FOR_TESTS=$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin
@@ -169,8 +167,8 @@ check-tests:$(FST_FOR_TESTS) $(YAML_DIR)
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
                   done > $(REGULAR_TEST_LOG)
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_path $(VERB_YAML_SOURCE_CSV) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_verb_test_summary.csv"
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_path $(NOUN_YAML_SOURCE_CSV) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_noun_test_summary.csv" --for_nouns
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(VERB_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_verb_test_summary.csv"
+	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(NOUN_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_name "$(LABEL_FOR_TESTS)_noun_test_summary.csv" --for_nouns
 
 # If there are no core YAML files, this will do nothing.
 check-core-tests:$(FST_FOR_TESTS) $(YAML_DIR)
