@@ -8,7 +8,7 @@ import pandas as pd
 
 # Determined by command line args
 OUTPUT_DIR = ""
-OUTPUT_FILE_PATH = ""
+OUTPUT_FILE_IDENTIFIER = ""
 # Determined by the paradigm map file
 TEST_SECTIONS = []
 # Change these booleans as desired!
@@ -27,7 +27,7 @@ def get_test_sections_from_paradigm_map(paradigm_map_file):
     test_sections = sorted(list(test_sections))
     return test_sections
 
-def write_to_csv(output_line):
+def write_to_csv(output_line, summary_output_file_path):
     HEADER_1 = "Date,"
     HEADER_2 = ","
     summary_sections = ["Total"]
@@ -37,20 +37,20 @@ def write_to_csv(output_line):
         HEADER_1 += ",,,"
         HEADER_2 += "Precision,Recall,Forms,Forms Without Results,"
 
-    if not os.path.isfile(OUTPUT_FILE_PATH):
-            with open(OUTPUT_FILE_PATH, "w+") as csv_file:
+    if not os.path.isfile(summary_output_file_path):
+            with open(summary_output_file_path, "w+") as csv_file:
                 print(HEADER_1, file = csv_file)
                 print(HEADER_2, file = csv_file)
-    with open(OUTPUT_FILE_PATH, "a") as csv_file:
+    with open(summary_output_file_path, "a") as csv_file:
             csv_file.write(output_line + "\n")
     
-    print("Wrote to", OUTPUT_FILE_PATH)
+    print("Wrote to", summary_output_file_path)
     csv_file.close()
 
-def get_prev_output_line():
+def get_prev_output_line(summary_output_file_path):
     prev_output_line = ""
-    if os.path.isfile(OUTPUT_FILE_PATH):
-        with open(OUTPUT_FILE_PATH, "r") as csv_file:
+    if os.path.isfile(summary_output_file_path):
+        with open(summary_output_file_path, "r") as csv_file:
             lines = csv_file.readlines()
             if len(lines) >= 2: # At least one header and content line
                 prev_output_line = lines[-1].strip()
@@ -180,7 +180,7 @@ def read_logs(input_file_name, yaml_source_csv_dir, for_nouns):
     return results
 
 # Print a subset of the reformatted scrape CSV, with only rows for certain forms
-def print_form_sublist_as_csv(form_list, yaml_source_csv_dir, output_file_name, for_nouns):
+def print_form_sublist_as_csv(form_list, yaml_source_csv_dir, output_file_basic_name, for_nouns):
     # Need to remove the nouns or verbs
     updated_form_list = []
     for form in form_list:
@@ -236,9 +236,9 @@ def print_form_sublist_as_csv(form_list, yaml_source_csv_dir, output_file_name, 
 
         # Print the results
         if for_nouns:
-            output_file_path = OUTPUT_DIR + "/" + "noun_" + output_file_name
+            output_file_path = OUTPUT_DIR + "/" + OUTPUT_FILE_IDENTIFIER + "_noun_" + output_file_basic_name
         else:
-            output_file_path = OUTPUT_DIR + "/" + "verb_" + output_file_name
+            output_file_path = OUTPUT_DIR + "/" + OUTPUT_FILE_IDENTIFIER + "_verb_" + output_file_basic_name
         new_csv.to_csv(output_file_path, index = False)
         print(f"\nWrote {forms_written} forms to {output_file_path}")
 
@@ -276,24 +276,29 @@ def main():
     parser.add_argument("--yaml_source_csv_dir", type=str, help="The directory containing the .csv file(s) containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
     parser.add_argument("--output_dir", type=str, help="The directory where output files will be written.")
-    parser.add_argument("--output_file_name", type=str, help="The name of the main summary CSV to be written.")
+    parser.add_argument("--output_file_identifier", type=str, help="A keyword associated with this set of tests that will be included in the file names of all outputted CSVs. For example, use 'paradigm' to call your files 'paradigm_verb_test_summmary.csv' etc.")
     parser.add_argument("--for_nouns", action="store_true", help="If False, it's assumed to be for_verbs instead!")
     args = parser.parse_args()
 
     global OUTPUT_DIR
-    global OUTPUT_FILE_PATH
+    global OUTPUT_FILE_IDENTIFIER
     global TEST_SECTIONS
     OUTPUT_DIR = args.output_dir
-    OUTPUT_FILE_PATH = OUTPUT_DIR + "/" + args.output_file_name
+    OUTPUT_FILE_IDENTIFIER = args.output_file_identifier
+    summary_output_file_path = OUTPUT_DIR + "/" + OUTPUT_FILE_IDENTIFIER
+    if args.for_nouns:
+        summary_output_file_path += "_noun_test_summary.csv"
+    else:
+        summary_output_file_path += "_verb_test_summary.csv"
     TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
 
     results = read_logs(args.input_file_name, args.yaml_source_csv_dir, args.for_nouns)
     output_line = prepare_output(results)
-    prev_output_line = get_prev_output_line()
+    prev_output_line = get_prev_output_line(summary_output_file_path)
     if prev_output_line == output_line:
-        print(f"Did not write to CSV ({OUTPUT_FILE_PATH}) as there were no changes to the test results (or date!).")
+        print(f"Did not write to CSV ({summary_output_file_path}) as there were no changes to the test results (or date!).")
     else:
-        write_to_csv(output_line)
+        write_to_csv(output_line, summary_output_file_path)
     print_summary_stats(results, args.for_nouns)
 
 main()
