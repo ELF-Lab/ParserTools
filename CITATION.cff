@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Hammerly"
+  given-names: "Christopher"
+  orcid: ""
+- family-names: "Livesay"
+  given-names: "Nora"
+  orcid: ""
+- family-names: "Arppe"
+  given-names: "Antti"
+  orcid: ""
+- family-names: "Stacey"
+  given-names: "Anna"
+  orcid: ""
+- family-names: "Silfverberg"
+  given-names: "Miikka"
+  orcid: ""
+title: "OjibweMorph: An approachable morphological parser for Ojibwe"
+version: 0.1.0
+date-released: 2025-05-15
+url: "https://christopherhammerly.com/publication/ojibwemorph/OjibweMorph.pdf"
