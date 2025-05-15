@@ -8,7 +8,7 @@ define Lexicon ;
 ! Punctuation model
 define Punct PUNCT:0 [0:"," | 0:"." | 0:"-" | 0:"?" | 0:";" | 0:%!  |
                       0:":" | 0:%"  | 0:"`" | 0:"<" | 0:">" | 0:"+" |
-		      0:"*" | 0:"–" | 0:"_" ]+ ;
+		      0:"*" | 0:"–" | 0:"_" | 0:"/" | 0:"|" ]+ ;
 
 define PREBD "<<"+ ;
 define SUFBD ">>"+ ;
@@ -19,7 +19,7 @@ source phonology.xfst
 define Rules ;
 
 ! Make sure that flag diacritics don't interfere with composition.
-set flag-is-epsilon ON
+set flag-is-epsilon ON 
 
 ! Compose lexicon and rules
 read regex [ Lexicon .o. Rules ] | Punct ;
@@ -34,12 +34,12 @@ compact sigma
 ! when there are flags. The FST will grow but its behavior remains the
 ! same.
 eliminate flags
-set flag-is-epsilon OFF
+set flag-is-epsilon OFF 
 
 ! Let's filter out empty strings because those are annoying when you
 ! run random-pairs. This can only be done after flag elimination.
 define Analyzer ;
 regex Analyzer .o. [ ?+ ] ;
 
-save stack ojibwe.fomabin
-write att > ojibwe.att
+save stack LANGUAGE_NAME.fomabin
+write att > LANGUAGE_NAME.att

@@ -89,7 +89,7 @@ def get_allomorph(pv,order_filter):
         raise ValueError(f"Unknown order filter {order_filter}")
     return None if allomorph == None else (canonical, allomorph)
 
-def get_load_pre_element_database(source_dir,prefix_database):
+def get_load_pre_element_database(source_dirs,prefix_database):
     """Return a function which can be used to load the preverb database
        in a jinja template file. We need a specialized function because
        information about file paths is not accessible from the template.
@@ -97,17 +97,18 @@ def get_load_pre_element_database(source_dir,prefix_database):
     """    
     def load_pre_element_database(pv_tag,next_sublex):
         res = ""
-        paradigm = sub("/$","",pv_tag)
-        if not prefix_database in ["None", None] and not source_dir in ["None", None] :
-            df = pd.read_csv(pjoin(source_dir, prefix_database))
-            for _, pv in df.iterrows():
-                if pv.Paradigm == paradigm:
-                    if res != "":
-                        res += "\n"
-                    tag = escape(f"{pv_tag}{pv.Lemma}+")
-                    # We need to register our preverb/prenoun tag as a multicharacter symbol
-                    LexcPath.multichar_symbols.add(tag)
-                    res += f"{tag}:{pv.Stem} {next_sublex} ;"
+        for source_dir in source_dirs:
+            paradigm = sub("/$","",pv_tag)
+            if not prefix_database in ["None", None] and not source_dir in ["None", None] :
+                df = pd.read_csv(pjoin(source_dir, prefix_database))
+                for _, pv in df.iterrows():
+                    if pv.Paradigm == paradigm:
+                        if res != "":
+                            res += "\n"
+                        tag = escape(f"{pv_tag}{pv.Lemma}+")
+                        # We need to register our preverb/prenoun tag as a multicharacter symbol
+                        LexcPath.multichar_symbols.add(tag)
+                        res += f"{tag}:{pv.Stem} {next_sublex} ;"
         return res    
     return load_pre_element_database
     
@@ -211,7 +212,7 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
     template_dir = pjoin(expanduser(source_path),
                          dirname(config['template_path']))
     env = Environment(loader=FileSystemLoader(template_dir))
-    database_src_dir = config["database_src_dir"]
+    database_src_dirs = config["database_src_dirs"]
     prefix_database = (config["lexical_prefix_database"]
                        if "lexical_prefix_database" in config
                        else "None")
@@ -222,7 +223,7 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
         "load_pre_element_csv":
         get_load_pre_element_csv(csv_src_path),
         "load_pre_element_database":
-        get_load_pre_element_database(database_src_dir,prefix_database),
+        get_load_pre_element_database(database_src_dirs,prefix_database),
         "generate_pre_element_sub_lexicons":
         get_generate_pre_element_sub_lexicons(csv_src_path),
         "add_lexeme_multichar_symbols":

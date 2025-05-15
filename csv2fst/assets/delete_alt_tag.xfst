@@ -6,9 +6,9 @@
 ! they are not present in the yaml test-files crawled from OPD. This
 ! script does just that using a replace rule.
 
-load ojibwe.fomabin
+load LANGUAGE_NAME.fomabin
 define Lexicon ;
 
 define AltRule "+Alt" -> 0 ;
 read regex AltRule.i .o. Lexicon ;
-save stack ojibwe.noAlt.fomabin
+save stack LANGUAGE_NAME.noAlt.fomabin

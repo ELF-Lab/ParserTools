@@ -1,6 +1,6 @@
-# Overview
+# <mark>Docs under construction</mark>
 
-<mark>Docs under construction</mark>
+<mark>Some information in this directory is outdated; please refer to [the main README](https://github.com/ELF-Lab/ParserTools/blob/dev/README.md) for up-to-date information.</mark>
 
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
@@ -45,37 +45,3 @@ More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) mo
 ## Developer documentation
 
 1. [`ParserTools/csv2fst`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/ParserTools/blob/master/csv2fst/docs/csv2fst_html_docs/index.html)
-
-## How to cite this project
-
-TBD 
-
-(We'll put together a small technical report which can be cited. Ultimately the idea is to write a proper paper on the project.)
-
-## Acknowledgements
-
-Several people and organizations have (directly or indirectly) contributed code, advice, tools and/or materials to this project. We extend our sincerest gratitude for the help! 
-
-### People
-
-* Antti Arppe
-* Chris Hamerly
-* Ogimaawigwanebiik Nancy Jones
-* Nora Livesay
-* John Nichols
-* Minh Nguyen
-* Scott Parhill
-* Sandra Radic
-* Miikka Silfverberg
-* Anna Stacey
-* Reed Steiner
-
-### Organizations and resources
-
-* [AltLab](https://altlab.ualberta.ca/)
-* [CultureFoundry](https://www.culturefoundrystudios.com/)
-* [Foma](https://fomafst.github.io/)
-* [Giellatekno](https://giellatekno.uit.no/index.eng.html)
-* [Ojibwe People's Dictionary](https://ojibwe.lib.umn.edu/about-ojibwe-language)
-* [UBC ELF-Lab](https://github.com/ELF-Lab)
-
