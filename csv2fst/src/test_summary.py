@@ -45,7 +45,6 @@ def write_to_csv(output_line, summary_output_file_path):
             csv_file.write(output_line + "\n")
     
     print("Wrote to", summary_output_file_path)
-    csv_file.close()
 
 def get_prev_output_line(summary_output_file_path):
     prev_output_line = ""
@@ -175,7 +174,7 @@ def read_logs(input_file_name, yaml_source_csv_dir, for_nouns):
         else:
             print("\nCannot print forms with *only unexpected results*.  No language data CSV path given, which is used to get additional information about these forms.")
 
-
+    file.close()
     assert len(results) > 0, "\nERROR: The log file didn't have any test results to read!"
     return results
 
