@@ -1,6 +1,6 @@
-# Overview
+# <mark>Docs under construction</mark>
 
-<mark>Docs under construction</mark>
+<mark>Some information in this directory is outdated; please refer to [the main README](https://github.com/ELF-Lab/ParserTools/blob/dev/README.md) for up-to-date information.</mark>
 
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
