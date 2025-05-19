@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>csv2fst.src API documentation</title>
-<meta name="description" content="">
+<title>csv2fst.src.extract_tag_combinations API documentation</title>
+<meta name="description" content="Script which extracts all tag combinations from paradigm CSV files.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
@@ -33,58 +33,34 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>csv2fst.src</code></h1>
+<h1 class="title">Module <code>csv2fst.src.extract_tag_combinations</code></h1>
 </header>
 <section id="section-intro">
+<p>Script which extracts all tag combinations from paradigm CSV files.</p>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt><code class="name"><a title="csv2fst.src.csv2lexc" href="csv2lexc.html">csv2fst.src.csv2lexc</a></code></dt>
+<dt id="csv2fst.src.extract_tag_combinations.get_tags"><code class="name flex">
+<span>def <span class="ident">get_tags</span></span>(<span>tag_list)</span>
+</code></dt>
 <dd>
-<div class="desc"><p>Script for compiling a set of lexc files from the following resources: …</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.extract_tag_combinations" href="extract_tag_combinations.html">csv2fst.src.extract_tag_combinations</a></code></dt>
-<dd>
-<div class="desc"><p>Script which extracts all tag combinations from paradigm CSV files.</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.lexc_comment" href="lexc_comment.html">csv2fst.src.lexc_comment</a></code></dt>
-<dd>
-<div class="desc"><p>Functions for transforming sublexicon names like
-<code>VAIO_PrefixBoundary</code> into lexc comment blocks: …</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.lexc_path" href="lexc_path.html">csv2fst.src.lexc_path</a></code></dt>
-<dd>
-<div class="desc"><p>Functions and classes for converting a morphological paradigm
-spreadsheet row into one or more paths in a lexc file.</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.lexicon" href="lexicon.html">csv2fst.src.lexicon</a></code></dt>
-<dd>
-<div class="desc"><p>Class for representing a lexc file.</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.log" href="log.html">csv2fst.src.log</a></code></dt>
-<dd>
-<div class="desc"><p>Simple module for message logging during compilation (this might be
-replaced by a real logging library at some point).</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.morph-test" href="morph-test.html">csv2fst.src.morph-test</a></code></dt>
-<dd>
-<div class="desc"></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.templates" href="templates.html">csv2fst.src.templates</a></code></dt>
-<dd>
-<div class="desc"><p>Code for dealing with conversion of Jinja2 templates to lexc
-code.</p></div>
-</dd>
-<dt><code class="name"><a title="csv2fst.src.test_summary" href="test_summary.html">csv2fst.src.test_summary</a></code></dt>
-<dd>
-<div class="desc"><p>A script for summarizing results of morphological analysis tests on YAML forms.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_tags(tag_list):
+    &#34;&#34;&#34; Handle special characters &#34;&#34;&#34;
+    tag_list = [&#34;0&#34; if t == &#34;NONE&#34; else t for t in tag_list]
+    return tag_list</code></pre>
+</details>
+<div class="desc"><p>Handle special characters</p></div>
 </dd>
 </dl>
-</section>
-<section>
-</section>
-<section>
 </section>
 <section>
 </section>
@@ -96,20 +72,12 @@ code.</p></div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="csv2fst" href="../index.html">csv2fst</a></code></li>
+<li><code><a title="csv2fst.src" href="index.html">csv2fst.src</a></code></li>
 </ul>
 </li>
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
-<ul>
-<li><code><a title="csv2fst.src.csv2lexc" href="csv2lexc.html">csv2fst.src.csv2lexc</a></code></li>
-<li><code><a title="csv2fst.src.extract_tag_combinations" href="extract_tag_combinations.html">csv2fst.src.extract_tag_combinations</a></code></li>
-<li><code><a title="csv2fst.src.lexc_comment" href="lexc_comment.html">csv2fst.src.lexc_comment</a></code></li>
-<li><code><a title="csv2fst.src.lexc_path" href="lexc_path.html">csv2fst.src.lexc_path</a></code></li>
-<li><code><a title="csv2fst.src.lexicon" href="lexicon.html">csv2fst.src.lexicon</a></code></li>
-<li><code><a title="csv2fst.src.log" href="log.html">csv2fst.src.log</a></code></li>
-<li><code><a title="csv2fst.src.morph-test" href="morph-test.html">csv2fst.src.morph-test</a></code></li>
-<li><code><a title="csv2fst.src.templates" href="templates.html">csv2fst.src.templates</a></code></li>
-<li><code><a title="csv2fst.src.test_summary" href="test_summary.html">csv2fst.src.test_summary</a></code></li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="csv2fst.src.extract_tag_combinations.get_tags" href="#csv2fst.src.extract_tag_combinations.get_tags">get_tags</a></code></li>
 </ul>
 </li>
 </ul>

@@ -300,4 +300,5 @@ def main():
         write_to_csv(output_line, summary_output_file_path)
     print_summary_stats(results, args.for_nouns)
 
-main()
+if __name__ == "__main__":
+    main()

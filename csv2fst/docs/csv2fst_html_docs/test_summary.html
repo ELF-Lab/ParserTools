@@ -2,169 +2,41 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.10.0" />
-<title>csv2fst.test_summary API documentation</title>
-<meta name="description" content="A script for summarizing results of morphological analysis tests on OPD forms." />
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
-<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
-<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>csv2fst.src.test_summary API documentation</title>
+<meta name="description" content="A script for summarizing results of morphological analysis tests on YAML forms.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
 </head>
 <body>
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>csv2fst.test_summary</code></h1>
+<h1 class="title">Module <code>csv2fst.src.test_summary</code></h1>
 </header>
 <section id="section-intro">
-<p>A script for summarizing results of morphological analysis tests on OPD forms.</p>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">&#34;&#34;&#34;A script for summarizing results of morphological analysis tests on OPD forms.&#34;&#34;&#34;
-
-import os
-from re import findall, search
-from datetime import date
-
-OUTPUT_FILE_NAME = &#34;test_summary.csv&#34;
-INPUT_FILE_NAME = &#34;opd-test.log&#34;
-# If you view in Excel, this will prevent fractions from being interpreted as dates
-TEST_SECTIONS = [&#34;VAIO&#34;, &#34;VAI_V&#34;, &#34;VAI_VV&#34;, &#34;VAI_am&#34;, &#34;VAI_n&#34;, &#34;VII_V&#34;, &#34;VII_VV&#34;, &#34;VII_d&#34;, &#34;VII_n&#34;, &#34;VTA_C&#34;, &#34;VTA_Cw&#34;, &#34;VTA_aw&#34;, &#34;VTA_n&#34;, &#34;VTI_aa&#34;, &#34;VTI_am&#34;, &#34;VTI_i&#34;, &#34;VTI_oo&#34;]
-
-def write_to_csv(output_line):
-    HEADER_1 = &#34;Date,&#34;
-    HEADER_2 = &#34;,&#34;
-    summary_sections = [&#34;Total&#34;]
-    summary_sections.extend(TEST_SECTIONS)
-    for section in summary_sections:
-        HEADER_1 += section + &#34;,&#34;
-        HEADER_1 += &#34;,,&#34;
-        HEADER_2 += &#34;Precision,Recall,Missing Forms,&#34;
-
-    if not os.path.isfile(OUTPUT_FILE_NAME):
-            with open(OUTPUT_FILE_NAME, &#34;w+&#34;) as csv_file:
-                print(HEADER_1, file = csv_file)
-                print(HEADER_2, file = csv_file)
-    with open(OUTPUT_FILE_NAME, &#34;a&#34;) as csv_file:
-            csv_file.write(output_line + &#34;\n&#34;)
-    
-    print(&#34;Wrote to&#34;, OUTPUT_FILE_NAME)
-    csv_file.close()
-
-def get_prev_output_line():
-    prev_output_line = &#34;&#34;
-    if os.path.isfile(OUTPUT_FILE_NAME):
-        with open(OUTPUT_FILE_NAME, &#34;r&#34;) as csv_file:
-            lines = csv_file.readlines()
-            if len(lines) &gt;= 2: # At least one header and content line
-                prev_output_line = lines[-1].strip()
-
-    return prev_output_line
-
-def prepare_output(results):
-    output_line = &#34;&#34;
-    total_true_pos = 0
-    total_false_pos = 0
-    total_false_neg = 0
-    total_forms_with_no_results = 0
-    for test_section in TEST_SECTIONS:
-        # If we don&#39;t have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
-        if not (test_section in results.keys()):
-            output_line += &#34;N/A,&#34;
-        else:
-            precision = get_precision(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_pos&#34;])
-            recall = get_recall(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_neg&#34;])
-            # Add the results from this test section to our output line
-            output_line += str(precision) + &#34;%,&#34;
-            output_line += str(recall) + &#34;%,&#34;
-            output_line += str(results[test_section][&#34;forms_with_no_results&#34;]) + &#34;,&#34;
-            # Add to our counts
-            total_forms_with_no_results += results[test_section][&#34;forms_with_no_results&#34;]
-            total_true_pos += results[test_section][&#34;true_pos&#34;]
-            total_false_pos += results[test_section][&#34;false_pos&#34;]
-            total_false_neg += results[test_section][&#34;false_neg&#34;]
-    
-    # Some summary info
-    total_precision = get_precision(total_true_pos, total_false_pos)
-    total_recall = get_recall(total_true_pos, total_false_neg)
-    # Put the summary info at the *start* of the output line
-    total_output = str(total_precision) + &#34;%,&#34; + str(total_recall) + &#34;%,&#34; + str(total_forms_with_no_results) + &#34;,&#34;
-    output_line = total_output + output_line
-
-    # First column is the date!
-    output_line = str(date.today()) + &#34;,&#34;  + output_line
-
-    return output_line
-
-def read_logs():
-    results = {}
-    file = open(INPUT_FILE_NAME, &#34;r&#34;)
-    test_section = &#34;&#34;
-    for line in file:
-        # Get the name of the current test section
-        if line.startswith(&#34;YAML test file&#34;):
-            test_section = line.strip()
-            test_section = test_section.replace(&#34;YAML test file database_yaml_output/&#34;, &#34;&#34;)
-            test_section = test_section.replace(&#34;.yaml&#34;, &#34;&#34;)
-            false_pos = 0
-            false_neg = 0
-            forms_with_no_results = 0
-
-        # &#34;Missing&#34; = an OPD analysis that the FST failed to produce
-        elif &#34;Missing results&#34; in line:
-            false_neg += (1 + line.count(&#34;,&#34;))
-
-        # &#34;Unexpected&#34; = an analysis produced by the FST not shared by the OPD
-        elif search(r&#34;Unexpected results: [a-z]&#34;, line):
-            false_pos += (1 + line.count(&#34;,&#34;))
-
-        elif search(r&#34;Unexpected results: \+\?&#34;, line):
-            forms_with_no_results += 1
-
-        # The final line for this section -- get the # of passes (true pos), and calculate summary stats
-        elif line.startswith(&#34;Total&#34;):
-            # There&#39;s a pass for every correctly predicted analysis = true positives
-            # The # of passes is the first number in this line
-            true_pos = int((findall(r&#34;[0-9]+&#34;, line))[0])
-
-            test_section_results = {&#34;true_pos&#34;: true_pos, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg, &#34;forms_with_no_results&#34;: forms_with_no_results}
-            results.update({test_section: test_section_results})
-
-    assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
-    return results
-
-def get_precision(true_pos, false_pos):
-    precision = 0
-    if true_pos + false_pos &gt; 0:
-        precision = round((true_pos / (true_pos + false_pos)) * 100, 2)
-
-    return precision
-
-def get_recall(true_pos, false_neg):
-    recall = 0
-    if true_pos + false_neg &gt; 0:
-        recall = round((true_pos / (true_pos + false_neg)) * 100, 2)
-
-    return recall
-
-def main():
-    results = read_logs()
-    output_line = prepare_output(results)
-    prev_output_line = get_prev_output_line()
-    if prev_output_line == output_line:
-        print(f&#34;Did not write to CSV ({OUTPUT_FILE_NAME}) as there were no changes to the test results (or date!).&#34;)
-    else:
-        write_to_csv(output_line)
-
-main()</code></pre>
-</details>
+<p>A script for summarizing results of morphological analysis tests on YAML forms.</p>
 </section>
 <section>
 </section>
@@ -173,11 +45,10 @@ main()</code></pre>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="csv2fst.test_summary.get_precision"><code class="name flex">
+<dt id="csv2fst.src.test_summary.get_precision"><code class="name flex">
 <span>def <span class="ident">get_precision</span></span>(<span>true_pos, false_pos)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -189,32 +60,32 @@ main()</code></pre>
 
     return precision</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.get_prev_output_line"><code class="name flex">
-<span>def <span class="ident">get_prev_output_line</span></span>(<span>)</span>
+<dt id="csv2fst.src.test_summary.get_prev_output_line"><code class="name flex">
+<span>def <span class="ident">get_prev_output_line</span></span>(<span>summary_output_file_path)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_prev_output_line():
+<pre><code class="python">def get_prev_output_line(summary_output_file_path):
     prev_output_line = &#34;&#34;
-    if os.path.isfile(OUTPUT_FILE_NAME):
-        with open(OUTPUT_FILE_NAME, &#34;r&#34;) as csv_file:
+    if os.path.isfile(summary_output_file_path):
+        with open(summary_output_file_path, &#34;r&#34;) as csv_file:
             lines = csv_file.readlines()
             if len(lines) &gt;= 2: # At least one header and content line
                 prev_output_line = lines[-1].strip()
 
     return prev_output_line</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.get_recall"><code class="name flex">
+<dt id="csv2fst.src.test_summary.get_recall"><code class="name flex">
 <span>def <span class="ident">get_recall</span></span>(<span>true_pos, false_neg)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -226,31 +97,73 @@ main()</code></pre>
 
     return recall</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.main"><code class="name flex">
+<dt id="csv2fst.src.test_summary.get_test_sections_from_paradigm_map"><code class="name flex">
+<span>def <span class="ident">get_test_sections_from_paradigm_map</span></span>(<span>paradigm_map_file)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_test_sections_from_paradigm_map(paradigm_map_file):
+    test_sections = set()
+    paradigm_map = pd.read_csv(paradigm_map_file)
+    for i, row in paradigm_map.iterrows():
+        test_sections.add(row[&#34;Class&#34;])
+
+    test_sections = sorted(list(test_sections))
+    return test_sections</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="csv2fst.src.test_summary.main"><code class="name flex">
 <span>def <span class="ident">main</span></span>(<span>)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def main():
-    results = read_logs()
-    output_line = prepare_output(results)
-    prev_output_line = get_prev_output_line()
-    if prev_output_line == output_line:
-        print(f&#34;Did not write to CSV ({OUTPUT_FILE_NAME}) as there were no changes to the test results (or date!).&#34;)
+    # Sets up argparse.
+    parser = argparse.ArgumentParser(prog=&#34;test_summary&#34;)
+    parser.add_argument(&#34;--input_file_name&#34;, type=str, help=&#34;The .log file that is being read in.&#34;)
+    parser.add_argument(&#34;--yaml_source_csv_dir&#34;, type=str, help=&#34;The directory containing the .csv file(s) containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.&#34;)
+    parser.add_argument(&#34;--paradigm_map_path&#34;, type=str, help=&#34;The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).&#34;)
+    parser.add_argument(&#34;--output_dir&#34;, type=str, help=&#34;The directory where output files will be written.&#34;)
+    parser.add_argument(&#34;--output_file_identifier&#34;, type=str, help=&#34;A keyword associated with this set of tests that will be included in the file names of all outputted CSVs. For example, use &#39;paradigm&#39; to call your files &#39;paradigm_verb_test_summmary.csv&#39; etc.&#34;)
+    parser.add_argument(&#34;--for_nouns&#34;, action=&#34;store_true&#34;, help=&#34;If False, it&#39;s assumed to be for_verbs instead!&#34;)
+    args = parser.parse_args()
+
+    global OUTPUT_DIR
+    global OUTPUT_FILE_IDENTIFIER
+    global TEST_SECTIONS
+    OUTPUT_DIR = args.output_dir
+    OUTPUT_FILE_IDENTIFIER = args.output_file_identifier
+    summary_output_file_path = OUTPUT_DIR + &#34;/&#34; + OUTPUT_FILE_IDENTIFIER
+    if args.for_nouns:
+        summary_output_file_path += &#34;_noun_test_summary.csv&#34;
     else:
-        write_to_csv(output_line)</code></pre>
+        summary_output_file_path += &#34;_verb_test_summary.csv&#34;
+    TEST_SECTIONS = get_test_sections_from_paradigm_map(args.paradigm_map_path)
+
+    results = read_logs(args.input_file_name, args.yaml_source_csv_dir, args.for_nouns)
+    output_line = prepare_output(results)
+    prev_output_line = get_prev_output_line(summary_output_file_path)
+    if prev_output_line == output_line:
+        print(f&#34;Did not write to CSV ({summary_output_file_path}) as there were no changes to the test results (or date!).&#34;)
+    else:
+        write_to_csv(output_line, summary_output_file_path)
+    print_summary_stats(results, args.for_nouns)</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.prepare_output"><code class="name flex">
+<dt id="csv2fst.src.test_summary.prepare_output"><code class="name flex">
 <span>def <span class="ident">prepare_output</span></span>(<span>results)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -260,20 +173,27 @@ main()</code></pre>
     total_true_pos = 0
     total_false_pos = 0
     total_false_neg = 0
+    total_forms = 0
     total_forms_with_no_results = 0
+    total_percent_forms_with_no_results = 0
     for test_section in TEST_SECTIONS:
         # If we don&#39;t have an expected section (maybe due to some recent reorganizing), you can just say 0/0 failures
         if not (test_section in results.keys()):
-            output_line += &#34;N/A,&#34;
+            output_line += &#34;N/A,N/A,N/A,N/A,&#34;
         else:
             precision = get_precision(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_pos&#34;])
             recall = get_recall(results[test_section][&#34;true_pos&#34;], results[test_section][&#34;false_neg&#34;])
+            assert(results[test_section][&#34;number_of_forms&#34;] &gt; 0)
+            percent_of_forms_with_no_results = round((results[test_section][&#34;number_of_forms_with_no_results&#34;] / results[test_section][&#34;number_of_forms&#34;]) * 100, 2)
             # Add the results from this test section to our output line
             output_line += str(precision) + &#34;%,&#34;
             output_line += str(recall) + &#34;%,&#34;
-            output_line += str(results[test_section][&#34;forms_with_no_results&#34;]) + &#34;,&#34;
+            output_line += str(results[test_section][&#34;number_of_forms&#34;]) + &#34;,&#34;
+            output_line += str(results[test_section][&#34;number_of_forms_with_no_results&#34;])
+            output_line += &#34; (&#34; + str(percent_of_forms_with_no_results)+ &#34;%),&#34;
             # Add to our counts
-            total_forms_with_no_results += results[test_section][&#34;forms_with_no_results&#34;]
+            total_forms += results[test_section][&#34;number_of_forms&#34;]
+            total_forms_with_no_results += results[test_section][&#34;number_of_forms_with_no_results&#34;]
             total_true_pos += results[test_section][&#34;true_pos&#34;]
             total_false_pos += results[test_section][&#34;false_pos&#34;]
             total_false_neg += results[test_section][&#34;false_neg&#34;]
@@ -281,8 +201,9 @@ main()</code></pre>
     # Some summary info
     total_precision = get_precision(total_true_pos, total_false_pos)
     total_recall = get_recall(total_true_pos, total_false_neg)
+    total_percent_forms_with_no_results = (round((total_forms_with_no_results / total_forms) * 100, 2) if total_forms &gt; 0 else 0)
     # Put the summary info at the *start* of the output line
-    total_output = str(total_precision) + &#34;%,&#34; + str(total_recall) + &#34;%,&#34; + str(total_forms_with_no_results) + &#34;,&#34;
+    total_output = str(total_precision) + &#34;%,&#34; + str(total_recall) + &#34;%,&#34; + str(total_forms) + &#34;,&#34; + str(total_forms_with_no_results) + &#34; (&#34; + str(total_percent_forms_with_no_results) + &#34;%),&#34;
     output_line = total_output + output_line
 
     # First column is the date!
@@ -290,83 +211,220 @@ main()</code></pre>
 
     return output_line</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.read_logs"><code class="name flex">
-<span>def <span class="ident">read_logs</span></span>(<span>)</span>
+<dt id="csv2fst.src.test_summary.print_form_sublist_as_csv"><code class="name flex">
+<span>def <span class="ident">print_form_sublist_as_csv</span></span>(<span>form_list, yaml_source_csv_dir, output_file_basic_name, for_nouns)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def read_logs():
+<pre><code class="python">def print_form_sublist_as_csv(form_list, yaml_source_csv_dir, output_file_basic_name, for_nouns):
+    # Need to remove the nouns or verbs
+    updated_form_list = []
+    for form in form_list:
+        if (not(for_nouns) and form[&#34;pos&#34;].startswith(&#34;V&#34;)) or (for_nouns and form[&#34;pos&#34;].startswith(&#34;N&#34;)):
+            updated_form_list.append(form)
+
+    if len(updated_form_list) &gt; 0:
+        lexical_data = None
+        forms_written = 0
+        # Read in the CSV(s) of forms used to generate the YAML to get more info about this form
+        for file_name in os.listdir(yaml_source_csv_dir):
+            full_file_name = os.path.join(yaml_source_csv_dir, file_name)
+            if full_file_name.endswith(&#34;.csv&#34;):
+                csv_data = pd.read_csv(full_file_name, keep_default_na = False)
+                if type(lexical_data) == pd.core.frame.DataFrame:
+                    lexical_data = pd.concat([lexical_data, csv_data])
+                else:
+                    lexical_data = csv_data
+        # Now we have one dataframe with all the data from the CSV(s)
+
+        lexical_data = lexical_data.sort_values(by=&#39;Class&#39;, ignore_index=True) # To accelerate the search process
+        # Determine how many &#34;surface forms&#34; there are per row
+        form_columns = [column for column in list(lexical_data) if column.endswith(&#34;Surface&#34;) ]
+        paradigm_indices = {}
+        new_csv = pd.DataFrame() # To print (the subset of the scrape)
+
+        print(&#34;Number of forms to write:&#34;, len(updated_form_list))
+        # Go through each of the forms we flagged as wanting to print
+        for i, form in enumerate(updated_form_list):
+            update_increment = 100
+            if i % update_increment == 0:
+                if i + update_increment &lt; len(updated_form_list):
+                    print(f&#34;Writing forms {i + 1}-{i + update_increment}...&#34;)
+                else:
+                    print(f&#34;Writing forms {i + 1}-{len(updated_form_list)}...&#34;)
+            # Check if we know the starting point for this paradigm/pos yet
+            if form[&#34;pos&#34;] not in paradigm_indices.keys():
+                index = lexical_data[&#34;Class&#34;].searchsorted(form[&#34;pos&#34;], side = &#39;left&#39;)
+                paradigm_indices.update({form[&#34;pos&#34;]: index})
+
+            # Find the form we&#39;re looking for in the big spreadsheet
+            inflectional_form = form[&#34;form&#34;]
+            search_starting_point = paradigm_indices[form[&#34;pos&#34;]]
+            for index, row in (lexical_data[search_starting_point:]).iterrows():
+                row = row.to_dict()
+                if inflectional_form in [row[form_column] for form_column in form_columns]:
+                    # Add this column, so that in cases with *mulitple* surface forms,
+                    # it&#39;s clear which is the form without results
+                    row[&#34;FormWithoutResults&#34;] = inflectional_form
+                    new_csv = new_csv._append(row, ignore_index = True)
+                    forms_written += 1
+                    break # Stop looking when we&#39;ve found it!
+
+        # Print the results
+        if for_nouns:
+            output_file_path = OUTPUT_DIR + &#34;/&#34; + OUTPUT_FILE_IDENTIFIER + &#34;_noun_&#34; + output_file_basic_name
+        else:
+            output_file_path = OUTPUT_DIR + &#34;/&#34; + OUTPUT_FILE_IDENTIFIER + &#34;_verb_&#34; + output_file_basic_name
+        new_csv.to_csv(output_file_path, index = False)
+        print(f&#34;\nWrote {forms_written} forms to {output_file_path}&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="csv2fst.src.test_summary.print_summary_stats"><code class="name flex">
+<span>def <span class="ident">print_summary_stats</span></span>(<span>results, for_nouns)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_summary_stats(results, for_nouns):
+    total_form_analysis_pairs_tested = 0
+    for section in results.keys():
+        if section in TEST_SECTIONS:
+            results_by_section = results[section]
+            total_form_analysis_pairs_tested += results_by_section[&#34;number_of_form_analysis_pairs&#34;]
+
+    if for_nouns:
+        test_label = &#34;noun&#34;
+    else:
+        test_label = &#34;verb&#34;
+    print(f&#34;\nThe {test_label} tests covered {total_form_analysis_pairs_tested} form-analysis pairs.&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="csv2fst.src.test_summary.read_logs"><code class="name flex">
+<span>def <span class="ident">read_logs</span></span>(<span>input_file_name, yaml_source_csv_dir, for_nouns)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read_logs(input_file_name, yaml_source_csv_dir, for_nouns):
     results = {}
-    file = open(INPUT_FILE_NAME, &#34;r&#34;)
+    forms_with_no_results = []
+    forms_with_only_unexpected_results = []
+    any_passes = False
+    file = open(input_file_name, &#34;r&#34;)
+    lines = file.readlines()
     test_section = &#34;&#34;
-    for line in file:
+    for index, line in enumerate(lines):
+        # First, a little check so we know if --hide-passes is on
+        if not(any_passes) and &#34;[PASS]&#34; in line:
+            any_passes = True
+
         # Get the name of the current test section
         if line.startswith(&#34;YAML test file&#34;):
             test_section = line.strip()
-            test_section = test_section.replace(&#34;YAML test file database_yaml_output/&#34;, &#34;&#34;)
+            test_section = test_section[test_section.rindex(&#34;/&#34;) + 1:]
             test_section = test_section.replace(&#34;.yaml&#34;, &#34;&#34;)
             false_pos = 0
             false_neg = 0
-            forms_with_no_results = 0
+            number_of_forms = 0
+            number_of_forms_with_no_results = 0
 
-        # &#34;Missing&#34; = an OPD analysis that the FST failed to produce
+        # &#34;Missing&#34; = an analysis in the YAML that the FST failed to produce
         elif &#34;Missing results&#34; in line:
             false_neg += (1 + line.count(&#34;,&#34;))
 
-        # &#34;Unexpected&#34; = an analysis produced by the FST not shared by the OPD
-        elif search(r&#34;Unexpected results: [a-z]&#34;, line):
+        # &#34;Unexpected&#34; = an analysis produced by the FST not found in the YAML
+        elif search(r&#34;Unexpected results: [A-Za-z]&#34;, line):
             false_pos += (1 + line.count(&#34;,&#34;))
+            # Is this a form with NO passes?
+            # If yes -&gt; prev line will be &#34;missing results&#34;, prev prev line will be unrelated
+            # If no (has passes) -&gt; either prev or prev prev line will be passes
+            test_id = line.partition(&#34;[FAIL]&#34;)[0]
+            if not (lines[index - 1].startswith(test_id) and &#34;[PASS]&#34; in lines[index - 1]):
+                if not (lines[index - 2].startswith(test_id) and &#34;[PASS]&#34; in lines[index - 2]):
+                        form_start = line.index(&#34;[FAIL] &#34;) + len(&#34;[FAIL] &#34;)
+                        form_end = line.index(&#34; =&gt;&#34;) - 1
+                        forms_with_only_unexpected_results.append({&#34;form&#34;: line[form_start:form_end + 1].strip(), &#34;pos&#34;: test_section})
 
+        # Some FST analyses are &#34;Unexpected&#34; because they&#39;re empty!
         elif search(r&#34;Unexpected results: \+\?&#34;, line):
-            forms_with_no_results += 1
+            number_of_forms_with_no_results += 1
+            form_start = line.index(&#34;[FAIL] &#34;) + len(&#34;[FAIL] &#34;)
+            form_end = line.index(&#34; =&gt;&#34;) - 1
+            forms_with_no_results.append({&#34;form&#34;: line[form_start:form_end + 1].strip(), &#34;pos&#34;: test_section})
 
-        # The final line for this section -- get the # of passes (true pos), and calculate summary stats
+        elif line.startswith(&#34;Unique&#34;): # A final line with summary info
+            number_of_forms = int(((line.partition(&#34;Unique inflected forms being tested: &#34;))[2]).partition(&#34;,&#34;)[0])
+            number_of_form_analysis_pairs = int(line.partition(&#34;Inflected form + analysis pairs being tested: &#34;)[2])
+
+        # The final line summarative for this section -- get the # of passes (true pos), and calculate summary stats
         elif line.startswith(&#34;Total&#34;):
             # There&#39;s a pass for every correctly predicted analysis = true positives
             # The # of passes is the first number in this line
             true_pos = int((findall(r&#34;[0-9]+&#34;, line))[0])
 
-            test_section_results = {&#34;true_pos&#34;: true_pos, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg, &#34;forms_with_no_results&#34;: forms_with_no_results}
+            test_section_results = {&#34;true_pos&#34;: true_pos, &#34;false_pos&#34;: false_pos, &#34;false_neg&#34;: false_neg, &#34;number_of_forms&#34;: number_of_forms, &#34;number_of_form_analysis_pairs&#34;: number_of_form_analysis_pairs, &#34;number_of_forms_with_no_results&#34;: number_of_forms_with_no_results}
             results.update({test_section: test_section_results})
 
+    if DO_PRINT_FORMS_WITH_NO_RESULTS:
+        if yaml_source_csv_dir:
+            print_form_sublist_as_csv(forms_with_no_results, yaml_source_csv_dir, FORMS_WITH_NO_RESULTS_FILE_NAME, for_nouns)
+        else:
+            print(&#34;\nCannot print forms with *no results*.  No language data CSV path given, which is used to get additional information about these forms.&#34;)
+
+    if DO_PRINT_FORMS_WITH_ONLY_UNEXPECTED_RESULTS:
+        if yaml_source_csv_dir:
+            if any_passes:
+                print_form_sublist_as_csv(forms_with_only_unexpected_results, yaml_source_csv_dir, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
+            else:
+                print(f&#34;\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.&#34;)
+        else:
+            print(&#34;\nCannot print forms with *only unexpected results*.  No language data CSV path given, which is used to get additional information about these forms.&#34;)
+
+    file.close()
     assert len(results) &gt; 0, &#34;\nERROR: The log file didn&#39;t have any test results to read!&#34;
     return results</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
-<dt id="csv2fst.test_summary.write_to_csv"><code class="name flex">
-<span>def <span class="ident">write_to_csv</span></span>(<span>output_line)</span>
+<dt id="csv2fst.src.test_summary.write_to_csv"><code class="name flex">
+<span>def <span class="ident">write_to_csv</span></span>(<span>output_line, summary_output_file_path)</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def write_to_csv(output_line):
+<pre><code class="python">def write_to_csv(output_line, summary_output_file_path):
     HEADER_1 = &#34;Date,&#34;
     HEADER_2 = &#34;,&#34;
     summary_sections = [&#34;Total&#34;]
     summary_sections.extend(TEST_SECTIONS)
     for section in summary_sections:
         HEADER_1 += section + &#34;,&#34;
-        HEADER_1 += &#34;,,&#34;
-        HEADER_2 += &#34;Precision,Recall,Missing Forms,&#34;
+        HEADER_1 += &#34;,,,&#34;
+        HEADER_2 += &#34;Precision,Recall,Forms,Forms Without Results,&#34;
 
-    if not os.path.isfile(OUTPUT_FILE_NAME):
-            with open(OUTPUT_FILE_NAME, &#34;w+&#34;) as csv_file:
+    if not os.path.isfile(summary_output_file_path):
+            with open(summary_output_file_path, &#34;w+&#34;) as csv_file:
                 print(HEADER_1, file = csv_file)
                 print(HEADER_2, file = csv_file)
-    with open(OUTPUT_FILE_NAME, &#34;a&#34;) as csv_file:
+    with open(summary_output_file_path, &#34;a&#34;) as csv_file:
             csv_file.write(output_line + &#34;\n&#34;)
     
-    print(&#34;Wrote to&#34;, OUTPUT_FILE_NAME)
-    csv_file.close()</code></pre>
+    print(&#34;Wrote to&#34;, summary_output_file_path)</code></pre>
 </details>
+<div class="desc"></div>
 </dd>
 </dl>
 </section>
@@ -374,32 +432,34 @@ main()</code></pre>
 </section>
 </article>
 <nav id="sidebar">
-<h1>Index</h1>
 <div class="toc">
 <ul></ul>
 </div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="csv2fst" href="index.html">csv2fst</a></code></li>
+<li><code><a title="csv2fst.src" href="index.html">csv2fst.src</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="csv2fst.test_summary.get_precision" href="#csv2fst.test_summary.get_precision">get_precision</a></code></li>
-<li><code><a title="csv2fst.test_summary.get_prev_output_line" href="#csv2fst.test_summary.get_prev_output_line">get_prev_output_line</a></code></li>
-<li><code><a title="csv2fst.test_summary.get_recall" href="#csv2fst.test_summary.get_recall">get_recall</a></code></li>
-<li><code><a title="csv2fst.test_summary.main" href="#csv2fst.test_summary.main">main</a></code></li>
-<li><code><a title="csv2fst.test_summary.prepare_output" href="#csv2fst.test_summary.prepare_output">prepare_output</a></code></li>
-<li><code><a title="csv2fst.test_summary.read_logs" href="#csv2fst.test_summary.read_logs">read_logs</a></code></li>
-<li><code><a title="csv2fst.test_summary.write_to_csv" href="#csv2fst.test_summary.write_to_csv">write_to_csv</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.get_precision" href="#csv2fst.src.test_summary.get_precision">get_precision</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.get_prev_output_line" href="#csv2fst.src.test_summary.get_prev_output_line">get_prev_output_line</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.get_recall" href="#csv2fst.src.test_summary.get_recall">get_recall</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.get_test_sections_from_paradigm_map" href="#csv2fst.src.test_summary.get_test_sections_from_paradigm_map">get_test_sections_from_paradigm_map</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.main" href="#csv2fst.src.test_summary.main">main</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.prepare_output" href="#csv2fst.src.test_summary.prepare_output">prepare_output</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.print_form_sublist_as_csv" href="#csv2fst.src.test_summary.print_form_sublist_as_csv">print_form_sublist_as_csv</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.print_summary_stats" href="#csv2fst.src.test_summary.print_summary_stats">print_summary_stats</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.read_logs" href="#csv2fst.src.test_summary.read_logs">read_logs</a></code></li>
+<li><code><a title="csv2fst.src.test_summary.write_to_csv" href="#csv2fst.src.test_summary.write_to_csv">write_to_csv</a></code></li>
 </ul>
 </li>
 </ul>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
 </footer>
 </body>
 </html>

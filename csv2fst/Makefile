@@ -195,6 +195,7 @@ clean:
 # Install it by `pip3 install pdoc3` if you need to build
 # the docs
 
-doc:*py
-	pdoc --force -c syntax_highlighting=True --html .; mv html/csv2fst/* docs/csv2fst_html_docs
-
+doc:./src/*py
+	pdoc --force -c syntax_highlighting=True --html .
+	mv html/csv2fst/src/*.html docs/csv2fst_html_docs/
+	rm -r html/
