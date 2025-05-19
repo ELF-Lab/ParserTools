@@ -11,7 +11,6 @@ from collections import OrderedDict, namedtuple
 import os
 import os.path
 import re
-import shlex
 import shutil
 import sys
 import yaml

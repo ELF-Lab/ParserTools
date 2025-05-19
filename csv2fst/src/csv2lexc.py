@@ -31,7 +31,6 @@ from os.path import join as pjoin
 from lexicon import LexcFile
 from templates import render_pre_element_lexicon, render_root_lexicon
 from log import set_verbose, info
-from lexc_path import LexcPath
 
 @click.command()
 @click.option('--config-files', required=True, help="JSON config files separated by commas. E.g. verb_conf.json, noun_conf.json")
