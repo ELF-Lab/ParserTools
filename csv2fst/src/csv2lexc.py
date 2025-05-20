@@ -28,9 +28,9 @@ import click
 import json
 from os.path import join as pjoin
 
-from .lexicon import LexcFile
-from .templates import render_pre_element_lexicon, render_root_lexicon
-from .log import set_verbose, info
+from lexicon import LexcFile
+from templates import render_pre_element_lexicon, render_root_lexicon
+from log import set_verbose, info
 
 @click.command()
 @click.option('--config-files', required=True, help="JSON config files separated by commas. E.g. verb_conf.json, noun_conf.json")

@@ -6,7 +6,7 @@
 import re
 import pandas as pd
 from collections import namedtuple
-from .log import warn
+from log import warn
 from copy import deepcopy
 
 MAXFORMS=100
@@ -467,3 +467,4 @@ class DerivationPath:
                                                        analysis,
                                                        surface,
                                                        output_boundary_lexicon))
+        

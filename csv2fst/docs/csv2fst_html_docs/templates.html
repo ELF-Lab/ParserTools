@@ -2,55 +2,306 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-<meta name="generator" content="pdoc3 0.11.6">
-<title>csv2fst.src.templates API documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>csv2fst.templates API documentation</title>
 <meta name="description" content="Code for dealing with conversion of Jinja2 templates to lexc
-code.">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
-<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+code." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => {
-hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
-hljs.highlightAll();
-/* Collapse source docstrings */
-setTimeout(() => {
-[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
-.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
-.forEach(el => {
-let d = document.createElement('details');
-d.classList.add('hljs-string');
-d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
-el.replaceWith(d);
-});
-}, 100);
-})</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>csv2fst.src.templates</code></h1>
+<h1 class="title">Module <code>csv2fst.templates</code></h1>
 </header>
 <section id="section-intro">
 <p>Code for dealing with conversion of Jinja2 templates to lexc
 code.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Code for dealing with conversion of Jinja2 templates to lexc
+   code.&#34;&#34;&#34;
+
+from jinja2 import Environment, FileSystemLoader
+import pandas as pd
+from os import listdir
+from os.path import join as pjoin, expanduser, basename, dirname
+from math import isnan
+from lexc_path import escape, LexcPath
+from re import sub
+
+NO_CH_CONJUNCT=&#34;@D.ChCnj@&#34;
+&#34;&#34;&#34;Flag diacritic which disallows any value for the changed-conjunct
+   feature `ChCnj`
+
+&#34;&#34;&#34; 
+
+CLEAR_CH_CONJUNCT=&#34;@C.ChCnj@&#34;
+&#34;&#34;&#34;Flag diacritic which clears the value of the changed-conjunct
+   feature `ChCnj`
+
+&#34;&#34;&#34;
+
+def check_na(val):
+    &#34;&#34;&#34;Safely check if a value represents NaN. Will return True if the
+       value is numeric and NaN. False, otherwise.
+
+    &#34;&#34;&#34;    
+    try:
+        return isnan(val)
+    except:
+        return False
+
+def get_plain_conjunct(plain_conjunct,changed_conjunct):
+    &#34;&#34;&#34;Get a lexicon entry for the plain conjunct form of a preverb. Only
+       add a disallow changed-conjunct flag diacritic if we have to,
+       i.e. if a separate changed-conjunct form is specified (meaning
+       `changed_conjunct != None`). This keeps the lexc file from
+       getting cluttered with loads of unnecessary disallow flags.
+
+    &#34;&#34;&#34;    
+    return (plain_conjunct
+            if check_na(changed_conjunct)
+            else f&#34;{NO_CH_CONJUNCT}{plain_conjunct}&#34;)
+
+def get_allomorph(pv,order_filter):
+    &#34;&#34;&#34;Return either the plain conjunct, changed conjunct or indpendent
+       form of a preverb row (= spreadsheet row) depending on
+       `order_filter`. This will do into different lexc continuation
+       lexicons.
+
+       The aim is to add a minimal set of rows into the lexc file in 
+       hopes of not cluttering it too badly. E.g. we only add separate 
+       independent and conjunct order forms if those are not identical. 
+       If they are identical, we will instead add just one form into an 
+       order-neutral continuation lexicon.  
+
+       The legal values of `order_filter` are:
+    
+       * `&#34;Independent&#34;`: return the independent form if it differs from 
+          the conjunct form, otherwise `None`.
+       * `&#34;PlainConjunct&#34;`: return the conjunct form if it differs from
+         the independent form, otherwise `None`.
+       * `&#34;Any&#34;`: return the independent form if it is identical to the
+         conjunct form, otherwise `None`.
+       * `&#34;ChangedConjunct&#34;`: return a special changed-cnjunct form if 
+         one is given. Otherwise, return `None`.
+
+    &#34;&#34;&#34;    
+    canonical = pv[&#34;PV&#34;]
+    if order_filter == &#34;Any&#34;:
+        allomorph = (None
+                     if pv[&#34;Independent&#34;] != pv[&#34;PlainConjunct&#34;]
+                     else pv[&#34;Independent&#34;])
+    elif order_filter == &#34;Independent&#34;:
+        allomorph = (None
+                     if pv[&#34;Independent&#34;] == pv[&#34;PlainConjunct&#34;]
+                     else pv[&#34;Independent&#34;])
+    elif order_filter == &#34;PlainConjunct&#34;:
+        allomorph = (None
+                     if pv[&#34;Independent&#34;] == pv[&#34;PlainConjunct&#34;]
+                     else get_plain_conjunct(pv[&#34;PlainConjunct&#34;],
+                                             pv[&#34;ChangedConjunct&#34;]))
+    elif order_filter == &#34;ChangedConjunct&#34;:
+        allomorph = (None
+                     if check_na(pv[order_filter])
+                     else pv[order_filter])
+    else:
+        raise ValueError(f&#34;Unknown order filter {order_filter}&#34;)
+    return None if allomorph == None else (canonical, allomorph)
+
+def get_load_pre_element_database(source_dir,prefix_database):
+    &#34;&#34;&#34;Return a function which can be used to load the preverb database
+       in a jinja template file. We need a specialized function because
+       information about file paths is not accessible from the template.
+
+    &#34;&#34;&#34;    
+    def load_pre_element_database(pv_tag,next_sublex):
+        res = &#34;&#34;
+        paradigm = sub(&#34;/$&#34;,&#34;&#34;,pv_tag)
+        if not prefix_database in [&#34;None&#34;, None] and not source_dir in [&#34;None&#34;, None] :
+            df = pd.read_csv(pjoin(source_dir, prefix_database))
+            for _, pv in df.iterrows():
+                if pv.Paradigm == paradigm:
+                    if res != &#34;&#34;:
+                        res += &#34;\n&#34;
+                    tag = escape(f&#34;{pv_tag}{pv.Lemma}+&#34;)
+                    # We need to register our preverb/prenoun tag as a multicharacter symbol
+                    LexcPath.multichar_symbols.add(tag)
+                    res += f&#34;{tag}:{pv.Stem} {next_sublex} ;&#34;
+        return res    
+    return load_pre_element_database
+    
+def get_load_pre_element_csv(source_dir):
+    &#34;&#34;&#34;Return a function which can be used to load a preverb spreadsheet
+       from a jinja template file. We need a specialized function because
+       information about file paths is not accessible from the template.
+
+    &#34;&#34;&#34;    
+    def load_pre_element_csv(sources,next_pv_lexicon,order_filter):
+        entries = []
+        for csv_fn, pv_tag in sources:
+            df = pd.read_csv(pjoin(source_dir, csv_fn))
+            for _, pv in df.iterrows():
+                res = get_allomorph(pv, order_filter)
+                if res != None and not &#34;NONE&#34; in res:
+                    canonical, allomorph = res
+                    canonical = pv_tag + canonical
+                    # We need to define preverb/prenoun tag as a multichar symbol
+                    LexcPath.multichar_symbols.add(f&#34;{escape(canonical)}+&#34;)
+                    # If the allomorph has a disallow changed conjunct
+                    # tag, add one to the canonical form as well
+                    if allomorph.find(NO_CH_CONJUNCT) != -1:
+                        canonical = NO_CH_CONJUNCT + canonical
+                    entries.append(
+                        f&#34;{escape(canonical)}+:{escape(allomorph)} {next_pv_lexicon} ;&#34;)
+        if entries == []:
+            entries = [&#34;%&lt;EMPTYLEX%&gt; # ;&#34;]
+        return &#34;\n&#34;.join(entries)
+    return load_pre_element_csv
+
+def get_generate_pre_element_sub_lexicons(source_dir):
+    &#34;&#34;&#34;Return a function which will generate Any, Independent,
+       PlainConjuct and ChangedConjunct preverb lexicons in a jinja
+       template file. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+    &#34;&#34;&#34;    
+    load_pre_element_csv = get_load_pre_element_csv(source_dir)
+    def generate_pre_element_sub_lexicons(sources,pv_lexicon):
+        lexicons = [(f&#34;LEXICON {pv_lexicon}{order_filter}\n&#34; +
+                     load_pre_element_csv(sources,
+                                          f&#34;{pv_lexicon}Boundary&#34;,
+                                          order_filter))                     
+                     for order_filter in [&#34;Any&#34;,
+                                          &#34;Independent&#34;,
+                                          &#34;PlainConjunct&#34;,
+                                          &#34;ChangedConjunct&#34;]]
+        lexicons.append(f&#34;&#34;&#34;LEXICON {pv_lexicon}Boundary 
+{CLEAR_CH_CONJUNCT}:{CLEAR_CH_CONJUNCT}- {pv_lexicon} ;&#34;&#34;&#34;)
+        return &#34;\n\n&#34;.join(lexicons)
+    return generate_pre_element_sub_lexicons
+
+def pretty_join(str_list):
+    &#34;&#34;&#34;Split a string into lines of 80 characters at white space&#34;&#34;&#34;    
+    lines = [&#34;&#34;]
+    for s in str_list:
+        if lines[-1] == &#34;&#34;:
+            lines[-1] += s
+        elif len(lines[-1]) + len(s) + 1 &lt;= 79:
+            lines[-1] += f&#34; {s}&#34;
+        else:
+            lines.append(s)
+    return &#34;\n&#34;.join(lines)
+
+def get_all_pre_element_tags(source_dir):
+    &#34;&#34;&#34;Return a function which harvests all preverb/prenoun tags from a
+       spreadsheet.  The fucntion can be called from a jinja template
+       file. We need a specialized function because information about
+       file paths is not accessible from the template.
+
+    &#34;&#34;&#34;    
+    def all_pre_element_tags(tag_transformation=&#39;lambda x:x&#39;):
+        pre_element_tags = set()
+        tag_transformation = eval(tag_transformation)
+        for fn in listdir(path=source_dir):
+            if fn.endswith(&#34;.csv&#34;):
+                df = pd.read_csv(pjoin(source_dir,fn))
+                df.Tag = df.Tag.transform(tag_transformation)
+                pre_element_tags.update(zip(df[&#34;Tag&#34;],df[&#34;PV&#34;]))
+        pre_element_tags = sorted(list(pre_element_tags))
+        return pretty_join([f&#34;{tag}/{pv}+&#34; for tag, pv in pre_element_tags])
+    
+    return all_pre_element_tags
+
+def get_add_lexeme_multichar_symbols(config):
+    &#34;&#34;&#34;Return a function which adds multichar symbols from a config file
+       to a Jinja template. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+
+    &#34;&#34;&#34;
+    def add_lexeme_multichar_symbols():
+        return pretty_join([escape(symbol) for symbol in config[&#34;multichar_symbols&#34;]])
+    return add_lexeme_multichar_symbols
+
+def render_pre_element_lexicon(config,source_path,lexc_path):
+    &#34;&#34;&#34; Render a preverb or prenoun Jinja template into lexc code.&#34;&#34;&#34;
+    csv_src_path = pjoin(source_path,config[&#39;pv_source_path&#39;])
+    template_file = basename(config[&#39;template_path&#39;])
+    template_dir = pjoin(expanduser(source_path),
+                         dirname(config[&#39;template_path&#39;]))
+    env = Environment(loader=FileSystemLoader(template_dir))
+    database_src_dirs = config[&#34;database_src_dirs&#34;]
+    prefix_database = (config[&#34;lexical_prefix_database&#34;]
+                       if &#34;lexical_prefix_database&#34; in config
+                       else &#34;None&#34;)
+    jinja_template = env.get_template(template_file)
+    func_dict = {
+        &#34;all_pre_element_tags&#34;:
+        get_all_pre_element_tags(csv_src_path),
+        &#34;load_pre_element_csv&#34;:
+        get_load_pre_element_csv(csv_src_path),
+        &#34;load_pre_element_database&#34;:
+        get_load_pre_element_database(database_src_dirs,prefix_database),
+        &#34;generate_pre_element_sub_lexicons&#34;:
+        get_generate_pre_element_sub_lexicons(csv_src_path),
+        &#34;add_lexeme_multichar_symbols&#34;:
+        get_add_lexeme_multichar_symbols(config)
+    }
+    jinja_template.globals.update(func_dict)
+    template_string = jinja_template.render()
+    with open(pjoin(lexc_path, template_file.replace(&#34;.j2&#34;,&#34;&#34;)),&#34;w&#34;) as f:
+        print(template_string, file=f)
+
+def get_add_harvested_multichar_symbols(multichar_symbols):
+    &#34;&#34;&#34;Return a function which adds multichar symbols from a set
+       to a Jinja template. We need a specialized function because
+       information about file paths is not accessible from the
+       template.
+
+    &#34;&#34;&#34;    
+    def add_harvested_multichar_symbols():
+        return pretty_join(sorted(multichar_symbols))
+    return add_harvested_multichar_symbols
+
+def render_root_lexicon(source_path, lexc_path):
+    &#34;&#34;&#34; Render a root lexicon Jinja template into lexc code.&#34;&#34;&#34;
+    template_dir = dirname(expanduser(source_path))
+    env = Environment(loader=FileSystemLoader(template_dir))
+    template_file = basename(source_path)
+    jinja_template = env.get_template(template_file)
+    func_dict = {
+        &#34;add_harvested_multichar_symbols&#34;:
+        get_add_harvested_multichar_symbols(LexcPath.multichar_symbols)
+    }
+    jinja_template.globals.update(func_dict)
+    template_string = jinja_template.render()
+    with open(pjoin(lexc_path, template_file.replace(&#34;.j2&#34;,&#34;&#34;)), &#34;w&#34;) as f:        
+        print(template_string, file=f)</code></pre>
+</details>
 </section>
 <section>
 </section>
 <section>
 <h2 class="section-title" id="header-variables">Global variables</h2>
 <dl>
-<dt id="csv2fst.src.templates.CLEAR_CH_CONJUNCT"><code class="name">var <span class="ident">CLEAR_CH_CONJUNCT</span></code></dt>
+<dt id="csv2fst.templates.CLEAR_CH_CONJUNCT"><code class="name">var <span class="ident">CLEAR_CH_CONJUNCT</span></code></dt>
 <dd>
 <div class="desc"><p>Flag diacritic which clears the value of the changed-conjunct
 feature <code>ChCnj</code></p></div>
 </dd>
-<dt id="csv2fst.src.templates.NO_CH_CONJUNCT"><code class="name">var <span class="ident">NO_CH_CONJUNCT</span></code></dt>
+<dt id="csv2fst.templates.NO_CH_CONJUNCT"><code class="name">var <span class="ident">NO_CH_CONJUNCT</span></code></dt>
 <dd>
 <div class="desc"><p>Flag diacritic which disallows any value for the changed-conjunct
 feature <code>ChCnj</code></p></div>
@@ -60,10 +311,12 @@ feature <code>ChCnj</code></p></div>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="csv2fst.src.templates.check_na"><code class="name flex">
+<dt id="csv2fst.templates.check_na"><code class="name flex">
 <span>def <span class="ident">check_na</span></span>(<span>val)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Safely check if a value represents NaN. Will return True if the
+value is numeric and NaN. False, otherwise.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -78,13 +331,15 @@ feature <code>ChCnj</code></p></div>
     except:
         return False</code></pre>
 </details>
-<div class="desc"><p>Safely check if a value represents NaN. Will return True if the
-value is numeric and NaN. False, otherwise.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_add_harvested_multichar_symbols"><code class="name flex">
+<dt id="csv2fst.templates.get_add_harvested_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">get_add_harvested_multichar_symbols</span></span>(<span>multichar_symbols)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which adds multichar symbols from a set
+to a Jinja template. We need a specialized function because
+information about file paths is not accessible from the
+template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -100,15 +355,15 @@ value is numeric and NaN. False, otherwise.</p></div>
         return pretty_join(sorted(multichar_symbols))
     return add_harvested_multichar_symbols</code></pre>
 </details>
-<div class="desc"><p>Return a function which adds multichar symbols from a set
-to a Jinja template. We need a specialized function because
-information about file paths is not accessible from the
-template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_add_lexeme_multichar_symbols"><code class="name flex">
+<dt id="csv2fst.templates.get_add_lexeme_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">get_add_lexeme_multichar_symbols</span></span>(<span>config)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which adds multichar symbols from a config file
+to a Jinja template. We need a specialized function because
+information about file paths is not accessible from the
+template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -124,15 +379,16 @@ template.</p></div>
         return pretty_join([escape(symbol) for symbol in config[&#34;multichar_symbols&#34;]])
     return add_lexeme_multichar_symbols</code></pre>
 </details>
-<div class="desc"><p>Return a function which adds multichar symbols from a config file
-to a Jinja template. We need a specialized function because
-information about file paths is not accessible from the
-template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_all_pre_element_tags"><code class="name flex">
+<dt id="csv2fst.templates.get_all_pre_element_tags"><code class="name flex">
 <span>def <span class="ident">get_all_pre_element_tags</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which harvests all preverb/prenoun tags from a
+spreadsheet.
+The fucntion can be called from a jinja template
+file. We need a specialized function because information about
+file paths is not accessible from the template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -157,16 +413,32 @@ template.</p></div>
     
     return all_pre_element_tags</code></pre>
 </details>
-<div class="desc"><p>Return a function which harvests all preverb/prenoun tags from a
-spreadsheet.
-The fucntion can be called from a jinja template
-file. We need a specialized function because information about
-file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_allomorph"><code class="name flex">
+<dt id="csv2fst.templates.get_allomorph"><code class="name flex">
 <span>def <span class="ident">get_allomorph</span></span>(<span>pv, order_filter)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return either the plain conjunct, changed conjunct or indpendent
+form of a preverb row (= spreadsheet row) depending on
+<code>order_filter</code>. This will do into different lexc continuation
+lexicons.</p>
+<p>The aim is to add a minimal set of rows into the lexc file in
+hopes of not cluttering it too badly. E.g. we only add separate
+independent and conjunct order forms if those are not identical.
+If they are identical, we will instead add just one form into an
+order-neutral continuation lexicon.
+</p>
+<p>The legal values of <code>order_filter</code> are:</p>
+<ul>
+<li><code>"Independent"</code>: return the independent form if it differs from
+the conjunct form, otherwise <code>None</code>.</li>
+<li><code>"PlainConjunct"</code>: return the conjunct form if it differs from
+the independent form, otherwise <code>None</code>.</li>
+<li><code>"Any"</code>: return the independent form if it is identical to the
+conjunct form, otherwise <code>None</code>.</li>
+<li><code>"ChangedConjunct"</code>: return a special changed-cnjunct form if
+one is given. Otherwise, return <code>None</code>.</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -217,32 +489,16 @@ file paths is not accessible from the template.</p></div>
         raise ValueError(f&#34;Unknown order filter {order_filter}&#34;)
     return None if allomorph == None else (canonical, allomorph)</code></pre>
 </details>
-<div class="desc"><p>Return either the plain conjunct, changed conjunct or indpendent
-form of a preverb row (= spreadsheet row) depending on
-<code>order_filter</code>. This will do into different lexc continuation
-lexicons.</p>
-<p>The aim is to add a minimal set of rows into the lexc file in
-hopes of not cluttering it too badly. E.g. we only add separate
-independent and conjunct order forms if those are not identical.
-If they are identical, we will instead add just one form into an
-order-neutral continuation lexicon.
-</p>
-<p>The legal values of <code>order_filter</code> are:</p>
-<ul>
-<li><code>"Independent"</code>: return the independent form if it differs from
-the conjunct form, otherwise <code>None</code>.</li>
-<li><code>"PlainConjunct"</code>: return the conjunct form if it differs from
-the independent form, otherwise <code>None</code>.</li>
-<li><code>"Any"</code>: return the independent form if it is identical to the
-conjunct form, otherwise <code>None</code>.</li>
-<li><code>"ChangedConjunct"</code>: return a special changed-cnjunct form if
-one is given. Otherwise, return <code>None</code>.</li>
-</ul></div>
 </dd>
-<dt id="csv2fst.src.templates.get_generate_pre_element_sub_lexicons"><code class="name flex">
+<dt id="csv2fst.templates.get_generate_pre_element_sub_lexicons"><code class="name flex">
 <span>def <span class="ident">get_generate_pre_element_sub_lexicons</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which will generate Any, Independent,
+PlainConjuct and ChangedConjunct preverb lexicons in a jinja
+template file. We need a specialized function because
+information about file paths is not accessible from the
+template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -269,16 +525,14 @@ one is given. Otherwise, return <code>None</code>.</li>
         return &#34;\n\n&#34;.join(lexicons)
     return generate_pre_element_sub_lexicons</code></pre>
 </details>
-<div class="desc"><p>Return a function which will generate Any, Independent,
-PlainConjuct and ChangedConjunct preverb lexicons in a jinja
-template file. We need a specialized function because
-information about file paths is not accessible from the
-template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_load_pre_element_csv"><code class="name flex">
+<dt id="csv2fst.templates.get_load_pre_element_csv"><code class="name flex">
 <span>def <span class="ident">get_load_pre_element_csv</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which can be used to load a preverb spreadsheet
+from a jinja template file. We need a specialized function because
+information about file paths is not accessible from the template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -311,19 +565,19 @@ template.</p></div>
         return &#34;\n&#34;.join(entries)
     return load_pre_element_csv</code></pre>
 </details>
-<div class="desc"><p>Return a function which can be used to load a preverb spreadsheet
-from a jinja template file. We need a specialized function because
-information about file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_load_pre_element_database"><code class="name flex">
-<span>def <span class="ident">get_load_pre_element_database</span></span>(<span>source_dirs, prefix_database)</span>
+<dt id="csv2fst.templates.get_load_pre_element_database"><code class="name flex">
+<span>def <span class="ident">get_load_pre_element_database</span></span>(<span>source_dir, prefix_database)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Return a function which can be used to load the preverb database
+in a jinja template file. We need a specialized function because
+information about file paths is not accessible from the template.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_load_pre_element_database(source_dirs,prefix_database):
+<pre><code class="python">def get_load_pre_element_database(source_dir,prefix_database):
     &#34;&#34;&#34;Return a function which can be used to load the preverb database
        in a jinja template file. We need a specialized function because
        information about file paths is not accessible from the template.
@@ -331,29 +585,30 @@ information about file paths is not accessible from the template.</p></div>
     &#34;&#34;&#34;    
     def load_pre_element_database(pv_tag,next_sublex):
         res = &#34;&#34;
-        for source_dir in source_dirs:
-            paradigm = sub(&#34;/$&#34;,&#34;&#34;,pv_tag)
-            if not prefix_database in [&#34;None&#34;, None] and not source_dir in [&#34;None&#34;, None] :
-                df = pd.read_csv(pjoin(source_dir, prefix_database))
-                for _, pv in df.iterrows():
-                    if pv.Paradigm == paradigm:
-                        if res != &#34;&#34;:
-                            res += &#34;\n&#34;
-                        tag = escape(f&#34;{pv_tag}{pv.Lemma}+&#34;)
-                        # We need to register our preverb/prenoun tag as a multicharacter symbol
-                        LexcPath.multichar_symbols.add(tag)
-                        res += f&#34;{tag}:{pv.Stem} {next_sublex} ;&#34;
+        paradigm = sub(&#34;/$&#34;,&#34;&#34;,pv_tag)
+        if not prefix_database in [&#34;None&#34;, None] and not source_dir in [&#34;None&#34;, None] :
+            df = pd.read_csv(pjoin(source_dir, prefix_database))
+            for _, pv in df.iterrows():
+                if pv.Paradigm == paradigm:
+                    if res != &#34;&#34;:
+                        res += &#34;\n&#34;
+                    tag = escape(f&#34;{pv_tag}{pv.Lemma}+&#34;)
+                    # We need to register our preverb/prenoun tag as a multicharacter symbol
+                    LexcPath.multichar_symbols.add(tag)
+                    res += f&#34;{tag}:{pv.Stem} {next_sublex} ;&#34;
         return res    
     return load_pre_element_database</code></pre>
 </details>
-<div class="desc"><p>Return a function which can be used to load the preverb database
-in a jinja template file. We need a specialized function because
-information about file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.get_plain_conjunct"><code class="name flex">
+<dt id="csv2fst.templates.get_plain_conjunct"><code class="name flex">
 <span>def <span class="ident">get_plain_conjunct</span></span>(<span>plain_conjunct, changed_conjunct)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Get a lexicon entry for the plain conjunct form of a preverb. Only
+add a disallow changed-conjunct flag diacritic if we have to,
+i.e. if a separate changed-conjunct form is specified (meaning
+<code>changed_conjunct != None</code>). This keeps the lexc file from
+getting cluttered with loads of unnecessary disallow flags.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -370,16 +625,12 @@ information about file paths is not accessible from the template.</p></div>
             if check_na(changed_conjunct)
             else f&#34;{NO_CH_CONJUNCT}{plain_conjunct}&#34;)</code></pre>
 </details>
-<div class="desc"><p>Get a lexicon entry for the plain conjunct form of a preverb. Only
-add a disallow changed-conjunct flag diacritic if we have to,
-i.e. if a separate changed-conjunct form is specified (meaning
-<code>changed_conjunct != None</code>). This keeps the lexc file from
-getting cluttered with loads of unnecessary disallow flags.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.pretty_join"><code class="name flex">
+<dt id="csv2fst.templates.pretty_join"><code class="name flex">
 <span>def <span class="ident">pretty_join</span></span>(<span>str_list)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Split a string into lines of 80 characters at white space</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -396,12 +647,12 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
             lines.append(s)
     return &#34;\n&#34;.join(lines)</code></pre>
 </details>
-<div class="desc"><p>Split a string into lines of 80 characters at white space</p></div>
 </dd>
-<dt id="csv2fst.src.templates.render_pre_element_lexicon"><code class="name flex">
+<dt id="csv2fst.templates.render_pre_element_lexicon"><code class="name flex">
 <span>def <span class="ident">render_pre_element_lexicon</span></span>(<span>config, source_path, lexc_path)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Render a preverb or prenoun Jinja template into lexc code.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -435,12 +686,12 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
     with open(pjoin(lexc_path, template_file.replace(&#34;.j2&#34;,&#34;&#34;)),&#34;w&#34;) as f:
         print(template_string, file=f)</code></pre>
 </details>
-<div class="desc"><p>Render a preverb or prenoun Jinja template into lexc code.</p></div>
 </dd>
-<dt id="csv2fst.src.templates.render_root_lexicon"><code class="name flex">
+<dt id="csv2fst.templates.render_root_lexicon"><code class="name flex">
 <span>def <span class="ident">render_root_lexicon</span></span>(<span>source_path, lexc_path)</span>
 </code></dt>
 <dd>
+<div class="desc"><p>Render a root lexicon Jinja template into lexc code.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -460,7 +711,6 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
     with open(pjoin(lexc_path, template_file.replace(&#34;.j2&#34;,&#34;&#34;)), &#34;w&#34;) as f:        
         print(template_string, file=f)</code></pre>
 </details>
-<div class="desc"><p>Render a root lexicon Jinja template into lexc code.</p></div>
 </dd>
 </dl>
 </section>
@@ -468,42 +718,43 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
 </section>
 </article>
 <nav id="sidebar">
+<h1>Index</h1>
 <div class="toc">
 <ul></ul>
 </div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="csv2fst.src" href="index.html">csv2fst.src</a></code></li>
+<li><code><a title="csv2fst" href="index.html">csv2fst</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
-<li><code><a title="csv2fst.src.templates.CLEAR_CH_CONJUNCT" href="#csv2fst.src.templates.CLEAR_CH_CONJUNCT">CLEAR_CH_CONJUNCT</a></code></li>
-<li><code><a title="csv2fst.src.templates.NO_CH_CONJUNCT" href="#csv2fst.src.templates.NO_CH_CONJUNCT">NO_CH_CONJUNCT</a></code></li>
+<li><code><a title="csv2fst.templates.CLEAR_CH_CONJUNCT" href="#csv2fst.templates.CLEAR_CH_CONJUNCT">CLEAR_CH_CONJUNCT</a></code></li>
+<li><code><a title="csv2fst.templates.NO_CH_CONJUNCT" href="#csv2fst.templates.NO_CH_CONJUNCT">NO_CH_CONJUNCT</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="csv2fst.src.templates.check_na" href="#csv2fst.src.templates.check_na">check_na</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_add_harvested_multichar_symbols" href="#csv2fst.src.templates.get_add_harvested_multichar_symbols">get_add_harvested_multichar_symbols</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_add_lexeme_multichar_symbols" href="#csv2fst.src.templates.get_add_lexeme_multichar_symbols">get_add_lexeme_multichar_symbols</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_all_pre_element_tags" href="#csv2fst.src.templates.get_all_pre_element_tags">get_all_pre_element_tags</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_allomorph" href="#csv2fst.src.templates.get_allomorph">get_allomorph</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_generate_pre_element_sub_lexicons" href="#csv2fst.src.templates.get_generate_pre_element_sub_lexicons">get_generate_pre_element_sub_lexicons</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_load_pre_element_csv" href="#csv2fst.src.templates.get_load_pre_element_csv">get_load_pre_element_csv</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_load_pre_element_database" href="#csv2fst.src.templates.get_load_pre_element_database">get_load_pre_element_database</a></code></li>
-<li><code><a title="csv2fst.src.templates.get_plain_conjunct" href="#csv2fst.src.templates.get_plain_conjunct">get_plain_conjunct</a></code></li>
-<li><code><a title="csv2fst.src.templates.pretty_join" href="#csv2fst.src.templates.pretty_join">pretty_join</a></code></li>
-<li><code><a title="csv2fst.src.templates.render_pre_element_lexicon" href="#csv2fst.src.templates.render_pre_element_lexicon">render_pre_element_lexicon</a></code></li>
-<li><code><a title="csv2fst.src.templates.render_root_lexicon" href="#csv2fst.src.templates.render_root_lexicon">render_root_lexicon</a></code></li>
+<li><code><a title="csv2fst.templates.check_na" href="#csv2fst.templates.check_na">check_na</a></code></li>
+<li><code><a title="csv2fst.templates.get_add_harvested_multichar_symbols" href="#csv2fst.templates.get_add_harvested_multichar_symbols">get_add_harvested_multichar_symbols</a></code></li>
+<li><code><a title="csv2fst.templates.get_add_lexeme_multichar_symbols" href="#csv2fst.templates.get_add_lexeme_multichar_symbols">get_add_lexeme_multichar_symbols</a></code></li>
+<li><code><a title="csv2fst.templates.get_all_pre_element_tags" href="#csv2fst.templates.get_all_pre_element_tags">get_all_pre_element_tags</a></code></li>
+<li><code><a title="csv2fst.templates.get_allomorph" href="#csv2fst.templates.get_allomorph">get_allomorph</a></code></li>
+<li><code><a title="csv2fst.templates.get_generate_pre_element_sub_lexicons" href="#csv2fst.templates.get_generate_pre_element_sub_lexicons">get_generate_pre_element_sub_lexicons</a></code></li>
+<li><code><a title="csv2fst.templates.get_load_pre_element_csv" href="#csv2fst.templates.get_load_pre_element_csv">get_load_pre_element_csv</a></code></li>
+<li><code><a title="csv2fst.templates.get_load_pre_element_database" href="#csv2fst.templates.get_load_pre_element_database">get_load_pre_element_database</a></code></li>
+<li><code><a title="csv2fst.templates.get_plain_conjunct" href="#csv2fst.templates.get_plain_conjunct">get_plain_conjunct</a></code></li>
+<li><code><a title="csv2fst.templates.pretty_join" href="#csv2fst.templates.pretty_join">pretty_join</a></code></li>
+<li><code><a title="csv2fst.templates.render_pre_element_lexicon" href="#csv2fst.templates.render_pre_element_lexicon">render_pre_element_lexicon</a></code></li>
+<li><code><a title="csv2fst.templates.render_root_lexicon" href="#csv2fst.templates.render_root_lexicon">render_root_lexicon</a></code></li>
 </ul>
 </li>
 </ul>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>
