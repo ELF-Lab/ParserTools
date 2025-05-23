@@ -8,7 +8,7 @@ import shutil
 
 # Run just `python3 create_yaml.py` to view help.
 # Assume that there are maximally five parallel forms on any given CSV row
-MAX_FORMS=10
+MAX_FORMS=5
 EMPTY_FIELD_MARKER = "NONE"
 HEADER = """Config:
   hfst:
