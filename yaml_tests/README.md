@@ -1,5 +1,4 @@
 # yaml_tests
-
 This directory houses the tools for converting CSV spreadsheets of lexical data to YAML files that can be used to test the performance of an FST.
 
 ## How to Run `create_yaml.py`

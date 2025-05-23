@@ -16,9 +16,10 @@ OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 
 # *** Constants for YAML tests ***
 # * Tools *
-CREATEYAML=../yaml_tests/create_yaml.py
+CREATE_YAML=../yaml_tests/create_yaml.py
 LOOKUP=flookup
-MORPHTEST=../yaml_tests/run_yaml_tests.py
+RUN_YAML_TESTS=../yaml_tests/run_yaml_tests.py
+SUMMARIZE_TESTS=../yaml_tests/summarize_tests.py
 # * Keyword (for naming output files, etc.) *
 LABEL_FOR_TESTS="paradigm"
 # * Source files *
@@ -153,9 +154,9 @@ $(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/check-gener
 $(YAML_DIR):
 	rm -Rf $@
 	mkdir $@
-	$(PYTHON) $(CREATEYAML) $(VERB_DATA_FOR_TESTS_DIR) $(VERB_JSON) ./ --pos=verb
+	$(PYTHON) $(CREATE_YAML) $(VERB_DATA_FOR_TESTS_DIR) $(VERB_JSON) ./ --pos=verb
 	mv yaml_output/* $@
-	$(PYTHON) $(CREATEYAML) $(NOUN_DATA_FOR_TESTS_DIR) $(NOUN_JSON) ./ --pos=noun
+	$(PYTHON) $(CREATE_YAML) $(NOUN_DATA_FOR_TESTS_DIR) $(NOUN_JSON) ./ --pos=noun
 	mv yaml_output/* $@
 	rm -d yaml_output
 
@@ -164,18 +165,18 @@ check-tests:$(FST_FOR_TESTS) $(YAML_DIR)
 	rm -f $(REGULAR_TEST_LOG)
 	for f in `ls $(YAML_DIR)/*.yaml | grep -v core`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
+                  $(PYTHON) $(RUN_YAML_TESTS) --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
                   done > $(REGULAR_TEST_LOG)
-	$(PYTHON) ../yaml_tests/summarize_tests.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(VERB_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS)
-	$(PYTHON) ../yaml_tests/summarize_tests.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(NOUN_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS) --for_nouns
+	$(PYTHON) $(SUMMARIZE_TESTS) --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(VERB_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS)
+	$(PYTHON) $(SUMMARIZE_TESTS) --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(NOUN_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS) --for_nouns
 
 # If there are no core YAML files, this will do nothing.
 check-core-tests:$(FST_FOR_TESTS) $(YAML_DIR)
 	rm -f $(CORE_TEST_LOG)
 	for f in `ls $(YAML_DIR)/*core.yaml`; do \
                   echo "YAML test file $$f"; \
-                  $(PYTHON) $(MORPHTEST) --hide-passes --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
+                  $(PYTHON) $(RUN_YAML_TESTS) --hide-passes --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
                   done > $(CORE_TEST_LOG)
 	if [ ! -s "$(CORE_TEST_LOG)" ]; then \
