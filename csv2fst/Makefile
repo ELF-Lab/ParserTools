@@ -16,9 +16,9 @@ OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 
 # *** Constants for YAML tests ***
 # * Tools *
-CREATEYAML=../csv2yaml/create_yaml.py
+CREATEYAML=../yaml_tests/create_yaml.py
 LOOKUP=flookup
-MORPHTEST=src/morph-test.py
+MORPHTEST=../yaml_tests/run_yaml_tests.py
 # * Keyword (for naming output files, etc.) *
 LABEL_FOR_TESTS="paradigm"
 # * Source files *
@@ -167,8 +167,8 @@ check-tests:$(FST_FOR_TESTS) $(YAML_DIR)
                   $(PYTHON) $(MORPHTEST) --app $(LOOKUP) --surface --mor $(FST_FOR_TESTS) $$f; \
                   echo ; \
                   done > $(REGULAR_TEST_LOG)
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(VERB_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS)
-	$(PYTHON) src/test_summary.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(NOUN_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS) --for_nouns
+	$(PYTHON) ../yaml_tests/summarize_tests.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(VERB_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/VERBS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS)
+	$(PYTHON) ../yaml_tests/summarize_tests.py --input_file_name "$(REGULAR_TEST_LOG)" --yaml_source_csv_dir $(NOUN_DATA_FOR_TESTS_DIR) --paradigm_map_path "$(PARADIGM_MAPS_DIR)/NOUNS_paradigm_map.csv" --output_dir $(OUTPUT_DIR) --output_file_identifier $(LABEL_FOR_TESTS) --for_nouns
 
 # If there are no core YAML files, this will do nothing.
 check-core-tests:$(FST_FOR_TESTS) $(YAML_DIR)

@@ -1,8 +1,3 @@
-# The purpose of this script is to convert Ojibwe verb paradigm spreadsheets to yaml files to test an Ojibwe morphological parser
-# Final script created by Scott Parkill (CultureFoundry) and Christopher Hammerly (University of British Columbia)
-# Initial script that served as inspiration created by Miikka Silfverberg (University of British Columbia) and Hammerly 
-# Original Version: January 30, 2023
-
 #!/bin/env python3
 
 import argparse

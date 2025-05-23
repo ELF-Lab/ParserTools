@@ -170,7 +170,7 @@ def read_logs(input_file_name, yaml_source_csv_dir, for_nouns):
             if any_passes:
                 print_form_sublist_as_csv(forms_with_only_unexpected_results, yaml_source_csv_dir, FORMS_WITH_ONLY_UNEXPECTED_RESULTS_FILE_NAME, for_nouns)
             else:
-                print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to morph-test.py), and removing the --hide-passes flag.")
+                print(f"\nRequested print of forms with *only unexpected results*, but the log file does not contain *passes*, which are necessary to determine these forms.  Please generate the log file again, making sure --hide-passes is NOT specified.\nHint: this probably means going into the Makefile, finding where your .log file is generated (i.e., a call to run_yaml_tests.py), and removing the --hide-passes flag.")
         else:
             print("\nCannot print forms with *only unexpected results*.  No language data CSV path given, which is used to get additional information about these forms.")
 

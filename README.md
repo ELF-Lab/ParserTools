@@ -86,7 +86,7 @@ make check MORPHOLOGYSRCDIR=~/Documents/OjibweMorph LEMMAS_DIR=~/Documents/Ojibw
 Also written into the Makefile are the expected names of many of these files (e.g., the paradigm map file for the verb tests of the FST being called `VERBS_paradigm_map.csv`), so if any of these names differ, the Makefile will have to be updated accordingly.
 
 ### Running the YAML Tests
-The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included in this repo, modified to customize the .log output format.
+The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included in this repo (as `run_yaml_tests.py`), modified to customize the .log output format.
 
 Run the tests with `make check`. This will generate three log files:
 * `paradigm-test.log`: A smaller set of tests covering the noun and verb spreadsheets in `OjibweMorph`.

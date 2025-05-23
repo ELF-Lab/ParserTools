@@ -78,7 +78,7 @@ If you're running `bash`, this export probably needs to go to your `.bashrc` or 
 
 You will need to open a new terminal, after you're done with installation in order to activate the `$GTCORE` variable. 
 
-Additionally, `Makefile` requires modifications. You may potentially need to modify the `MORPHTEST` variable to point to your copy of the Giellatekno script `morph-test.py` (you might not need to do anything if you have installed `giella-core`).
+Additionally, `Makefile` requires modifications. You may potentially need to modify the `MORPHTEST` variable to point to your copy of the Giellatekno script `run_yaml_tests.py` (you might not need to do anything if you have installed `giella-core`).
 
 You should now be able to run `make check`. This will generate three log files:
 
