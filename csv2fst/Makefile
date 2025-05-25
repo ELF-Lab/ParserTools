@@ -24,7 +24,7 @@ SUMMARIZE_TESTS=../yaml_tests/summarize_tests.py
 LABEL_FOR_TESTS="paradigm"
 # * Source files *
 # Change the below values to point to the relevant files on your system
-PARADIGM_MAPS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/resources
+PARADIGM_MAPS_DIR=~/OjibweLexicon/resources
 VERB_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/VerbSpreadsheets
 NOUN_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/NounSpreadsheets
 # This can be the regular FST, or some alternative versions created further
