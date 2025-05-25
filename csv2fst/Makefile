@@ -3,16 +3,17 @@
 PYTHON=python3
 FOMA=foma
 # * Keyword (for naming output files, etc.) *
-LANGUAGE_NAME=language
+# Change this value to have a name relevant to your FST
+LANGUAGE_NAME="ojibwe""
 # * Source files *
 # Change the below values to point to the relevant files on your system
 MORPHOLOGYSRCDIR=~/OjibweMorph
-VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
-NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
-# Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
-LEMMAS_DIR=~/OjibweLexicon/OPD,~/OjibweLexicon/HammerlyFieldwork
+LEMMAS_DIR=~/OjibweLexicon/OPD,~/OjibweLexicon/HammerlyFieldwork # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
 LEXICAL_DATA_TO_EXCLUDE=""
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
+# Do not change the below values; determined automatically
+VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
+NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 
 # *** Constants for YAML tests ***
 # * Tools *
@@ -21,15 +22,14 @@ LOOKUP=flookup
 RUN_YAML_TESTS=../yaml_tests/run_yaml_tests.py
 SUMMARIZE_TESTS=../yaml_tests/summarize_tests.py
 # * Keyword (for naming output files, etc.) *
+# Change this value to have a name relevant to your set of tests
 LABEL_FOR_TESTS="paradigm"
 # * Source files *
 # Change the below values to point to the relevant files on your system
 PARADIGM_MAPS_DIR=~/OjibweLexicon/resources
 VERB_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/VerbSpreadsheets
 NOUN_DATA_FOR_TESTS_DIR=$(MORPHOLOGYSRCDIR)/NounSpreadsheets
-# This can be the regular FST, or some alternative versions created further
-# below in the Tests section of this Makefile
-FST_FOR_TESTS=$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin
+FST_FOR_TESTS=$(OUTPUT_DIR)/check-generated/$(LANGUAGE_NAME).fomabin # This can be the regular FST, or some alternative versions created further below in the Tests section of this Makefile
 # Do not change the below values; determined automatically
 YAML_DIR=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)_yaml_output
 REGULAR_TEST_LOG=$(OUTPUT_DIR)/$(LABEL_FOR_TESTS)-test.log
