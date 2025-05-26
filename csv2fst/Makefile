@@ -6,11 +6,11 @@ FOMA=foma
 LANGUAGE_NAME=language
 # * Source files *
 # Change the below values to point to the relevant files on your system
-MORPHOLOGYSRCDIR=~/Documents/ELF/OjibweTesting/OjibweMorph
+MORPHOLOGYSRCDIR=~/OjibweMorph
 VERB_JSON = $(MORPHOLOGYSRCDIR)/config/verbs.json
 NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 # Can be a list (separated by commas) e.g., LEMMAS_DIR=~/folder1,~/folder2
-LEMMAS_DIR=~/Documents/ELF/OjibweTesting/OjibweLexicon/OPD,~/Documents/ELF/OjibweTesting/OjibweLexicon/HammerlyFieldwork
+LEMMAS_DIR=~/OjibweLexicon/OPD,~/OjibweLexicon/HammerlyFieldwork
 LEXICAL_DATA_TO_EXCLUDE=""
 OUTPUT_DIR=$(MORPHOLOGYSRCDIR)/FST
 
@@ -94,8 +94,14 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
         git clone https://github.com/giellalt/lang-ciw.git; \
 	cp root.lexc lang-ciw/src/fst/morphology/ ; \
 	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
-	cp $(LEXCTARGETS) lang-ciw/src/fst/morphology/stems/; \
+	cp $(addprefix ojibwe_,$(LEXCTARGETS)) lang-ciw/src/fst/morphology/stems/; \
 	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
+	cd lang-ciw; \
+        git config user.name "christopherhammerly"; \
+        git config user.email "chris.hammerly@ubc.ca"; \
+        git add .; \
+        git commit -m "Automated update of Ojibwe morphology files"; \
+        git push origin main
 
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
