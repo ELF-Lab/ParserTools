@@ -96,10 +96,6 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 	cp phonology.xfst lang-ciw/src/fst/morphology/phonology.xfscript ; \
 	cp $(addprefix ojibwe_,$(LEXCTARGETS)) lang-ciw/src/fst/morphology/stems/; \
 	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
-	cd lang-ciw; \
-        git add .; \
-        git commit -m "Automated update of Ojibwe morphology files"; \
-        git push
 
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
