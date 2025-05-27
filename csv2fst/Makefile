@@ -97,11 +97,9 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 	cp $(addprefix ojibwe_,$(LEXCTARGETS)) lang-ciw/src/fst/morphology/stems/; \
 	cp preverbs.lexc prenouns.lexc preadverbs.lexc lang-ciw/src/fst/morphology/stems/
 	cd lang-ciw; \
-        git config user.name "christopherhammerly"; \
-        git config user.email "chris.hammerly@ubc.ca"; \
         git add .; \
         git commit -m "Automated update of Ojibwe morphology files"; \
-        git push origin main
+        git push
 
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
