@@ -2,9 +2,9 @@
 
 The lexical source CSVs provide lists of lexemes to the FST which will then be included in its knowledge.  While other sources tell the FST how to inflect various lexemes, phonological rules that are involved, etc. the lexical source CSVs are like big wordlists that the FST will then apply that other knowledge to.
 
-The lexical source CSVs should be split up part of speech, yielding `VERBS.csv`, `NOUNS.csv`, etc.  Each CSV has the following columns:
+The lexical source CSVs should be split up by part of speech, yielding `VERBS.csv`, `NOUNS.csv`, etc.  Each CSV has the following columns:
 - **Lemma**: the 'dictionary form'; an easily-recognizable, 'base' form that is an actual, useable word.
-- **Stem**: the base which undergoes morphology to create inflected forms.  Often identical to the lexeme, but needn't be.  May be more of a word 'part' than a useable word.
+- **Stem**: the base which undergoes morphology to create inflected forms.  Often identical to the lemma, but needn't be.  May be more of a word 'part' than a useable word.
 - **Paradigm**: the paradigm category which this lexeme belongs to.
 - **Class**: the class category which this lexeme belongs to.
 - **Translation**: the lexeme's meaning in English; not used by the FST and so can be `NONE`.
@@ -17,6 +17,7 @@ Lemma,Stem,Paradigm,Class,Translation,Source
 waasigani-gizhaabikiziganens,waasigani-gizhaabikiziganens,NI,NI_C,NONE,https://ojibwe.lib.umn.edu/main-entry/waasigani-gizhaabikiziganens-ni
 waasigani-biiwaabik,waasigani-biiwaabikw2,NI,NI_Cw,NONE,https://ojibwe.lib.umn.edu/main-entry/waasigani-biiwaabik-ni
 ```
+<br>
 
 The lemma is essentially the best identifier for a lexeme for speakers.  It is not used internally by the FST, but *is* used in the FST outputs: it is the form that appears in analysis outputs, in the tag set.  For example, if you ask the FST for an analysis of *waasigani-biiwaabikoon*, you get `waasigani-biiwaabik+NI+Pl`, which uses the **lemma** given in the example above (in the last row).
 
