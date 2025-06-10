@@ -4,7 +4,7 @@ PYTHON=python3
 FOMA=foma
 # * Keyword (for naming output files, etc.) *
 # Change this value to have a name relevant to your FST
-LANGUAGE_NAME="ojibwe""
+LANGUAGE_NAME="ojibwe"
 # * Source files *
 # Change the below values to point to the relevant files on your system
 MORPHOLOGYSRCDIR=~/OjibweMorph
@@ -17,10 +17,10 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 
 # *** Constants for YAML tests ***
 # * Tools *
-CREATE_YAML=../yaml_tests/create_yaml.py
+CREATE_YAML=../tests/create_yaml.py
 LOOKUP=flookup
-RUN_YAML_TESTS=../yaml_tests/run_yaml_tests.py
-SUMMARIZE_TESTS=../yaml_tests/summarize_tests.py
+RUN_YAML_TESTS=../tests/run_yaml_tests.py
+SUMMARIZE_TESTS=../tests/summarize_tests.py
 # * Keyword (for naming output files, etc.) *
 # Change this value to have a name relevant to your set of tests
 LABEL_FOR_TESTS="paradigm"
@@ -55,7 +55,7 @@ release:all
 
 $(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) ./csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
@@ -100,7 +100,7 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) src/extract_tag_combinations.py \
+	$(PYTHON) ./extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --pre-element=TensePreverbs \
@@ -111,7 +111,7 @@ $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 
 $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) src/extract_tag_combinations.py \
+	$(PYTHON) ./extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --output-file $@
@@ -132,7 +132,7 @@ check: check-core-tests check-tests
 # A different version of the lexc files that *doesn't* use the external lexical database
 $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p $(OUTPUT_DIR)/check-generated
-	$(PYTHON) src/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) ./csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --lexc-path $(OUTPUT_DIR)/check-generated \

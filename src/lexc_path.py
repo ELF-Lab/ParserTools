@@ -6,7 +6,7 @@
 import re
 import pandas as pd
 from collections import namedtuple
-from log import warn
+from src.log import warn
 from copy import deepcopy
 
 MAXFORMS=100

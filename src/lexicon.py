@@ -4,9 +4,9 @@ import pandas as pd
 import os
 from os.path import join as pjoin
 
-from lexc_path import LexcPath, DerivationPath, entry2str, LexcEntry, escape
-from log import info, warn
-from lexc_comment import comment_block
+from src.lexc_path import LexcPath, DerivationPath, entry2str, LexcEntry, escape
+from src.log import info, warn
+from src.lexc_comment import comment_block
 
 class LexcFile:
     @staticmethod
