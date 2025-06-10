@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>ParserTools.tests.run_yaml_tests API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>ParserTools.tests.run_yaml_tests</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.check_path_exists"><code class="name flex">
+<span>def <span class="ident">check_path_exists</span></span>(<span>program)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def check_path_exists(program):
+    out = shutil.which(program)
+    if out is None:
+        raise EnvironmentError(&#34;Cannot find `%s`. Check $PATH.&#34; % program)
+    return out</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.colourise"><code class="name flex">
+<span>def <span class="ident">colourise</span></span>(<span>string, *args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def colourise(string, *args, **kwargs):
+    kwargs.update(COLORS)
+    return string.format(*args, **kwargs)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.invert_dict"><code class="name flex">
+<span>def <span class="ident">invert_dict</span></span>(<span>data)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def invert_dict(data):
+        tmp = OrderedDict()
+        for key, val in data.items():
+            for v in string_to_list(val):
+                d = tmp.setdefault(v, [])
+                if key not in d:
+                    d.append(key)
+        return tmp</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.lexc_to_yaml_string"><code class="name flex">
+<span>def <span class="ident">lexc_to_yaml_string</span></span>(<span>data)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def lexc_to_yaml_string(data):
+    out = StringIO()
+    out.write(&#34;Tests:\n&#34;)
+    for trans, tests in data.items():
+        for test, lines in tests.items():
+            out.write(&#34;  %s:\n&#34; % test)
+            for left, rights in lines.items():
+                if len(rights) == 1:
+                    out.write(&#34;    %s: %s\n&#34; % (left, rights[0]))
+                elif len(rights) &gt; 1:
+                    out.write(&#34;    %s: [%s]\n&#34; % (left, &#34;, &#34;.join(rights)))
+    return out.getvalue()</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main():
+    try:
+        ui = UI()
+        ui.start()
+    except KeyboardInterrupt:
+        sys.exit(130)
+    #except Exception as e:
+    #    print(&#34;Error: %r&#34; % e)
+    #    sys.exit(1)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.parse_lexc"><code class="name flex">
+<span>def <span class="ident">parse_lexc</span></span>(<span>f, fallback=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_lexc(f, fallback=None):
+    HEADER_RE = re.compile(r&#39;^\!\!€([^\s.:]+)(?:.[^\s:]+)?:\s*([^#]+)\s*#?&#39;)
+    TEST_RE = re.compile(r&#39;^\!\!([€\$])\s+(\S.*):\s+(\S+|\S.*\S)(\s*$|\s+[#!])&#39;)
+    POS = &#34;€&#34;
+    NEG = &#34;$&#34;
+
+    output = {}
+    trans = None
+    test = None
+    if isinstance(f, str):
+        f = StringIO(f)
+
+    lines = f.readlines()
+    for line in lines:
+        if line.startswith(&#34;LEXICON&#34;):
+            test = line.split(&#34; &#34;, 1)[-1]
+            if fallback is not None:
+                trans = fallback
+
+        elif line.startswith(&#34;!!&#34;):
+            match = HEADER_RE.match(line)
+            if match:
+                trans = match.group(1)
+                test = match.group(2).strip()
+                if output.get(trans) is None:
+                    output[trans] = OrderedDict()
+                if output[trans].get(test) is None:
+                    output[trans][test] = OrderedDict()
+                continue
+
+            match = TEST_RE.match(line)
+            if test is None or trans is None:
+                continue
+
+            if TEST_RE.match(line):
+                test_type = match.group(1).strip()
+                left = match.group(3).strip()
+                right = match.group(2).strip()
+
+                if test_type == NEG:
+                    right = &#34;~&#34; + right
+
+                if output[trans][test].get(left) is None:
+                    output[trans][test][left] = []
+                output[trans][test][left].append(right)
+
+    return dict(output)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.parse_lexc_trans"><code class="name flex">
+<span>def <span class="ident">parse_lexc_trans</span></span>(<span>f, gen=None, morph=None, app=None, fallback=None, lookup='hfst')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_lexc_trans(f, gen=None, morph=None, app=None, fallback=None, lookup=&#34;hfst&#34;):
+    trans = None
+    if gen is not None:
+        trans = gen.rsplit(&#39;.&#39;, 1)[0].split(&#39;-&#39;, 1)[1]
+    elif morph is not None:
+        trans = morph.rsplit(&#39;.&#39;, 1)[0].split(&#39;-&#39;, 1)[1]
+    elif fallback is not None:
+        trans = fallback
+    if trans is None or trans == &#34;&#34;:
+        raise AttributeError(&#34;Could not guess which transducer to use.&#34;)
+
+    lexc = parse_lexc(f, fallback)[trans]
+    if app is None:
+        app = [&#34;hfst-lookup&#34;] if lookup == &#34;hfst&#34; else [&#34;lookup&#34;, &#34;-flags&#34;, &#34;mbTT&#34;]
+    config = {lookup: {&#34;Gen&#34;: gen, &#34;Morph&#34;: morph, &#34;App&#34;: string_to_list(app)}}
+    return {&#34;Config&#34;: config, &#34;Tests&#34;: lexc}</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.string_to_list"><code class="name flex">
+<span>def <span class="ident">string_to_list</span></span>(<span>data)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def string_to_list(data):
+    if isinstance(data, bytes): return [data.decode(&#39;utf-8&#39;)]
+    elif isinstance(data, str): return [data]
+    else: return data</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.yaml_load_ordered"><code class="name flex">
+<span>def <span class="ident">yaml_load_ordered</span></span>(<span>f)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def yaml_load_ordered(f):
+    return yaml.load(f, _OrderedDictYAMLLoader)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.LookupError"><code class="flex name class">
+<span>class <span class="ident">LookupError</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LookupError(Exception):
+    pass</code></pre>
+</details>
+<div class="desc"><p>Common base class for all non-exit exceptions.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.Exception</li>
+<li>builtins.BaseException</li>
+</ul>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest"><code class="flex name class">
+<span>class <span class="ident">MorphTest</span></span>
+<span>(</span><span>args)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MorphTest:
+    class AllOutput():
+        def __init__(self, args):
+            self._io = StringIO()
+            self.args = args
+
+        def __str__(self):
+            return self._io.getvalue()
+
+        def write(self, data):
+            self._io.write(data)
+
+        def info(self, data):
+            self.write(data)
+
+        def title(self, *args): pass
+        def success(self, *args): pass
+        def failure(self, *args): pass
+        def result(self, *args): pass
+        def final_result(self, hfst):
+            self.write(colourise(&#34;Total passes: {green}{passes}{reset}, &#34; +
+                &#34;Total fails: {red}{fails}{reset}, &#34; +
+                &#34;Total: {light_blue}{total}{reset}\n&#34;,
+                passes=hfst.passes,
+                fails=hfst.fails,
+                total=hfst.fails+hfst.passes
+            ))
+
+    class NormalOutput(AllOutput):
+        def title(self, text):
+            self.write(colourise(&#34;{light_blue}-&#34; * len(text) + &#39;\n&#39;))
+            self.write(text + &#39;\n&#39;)
+            self.write(colourise(&#34;-&#34; * len(text) + &#39;{reset}\n&#39;))
+
+        def success(self, case, total, left, right):
+            x = colourise((&#34;[{light_blue}{case:&gt;%d}/{total}{reset}][{green}PASS{reset}] &#34; +
+                          &#34;{left} {blue}=&gt;{reset} {right}\n&#34;) % len(str(total)),
+                          left=left, right=right, case=case, total=total)
+            self.write(x)
+
+        def failure(self, case, total, left, right, errlist):
+            x = colourise((&#34;[{light_blue}{case:&gt;%d}/{total}{reset}][{red}FAIL{reset}] &#34; +
+                          &#34;{left} {blue}=&gt;{reset} {right}: {errlist}\n&#34;) % len(str(total)),
+                          left=left, right=right, case=case, total=total,
+                          errlist=&#34;, &#34;.join(errlist))
+            self.write(x)
+
+        def result(self, title, test, counts, unique_tests, stems_with_no_analyses):
+            p = counts[&#34;Pass&#34;]
+            f = counts[&#34;Fail&#34;]
+            no_analysis_fails = counts[&#34;No-Analysis Fail&#34;]
+            false_neg = counts[&#34;Missing Fail&#34;]
+            form_analysis_pairs = p + false_neg
+            # Don&#39;t count empty analyses as false positives!
+            false_pos = counts[&#34;Unexpected Fail&#34;] - no_analysis_fails
+            text = colourise(&#34;\nTest {n} - Passes: {green}{passes}{reset}, &#34; +
+                   &#34;Fails: {red}{fails}{reset}, &#34; +
+                   &#34;Total: {light_blue}{total}{reset}\n&#34; +
+                   &#34;True positives (&#39;passes&#39;): {green}{passes}{reset}, &#34; +
+                   &#34;False negatives (&#39;analyses missing from the FST&#39;): {red}{false_neg}{reset}, &#34; +
+                   &#34;False positives (&#39;unexpected analyses from the FST&#39;): {red}{false_pos}{reset}, &#34; +
+                   &#34;Forms with no analysis whatsoever: {light_blue}{no_analysis_fails}{reset}\n&#34; +
+                   &#34;Unique inflected forms being tested: {light_blue}{unique_tests}{reset}, &#34; +
+                   &#34;Inflected form + analysis pairs being tested: {light_blue}{form_analysis_pairs}{reset}\n&#34; +
+                   &#34;Stems with no analyses whatsoever: {light_blue}{stems_with_no_analyses}{reset}\n&#34;,
+                   n=test, passes=p, fails=f, total=p+f, false_neg=false_neg, false_pos=false_pos, no_analysis_fails=no_analysis_fails, unique_tests=unique_tests, form_analysis_pairs=form_analysis_pairs, stems_with_no_analyses=stems_with_no_analyses)
+            self.write(text)
+
+    class CompactOutput(AllOutput):
+        def result(self, title, test, counts):
+            p = counts[&#34;Pass&#34;]
+            f = counts[&#34;Fail&#34;]
+            out = &#34;%s %d/%d/%d&#34; % (title, p, f, p+f)
+            if counts[&#34;Fail&#34;] &gt; 0:
+                if not self.args.hide_fail:
+                    self.write(colourise(&#34;[{red}FAIL{reset}] {}\n&#34;, out))
+            elif not self.args.hide_pass:
+                self.write(colourise(&#34;[{green}PASS{reset}] {}\n&#34;, out))
+
+    class TerseOutput(AllOutput):
+        def success(self, case, total, l, r):
+            self.write(colourise(&#34;{green}.{reset}&#34;))
+        def failure(self, case, total, form, err, errlist):
+            self.write(colourise(&#34;{red}!{reset}&#34;))
+        def result(self, title, test, counts):
+            self.write(&#39;\n&#39;)
+        def final_result(self, counts):
+            if counts.fails &gt; 0:
+                self.write(colourise(&#34;{red}FAIL{reset}\n&#34;))
+            else:
+                self.write(colourise(&#34;{green}PASS{reset}\n&#34;))
+
+    class FinalOutput(AllOutput):
+        def final_result(self, counts):
+            p = counts.passes
+            f = counts.fails
+            self.write(&#34;%d/%d/%d &#34; % (p, f, p+f))
+
+    class NoOutput(AllOutput):
+        def final_result(self, *args):
+            pass
+
+    def __init__(self, args):
+        self.args = args
+
+        # TODO: check for null case
+
+        self.fails = 0
+        self.passes = 0
+
+        self.count = OrderedDict()
+        self.load_config(self.args.test_file)
+
+    def run(self):
+        #timing_begin = time.time()
+        self.run_tests(self.args.test)
+        #self.timer = time.time() - timing_begin
+        if self.fails &gt; 0:
+            return 1
+        else:
+            return 0
+
+    def load_config(self, fn):
+        args = self.args
+
+        if fn.endswith(&#39;lexc&#39;):
+            self.config = TestFile(parse_lexc_trans(open(fn),
+                    args.gen,
+                    args.morph,
+                    args.app,
+                    args.transducer,
+                    args.section), args.section)
+        else:
+            self.config = TestFile(yaml_load_ordered(open(fn)), args.section)
+
+        config = self.config
+
+        app = args.app or config.app
+        if isinstance(app, str):
+            app = app.split(&#34; &#34;)
+        self.program = string_to_list(app)
+        check_path_exists(self.program[0])
+
+        self.gen = args.gen or config.gen
+        self.morph = args.morph or config.morph
+
+        if args.surface:
+            self.gen = None
+        if args.lexical:
+            self.morph = None
+
+        if self.gen == self.morph == None:
+            raise AttributeError(&#34;One of Gen or Morph must be configured.&#34;)
+
+        for i in (self.gen, self.morph):
+            if i and not os.path.isfile(i):
+                raise IOError(&#34;File %s does not exist.&#34; % i)
+
+        if args.silent:
+            self.out = MorphTest.NoOutput(args)
+        else:
+            self.out = {
+                &#34;normal&#34;: MorphTest.NormalOutput,
+                &#34;terse&#34;: MorphTest.TerseOutput,
+                &#34;compact&#34;: MorphTest.CompactOutput,
+                &#34;silent&#34;: MorphTest.NoOutput,
+                &#34;final&#34;: MorphTest.FinalOutput
+            }.get(args.output, lambda x: None)(args)
+
+        if self.out is None:
+            raise AttributeError(&#34;Invalid output mode supplied: %s&#34; % args.output)
+
+        if args.verbose:
+            self.out.info(&#34;`%s` will be used for parsing dictionaries.\n&#34; % self.program[0])
+
+        if not args.colour:
+            for key in list(COLORS.keys()):
+                COLORS[key] = &#34;&#34;
+
+    def run_tests(self, single_test=None):
+        args = self.args
+        config = self.config
+
+        if args.surface == args.lexical == False:
+            args.surface = args.lexical = True
+
+        if single_test is not None:
+            self.parse_fsts(single_test)
+            if args.lexical: self.run_test(single_test, True)
+            if args.surface: self.run_test(single_test, False)
+
+        else:
+            self.parse_fsts()
+
+            if args.lexical:
+                for t in config.lexical_tests:
+                    self.run_test(t, True)
+
+            if args.surface:
+                for t in config.surface_tests:
+                    self.run_test(t, False)
+
+        self.out.final_result(self)
+
+    def parse_fsts(self, key=None):
+        args = self.args
+        self.results = {&#34;gen&#34;: {}, &#34;morph&#34;: {}}
+
+        def parser(self, d, f, tests):
+            # TODO: handle ~ in file parser
+            if key is not None:
+                keys = [x.lstrip(&#34;~&#34;) for x in tests[key]]
+            else:
+                keys = [x[0].lstrip(&#34;~&#34;) for vals in tests.values() for x in vals]
+            app = Popen(self.program + [f], stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)
+            args = &#39;\n&#39;.join(keys) + &#39;\n&#39;
+
+            res, err = app.communicate(args.encode(&#39;utf-8&#39;))
+            res = res.decode(&#39;utf-8&#39;).split(&#39;\n\n&#39;)
+            err = err.decode(&#39;utf-8&#39;).strip()
+
+            if app.returncode != 0:
+                self.results[&#39;err&#39;] = &#34;\n&#34;.join(
+                    [i for i in [res[0], err, &#34;(Error code: %s)&#34; % app.returncode] if i != &#39;&#39;]
+                )
+            else:
+                self.results[d] = self.parse_fst_output(res)
+
+        if args.lexical:
+            parser(self, &#34;gen&#34;, self.gen, self.config.surface_tests)
+            if self.args.verbose:
+                self.out.info(&#34;Generating...\n&#34;)
+
+        if args.surface:
+            parser(self, &#34;morph&#34;, self.morph, self.config.lexical_tests)
+            if self.args.verbose:
+                self.out.info(&#34;Morphing...\n&#34;)
+
+        if self.args.verbose:
+            self.out.info(&#34;Done!\n&#34;)
+
+    def get_forms(self, test, forms):
+        if test.startswith(&#39;~&#39;):
+            test = test.lstrip(&#34;~&#34;)
+            detested = set()
+            expected = set()
+            for i in forms:
+                if i.startswith(&#39;~&#39;):
+                    expected.add(i.lstrip(&#39;~&#39;))
+                else:
+                    detested.add(i)
+        else:
+            detested = set([i.lstrip(&#39;~&#39;) for i in forms if i.startswith(&#39;~&#39;)])
+            expected = set([i.lstrip(&#39;~&#39;) for i in forms if not i.startswith(&#39;~&#39;)])
+        return test, detested, expected
+
+    def run_test(self, data, is_lexical):
+        if is_lexical:
+            desc = &#34;Lexical/Generation&#34;
+            f = &#34;gen&#34;
+            tests = self.config.surface_tests[data]
+
+        else: #surface
+            desc = &#34;Surface/Analysis&#34;
+            f = &#34;morph&#34;
+            tests = self.config.lexical_tests[data]
+
+        res = self.results[f]
+
+        if self.results.get(&#39;err&#39;):
+            raise LookupError(&#39;`%s` had an error:\n%s&#39; % (self.program, self.results[&#39;err&#39;]))
+
+        c = len(self.count)
+        d = &#34;%s (%s)&#34; % (data, desc)
+        title = &#34;Test %d: %s&#34; % (c, d)
+        self.out.title(title)
+
+        self.count[d] = {&#34;Pass&#34;: 0, &#34;Fail&#34;: 0, &#34;Missing Fail&#34;: 0, &#34;Unexpected Fail&#34;: 0, &#34;No-Analysis Fail&#34;: 0}
+
+        caseslen = len(tests)
+        does_this_stem_have_any_analyses = {}
+        for n, testcase in enumerate(tests):
+            n += 1 # off by one annoyance
+
+            test = testcase.input
+            forms = testcase.outputs
+
+            actual_results = set(res[test.lstrip(&#34;~&#34;)]) # = analyses the FST outputs
+            test, detested_results, expected_results = self.get_forms(test, forms)
+            assert(len(expected_results) &gt; 0)
+            assert(len(detested_results) == 0) # Not sure what this even is!
+
+            stem = &#34;&#34;
+            stem = (expected_results.copy().pop()).partition(&#34;+&#34;)[0]
+            if stem not in does_this_stem_have_any_analyses.keys():
+                does_this_stem_have_any_analyses.update({stem: False})
+
+            missing = set() # Missing
+            invalid = set() # Unexpected
+            success = set() # Pass
+            detested = set() # ??
+            missing_detested = set() # ??
+
+            # Go through the actual and expected results to make our lists of
+            # passes and fails (missing and unexpected)
+            for form in expected_results:
+                if not form in actual_results:
+                    missing.add(form)
+
+            for form in detested_results:
+                if form in actual_results:
+                    detested.add(form)
+                    actual_results.remove(form)
+                else:
+                    missing_detested.add(form)
+
+            for form in actual_results:
+                if not form in expected_results:
+                    invalid.add(form)
+                if not form in (missing | invalid | detested):
+                    success.add(form)
+
+            if len(expected_results) &gt; 0:
+                for form in actual_results:
+                    if not form in (missing | invalid | detested):
+                        passed = True
+                        self.count[d][&#34;Pass&#34;] += 1
+                        does_this_stem_have_any_analyses.update({stem: True})
+                        if not self.args.hide_pass:
+                            self.out.success(n, caseslen, test, form)
+                for form in missing_detested:
+                    success.add(form)
+                    self.count[d][&#34;Pass&#34;] += 1
+                    if not self.args.hide_pass:
+                        self.out.success(n, caseslen, test, &#34;&lt;No &#39;%s&#39; %s&gt;&#34; % (form, desc.lower()))
+
+            else:
+                if len(invalid) == 1 and list(invalid)[0].endswith(&#34;+?&#34;):
+                    invalid = set()
+                    self.count[d][&#34;Pass&#34;] += 1
+                    if not self.args.hide_pass:
+                        self.out.success(n, caseslen, test, &#34;&lt;No %s&gt;&#34; % desc.lower())
+
+            if len(missing) &gt; 0:
+                if not self.args.hide_fail:
+                    self.out.failure(n, caseslen, test, &#34;Missing results&#34;, missing)
+                    self.count[d][&#34;Missing Fail&#34;] += len(missing)
+                #self.count[d][&#34;Fail&#34;] += len(missing)
+
+            if len(invalid) &gt; 0:
+                if not is_lexical and self.args.ignore_analyses:
+                    invalid = set() # hide this for the final check
+                elif not self.args.hide_fail:
+                    self.out.failure(n, caseslen, test, &#34;Unexpected results&#34;, invalid)
+                    self.count[d][&#34;Unexpected Fail&#34;] += len(invalid)
+                    # Check if the FST &#34;analysis&#34; is unexpected because there&#39;s no analysis whatsover!
+                    if &#34;+?&#34; in invalid:
+                        self.count[d][&#34;No-Analysis Fail&#34;] += 1
+                    else:
+                        does_this_stem_have_any_analyses.update({stem: True})
+                #self.count[d][&#34;Fail&#34;] += len(invalid)
+
+            if len(detested) &gt; 0:
+                if self.args.colour:
+                    msg = colourise(&#34;{red}BROKEN!{reset}&#34;)
+                else:
+                    msg = &#34;BROKEN!&#34;
+                if not self.args.hide_fail:
+                    self.out.failure(n, caseslen, test, msg + &#34; Negative results&#34;, detested)
+                #self.count[d][&#34;Fail&#34;] += len(detested)
+            if len(detested) + len(missing) + len(invalid) &gt; 0:
+                self.count[d][&#34;Fail&#34;] += 1
+
+        stems_with_no_analyses = []
+        for stem in does_this_stem_have_any_analyses.keys():
+            if not (does_this_stem_have_any_analyses[stem]):
+                stems_with_no_analyses.append(stem)
+
+        self.out.result(title, c, self.count[d], caseslen, stems_with_no_analyses)
+
+        self.passes += self.count[d][&#34;Pass&#34;]
+        self.fails += self.count[d][&#34;Fail&#34;]
+
+
+
+    def parse_fst_output(self, fst):
+        parsed = {}
+        for item in fst:
+            res = item.replace(&#39;\r\n&#39;,&#39;\n&#39;).replace(&#39;\r&#39;,&#39;\n&#39;).split(&#39;\n&#39;)
+            for i in res:
+                if i.strip() != &#39;&#39;:
+                    results = re.split(r&#39;\t+&#39;, i)
+                    key = results[0].strip()
+                    if not key in parsed:
+                        parsed[key] = set()
+                    # This test is needed because xfst&#39;s lookup
+                    # sometimes output strings like
+                    # bearkoe\tbearkoe\t+N+Sg+Nom, instead of the expected
+                    # bearkoe\tbearkoe+N+Sg+Nom
+                    if len(results) &gt; 2 and results[2][0] == &#39;+&#39;:
+                        parsed[key].add(results[1].strip() + results[2].strip())
+                    else:
+                        parsed[key].add(results[1].strip())
+        return parsed
+
+    def __str__(self):
+        return str(self.out)</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.AllOutput"><code class="name">var <span class="ident">AllOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.CompactOutput"><code class="name">var <span class="ident">CompactOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.FinalOutput"><code class="name">var <span class="ident">FinalOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.NoOutput"><code class="name">var <span class="ident">NoOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.NormalOutput"><code class="name">var <span class="ident">NormalOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.TerseOutput"><code class="name">var <span class="ident">TerseOutput</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.get_forms"><code class="name flex">
+<span>def <span class="ident">get_forms</span></span>(<span>self, test, forms)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_forms(self, test, forms):
+    if test.startswith(&#39;~&#39;):
+        test = test.lstrip(&#34;~&#34;)
+        detested = set()
+        expected = set()
+        for i in forms:
+            if i.startswith(&#39;~&#39;):
+                expected.add(i.lstrip(&#39;~&#39;))
+            else:
+                detested.add(i)
+    else:
+        detested = set([i.lstrip(&#39;~&#39;) for i in forms if i.startswith(&#39;~&#39;)])
+        expected = set([i.lstrip(&#39;~&#39;) for i in forms if not i.startswith(&#39;~&#39;)])
+    return test, detested, expected</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.load_config"><code class="name flex">
+<span>def <span class="ident">load_config</span></span>(<span>self, fn)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_config(self, fn):
+    args = self.args
+
+    if fn.endswith(&#39;lexc&#39;):
+        self.config = TestFile(parse_lexc_trans(open(fn),
+                args.gen,
+                args.morph,
+                args.app,
+                args.transducer,
+                args.section), args.section)
+    else:
+        self.config = TestFile(yaml_load_ordered(open(fn)), args.section)
+
+    config = self.config
+
+    app = args.app or config.app
+    if isinstance(app, str):
+        app = app.split(&#34; &#34;)
+    self.program = string_to_list(app)
+    check_path_exists(self.program[0])
+
+    self.gen = args.gen or config.gen
+    self.morph = args.morph or config.morph
+
+    if args.surface:
+        self.gen = None
+    if args.lexical:
+        self.morph = None
+
+    if self.gen == self.morph == None:
+        raise AttributeError(&#34;One of Gen or Morph must be configured.&#34;)
+
+    for i in (self.gen, self.morph):
+        if i and not os.path.isfile(i):
+            raise IOError(&#34;File %s does not exist.&#34; % i)
+
+    if args.silent:
+        self.out = MorphTest.NoOutput(args)
+    else:
+        self.out = {
+            &#34;normal&#34;: MorphTest.NormalOutput,
+            &#34;terse&#34;: MorphTest.TerseOutput,
+            &#34;compact&#34;: MorphTest.CompactOutput,
+            &#34;silent&#34;: MorphTest.NoOutput,
+            &#34;final&#34;: MorphTest.FinalOutput
+        }.get(args.output, lambda x: None)(args)
+
+    if self.out is None:
+        raise AttributeError(&#34;Invalid output mode supplied: %s&#34; % args.output)
+
+    if args.verbose:
+        self.out.info(&#34;`%s` will be used for parsing dictionaries.\n&#34; % self.program[0])
+
+    if not args.colour:
+        for key in list(COLORS.keys()):
+            COLORS[key] = &#34;&#34;</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.parse_fst_output"><code class="name flex">
+<span>def <span class="ident">parse_fst_output</span></span>(<span>self, fst)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_fst_output(self, fst):
+    parsed = {}
+    for item in fst:
+        res = item.replace(&#39;\r\n&#39;,&#39;\n&#39;).replace(&#39;\r&#39;,&#39;\n&#39;).split(&#39;\n&#39;)
+        for i in res:
+            if i.strip() != &#39;&#39;:
+                results = re.split(r&#39;\t+&#39;, i)
+                key = results[0].strip()
+                if not key in parsed:
+                    parsed[key] = set()
+                # This test is needed because xfst&#39;s lookup
+                # sometimes output strings like
+                # bearkoe\tbearkoe\t+N+Sg+Nom, instead of the expected
+                # bearkoe\tbearkoe+N+Sg+Nom
+                if len(results) &gt; 2 and results[2][0] == &#39;+&#39;:
+                    parsed[key].add(results[1].strip() + results[2].strip())
+                else:
+                    parsed[key].add(results[1].strip())
+    return parsed</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.parse_fsts"><code class="name flex">
+<span>def <span class="ident">parse_fsts</span></span>(<span>self, key=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_fsts(self, key=None):
+    args = self.args
+    self.results = {&#34;gen&#34;: {}, &#34;morph&#34;: {}}
+
+    def parser(self, d, f, tests):
+        # TODO: handle ~ in file parser
+        if key is not None:
+            keys = [x.lstrip(&#34;~&#34;) for x in tests[key]]
+        else:
+            keys = [x[0].lstrip(&#34;~&#34;) for vals in tests.values() for x in vals]
+        app = Popen(self.program + [f], stdin=PIPE, stdout=PIPE, stderr=PIPE, close_fds=True)
+        args = &#39;\n&#39;.join(keys) + &#39;\n&#39;
+
+        res, err = app.communicate(args.encode(&#39;utf-8&#39;))
+        res = res.decode(&#39;utf-8&#39;).split(&#39;\n\n&#39;)
+        err = err.decode(&#39;utf-8&#39;).strip()
+
+        if app.returncode != 0:
+            self.results[&#39;err&#39;] = &#34;\n&#34;.join(
+                [i for i in [res[0], err, &#34;(Error code: %s)&#34; % app.returncode] if i != &#39;&#39;]
+            )
+        else:
+            self.results[d] = self.parse_fst_output(res)
+
+    if args.lexical:
+        parser(self, &#34;gen&#34;, self.gen, self.config.surface_tests)
+        if self.args.verbose:
+            self.out.info(&#34;Generating...\n&#34;)
+
+    if args.surface:
+        parser(self, &#34;morph&#34;, self.morph, self.config.lexical_tests)
+        if self.args.verbose:
+            self.out.info(&#34;Morphing...\n&#34;)
+
+    if self.args.verbose:
+        self.out.info(&#34;Done!\n&#34;)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self):
+    #timing_begin = time.time()
+    self.run_tests(self.args.test)
+    #self.timer = time.time() - timing_begin
+    if self.fails &gt; 0:
+        return 1
+    else:
+        return 0</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.run_test"><code class="name flex">
+<span>def <span class="ident">run_test</span></span>(<span>self, data, is_lexical)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_test(self, data, is_lexical):
+    if is_lexical:
+        desc = &#34;Lexical/Generation&#34;
+        f = &#34;gen&#34;
+        tests = self.config.surface_tests[data]
+
+    else: #surface
+        desc = &#34;Surface/Analysis&#34;
+        f = &#34;morph&#34;
+        tests = self.config.lexical_tests[data]
+
+    res = self.results[f]
+
+    if self.results.get(&#39;err&#39;):
+        raise LookupError(&#39;`%s` had an error:\n%s&#39; % (self.program, self.results[&#39;err&#39;]))
+
+    c = len(self.count)
+    d = &#34;%s (%s)&#34; % (data, desc)
+    title = &#34;Test %d: %s&#34; % (c, d)
+    self.out.title(title)
+
+    self.count[d] = {&#34;Pass&#34;: 0, &#34;Fail&#34;: 0, &#34;Missing Fail&#34;: 0, &#34;Unexpected Fail&#34;: 0, &#34;No-Analysis Fail&#34;: 0}
+
+    caseslen = len(tests)
+    does_this_stem_have_any_analyses = {}
+    for n, testcase in enumerate(tests):
+        n += 1 # off by one annoyance
+
+        test = testcase.input
+        forms = testcase.outputs
+
+        actual_results = set(res[test.lstrip(&#34;~&#34;)]) # = analyses the FST outputs
+        test, detested_results, expected_results = self.get_forms(test, forms)
+        assert(len(expected_results) &gt; 0)
+        assert(len(detested_results) == 0) # Not sure what this even is!
+
+        stem = &#34;&#34;
+        stem = (expected_results.copy().pop()).partition(&#34;+&#34;)[0]
+        if stem not in does_this_stem_have_any_analyses.keys():
+            does_this_stem_have_any_analyses.update({stem: False})
+
+        missing = set() # Missing
+        invalid = set() # Unexpected
+        success = set() # Pass
+        detested = set() # ??
+        missing_detested = set() # ??
+
+        # Go through the actual and expected results to make our lists of
+        # passes and fails (missing and unexpected)
+        for form in expected_results:
+            if not form in actual_results:
+                missing.add(form)
+
+        for form in detested_results:
+            if form in actual_results:
+                detested.add(form)
+                actual_results.remove(form)
+            else:
+                missing_detested.add(form)
+
+        for form in actual_results:
+            if not form in expected_results:
+                invalid.add(form)
+            if not form in (missing | invalid | detested):
+                success.add(form)
+
+        if len(expected_results) &gt; 0:
+            for form in actual_results:
+                if not form in (missing | invalid | detested):
+                    passed = True
+                    self.count[d][&#34;Pass&#34;] += 1
+                    does_this_stem_have_any_analyses.update({stem: True})
+                    if not self.args.hide_pass:
+                        self.out.success(n, caseslen, test, form)
+            for form in missing_detested:
+                success.add(form)
+                self.count[d][&#34;Pass&#34;] += 1
+                if not self.args.hide_pass:
+                    self.out.success(n, caseslen, test, &#34;&lt;No &#39;%s&#39; %s&gt;&#34; % (form, desc.lower()))
+
+        else:
+            if len(invalid) == 1 and list(invalid)[0].endswith(&#34;+?&#34;):
+                invalid = set()
+                self.count[d][&#34;Pass&#34;] += 1
+                if not self.args.hide_pass:
+                    self.out.success(n, caseslen, test, &#34;&lt;No %s&gt;&#34; % desc.lower())
+
+        if len(missing) &gt; 0:
+            if not self.args.hide_fail:
+                self.out.failure(n, caseslen, test, &#34;Missing results&#34;, missing)
+                self.count[d][&#34;Missing Fail&#34;] += len(missing)
+            #self.count[d][&#34;Fail&#34;] += len(missing)
+
+        if len(invalid) &gt; 0:
+            if not is_lexical and self.args.ignore_analyses:
+                invalid = set() # hide this for the final check
+            elif not self.args.hide_fail:
+                self.out.failure(n, caseslen, test, &#34;Unexpected results&#34;, invalid)
+                self.count[d][&#34;Unexpected Fail&#34;] += len(invalid)
+                # Check if the FST &#34;analysis&#34; is unexpected because there&#39;s no analysis whatsover!
+                if &#34;+?&#34; in invalid:
+                    self.count[d][&#34;No-Analysis Fail&#34;] += 1
+                else:
+                    does_this_stem_have_any_analyses.update({stem: True})
+            #self.count[d][&#34;Fail&#34;] += len(invalid)
+
+        if len(detested) &gt; 0:
+            if self.args.colour:
+                msg = colourise(&#34;{red}BROKEN!{reset}&#34;)
+            else:
+                msg = &#34;BROKEN!&#34;
+            if not self.args.hide_fail:
+                self.out.failure(n, caseslen, test, msg + &#34; Negative results&#34;, detested)
+            #self.count[d][&#34;Fail&#34;] += len(detested)
+        if len(detested) + len(missing) + len(invalid) &gt; 0:
+            self.count[d][&#34;Fail&#34;] += 1
+
+    stems_with_no_analyses = []
+    for stem in does_this_stem_have_any_analyses.keys():
+        if not (does_this_stem_have_any_analyses[stem]):
+            stems_with_no_analyses.append(stem)
+
+    self.out.result(title, c, self.count[d], caseslen, stems_with_no_analyses)
+
+    self.passes += self.count[d][&#34;Pass&#34;]
+    self.fails += self.count[d][&#34;Fail&#34;]</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.MorphTest.run_tests"><code class="name flex">
+<span>def <span class="ident">run_tests</span></span>(<span>self, single_test=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run_tests(self, single_test=None):
+    args = self.args
+    config = self.config
+
+    if args.surface == args.lexical == False:
+        args.surface = args.lexical = True
+
+    if single_test is not None:
+        self.parse_fsts(single_test)
+        if args.lexical: self.run_test(single_test, True)
+        if args.surface: self.run_test(single_test, False)
+
+    else:
+        self.parse_fsts()
+
+        if args.lexical:
+            for t in config.lexical_tests:
+                self.run_test(t, True)
+
+        if args.surface:
+            for t in config.surface_tests:
+                self.run_test(t, False)
+
+    self.out.final_result(self)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestCase"><code class="flex name class">
+<span>class <span class="ident">TestCase</span></span>
+<span>(</span><span>input, outputs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>TestCase(input, outputs)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.tuple</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.TestCase.input"><code class="name">var <span class="ident">input</span></code></dt>
+<dd>
+<div class="desc"><p>Alias for field number 0</p></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestCase.outputs"><code class="name">var <span class="ident">outputs</span></code></dt>
+<dd>
+<div class="desc"><p>Alias for field number 1</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile"><code class="flex name class">
+<span>class <span class="ident">TestFile</span></span>
+<span>(</span><span>data, system='hfst')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestFile:
+    def __init__(self, data, system=&#34;hfst&#34;):
+        self.data = data
+        self._system = system
+
+    @property
+    def surface_tests(self):
+        tests = OrderedDict()
+        for title, cases in self.data[&#39;Tests&#39;].items():
+            new_cases = []
+            for surface, lexical in cases.items():
+                new_cases.append(TestCase(input=surface, outputs=string_to_list(lexical)))
+            tests[title] = new_cases
+        return tests
+
+    @property
+    def lexical_tests(self):
+        tests = OrderedDict()
+        for title, cases in self.data[&#39;Tests&#39;].items():
+            new_cases = []
+            for lexical, surface in invert_dict(cases).items():
+                new_cases.append(TestCase(input=lexical, outputs=string_to_list(surface)))
+            tests[title] = new_cases
+        return tests
+
+    @property
+    def gen(self):
+        return self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;Gen&#34;, None)
+
+    @property
+    def morph(self):
+        return self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;Morph&#34;, None)
+
+    @property
+    def app(self):
+        a = self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;App&#34;, None)
+        if a is None:
+            if self._system == &#34;hfst&#34;:
+                return [&#39;hfst-lookup&#39;]
+            elif self._system == &#34;xerox&#34;:
+                return [&#34;lookup&#34;, &#34;-flags&#34;, &#34;mbTT&#34;]
+            else:
+                raise Exception(&#34;Unknown system: &#39;%s&#39;&#34; % self._system)
+        return a</code></pre>
+</details>
+<div class="desc"></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile.app"><code class="name">prop <span class="ident">app</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def app(self):
+    a = self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;App&#34;, None)
+    if a is None:
+        if self._system == &#34;hfst&#34;:
+            return [&#39;hfst-lookup&#39;]
+        elif self._system == &#34;xerox&#34;:
+            return [&#34;lookup&#34;, &#34;-flags&#34;, &#34;mbTT&#34;]
+        else:
+            raise Exception(&#34;Unknown system: &#39;%s&#39;&#34; % self._system)
+    return a</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile.gen"><code class="name">prop <span class="ident">gen</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def gen(self):
+    return self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;Gen&#34;, None)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile.lexical_tests"><code class="name">prop <span class="ident">lexical_tests</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def lexical_tests(self):
+    tests = OrderedDict()
+    for title, cases in self.data[&#39;Tests&#39;].items():
+        new_cases = []
+        for lexical, surface in invert_dict(cases).items():
+            new_cases.append(TestCase(input=lexical, outputs=string_to_list(surface)))
+        tests[title] = new_cases
+    return tests</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile.morph"><code class="name">prop <span class="ident">morph</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def morph(self):
+    return self.data.get(&#34;Config&#34;, {}).get(self._system, {}).get(&#34;Morph&#34;, None)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.TestFile.surface_tests"><code class="name">prop <span class="ident">surface_tests</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def surface_tests(self):
+    tests = OrderedDict()
+    for title, cases in self.data[&#39;Tests&#39;].items():
+        new_cases = []
+        for surface, lexical in cases.items():
+            new_cases.append(TestCase(input=surface, outputs=string_to_list(lexical)))
+        tests[title] = new_cases
+    return tests</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="ParserTools.tests.run_yaml_tests.UI"><code class="flex name class">
+<span>class <span class="ident">UI</span></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UI(ArgumentParser):
+    def __init__(self):
+        ArgumentParser.__init__(self)
+
+        self.description=&#34;&#34;&#34;Test morphological transducers for consistency.&#34;&#34;&#34;
+        self.epilog=&#34;Will run all tests in the test_file by default.&#34;
+
+        self.add_argument(&#34;-c&#34;, &#34;--colour&#34;, dest=&#34;colour&#34;,
+            action=&#34;store_true&#34;, help=&#34;Colours the output&#34;)
+        self.add_argument(&#34;-o&#34;, &#34;--output&#34;,
+            dest=&#34;output&#34;, default=&#34;normal&#34;,
+            help=&#34;Desired output style: normal, compact, terse, final (Default: normal)&#34;)
+        self.add_argument(&#34;-q&#34;, &#34;--silent&#34;,
+            dest=&#34;silent&#34;, action=&#34;store_true&#34;,
+            help=&#34;Hide all output; exit code only&#34;)
+        self.add_argument(&#34;-i&#34;, &#34;--ignore-extra-analyses&#34;,
+            dest=&#34;ignore_analyses&#34;, action=&#34;store_true&#34;,
+            help=&#34;&#34;&#34;Ignore extra analyses when there are more than expected,
+            will PASS if the expected one is found.&#34;&#34;&#34;)
+        self.add_argument(&#34;-s&#34;, &#34;--surface&#34;,
+            dest=&#34;surface&#34;, action=&#34;store_true&#34;,
+            help=&#34;Surface input/analysis tests only&#34;)
+        self.add_argument(&#34;-l&#34;, &#34;--lexical&#34;,
+            dest=&#34;lexical&#34;, action=&#34;store_true&#34;,
+            help=&#34;Lexical input/generation tests only&#34;)
+        self.add_argument(&#34;-f&#34;, &#34;--hide-fails&#34;,
+            dest=&#34;hide_fail&#34;, action=&#34;store_true&#34;,
+            help=&#34;Suppresses fails to make finding passes easier&#34;)
+        self.add_argument(&#34;-p&#34;, &#34;--hide-passes&#34;,
+            dest=&#34;hide_pass&#34;, action=&#34;store_true&#34;,
+            help=&#34;Suppresses passes to make finding fails easier&#34;)
+        self.add_argument(&#34;-S&#34;, &#34;--section&#34;, default=&#34;hfst&#34;,
+            dest=&#34;section&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;The section to be used for testing (default is `hfst`)&#34;)
+        self.add_argument(&#34;-t&#34;, &#34;--test&#34;,
+            dest=&#34;test&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;&#34;&#34;Which test to run (Default: all). TEST = test ID, e.g.
+            &#39;Noun - g\u00E5etie&#39; (remember quotes if the ID contains spaces)&#34;&#34;&#34;)
+        self.add_argument(&#34;-F&#34;, &#34;--fallback&#34;,
+            dest=&#34;transducer&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;&#34;&#34;Which fallback transducer to use (ignored, use --gen and --morph).&#34;&#34;&#34;)
+        self.add_argument(&#34;-v&#34;, &#34;--verbose&#34;,
+            dest=&#34;verbose&#34;, action=&#34;store_true&#34;,
+            help=&#34;More verbose output.&#34;)
+
+        self.add_argument(&#34;--app&#34;, dest=&#34;app&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;Override application used for test&#34;)
+        self.add_argument(&#34;--gen&#34;, dest=&#34;gen&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;Override generation transducer used for test&#34;)
+        self.add_argument(&#34;--morph&#34;, dest=&#34;morph&#34;, nargs=&#39;?&#39;, required=False,
+            help=&#34;Override morph transducer used for test&#34;)
+
+        self.add_argument(&#34;test_file&#34;,
+            help=&#34;YAML file with test rules&#34;)
+
+        self.test = MorphTest(self.parse_args())
+
+    def start(self):
+        ret = self.test.run()
+        sys.stdout.write(str(self.test))
+        sys.exit(ret)</code></pre>
+</details>
+<div class="desc"><p>Object for parsing command line strings into Python objects.</p>
+<p>Keyword Arguments:
+- prog &ndash; The name of the program (default:
+<code>os.path.basename(sys.argv[0])</code>)
+- usage &ndash; A usage message (default: auto-generated from arguments)
+- description &ndash; A description of what the program does
+- epilog &ndash; Text following the argument descriptions
+- parents &ndash; Parsers whose arguments should be copied into this one
+- formatter_class &ndash; HelpFormatter class for printing help messages
+- prefix_chars &ndash; Characters that prefix optional arguments
+- fromfile_prefix_chars &ndash; Characters that prefix files containing
+additional arguments
+- argument_default &ndash; The default value for all arguments
+- conflict_handler &ndash; String indicating how to handle conflicts
+- add_help &ndash; Add a -h/-help option
+- allow_abbrev &ndash; Allow long options to be abbreviated unambiguously
+- exit_on_error &ndash; Determines whether or not ArgumentParser exits with
+error info when an error occurs</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>argparse.ArgumentParser</li>
+<li>argparse._AttributeHolder</li>
+<li>argparse._ActionsContainer</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="ParserTools.tests.run_yaml_tests.UI.start"><code class="name flex">
+<span>def <span class="ident">start</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def start(self):
+    ret = self.test.run()
+    sys.stdout.write(str(self.test))
+    sys.exit(ret)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="ParserTools.tests" href="index.html">ParserTools.tests</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="ParserTools.tests.run_yaml_tests.check_path_exists" href="#ParserTools.tests.run_yaml_tests.check_path_exists">check_path_exists</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.colourise" href="#ParserTools.tests.run_yaml_tests.colourise">colourise</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.invert_dict" href="#ParserTools.tests.run_yaml_tests.invert_dict">invert_dict</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.lexc_to_yaml_string" href="#ParserTools.tests.run_yaml_tests.lexc_to_yaml_string">lexc_to_yaml_string</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.main" href="#ParserTools.tests.run_yaml_tests.main">main</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.parse_lexc" href="#ParserTools.tests.run_yaml_tests.parse_lexc">parse_lexc</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.parse_lexc_trans" href="#ParserTools.tests.run_yaml_tests.parse_lexc_trans">parse_lexc_trans</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.string_to_list" href="#ParserTools.tests.run_yaml_tests.string_to_list">string_to_list</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.yaml_load_ordered" href="#ParserTools.tests.run_yaml_tests.yaml_load_ordered">yaml_load_ordered</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="ParserTools.tests.run_yaml_tests.LookupError" href="#ParserTools.tests.run_yaml_tests.LookupError">LookupError</a></code></h4>
+</li>
+<li>
+<h4><code><a title="ParserTools.tests.run_yaml_tests.MorphTest" href="#ParserTools.tests.run_yaml_tests.MorphTest">MorphTest</a></code></h4>
+<ul class="two-column">
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.AllOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.AllOutput">AllOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.CompactOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.CompactOutput">CompactOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.FinalOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.FinalOutput">FinalOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.NoOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.NoOutput">NoOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.NormalOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.NormalOutput">NormalOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.TerseOutput" href="#ParserTools.tests.run_yaml_tests.MorphTest.TerseOutput">TerseOutput</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.get_forms" href="#ParserTools.tests.run_yaml_tests.MorphTest.get_forms">get_forms</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.load_config" href="#ParserTools.tests.run_yaml_tests.MorphTest.load_config">load_config</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.parse_fst_output" href="#ParserTools.tests.run_yaml_tests.MorphTest.parse_fst_output">parse_fst_output</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.parse_fsts" href="#ParserTools.tests.run_yaml_tests.MorphTest.parse_fsts">parse_fsts</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.run" href="#ParserTools.tests.run_yaml_tests.MorphTest.run">run</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.run_test" href="#ParserTools.tests.run_yaml_tests.MorphTest.run_test">run_test</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.MorphTest.run_tests" href="#ParserTools.tests.run_yaml_tests.MorphTest.run_tests">run_tests</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ParserTools.tests.run_yaml_tests.TestCase" href="#ParserTools.tests.run_yaml_tests.TestCase">TestCase</a></code></h4>
+<ul class="">
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestCase.input" href="#ParserTools.tests.run_yaml_tests.TestCase.input">input</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestCase.outputs" href="#ParserTools.tests.run_yaml_tests.TestCase.outputs">outputs</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ParserTools.tests.run_yaml_tests.TestFile" href="#ParserTools.tests.run_yaml_tests.TestFile">TestFile</a></code></h4>
+<ul class="">
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestFile.app" href="#ParserTools.tests.run_yaml_tests.TestFile.app">app</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestFile.gen" href="#ParserTools.tests.run_yaml_tests.TestFile.gen">gen</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestFile.lexical_tests" href="#ParserTools.tests.run_yaml_tests.TestFile.lexical_tests">lexical_tests</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestFile.morph" href="#ParserTools.tests.run_yaml_tests.TestFile.morph">morph</a></code></li>
+<li><code><a title="ParserTools.tests.run_yaml_tests.TestFile.surface_tests" href="#ParserTools.tests.run_yaml_tests.TestFile.surface_tests">surface_tests</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="ParserTools.tests.run_yaml_tests.UI" href="#ParserTools.tests.run_yaml_tests.UI">UI</a></code></h4>
+<ul class="">
+<li><code><a title="ParserTools.tests.run_yaml_tests.UI.start" href="#ParserTools.tests.run_yaml_tests.UI.start">start</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

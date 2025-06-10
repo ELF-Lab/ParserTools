@@ -270,7 +270,7 @@ def print_summary_stats(results, for_nouns):
 
 def main():
     # Sets up argparse.
-    parser = argparse.ArgumentParser(prog="test_summary")
+    parser = argparse.ArgumentParser(prog="summarize_tests")
     parser.add_argument("--input_file_name", type=str, help="The .log file that is being read in.")
     parser.add_argument("--yaml_source_csv_dir", type=str, help="The directory containing the .csv file(s) containing the language data which was used to generate the YAML files.  Optional; only used if you want to print out some extra information about the test data.")
     parser.add_argument("--paradigm_map_path", type=str, help="The .csv file from which the list of test sections are read (e.g., VAIPL_V, VAIPL_VV).")
@@ -300,4 +300,5 @@ def main():
         write_to_csv(output_line, summary_output_file_path)
     print_summary_stats(results, args.for_nouns)
 
-main()
+if __name__ == "__main__":
+    main()

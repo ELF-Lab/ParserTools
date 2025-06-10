@@ -197,5 +197,9 @@ clean:
 # the docs
 
 doc:*py
-	pdoc --force -c syntax_highlighting=True --html .; mv html/csv2fst/* docs/csv2fst_html_docs
+	pdoc --force -c syntax_highlighting=True --html .
+	rm -r -f docs/html_docs
+	mkdir docs/html_docs/
+	mv html/ParserTools/* docs/html_docs/
+	rm -r html/
 
