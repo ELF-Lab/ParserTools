@@ -17,10 +17,10 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 
 # *** Constants for YAML tests ***
 # * Tools *
-CREATE_YAML=../tests/create_yaml.py
+CREATE_YAML=./tests/create_yaml.py
 LOOKUP=flookup
-RUN_YAML_TESTS=../tests/run_yaml_tests.py
-SUMMARIZE_TESTS=../tests/summarize_tests.py
+RUN_YAML_TESTS=./tests/run_yaml_tests.py
+SUMMARIZE_TESTS=./tests/summarize_tests.py
 # * Keyword (for naming output files, etc.) *
 # Change this value to have a name relevant to your set of tests
 LABEL_FOR_TESTS="paradigm"
