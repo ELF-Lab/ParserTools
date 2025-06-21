@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "csv2fst"
+name = "parsertools"
 version = "0.1.0"
 description = ""
 authors = ["Miikka Silfverberg <msilfver@mail.ubc.ca>", "Anna Stacey <anna.stacey@ubc.ca>"]
