@@ -17,10 +17,10 @@ NOUN_JSON = $(MORPHOLOGYSRCDIR)/config/nouns.json
 
 # *** Constants for YAML tests ***
 # * Tools *
-CREATE_YAML=parsertools/tests/create_yaml.py
+CREATE_YAML=FSTmorph/tests/create_yaml.py
 LOOKUP=flookup
-RUN_YAML_TESTS=parsertools/tests/run_yaml_tests.py
-SUMMARIZE_TESTS=parsertools/tests/summarize_tests.py
+RUN_YAML_TESTS=FSTmorph/tests/run_yaml_tests.py
+SUMMARIZE_TESTS=FSTmorph/tests/summarize_tests.py
 # * Keyword (for naming output files, etc.) *
 # Change this value to have a name relevant to your set of tests
 LABEL_FOR_TESTS="paradigm"
@@ -55,7 +55,7 @@ release:all
 
 $(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) parsertools/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) FSTmorph/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --alt-tag $(ALTTAG) \
@@ -69,12 +69,12 @@ $(OUTPUT_DIR)/generated/all.lexc:$(CONFIG_FILES)
 	mkdir -p $*
 	cp $^ $@
 
-$(OUTPUT_DIR)/generated/compile_fst.xfst:parsertools/assets/compile_fst.xfst
+$(OUTPUT_DIR)/generated/compile_fst.xfst:FSTmorph/assets/compile_fst.xfst
 	mkdir -p $(OUTPUT_DIR)/generated
 	cp $^ $@
 	cat $^ | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $@
 
-$(OUTPUT_DIR)/check-generated/compile_fst.xfst:parsertools/assets/compile_fst.xfst
+$(OUTPUT_DIR)/check-generated/compile_fst.xfst:FSTmorph/assets/compile_fst.xfst
 	mkdir -p $(OUTPUT_DIR)/check-generated
 	cat $^ | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $@
 
@@ -83,8 +83,8 @@ $(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin:$(OUTPUT_DIR)/generated/all.lex
 	echo "Compiling FST using XFST script $(FSTSCRIPT) and LEXC targets $(LEXCTARGETS)"
 	cd $(OUTPUT_DIR)/generated; $(FOMA) -f compile_fst.xfst
 
-$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin parsertools/assets/delete_alt_tag.xfst 
-	cat parsertools/assets/delete_alt_tag.xfst | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $(OUTPUT_DIR)/generated/delete_alt_tag.xfst
+$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).noAlt.fomabin:$(OUTPUT_DIR)/generated/$(LANGUAGE_NAME).fomabin FSTmorph/assets/delete_alt_tag.xfst 
+	cat FSTmorph/assets/delete_alt_tag.xfst | sed 's/LANGUAGE_NAME/$(LANGUAGE_NAME)/g' > $(OUTPUT_DIR)/generated/delete_alt_tag.xfst
 	cd $(OUTPUT_DIR)/generated; $(FOMA) -f delete_alt_tag.xfst
 
 # For building spell checkers etc. using Giellatekno infrastructure.
@@ -100,7 +100,7 @@ $(OUTPUT_DIR)/generated/lang-ciw:$(OUTPUT_DIR)/generated/all.lexc $(OUTPUT_DIR)/
 # Tag specification file
 $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) parsertools/extract_tag_combinations.py \
+	$(PYTHON) FSTmorph/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --pre-element=TensePreverbs \
@@ -111,7 +111,7 @@ $(OUTPUT_DIR)/generated/verbs_tags.json:$(MORPHOLOGYSRCDIR)/config/verbs.json
 
 $(OUTPUT_DIR)/generated/%_tags.json:$(MORPHOLOGYSRCDIR)/config/%.json
 	mkdir -p $(OUTPUT_DIR)/generated
-	$(PYTHON) parsertools/extract_tag_combinations.py \
+	$(PYTHON) FSTmorph/extract_tag_combinations.py \
              --config-file $< \
              --source-path $(MORPHOLOGYSRCDIR) \
              --output-file $@
@@ -132,7 +132,7 @@ check: check-core-tests check-tests
 # A different version of the lexc files that *doesn't* use the external lexical database
 $(OUTPUT_DIR)/check-generated/all.lexc:$(shell find $(MORPHOLOGYSRCDIR)/config/ -name "*.json")
 	mkdir -p $(OUTPUT_DIR)/check-generated
-	$(PYTHON) parsertools/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
+	$(PYTHON) FSTmorph/csv2lexc.py --config-files `echo $^ | tr ' ' ','` \
                               --source-path $(MORPHOLOGYSRCDIR) \
                               --database-paths $(LEMMAS_DIR) \
                               --lexc-path $(OUTPUT_DIR)/check-generated \
@@ -200,6 +200,6 @@ doc:*py
 	pdoc --force -c syntax_highlighting=True --html .
 	rm -r -f docs/html_docs
 	mkdir docs/html_docs/
-	mv html/ParserTools/* docs/html_docs/
+	mv html/FSTmorph/* docs/html_docs/
 	rm -r html/
 

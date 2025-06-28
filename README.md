@@ -1,4 +1,4 @@
-# ParserTools
+# FSTmorph
 This repository houses a set of language-neutral tools for converting CSVs to a finite-state transducer (FST), as well as for testing that FST via YAML files.
 
 ## Contents
@@ -15,6 +15,8 @@ This repository houses a set of language-neutral tools for converting CSVs to a 
 Examples are given for Ojibwe, with the relevant language data accessible in other repos.  However, this FST-generating code is intended to be applicable for other Algonquian languages and beyond -- if you have the necessary spreadsheets for your target language, it should be compatible with this code!
 
 ### Getting set up to build the FST
+<mark>Will need updating after repo restructuring!</mark>
+
 You will need to install the foma compiler and flookup program (which
 is part of the foma toolkit). On Mac or Linux, the easiest way to install is via [homebrew](https://formulae.brew.sh/formula/foma).  Just use the command `brew install foma`.  Alternatively, there are other installation instructions [here](https://blogs.cornell.edu/finitestatecompling/2016/08/24/installing-foma/) (including for Windows users).
 

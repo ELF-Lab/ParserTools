@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "parsertools"
+name = "FSTmorph"
 version = "0.1.0"
 description = ""
 authors = ["Miikka Silfverberg <msilfver@mail.ubc.ca>", "Anna Stacey <anna.stacey@ubc.ca>"]
