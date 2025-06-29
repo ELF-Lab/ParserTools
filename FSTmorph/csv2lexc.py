@@ -28,9 +28,9 @@ import click
 import json
 from os.path import join as pjoin
 
-from src.lexicon import LexcFile
-from src.templates import render_pre_element_lexicon, render_root_lexicon
-from src.log import set_verbose, info
+from fstmorph.src.lexicon import LexcFile
+from fstmorph.src.templates import render_pre_element_lexicon, render_root_lexicon
+from fstmorph.src.log import set_verbose, info
 
 # Can be imported into other scripts, or called from the command line via main()
 def csv2lexc(config_files, source_path, lexc_path, database_paths, lexical_data_to_exclude, read_lexical_database, add_derivations, alt_tag, verbose):

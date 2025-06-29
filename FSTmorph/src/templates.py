@@ -6,7 +6,7 @@ import pandas as pd
 from os import listdir
 from os.path import join as pjoin, expanduser, basename, dirname
 from math import isnan
-from src.lexc_path import escape, LexcPath
+from .lexc_path import escape, LexcPath
 from re import sub
 
 NO_CH_CONJUNCT="@D.ChCnj@"

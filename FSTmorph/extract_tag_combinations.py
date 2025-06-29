@@ -4,7 +4,7 @@ import click
 import pandas as pd
 import json
 from os.path import join as pjoin
-from src.log import info
+from fstmorph.src.log import info
 
 def get_tags(tag_list):
     """ Handle special characters """
