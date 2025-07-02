@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ParserTools.csv2lexc API documentation</title>
+<title>FSTmorph.csv2lexc API documentation</title>
 <meta name="description" content="Script for compiling a set of lexc files from the following resources: …">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ParserTools.csv2lexc</code></h1>
+<h1 class="title">Module <code>FSTmorph.csv2lexc</code></h1>
 </header>
 <section id="section-intro">
 <p>Script for compiling a set of lexc files from the following resources:</p>
@@ -63,6 +63,85 @@ matter when concatenating.</p>
 <section>
 </section>
 <section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="FSTmorph.csv2lexc.csv2lexc"><code class="name flex">
+<span>def <span class="ident">csv2lexc</span></span>(<span>config_files,<br>source_path,<br>lexc_path,<br>database_paths,<br>lexical_data_to_exclude,<br>read_lexical_database,<br>add_derivations,<br>alt_tag,<br>verbose)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def csv2lexc(config_files, source_path, lexc_path, database_paths, lexical_data_to_exclude, read_lexical_database, add_derivations, alt_tag, verbose):
+    set_verbose(verbose)
+    if verbose:
+        info(&#34;Compiling in verbose mode. Omit --verbose to disable.&#34;)
+    else:
+        info(&#34;Compiling in non-verbose mode. For more detailed diagnostics, use option --verbose=True.&#34;)
+    config_files = config_files.split(&#34;,&#34;)
+    info(f&#34;Got {len(config_files)} configuration files: {&#39;, &#39;.join(config_files)}&#34;)
+    database_paths = database_paths.split(&#34;,&#34;)
+
+    # Collect POS root lexicons like NounRoot and VerbRoot. We need to
+    # refer to these from root.lexc
+    pos_root_lexicons = set()
+    for config_file in config_files:
+        info(f&#34;Processing configuration file {config_file}:&#34;)
+        config = json.load(open(config_file))
+        config[&#34;database_src_dirs&#34;] = database_paths
+        config[&#34;append_alt_tag&#34;] = alt_tag
+        info(json.dumps(config, indent=2),force=False)
+        pos_root_lexicons.add(config[&#34;root_lexicon&#34;])
+        
+        # We&#39;ll first compile regular paradigms into a LEXC file 
+        info(&#34;Reading spreadsheets for regular paradigms from directory:&#34;,
+             f&#34;{pjoin(source_path,config[&#39;morphology_source_path&#39;])}&#34;)
+        lexicon = LexcFile(config,
+                           source_path,
+                           lexc_path,
+                           database_paths,
+                           lexical_data_to_exclude,
+                           read_lexical_database,
+                           add_derivations,
+                           regular=True)
+        info(f&#34;Writing lexc output to {config[&#39;regular_lexc_file&#39;]}&#34;)
+        lexicon.write_lexc()
+
+        # We&#39;ll then compile irregular paradigms into a different LEXC
+        # file. These need to be separated because, later on, phonological
+        # rules are only applied to regular paradigms.
+        if config[&#39;irregular_lexc_file&#39;] != &#34;None&#34;:
+            info(&#34;Reading spreadsheets for irregular paradigms from directory:&#34;,
+                 f&#34;{pjoin(source_path,config[&#39;morphology_source_path&#39;])}&#34;)
+            config[&#34;root_lexicon&#34;] += &#34;Irregular&#34;
+            pos_root_lexicons.add(config[&#34;root_lexicon&#34;])
+            irregular_lexicon = LexcFile(config,
+                                         source_path,
+                                         lexc_path,
+                                         database_paths,
+                                         lexical_data_to_exclude,
+                                         read_lexical_database=False,
+                                         add_derivations=False,
+                                         regular=False)
+            info(f&#34;Writing lexc output to {config[&#39;irregular_lexc_file&#39;]}&#34;)
+            irregular_lexicon.write_lexc()
+
+        if config[&#34;template_path&#34;] != &#34;None&#34;:
+            info(&#34;Reading prefix template file from:&#34;,
+                 f&#34;{config[&#39;template_path&#39;]}&#34;)
+            info(&#34;Reading prefix spreadsheets from directory:&#34;,
+                 f&#34;{config[&#39;pv_source_path&#39;]}&#34;)
+            info(f&#34;Writing lexc output to directory {lexc_path}&#34;)
+            pos_root_lexicons.add(config[&#34;prefix_root&#34;])
+            render_pre_element_lexicon(config,source_path,lexc_path)
+            
+    render_root_lexicon(pjoin(source_path,&#34;templates&#34;,&#34;root.lexc.j2&#34;),
+                        lexc_path)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -74,7 +153,12 @@ matter when concatenating.</p>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ParserTools" href="index.html">ParserTools</a></code></li>
+<li><code><a title="FSTmorph" href="index.html">FSTmorph</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="FSTmorph.csv2lexc.csv2lexc" href="#FSTmorph.csv2lexc.csv2lexc">csv2lexc</a></code></li>
 </ul>
 </li>
 </ul>

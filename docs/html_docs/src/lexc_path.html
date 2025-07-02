@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ParserTools.src.lexc_path API documentation</title>
+<title>FSTmorph.src.lexc_path API documentation</title>
 <meta name="description" content="Functions and classes for converting a morphological paradigm
 spreadsheet row into one or more paths in a lexc file.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
@@ -34,7 +34,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ParserTools.src.lexc_path</code></h1>
+<h1 class="title">Module <code>FSTmorph.src.lexc_path</code></h1>
 </header>
 <section id="section-intro">
 <p>Functions and classes for converting a morphological paradigm
@@ -45,20 +45,20 @@ spreadsheet row into one or more paths in a lexc file.</p>
 <section>
 <h2 class="section-title" id="header-variables">Global variables</h2>
 <dl>
-<dt id="ParserTools.src.lexc_path.ALT_TAG"><code class="name">var <span class="ident">ALT_TAG</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.ALT_TAG"><code class="name">var <span class="ident">ALT_TAG</span></code></dt>
 <dd>
 <div class="desc"><p>Tag which indicates alternative or non-standard analyses.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.MAXFORMS"><code class="name">var <span class="ident">MAXFORMS</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.MAXFORMS"><code class="name">var <span class="ident">MAXFORMS</span></code></dt>
 <dd>
 <div class="desc"><p>Maximum number of alternate forms for a single analysis in the
 spreadsheets.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.PREFIX_BOUNDARY"><code class="name">var <span class="ident">PREFIX_BOUNDARY</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.PREFIX_BOUNDARY"><code class="name">var <span class="ident">PREFIX_BOUNDARY</span></code></dt>
 <dd>
 <div class="desc"><p>Morpheme boundary between prefix and stem.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.SUFFIX_BOUNDARY"><code class="name">var <span class="ident">SUFFIX_BOUNDARY</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.SUFFIX_BOUNDARY"><code class="name">var <span class="ident">SUFFIX_BOUNDARY</span></code></dt>
 <dd>
 <div class="desc"><p>Morpheme boundary between stem and suffix.</p></div>
 </dd>
@@ -67,8 +67,8 @@ spreadsheets.</p></div>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="ParserTools.src.lexc_path.entry2str"><code class="name flex">
-<span>def <span class="ident">entry2str</span></span>(<span>entry: <a title="ParserTools.src.lexc_path.LexcEntry" href="#ParserTools.src.lexc_path.LexcEntry">LexcEntry</a>) ‑> str</span>
+<dt id="FSTmorph.src.lexc_path.entry2str"><code class="name flex">
+<span>def <span class="ident">entry2str</span></span>(<span>entry: <a title="FSTmorph.src.lexc_path.LexcEntry" href="#FSTmorph.src.lexc_path.LexcEntry">LexcEntry</a>) ‑> str</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -98,7 +98,7 @@ are empty, only the continuation lexicon is retained.
 This
 enhances readability of the lexc file.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.escape"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.escape"><code class="name flex">
 <span>def <span class="ident">escape</span></span>(<span>symbol: str) ‑> str</span>
 </code></dt>
 <dd>
@@ -120,8 +120,8 @@ already escaped using <code>%</code>, don't add a second escape
 symbol. This function will escape symbols in the range
 <code>[!%&lt;&gt;0/#; ]</code></p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.split_form"><code class="name flex">
-<span>def <span class="ident">split_form</span></span>(<span>form: str) ‑> <a title="ParserTools.src.lexc_path.SplitForm" href="#ParserTools.src.lexc_path.SplitForm">SplitForm</a></span>
+<dt id="FSTmorph.src.lexc_path.split_form"><code class="name flex">
+<span>def <span class="ident">split_form</span></span>(<span>form: str) ‑> <a title="FSTmorph.src.lexc_path.SplitForm" href="#FSTmorph.src.lexc_path.SplitForm">SplitForm</a></span>
 </code></dt>
 <dd>
 <details class="source">
@@ -160,7 +160,7 @@ SplitForm object is returned.</p></div>
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="ParserTools.src.lexc_path.DerivationPath"><code class="flex name class">
+<dt id="FSTmorph.src.lexc_path.DerivationPath"><code class="flex name class">
 <span>class <span class="ident">DerivationPath</span></span>
 <span>(</span><span>row: pandas.core.series.Series, conf: dict)</span>
 </code></dt>
@@ -195,7 +195,7 @@ SplitForm object is returned.</p></div>
 <div class="desc"></div>
 <h3>Methods</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.DerivationPath.extend_lexicons"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.DerivationPath.extend_lexicons"><code class="name flex">
 <span>def <span class="ident">extend_lexicons</span></span>(<span>self, lexicons: dict) ‑> None</span>
 </code></dt>
 <dd>
@@ -219,7 +219,7 @@ SplitForm object is returned.</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcEntry"><code class="flex name class">
+<dt id="FSTmorph.src.lexc_path.LexcEntry"><code class="flex name class">
 <span>class <span class="ident">LexcEntry</span></span>
 <span>(</span><span>lexicon, analysis, surface, next_lexicon)</span>
 </code></dt>
@@ -240,25 +240,25 @@ SplitForm object is returned.</p></div>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.LexcEntry.analysis"><code class="name">var <span class="ident">analysis</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.LexcEntry.analysis"><code class="name">var <span class="ident">analysis</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 1</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcEntry.lexicon"><code class="name">var <span class="ident">lexicon</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.LexcEntry.lexicon"><code class="name">var <span class="ident">lexicon</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 0</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcEntry.next_lexicon"><code class="name">var <span class="ident">next_lexicon</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.LexcEntry.next_lexicon"><code class="name">var <span class="ident">next_lexicon</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 3</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcEntry.surface"><code class="name">var <span class="ident">surface</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.LexcEntry.surface"><code class="name">var <span class="ident">surface</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 2</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath"><code class="flex name class">
+<dt id="FSTmorph.src.lexc_path.LexcPath"><code class="flex name class">
 <span>class <span class="ident">LexcPath</span></span>
 <span>(</span><span>row: pandas.core.series.Series, conf: dict, regular: bool)</span>
 </code></dt>
@@ -613,7 +613,7 @@ apperaing on the spreadsheet row will be added to
 multichar_symbols.</p></div>
 <h3>Class variables</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.LexcPath.multichar_symbols"><code class="name">var <span class="ident">multichar_symbols</span> : set[str]</code></dt>
+<dt id="FSTmorph.src.lexc_path.LexcPath.multichar_symbols"><code class="name">var <span class="ident">multichar_symbols</span> : set[str]</code></dt>
 <dd>
 <div class="desc"><p>Multichar symbols (across all lexc files) are stored in this static
 set</p></div>
@@ -621,14 +621,14 @@ set</p></div>
 </dl>
 <h3>Static methods</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.LexcPath.get_paradigm_flags"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.get_paradigm_flags"><code class="name flex">
 <span>def <span class="ident">get_paradigm_flags</span></span>(<span>paradigm: str) ‑> tuple[str]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Get P and R flag diacritics for a given paradigm like VTA.</p>
 <p>The flag diacritics will be added to <code>multichar_symbols</code>.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.get_prefix_flags"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.get_prefix_flags"><code class="name flex">
 <span>def <span class="ident">get_prefix_flags</span></span>(<span>prefix: str) ‑> tuple[str]</span>
 </code></dt>
 <dd>
@@ -636,7 +636,7 @@ set</p></div>
 determine valid combinations of prefixes and suffixes.</p>
 <p>The flag diacritics will be added to <code>multichar_symbols</code>.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.update_multichar_symbol_set"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.update_multichar_symbol_set"><code class="name flex">
 <span>def <span class="ident">update_multichar_symbol_set</span></span>(<span>conf: dict) ‑> None</span>
 </code></dt>
 <dd>
@@ -647,7 +647,7 @@ configuration file + morpheme boundaries into the
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.LexcPath.extend_lexicons"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.extend_lexicons"><code class="name flex">
 <span>def <span class="ident">extend_lexicons</span></span>(<span>self, lexicons: dict) ‑> None</span>
 </code></dt>
 <dd>
@@ -679,8 +679,8 @@ configuration file + morpheme boundaries into the
 lexicons represents all sublexicons in the lexc file and their lexicon
 entries.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.get_lexc_paths"><code class="name flex">
-<span>def <span class="ident">get_lexc_paths</span></span>(<span>self) ‑> list[list[<a title="ParserTools.src.lexc_path.LexcEntry" href="#ParserTools.src.lexc_path.LexcEntry">LexcEntry</a>]]</span>
+<dt id="FSTmorph.src.lexc_path.LexcPath.get_lexc_paths"><code class="name flex">
+<span>def <span class="ident">get_lexc_paths</span></span>(<span>self) ‑> list[list[<a title="FSTmorph.src.lexc_path.LexcEntry" href="#FSTmorph.src.lexc_path.LexcEntry">LexcEntry</a>]]</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -904,7 +904,7 @@ for irregular lexemes:</p>
    izhi+VTA+Ind+Pos+Neu+%0Pl+1Sg:nindigonan # ;
 </code></pre></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.get_order_flag"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.get_order_flag"><code class="name flex">
 <span>def <span class="ident">get_order_flag</span></span>(<span>self) ‑> tuple[str]</span>
 </code></dt>
 <dd>
@@ -931,7 +931,7 @@ for irregular lexemes:</p>
 Other (in case of imperative or other unspecified order).</p>
 <p>The flag diacritic will be added to <code>multichar_symbols</code>.</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.harvest_multichar_symbols"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.harvest_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">harvest_multichar_symbols</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -950,7 +950,7 @@ Other (in case of imperative or other unspecified order).</p>
 <div class="desc"><p>Add all morphological features like "+VTA", "+Ind" and "+1SgSubj"
 from this path to the multichar_symbols set</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.LexcPath.read_forms"><code class="name flex">
+<dt id="FSTmorph.src.lexc_path.LexcPath.read_forms"><code class="name flex">
 <span>def <span class="ident">read_forms</span></span>(<span>self, row: pandas.core.series.Series, conf: dict) ‑> None</span>
 </code></dt>
 <dd>
@@ -982,7 +982,7 @@ surface form and segmented form.</p></div>
 </dd>
 </dl>
 </dd>
-<dt id="ParserTools.src.lexc_path.SplitForm"><code class="flex name class">
+<dt id="FSTmorph.src.lexc_path.SplitForm"><code class="flex name class">
 <span>class <span class="ident">SplitForm</span></span>
 <span>(</span><span>prefix, stem, suffix)</span>
 </code></dt>
@@ -1003,15 +1003,15 @@ prefix, stem and suffix:</p>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="ParserTools.src.lexc_path.SplitForm.prefix"><code class="name">var <span class="ident">prefix</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.SplitForm.prefix"><code class="name">var <span class="ident">prefix</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 0</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.SplitForm.stem"><code class="name">var <span class="ident">stem</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.SplitForm.stem"><code class="name">var <span class="ident">stem</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 1</p></div>
 </dd>
-<dt id="ParserTools.src.lexc_path.SplitForm.suffix"><code class="name">var <span class="ident">suffix</span></code></dt>
+<dt id="FSTmorph.src.lexc_path.SplitForm.suffix"><code class="name">var <span class="ident">suffix</span></code></dt>
 <dd>
 <div class="desc"><p>Alias for field number 2</p></div>
 </dd>
@@ -1027,61 +1027,61 @@ prefix, stem and suffix:</p>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ParserTools.src" href="index.html">ParserTools.src</a></code></li>
+<li><code><a title="FSTmorph.src" href="index.html">FSTmorph.src</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.ALT_TAG" href="#ParserTools.src.lexc_path.ALT_TAG">ALT_TAG</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.MAXFORMS" href="#ParserTools.src.lexc_path.MAXFORMS">MAXFORMS</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.PREFIX_BOUNDARY" href="#ParserTools.src.lexc_path.PREFIX_BOUNDARY">PREFIX_BOUNDARY</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.SUFFIX_BOUNDARY" href="#ParserTools.src.lexc_path.SUFFIX_BOUNDARY">SUFFIX_BOUNDARY</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.ALT_TAG" href="#FSTmorph.src.lexc_path.ALT_TAG">ALT_TAG</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.MAXFORMS" href="#FSTmorph.src.lexc_path.MAXFORMS">MAXFORMS</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.PREFIX_BOUNDARY" href="#FSTmorph.src.lexc_path.PREFIX_BOUNDARY">PREFIX_BOUNDARY</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.SUFFIX_BOUNDARY" href="#FSTmorph.src.lexc_path.SUFFIX_BOUNDARY">SUFFIX_BOUNDARY</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.entry2str" href="#ParserTools.src.lexc_path.entry2str">entry2str</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.escape" href="#ParserTools.src.lexc_path.escape">escape</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.split_form" href="#ParserTools.src.lexc_path.split_form">split_form</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.entry2str" href="#FSTmorph.src.lexc_path.entry2str">entry2str</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.escape" href="#FSTmorph.src.lexc_path.escape">escape</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.split_form" href="#FSTmorph.src.lexc_path.split_form">split_form</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="ParserTools.src.lexc_path.DerivationPath" href="#ParserTools.src.lexc_path.DerivationPath">DerivationPath</a></code></h4>
+<h4><code><a title="FSTmorph.src.lexc_path.DerivationPath" href="#FSTmorph.src.lexc_path.DerivationPath">DerivationPath</a></code></h4>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.DerivationPath.extend_lexicons" href="#ParserTools.src.lexc_path.DerivationPath.extend_lexicons">extend_lexicons</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.DerivationPath.extend_lexicons" href="#FSTmorph.src.lexc_path.DerivationPath.extend_lexicons">extend_lexicons</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="ParserTools.src.lexc_path.LexcEntry" href="#ParserTools.src.lexc_path.LexcEntry">LexcEntry</a></code></h4>
+<h4><code><a title="FSTmorph.src.lexc_path.LexcEntry" href="#FSTmorph.src.lexc_path.LexcEntry">LexcEntry</a></code></h4>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.LexcEntry.analysis" href="#ParserTools.src.lexc_path.LexcEntry.analysis">analysis</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcEntry.lexicon" href="#ParserTools.src.lexc_path.LexcEntry.lexicon">lexicon</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcEntry.next_lexicon" href="#ParserTools.src.lexc_path.LexcEntry.next_lexicon">next_lexicon</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcEntry.surface" href="#ParserTools.src.lexc_path.LexcEntry.surface">surface</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcEntry.analysis" href="#FSTmorph.src.lexc_path.LexcEntry.analysis">analysis</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcEntry.lexicon" href="#FSTmorph.src.lexc_path.LexcEntry.lexicon">lexicon</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcEntry.next_lexicon" href="#FSTmorph.src.lexc_path.LexcEntry.next_lexicon">next_lexicon</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcEntry.surface" href="#FSTmorph.src.lexc_path.LexcEntry.surface">surface</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="ParserTools.src.lexc_path.LexcPath" href="#ParserTools.src.lexc_path.LexcPath">LexcPath</a></code></h4>
+<h4><code><a title="FSTmorph.src.lexc_path.LexcPath" href="#FSTmorph.src.lexc_path.LexcPath">LexcPath</a></code></h4>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.extend_lexicons" href="#ParserTools.src.lexc_path.LexcPath.extend_lexicons">extend_lexicons</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.get_lexc_paths" href="#ParserTools.src.lexc_path.LexcPath.get_lexc_paths">get_lexc_paths</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.get_order_flag" href="#ParserTools.src.lexc_path.LexcPath.get_order_flag">get_order_flag</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.get_paradigm_flags" href="#ParserTools.src.lexc_path.LexcPath.get_paradigm_flags">get_paradigm_flags</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.get_prefix_flags" href="#ParserTools.src.lexc_path.LexcPath.get_prefix_flags">get_prefix_flags</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.harvest_multichar_symbols" href="#ParserTools.src.lexc_path.LexcPath.harvest_multichar_symbols">harvest_multichar_symbols</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.multichar_symbols" href="#ParserTools.src.lexc_path.LexcPath.multichar_symbols">multichar_symbols</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.read_forms" href="#ParserTools.src.lexc_path.LexcPath.read_forms">read_forms</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.LexcPath.update_multichar_symbol_set" href="#ParserTools.src.lexc_path.LexcPath.update_multichar_symbol_set">update_multichar_symbol_set</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.extend_lexicons" href="#FSTmorph.src.lexc_path.LexcPath.extend_lexicons">extend_lexicons</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.get_lexc_paths" href="#FSTmorph.src.lexc_path.LexcPath.get_lexc_paths">get_lexc_paths</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.get_order_flag" href="#FSTmorph.src.lexc_path.LexcPath.get_order_flag">get_order_flag</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.get_paradigm_flags" href="#FSTmorph.src.lexc_path.LexcPath.get_paradigm_flags">get_paradigm_flags</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.get_prefix_flags" href="#FSTmorph.src.lexc_path.LexcPath.get_prefix_flags">get_prefix_flags</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.harvest_multichar_symbols" href="#FSTmorph.src.lexc_path.LexcPath.harvest_multichar_symbols">harvest_multichar_symbols</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.multichar_symbols" href="#FSTmorph.src.lexc_path.LexcPath.multichar_symbols">multichar_symbols</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.read_forms" href="#FSTmorph.src.lexc_path.LexcPath.read_forms">read_forms</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.LexcPath.update_multichar_symbol_set" href="#FSTmorph.src.lexc_path.LexcPath.update_multichar_symbol_set">update_multichar_symbol_set</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="ParserTools.src.lexc_path.SplitForm" href="#ParserTools.src.lexc_path.SplitForm">SplitForm</a></code></h4>
+<h4><code><a title="FSTmorph.src.lexc_path.SplitForm" href="#FSTmorph.src.lexc_path.SplitForm">SplitForm</a></code></h4>
 <ul class="">
-<li><code><a title="ParserTools.src.lexc_path.SplitForm.prefix" href="#ParserTools.src.lexc_path.SplitForm.prefix">prefix</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.SplitForm.stem" href="#ParserTools.src.lexc_path.SplitForm.stem">stem</a></code></li>
-<li><code><a title="ParserTools.src.lexc_path.SplitForm.suffix" href="#ParserTools.src.lexc_path.SplitForm.suffix">suffix</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.SplitForm.prefix" href="#FSTmorph.src.lexc_path.SplitForm.prefix">prefix</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.SplitForm.stem" href="#FSTmorph.src.lexc_path.SplitForm.stem">stem</a></code></li>
+<li><code><a title="FSTmorph.src.lexc_path.SplitForm.suffix" href="#FSTmorph.src.lexc_path.SplitForm.suffix">suffix</a></code></li>
 </ul>
 </li>
 </ul>

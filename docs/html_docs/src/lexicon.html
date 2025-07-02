@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ParserTools.src.lexicon API documentation</title>
+<title>FSTmorph.src.lexicon API documentation</title>
 <meta name="description" content="Class for representing a lexc file.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ParserTools.src.lexicon</code></h1>
+<h1 class="title">Module <code>FSTmorph.src.lexicon</code></h1>
 </header>
 <section id="section-intro">
 <p>Class for representing a lexc file.</p>
@@ -47,7 +47,7 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="ParserTools.src.lexicon.LexcFile"><code class="flex name class">
+<dt id="FSTmorph.src.lexicon.LexcFile"><code class="flex name class">
 <span>class <span class="ident">LexcFile</span></span>
 <span>(</span><span>conf: dict,<br>source_path: str,<br>lexc_path: str,<br>database_paths: str,<br>lexical_data_to_exclude: str,<br>read_lexical_database: bool,<br>add_derivations: bool,<br>regular: bool)</span>
 </code></dt>
@@ -264,7 +264,7 @@ el.replaceWith(d);
 * <code>regular</code> whether this is a lexc file for regular or irregular lexemes</p></div>
 <h3>Static methods</h3>
 <dl>
-<dt id="ParserTools.src.lexicon.LexcFile.write_multichar_symbols"><code class="name flex">
+<dt id="FSTmorph.src.lexicon.LexcFile.write_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">write_multichar_symbols</span></span>(<span>multichar_symbol_set, lexc_file)</span>
 </code></dt>
 <dd>
@@ -282,7 +282,7 @@ def write_multichar_symbols(multichar_symbol_set, lexc_file):
 </details>
 <div class="desc"><p>Write the <code>Multichar_Symbols</code> section into a lexc_file</p></div>
 </dd>
-<dt id="ParserTools.src.lexicon.LexcFile.write_root_lexc"><code class="name flex">
+<dt id="FSTmorph.src.lexicon.LexcFile.write_root_lexc"><code class="name flex">
 <span>def <span class="ident">write_root_lexc</span></span>(<span>root_lexc_filename, pos_root_lexicons)</span>
 </code></dt>
 <dd>
@@ -312,7 +312,7 @@ master root lexicon needs to reference.</p></div>
 </dl>
 <h3>Methods</h3>
 <dl>
-<dt id="ParserTools.src.lexicon.LexcFile.add_derivations"><code class="name flex">
+<dt id="FSTmorph.src.lexicon.LexcFile.add_derivations"><code class="name flex">
 <span>def <span class="ident">add_derivations</span></span>(<span>self)</span>
 </code></dt>
 <dd>
@@ -327,7 +327,7 @@ master root lexicon needs to reference.</p></div>
 </details>
 <div class="desc"></div>
 </dd>
-<dt id="ParserTools.src.lexicon.LexcFile.read_lexemes_from_database"><code class="name flex">
+<dt id="FSTmorph.src.lexicon.LexcFile.read_lexemes_from_database"><code class="name flex">
 <span>def <span class="ident">read_lexemes_from_database</span></span>(<span>self, database_paths, lexical_data_to_exclude) ‑> None</span>
 </code></dt>
 <dd>
@@ -450,7 +450,7 @@ Each entry there specifies
 a form by providing the source (which lexical database CSV), the field
 (e.g., lemma, POS), and the value of that field.</p></div>
 </dd>
-<dt id="ParserTools.src.lexicon.LexcFile.write_lexc"><code class="name flex">
+<dt id="FSTmorph.src.lexicon.LexcFile.write_lexc"><code class="name flex">
 <span>def <span class="ident">write_lexc</span></span>(<span>self) ‑> None</span>
 </code></dt>
 <dd>
@@ -499,19 +499,19 @@ configuration file. Otherwise, write to the file given by
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ParserTools.src" href="index.html">ParserTools.src</a></code></li>
+<li><code><a title="FSTmorph.src" href="index.html">FSTmorph.src</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="ParserTools.src.lexicon.LexcFile" href="#ParserTools.src.lexicon.LexcFile">LexcFile</a></code></h4>
+<h4><code><a title="FSTmorph.src.lexicon.LexcFile" href="#FSTmorph.src.lexicon.LexcFile">LexcFile</a></code></h4>
 <ul class="">
-<li><code><a title="ParserTools.src.lexicon.LexcFile.add_derivations" href="#ParserTools.src.lexicon.LexcFile.add_derivations">add_derivations</a></code></li>
-<li><code><a title="ParserTools.src.lexicon.LexcFile.read_lexemes_from_database" href="#ParserTools.src.lexicon.LexcFile.read_lexemes_from_database">read_lexemes_from_database</a></code></li>
-<li><code><a title="ParserTools.src.lexicon.LexcFile.write_lexc" href="#ParserTools.src.lexicon.LexcFile.write_lexc">write_lexc</a></code></li>
-<li><code><a title="ParserTools.src.lexicon.LexcFile.write_multichar_symbols" href="#ParserTools.src.lexicon.LexcFile.write_multichar_symbols">write_multichar_symbols</a></code></li>
-<li><code><a title="ParserTools.src.lexicon.LexcFile.write_root_lexc" href="#ParserTools.src.lexicon.LexcFile.write_root_lexc">write_root_lexc</a></code></li>
+<li><code><a title="FSTmorph.src.lexicon.LexcFile.add_derivations" href="#FSTmorph.src.lexicon.LexcFile.add_derivations">add_derivations</a></code></li>
+<li><code><a title="FSTmorph.src.lexicon.LexcFile.read_lexemes_from_database" href="#FSTmorph.src.lexicon.LexcFile.read_lexemes_from_database">read_lexemes_from_database</a></code></li>
+<li><code><a title="FSTmorph.src.lexicon.LexcFile.write_lexc" href="#FSTmorph.src.lexicon.LexcFile.write_lexc">write_lexc</a></code></li>
+<li><code><a title="FSTmorph.src.lexicon.LexcFile.write_multichar_symbols" href="#FSTmorph.src.lexicon.LexcFile.write_multichar_symbols">write_multichar_symbols</a></code></li>
+<li><code><a title="FSTmorph.src.lexicon.LexcFile.write_root_lexc" href="#FSTmorph.src.lexicon.LexcFile.write_root_lexc">write_root_lexc</a></code></li>
 </ul>
 </li>
 </ul>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ParserTools.src.templates API documentation</title>
+<title>FSTmorph.src.templates API documentation</title>
 <meta name="description" content="Code for dealing with conversion of Jinja2 templates to lexc
 code.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
@@ -34,7 +34,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ParserTools.src.templates</code></h1>
+<h1 class="title">Module <code>FSTmorph.src.templates</code></h1>
 </header>
 <section id="section-intro">
 <p>Code for dealing with conversion of Jinja2 templates to lexc
@@ -45,12 +45,12 @@ code.</p>
 <section>
 <h2 class="section-title" id="header-variables">Global variables</h2>
 <dl>
-<dt id="ParserTools.src.templates.CLEAR_CH_CONJUNCT"><code class="name">var <span class="ident">CLEAR_CH_CONJUNCT</span></code></dt>
+<dt id="FSTmorph.src.templates.CLEAR_CH_CONJUNCT"><code class="name">var <span class="ident">CLEAR_CH_CONJUNCT</span></code></dt>
 <dd>
 <div class="desc"><p>Flag diacritic which clears the value of the changed-conjunct
 feature <code>ChCnj</code></p></div>
 </dd>
-<dt id="ParserTools.src.templates.NO_CH_CONJUNCT"><code class="name">var <span class="ident">NO_CH_CONJUNCT</span></code></dt>
+<dt id="FSTmorph.src.templates.NO_CH_CONJUNCT"><code class="name">var <span class="ident">NO_CH_CONJUNCT</span></code></dt>
 <dd>
 <div class="desc"><p>Flag diacritic which disallows any value for the changed-conjunct
 feature <code>ChCnj</code></p></div>
@@ -60,7 +60,7 @@ feature <code>ChCnj</code></p></div>
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="ParserTools.src.templates.check_na"><code class="name flex">
+<dt id="FSTmorph.src.templates.check_na"><code class="name flex">
 <span>def <span class="ident">check_na</span></span>(<span>val)</span>
 </code></dt>
 <dd>
@@ -81,7 +81,7 @@ feature <code>ChCnj</code></p></div>
 <div class="desc"><p>Safely check if a value represents NaN. Will return True if the
 value is numeric and NaN. False, otherwise.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_add_harvested_multichar_symbols"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_add_harvested_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">get_add_harvested_multichar_symbols</span></span>(<span>multichar_symbols)</span>
 </code></dt>
 <dd>
@@ -105,7 +105,7 @@ to a Jinja template. We need a specialized function because
 information about file paths is not accessible from the
 template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_add_lexeme_multichar_symbols"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_add_lexeme_multichar_symbols"><code class="name flex">
 <span>def <span class="ident">get_add_lexeme_multichar_symbols</span></span>(<span>config)</span>
 </code></dt>
 <dd>
@@ -129,7 +129,7 @@ to a Jinja template. We need a specialized function because
 information about file paths is not accessible from the
 template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_all_pre_element_tags"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_all_pre_element_tags"><code class="name flex">
 <span>def <span class="ident">get_all_pre_element_tags</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
@@ -163,7 +163,7 @@ The fucntion can be called from a jinja template
 file. We need a specialized function because information about
 file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_allomorph"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_allomorph"><code class="name flex">
 <span>def <span class="ident">get_allomorph</span></span>(<span>pv, order_filter)</span>
 </code></dt>
 <dd>
@@ -239,7 +239,7 @@ conjunct form, otherwise <code>None</code>.</li>
 one is given. Otherwise, return <code>None</code>.</li>
 </ul></div>
 </dd>
-<dt id="ParserTools.src.templates.get_generate_pre_element_sub_lexicons"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_generate_pre_element_sub_lexicons"><code class="name flex">
 <span>def <span class="ident">get_generate_pre_element_sub_lexicons</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
@@ -275,7 +275,7 @@ template file. We need a specialized function because
 information about file paths is not accessible from the
 template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_load_pre_element_csv"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_load_pre_element_csv"><code class="name flex">
 <span>def <span class="ident">get_load_pre_element_csv</span></span>(<span>source_dir)</span>
 </code></dt>
 <dd>
@@ -315,7 +315,7 @@ template.</p></div>
 from a jinja template file. We need a specialized function because
 information about file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_load_pre_element_database"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_load_pre_element_database"><code class="name flex">
 <span>def <span class="ident">get_load_pre_element_database</span></span>(<span>source_dirs, prefix_database)</span>
 </code></dt>
 <dd>
@@ -350,7 +350,7 @@ information about file paths is not accessible from the template.</p></div>
 in a jinja template file. We need a specialized function because
 information about file paths is not accessible from the template.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.get_plain_conjunct"><code class="name flex">
+<dt id="FSTmorph.src.templates.get_plain_conjunct"><code class="name flex">
 <span>def <span class="ident">get_plain_conjunct</span></span>(<span>plain_conjunct, changed_conjunct)</span>
 </code></dt>
 <dd>
@@ -376,7 +376,7 @@ i.e. if a separate changed-conjunct form is specified (meaning
 <code>changed_conjunct != None</code>). This keeps the lexc file from
 getting cluttered with loads of unnecessary disallow flags.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.pretty_join"><code class="name flex">
+<dt id="FSTmorph.src.templates.pretty_join"><code class="name flex">
 <span>def <span class="ident">pretty_join</span></span>(<span>str_list)</span>
 </code></dt>
 <dd>
@@ -398,7 +398,7 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
 </details>
 <div class="desc"><p>Split a string into lines of 80 characters at white space</p></div>
 </dd>
-<dt id="ParserTools.src.templates.render_pre_element_lexicon"><code class="name flex">
+<dt id="FSTmorph.src.templates.render_pre_element_lexicon"><code class="name flex">
 <span>def <span class="ident">render_pre_element_lexicon</span></span>(<span>config, source_path, lexc_path)</span>
 </code></dt>
 <dd>
@@ -437,7 +437,7 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
 </details>
 <div class="desc"><p>Render a preverb or prenoun Jinja template into lexc code.</p></div>
 </dd>
-<dt id="ParserTools.src.templates.render_root_lexicon"><code class="name flex">
+<dt id="FSTmorph.src.templates.render_root_lexicon"><code class="name flex">
 <span>def <span class="ident">render_root_lexicon</span></span>(<span>source_path, lexc_path)</span>
 </code></dt>
 <dd>
@@ -474,29 +474,29 @@ getting cluttered with loads of unnecessary disallow flags.</p></div>
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ParserTools.src" href="index.html">ParserTools.src</a></code></li>
+<li><code><a title="FSTmorph.src" href="index.html">FSTmorph.src</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-variables">Global variables</a></h3>
 <ul class="">
-<li><code><a title="ParserTools.src.templates.CLEAR_CH_CONJUNCT" href="#ParserTools.src.templates.CLEAR_CH_CONJUNCT">CLEAR_CH_CONJUNCT</a></code></li>
-<li><code><a title="ParserTools.src.templates.NO_CH_CONJUNCT" href="#ParserTools.src.templates.NO_CH_CONJUNCT">NO_CH_CONJUNCT</a></code></li>
+<li><code><a title="FSTmorph.src.templates.CLEAR_CH_CONJUNCT" href="#FSTmorph.src.templates.CLEAR_CH_CONJUNCT">CLEAR_CH_CONJUNCT</a></code></li>
+<li><code><a title="FSTmorph.src.templates.NO_CH_CONJUNCT" href="#FSTmorph.src.templates.NO_CH_CONJUNCT">NO_CH_CONJUNCT</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="ParserTools.src.templates.check_na" href="#ParserTools.src.templates.check_na">check_na</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_add_harvested_multichar_symbols" href="#ParserTools.src.templates.get_add_harvested_multichar_symbols">get_add_harvested_multichar_symbols</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_add_lexeme_multichar_symbols" href="#ParserTools.src.templates.get_add_lexeme_multichar_symbols">get_add_lexeme_multichar_symbols</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_all_pre_element_tags" href="#ParserTools.src.templates.get_all_pre_element_tags">get_all_pre_element_tags</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_allomorph" href="#ParserTools.src.templates.get_allomorph">get_allomorph</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_generate_pre_element_sub_lexicons" href="#ParserTools.src.templates.get_generate_pre_element_sub_lexicons">get_generate_pre_element_sub_lexicons</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_load_pre_element_csv" href="#ParserTools.src.templates.get_load_pre_element_csv">get_load_pre_element_csv</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_load_pre_element_database" href="#ParserTools.src.templates.get_load_pre_element_database">get_load_pre_element_database</a></code></li>
-<li><code><a title="ParserTools.src.templates.get_plain_conjunct" href="#ParserTools.src.templates.get_plain_conjunct">get_plain_conjunct</a></code></li>
-<li><code><a title="ParserTools.src.templates.pretty_join" href="#ParserTools.src.templates.pretty_join">pretty_join</a></code></li>
-<li><code><a title="ParserTools.src.templates.render_pre_element_lexicon" href="#ParserTools.src.templates.render_pre_element_lexicon">render_pre_element_lexicon</a></code></li>
-<li><code><a title="ParserTools.src.templates.render_root_lexicon" href="#ParserTools.src.templates.render_root_lexicon">render_root_lexicon</a></code></li>
+<li><code><a title="FSTmorph.src.templates.check_na" href="#FSTmorph.src.templates.check_na">check_na</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_add_harvested_multichar_symbols" href="#FSTmorph.src.templates.get_add_harvested_multichar_symbols">get_add_harvested_multichar_symbols</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_add_lexeme_multichar_symbols" href="#FSTmorph.src.templates.get_add_lexeme_multichar_symbols">get_add_lexeme_multichar_symbols</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_all_pre_element_tags" href="#FSTmorph.src.templates.get_all_pre_element_tags">get_all_pre_element_tags</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_allomorph" href="#FSTmorph.src.templates.get_allomorph">get_allomorph</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_generate_pre_element_sub_lexicons" href="#FSTmorph.src.templates.get_generate_pre_element_sub_lexicons">get_generate_pre_element_sub_lexicons</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_load_pre_element_csv" href="#FSTmorph.src.templates.get_load_pre_element_csv">get_load_pre_element_csv</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_load_pre_element_database" href="#FSTmorph.src.templates.get_load_pre_element_database">get_load_pre_element_database</a></code></li>
+<li><code><a title="FSTmorph.src.templates.get_plain_conjunct" href="#FSTmorph.src.templates.get_plain_conjunct">get_plain_conjunct</a></code></li>
+<li><code><a title="FSTmorph.src.templates.pretty_join" href="#FSTmorph.src.templates.pretty_join">pretty_join</a></code></li>
+<li><code><a title="FSTmorph.src.templates.render_pre_element_lexicon" href="#FSTmorph.src.templates.render_pre_element_lexicon">render_pre_element_lexicon</a></code></li>
+<li><code><a title="FSTmorph.src.templates.render_root_lexicon" href="#FSTmorph.src.templates.render_root_lexicon">render_root_lexicon</a></code></li>
 </ul>
 </li>
 </ul>

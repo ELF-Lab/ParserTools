@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="generator" content="pdoc3 0.11.6">
-<title>ParserTools.extract_tag_combinations API documentation</title>
+<title>FSTmorph.extract_tag_combinations API documentation</title>
 <meta name="description" content="Script which extracts all tag combinations from paradigm CSV files.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
@@ -33,7 +33,7 @@ el.replaceWith(d);
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>ParserTools.extract_tag_combinations</code></h1>
+<h1 class="title">Module <code>FSTmorph.extract_tag_combinations</code></h1>
 </header>
 <section id="section-intro">
 <p>Script which extracts all tag combinations from paradigm CSV files.</p>
@@ -45,7 +45,52 @@ el.replaceWith(d);
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="ParserTools.extract_tag_combinations.get_tags"><code class="name flex">
+<dt id="FSTmorph.extract_tag_combinations.extract_tag_combinations"><code class="name flex">
+<span>def <span class="ident">extract_tag_combinations</span></span>(<span>config_file,<br>source_path,<br>pre_element,<br>pre_element_tags,<br>post_element,<br>post_element_tags,<br>output_file)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def extract_tag_combinations(config_file, source_path, pre_element, pre_element_tags, post_element, post_element_tags, output_file):
+    info(f&#34;Processing configuration file {config_file}&#34;)
+    config = json.load(open(config_file))
+    tags = {}
+    
+    # Set access order
+    tags[&#34;access_order&#34;] = []
+    if pre_element:
+        tags[&#34;access_order&#34;] = [pre_element] + [&#34;Stem&#34;]
+        tags[pre_element] = pre_element_tags.split(&#34;,&#34;)
+    else:
+        tags[&#34;access_order&#34;] = [&#34;Stem&#34;]
+    if post_element:
+        tags[&#34;access_order&#34;] += [post_element]
+        tags[post_element] = post_element_tags.split(&#34;,&#34;)
+    tags[&#34;access_order&#34;] += config[&#34;morph_features&#34;]
+
+    for feature in config[&#34;morph_features&#34;]:
+        tags[feature] = set()        
+    csv_files = config[&#34;regular_csv_files&#34;] + config[&#34;irregular_csv_files&#34;]
+    for csv_file in csv_files:
+        info(f&#34;Reading {csv_file}.csv&#34;)
+        csv = pd.read_csv(pjoin(source_path, config[&#34;morphology_source_path&#34;], f&#34;{csv_file}.csv&#34;),
+                          keep_default_na=False)
+        csv_tags = set() 
+        for feature in config[&#34;morph_features&#34;]:            
+            tags[feature].update(get_tags(csv[feature]))
+            csv_tags.update(get_tags(csv[feature]))
+        tags[csv_file] = list(csv_tags)
+    for feature in config[&#34;morph_features&#34;]:
+        tags[feature] = list(tags[feature])
+    info(f&#34;Writing output JSON file {output_file}&#34;)
+    with open(output_file, &#34;w&#34;) as f:
+        json.dump(tags, f, indent=4)</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="FSTmorph.extract_tag_combinations.get_tags"><code class="name flex">
 <span>def <span class="ident">get_tags</span></span>(<span>tag_list)</span>
 </code></dt>
 <dd>
@@ -72,12 +117,13 @@ el.replaceWith(d);
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="ParserTools" href="index.html">ParserTools</a></code></li>
+<li><code><a title="FSTmorph" href="index.html">FSTmorph</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="ParserTools.extract_tag_combinations.get_tags" href="#ParserTools.extract_tag_combinations.get_tags">get_tags</a></code></li>
+<li><code><a title="FSTmorph.extract_tag_combinations.extract_tag_combinations" href="#FSTmorph.extract_tag_combinations.extract_tag_combinations">extract_tag_combinations</a></code></li>
+<li><code><a title="FSTmorph.extract_tag_combinations.get_tags" href="#FSTmorph.extract_tag_combinations.get_tags">get_tags</a></code></li>
 </ul>
 </li>
 </ul>
