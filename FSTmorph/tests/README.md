@@ -1,6 +1,8 @@
 # yaml_tests
 This directory houses the tools for converting CSV spreadsheets of lexical data to YAML files that can be used to test the performance of an FST.
 
+The code for running tests based on the generated YAML files comes from [giella-core](https://github.com/giellalt/giella-core).  A version of their `morph-test.py` script is included here (as `run_yaml_tests.py`), modified to customize the .log output format.
+
 ## How to Run `create_yaml.py`
 - Run the following, updating the arguments as needed:  
 `python3 yaml_tests/create_yaml.py "~/OjibweMorph/VerbSpreadsheets/" "~/OjibweMorph/config/verbs.json" "yaml_tests/" --non-core-tags=Dub,Prt,PrtDub`
