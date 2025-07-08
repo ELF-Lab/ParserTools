@@ -1,6 +1,5 @@
-# <mark>Docs under construction</mark>
-
-<mark>Some information in this directory is outdated; please refer to [the main README](https://github.com/ELF-Lab/ParserTools/blob/dev/README.md) for up-to-date information.</mark>
+# FSTmorph
+<mark>Under construction!</mark>
 
 This project builds FST morphological analyzers based on human-readable and human-editable inflection tables and lexical databases. 
 
@@ -9,27 +8,27 @@ A morphological analyzer is a model which can do two things:
 * Analyze an inflected word as a combination of a lemma and morphological features: `walked -> walk+Verb+Past`
 * Generate inflected forms from a lemma and some morphological features: `walk+Verb+Past -> walked`
 
-Traditionally morphologocal analyzers are implemented as finite-state transducers (FST). These have been shown to adequately model the inflectional processes for most if not all human languages. Foma is one of the most popular tookits for compilation of FST morphological analyzers. It uses formalisms originally developed by Xerox to present lexical information (**lexc** formalism) and phonological rules (**xfst** formalism). The lexical component provides information about word stems like `bake` and affixes like `-ed`. The rule-component determines how stems and affixes are combined into word forms. For example, for the combination `bake+ed`, the rules might delete the `e` in the affix, thereby, giving a valid English word form: `bake+ed -> bake+d -> baked`.
+Traditionally morphological analyzers are implemented as finite-state transducers (FST). These have been shown to adequately model the inflectional processes for most if not all human languages. [Foma](https://fomafst.github.io) is one of the most popular tookits for compilation of FST morphological analyzers. It uses formalisms originally developed by Xerox to present ****lexical information** (the *lexc* formalism) and **phonological rules** (the *xfst* formalism). The lexical component provides information about word stems, like `bake`, and affixes, like `-ed`. The phonological rule component determines how stems and affixes are combined into word forms. For example, for the combination `bake+ed`, the rules might delete the `e` in the affix, thereby, giving a valid English word form: `bake+ed -> bake+d -> baked`.
 
-Lexc lexicons tend to get quite messy and hard to maintain when the lexicon grows, especially for morphologically complex languages like many of the Indigenous languages of Canada and the US. Our project instead represents lexical information in a spreadsheet format which is easy to view, edit and maintain even without extensive technical experience. The aim is to make FST development accessible for a broader range of developers and community members who do not necessarily need to be professional linguists or computational linguists. 
+Lexc lexicons tend to get quite messy and hard to maintain when the lexicon grows, especially for morphologically complex languages like many of the Indigenous languages spoken in Canada and the U.S. Our project instead represents lexical information in a spreadsheet format which is easy to view, edit and maintain, even without extensive technical experience. The aim is to make FST development accessible for a broader range of developers and community members who do not necessarily need to be professional linguists or computational linguists. 
 
-Our spreadsheets are ultimately compiled into lexc code and then compiled into an FST model using the foma toolkit.  
+In summary, these **spreadsheets (CSVs)** are ultimately compiled into **lexc code** and then compiled into an **FST model** using the `foma` toolkit.  
 
 ## Compilation of the FST at a glance
 
 <img src="img/flow_chart.png" width="500"/>
 
-The FST analyzer is built using three source repositories:
+The FST analyzer is built using three sources:
 
-* OjibweMorph houses morphological paradigms, skeleton lexc code and the xfst phonological rewrite rules (this repository either is already freely available or will short be made freely available for under a non-commerical license)
-* OPDDatabase houses a lexical database from the Ojibwe People's Dictionary (this repository will not be made publicly available)
-* ParserTools houses the code for compiling lexc files from the source data in OjibweMorph and OPDDatabase (this repository is publicly available and licensed under CC Deed)
+* A morphological source which houses morphological paradigms, skeleton `lexc` code and the `xfst` phonological rewrite rules.  For the example Ojibwe FST, this is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph).
+* A lexical source containing lemmas (in CSVs) that will be known by the FST.  For the example Ojibwe FST, this is [OjibweLexicon](https://github.com/ELF-Lab/OjibweLexicon).
+* FSTmorph, which houses the code for compiling `lexc` files from the source data given by the other sources.
 
-We split the code into three different repositories mainly due to licensing issues. We want everyone to be able to use OjibweMorph and ParserTools together with their own lexical database for Ojibwe or a different Algonquian language.
+This division into three components makes this tool more modular and therefore easier to adapt to different languages (or simply different dialects of Ojibwe).  
 
-The spreadhsheets, configuration files and xfst rules in OjibweMorph can be used to compile a very minimal FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, we need to add a lexical database. We currently use OPDDatabase, but it would be possible to swap a different database in its place. For example, one which allows for commercial use. 
+The content in the morphological source alone -- the spreadsheets, configuration files and `xfst` rules -- can be used to compile a very minimal FST.  In the case of the Ojibwe example, this means that OjibweMorph can be used without OjibweLexicon and still produce a small FST which can analyze and generate the forms for twenty-odd Ojibwe model lexemes. For a full-scale morphological analyzer which can analyze most Ojibwe words in running text, the lexical database is needed.  OjibweLexicon contains lexical data from various sources, including [the Ojibwe People's Dictionary (OPD)](https://github.com/ELF-Lab/OjibweMorph) and fieldwork.
 
-More precisely, the script `csv2lexc.py` in the ParserTools repo utilizes (1) morphological paradigms for nouns, verbs and other word classes from `OjibweMorph` (2) a database of lexical information from OPDDdatabase and (3) configuration files for compiling lexc code from OjibweMorph. It then generates a set of lexc-files which are combined with xfst rules manually specified in OjibweMorph using the foma toolkit. Ultimately, foma saves the result as an FST.
+To give some more detail, the script `csv2lexc.py` here in FSTmorph utilizes (1) morphological paradigms for nouns, verbs and other word classes from `OjibweMorph` (2) a database of lexical information from `OjibweLexicon` and (3) configuration files for compiling `lexc` code in OjibweMorph. It then generates a set of `lexc` files which are combined with `xfst` rules manually specified in `OjibweMorph` using the `foma` toolkit. Ultimately, foma saves the result as an FST.
 
 ## User documentation
 

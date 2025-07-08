@@ -4,8 +4,7 @@
    * Lexical database files in CSV format (these live in `database_paths`)
    * Configuration files for different word classes (these live in `source_path`/config)
 
-   `config_files` is a comma-separated list of .json configuration file names read from
-    the directory `source_path`/config
+   `config_files` is a comma-separated list of full paths to .json configuration files
 
    `source_path` gives the path the directory containing morphological information,
    plus phonological rules.  An example for Ojibwe is OjibweMorph.

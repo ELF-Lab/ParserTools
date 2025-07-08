@@ -1,140 +1,112 @@
-# [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph/)
+# The Morphological Source
+The morphological source provides information about the morphology of the target language needed to create the FST.  The illustrative example of this source is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph).
 
-The following directories are included in the OjibweMorph repository:
+The morphological source includes four key components used to build the FST:
+- morphological info files (`.csv`)
+- phonological rule files (`.xfst`)
+- config files (`.json`)
+- template files (`.lexc.j2`)
 
-| Directory | Description |
-|-----------|-------------|
-| `NounSpreadsheets` | Morphological paradigms for nouns (CSV spreadsheets) |
-| `OtherSpreadsheets` | Morphological paradigms for uninflecting classes (CSV spreadsheets) |
-| `PVSpreadsheets` | Preverbs spreadsheets (CSV spreadsheets) |
-| `VerbSpreadsheets` | Morphological paradigms for verbs (CSV spreadsheets)
-| `config` | Configuration files for compiling lexc files from spreadsheets for different word classes (json code) |
-| `templates` | Jinja templates for lexc files (j2 files). Used by ParserTools during compilation. |
-| `xfst` | Xfst phonological rewrite rules. Used by foma during compilation. |
+The remainder of this document outlines the purpose and requirements of each of these files.
 
 ## Morphological paradigm spreadsheets
+These spreadsheets provide the core morphological information used by the FST.
 
-We have spreadsheets both for nouns and verbs. All lexical spreadsheets follow this overall structure:
+The spreadsheets are used by `csv2lexc.py`.  It gets the location/name of the spreadsheets from the config files.  Each config file specifies the relevant spreadsheets for its POS through the values of `morphology_source_path`, `regular_csv_files` and (optionally) `irregular_csv_files`.
 
+Words should be split into different spreadsheets by **part of speech (POS)** (e.g., ADVERBS.csv).  Further splitting works, too.  For example, in `OjibweMorph`, the noun and verb spreadsheets (which have many, many more forms than the other POS) are further split by **class** for nouns (e.g., NA_VVw.csv) and by **paradigm** and **order** for verbs (e.g., VTI_CNJ.csv).
+
+Though these spreadsheets are primarily used for their morphological inflection, while the external lexical database provides most lemmas, the FST *does* also learn the lemmas given in these spreadsheets.  This is why you can make a small working FST with no external lexical database specified -- the FST will just know the lemmas used in these morphological spreadsheets.
+
+The organization of word forms into **paradigms** and **classes** in the `.lexc` files comes from the specifications in these files (?).
+
+Here is a small extract from `VTA_IND.csv`:
 | Paradigm | Order | Class | Lemma | Stem | Subject | Object | Mode | Negation | Form1Surface | Form1Split | Form1Source | Form2Surface | Form2Split | Form2Source | 
 |----------|-------|-------|-------|------|---------|--------|------|----------|--------------|------------|-------------|--------------|------------|-------------|
 | `VTA` | `Ind` | `VTA_C` | `waabam` | `waabam` | `0PlSubj` | `3SgObvObj` | `Neu`  | `Pos` | `owaabamigonan` | `o<<waabam>>igonan` | `NJ-ngs-2023-Aug19` | `owaabamigonini` | `o<<waabam>>igoniniw1` | `JRV-Web-ANISH` |
-| `VTA` | `Ind` | `VTA_Cw` | `mizho` | `mizhw` | `0PlSubj` | `3SgObvObj` | `Neu` | `Pos` | `omizhogonan` | `o<<mizho>>igonan` | `NJ-ngs-2023-Aug19` |  | |  |	
+| `VTA` | `Ind` | `VTA_Cw` | `mizho` | `mizhw1` | `0PlSubj` | `3SgObvObj` | `Neu` | `Pos` | `omizhogonan` | `o<<mizho>>igonan` | `NJ-ngs-2023-Aug19` |  | |  |	
 
-Each row in the spreadsheets corresponds to a specific combination of lemma and morphological features. It will always specify at least one inflected surface realization like `owaabamigonan`, here corresponding to the analysis `waabam+VAT+Ind+Pos+Neu+0PlSubj+3SgObvObj`. However, there will frequently be more than one possible surface form. In this example both `owaabamigonan` and `owaabamigonini` correspond to the same analysis.
+Each row in the spreadsheet corresponds to a specific combination of lemma and morphological features.  In other words, there is *at least* one inflected form per row -- and often more than one, in cases with multiple possible surface forms. For example, the first row above specifies the inflected forms *owaabamigonan* and *owaabamigonini*, both corresponding to the analysis `waabam+VAT+Ind+Pos+Neu+0PlSubj+3SgObvObj`.
 
 Six of the columns are obligatory:
-* **Paradigm** gives the general category of the form (nouns: `NA`, `NAD`, `NI`, `NID`; verbs: `VAI`, `VII`, `VTA`, `VTI`; others: e.g. `ADVConj`, `PRONDem`, `NUM`, `PCInterj`).
+* **Paradigm** gives the general category of the form (e.g.,`NA`, `NAD`, `NI`, `NID` for Ojibwe nouns; `VAI`, `VII`, `VTA`, `VTI` for Ojibwe verbs; others include `ADVConj`, `PRONDem`, `NUM`, `PCInterj`).
 * **Class** gives the inflectional class of the form.
-    - E.g., `VTA_C` represents `VTA` verbs where the stem ends in a consonant like `waabam`, `VTA_Cw` represents `VTA` verbs ending in a consonant followed by `w`.
-* **Lemma** is the baseform of the lexeme.
-* **Stem** is the stem of the lexeme.
-* **Form1Surface** gives the word form itself.
-* **Form1Split** gives a split of the form into `prefix<<stem>>suffix`. Note that the `stem` here doesn't need to correspond to the **Stem** column because the stem might vary due to phonolgical factors based on the prefix and suffix (this is the case for the form `omizhogonan`, where the default stem `mizhw` is realized as `mizho` in this specific form). We have xfst replace rules which transform the stem in the **Stem** column into its various realizations.
-    - Note that the stem and affixes can sometimes contain special characters like `w1` in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified [below](#configuration-files). Otherwise, lexc won't know to compile them into multi-character symbols.
+    - E.g., the class `VTA_C` represents `VTA` verbs where the stem ends in a consonant (like *waabam*), whereas the class `VTA_Cw` represents `VTA` verbs ending in a consonant followed by *w* (like *mizhw*).
+- **Lemma** gives the 'dictionary form'; an easily-recognizable, 'base' form that is an actual, useable word.
+- **Stem** givesthe base which undergoes morphology to create inflected forms.  Often identical to the lemma, but needn't be.  May be more of a word 'part' than a useable word.
+* **Form1Surface** gives the inflected word form itself.
+* **Form1Split** gives a split of the form into `prefix<<stem>>suffix`.
+    - Note that the `stem` here doesn't need to correspond to the **Stem** column because the stem might vary due to phonolgical factors based on the prefix and suffix (this is the case for the inflected form *omizhogonan*, where the default stem *mizhw* is realized as *mizho* in this specific form). The`xfst` replace rules transform the stem given in the **Stem** column into its various realizations.
+    - Note that the stem and affixes can sometimes contain special characters like *w1* in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified [below](#configuration-files). Otherwise, `lexc` won't know to compile them into multi-character symbols.
 
-Additionally, **Form1Source** can be used to indicate information about the given form, which elder it comes from, which dialect, etc. Additional forms are given by specifying **Form2Surface**, **Form2Split**, **Form3Surface**, **Form3Split**, etc. When these forms are missing, the fields can be left empty.
+Additional columns are optional:
+- **Form1Source** can give information about the given form (e.g., which elder it comes from, which dialect, etc.).
+- **Form2Surface**, **Form2Split**, **Form3Surface**, **Form3Split**, etc. can give additional forms. When there are no additional forms, the fields can be left empty.
 
-Morphological features (e.g., **Order**, **Mode**, **Negation**, **Subject**, **Object**) can vary by paradigm (e.g., they are different for nouns and verbs) and the set is customizable using the configuation file as specified [below](#configuration-files).
+Finally, columns specificying morphological features (e.g., **Order**, **Mode**, **Negation**, **Subject**, and **Object**) can vary by paradigm (e.g., they are different for nouns and verbs).  The set of these columns being used in a given spreadsheet should be specified in the corresponding config file, as specified [below](#configuration-files).
 
-Sometimes the value of a particular morphological feature is missing. For example, VII verbs don't take an object. In such cases, we can use a `NONE` value to indicate the missing field:
+Sometimes the value of a particular morphological feature is missing. For example, VII verbs don't take an object. In such cases, we can use a `NONE` value to indicate the missing field.  For example:
 
 | Paradigm | Order | Class | Lemma | Stem | Subject | Object | Mode | Negation | Form1Surface | Form1Split | Form1Source | Form2Surface | Form2Split | Form2Source | 
 |----------|-------|-------|-------|------|---------|--------|------|----------|--------------|------------|-------------|--------------|------------|-------------|
 | `VII`    | `Ind` | `VII_VV` | `ate` | `ate` | `0PlObvSubj` | `NONE` | `Dub` | `Neg` | `atesininiwidogen` | `<<ate>>sininiwidogen` | `JDN-2010-MS-VII-p9` |
 
-In addition to the aforementioned columns, the spreadsheet can include other columns as well. For example, **Notes** could be a useful one in some cases.
+The spreadsheets can include other columns as well. For example, **Notes** could be a useful one in some cases.
 
-## Preverb (and prenoun) spreadsheets
+### Preverb (and prenoun) spreadsheets
+These spreadsheets, though similar in spirit to the general morphological ones described above, differ in usage and format.
+
+The preverb spreadsheets are further split up by category: dir(ectional), lex(ical), qnt (quantitative), rel(ative), sub(ordinator), tns (tense/modal).
+The same five columns are used in all PV spreadsheets.  Here are some example rows from `PV_dir.csv`:
+
+| PV | Tag | Independent | PlainConjunct | ChangedConjunct | 
+|-|-|-|-|-|
+| ni | PVDir | ni | ni | eni |
+| o | PVDir | o | o | NONE |
+
+These five columns are mandatory across all preverb spreadsheets:
+- **PV** (preverb) gives the form itself.
+- **Tag** gives a category of preverbs, similar to **Paradigm** or **Class** used in the regular spreadsheets.  It corresponds to the way the preverbs are split into spreadsheets, so each spreadsheet should have only one value used in this column (e.g., `PV_dir.csv` has only `PVDir`).
+- The remaining three columns relate to the nature of the verb being attached to (largely, its **Order** value).  Basically these capture allomorphy in the preverb's form based on the verb -- more details [here](https://github.com/ELF-Lab/OjibweMorph/PVSpreadsheets).
+    - **Independent** gives the preverb's form with Independent verbs (essentially the default).
+    - **PlainConjunct** gives the preverb's form with Conjunct form verbs (can be the same as the form in the **Independent** column).
+    - **ChangedConjunct** gives the preverb's form with Changed Conjunct form verbs (often `NONE`).
+
+<mark>More info to be added. Ultimately something should be said about how to make something similar for other languages, as this is quite Ojibwe-specific.</mark>
 
 ## Configuration files
+Configuration files are used by `csv2lexc.py` to control the compilation of `lexc` files for a particular word class (nouns, verbs, pronouns, etc.). The configuration file contains all of the central information related to compilation: which spreadsheets to use as source, what the morphological features are, whether to include prenouns/preverbs, etc.
 
-Configuration files are used to control the compilation of lexc files for a particular word class (nouns, verbs, pronouns, numerals, adverbs and particles). The configuration file contains all of the central information related to compilation: which spreadsheets to use as source, what the morphological features are, whether to include prenouns/preverbs, etc. Below, you can see a description of all the features which can be specified along with an example configuration file for Ojibwe verbs: 
+A `lexc` file will be generated for each config file.  An additional, irregular `lexc` can also be generated.  For example, `verbs.json` leads to `ojibwe_verbs.lexc` and `ojibwe_irregular_verbs.lexc`.
+
+
+Below, you can see a description of all the features.  The example values come from [OjibweMorph/config/verbs.json](https://github.com/ELF-Lab/OjibweMorph/config/verbs.json).
 
 | Feature | Description | Example Value | Notes |
 |---------|-------------|-------|-------|
-| `"pos"` | Word class  | `"Verb"`, `"Noun"`, ... | |
-| `"root_lexicon"` | Root lexicon name | `"VerbRoot"`, `"NounRoot"`, ...| Word class specific root lexicon  | This could be automatically deduced |
-| `"morphology_source_path"` | Path to paradigm spreadsheets for this word class | "VerbSpreadsheets" | This would usually be a directory in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. |
-| `"regular_csv_files"` | List of spreadsheets to include when compiling **regular** lexemes | `["VTA_IND", "VTI_CNJ", ... ]` | Spreadhseets listed here will undergo regular phonological rules. |
-| `"irregular_csv_files"` | List of spreadsheets to include when compiling **irregular** lexemes | `["VTA_IRR"]` | Spreadsheets listed here will not undergo any phonological rules. This category is meant for lexemes which do not belong to a larger inflection class, and where we simply list every single inflected form in verbatim. In Ojibwe, the only irregular verb is `izhi`. |
-| `"lexical_database"` | Path to lexical database | `VERBS.csv` | This would typically be a file in `OjibweLexicon`. Note that the parent lexical database directory (e.g. the path to OjibweLexicon) is provided as a command-line argument to `csv2lexc.py`. |
-| `"lexical_prefix_database"` | Path to preverb/prenoun database | `"LEXICAL_PREVERBS.csv"` | This would typically be a file in `OjibweLexicon`. Note that the parent lexical database directory (e.g. the path to Lexicon) is provided as a command-line argument to `csv2lexc.py`. |
-| `"regular_lexc_file"` | File where compiled lexc code for regular paradigms will be stored | `"ojibwe_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
-| `"irregular_lexc_file"` | File where lexc code for irregular paradigms will be stored | `"ojibwe_irregular_verbs.lexc"` | Note that a target directory, where all lexc code is stored, is given as a commandline argument to `csv2fst.py` |
-| `"morph_features"` | List specifying the columns in the paradigm spreadsheets to be used as morphological features | `[ "Paradigm", "Order", "Negation",  ... ]` | This list specifies both which columns to use from a spreasheet like `VTA_IND.csv` and the order in which the features appear in the analysis. E.g., `VTA+Ind+Pos...` |
-| `"missing_tag_marker"` | Symbol used to mark tags which might be missing from the spreadsheet (e.g., grammatical object for VIIs) | `"NONE"` | |
-| `"missing_form_marker"` | Symbol used to mark morphological gaps, where an analysis has no surface realizations | `"MISSING"` | Sometimes we might simply not know what the form looks like. We might also not know if a form even exists. For example, this happens with dubitative preterite forms in Ojibwe, which currently are poorly documented and understood. Sometimes, we know that the surface realization is impossible due to a logical contradiction. |
-| `"multichar_symbols"` | List of multi-character symbols | `["w1", "y1", "y2", ...]` | Rules often reference special multi-character symbols like `"w1"`. These are included in spreadsheets (sometimes also the lexical database) and need to be declared so that they can be added to the lexc `Multichar_Symbols` section. |
-| `"prefix_root"` | Custom root lexicon for prenouns/preverbs | `"PreverbRoot"` | Can be omitted when there are no prenouns/preverbs and for all other word classes except nouns and verbs. |
-| `"template_path"` | Path to jinja lexc template file for prenouns/preverbs | `"templates/preverbs.lexc.j2"` | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
-| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | `"PVSpreadsheets"` | This would typically be a file in `OjibweMorph`. Note that the parent morphology directory (e.g. the path to OjibweMorph) is provided as a command-line argument to `csv2lexc.py`. Can be omitted when no preverbs/prenouns are included and for all word classes apart from nouns and verbs. |
-| `"derivational_csv_file"` | Path to the derivational morphology CSV | `"./DerivationalSpreadsheets/DerivationalMorphology.csv"` | |
-
-OjibweMorph/config/ojibwe_verbs.json:
-```
-{
-    "pos":"Verb",
-    "root_lexicon":"VerbRoot",
-    "morphology_source_path": "./VerbSpreadsheets/",
-    "regular_csv_files": [
-        "VAIO_CNJ",
-        "VAIO_IMP",
-        "VAIO_IND",
-        "VAI_CNJ",
-        "VAI_IMP",
-        "VAI_IND",
-        "VAI_PCP",
-        "VAIPL",
-        "VAI_Reflex_Recip",
-        "VII_CNJ",
-        "VII_IND",
-        "VII_PCP",
-        "VIIPL",      
-        "VTA_CNJ",
-        "VTA_IMP",
-        "VTA_IND",
-        "VTI_CNJ",
-        "VTI_IMP",
-        "VTI_IND"
-    ],
-    "irregular_csv_files": [
-    ],
-    "lexical_database": "VERBS.csv",
-    "lexical_prefix_database": "LEXICAL_PREVERBS.csv",    
-    "regular_lexc_file": "ojibwe_verbs.lexc",
-    "irregular_lexc_file": "ojibwe_irregular_verbs.lexc",
-    "morph_features": [
-        "Paradigm",
-        "Order",
-        "Negation",
-        "Mode",
-        "Subject",
-        "Object",
-        "Head"
-    ],
-    "missing_tag_marker": "NONE",
-    "missing_form_marker": "MISSING",
-    "multichar_symbols": [
-        "i1",
-        "s1",
-        "n1",
-        "w1",
-        "V1",
-        "w2",
-        "<T>"
-    ],
-    "pre_element_tag": "[PREVERB]",
-    "prefix_root":"PreverbRoot",
-    "template_path":"./templates/preverbs.lexc.j2",
-    "pv_source_path":"./PVSpreadsheets",
-    "derivational_csv_file":"./DerivationalSpreadsheets/DerivationalMorphology.csv"
-}
-```
+| `"pos"` | Word class  | `"Verb"`, `"Noun"`, ... | This determines the name of `XStems` in the relevant `.lexc` files (e.g., if this is `Verb`, you will get `VerbStems`).  <mark>If you make this some nonsense, the FST compiles but doesn't work for the relevant POS.  So this is important, I'm just not sure *exactly* whatt that `XStems` piece has to be the same as. Update: I found proper nouns still work if you change their value to nonsense (whereas verbs didn't). So maybe it was just about matching `VerbStems` in preverbs.lexc.j2?</mark>|
+| `"root_lexicon"` | Root lexicon name | `"VerbRoot"`, `"NounRoot"`, ...| Word class specific root lexicon. This could be automatically deduced.  Also appears (for all POS) in `templates/root.lexc.js`. |
+| `"morphology_source_path"` | Path to directory containing paradigm spreadsheets for this word class | `"./VerbSpreadsheets/"` | Since the names of the relevant files in this dir is given in the next value, there *can* be other files in this directory. Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). |
+| `"regular_csv_files"` | List of spreadsheets to include when compiling **regular** lexemes | `["VTA_IND", "VTI_CNJ", ... ]` | Spreadsheets listed here will undergo regular phonological rules.  Give this value as a list even if it only contains one element (i.e., one spreadsheet).  Please omit the `.csv` suffix. |
+| `"irregular_csv_files"` | List of spreadsheets to include when compiling **irregular** lexemes | <mark>?</mark> | Spreadsheets listed here will not undergo any phonological rules. This category is meant for lexemes which do not belong to a larger inflection class, and where we simply list every single inflected form in verbatim. In Ojibwe, the only irregular verb is `izhi`. Please omit the `.csv` suffix. |
+| `"lexical_database"` | Path to lexical database | `VERBS.csv` | Note this directory is expected to be within a **external lexical source** (e.g., `OjibweLexicon/OPD`) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). |
+| `"lexical_prefix_database"` | Path to preverb/prenoun database | `"LEXICAL_PREVERBS.csv"` | Note this directory is expected to be within a **external lexical source** (e.g., `OjibweLexicon/OPD`) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir).  <mark>This value is straight up missing from some .jsons -- should maybe be present and just NONE?</mark> |
+| `"regular_lexc_file"` | File where compiled `.lexc` code for *regular* paradigms will be stored | `"ojibwe_verbs.lexc"` | Note that an output directory, where all `.lexc` code is stored (among other generated files), is given as a command-line argument to `csv2lexc.py`. |
+| `"irregular_lexc_file"` | File where compiled `.lexc` code for *irregular* paradigms will be stored | `"ojibwe_irregular_verbs.lexc"` | Note that an output directory, where all `.lexc` code is stored (among other generated files), is given as a command-line argument to `csv2lexc.py`. Can be `None`.  If specified but there are no irregular forms, an (almost-) empty file will still be generated. |
+| `"morph_features"` | List specifying the columns in the paradigm spreadsheets to be used as morphological features | `[ "Paradigm", "Order", "Negation",  ... ]` | This list determines both which columns to use from a spreadsheet like `VTA_IND.csv` and the order in which the features appear in the analysis (e.g., `VTA+Ind+Pos...`).  This list is also used by `tests/create_yaml.py` to generate analyses of the same format to be tested against.  Because this list specifies which columns to use, you can have additional, unused columns in the spreadsheet with no effect. |
+| `"missing_tag_marker"` | Symbol used to mark tags which are 'missing' in the paradigm spreadsheets | `"NONE"` | For example, VII verbs do not have grammatical objects, so they do not have a meaningful value to go in the `Object` column in the spreadsheets.  Setting this value to `NONE` in the config tells us that this lack-of-value will be indicated in the spreadsheets with `NONE` (but it could just as easily be `any_word_you_want`) |
+| `"missing_form_marker"` | Symbol used to mark morphological gaps, where an analysis has no surface realizations | `"MISSING"` | This marks cases where there's nothing to put for the form -- maybe we know the form doesn't exist, or aren't sure if it exists, or just don't know what it looks like. For example, this happens with dubitative preterite forms in Ojibwe, which currently are poorly documented and understood. In other cases, we know that the surface realization is impossible due to a logical contradiction. |
+| `"multichar_symbols"` | List of multi-character symbols (i.e., mu.tiple characters that should be parsed as a single unit) | `["i1", "s1", "n1", ...]` | Rules often reference special multi-character symbols like `"w1"`. These are included in spreadsheets (sometimes also the lexical database) and need to be declared so that they can be added to the `.lexc` `Multichar_Symbols` section. |
+| `"pre_element_tag"` | | `"[PREVERB]"` | Can be set to "". <mark> Not sure this is being used anywhere? But also not sure any PV forms are passing, so hard to assess.</mark>|
+| `"prefix_root"` | Custom root lexicon for preverbs/prenouns/whatever is specified by `pre_element_tag` | `"PreverbRoot"` | <mark>Can be omitted. Presumably must match with the root val specified in the pre-element's `.lexc.j2` file (but doesn't go in `root.lexc.j2`).</mark> |
+| `"template_path"` | Path to jinja lexc template file (`./lexc.2`) for preverbs/prenouns/whatever is specified by `pre_element_tag` | `"./templates/preverbs.lexc.j2"` | Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). Can be omitted.  Note that (for some reason) this path cannot include a tilde symbol.  <mark>These all need to be renamed to use the same keyword for prefix/pv/preelement.</mark> |
+| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | `"./PVSpreadsheets"` | This would typically be a file in `OjibweMorph`. Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). Can be `None`. |
+| `"derivational_csv_file"` | Path to the derivational morphology CSV | `"./DerivationalSpreadsheets/DerivationalMorphology.csv"` | Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir).  Can be omitted. |
 
 ## Jinja lexc templates
+Compiling the FST involves generating many `.lexc` files.  The simplest of these can be generated directly from [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates files (`.lexc.j2`). 
 
-Prenoun and preverb lexc files, as well as `root.lexc` (which contains the common root sub-lexicon for all generated lexc-files), are simpler than verb and noun lexc files and are therefore compiled from [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates in `OjibweMorph/templates`. These very closely resemble lexc-code but also contain python function calls, which dynamically generate required content, in a special format as shown in the example below (OjibweMorph/templates/root.lexc.j2):
+For example, the Ojibwe FST generates many `.lexc` files: one for each part of speech (e.g., `ojibwe_nouns.lexc`), one for each pre-element (e.g., `prenouns.lexc`), `root.lexc`, and `all.lexc`.  The simplest of these files (namely the pre-element ones and `root.lexc`) are compiled from templates found in [the templates folder](https://github.com/ELF-Lab/OjibweMorph/templates) in OjibweMorph. These very closely resemble `.lexc` code but also contain python function calls, which dynamically generate required content, in a special format as shown in the example below (`OjibweMorph/templates/root.lexc.j2`):
 
 ```
 {#
@@ -182,9 +154,9 @@ VerbRoot ;
 VerbRootIrregular ;                              
 ```
 
-Here `{# ... #}` defines a Jinja comment and `{{ add_harvested_multichar_symbols() }}` represents a call to the python function `add_harvested_multichar_symbols()`. This specific function call adds all multi-character symbols found in spreadsheets and the lexical database into the `Multicharacter_Symbols` section of the `root.lexc` file. All template functions are found in `ParserTools/csv2fst/src/templates.py`.
+In the above example, `{# ... #}` defines a Jinja comment and `{{ add_harvested_multichar_symbols() }}` represents a call to the python function `add_harvested_multichar_symbols()`. This specific function call adds all multi-character symbols found in spreadsheets and the lexical database into the `Multicharacter_Symbols` section of the `root.lexc` file. All template functions are found in `FSTmorph/src/templates.py`.
 
-Processing the template using the code in ParserTools will create a `root.lexc` file, shown below. Most of the multi-character symbols below are lexical preverb and prenoun tags like `PNLex/aabitaa+`:
+Processing this template file using the code in FSTmorph will create a `root.lexc` file, shown below (abbreviated in parts with `...`).  Most of the multi-character symbols (in addition to things like `V1`, `a1`, etc.) are lexical preverb and prenoun tags like `PNLex/aabitaa+`:
 
 ```
 
@@ -221,150 +193,39 @@ Multichar_Symbols
 +1SgSubj +2PlObj +2PlPoss +2PlSubj +2SgObj +2SgPoss +2SgSubj +3PlObvHead
 +3PlObvObj +3PlObvPoss +3PlObvSubj +3PlProx +3PlProxHead +3PlProxObj
 +3PlProxPoss +3PlProxSubj +3SgObvHead +3SgObvObj +3SgObvPoss +3SgObvSubj
-+3SgProx +3SgProxHead +3SgProxObj +3SgProxPoss +3SgProxSubj +ADVConj +ADVDisc
-+ADVDub +ADVGram +ADVInter +ADVLoc +ADVMan +ADVNeg +ADVPred +ADVQnt +ADVTmp
-+AVDDeg +Alt +Aug/magad +Cnj +Del +Der/magad +Dim +Dub +DubPrt +ExclObj
-+ExclPoss +ExclSubj +Imp +InclObj +InclPoss +InclSubj +Ind +Loc +NA +NAD +NI
-+NID +NUM +NamePerson +NamePlace +Neg +Neu +ObvPl +ObvSg +PCAsp +PCDisc +PCEmph
-+PCInterj +PRONDem+NA+ObvPl +PRONDem+NA+ObvSg +PRONDem+NA+ProxPl
-+PRONDem+NA+ProxSg +PRONDem+NI+Pl +PRONDem+NI+Sg +PRONDub+NA+ObvPl
-+PRONDub+NA+ObvSg +PRONDub+NA+ProxPl +PRONDub+NA+ProxSg +PRONDub+NI+Pl
-+PRONDub+NI+Sg +PRONIndf+NA +PRONIndf+NI +PRONInter+NA +PRONInter+NA+ObvPl
-+PRONInter+NA+ObvSg +PRONInter+NA+ProxPl +PRONInter+NA+ProxSg +PRONInter+NI+Pl
-+PRONInter+NI+Sg +PRONPer+NA+1Sg +PRONPer+NA+2Pl +PRONPer+NA+2Sg
-+PRONPer+NA+3Pl +PRONPer+NA+3Sg +PRONPer+NA+Excl +PRONPer+NA+Incl +PRONPret+NA
-+PRONSim+NA+ObvPl +PRONSim+NA+ObvSg +PRONSim+NA+ProxPl +PRONSim+NA+ProxSg
-+PRONSim+NI+Pl +PRONSim+NI+Sg +Pcp +Pej +Pl +Pos +Poss +Prb +Pret +ProxPl
-+ProxSg +Prt +Recip/di +Reflex/dizo +Sg +Sim +VAI +VAIO +VAIPL +VII +VIIPL +VTA
-+VTI +Voc +XObj +XSubj @P.Paradigm.ADVConj@ @P.Paradigm.ADVDisc@
++3SgProx +3SgProxHead +3SgProxObj +3SgProxPoss +3SgProxSubj +ADVConj +ADVDeg
++ADVDisc +ADVDub +ADVGram +ADVInter +ADVLoc +ADVMan +ADVNeg +ADVPred +ADVQnt
++ADVTmp +Alt +Aug/magad +Cnj +Del +Der/magad +Dim +Dub +DubPrt +ExclObj
++ExclPoss +ExclSubj +Imp +InclObj +InclPoss +InclSubj +Ind +Loc +LocDist +NA
++NAD +NI +NID +NUM +NamePerson +NamePlace +Neg +Neu +ObvPl +ObvSg +PCAsp
++PCDisc +PCEmph +PCInterj +PRONDem+NA+ObvPl +PRONDem+NA+ObvSg
++PRONDem+NA+ProxPl +PRONDem+NA+ProxSg +PRONDem+NI+Pl +PRONDem+NI+Sg
++PRONDub+NA+ObvPl +PRONDub+NA+ObvSg +PRONDub+NA+ProxPl +PRONDub+NA+ProxSg
++PRONDub+NI+Pl +PRONDub+NI+Sg +PRONIndf+NA +PRONIndf+NA+ProxPl +PRONIndf+NI
++PRONInter+NA +PRONInter+NA+ObvPl +PRONInter+NA+ObvSg +PRONInter+NA+ProxPl
++PRONInter+NA+ProxSg +PRONInter+NI+Pl +PRONInter+NI+Sg +PRONPer+NA+1Sg
++PRONPer+NA+2Pl +PRONPer+NA+2Sg +PRONPer+NA+3Pl +PRONPer+NA+3Sg
++PRONPer+NA+Excl +PRONPer+NA+Incl +PRONPret+NA +PRONSim+NA+ObvPl
++PRONSim+NA+ObvSg +PRONSim+NA+ProxPl +PRONSim+NA+ProxSg +PRONSim+NI+Pl
++PRONSim+NI+Sg +Pcp +Pej +Pl +Pos +Poss +Prb +Pret +ProxPl +ProxSg +Prt
++Recip/di +Reflex/dizo +Sg +Sim +VAI +VAIO +VAIPL +VII +VIIPL +VTA +VTI +Voc
++XObj +XSubj @P.Paradigm.ADVConj@ @P.Paradigm.ADVDeg@ @P.Paradigm.ADVDisc@
 @P.Paradigm.ADVDub@ @P.Paradigm.ADVGram@ @P.Paradigm.ADVInter@
 @P.Paradigm.ADVLoc@ @P.Paradigm.ADVMan@ @P.Paradigm.ADVNeg@
-@P.Paradigm.ADVPred@ @P.Paradigm.ADVQnt@ @P.Paradigm.ADVTmp@
-@P.Paradigm.AVDDeg@ @P.Paradigm.NA@ @P.Paradigm.NAD@ @P.Paradigm.NI@
-@P.Paradigm.NID@ @P.Paradigm.NUM@ @P.Paradigm.NamePerson@
-@P.Paradigm.NamePlace@ @P.Paradigm.PCAsp@ @P.Paradigm.PCDisc@
-@P.Paradigm.PCEmph@ @P.Paradigm.PCInterj@ @P.Paradigm.PRONDem+NA+ObvPl@
-@P.Paradigm.PRONDem+NA+ObvSg@ @P.Paradigm.PRONDem+NA+ProxPl@
-@P.Paradigm.PRONDem+NA+ProxSg@ @P.Paradigm.PRONDem+NI+Pl@
-@P.Paradigm.PRONDem+NI+Sg@ @P.Paradigm.PRONDub+NA+ObvPl@
-@P.Paradigm.PRONDub+NA+ObvSg@ @P.Paradigm.PRONDub+NA+ProxPl@
-@P.Paradigm.PRONDub+NA+ProxSg@ @P.Paradigm.PRONDub+NI+Pl@
-@P.Paradigm.PRONDub+NI+Sg@ @P.Paradigm.PRONIndf+NA@ @P.Paradigm.PRONIndf+NI@
-@P.Paradigm.PRONInter+NA+ObvPl@ @P.Paradigm.PRONInter+NA+ObvSg@
-@P.Paradigm.PRONInter+NA+ProxPl@ @P.Paradigm.PRONInter+NA+ProxSg@
-@P.Paradigm.PRONInter+NA@ @P.Paradigm.PRONInter+NI+Pl@
-@P.Paradigm.PRONInter+NI+Sg@ @P.Paradigm.PRONPer+NA+1Sg@
-@P.Paradigm.PRONPer+NA+2Pl@ @P.Paradigm.PRONPer+NA+2Sg@
-@P.Paradigm.PRONPer+NA+3Pl@ @P.Paradigm.PRONPer+NA+3Sg@
-@P.Paradigm.PRONPer+NA+Excl@ @P.Paradigm.PRONPer+NA+Incl@
-@P.Paradigm.PRONPret+NA@ @P.Paradigm.PRONSim+NA+ObvPl@
-@P.Paradigm.PRONSim+NA+ObvSg@ @P.Paradigm.PRONSim+NA+ProxPl@
-@P.Paradigm.PRONSim+NA+ProxSg@ @P.Paradigm.PRONSim+NI+Pl@
-@P.Paradigm.PRONSim+NI+Sg@ @P.Paradigm.VAI@ @P.Paradigm.VAIO@
-@P.Paradigm.VAIPL@ @P.Paradigm.VII@ @P.Paradigm.VIIPL@ @P.Paradigm.VTA@
-@P.Paradigm.VTI@ @P.Prefix.%<CHCNJ%>@ @P.Prefix.G@ @P.Prefix.GI@
-@P.Prefix.GIDW@ @P.Prefix.N@ @P.Prefix.NI@ @P.Prefix.NONE@ @P.Prefix.O@
-@P.Prefix.W@ @R.Paradigm.ADVConj@ @R.Paradigm.ADVDisc@ @R.Paradigm.ADVDub@
-@R.Paradigm.ADVGram@ @R.Paradigm.ADVInter@ @R.Paradigm.ADVLoc@
-@R.Paradigm.ADVMan@ @R.Paradigm.ADVNeg@ @R.Paradigm.ADVPred@
-@R.Paradigm.ADVQnt@ @R.Paradigm.ADVTmp@ @R.Paradigm.AVDDeg@ @R.Paradigm.NA@
-@R.Paradigm.NAD@ @R.Paradigm.NI@ @R.Paradigm.NID@ @R.Paradigm.NUM@
-@R.Paradigm.NamePerson@ @R.Paradigm.NamePlace@ @R.Paradigm.PCAsp@
-@R.Paradigm.PCDisc@ @R.Paradigm.PCEmph@ @R.Paradigm.PCInterj@
-@R.Paradigm.PRONDem+NA+ObvPl@ @R.Paradigm.PRONDem+NA+ObvSg@
-@R.Paradigm.PRONDem+NA+ProxPl@ @R.Paradigm.PRONDem+NA+ProxSg@
-@R.Paradigm.PRONDem+NI+Pl@ @R.Paradigm.PRONDem+NI+Sg@
-@R.Paradigm.PRONDub+NA+ObvPl@ @R.Paradigm.PRONDub+NA+ObvSg@
-@R.Paradigm.PRONDub+NA+ProxPl@ @R.Paradigm.PRONDub+NA+ProxSg@
-@R.Paradigm.PRONDub+NI+Pl@ @R.Paradigm.PRONDub+NI+Sg@ @R.Paradigm.PRONIndf+NA@
-@R.Paradigm.PRONIndf+NI@ @R.Paradigm.PRONInter+NA+ObvPl@
-@R.Paradigm.PRONInter+NA+ObvSg@ @R.Paradigm.PRONInter+NA+ProxPl@
-@R.Paradigm.PRONInter+NA+ProxSg@ @R.Paradigm.PRONInter+NA@
-@R.Paradigm.PRONInter+NI+Pl@ @R.Paradigm.PRONInter+NI+Sg@
-@R.Paradigm.PRONPer+NA+1Sg@ @R.Paradigm.PRONPer+NA+2Pl@
-@R.Paradigm.PRONPer+NA+2Sg@ @R.Paradigm.PRONPer+NA+3Pl@
-@R.Paradigm.PRONPer+NA+3Sg@ @R.Paradigm.PRONPer+NA+Excl@
-@R.Paradigm.PRONPer+NA+Incl@ @R.Paradigm.PRONPret+NA@
-@R.Paradigm.PRONSim+NA+ObvPl@ @R.Paradigm.PRONSim+NA+ObvSg@
-@R.Paradigm.PRONSim+NA+ProxPl@ @R.Paradigm.PRONSim+NA+ProxSg@
-@R.Paradigm.PRONSim+NI+Pl@ @R.Paradigm.PRONSim+NI+Sg@ @R.Paradigm.VAI@
-@R.Paradigm.VAIO@ @R.Paradigm.VAIPL@ @R.Paradigm.VII@ @R.Paradigm.VIIPL@
-@R.Paradigm.VTA@ @R.Paradigm.VTI@ @R.Prefix.%<CHCNJ%>@ @R.Prefix.G@
-@R.Prefix.GI@ @R.Prefix.GIDW@ @R.Prefix.N@ @R.Prefix.NI@ @R.Prefix.NONE@
-@R.Prefix.O@ @R.Prefix.W@ @U.Order.Cnj@ @U.Order.Ind@ @U.Order.Other@
-PNLex%/aabiji+ PNLex%/aabitaa+ PNLex%/aako+ PNLex%/aanji+ PNLex%/aazhawi+
-PNLex%/agaami+ PNLex%/agaasi+ PNLex%/agiji+ PNLex%/anaami+ PNLex%/anama'e+
-PNLex%/ando+ PNLex%/ashki+ PNLex%/asho+ PNLex%/awasi+ PNLex%/ayaangwaami+
-PNLex%/azhe+ PNLex%/baashki+ PNLex%/baate+ PNLex%/bagaki+ PNLex%/bagami+
-PNLex%/bagwaji+ PNLex%/bakobii+ PNLex%/besho+ PNLex%/bibine+ PNLex%/bichi+
-PNLex%/bigii+ PNLex%/bigishki+ PNLex%/biichi+ PNLex%/biimasko+ PNLex%/biini+
-PNLex%/biinji+ PNLex%/biisaawangi+ PNLex%/biisadaawangi+ PNLex%/biisi+
-PNLex%/biitoo+ PNLex%/bizaani+ PNLex%/chi+ PNLex%/dago+ PNLex%/daki+ PNLex%/de+
-PNLex%/desi+ PNLex%/dibi+ PNLex%/dibiki+ PNLex%/ditibi+ PNLex%/enda+
-PNLex%/eyedawi+ PNLex%/eyiidawi+ PNLex%/gaagige+ PNLex%/gabe+
-PNLex%/gagaanwaabiigi+ PNLex%/gagwe+ PNLex%/gakaki+ PNLex%/gashkii+
-PNLex%/gete+ PNLex%/gichi+ PNLex%/gigizhebaa+ PNLex%/giimooji+ PNLex%/giiwe+
-PNLex%/giiwitaa+ PNLex%/giiwitaawi+ PNLex%/giizhi+ PNLex%/gijigi+
-PNLex%/gimooji+ PNLex%/ginibi+ PNLex%/ginwaako+ PNLex%/ginwaakojii+
-PNLex%/goji+ PNLex%/goshko+ PNLex%/gwayako+ PNLex%/gwiinawi+ PNLex%/ishkwaa+
-PNLex%/ishkwe+ PNLex%/ishpi+ PNLex%/jiigewe+ PNLex%/jiigi+ PNLex%/maajii+
-PNLex%/maamawoo+ PNLex%/maazhi+ PNLex%/madwe+ PNLex%/maji+ PNLex%/makade+
-PNLex%/mangi+ PNLex%/mayagi+ PNLex%/megwaa+ PNLex%/megwe+ PNLex%/michi+
-PNLex%/miigwechiwi+ PNLex%/mino+ PNLex%/mishi+ PNLex%/misko+ PNLex%/naabe+
-PNLex%/naawi+ PNLex%/nabagi+ PNLex%/nanda+ PNLex%/niibaa+ PNLex%/niigaani+
-PNLex%/niiji+ PNLex%/niisi+ PNLex%/nisawi+ PNLex%/nishkaaji+ PNLex%/nitaa+
-PNLex%/noonde+ PNLex%/noosooki+ PNLex%/noozhe+ PNLex%/ogiji+ PNLex%/ojaanimi+
-PNLex%/oke+ PNLex%/oko+ PNLex%/ondami+ PNLex%/onzaami+ PNLex%/opime+
-PNLex%/oshki+ PNLex%/ozaawi+ PNLex%/ozhaashi+ PNLex%/ozhaawashko+
-PNLex%/waabani+ PNLex%/waabanoo+ PNLex%/waabi+ PNLex%/waabijii+
-PNLex%/waabishki+ PNLex%/waanda+ PNLex%/waasamoo+ PNLex%/waasiko+
-PNLex%/wagiji+ PNLex%/wake+ PNLex%/wani+ PNLex%/wenda+ PNLex%/wiiji+
-PNLex%/wiimaa+ PNLex%/wiisagi+ PNLex%/wiishkobi+ PNLex%/zazegaa+
-PNLex%/zhaawani+ PNLex%/zhiibaa+ PNLex%/zhiiwi+ PNLex%/ziiwiski+ PNQnt%/aabita+
-PNQnt%/ashi-bezhigo+ PNQnt%/ashi-ingodwaaso+ PNQnt%/ashi-ishwaaso+
-PNQnt%/ashi-naano+ PNQnt%/ashi-niiwo+ PNQnt%/ashi-niiyo+ PNQnt%/ashi-niizho+
-PNQnt%/ashi-niizhwaaso+ PNQnt%/ashi-ningodwaaso+ PNQnt%/ashi-nishwaaso+
-PNQnt%/ashi-niso+ PNQnt%/ashi-zhaangaso+ PNQnt%/bezhigo+ PNQnt%/ingo+
-PNQnt%/ingodwaaso+ PNQnt%/ishwaaso+ PNQnt%/midaaso+ PNQnt%/naano+
-PNQnt%/nenishwaaswi+ PNQnt%/niiwo+ PNQnt%/niiyo+ PNQnt%/niizho+
-PNQnt%/niizhwaaso+ PNQnt%/ningo+ PNQnt%/ningodwaaso+ PNQnt%/nishwaaso+
-PNQnt%/niso+ PNQnt%/zhaangaso+ PVDir%/ani+ PVDir%/awi+ PVDir%/baa+
-PVDir%/babaa+ PVDir%/bi+ PVDir%/bibaa+ PVDir%/biiji+ PVDir%/bimi+ PVDir%/ini+
-PVDir%/ni+ PVDir%/o+ PVDir%/ombi+ PVDir%/wi+ PVDir%/zaagiji+ PVLex%/aabiji+
-PVLex%/aabitaa+ PVLex%/aako+ PVLex%/aanji+ PVLex%/aazhawi+ PVLex%/agaami+
-PVLex%/agaasi+ PVLex%/agiji+ PVLex%/anaami+ PVLex%/anama'e+ PVLex%/ando+
-PVLex%/ashki+ PVLex%/asho+ PVLex%/awasi+ PVLex%/ayaangwaami+ PVLex%/azhe+
-PVLex%/baashki+ PVLex%/baate+ PVLex%/bagaki+ PVLex%/bagami+ PVLex%/bagwaji+
-PVLex%/bakobii+ PVLex%/besho+ PVLex%/bibine+ PVLex%/bichi+ PVLex%/bigii+
-PVLex%/bigishki+ PVLex%/biichi+ PVLex%/biimasko+ PVLex%/biini+ PVLex%/biinji+
-PVLex%/biisaawangi+ PVLex%/biisadaawangi+ PVLex%/biisi+ PVLex%/biitoo+
-PVLex%/bizaani+ PVLex%/chi+ PVLex%/dago+ PVLex%/daki+ PVLex%/de+ PVLex%/desi+
-PVLex%/dibi+ PVLex%/dibiki+ PVLex%/ditibi+ PVLex%/enda+ PVLex%/eyedawi+
-PVLex%/eyiidawi+ PVLex%/gaagige+ PVLex%/gabe+ PVLex%/gagaanwaabiigi+
-PVLex%/gagwe+ PVLex%/gakaki+ PVLex%/gashkii+ PVLex%/gete+ PVLex%/gichi+
-PVLex%/gigizhebaa+ PVLex%/giimooji+ PVLex%/giiwe+ PVLex%/giiwitaa+
-PVLex%/giiwitaawi+ PVLex%/giizhi+ PVLex%/gijigi+ PVLex%/gimooji+ PVLex%/ginibi+
-PVLex%/ginwaako+ PVLex%/ginwaakojii+ PVLex%/goji+ PVLex%/goshko+
-PVLex%/gwayako+ PVLex%/gwiinawi+ PVLex%/ishkwaa+ PVLex%/ishkwe+ PVLex%/ishpi+
-PVLex%/jiigewe+ PVLex%/jiigi+ PVLex%/maajii+ PVLex%/maamawoo+ PVLex%/maazhi+
-PVLex%/madwe+ PVLex%/maji+ PVLex%/makade+ PVLex%/mangi+ PVLex%/mayagi+
-PVLex%/megwaa+ PVLex%/megwe+ PVLex%/michi+ PVLex%/miigwechiwi+ PVLex%/mino+
-PVLex%/mishi+ PVLex%/misko+ PVLex%/naabe+ PVLex%/naawi+ PVLex%/nabagi+
-PVLex%/nanda+ PVLex%/niibaa+ PVLex%/niigaani+ PVLex%/niiji+ PVLex%/niisi+
-PVLex%/nisawi+ PVLex%/nishkaaji+ PVLex%/nitaa+ PVLex%/noonde+ PVLex%/noosooki+
-PVLex%/noozhe+ PVLex%/ogiji+ PVLex%/ojaanimi+ PVLex%/oke+ PVLex%/oko+
-PVLex%/ondami+ PVLex%/onzaami+ PVLex%/opime+ PVLex%/oshki+ PVLex%/ozaawi+
-PVLex%/ozhaashi+ PVLex%/ozhaawashko+ PVLex%/waabani+ PVLex%/waabanoo+
-PVLex%/waabi+ PVLex%/waabijii+ PVLex%/waabishki+ PVLex%/waanda+
-PVLex%/waasamoo+ PVLex%/waasiko+ PVLex%/wagiji+ PVLex%/wake+ PVLex%/wani+
-PVLex%/wenda+ PVLex%/wiiji+ PVLex%/wiimaa+ PVLex%/wiisagi+ PVLex%/wiishkobi+
-PVLex%/zazegaa+ PVLex%/zhaawani+ PVLex%/zhiibaa+ PVLex%/zhiiwi+
-PVLex%/ziiwiski+ PVQnt%/aabita+ PVQnt%/ashi-bezhigo+ PVQnt%/ashi-ingodwaaso+
-PVQnt%/ashi-ishwaaso+ PVQnt%/ashi-naano+ PVQnt%/ashi-niiwo+ PVQnt%/ashi-niiyo+
-PVQnt%/ashi-niizho+ PVQnt%/ashi-niizhwaaso+ PVQnt%/ashi-ningodwaaso+
-PVQnt%/ashi-nishwaaso+ PVQnt%/ashi-niso+ PVQnt%/ashi-zhaangaso+ PVQnt%/bezhigo+
-PVQnt%/ingo+ PVQnt%/ingodwaaso+ PVQnt%/ishwaaso+ PVQnt%/midaaso+ PVQnt%/naano+
-PVQnt%/nenishwaaswi+ PVQnt%/niiwo+ PVQnt%/niiyo+ PVQnt%/niizho+
+...
+@R.Paradigm.PRONSim+NA+ObvSg@ @R.Paradigm.PRONSim+NA+ProxPl@
+@R.Paradigm.PRONSim+NA+ProxSg@ @R.Paradigm.PRONSim+NI+Pl@
+@R.Paradigm.PRONSim+NI+Sg@ @R.Paradigm.VAI@ @R.Paradigm.VAIO@
+@R.Paradigm.VAIPL@ @R.Paradigm.VII@ @R.Paradigm.VIIPL@ @R.Paradigm.VTA@
+@R.Paradigm.VTI@ @R.Prefix.%<CHCNJ%>@ @R.Prefix.G@ @R.Prefix.GI@
+@R.Prefix.GIDW@ @R.Prefix.N@ @R.Prefix.NI@ @R.Prefix.NONE@ @R.Prefix.O@
+@R.Prefix.W@ @U.Order.Cnj@ @U.Order.Ind@ @U.Order.Other@ PNLex%/aabiji+
+PNLex%/aabitaa+ PNLex%/aako+ PNLex%/aanji+ PNLex%/aazhawi+ PNLex%/agaami+
+PNLex%/agaasi+ PNLex%/agiji+ PNLex%/anaami+ PNLex%/anama'e+ PNLex%/ando+
+PNLex%/ashki+ PNLex%/asho+ PNLex%/awasi+ PNLex%/ayaangwaami+ PNLex%/azhe+
+PNLex%/baashki+ PNLex%/baate+ PNLex%/bagaki+ PNLex%/bagami+ PNLex%/bagwaji+
+PNLex%/bakobii+ PNLex%/besho+ PNLex%/bibine+ PNLex%/bichi+ PNLex%/bigii+
+...
 PVQnt%/niizhwaaso+ PVQnt%/ningo+ PVQnt%/ningodwaaso+ PVQnt%/nishwaaso+
 PVQnt%/niso+ PVQnt%/zhaangaso+ PVRel%/ako+ PVRel%/apiichi+ PVRel%/daso+
 PVRel%/dazhi+ PVRel%/izhi+ PVRel%/onji+ PVSub%/a+ PVSub%/e+ PVSub%/gaa+
@@ -381,7 +242,33 @@ PronounRoot ;
 ProperNounRoot ;
 VerbRoot ;
 VerbRootIrregular ;
+
 ```
 
-## xfst phonological replace rules 
-TBD
+These template files are used by `csv2lexc.py` in generating `.lexc` files.  For the pre-element templates, their filepath is given by the relevant config file (e.g., `config/verbs.json` has `template_path` set to `"./templates/preverbs.lexc.j2"`).  Meanwhile, the root template file is expected by `csv2lexc.py` to be found within the given morphological source dir, as `templates/root.lexc.j2`.
+
+## .xfst phonological replace rules
+`phonology.xfst` includes the phonological rules that will be incorporated into the FST to produce inflected forms.
+
+Specifically, `FSTmorph/assets/compile_fst.xfst` ultimately creates the actual FST files from the combination of `all.lexc` (one of the generated `.lexc` files) and `phonology.xfst`.  Both of these are hardcoded into `compile_fst.xfst`.  In `OjibweMorph`, the [Makefile](https://github.com/ELF-Lab/OjibweMorph/Makefile) copies both `.xfst` files into the output directory along with all the generated `.lexc` files, so that all these files are in the same place. `compile_fst.xfst` is a language-general way of combining these two files containing language-specific information.
+
+Here is an example phonological rule from [OjibweMorph/xfst/phonology.xfst](https://github.com/ELF-Lab/OjibweMorph/xfst/phonology.xfst):
+```
+! d-deletion: Delete stem-final "d" 
+! 	when the suffix complex starts with a consonant.
+define dDeletion d -> 0 || _ SUFBD Cons ;
+```
+
+The first two lines are comments, marked with the initial `!`.  The rule (named `dDeletion`) says to delete the character d (`d -> 0`) in contexts where (`||`) the d (`_`) is followed by a suffix boundary (`SUFBD`; this is defined earlier in the file) and then a consonant (`Cons`; this is defined earlier in the file).
+
+Here is one more example rule:
+```
+! glottaloMetathesis: -ii'o becomes -iiw' at the end of a word.
+! VAI stems with ending in -ii'o show a variant where rather than deleting the short o word-finally, it gets turned to a w and metathesized to iiw'
+! Probably a rule specific to GJ or Lac La Croix more generally.
+define glottaloMetathesis ' o (->) w ' || i i _ SUFBD ;
+```
+
+Again there are several lines of comments.  The rule (named `glottaloMetathesis`) says to *optionally* replace 'o with w' (`' o (->) w ' `) in contexts where (`||`) the 'o is preceded by two i's (`i i _`) and is the last character in the stem (`_ SUFBD`).  This rule differs from the previous example in that it is optional (indicated by the arrow being in parentheses), meaning that it will just generate a variant rather than outright replacing the original form.
+
+<mark>More info needed about the specifics of what this file should look like -- asking Miikka!</mark>
