@@ -1,7 +1,5 @@
-# References
-
+# Useful References
 ## Books, articles and tutorials
-
 | ID | Reference |
 |----|----|
 | A1 | Kenneth R. Beesley and Lauri Karttunen. *Finite State Morphology*. 2003. CSLI Publications. (Documents the lexc and xfst formalisms. Not available online but ask Miikka) |
@@ -9,13 +7,11 @@
 | A3 | Ronald M. Kaplan and Martin Kay. 1994. [*Regular models of phonological systems*](https://aclanthology.org/J94-3001.pdf). (Demonstrated that phonology and morphology are at least predominantly realizable using finite-state transducers) |
 
 ## Ojibwe resources
-
 | ID | Reference |
 |----|----|
 | R1 | [*Ojibwe People's Dictionary* ](https://ojibwe.lib.umn.edu/), i.e. OPD. |
 
 ## Other FST projects
-
 | ID | Reference |
 |----|----|
 | P1 | [Foma](https://github.com/mhulden/foma/tree/master) (We mostly use this toolkit to compile FSTs) |

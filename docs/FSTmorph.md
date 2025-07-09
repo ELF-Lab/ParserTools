@@ -1,7 +1,7 @@
 # FSTmorph
 ## What's inside
 ### The `csv2lexc.py` script
-`csv2lexc.py` will generate `.lexc` files: one for each POS (e.g., `ojibwe_nouns.lexc`, `ojibwe_numerals.lexc`)), and `root.lexc`.  It uses information from [the morphological source](./morphological_source.md) and [the lexical source](./lexical_source.md) to create these files.
+`csv2lexc.py` will generate `.lexc` files: one for each POS (e.g., `ojibwe_nouns.lexc`, `ojibwe_numerals.lexc`), and `root.lexc`.  It uses information from [the morphological source](./morphological_source.md) and [the lexical source](./lexical_source.md) to create these files.
 
 For the details of how the script works (including its command-line args), check out [the developer docs](https://htmlpreview.github.io/?https://raw.githubusercontent.com/ELF-Lab/ParserTools/dev/docs/html_docs/csv2lexc.html).
 

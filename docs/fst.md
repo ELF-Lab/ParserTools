@@ -1,5 +1,4 @@
-# FST morphological analyzers
-
+# Intro to FSTs
 This discussion is a highly abbreviated version of the discussion in [the Foma morphological analysis tutorial](https://fomafst.github.io/morphtut.html).
 
 FSTs (finite-state transducers) are models which map between two different set of strings `upper:lower`. The **upper** string represents a morphological analysis like `walk+Verb+Past` and the **lower** string represents the corresponding inflected word form `walked`. The FST can map a lower word form into an upper analysis `walked -> walk+Verb+Past`. This is called **analysis** or **lookup**. It can also perform a mapping in the inverse direction `walk+Verb+Past -> walked`. This is called **generation** or **lookdown**.
