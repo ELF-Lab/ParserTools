@@ -34,8 +34,7 @@ To give some more detail, the script `csv2lexc.py` here in FSTmorph utilizes (1)
 2. [The Morphological Source](morphological_source.md)
 3. [The Lexical Source](lexical_source.md)
 4. [FSTmorph](FSTmorph.md)
-5. [Adding a New Language or Dialect](addlanguage.md)
-6. [Useful References](references.md)
+5. [Useful References](references.md)
 
 ## Developer documentation
 
