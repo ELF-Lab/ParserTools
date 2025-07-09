@@ -1,15 +1,13 @@
 # The Morphological Source
 The morphological source provides information about the morphology of the target language needed to create the FST.  The illustrative example of this source is [OjibweMorph](https://github.com/ELF-Lab/OjibweMorph).
 
-The morphological source includes four key components used to build the FST:
-- morphological info files (`.csv`)
-- phonological rule files (`.xfst`)
-- config files (`.json`)
-- template files (`.lexc.j2`)
+The morphological source includes four key components used to build the FST.  The remainder of this document outlines the purpose and requirements of each of these components:
+- [morphological info files (`.csv`)](#morphological-paradigms-csv)
+- [config files (`.json`)](#configuration-files-json)
+- [template files (`.lexc.j2`)](#templates-lexcj2)
+- [phonological rule files (`.xfst`)](#phonological-rules-xfst)
 
-The remainder of this document outlines the purpose and requirements of each of these files.
-
-## Morphological paradigm spreadsheets
+## Morphological paradigms (`.csv`)
 These spreadsheets provide the core morphological information used by the FST.
 
 The spreadsheets are used by `csv2lexc.py`.  It gets the location/name of the spreadsheets from the config files.  Each config file specifies the relevant spreadsheets for its POS through the values of `morphology_source_path`, `regular_csv_files` and (optionally) `irregular_csv_files`.
@@ -37,13 +35,13 @@ Six of the columns are obligatory:
 * **Form1Surface** gives the inflected word form itself.
 * **Form1Split** gives a split of the form into `prefix<<stem>>suffix`.
     - Note that the `stem` here doesn't need to correspond to the **Stem** column because the stem might vary due to phonolgical factors based on the prefix and suffix (this is the case for the inflected form *omizhogonan*, where the default stem *mizhw* is realized as *mizho* in this specific form). The`xfst` replace rules transform the stem given in the **Stem** column into its various realizations.
-    - Note that the stem and affixes can sometimes contain special characters like *w1* in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified [below](#configuration-files). Otherwise, `lexc` won't know to compile them into multi-character symbols.
+    - Note that the stem and affixes can sometimes contain special characters like *w1* in `o<<waabam>>igoniniw1`. These need to be listed in a configuration file as specified [below](#configuration-files-json). Otherwise, `lexc` won't know to compile them into multi-character symbols.
 
 Additional columns are optional:
 - **Form1Source** can give information about the given form (e.g., which elder it comes from, which dialect, etc.).
 - **Form2Surface**, **Form2Split**, **Form3Surface**, **Form3Split**, etc. can give additional forms. When there are no additional forms, the fields can be left empty.
 
-Finally, columns specificying morphological features (e.g., **Order**, **Mode**, **Negation**, **Subject**, and **Object**) can vary by paradigm (e.g., they are different for nouns and verbs).  The set of these columns being used in a given spreadsheet should be specified in the corresponding config file, as specified [below](#configuration-files).
+Finally, columns specificying morphological features (e.g., **Order**, **Mode**, **Negation**, **Subject**, and **Object**) can vary by paradigm (e.g., they are different for nouns and verbs).  The set of these columns being used in a given spreadsheet should be specified in the corresponding config file, as specified [below](#configuration-files-json).
 
 Sometimes the value of a particular morphological feature is missing. For example, VII verbs don't take an object. In such cases, we can use a `NONE` value to indicate the missing field.  For example:
 
@@ -74,7 +72,7 @@ These five columns are mandatory across all preverb spreadsheets:
 
 <mark>More info to be added. Ultimately something should be said about how to make something similar for other languages, as this is quite Ojibwe-specific.</mark>
 
-## Configuration files
+## Configuration files (`.json`)
 Configuration files are used by `csv2lexc.py` to control the compilation of `lexc` files for a particular word class (nouns, verbs, pronouns, etc.). The configuration file contains all of the central information related to compilation: which spreadsheets to use as source, what the morphological features are, whether to include prenouns/preverbs, etc.
 
 A `lexc` file will be generated for each config file.  An additional, irregular `lexc` can also be generated.  For example, `verbs.json` leads to `ojibwe_verbs.lexc` and `ojibwe_irregular_verbs.lexc`.
@@ -100,10 +98,10 @@ Below, you can see a description of all the features.  The example values come f
 | `"pre_element_tag"` | | `"[PREVERB]"` | Can be set to "". <mark> Not sure this is being used anywhere? But also not sure any PV forms are passing, so hard to assess.</mark>|
 | `"prefix_root"` | Custom root lexicon for preverbs/prenouns/whatever is specified by `pre_element_tag` | `"PreverbRoot"` | <mark>Can be omitted. Presumably must match with the root val specified in the pre-element's `.lexc.j2` file (but doesn't go in `root.lexc.j2`).</mark> |
 | `"template_path"` | Path to jinja lexc template file (`./lexc.2`) for preverbs/prenouns/whatever is specified by `pre_element_tag` | `"./templates/preverbs.lexc.j2"` | Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). Can be omitted.  Note that (for some reason) this path cannot include a tilde symbol.  <mark>These all need to be renamed to use the same keyword for prefix/pv/preelement.</mark> |
-| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | `"./PVSpreadsheets"` | This would typically be a file in `OjibweMorph`. Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). Can be `None`. |
+| `"pv_source_path"` | Path to preverb/prenoun spreadsheets | `"./PVSpreadsheets"` | Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir). Can be `None`. |
 | `"derivational_csv_file"` | Path to the derivational morphology CSV | `"./DerivationalSpreadsheets/DerivationalMorphology.csv"` | Note this directory is expected to be within the **morphology source directory** (e.g., OjibweMorph) which is provided as a command-line argument to `csv2lexc.py` (and this path should be relative to that dir).  Can be omitted. |
 
-## Jinja lexc templates
+## Templates (`.lexc.j2`)
 Compiling the FST involves generating many `.lexc` files.  The simplest of these can be generated directly from [Jinja](https://jinja.palletsprojects.com/en/3.1.x/) templates files (`.lexc.j2`). 
 
 For example, the Ojibwe FST generates many `.lexc` files: one for each part of speech (e.g., `ojibwe_nouns.lexc`), one for each pre-element (e.g., `prenouns.lexc`), `root.lexc`, and `all.lexc`.  The simplest of these files (namely the pre-element ones and `root.lexc`) are compiled from templates found in [the templates folder](https://github.com/ELF-Lab/OjibweMorph/templates) in OjibweMorph. These very closely resemble `.lexc` code but also contain python function calls, which dynamically generate required content, in a special format as shown in the example below (`OjibweMorph/templates/root.lexc.j2`):
@@ -247,7 +245,7 @@ VerbRootIrregular ;
 
 These template files are used by `csv2lexc.py` in generating `.lexc` files.  For the pre-element templates, their filepath is given by the relevant config file (e.g., `config/verbs.json` has `template_path` set to `"./templates/preverbs.lexc.j2"`).  Meanwhile, the root template file is expected by `csv2lexc.py` to be found within the given morphological source dir, as `templates/root.lexc.j2`.
 
-## .xfst phonological replace rules
+## Phonological Rules (`.xfst`)
 `phonology.xfst` includes the phonological rules that will be incorporated into the FST to produce inflected forms.
 
 Specifically, `FSTmorph/assets/compile_fst.xfst` ultimately creates the actual FST files from the combination of `all.lexc` (one of the generated `.lexc` files) and `phonology.xfst`.  Both of these are hardcoded into `compile_fst.xfst`.  In `OjibweMorph`, the [Makefile](https://github.com/ELF-Lab/OjibweMorph/Makefile) copies both `.xfst` files into the output directory along with all the generated `.lexc` files, so that all these files are in the same place. `compile_fst.xfst` is a language-general way of combining these two files containing language-specific information.
