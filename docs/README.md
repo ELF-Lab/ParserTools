@@ -32,15 +32,14 @@ To give some more detail, the script `csv2lexc.py` here in FSTmorph utilizes (1)
 
 ## User documentation
 
-1. [Installing and running scripts](howto.md) 
 2. [Intro to Ojibwe morphology](morphology.md) 
 3. [Intro to FST morphology](fst.md)
 4. [The Morphological Source](morphological_source.md)
 5. [The Lexical Source](lexical_source.md)
-6. [The ParserTools repo](parsertools.md)
+6. [FSTmorph](parsertools.md)
 7. [Adding a new language or dialect](addlanguage.md)
 8. [Useful references](references.md)
 
 ## Developer documentation
 
-1. [`ParserTools/csv2fst`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/ParserTools/blob/master/csv2fst/docs/csv2fst_html_docs/index.html)
+1. [`ParserTools/FSTmorph`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/ParserTools/blob/dev/docs/html_docs/index.html)
