@@ -10,13 +10,13 @@ The morphological source includes four key components used to build the FST.  Th
 ## Morphological paradigms (`.csv`)
 These spreadsheets provide the core morphological information used by the FST.
 
-The spreadsheets are used by `csv2lexc.py`.  It gets the location/name of the spreadsheets from the config files.  Each config file specifies the relevant spreadsheets for its POS through the values of `morphology_source_path`, `regular_csv_files` and (optionally) `irregular_csv_files`.
+The spreadsheets are used by `csv2lexc.py`.  It gets the location/name of the spreadsheets from [the config files](#configuration-files-json).  Each config file specifies the relevant spreadsheet(s) through the values of `morphology_source_path`, `regular_csv_files` and (optionally) `irregular_csv_files`.
 
 Words should be split into different spreadsheets by **part of speech (POS)** (e.g., ADVERBS.csv).  Further splitting works, too.  For example, in `OjibweMorph`, the noun and verb spreadsheets (which have many, many more forms than the other POS) are further split by **class** for nouns (e.g., NA_VVw.csv) and by **paradigm** and **order** for verbs (e.g., VTI_CNJ.csv).
 
 Though these spreadsheets are primarily used for their morphological inflection, while the external lexical database provides most lemmas, the FST *does* also learn the lemmas given in these spreadsheets.  This is why you can make a small working FST with no external lexical database specified -- the FST will just know the lemmas used in these morphological spreadsheets.
 
-The organization of word forms into **paradigms** and **classes** in the `.lexc` files comes from the specifications in these files (?).
+The organization of word forms into **paradigms** and **classes** in the `.lexc` files comes from the specifications in these files.
 
 Here is a small extract from `VTA_IND.csv`:
 | Paradigm | Order | Class | Lemma | Stem | Subject | Object | Mode | Negation | Form1Surface | Form1Split | Form1Source | Form2Surface | Form2Split | Form2Source | 
