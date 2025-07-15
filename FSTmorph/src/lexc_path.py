@@ -362,6 +362,7 @@ class LexcPath:
                 preverb_lexicon = (self.conf["prefix_root"] # This can also be the prenoun lexicon depending on paradigm
                                    if "prefix_root" in self.conf
                                    else None)
+                enclitic_lexicon = "EncliticRoot"
                 pos_stem_lexicon = f"{self.conf['pos']}Stems" # E.g. VerbStems
                 paradigm_stem_lexicon = f"{paradigm}_Stems" # E.g. VTA_Stems
                 inflection_class_lexicon = f"{paradigm}_Class={klass}_Boundary"
@@ -401,7 +402,7 @@ class LexcPath:
                     LexcEntry(ending_lexicon,
                               "".join(tags),
                               parts.suffix,
-                              "#")
+                              enclitic_lexicon or "#")
                 ]
                 paths.append(path)
             else:

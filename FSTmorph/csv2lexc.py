@@ -6,7 +6,7 @@
 
    `config_files` is a comma-separated list of full paths to .json configuration files
 
-   `source_path` gives the path the directory containing morphological information,
+   `source_path` gives the path of the directory containing morphological information,
    plus phonological rules.  An example for Ojibwe is OjibweMorph.
 
    `database_paths` gives the path to 1+ directories where CSVs containing lexical information
@@ -28,7 +28,7 @@ import json
 from os.path import join as pjoin
 
 from fstmorph.src.lexicon import LexcFile
-from fstmorph.src.templates import render_pre_element_lexicon, render_root_lexicon
+from fstmorph.src.templates import render_enclitic_lexicon, render_pre_element_lexicon, render_root_lexicon
 from fstmorph.src.log import set_verbose, info
 
 # Can be imported into other scripts, or called from the command line via main()
@@ -94,7 +94,8 @@ def csv2lexc(config_files, source_path, lexc_path, database_paths, lexical_data_
             info(f"Writing lexc output to directory {lexc_path}")
             pos_root_lexicons.add(config["prefix_root"])
             render_pre_element_lexicon(config,source_path,lexc_path)
-            
+
+    render_enclitic_lexicon(source_path, lexc_path, database_paths)
     render_root_lexicon(pjoin(source_path,"templates","root.lexc.j2"),
                         lexc_path)
 

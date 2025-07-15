@@ -140,6 +140,30 @@ def get_load_pre_element_csv(source_dir):
         return "\n".join(entries)
     return load_pre_element_csv
 
+def get_load_enclitic_csv(source_dir):
+    """Return a function which can be used to load the enclitic spreadsheet
+       from a jinja template file. We need a specialized function because
+       information about file paths is not accessible from the template.
+
+    """
+    def load_enclitic_csv(sources, next_lexicon):
+        entries = []
+        for csv_fn, general_tag in sources:
+            enclitic_csv = pd.read_csv(pjoin(source_dir, csv_fn))
+            for _, clitic in enclitic_csv.iterrows():
+                full_form = clitic["Full_Form"]
+                clitic_form = clitic["Clitic_Form"]
+                if full_form and clitic_form and full_form != "NONE" and clitic_form != "NONE":
+                    tag = general_tag + clitic["POS"] + "/" + full_form
+                    # We need to define the enclitic tag as a multichar symbol
+                    LexcPath.multichar_symbols.add(f"{escape(tag)}+")
+                    entries.append(
+                        f"+{escape(tag)}:{escape(clitic_form)} {next_lexicon} ;")
+        if entries == []:
+            entries = ["%<EMPTYLEX%> # ;"]
+        return "\n".join(entries)
+    return load_enclitic_csv
+
 def get_generate_pre_element_sub_lexicons(source_dir):
     """Return a function which will generate Any, Independent,
        PlainConjuct and ChangedConjunct preverb lexicons in a jinja
@@ -176,7 +200,7 @@ def pretty_join(str_list):
 
 def get_all_pre_element_tags(source_dir):
     """Return a function which harvests all preverb/prenoun tags from a
-       spreadsheet.  The fucntion can be called from a jinja template
+       spreadsheet.  The function can be called from a jinja template
        file. We need a specialized function because information about
        file paths is not accessible from the template.
 
@@ -228,6 +252,31 @@ def render_pre_element_lexicon(config,source_path,lexc_path):
         get_generate_pre_element_sub_lexicons(csv_src_path),
         "add_lexeme_multichar_symbols":
         get_add_lexeme_multichar_symbols(config)
+    }
+    jinja_template.globals.update(func_dict)
+    template_string = jinja_template.render()
+    with open(pjoin(lexc_path, template_file.replace(".j2","")),"w") as f:
+        print(template_string, file=f)
+
+def render_enclitic_lexicon(source_path, lexc_path, database_src_dirs):
+    """ Render the enclitic Jinja template into lexc code."""
+    csv_src_path = pjoin(source_path, "./OtherSpreadsheets")
+    template_file = "enclitics.lexc.j2"
+    template_dir = pjoin(expanduser(source_path), "templates")
+    env = Environment(loader=FileSystemLoader(template_dir))
+    prefix_database = "None" # Could be a file in the lex source
+    jinja_template = env.get_template(template_file)
+    func_dict = {
+        "all_pre_element_tags":
+        get_all_pre_element_tags(csv_src_path),
+        "load_enclitic_csv":
+        get_load_enclitic_csv(csv_src_path),
+        "load_pre_element_database":
+        get_load_pre_element_database(database_src_dirs,prefix_database),
+        "generate_pre_element_sub_lexicons":
+        get_generate_pre_element_sub_lexicons(csv_src_path)
+        # "add_lexeme_multichar_symbols":
+        # get_add_lexeme_multichar_symbols(config)
     }
     jinja_template.globals.update(func_dict)
     template_string = jinja_template.render()
