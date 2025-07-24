@@ -39,4 +39,4 @@ To give some more detail, the script `csv2lexc.py` here in FSTmorph utilizes (1)
 
 ## Developer documentation
 
-1. [`ParserTools/FSTmorph`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/ParserTools/blob/dev/docs/html_docs/index.html)
+1. [`FSTmorph`](https://htmlpreview.github.io/?https://github.com/ELF-Lab/FSTmorph/blob/main/docs/html_docs/index.html)

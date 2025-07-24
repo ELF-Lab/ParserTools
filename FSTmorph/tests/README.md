@@ -7,7 +7,7 @@ The code for running tests based on the generated YAML files comes from [giella-
 - Run the following, updating the arguments as needed:  
 `python3 yaml_tests/create_yaml.py "~/OjibweMorph/VerbSpreadsheets/" "~/OjibweMorph/config/verbs.json" "yaml_tests/" --non-core-tags=Dub,Prt,PrtDub`
     - The first argument is the directory containing the .csv files that you want to convert ([example here](https://github.com/ELF-Lab/OjibweMorph/tree/main/VerbSpreadsheets)).
-    - The second argument is the path to a .json configuration file, described [here](https://github.com/ELF-Lab/ParserTools/tree/dev/csv2fst#json-configuration-files).
+    - The second argument is the path to a .json configuration file, described [here](https://github.com/ELF-Lab/FSTmorph/blob/main/docs/morphological_source.md#configuration-files-json).
     - The third argument is the output directory where the YAML files will be written to (in their own subdirectory).
     - The argument `--non-core-tags` is optional and specifies tags which should not be included in 'core' YAML test files like `VTA_IND-core.yaml`.
     - For more information on the arguments, check the argument help in `create_yaml.py`.
