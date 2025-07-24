@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "FSTmorph"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Miikka Silfverberg <msilfver@mail.ubc.ca>", "Anna Stacey <anna.stacey@ubc.ca>"]
 readme = "README.md"
