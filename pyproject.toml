@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "FSTmorph"
+version = "0.1.2"
+description = ""
+authors = ["Miikka Silfverberg <msilfver@mail.ubc.ca>", "Anna Stacey <anna.stacey@ubc.ca>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = ">=2.0.1"
+click = ">=8.1.3"
+jinja2 = ">=3.1.3"
+PyYAML = ">6.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.2.3"
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
