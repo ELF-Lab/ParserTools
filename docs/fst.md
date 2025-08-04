@@ -75,7 +75,7 @@ Each analysis–word form pair `walk+Verb+Past:walked` corresponds to a unique p
 (LEXICON Root, LEXICON Verb, walk, LEXICON VerbEnding, +Verb+Past:ed, #)
 ```
 
-This is the approach taken in the `ParserTools/csv2fst` code.
+This is the approach taken in the `FSTmorph` code.
 
 ## Flag diacritics
 
@@ -109,7 +109,7 @@ LEXICON NiEnding
 +VAI+Ind+Pos+Neu+ExclSubj:min # ;
 ```
 
-When there are many stems (and there can be thousands) as well as several prefix-suffix combinations to keep track of, repeated copies of the stem lexicon become cumbersome and hard to maintain. Luckily, lexc offers and alternative mechanism to control the lexicon combinatorics, namely, **flag diacritics**.
+When there are many stems (and there can be thousands) as well as several prefix-suffix combinations to keep track of, repeated copies of the stem lexicon become cumbersome and hard to maintain. Luckily, lexc offers an alternative mechanism to control the lexicon combinatorics, namely, **flag diacritics**.
 
 The `ni` prefix sets the `Prefix` feature to the value `ni` using the flag `@P.Prefix.NI@`. This flag is then checked in the `NiEnding` lexicon using flag `@R.Prefix.Ni@`:
 
@@ -140,8 +140,8 @@ LEXICON GiEnding
 LEXICON NiEnding
 +VAI+Ind+Pos+Neu+ExclSubj:min # ;
 ```
-
-Note that the same could be represented more compactly using fewer continuation lexicons, but this can impede readability:
+Note that `@P.Prefix.Ni@` *sets* the value of this prefix feature (`P` = Positive, i.e., the positive value), whereas `@R.Prefix.Ni@` *checks* what the value of this prefix feature is (`R` = Require).  
+The same could be represented more compactly using fewer continuation lexicons, but this can impede readability:
 
 ```
 LEXICON Root
@@ -157,6 +157,4 @@ LEXICON Ending
 
 ```
 
-List of flag diacritics:
-
-TBD
+Some more info about flag diacritics can be found [here](https://giellalt.github.io/lang-sme/docu-sme-flag-diacritics.html).

@@ -2,7 +2,7 @@
 
 The lexical source CSVs provide lists of **lexemes** to the FST which will then be included in its knowledge.  While other sources tell the FST how to inflect various lexemes, phonological rules that are involved, etc. the lexical source CSVs are like big wordlists that the FST will then apply that other knowledge to.  In other words, these CSVs are not *essential* for building an FST -- you can generate a minimal FST with only the materials in the [morphological source](./morphological_source.md) -- but they greatly expand its vocabulary, and thus, its utility!
 
-The lexical source(s) for the example Ojibwe FST are subfolders in `OjibweLexicon`.  For example [`OjibweLexicon/OPD`](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD)..
+The lexical source(s) for the example Ojibwe FST are subfolders in OjibweLexicon.  For example [`OjibweLexicon/OPD`](https://github.com/ELF-Lab/OjibweLexicon/tree/main/OPD).
 
 The lexical source CSVs should be split up by part of speech, yielding `VERBS.csv`, `NOUNS.csv`, etc.  Each CSV has the following columns:
 - **Lemma**: the 'dictionary form'; an easily-recognizable, 'base' form that is an actual, useable word.

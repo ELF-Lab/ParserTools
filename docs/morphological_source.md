@@ -12,7 +12,7 @@ These spreadsheets provide the core morphological information used by the FST.
 
 The spreadsheets are used by `csv2lexc.py`.  It gets the location/name of the spreadsheets from [the config files](#configuration-files-json).  Each config file specifies the relevant spreadsheet(s) through the values of `morphology_source_path`, `regular_csv_files` and (optionally) `irregular_csv_files`.
 
-Words should be split into different spreadsheets by **part of speech (POS)** (e.g., ADVERBS.csv).  Further splitting works, too.  For example, in `OjibweMorph`, the noun and verb spreadsheets (which have many, many more forms than the other POS) are further split by **class** for nouns (e.g., NA_VVw.csv) and by **paradigm** and **order** for verbs (e.g., VTI_CNJ.csv).
+Words should be split into different spreadsheets by **part of speech (POS)** (e.g., `ADVERBS.csv`).  Further splitting works, too.  For example, in OjibweMorph, the noun and verb spreadsheets (which have many, many more forms than the other POS) are further split by **class** for nouns (e.g., `NA_VVw.csv`) and by **paradigm** and **order** for verbs (e.g., `VTI_CNJ.csv`).
 
 Though these spreadsheets are primarily used for their morphological inflection, while the external lexical database provides most lemmas, the FST *does* also learn the lemmas given in these spreadsheets.  This is why you can make a small working FST with no external lexical database specified -- the FST will just know the lemmas used in these morphological spreadsheets.
 
@@ -248,7 +248,7 @@ These template files are used by `csv2lexc.py` in generating `.lexc` files.  For
 ## Phonological Rules (`.xfst`)
 `phonology.xfst` includes the phonological rules that will be incorporated into the FST to produce inflected forms.
 
-Specifically, `FSTmorph/assets/compile_fst.xfst` ultimately creates the actual FST files from the combination of `all.lexc` (a compilation of all the generated `.lexc` files) and `phonology.xfst`.  Both of these are hardcoded into `compile_fst.xfst`.  In `OjibweMorph`, the [Makefile](https://github.com/ELF-Lab/OjibweMorph/Makefile) copies both `.xfst` files into the output directory along with all the generated `.lexc` files, so that all these files are in the same place. `compile_fst.xfst` is a language-general way of combining these two files containing language-specific information.
+Specifically, `FSTmorph/assets/compile_fst.xfst` ultimately creates the actual FST files from the combination of `all.lexc` (a compilation of all the generated `.lexc` files) and `phonology.xfst`.  Both of these are hardcoded into `compile_fst.xfst`.  In OjibweMorph, the [Makefile](https://github.com/ELF-Lab/OjibweMorph/Makefile) copies both `.xfst` files into the output directory along with all the generated `.lexc` files, so that all these files are in the same place. `compile_fst.xfst` is a language-general way of combining these two files containing language-specific information.
 
 Here is an example phonological rule from [OjibweMorph/xfst/phonology.xfst](https://github.com/ELF-Lab/OjibweMorph/xfst/phonology.xfst):
 ```
