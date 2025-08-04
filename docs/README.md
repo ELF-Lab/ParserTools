@@ -34,7 +34,7 @@ To give some more detail, the script `csv2lexc.py` here in FSTmorph utilizes (1)
 2. [The Morphological Source](morphological_source.md)
 3. [The Lexical Source](lexical_source.md)
 4. [FSTmorph](FSTmorph.md)
-5. [Example Use: Adding a New Part-of-Speech (POS)](adding_pos.md)
+5. [Illustrative Examples: Modifying the FST](adding_pos.md)
 5. [Useful References](references.md)
 
 ## Developer documentation
